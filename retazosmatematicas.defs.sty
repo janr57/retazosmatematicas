@@ -1,0 +1,193 @@
+% retazosmatematicas.defs.sty
+%
+% Copyright (C) 2022--2026 José A. Navarro Ramón <janr.devel@gmail.com>
+% Licencia del código GPLv2
+% Licencia Creative Commons Recognition Non-Commercial Share-alike.
+% (CC-BY-NC-SA)
+%% ----------------------------------------------------------------------------
+
+
+% ----------------------------------------------------------------------------
+% COLORES
+
+\pgfplotsset{
+  colormap={greenyellow}{rgb255(0cm)=(0,128,0); rgb255(1cm)=(255,255,0)}
+}
+
+\pgfplotsset{
+  colormap={janrGRAYWHITE}{rgb255(0cm)=(180,180,180); rgb255(1cm)=(255,255,255)}
+}
+
+\pgfplotsset{
+  colormap = {GY}{%
+    color=(green!40!black)
+    color=(green!70!black)
+    color=(green!15!yellow)
+  },
+  colormap = {G}{%
+    color=(green!70!black)
+    color=(green!70!black)
+  },
+}
+
+% Color rojo en texto y en fórmula con el objetivo de destacar un error
+\newcommand{\errcolor}{red!80!black}
+% Color verde en texto y en fórmula con el objetivo de destacar un texto
+\newcommand{\infocolor}{green!55!black}
+% Color amarillo de los fondos de imágenes
+\newcommand{\bgcolor}{yellow!15}
+% Borde gris de los marcos de fondos de imágenes
+\newcommand{\bgbordercolor}{black!10}
+% Marcas de agua
+\newcommand{\marcaagua}{black!9}
+
+% Colores en gráficas al girar vectores o funciones
+% Color de vector original
+\newcommand{\colorVorig}{black!30}
+\newcommand{\colorVoriguno}{black!40}
+\newcommand{\colorVorigdos}{black!50}
+\newcommand{\colorVorigGreen}{green!50!black}
+% Color texto vector original
+\newcommand{\colorTorig}{black!50}
+\newcommand{\colorToriguno}{black!60}
+\newcommand{\colorTorigdos}{black!70}
+\newcommand{\colorTorigGreen}{green!50!black}
+% Color punto original
+\newcommand{\colorPorig}{black!25}
+\newcommand{\colorPoriguno}{black!30}
+\newcommand{\colorPorigdos}{black!35}
+% Color de vector rotado
+\newcommand{\colorVrot}{red!90!black}
+\newcommand{\colorVrotuno}{red!50!black}
+\newcommand{\colorVrotdos}{red!70!black}
+\newcommand{\colorVrotRed}{red!80!black}
+% Color texto vector rotado
+\newcommand{\colorTrot}{red!80!black}
+\newcommand{\colorTrotRed}{red!80!black}
+% Color punto rotado
+\newcommand{\colorProt}{red}
+\newcommand{\colorProtuno}{red!90!black}
+\newcommand{\colorProtdos}{red!80!black}
+% Color giro
+\newcommand{\colorGiro}{black!30}
+\newcommand{\colorGirouno}{black!50}
+\newcommand{\colorGirodos}{black!70}
+% Color ángulo
+\newcommand{\colorAng}{black!10}
+\newcommand{\colorAnguno}{black!20}
+\newcommand{\colorAngdos}{black!30}
+\newcommand{\colorAnggreen}{green!20}
+
+% ----------------------------------------------------------------------------
+% GROSOR DE LÍNEA DE BORDE DE FONDO DE IMAGEN
+\newcommand{\bgborderwidth}{1pt}
+
+% ----------------------------------------------------------------------------
+% CANCELACIÓN TÉRMINOS EN FÓRMULAS
+\newcommand{\cancelout}[1]{%
+  \tikz[baseline=(tocancel.base)]{%
+    \node[inner sep=1pt,outer sep=0pt] (tocancel) {$#1$}; \draw[red]
+    (tocancel.south west) -- (tocancel.north east); } }
+
+% ----------------------------------------------------------------------------
+% MARCAS DE AGUA
+\SetWatermarkText{\textsf{BORRADOR}}
+\SetWatermarkScale{0.60}
+\SetWatermarkColor{\marcaagua}
+\SetWatermarkAngle{55}
+% stamp/nostamp: activa/desactiva borrador
+\DraftwatermarkOptions{nostamp}
+
+% ----------------------------------------------------------------------------
+% Longitudes
+% Para desplazamiento de subíndice en elementos de matrices en relatividad
+\newcommand{\ksub}{\kern4pt}
+
+% ----------------------------------------------------------------------------
+% Paquete 'tensind'
+\tensordelimiter{€}
+
+%% ----------- MACROS --------------------------------------------------------
+% Vectores
+\newcommand*{\vvv}[1]{%
+  % Actívese sólo una de las dos opciones
+  %\ensuremath{\vec{#1}}
+  %\ensuremath{\kern1.2pt\mathbf{#1}}
+  \ensuremath{\kern1.2pt\symbf{#1}}
+}
+
+% Matrices
+\newcommand*{\mmm}[1]{%
+  % Actívese sólo una de las dos opciones
+  %\ensuremath{\operatorname{#1}}
+  %\ensuremath{\kern1.2pt\mathbf{#1}}
+  \ensuremath{\kern1.2pt\symbf{#1}}
+}
+
+% Matrices representadas por letras griegas
+\newcommand*{\mmmg}[1]{%
+  % Actívese sólo una de las dos opciones
+  %\ensuremath{#1}
+  %\ensuremath{{\kern1.2pt\boldsymbol{#1}}}
+  \ensuremath{{\kern1.2pt\symbf{#1}}}
+}
+
+% Producto vectorial
+\newcommand{\prodvec}{%
+  % Actívese sólo una de las dos opciones
+  \ensuremath{\times}
+}
+
+\newcommand{\transp}{%
+  \ensuremath{{\top}}
+}
+
+\newcommand{\trasp}{%
+  \ensuremath{{\top}}
+}
+
+% Tensores
+\newcommand*{\ttt}[1]{%
+  % Actívese sólo una de las dos opciones
+  %\ensuremath{#1}
+  %\ensuremath{{\kern1.2pt\boldsymbol{#1}}}
+  \ensuremath{{\kern1.2pt\overbar{\symbf{#1}}}}
+}
+
+\newcommand{\xhat}[1]{%
+  % Actívese sólo una de las dos opciones
+  %\ensuremath{\kern5.2pt\pmb{{\kern-0.5em\hat{\mathrm{#1}}}}}
+  %\ensuremath{\kern1.2pt\pmb{\hat{#1}}}
+  \ensuremath{\kern1.2pt\symbf{\hat{#1}}}
+}
+
+\newcommand{\xtilde}[1]{%
+  % Actívese sólo una de las dos opciones
+  %\ensuremath{\kern5.2pt\pmb{{\kern-0.5em\hat{\mathrm{#1}}}}}
+  %\ensuremath{\kern1.2pt\pmb{\hat{#1}}}
+  \ensuremath{\kern1.2pt\symbf{\tilde{#1}}}
+}
+
+\newcommand{\xdottilde}[1]{%
+    \ensuremath{\vvv{\dot{\tilde{r}}}}
+}
+
+% \uvec{\i} y \uvec{\j} producen i y j sin punto y con acento circunflejo en negrita
+\newcommand{\uvec}[1]{\textbf{\^{#1}}}
+
+%\xhat{\pmb{\mathrm{n}}}
+%% --------------------------------------------------------------------
+
+%% --------------------------------------------------------------------
+% Permite símbolos matemáticos en \chapter, \section, \subsection, etc.
+%\newcommand*\mathinhead[2]{\texorpdfstring{$\boldsymbol{#1}$}{#2}}
+\newcommand*\mathinhead[2]{\texorpdfstring{$\symbf{#1}$}{#2}}
+%% --------------------------------------------------------------------
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: luatex
+%%% TeX-master: "retazosmatematicas.tex"
+%%% End:

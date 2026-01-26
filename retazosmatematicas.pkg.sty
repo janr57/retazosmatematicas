@@ -1,0 +1,203 @@
+% retazosmatematicas.pkg.sty
+%
+% Copyright (C) 2022--2026 José A. Navarro Ramón <janr.devel@gmail.com>
+% Licencia del código GPLv2
+% Licencia Creative Commons Recognition Non-Commercial Share-alike.
+% (CC-BY-NC-SA)
+%
+% --------------------------------------------------------
+% ----------- PACKAGES & CONFIGURATION -------------------
+% --------------------------------------------------------
+
+% IMPORTANT: 'geometry' doesn't detect 'luatex' by default
+% and doesn't inform to the pdf reader about document size.
+\RequirePackage{luatex85}
+% --------------------------------------------------------
+% Basic packages
+%\RequirePackage{upgreek}
+\RequirePackage{amsmath}
+\RequirePackage{amsfonts}
+\RequirePackage{amssymb}
+\RequirePackage{relsize}
+% \RequirePackage{exscale}
+\RequirePackage{bigints}
+
+\RequirePackage{lualatex-math}
+
+\RequirePackage{fontspec}
+\RequirePackage[math-style=TeX]{unicode-math}
+\defaultfontfeatures{Ligatures=TeX}
+\RequirePackage{lualatex-math}
+
+% --------------------------------------------------------
+% Languages
+\RequirePackage{polyglossia}
+\setmainlanguage{spanish}
+
+% --------------------------------------------------------
+% Fonts
+% -------
+% Main font
+\setmainfont{XITS}
+%\setmainfont{Linux Libertine O}
+% -------
+% Sans font
+\setsansfont{Linux Biolinum O}
+% -------
+% Mono font
+\setmonofont{InconsolataN-Regular}
+%\setmonofont[Scale=MatchLowercase]{Inconsolata}
+% \setmonofont{Fira Mono}
+% -------
+% Math font
+% Available for 'unicode-math':
+% Latin Modern Math (1585 symbols)
+% XITS Math (2425 symbols)
+% STIX Math (2394 symbols)
+% Cambria Math (1588 symbols)
+% Asana Math (2252 symbols)
+% TeX Gyre Pagella Math (1638 symbols)
+% DejaVu Math TeX Gyre (1648 symbols)
+% Neo Euler (576 symbols)
+% \setmathfont{Asana-Math}
+\setmathfont{XITS-Math}
+% -------
+% Latin Modern
+%\setmainfont{LMRoman10-Regular}
+%\setsansfont{LMSans10-Regular}
+%\setmonofont{LMMono10-Regular}
+%\setmathfont{LatinModernMath-Regular}
+% -------
+% Extra fonts
+% For date in the front matter:
+%\newfontfamily\fontPortada{Century Schoolbook L Bold}
+% --------------------------------------------------------------------
+% Lua code within source
+\RequirePackage{luacode}
+% --------------------------------------------------------
+%% Geometry
+%\RequirePackage{geometry}
+%% Horizontales
+%\geometry{a4paper}
+%\geometry{textwidth=17cm}
+%\geometry{bindingoffset=5mm}
+%\geometry{nomarginpar}
+%%% \geometry{hmargin=15mm}
+%% Verticales
+%\geometry{head=44pt}
+%% \geometry{top=32mm}
+%\geometry{top=27mm} % Keep like that or decrease it a little.
+%\geometry{headsep=4mm}
+%\geometry{footskip=5mm}
+%%%\geometry{bottom=45mm}
+%%\geometry{textheight=24.5cm}
+%\geometry{textheight=24.5cm}
+% --------------------------------------------------------
+% Headers and footers
+% Don't use \pagestyle{fancy} until document is paginated.
+\RequirePackage{fancyhdr}
+% --------------------------------------------------------
+\RequirePackage{datetime}
+\RequirePackage{cancel}
+\RequirePackage{tabularx}
+\RequirePackage{caption}
+\captionsetup{font=small}
+\RequirePackage{nameref}
+\RequirePackage{array}
+\RequirePackage{tabularx}
+\RequirePackage{multicol}
+\RequirePackage{colortbl}
+\RequirePackage{nicematrix}
+
+\RequirePackage{braket}
+\RequirePackage{tensind}
+
+% Por defecto no imprimir marca de agua definida
+%\RequirePackage[nostamp]{draftwatermark}
+\RequirePackage{draftwatermark}
+% --------------------------------------------------------
+% Listados y código fuente
+\RequirePackage{fancyvrb}
+% --------------------------------------------------------
+% Units
+\RequirePackage{siunitx}
+\sisetup{per-mode=power}
+\sisetup{exponent-product=\cdot}
+\sisetup{output-decimal-marker = {,}}
+\sisetup{retain-explicit-plus}
+\DeclareSIUnit\cv{CV}
+% --------------------------------------------------------
+% Appendix
+\RequirePackage{appendix}
+\renewcommand{\appendixname}{Apéndices}
+\renewcommand{\appendixtocname}{Apéndices}
+\renewcommand{\appendixpagename}{Apéndices}
+% --------------------------------------------------------
+% Graphic packages
+\RequirePackage{graphicx}
+\RequirePackage{xcolor}
+% TIKZ
+\RequirePackage{tikz}
+% Arrows
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{bending}
+% Background layer
+\usetikzlibrary{backgrounds}
+\usetikzlibrary{fit}
+% Angles
+\usetikzlibrary{angles}
+\usetikzlibrary{quotes}
+% Intersections
+\usetikzlibrary{intersections}
+% Positioning
+\usetikzlibrary{positioning}
+% Decorations
+\usetikzlibrary{decorations}
+%\usetikzlibrary{decorations.pathmorphing}
+%\usetikzlibrary{decorations.pathreplacing}
+%\usetikzlibrary{decorations.text}
+%
+\usetikzlibrary{calc}
+\usetikzlibrary{shapes}
+%\usetikzlibrary{shapes.geometric}
+%\usetikzlibrary{shapes.misc}
+\usetikzlibrary{shadows}
+\usetikzlibrary{patterns}
+\usetikzlibrary{intersections}
+\usetikzlibrary{plotmarks}
+\usetikzlibrary{matrix}
+\usetikzlibrary{fit}
+\usetikzlibrary{tikzmark}
+\usetikzlibrary{spy}
+% Boxes
+\RequirePackage{tcolorbox}
+\tcbuselibrary{skins}
+\tcbuselibrary{breakable}
+\tcbuselibrary{raster}
+% Plots
+\RequirePackage{pgfplots}
+\pgfplotsset{compat=newest}
+% 3D
+\RequirePackage{tikz-3dplot}
+% Circuits
+%\usetikzlibrary{circuits}
+% \RequirePackage[siunitx,american,compatibility]{circuitikz}
+% Symbols
+% \RequirePackage{tikzsymbols}
+% --------------------------------------------------------
+\RequirePackage{tikzpeople}
+% --------------------------------------------------------
+% Links and bookmarks
+\RequirePackage[colorlinks,linkcolor=black!70,urlcolor=gray,runcolor=gray,plainpages=false,unicode]{hyperref}
+\RequirePackage{bookmark}
+
+% --------------------------------------------------------------------
+
+%%% Local Variables:
+%%% coding: utf-8
+%%% mode: latex
+%%% TeX-engine: luatex
+%%% TeX-master: "retazosmatematicas.tex"
+%%% End:
+
+
