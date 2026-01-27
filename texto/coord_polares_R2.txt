@@ -1,0 +1,23 @@
+% metrica_euclid_ortog.tex
+%
+% Copyright (C) 2022--2026 José A. Navarro Ramón <janr.devel@gmail.com>
+% Licencia del código GPLv2
+% Licencia Creative Commons Recognition Non-Commercial Share-alike.
+% (CC-BY-NC-SA)
+
+\chapter{Coordenadas polares planas (espacio \mathinhead{\symbb{R}^2}{espr2})}
+\section{Métrica}
+la métrica en coordenadas cartesianas es
+\[
+  \begin{pmatrix}
+    1 & 0\\
+    0 & 1
+  \end{pmatrix}
+\]
+Así, el producto escalar en estas coordenadas
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: luatex
+%%% TeX-master: "../retazosmatematicas.tex"
+%%% End:
