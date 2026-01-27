@@ -11,11 +11,8 @@ FILES =	retazosmatematicas.pkg.sty\
 	retazosmatematicas.defs.sty\
 	portada/portada.tex\
 	tablacontenidos/tablacontenidos.tex\
-	texto/metrica_euclid_ortog.tex\
+	texto/coord_polares_R2.tex\
 	$(IMGSTATICDIR)/Cc-by-nc-sa_icon.pdf
-
-	#texto/fichero.tex\
-	#apendices/ap_fichero.tex\
 
 retazosmatematicas.pdf: retazosmatematicas.tex $(FILES)
 
