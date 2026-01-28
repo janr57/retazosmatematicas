@@ -5,11 +5,73 @@
 % Licencia Creative Commons Recognition Non-Commercial Share-alike.
 % (CC-BY-NC-SA)
 
-\chapter{Coordenadas polares planas (en espacio euclídeo
+\chapter{Coordenadas polares planas (espacio euclídeo
   \mathinhead{\symbb{R}^2}{espr2})}
 \section{Coordenadas cartesianas}
-\subsection{Vectores unitarios}
+
 \subsection{Gradiente, divergencia y laplaciana}
+Presentamos un resumen de estas operaciones
+\begin{itemize}
+\item El gradiente de un campo escalar $\phi(x,y)$ es un vector
+\begin{equation}
+  \vvv{\nabla}\phi
+  = \dfrac{\partial \phi}{\partial x}\,\uvec{\i}
+  + \dfrac{\partial \phi}{\partial y}\,\uvec{\j}
+  = \begin{pmatrix}
+    \partial \phi/\partial x\\
+    \partial \phi/\partial y
+    \end{pmatrix}
+\end{equation}
+El vector gradiente de $\phi$ evaluado en un punto genérico $(x,y)$ del dominio de $\phi$
+indica la dirección en la cual el campo $\phi$ varía más rápidamente y su módulo
+representa el ritmo de variación de $\phi$ en la dirección de dicho vector gradiente.
+
+El operador gradiente se comporta como un vector bajo rotaciones
+\begin{equation}
+  \vvv{\nabla}
+  = \dfrac{\partial}{\partial x}\,\uvec{\i}
+  + \dfrac{\partial}{\partial y}\,\uvec{\j}
+  = \begin{pmatrix}
+    \partial/\partial x\\
+    \partial/\partial y
+    \end{pmatrix}
+\end{equation}
+
+\item La divergencia de un campo vectorial $\vvv{A}=(A_x, A_y)$ es un escalar
+  \begin{equation}
+    \vvv{\nabla}\cdot\vvv{A}
+    = \dfrac{\partial A_x}{\partial x}
+    + \dfrac{\partial A_y}{\partial y}
+  \end{equation}
+  La divergencia mide la diferencia entre el flujo saliente y el flujo entrante de un
+  campo vectorial sobre la superficie que rodea a un volumen de control, por tanto, si el
+  campo tiene ''fuentes'' la divergencia será positiva, y si tiene "sumideros", la
+  divergencia será negativa. La divergencia mide la rapidez neta con la que se conduce la
+  materia al exterior de cada punto, y en el caso de ser la divergencia idénticamente
+  igual a cero, describe al flujo incompresible del fluido, llamado también campo
+  solenoidal.
+  
+\item La laplaciana de un campo escalar $f(x,y)$ es la divergencia del gradiente y es un
+  escalar
+  \begin{equation}
+    \Delta \phi
+    =
+    \nabla^2 \phi
+    = \vvv{\nabla}\cdot\vvv{\nabla}\phi
+    = \dfrac{\partial^2 \phi}{\partial x^2}
+    + \dfrac{\partial^2 \phi}{\partial y^2}
+  \end{equation}
+Mide la concentración de un campo en un punto. Si es negativo, indica una tendencia a la
+concentración (fuente); si es positivo, indica dispersión.
+
+El operador laplaciano es
+\begin{equation}
+  \nabla^2
+  = \dfrac{\partial^2}{\partial x^2}
+  + \dfrac{\partial^2}{\partial y^2}
+\end{equation}
+\end{itemize}
+
 \subsection{Métrica y factores de escala}
 Empezamos calculando el producto escalar de dos vectores, expresándolo en forma matricial
 \begin{align*}
