@@ -9,7 +9,7 @@
   \mathinhead{\symbb{R}^2}{espr2})}
 \section{Intuición acerca de la métrica en coordenadas cartesianas}
 Empezamos con la métrica en coordenadas cartesianas es
-\[
+\begin{equation}\label{eq:R2-metrica-cartesianas}
   \mmm{g}
   =
   g_{ij}
@@ -23,9 +23,9 @@ Empezamos con la métrica en coordenadas cartesianas es
     1 & 0\\
     0 & 1
   \end{pmatrix}
-\]
+\end{equation}
 
-Se llaman \emph{factores de escalas} o \emph{coeficientes métricos} a la raíz cuadrada de
+Se llaman \emph{factores de escala} o \emph{coeficientes métricos} a la raíz cuadrada de
 los elementos diagonales en la métrica en un sistema de coordenadas ortogonales, como el
 que nos ocupa. En coordenadas cartesianas estándar serían
 \begin{align*}
@@ -33,6 +33,7 @@ que nos ocupa. En coordenadas cartesianas estándar serían
   h_y &= \sqrt{g_{22}} = \sqrt{1} = 1  
 \end{align*}
 
+Fijémonos en la métrica \eqref{eq:R2-metrica-cartesianas}
 \begin{itemize}
 \item Los elementos no diagonales son nulos. Esto se interpreta como que las coordenadas
   $x$ e $y$ son independientes, esto es, son ortogonales. Esto es, un cambio en una de ellas no afecta a la otra.
@@ -40,11 +41,12 @@ que nos ocupa. En coordenadas cartesianas estándar serían
   valga la unidad implica que un cambio en una unidad en la coordenada respectiva implica
   una distancia recorrida de una unidad en el espacio. En realidad, el espacio recorrido
   es el factor de escala correspondiente, pero en este caso da lo mismo
-  \[
-    \Delta s = h_x \Delta x = \sqrt{1} \Delta x = \Delta x
-    ;\hspace{1em}
-    \Delta s = h_y \Delta y = \sqrt{1} \Delta y = \Delta y
-  \]
+  \begin{subequations}
+    \begin{align}
+      \Delta s &= h_x |\Delta x| = \sqrt{1}\, |\Delta x| = |\Delta x|\\
+      \Delta s &= h_y |\Delta y| = \sqrt{1}\, |\Delta y| = |\Delta y|
+    \end{align}
+  \end{subequations}
 \end{itemize}
 
 
@@ -81,7 +83,7 @@ distancia entre el origen de coordenadas y un punto del espacio.
     textooriginal/.style={\colorTorig},
     pcirculo/.style={fill=\colorPorig, draw=black},
     angulogirado/.style={fill=\colorAngGreen, draw=\colorGirodos},
-    background/.style={p
+    background/.style={
       line width=\bgborderwidth,
       draw=\bgbordercolor,
       fill=\bgcolor,
@@ -130,43 +132,26 @@ distancia entre el origen de coordenadas y un punto del espacio.
     \filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
     \node[above] at (P) {$P$};
     
-    % Proyección de P en los ejes    
-%    \node[textooriginal,above=5pt] at (OPmidway) {$\vvv{r}$};
-%    \filldraw[pcirculo] (P) circle [radius=1.4pt];
-%    \node[textooriginal,above] at (P) {$P$};
-%    % Punto P'
-%    \draw[vectorrotado] (O) -- (P');
-%    \node[textorotado,right=0pt] at (OP'midway) {$\vvv{r}'$};
-%    \filldraw[pprimacirculo] (P') circle [radius=1.4pt];
-%    \node[right] at (P') {$P'$};
-%    % Sentido de giro del vector
-%    \draw [-{Latex},\colorGiro,shorten <= 3pt]
-%    (parrow) to[bend left=30] (p'arrow);
-%    % Incremento x
-%    \draw[pcirculo] (P |- O) circle[radius=1.5pt];
-%    \filldraw[pprimacirculo] (P' |- O) circle[radius=1.5pt];
-%    \draw[-{Latex}] (P |- under_origin) --
-%    node[below,name=incx] {\scriptsize $\Delta x > 0$} (P' |- under_origin);
-%    % Incremento y
-%    \draw[pcirculo] (P -| O) circle[radius=1.5pt];
-%    \filldraw[pprimacirculo] (P' -| O) circle[radius=1.5pt];
-%    \draw[-{Latex}] (P -| left_origin) --
-%    node[above=-1pt,sloped,rotate=180,name=incy]
-%    {\scriptsize $\Delta y < 0$} (P' -| left_origin);
-%    % Origen
-%    \filldraw (O) circle [radius=.2pt];
-%    % Fondo amarillo
-%    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
-%    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);    
-%    \begin{scope}[on background layer]
-%      \draw[background] (SW) rectangle (NE);
-%    \end{scope}
+    % Origen
+    \filldraw (O) circle [radius=.2pt];
+    % Fondo amarillo
+    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);    
+    \begin{scope}[on background layer]
+      \draw[background] (SW) rectangle (NE);
+    \end{scope}
   \end{tikzpicture}
   \caption{Coordenadas cartesianas y polares planas de un punto $P$ del plano.}
   \label{fig:R2:coordenadas-R2}
 \end{figure}
 
-
+De la figura se desprende
+\begin{subequations}
+  \begin{align}
+    x &= r\cos\theta\\
+    y &= r\sin\theta
+  \end{align}
+\end{subequations}
 
 
 
