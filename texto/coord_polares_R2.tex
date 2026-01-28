@@ -7,13 +7,69 @@
 
 \chapter{Coordenadas polares planas (en espacio euclídeo
   \mathinhead{\symbb{R}^2}{espr2})}
-\section{Intuición acerca de la métrica en coordenadas cartesianas}
-Empezamos con la métrica en coordenadas cartesianas es
+\section{Coordenadas cartesianas}
+\subsection{Vectores unitarios}
+\subsection{Gradiente, divergencia y laplaciana}
+\subsection{Métrica y factores de escala}
+Empezamos calculando el producto escalar de dos vectores, expresándolo en forma matricial
+\begin{align*}
+  \vvv{r}_1 &= a\,\uvec{\i} + b\,\uvec{\j}\\
+  \vvv{r}_2 &= c\,\uvec{\i} + d\,\uvec{\j}
+\end{align*}
+\begin{align*}
+  \vvv{r}_1\cdot\vvv{r}_2
+  &=
+    (a\,\uvec{\i} + b\,\uvec{\j}) \cdot (c\,\uvec{\i} + d\,\uvec{\j})
+    = ac\,\uvec{\i}\cdot\uvec{i} + ad\,\uvec{\i}\cdot\uvec{\j}
+    + bc\,\uvec{\j}\cdot\uvec{\i} + bd\,\uvec{\j}\cdot\uvec{\j}\\
+  &=
+    \begin{pmatrix}
+      a & b
+    \end{pmatrix}
+    \begin{pmatrix}
+      \uvec{\i}\cdot\uvec{\i} & \uvec{\i}\cdot\uvec{\j}\\
+      \uvec{i}\cdot\uvec{j} & \uvec{\j}\cdot\uvec{\j}
+    \end{pmatrix}
+    \begin{pmatrix}
+      c\\
+      d
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      a & b
+    \end{pmatrix}
+    \begin{pmatrix}
+      1 & 0\\
+      0 & 1
+    \end{pmatrix}
+    \begin{pmatrix}
+      c\\
+      d
+    \end{pmatrix}\\
+  &=
+    \begin{pmatrix}
+      a & b
+    \end{pmatrix}
+    \begin{pmatrix}
+      c\\
+      d
+    \end{pmatrix}
+    =
+    ab + cd
+\end{align*}
+
+La matriz $2\times 2$ que aparece en el cálculo es la \emph{métrica} del espacio
+$\symbb{R}^2$ en coordenadas cartesianas
 \begin{equation}\label{eq:R2-metrica-cartesianas}
   \mmm{g}
   =
   g_{ij}
   =
+  \begin{pmatrix}
+      \uvec{\i}\cdot\uvec{\i} & \uvec{\i}\cdot\uvec{\j}\\
+      \uvec{i}\cdot\uvec{j} & \uvec{\j}\cdot\uvec{\j}    
+  \end{pmatrix}
+  = 
   \begin{pmatrix}
     g_{11} & g_{12}\\
     g_{21} & g_{22}
@@ -35,19 +91,22 @@ que nos ocupa. En coordenadas cartesianas estándar serían
 
 Fijémonos en la métrica \eqref{eq:R2-metrica-cartesianas}
 \begin{itemize}
-\item Los elementos no diagonales son nulos. Esto se interpreta como que las coordenadas
-  $x$ e $y$ son independientes, esto es, son ortogonales. Esto es, un cambio en una de ellas no afecta a la otra.
+\item Los elementos no diagonales son nulos. Esto se interpreta como que los vectores
+  unitarios $\uvec{\i}$ y $\uvec{\j}$ son independientes, esto es, son ortogonales.
+  Esto es, un cambio en una coordenada no afecta a la otra.
 \item Los elementos diagonales valen la unidad. Cada elemento diagonal de la métrica que
   valga la unidad implica que un cambio en una unidad en la coordenada respectiva implica
   una distancia recorrida de una unidad en el espacio. En realidad, el espacio recorrido
   es el factor de escala correspondiente, pero en este caso da lo mismo
   \begin{subequations}
     \begin{align}
-      \Delta s &= h_x |\Delta x| = \sqrt{1}\, |\Delta x| = |\Delta x|\\
-      \Delta s &= h_y |\Delta y| = \sqrt{1}\, |\Delta y| = |\Delta y|
+      \Delta s &= h_x \Delta x = \sqrt{1}\, \Delta x = \Delta x\\
+      \Delta s &= h_y \Delta y = \sqrt{1}\, \Delta y = \Delta y
     \end{align}
   \end{subequations}
 \end{itemize}
+
+\subsection{Gradiente, divergencia y laplaciana}
 
 
 \section{Coordenadas polares planas}
@@ -145,6 +204,7 @@ distancia entre el origen de coordenadas y un punto del espacio.
   \label{fig:R2:coordenadas-R2}
 \end{figure}
 
+\subsection{Relación con las coordenadas cartesianas}
 De la figura se desprenden las siguientes relaciones
 \begin{subequations}
   \begin{align}
@@ -159,6 +219,56 @@ y, sus inversas
     \theta &= \arctan\frac{y}{x}
   \end{align}
 \end{subequations}
+
+\subsection{Vectores unitarios}
+
+
+\subsection{Métrica y factores de escala}
+Empezamos calculando las diferenciales $dx$ y $dy$
+\begin{subequations}
+  \begin{align}\label{eq:R2-dx}
+    dx
+    &=
+      \dfrac{\partial x}{\partial r} + \dfrac{\partial x}{\partial\theta}
+      = \cos\theta dr - r\sin\theta d\theta\\
+    \label{eq:R2-dy}
+    dy
+    &=
+      \dfrac{\partial y}{\partial r} + \dfrac{\partial y}{\partial\theta}
+      = \sin\theta dr + r\cos\theta d\theta
+\end{align}
+\end{subequations}
+
+La métrica se puede deducir a partir de la distancia recorrida en el espacio al cambiar
+las coordenadas
+{\footnotesize
+\begin{align*}
+  ds^2
+  &=
+    dx^2 + dy^2
+    = (\cos\theta dr - r\sin\theta d\theta)^2 + (\sin\theta dr + r\cos\theta d\theta)^2\\
+  &=
+    \cos^2\theta dr^2
+    + r^2 \sin^2\theta d\theta^2
+    - \cancelout{2r\sin\theta \cos\theta dr d\theta}
+    + \sin^2\theta dr^2
+    + r^2 \cos^2\theta d\theta^2
+    + \cancelout{2r\sin\theta \cos\theta dr d\theta}\\
+  &=
+    (\cos^2\theta + \sin^2\theta) dr^2 + r^2(\sin^2\theta + \cos^2\theta) d\theta^2
+    = dr^2 + r^2 d\theta^2
+\end{align*}
+}
+donde se han tenido en cuenta las ecuaciones~\eqref{eq:R2-dx} y ~\eqref{eq:R2-dy}.
+Los vectores unitarios $\xhat{r}$ y $\xhat{\theta}$ son ortogonales.
+
+\subsection{Gradiente}
+
+\subsection{Divergencia}
+
+\subsection{Laplaciana} 
+
+
 
 %%% Local Variables:
 %%% mode: latex
