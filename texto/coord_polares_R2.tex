@@ -1,4 +1,4 @@
-% metrica_euclid_ortog.tex
+% coord_polares_R2.tex
 %
 % Copyright (C) 2022--2026 José A. Navarro Ramón <janr.devel@gmail.com>
 % Licencia del código GPLv2
@@ -280,9 +280,84 @@ y, sus inversas
 \end{subequations}
 
 \subsection{Vectores unitarios}
+Representaremos a los vectores unitarios en coordenadas polares como $\xhat{r}$ y
+$\xhat{\theta}$.
+Nos proponemos relacionarlos con los $\uvec{\i}$ y $\uvec{\j}$ de las cartesianas.
+Empecemos por el vector unitario radial
+$\xhat{r}$. De la figura \ref{fig:R2:coordenadas-R2}, inferimos que el vector
+$\vvv{r}$ se puede expresar como
+\begin{equation}
+  \vvv{r} = r\cos\theta\,\uvec{\i} + r\sin\theta\,\uvec{\j}
+\end{equation}
+El vector unitario radial se obtiene dividiendo el vector entre su módulo
+\begin{equation}
+  \xhat{r}
+  = \dfrac{\vvv{r}}{r}
+  = \cos\theta\,\uvec{\i} + \sin\theta\,\uvec{\j}
+\end{equation}
+El vector unitario angular es la derivada de $\xhat{r}$ con respecto de
+$\xhat{\theta}$
+\begin{equation}
+  \xhat{\theta}
+  = \dfrac{d\xhat{r}}{d\theta}
+  = -\sin\theta\,\uvec{\i} + \cos\theta\,\uvec{\j}
+\end{equation}
+Se puede comprobar fácilmente que $\xhat{r}$ y $\xhat{\theta}$ son ortogonales, pues
+su producto escalar es cero: $\xhat{r}\cdot\xhat{\theta} = 0$.
+Resumimos este cambio de base y su inversa de forma matricial
+\begin{subequations}
+\begin{align}
+  \begin{pmatrix}
+    \xhat{r}\\
+    \xhat{\theta}
+  \end{pmatrix}
+  &=
+  \begin{pmatrix}
+    \cos\theta & \sin\theta\\
+    -\sin\theta & \cos\theta
+  \end{pmatrix}
+  \,
+  \begin{pmatrix}
+    \uvec{\i}\\
+    \uvec{\j}
+  \end{pmatrix}\\
+\begin{pmatrix}
+    \uvec{\i}\\
+    \uvec{\j}
+  \end{pmatrix}
+  &=
+  \begin{pmatrix}
+    \cos\theta & -\sin\theta\\
+    \sin\theta & \cos\theta
+  \end{pmatrix}
+  \,
+  \begin{pmatrix}
+    \xhat{r}\\
+    \xhat{\theta}
+  \end{pmatrix} 
+\end{align}
+\end{subequations}
+donde se ha utilizado la inversa de la matriz de cambio de base, que por ser una matriz
+ortogonal, la inversa es su transpuesta.
 
+Para terminar, nos interesan las derivadas de los vectores $\xhat{r}$ y $\xhat{\theta}$
+\begin{subequations}
+\begin{align}
+  \dfrac{d\xhat{r}}{dr}
+  &= 0\\
+  \dfrac{d\xhat{\theta}}{dr}
+  &= 0\\
+  \dfrac{d\xhat{r}}{d\theta}
+  &= -\sin\theta\,\uvec{\i} + \cos\theta\,\uvec{\j} = \xhat{\theta}\\
+  \dfrac{d\xhat{\theta}}{d\theta}
+  &= -\cos\theta\,\uvec{\i} - \sin\theta\,\uvec{\j} = -\xhat{r}
+\end{align}
+\end{subequations}
 
 \subsection{Métrica y factores de escala}
+Vamos a calcular la métrica y los factores de escala de dos formas equivalentes:
+\begin{enumerate}
+  \item
 Empezamos calculando las diferenciales $dx$ y $dy$
 \begin{subequations}
   \begin{align}\label{eq:R2-dx}
@@ -295,7 +370,7 @@ Empezamos calculando las diferenciales $dx$ y $dy$
     &=
       \dfrac{\partial y}{\partial r} + \dfrac{\partial y}{\partial\theta}
       = \sin\theta dr + r\cos\theta d\theta
-\end{align}
+  \end{align}
 \end{subequations}
 
 La métrica se puede deducir a partir de la distancia recorrida en el espacio al cambiar
@@ -320,6 +395,7 @@ las coordenadas
 }
 donde se han tenido en cuenta las ecuaciones~\eqref{eq:R2-dx} y ~\eqref{eq:R2-dy}.
 Los vectores unitarios $\xhat{r}$ y $\xhat{\theta}$ son ortogonales.
+\end{enumerate}
 
 \subsection{Gradiente}
 
