@@ -8,6 +8,25 @@
 \chapter{Coordenadas polares planas (espacio euclídeo
   \mathinhead{\symbb{R}^2}{espr2})}
 \section{Coordenadas cartesianas}
+\subsection{Vectores unitarios y su producto escalar}
+La base estándar en coordenadas cartesianas en este espacio está formada por los vectores $\uvec{\i}$ y $\uvec{\j}$, en los ejes $x$ e $y$, respectivamente.
+A continuación resumimos el valor de los productos escalares entre ellos
+\begin{subequations}
+  \begin{align}
+    \label{eq:R2-ii-producto escalar}
+    \uvec{\i}\cdot\uvec{\i}
+    &= |\uvec{\i}|\,|\uvec{\i}|\cos 0 = 1\\
+    \label{eq:R2-ij-producto escalar}    
+    \uvec{\i}\cdot\uvec{\j}
+    &= |\uvec{\i}|\,|\uvec{\j}|\cos\pi/2 = 0\\
+    \label{eq:R2-ji-producto escalar} 
+    \uvec{\j}\cdot\uvec{\i}
+    &= |\uvec{\j}|\,|\uvec{\i}|\cos\pi/2 = 0\\
+    \label{eq:R2-jj-producto escalar}
+    \uvec{\j}\cdot\uvec{\j}
+    &= |\uvec{\j}|\,|\uvec{\j}|\cos 0 = 1
+  \end{align}
+\end{subequations}
 
 \subsection{Gradiente, divergencia y laplaciana}
 Presentamos un resumen de estas operaciones
@@ -49,8 +68,7 @@ El operador gradiente se comporta como un vector bajo rotaciones
   divergencia será negativa. La divergencia mide la rapidez neta con la que se conduce la
   materia al exterior de cada punto, y en el caso de ser la divergencia idénticamente
   igual a cero, describe al flujo incompresible del fluido, llamado también campo
-  solenoidal.
-  
+  solenoidal.  
 \item La laplaciana de un campo escalar $f(x,y)$ es la divergencia del gradiente y es un
   escalar
   \begin{equation}
@@ -279,7 +297,8 @@ y, sus inversas
   \end{align}
 \end{subequations}
 
-\subsection{Vectores unitarios}
+\subsection{Vectores unitarios, sus productos escalares y derivadas}
+\subsubsection{Vectores unitarios}
 Representaremos a los vectores unitarios en coordenadas polares como $\xhat{r}$ y
 $\xhat{\theta}$.
 Nos proponemos relacionarlos con los $\uvec{\i}$ y $\uvec{\j}$ de las cartesianas.
@@ -339,8 +358,26 @@ Resumimos este cambio de base y su inversa de forma matricial
 \end{subequations}
 donde se ha utilizado la inversa de la matriz de cambio de base, que por ser una matriz
 ortogonal, la inversa es su transpuesta.
+\subsubsection{Productos escalares}
+\begin{align}
+  \xhat{r}\cdot\xhat{r}
+  &= (\cos\theta\,\uvec{\i}+\sin\theta\,\uvec{i})
+    \cdot (\cos\theta\,\uvec{\i}+\sin\theta\,\uvec{i})
+    = \cos^2\theta + \sin^2\theta
+    = 1\\
+  \xhat{r}\cdot\xhat{\theta}
+  &= (\cos\theta\,\uvec{\i}+\sin\theta\,\uvec{i})
+    \cdot (-\sin\theta\,\uvec{\i}+\cos\theta\,\uvec{i})
+    = -\sin\theta \cos\theta + \sin\theta\cos\theta
+    = 0\\
+\end{align}
+donde hemos utilizado el producto escalar de los vectores unitarios en cartesianas, ver
+ecuaciones~\eqref{eq:R2-ii-producto escalar}, \eqref{eq:R2-ij-producto escalar},
+\eqref{eq:R2-ji-producto escalar} y \eqref{eq:R2-jj-producto escalar}.
 
+\subsubsection{Derivadas}
 Para terminar, nos interesan las derivadas de los vectores $\xhat{r}$ y $\xhat{\theta}$
+con respecto de las coordenadas polares
 \begin{subequations}
 \begin{align}
   \dfrac{d\xhat{r}}{dr}
@@ -355,9 +392,9 @@ Para terminar, nos interesan las derivadas de los vectores $\xhat{r}$ y $\xhat{\
 \end{subequations}
 
 \subsection{Métrica y factores de escala}
-Vamos a calcular la métrica y los factores de escala de dos formas equivalentes:
+Vamos a calcular la métrica y los factores de escala de varias formas equivalentes:
 \begin{enumerate}
-  \item
+  \item Primero la calculamos utilizando las
 Empezamos calculando las diferenciales $dx$ y $dy$
 \begin{subequations}
   \begin{align}\label{eq:R2-dx}
