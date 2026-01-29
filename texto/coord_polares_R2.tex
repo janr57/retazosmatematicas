@@ -8,25 +8,105 @@
 \chapter{Coordenadas polares planas (espacio euclídeo
   \mathinhead{\symbb{R}^2}{espr2})}
 \section{Coordenadas cartesianas}
-\subsection{Vectores unitarios y su producto escalar}
-La base estándar en coordenadas cartesianas en este espacio está formada por los vectores $\uvec{\i}$ y $\uvec{\j}$, en los ejes $x$ e $y$, respectivamente.
+
+Escribimos el vector de posición de cualquier punto del espacio $\symbb{R}^2$ en
+coordenadas cartesianas
+\begin{equation}
+  \vvv{r}
+  = x\,\uvec{\i} + y\,\uvec{\j}
+\end{equation}
+
+\subsection{Base, vectores unitarios y su producto escalar}
+\subsubsection{Base fundamental y vectores unitarios}
+Los vectores de la base fundamental en estas coordenadas se obtienen derivando $\vvv{r}$ con respecto de las coordenadas $x$ e $y$
+\begin{subequations}
+  \begin{align}\label{eq:R2-ex}
+    \vvv{e}_x
+    &=
+      \dfrac{\partial\vvv{r}}{\partial x}
+      = \uvec{\i}\\
+    \label{eq:R2-ey}
+    \vvv{e}_y
+    &= \dfrac{\partial\vvv{r}}{\partial y}
+      = \uvec{\j}
+  \end{align}
+\end{subequations}
+Estos vectores de la base son importantes para calcular la métrica en cartesianas
+\begin{equation}\label{eq:R2-basefundamental}
+  B=\set{\vvv{e}_x, \vvv{e}_y} = \set{\uvec{\i}, \uvec{\j}}
+\end{equation}
+
+\subsubsection{Producto escalar de los vectores de la base}
+Los vectores de la base fundamental son vectores unitarios.
+La base normalizada en coordenadas cartesianas en este espacio está formada por los vectores $\uvec{\i}$ y $\uvec{\j}$, en los ejes $x$ e $y$, respectivamente.
 A continuación resumimos el valor de los productos escalares entre ellos
 \begin{subequations}
   \begin{align}
-    \label{eq:R2-ii-producto escalar}
-    \uvec{\i}\cdot\uvec{\i}
+    \label{eq:R2-ii-producto-escalar}
+    \vvv{e}_x\cdot\vvv{e}_x = \uvec{\i}\cdot\uvec{\i}
     &= |\uvec{\i}|\,|\uvec{\i}|\cos 0 = 1\\
-    \label{eq:R2-ij-producto escalar}    
-    \uvec{\i}\cdot\uvec{\j}
+    \label{eq:R2-ij-producto-escalar}    
+    \vvv{e}_x\cdot\vvv{e}_y = \uvec{\i}\cdot\uvec{\j}
     &= |\uvec{\i}|\,|\uvec{\j}|\cos\pi/2 = 0\\
-    \label{eq:R2-ji-producto escalar} 
-    \uvec{\j}\cdot\uvec{\i}
+    \label{eq:R2-ji-producto-escalar} 
+    \vvv{e}_y\cdot\vvv{e}_x = \uvec{\j}\cdot\uvec{\i}
     &= |\uvec{\j}|\,|\uvec{\i}|\cos\pi/2 = 0\\
-    \label{eq:R2-jj-producto escalar}
-    \uvec{\j}\cdot\uvec{\j}
+    \label{eq:R2-jj-producto-escalar}
+    \vvv{e}_y\cdot\vvv{e}_y = \uvec{\j}\cdot\uvec{\j}
     &= |\uvec{\j}|\,|\uvec{\j}|\cos 0 = 1
   \end{align}
 \end{subequations}
+
+\subsection{Métrica y factores de escala}
+La métrica en cartesianas se calcula utilizando los vectores de la base calculada en
+\eqref{eq:R2-ex} y \eqref{eq:R2-ey}. Los productos escalares se calcularon en
+\eqref{eq:R2-ii-producto-escalar}, \eqref{eq:R2-ij-producto-escalar},
+\eqref{eq:R2-ji-producto-escalar} y \eqref{eq:R2-jj-producto-escalar}
+\begin{equation}\label{eq:R2-metrica-cartesianas}
+  \mmm{g}
+  = g_{ij}
+  = \begin{pmatrix}
+    g_{ii} & g_{ij}\\
+    g_{ji} & g_{jj}
+    \end{pmatrix}
+  = \begin{pmatrix}
+      \vvv{e}_x\cdot\vvv{e}_x & \vvv{e}_x\cdot\vvv{e}_y\\
+      \vvv{e}_y\cdot\vvv{e}_x & \vvv{e}_y\cdot\vvv{e}_y
+  \end{pmatrix}
+  = \begin{pmatrix}
+      \uvec{\i}\cdot\uvec{\i} & \uvec{\i}\cdot\uvec{\j}\\
+      \uvec{i}\cdot\uvec{j} & \uvec{\j}\cdot\uvec{\j}
+  \end{pmatrix}
+  = \begin{pmatrix}
+    1 & 0\\
+    0 & 1
+  \end{pmatrix}
+\end{equation}
+
+Se llaman \emph{factores de escala} o \emph{coeficientes métricos} a la raíz cuadrada de
+los elementos diagonales en la métrica en un sistema de coordenadas ortogonales, como el
+que nos ocupa. En coordenadas cartesianas estándar serían
+\begin{align*}
+  h_x &= \sqrt{g_{11}} = \sqrt{1} = 1\\
+  h_y &= \sqrt{g_{22}} = \sqrt{1} = 1  
+\end{align*}
+
+Fijémonos en la métrica \eqref{eq:R2-metrica-cartesianas}
+\begin{itemize}
+\item Los elementos no diagonales son nulos. Esto se interpreta como que los vectores
+  unitarios $\uvec{\i}$ y $\uvec{\j}$ son independientes, esto es, son ortogonales.
+  Esto es, un cambio en una coordenada no afecta a la otra.
+\item Los elementos diagonales valen la unidad. Cada elemento diagonal de la métrica que
+  valga la unidad implica que un cambio en una unidad en la coordenada respectiva implica
+  una distancia recorrida de una unidad en el espacio. En realidad, el espacio recorrido
+  es el factor de escala correspondiente, pero en este caso da lo mismo
+  \begin{subequations}
+    \begin{align}
+      \Delta s &= h_x \Delta x = \sqrt{1}\, \Delta x = \Delta x\\
+      \Delta s &= h_y \Delta y = \sqrt{1}\, \Delta y = \Delta y
+    \end{align}
+  \end{subequations}
+\end{itemize}
 
 \subsection{Gradiente, divergencia y laplaciana}
 Presentamos un resumen de estas operaciones
@@ -90,101 +170,6 @@ El operador laplaciano es
 \end{equation}
 \end{itemize}
 
-\subsection{Métrica y factores de escala}
-Empezamos calculando el producto escalar de dos vectores, expresándolo en forma matricial
-\begin{align*}
-  \vvv{r}_1 &= a\,\uvec{\i} + b\,\uvec{\j}\\
-  \vvv{r}_2 &= c\,\uvec{\i} + d\,\uvec{\j}
-\end{align*}
-\begin{align*}
-  \vvv{r}_1\cdot\vvv{r}_2
-  &=
-    (a\,\uvec{\i} + b\,\uvec{\j}) \cdot (c\,\uvec{\i} + d\,\uvec{\j})
-    = ac\,\uvec{\i}\cdot\uvec{i} + ad\,\uvec{\i}\cdot\uvec{\j}
-    + bc\,\uvec{\j}\cdot\uvec{\i} + bd\,\uvec{\j}\cdot\uvec{\j}\\
-  &=
-    \begin{pmatrix}
-      a & b
-    \end{pmatrix}
-    \begin{pmatrix}
-      \uvec{\i}\cdot\uvec{\i} & \uvec{\i}\cdot\uvec{\j}\\
-      \uvec{i}\cdot\uvec{j} & \uvec{\j}\cdot\uvec{\j}
-    \end{pmatrix}
-    \begin{pmatrix}
-      c\\
-      d
-    \end{pmatrix}
-    =
-    \begin{pmatrix}
-      a & b
-    \end{pmatrix}
-    \begin{pmatrix}
-      1 & 0\\
-      0 & 1
-    \end{pmatrix}
-    \begin{pmatrix}
-      c\\
-      d
-    \end{pmatrix}\\
-  &=
-    \begin{pmatrix}
-      a & b
-    \end{pmatrix}
-    \begin{pmatrix}
-      c\\
-      d
-    \end{pmatrix}
-    =
-    ab + cd
-\end{align*}
-
-La matriz $2\times 2$ que aparece en el cálculo es la \emph{métrica} del espacio
-$\symbb{R}^2$ en coordenadas cartesianas
-\begin{equation}\label{eq:R2-metrica-cartesianas}
-  \mmm{g}
-  =
-  g_{ij}
-  =
-  \begin{pmatrix}
-      \uvec{\i}\cdot\uvec{\i} & \uvec{\i}\cdot\uvec{\j}\\
-      \uvec{i}\cdot\uvec{j} & \uvec{\j}\cdot\uvec{\j}    
-  \end{pmatrix}
-  = 
-  \begin{pmatrix}
-    g_{11} & g_{12}\\
-    g_{21} & g_{22}
-  \end{pmatrix}
-  =
-  \begin{pmatrix}
-    1 & 0\\
-    0 & 1
-  \end{pmatrix}
-\end{equation}
-
-Se llaman \emph{factores de escala} o \emph{coeficientes métricos} a la raíz cuadrada de
-los elementos diagonales en la métrica en un sistema de coordenadas ortogonales, como el
-que nos ocupa. En coordenadas cartesianas estándar serían
-\begin{align*}
-  h_x &= \sqrt{g_{11}} = \sqrt{1} = 1\\
-  h_y &= \sqrt{g_{22}} = \sqrt{1} = 1  
-\end{align*}
-
-Fijémonos en la métrica \eqref{eq:R2-metrica-cartesianas}
-\begin{itemize}
-\item Los elementos no diagonales son nulos. Esto se interpreta como que los vectores
-  unitarios $\uvec{\i}$ y $\uvec{\j}$ son independientes, esto es, son ortogonales.
-  Esto es, un cambio en una coordenada no afecta a la otra.
-\item Los elementos diagonales valen la unidad. Cada elemento diagonal de la métrica que
-  valga la unidad implica que un cambio en una unidad en la coordenada respectiva implica
-  una distancia recorrida de una unidad en el espacio. En realidad, el espacio recorrido
-  es el factor de escala correspondiente, pero en este caso da lo mismo
-  \begin{subequations}
-    \begin{align}
-      \Delta s &= h_x \Delta x = \sqrt{1}\, \Delta x = \Delta x\\
-      \Delta s &= h_y \Delta y = \sqrt{1}\, \Delta y = \Delta y
-    \end{align}
-  \end{subequations}
-\end{itemize}
 
 \section{Coordenadas polares planas}
 En este sistema, se utilizan dos coordenadas, $r$ y $\theta$. La primera coordenada es la
@@ -293,36 +278,59 @@ y, sus inversas
 \begin{subequations}
   \begin{align}
     r &= \sqrt{x^2 + y^2}\\
-    \theta &= \arctan\frac{y}{x}
+    \theta &= \arctan\left(\frac{y}{x}\right)
   \end{align}
 \end{subequations}
 
-\subsection{Vectores unitarios, sus productos escalares y derivadas}
-\subsubsection{Vectores unitarios}
-Representaremos a los vectores unitarios en coordenadas polares como $\xhat{r}$ y
-$\xhat{\theta}$.
-Nos proponemos relacionarlos con los $\uvec{\i}$ y $\uvec{\j}$ de las cartesianas.
-Empecemos por el vector unitario radial
-$\xhat{r}$. De la figura \ref{fig:R2:coordenadas-R2}, inferimos que el vector
-$\vvv{r}$ se puede expresar como
+\subsection{Base, vectores unitarios, sus productos escalares y derivadas}
+El vector $\vvv{r}$ que representa cualquier punto de $\symbb{R}^2$ se puede escribir
+como
 \begin{equation}
   \vvv{r} = r\cos\theta\,\uvec{\i} + r\sin\theta\,\uvec{\j}
 \end{equation}
-El vector unitario radial se obtiene dividiendo el vector entre su módulo
+\subsubsection{Base fundamental}
+Los vectores de la base fundamental $\set{\vvv{e}_r, \vvv{e}_\theta}$ (no necesariamente
+unitarios) se calculan derivando el vector $\vvv{r}$ con respecto de las variables $r$ y
+$\theta$.
+Una base para $\xhat{r}$ con respecto de $r$
 \begin{equation}
-  \xhat{r}
-  = \dfrac{\vvv{r}}{r}
+  \vvv{e}_r
+  = \dfrac{\partial\vvv{r}}{\partial r}
   = \cos\theta\,\uvec{\i} + \sin\theta\,\uvec{\j}
 \end{equation}
 El vector unitario angular es la derivada de $\xhat{r}$ con respecto de
 $\xhat{\theta}$
 \begin{equation}
+  \vvv{e}_\theta
+  = \dfrac{\partial\vvv{r}}{\partial\theta}
+  = -r\sin\theta\,\uvec{\i} + r\cos\theta\,\uvec{\j}
+\end{equation}
+Estos vectores son los que se utilizarán para calcular la métrica en coordenadas polares.
+
+\subsubsection{Vectores unitarios}
+Representaremos a los vectores unitarios en coordenadas polares como $\xhat{r}$ y
+$\xhat{\theta}$.
+Empecemos por el vector unitario radial
+$\xhat{r}$. De la figura \ref{fig:R2:coordenadas-R2}, inferimos que el vector
+$\vvv{r}$ se puede expresar como
+Una base para $\xhat{r}$ con respecto de $r$
+\begin{equation}
+  \xhat{r}
+  = \dfrac{\vvv{e}_r}{|\vvv{e}_r|}
+  = \dfrac{\cos\theta\,\uvec{\i}+\sin\theta\,\uvec{\j}}{\sqrt{\cos^2\theta+\sin^2\theta}}
+  = \dfrac{\cos\theta\,\uvec{\i}+\sin\theta\,\uvec{\j}}{1}
+  = \cos\theta\,\uvec{\i} + \sin\theta\,\uvec{\j}
+\end{equation}
+El vector unitario angular es la derivada de $\vvv{r}$ con respecto de
+$\theta$
+\begin{equation}
   \xhat{\theta}
-  = \dfrac{d\xhat{r}}{d\theta}
+  = \dfrac{\vvv{e}_\theta}{|\vvv{e}_\theta|}
+  = \dfrac{-r\sin\theta\,\uvec{\i}+\cos\theta\,\uvec{\j}}
+  {\sqrt{r^2(\cos^2\theta+\sin^2\theta)}}
+  = \dfrac{-r\sin\theta\,\uvec{\i}+r\cos\theta\,\uvec{\j}}{r}
   = -\sin\theta\,\uvec{\i} + \cos\theta\,\uvec{\j}
 \end{equation}
-Se puede comprobar fácilmente que $\xhat{r}$ y $\xhat{\theta}$ son ortogonales, pues
-su producto escalar es cero: $\xhat{r}\cdot\xhat{\theta} = 0$.
 Resumimos este cambio de base y su inversa de forma matricial
 \begin{subequations}
 \begin{align}
@@ -358,32 +366,21 @@ Resumimos este cambio de base y su inversa de forma matricial
 \end{subequations}
 donde se ha utilizado la inversa de la matriz de cambio de base, que por ser una matriz
 ortogonal, la inversa es su transpuesta.
-\subsubsection{Productos escalares}
-\begin{align}
-  \xhat{r}\cdot\xhat{r}
-  &= (\cos\theta\,\uvec{\i}+\sin\theta\,\uvec{i})
-    \cdot (\cos\theta\,\uvec{\i}+\sin\theta\,\uvec{i})
-    = \cos^2\theta + \sin^2\theta
-    = 1\\
-  \xhat{r}\cdot\xhat{\theta}
-  &= (\cos\theta\,\uvec{\i}+\sin\theta\,\uvec{i})
-    \cdot (-\sin\theta\,\uvec{\i}+\cos\theta\,\uvec{i})
-    = -\sin\theta \cos\theta + \sin\theta\cos\theta
-    = 0\\
-\end{align}
-donde hemos utilizado el producto escalar de los vectores unitarios en cartesianas, ver
-ecuaciones~\eqref{eq:R2-ii-producto escalar}, \eqref{eq:R2-ij-producto escalar},
-\eqref{eq:R2-ji-producto escalar} y \eqref{eq:R2-jj-producto escalar}.
 
 \subsubsection{Derivadas}
 Para terminar, nos interesan las derivadas de los vectores $\xhat{r}$ y $\xhat{\theta}$
-con respecto de las coordenadas polares
+con respecto de $r$
 \begin{subequations}
 \begin{align}
   \dfrac{d\xhat{r}}{dr}
   &= 0\\
   \dfrac{d\xhat{\theta}}{dr}
-  &= 0\\
+  &= 0
+\end{align}
+\end{subequations}
+Derivadas con respecto de $\theta$
+\begin{subequations}
+\begin{align}
   \dfrac{d\xhat{r}}{d\theta}
   &= -\sin\theta\,\uvec{\i} + \cos\theta\,\uvec{\j} = \xhat{\theta}\\
   \dfrac{d\xhat{\theta}}{d\theta}
@@ -391,24 +388,43 @@ con respecto de las coordenadas polares
 \end{align}
 \end{subequations}
 
+Nótese, que las 
+
 \subsection{Métrica y factores de escala}
-Vamos a calcular la métrica y los factores de escala de varias formas equivalentes:
+Vamos a calcular la métrica y los factores de escala de varias formas:
 \begin{enumerate}
-  \item Primero la calculamos utilizando las
-Empezamos calculando las diferenciales $dx$ y $dy$
-\begin{subequations}
-  \begin{align}\label{eq:R2-dx}
-    dx
-    &=
-      \dfrac{\partial x}{\partial r} + \dfrac{\partial x}{\partial\theta}
-      = \cos\theta dr - r\sin\theta d\theta\\
-    \label{eq:R2-dy}
-    dy
-    &=
-      \dfrac{\partial y}{\partial r} + \dfrac{\partial y}{\partial\theta}
-      = \sin\theta dr + r\cos\theta d\theta
-  \end{align}
-\end{subequations}
+\item Calculamos directamente la métrica
+  \[
+    \mmm{g}
+    = g_{ij}
+    = \begin{pmatrix}
+      g_{11} & g_{12}\\
+      g_{21} & g_{22}
+      \end{pmatrix}
+    = \begin{pmatrix}
+      \vvv{e}_r\cdot\vvv{e}_r & \vvv{e}_r\cdot\vvv{e}_\theta\\
+      \vvv{e}_\theta\cdot\vvv{e}_r & \vvv{e}_\theta\cdot\vvv{e}_\theta
+    \end{pmatrix}
+    = \begin{pmatrix}
+      1 & 0\\
+      0 & 1
+    \end{pmatrix}
+  \]
+  
+  \item Empezamos calculando las diferenciales $dx$ y $dy$
+    \begin{subequations}
+      \begin{align}\label{eq:R2-dx}
+        dx
+        &=
+          \dfrac{\partial x}{\partial r} + \dfrac{\partial x}{\partial\theta}
+          = \cos\theta dr - r\sin\theta d\theta\\
+        \label{eq:R2-dy}
+        dy
+        &=
+          \dfrac{\partial y}{\partial r} + \dfrac{\partial y}{\partial\theta}
+          = \sin\theta dr + r\cos\theta d\theta
+      \end{align}
+    \end{subequations}
 
 La métrica se puede deducir a partir de la distancia recorrida en el espacio al cambiar
 las coordenadas
@@ -420,18 +436,17 @@ las coordenadas
     = (\cos\theta dr - r\sin\theta d\theta)^2 + (\sin\theta dr + r\cos\theta d\theta)^2\\
   &=
     \cos^2\theta dr^2
-    + r^2 \sin^2\theta d\theta^2
-    - \cancelout{2r\sin\theta \cos\theta dr d\theta}
-    + \sin^2\theta dr^2
-    + r^2 \cos^2\theta d\theta^2
-    + \cancelout{2r\sin\theta \cos\theta dr d\theta}\\
+    + \!r^2\sin^2\theta d\theta^2
+    - \!\cancelout{2r\sin\theta \cos\theta dr d\theta}
+    + \!\sin^2\theta dr^2
+    + \!r^2 \cos^2\theta d\theta^2
+    + \!\cancelout{2r\sin\theta \cos\theta dr d\theta}\\
   &=
     (\cos^2\theta + \sin^2\theta) dr^2 + r^2(\sin^2\theta + \cos^2\theta) d\theta^2
     = dr^2 + r^2 d\theta^2
 \end{align*}
 }
 donde se han tenido en cuenta las ecuaciones~\eqref{eq:R2-dx} y ~\eqref{eq:R2-dy}.
-Los vectores unitarios $\xhat{r}$ y $\xhat{\theta}$ son ortogonales.
 \end{enumerate}
 
 \subsection{Gradiente}
