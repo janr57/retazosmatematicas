@@ -11,14 +11,18 @@
 
 Escribimos el vector de posición de cualquier punto del espacio $\symbb{R}^2$ en
 coordenadas cartesianas
-\begin{equation}
+\begin{equation}\label{eq:R2-r-cartesianas}
   \vvv{r}
   = x\,\uvec{\i} + y\,\uvec{\j}
 \end{equation}
 
 \subsection{Base, vectores unitarios y su producto escalar}
 \subsubsection{Base fundamental y vectores unitarios}
-Los vectores de la base fundamental en estas coordenadas se obtienen derivando $\vvv{r}$ con respecto de las coordenadas $x$ e $y$
+Si derivamos el vector de posición anterior \eqref{eq:R2-r-cartesianas}, con respecto a
+cada una de las coordenadas, obtenemos los vectores de una  posible base en estas
+coordenadas. Estos vectores llevan información concreta acerca de cómo varia la posición
+en el espacio cuando variamos cada una de las coordenadas ---tal y como sugieren las
+derivadas---, lo que será importante para obtener la métrica en estas coordenadas.
 \begin{subequations}
   \begin{align}\label{eq:R2-ex}
     \vvv{e}_x
@@ -35,6 +39,8 @@ Estos vectores de la base son importantes para calcular la métrica en cartesian
 \begin{equation}\label{eq:R2-basefundamental}
   B=\set{\vvv{e}_x, \vvv{e}_y} = \set{\uvec{\i}, \uvec{\j}}
 \end{equation}
+Hacemos notar que los vectores de esta base son unitarios tradicionales en este sistema
+de coordenadas, $\uvec{\i}$ y $\uvec{\j}$.
 
 \subsubsection{Producto escalar de los vectores de la base}
 Los vectores de la base fundamental son vectores unitarios.
