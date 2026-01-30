@@ -17,7 +17,7 @@ coordenadas cartesianas
 \end{equation}
 
 \subsection{Base, vectores unitarios y su producto escalar}
-\subsubsection{Base fundamental y vectores unitarios}
+\subsubsection{Base y vectores unitarios}
 Si derivamos el vector de posición anterior \eqref{eq:R2-r-cartesianas}, con respecto a
 cada una de las coordenadas, obtenemos los vectores de una  posible base en estas
 coordenadas. Estos vectores llevan información concreta acerca de cómo varia la posición
@@ -101,7 +101,9 @@ Fijémonos en la métrica \eqref{eq:R2-metrica-cartesianas}
 \begin{itemize}
 \item Los elementos no diagonales son nulos. Esto se interpreta como que los vectores
   unitarios $\uvec{\i}$ y $\uvec{\j}$ son independientes, esto es, son ortogonales.
-  Esto es, un cambio en una coordenada no afecta a la otra.
+  Esto es, un cambio en una coordenada no afecta a la otra. Así, si nos desplazamos
+  una distancia cualquiera en el eje $x$, no habremos recorrido ninguna distancia en
+  el eje $y$, y viceversa, por lo que $h_{xy}=h_{yx}=0$.
 \item Los elementos diagonales valen la unidad. Cada elemento diagonal de la métrica que
   valga la unidad implica que un cambio en una unidad en la coordenada respectiva implica
   una distancia recorrida de una unidad en el espacio. En realidad, el espacio recorrido
@@ -112,6 +114,10 @@ Fijémonos en la métrica \eqref{eq:R2-metrica-cartesianas}
       \Delta s &= h_y \Delta y = \sqrt{1}\, \Delta y = \Delta y
     \end{align}
   \end{subequations}
+  Para adquirir algo de intuición, imagina que cambiamos la posición en el eje $x$
+  cualquier distancia, digamos un metro, es fácil entender que en espacio nos habremos
+  desplazado la misma distancia. Por tanto es lógico razonar que el factor de escala
+  $h_x$ vale 1. Lo mismo podemos decir para el factor de escala en el eje $y$, $h_y=1$.
 \end{itemize}
 
 \subsection{Gradiente, divergencia y laplaciana}
@@ -288,13 +294,13 @@ y, sus inversas
   \end{align}
 \end{subequations}
 
-\subsection{Base, vectores unitarios, sus productos escalares y derivadas}
+\subsection{Bases, vectores unitarios, sus productos escalares y derivadas}
 El vector $\vvv{r}$ que representa cualquier punto de $\symbb{R}^2$ se puede escribir
 como
 \begin{equation}
   \vvv{r} = r\cos\theta\,\uvec{\i} + r\sin\theta\,\uvec{\j}
 \end{equation}
-\subsubsection{Base fundamental}
+\subsubsection{Derivadas parciales de la posición}
 Los vectores de la base fundamental $\set{\vvv{e}_r, \vvv{e}_\theta}$ (no necesariamente
 unitarios) se calculan derivando el vector $\vvv{r}$ con respecto de las variables $r$ y
 $\theta$.
@@ -314,29 +320,23 @@ $\xhat{\theta}$
 Estos vectores son los que se utilizarán para calcular la métrica en coordenadas polares.
 
 \subsubsection{Vectores unitarios}
-Representaremos a los vectores unitarios en coordenadas polares como $\xhat{r}$ y
-$\xhat{\theta}$.
-Empecemos por el vector unitario radial
-$\xhat{r}$. De la figura \ref{fig:R2:coordenadas-R2}, inferimos que el vector
-$\vvv{r}$ se puede expresar como
-Una base para $\xhat{r}$ con respecto de $r$
-\begin{equation}
-  \xhat{r}
-  = \dfrac{\vvv{e}_r}{|\vvv{e}_r|}
-  = \dfrac{\cos\theta\,\uvec{\i}+\sin\theta\,\uvec{\j}}{\sqrt{\cos^2\theta+\sin^2\theta}}
-  = \dfrac{\cos\theta\,\uvec{\i}+\sin\theta\,\uvec{\j}}{1}
-  = \cos\theta\,\uvec{\i} + \sin\theta\,\uvec{\j}
-\end{equation}
-El vector unitario angular es la derivada de $\vvv{r}$ con respecto de
-$\theta$
-\begin{equation}
+Calculamos los vectores unitarios en coordenadas polares, $\xhat{r}$ y $\xhat{\theta}$
+\begin{subequations}
+  \begin{align}
+    \xhat{r}
+    &= \dfrac{\vvv{e}_r}{|\vvv{e}_r|}
+    =\dfrac{\cos\theta\,\uvec{\i}+\sin\theta\,\uvec{\j}}
+    {\sqrt{\cos^2\theta+\sin^2\theta}}
+    = \dfrac{\cos\theta\,\uvec{\i}+\sin\theta\,\uvec{\j}}{1}
+  = \cos\theta\,\uvec{\i} + \sin\theta\,\uvec{\j}\\
   \xhat{\theta}
-  = \dfrac{\vvv{e}_\theta}{|\vvv{e}_\theta|}
+  &= \dfrac{\vvv{e}_\theta}{|\vvv{e}_\theta|}
   = \dfrac{-r\sin\theta\,\uvec{\i}+\cos\theta\,\uvec{\j}}
   {\sqrt{r^2(\cos^2\theta+\sin^2\theta)}}
   = \dfrac{-r\sin\theta\,\uvec{\i}+r\cos\theta\,\uvec{\j}}{r}
   = -\sin\theta\,\uvec{\i} + \cos\theta\,\uvec{\j}
-\end{equation}
+  \end{align}
+\end{subequations}
 Resumimos este cambio de base y su inversa de forma matricial
 \begin{subequations}
 \begin{align}
@@ -373,7 +373,65 @@ Resumimos este cambio de base y su inversa de forma matricial
 donde se ha utilizado la inversa de la matriz de cambio de base, que por ser una matriz
 ortogonal, la inversa es su transpuesta.
 
-\subsubsection{Derivadas}
+Nótese que los vectores $\vvv{e}_r$ y $\vvv{e}_\theta$ se pueden escribir como
+\begin{subequations}
+\begin{align}
+  \vvv{e}_r &= \xhat{r}\\
+  \vvv{e}_\theta &= r\xhat{\theta}
+\end{align}
+\end{subequations}
+
+\subsubsection{Productos escalares}
+\begin{itemize}
+\item De los vectores unitarios
+{\small
+\begin{subequations}
+  \begin{align}
+    \xhat{r}\cdot\xhat{r}
+    &=
+      (\cos\theta\,\uvec{\i}+\sin\theta\,\uvec{\j})
+      \cdot
+      (\cos\theta\,\uvec{\i}+\sin\theta\,\uvec{\j})
+      = \cos^2\theta + \sin^2\theta = 1\\
+    \xhat{r}\cdot\xhat{\theta}
+    &=
+      \xhat{\theta}\cdot\xhat{r}
+      = (\cos\theta\,\uvec{\i}+\sin\theta\,\uvec{\j})
+      \cdot
+      (-\sin\theta\,\uvec{\i}+\cos\theta\,\uvec{\j})
+      = -\sin\theta\cos\theta + \sin\theta\cos\theta = 0\\
+    \xhat{\theta}\cdot\xhat{\theta}
+    &=
+      (-\sin\theta\,\uvec{\i}+\cos\theta\,\uvec{\j})
+      \cdot
+      (-\sin\theta\,\uvec{\i}+\cos\theta\,\uvec{\j})
+      = \sin^2\theta + \cos^2\theta = 1
+  \end{align}
+\end{subequations}
+}
+
+\item De los vectores $\vvv{e}_r$ y $\vvv{e}_\theta$
+\begin{subequations}
+  \begin{align}\label{eq:R2-erer-productoescalar}
+    \vvv{e}_r\cdot\vvv{e}_r
+    &=
+      \xhat{r}\cdot\vvv{r} = 1\\
+    \label{eq:R2-eretheta-productoescalar}
+    \vvv{e}_r\cdot\vvv{e}_\theta
+    &=
+      \vvv{e}_\theta\cdot\vvv{e}_r
+      = \xhat{r}\cdot r\xhat{\theta} = r \xhat{r}\cdot\xhat{\theta} = 0\\
+    \label{eq:R2-ethetaetheta-productoescalar}
+    \vvv{e}_r\cdot\vvv{e}_\theta
+    &=
+      \vvv{e}_\theta\cdot\vvv{e}_\theta
+      = r\xhat{\theta}\cdot r\xhat{\theta}
+      = r^2 \xhat{\theta}\cdot\xhat{\theta} = r^2\\    
+  \end{align}
+\end{subequations}
+\end{itemize}
+
+\subsubsection{Derivadas de los vectores unitarios}
 Para terminar, nos interesan las derivadas de los vectores $\xhat{r}$ y $\xhat{\theta}$
 con respecto de $r$
 \begin{subequations}
@@ -399,7 +457,9 @@ Nótese, que las
 \subsection{Métrica y factores de escala}
 Vamos a calcular la métrica y los factores de escala de varias formas:
 \begin{enumerate}
-\item Calculamos directamente la métrica
+\item Calculamos directamente la métrica utilizando los productos escalares
+  \eqref{eq:R2-erer-productoescalar}, \eqref{eq:R2-eretheta-productoescalar} y
+   \eqref{eq:R2-ethetaetheta-productoescalar}
   \[
     \mmm{g}
     = g_{ij}
@@ -413,11 +473,12 @@ Vamos a calcular la métrica y los factores de escala de varias formas:
     \end{pmatrix}
     = \begin{pmatrix}
       1 & 0\\
-      0 & 1
+      0 & r^2
     \end{pmatrix}
   \]
   
-  \item Empezamos calculando las diferenciales $dx$ y $dy$
+\item Empezamos calculando las diferenciales $dx$ y $dy$
+  {\small
     \begin{subequations}
       \begin{align}\label{eq:R2-dx}
         dx
@@ -431,6 +492,7 @@ Vamos a calcular la métrica y los factores de escala de varias formas:
           = \sin\theta dr + r\cos\theta d\theta
       \end{align}
     \end{subequations}
+  }
 
 La métrica se puede deducir a partir de la distancia recorrida en el espacio al cambiar
 las coordenadas
