@@ -9,8 +9,8 @@
   \mathinhead{\symbb{R}^2}{espr2})}
 \section{Coordenadas cartesianas}
 
-Escribimos el vector de posición de cualquier punto del espacio $\symbb{R}^2$ en
-coordenadas cartesianas
+Vector de posición de cualquier punto del espacio $\symbb{R}^2$ en coordenadas
+cartesianas
 \begin{equation}\label{eq:R2-r-cartesianas}
   \vvv{r}
   = x\,\uvec{\i} + y\,\uvec{\j}
@@ -101,13 +101,13 @@ Fijémonos en la métrica \eqref{eq:R2-metrica-cartesianas}
 \begin{itemize}
 \item Los elementos no diagonales son nulos. Esto se interpreta como que los vectores
   unitarios $\uvec{\i}$ y $\uvec{\j}$ son independientes, esto es, son ortogonales.
-  Esto es, un cambio en una coordenada no afecta a la otra. Así, si nos desplazamos
-  una distancia cualquiera en el eje $x$, no habremos recorrido ninguna distancia en
-  el eje $y$, y viceversa, por lo que $h_{xy}=h_{yx}=0$.
+  Así, un cambio en una coordenada no afecta a la otra. Así, si nos desplazamos una
+  distancia cualquiera en el eje $x$, no habremos recorrido ninguna distancia en el eje
+  $y$, y viceversa, por lo que $h_{xy}=h_{yx}=0$.
 \item Los elementos diagonales valen la unidad. Cada elemento diagonal de la métrica que
-  valga la unidad implica que un cambio en una unidad en la coordenada respectiva implica
-  una distancia recorrida de una unidad en el espacio. En realidad, el espacio recorrido
-  es el factor de escala correspondiente, pero en este caso da lo mismo
+  vale la unidad implica que un cambio en la coordenada respectiva implica una distancia
+  recorrida de una unidad en el espacio. En realidad, el espacio recorrido es el factor
+  de escala correspondiente, pero en este caso da lo mismo
   \begin{subequations}
     \begin{align}
       \Delta s &= h_x \Delta x = \sqrt{1}\, \Delta x = \Delta x\\
@@ -115,7 +115,7 @@ Fijémonos en la métrica \eqref{eq:R2-metrica-cartesianas}
     \end{align}
   \end{subequations}
   Para adquirir algo de intuición, imagina que cambiamos la posición en el eje $x$
-  cualquier distancia, digamos un metro, es fácil entender que en espacio nos habremos
+  cualquier distancia, digamos un metro, es fácil entender que en el espacio nos habremos
   desplazado la misma distancia. Por tanto es lógico razonar que el factor de escala
   $h_x$ vale 1. Lo mismo podemos decir para el factor de escala en el eje $y$, $h_y=1$.
 \end{itemize}
@@ -185,7 +185,8 @@ El operador laplaciano es
 
 \section{Coordenadas polares planas}
 En este sistema, se utilizan dos coordenadas, $r$ y $\theta$. La primera coordenada es la
-distancia entre el origen de coordenadas y un punto del espacio.
+distancia entre el origen de coordenadas y un punto del espacio, ver figura
+\ref{fig:R2:coordenadas-R2}.
 
 \begin{figure}[ht]
   % Escala
@@ -295,32 +296,33 @@ y, sus inversas
 \end{subequations}
 
 \subsection{Bases, vectores unitarios, sus productos escalares y derivadas}
-El vector $\vvv{r}$ que representa cualquier punto de $\symbb{R}^2$ se puede escribir
-como
+El vector $\vvv{r}$ que representa cualquier punto de $\symbb{R}^2$ se puede escribir, en
+la base estándar de coordenadas cartesianas, como
 \begin{equation}
   \vvv{r} = r\cos\theta\,\uvec{\i} + r\sin\theta\,\uvec{\j}
 \end{equation}
 \subsubsection{Derivadas parciales de la posición}
-Los vectores de la base fundamental $\set{\vvv{e}_r, \vvv{e}_\theta}$ (no necesariamente
-unitarios) se calculan derivando el vector $\vvv{r}$ con respecto de las variables $r$ y
+Los vectores ---no necesariamente unitarios--- que llevan información del cambio de
+posición al variar cada coordenada forman una base $\set{\vvv{e}_r, \vvv{e}_\theta}$ y se
+calculan derivando parcialmente el vector $\vvv{r}$ con respecto de las variables $r$ y
 $\theta$.
-Una base para $\xhat{r}$ con respecto de $r$
-\begin{equation}
+\begin{subequations}
+\begin{align}
   \vvv{e}_r
-  = \dfrac{\partial\vvv{r}}{\partial r}
-  = \cos\theta\,\uvec{\i} + \sin\theta\,\uvec{\j}
-\end{equation}
-El vector unitario angular es la derivada de $\xhat{r}$ con respecto de
-$\xhat{\theta}$
-\begin{equation}
+  &=
+    \dfrac{\partial\vvv{r}}{\partial r}
+    = \cos\theta\,\uvec{\i} + \sin\theta\,\uvec{\j}\\
   \vvv{e}_\theta
-  = \dfrac{\partial\vvv{r}}{\partial\theta}
-  = -r\sin\theta\,\uvec{\i} + r\cos\theta\,\uvec{\j}
-\end{equation}
+  &=
+    \dfrac{\partial\vvv{r}}{\partial\theta}
+    = -r\sin\theta\,\uvec{\i} + r\cos\theta\,\uvec{\j}
+\end{align}
+\end{subequations}
 Estos vectores son los que se utilizarán para calcular la métrica en coordenadas polares.
 
 \subsubsection{Vectores unitarios}
 Calculamos los vectores unitarios en coordenadas polares, $\xhat{r}$ y $\xhat{\theta}$
+{\small
 \begin{subequations}
   \begin{align}
     \xhat{r}
@@ -337,7 +339,8 @@ Calculamos los vectores unitarios en coordenadas polares, $\xhat{r}$ y $\xhat{\t
   = -\sin\theta\,\uvec{\i} + \cos\theta\,\uvec{\j}
   \end{align}
 \end{subequations}
-Resumimos este cambio de base y su inversa de forma matricial
+}
+Resumimos este cambio de base y su inversa en forma matricial
 \begin{subequations}
 \begin{align}
   \begin{pmatrix}
@@ -370,8 +373,8 @@ Resumimos este cambio de base y su inversa de forma matricial
   \end{pmatrix} 
 \end{align}
 \end{subequations}
-donde se ha utilizado la inversa de la matriz de cambio de base, que por ser una matriz
-ortogonal, la inversa es su transpuesta.
+donde se ha utilizado la inversa de la matriz de cambio de base, que por ser ortogonal,
+la inversa es su transpuesta.
 
 Nótese que los vectores $\vvv{e}_r$ y $\vvv{e}_\theta$ se pueden escribir como
 \begin{subequations}
@@ -452,12 +455,10 @@ Derivadas con respecto de $\theta$
 \end{align}
 \end{subequations}
 
-Nótese, que las 
-
 \subsection{Métrica y factores de escala}
 Vamos a calcular la métrica y los factores de escala de varias formas:
 \begin{enumerate}
-\item Calculamos directamente la métrica utilizando los productos escalares
+\item Directamente, utilizando los productos escalares
   \eqref{eq:R2-erer-productoescalar}, \eqref{eq:R2-eretheta-productoescalar} y
    \eqref{eq:R2-ethetaetheta-productoescalar}
   \[
@@ -483,38 +484,42 @@ Vamos a calcular la métrica y los factores de escala de varias formas:
       \begin{align}\label{eq:R2-dx}
         dx
         &=
-          \dfrac{\partial x}{\partial r} + \dfrac{\partial x}{\partial\theta}
+          \dfrac{\partial x}{\partial r} dr + \dfrac{\partial x}{\partial\theta} d\theta
           = \cos\theta dr - r\sin\theta d\theta\\
         \label{eq:R2-dy}
         dy
         &=
-          \dfrac{\partial y}{\partial r} + \dfrac{\partial y}{\partial\theta}
+          \dfrac{\partial y}{\partial r} dr + \dfrac{\partial y}{\partial\theta} d\theta
           = \sin\theta dr + r\cos\theta d\theta
       \end{align}
     \end{subequations}
   }
 
-La métrica se puede deducir a partir de la distancia recorrida en el espacio al cambiar
-las coordenadas
-{\footnotesize
-\begin{align*}
-  ds^2
-  &=
-    dx^2 + dy^2
-    = (\cos\theta dr - r\sin\theta d\theta)^2 + (\sin\theta dr + r\cos\theta d\theta)^2\\
-  &=
-    \cos^2\theta dr^2
-    + \!r^2\sin^2\theta d\theta^2
-    - \!\cancelout{2r\sin\theta \cos\theta dr d\theta}
-    + \!\sin^2\theta dr^2
-    + \!r^2 \cos^2\theta d\theta^2
-    + \!\cancelout{2r\sin\theta \cos\theta dr d\theta}\\
-  &=
-    (\cos^2\theta + \sin^2\theta) dr^2 + r^2(\sin^2\theta + \cos^2\theta) d\theta^2
-    = dr^2 + r^2 d\theta^2
-\end{align*}
-}
-donde se han tenido en cuenta las ecuaciones~\eqref{eq:R2-dx} y ~\eqref{eq:R2-dy}.
+  La métrica se puede deducir a partir del cuadrado de la distancia recorrida en el
+  espacio al cambiar las coordenadas
+  {\footnotesize
+    \begin{align*}
+      ds^2
+      &=
+        dx^2 + dy^2
+        = (\cos\theta dr - r\sin\theta d\theta)^2
+        + (\sin\theta dr + r\cos\theta d\theta)^2\\
+      &=
+        \cos^2\theta dr^2
+        + \!r^2\sin^2\theta d\theta^2
+        - \!\cancelout{2r\sin\theta \cos\theta dr d\theta}
+        + \!\sin^2\theta dr^2
+        + \!r^2 \cos^2\theta d\theta^2
+        + \!\cancelout{2r\sin\theta \cos\theta dr d\theta}\\
+      &=
+        (\cos^2\theta + \sin^2\theta) dr^2 + r^2(\sin^2\theta + \cos^2\theta) d\theta^2
+        = dr^2 + r^2 d\theta^2
+    \end{align*}
+  }
+  donde se han tenido en cuenta las ecuaciones~\eqref{eq:R2-dx} y ~\eqref{eq:R2-dy} y que
+  los vectores unitarios $\xhat{r}$ y $\xhat{\theta}$ son ortogonales.
+
+  \item De forma intuitiva,
 \end{enumerate}
 
 \subsection{Gradiente}
