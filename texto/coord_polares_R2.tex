@@ -284,102 +284,200 @@ El operador laplaciano es
 
 \section{Coordenadas polares planas}
 En este sistema, se utilizan dos coordenadas, $r$ y $\theta$. La primera coordenada es la
-distancia entre el origen de coordenadas y un punto del espacio, ver figura
-\ref{fig:R2:coordenadas-R2}.
+distancia entre el origen de coordenadas y un punto del espacio, y la segunda es el
+ángulo que forma el eje de abcisas con la línea que une el origen de coordenadas con el
+punto, ver figura \ref{fig:R2:coordenadas-R2}.
 
 \begin{figure}[ht]
-  % Escala
-  \def\scl{1}
-  %
-  \pgfmathsetmacro{\EJESEXTRA}{-0.2}
-  \pgfmathsetmacro{\EJESLONG}{2.3}
-  % Eje x
-  \pgfmathsetmacro{\XMLONG}{\EJESEXTRA}
-  \pgfmathsetmacro{\XPLONG}{\EJESLONG}
-  % Eje y
-  \pgfmathsetmacro{\YMLONG}{\EJESEXTRA}
-  \pgfmathsetmacro{\YPLONG}{\EJESLONG}
-  % Vector P
-  \pgfmathsetmacro{\PMOD}{2.5}
-  \pgfmathsetmacro{\PANG}{40}
-  % Fondo
-  \pgfmathsetmacro{\HORZ}{0.25}
-  \pgfmathsetmacro{\VERT}{0.25}
-  % 
   \centering
-  \begin{tikzpicture}[%
-    scale=\scl,
-    every node/.style={black,font=\small},
-    eje/.style={->},
-    proyeccion/.style={black!60, densely dotted},
-    vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt,\colorV},
-    textooriginal/.style={\colorTorig},
-    pcirculo/.style={fill=\colorPorig, draw=black},
-    angulogirado/.style={fill=\colorAngGreen, draw=\colorGirodos},
-    background/.style={
-      line width=\bgborderwidth,
-      draw=\bgbordercolor,
-      fill=\bgcolor,
-    },
-    ]
-    % COORDENADAS
-    % Origen
-    \coordinate (O) at (0,0);
-    % Extremo izdo del eje x e inferior del eje y
-    \coordinate (xini) at (\XMLONG cm,0);
-    \coordinate (yini) at (0,\YMLONG cm);
+  \begin{minipage}{0.40\linewidth}
+    % Escala
+    \def\scl{1.25}
+    % 
+    \pgfmathsetmacro{\EJESEXTRA}{-0.2}
+    \pgfmathsetmacro{\EJESLONG}{2.3}
     % Eje x
-    \path[save path=\ejex] (xini) -- coordinate[pos=0.5] (xtexto) (\XPLONG cm, 0)
-    coordinate (xfin);
+    \pgfmathsetmacro{\XMLONG}{\EJESEXTRA}
+    \pgfmathsetmacro{\XPLONG}{\EJESLONG}
     % Eje y
-    \path[save path=\ejey] (yini) -- coordinate[pos=0.6] (ytexto) (0, \YPLONG cm)
-    coordinate (yfin);
-    % Vector
-    \path[save path=\vector] (O) -- coordinate[pos=0.5] (pmid) (\PANG:\PMOD cm)
-    coordinate (P);
-    % Proyección de P en los ejes
-    \path[save path=\proyx] (P) |- (xfin);
-    \path[save path=\proyy] (P) -| (yfin);
+    \pgfmathsetmacro{\YMLONG}{\EJESEXTRA}
+    \pgfmathsetmacro{\YPLONG}{\EJESLONG}
+    % Vector P
+    \pgfmathsetmacro{\PMOD}{2.5}
+    \pgfmathsetmacro{\PANG}{40}
+    % Fondo
+    \pgfmathsetmacro{\HORZ}{0.25}
+    \pgfmathsetmacro{\VERT}{0.25}
+    % 
+    \centering
+    \begin{tikzpicture}[%
+      scale=\scl,
+      every node/.style={black,font=\small},
+      eje/.style={->},
+      proyeccion/.style={black!60, densely dotted},
+      longitud/.style={line width=.5pt,\colorV},
+      textooriginal/.style={\colorTorig},
+      pcirculo/.style={fill=\colorPorig, draw=black},
+      angulogirado/.style={fill=\colorAngGreen, draw=\colorGirodos},
+      background/.style={
+        line width=\bgborderwidth,
+        draw=\bgbordercolor,
+        fill=\bgcolor,
+      },
+      ]
+      % COORDENADAS
+      % Origen
+      \coordinate (O) at (0,0);
+      % Extremo izdo del eje x e inferior del eje y
+      \coordinate (xini) at (\XMLONG cm,0);
+      \coordinate (yini) at (0,\YMLONG cm);
+      % Eje x
+      \path[save path=\ejex] (xini) -- coordinate[pos=0.5] (xtexto) (\XPLONG cm, 0)
+      coordinate (xfin);
+      % Eje y
+      \path[save path=\ejey] (yini) -- coordinate[pos=0.6] (ytexto) (0, \YPLONG cm)
+      coordinate (yfin);
+      % Vector
+      \path[save path=\r] (O) -- coordinate[pos=0.5] (pmid) (\PANG:\PMOD cm)
+      coordinate (P);
+      % Proyección de P en los ejes
+      \path[save path=\proyx] (P) |- (xfin);
+      \path[save path=\proyy] (P) -| (yfin);
 
-    % DIBUJOS
-    % Ángulo theta
-    \path (xfin) -- (O) -- (P) pic
-    [-{Latex[width=2.5pt,length=3.7pt]},angulogirado,
-    "\footnotesize $\theta$",angle radius=20pt, angle eccentricity=0.68]
-    {angle = xfin--O--P};
-    % Proyección de P en los ejes
-    \draw[proyeccion, use path=\proyx];
-    \draw[proyeccion, use path=\proyy];
-    % Ejes
-    % x
-    \draw[eje, use path=\ejex];
-    \node[right] at (xfin) {$x$};
-    \node[below] at (xtexto) {$r\cos\theta$};
-    % y
-    \draw[eje, use path=\ejey];
-    \node[above] at (yfin) {$y$};
-    \node[rotate=90, left=8pt] at (ytexto) {$r\sin\theta$};
-    % Vector y punto  P
-    \draw[vector, use path=\vector];
-    \node[above left=-3pt and -1pt] at (pmid) {$\vvv{r}$};
-    \filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
-    \node[above] at (P) {$P$};
-    
-    % Origen
-    \filldraw (O) circle [radius=.2pt];
-    % Fondo amarillo
-    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
-    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);    
-    \begin{scope}[on background layer]
-      \draw[background] (SW) rectangle (NE);
-    \end{scope}
-  \end{tikzpicture}
-  \caption{Coordenadas cartesianas y polares planas de un punto $P$ del plano.}
+      % DIBUJOS
+      % Ángulo theta
+      \path (xfin) -- (O) -- (P) pic
+      [-{Latex[width=2.5pt,length=3.7pt]},angulogirado,
+      "\footnotesize $\theta$",angle radius=20pt, angle eccentricity=0.68]
+      {angle = xfin--O--P};
+      % Proyección de P en los ejes
+      \draw[proyeccion, use path=\proyx];
+      \draw[proyeccion, use path=\proyy];
+      % Ejes
+      % x
+      \draw[eje, use path=\ejex];
+      \node[right] at (xfin) {$x$};
+      %\node[below] at (xtexto) {$r\cos\theta$};
+      % y
+      \draw[eje, use path=\ejey];
+      \node[above] at (yfin) {$y$};
+      %\node[rotate=90, left=8pt] at (ytexto) {$r\sin\theta$};
+      % Coordenada r y punto  P
+      \draw[longitud, use path=\r];
+      \node[above left=-3pt and -1pt] at (pmid) {$r$};
+      \filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
+      \node[above] at (P) {$P$};
+
+      % Origen
+      \filldraw (O) circle [radius=.2pt];
+      % Fondo amarillo
+      \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+      \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);    
+      \begin{scope}[on background layer]
+        \draw[background] (SW) rectangle (NE);
+      \end{scope}
+    \end{tikzpicture}
+  \caption{Coordenadas polares $r$ y $\theta$ de un punto $P$ del plano.}
   \label{fig:R2:coordenadas-R2}
+\end{minipage}
+\hspace{1em}
+\begin{minipage}{0.40\linewidth}
+    % Escala
+    \def\scl{1.20}
+    % 
+    \pgfmathsetmacro{\EJESEXTRA}{-0.2}
+    \pgfmathsetmacro{\EJESLONG}{2.3}
+    % Eje x
+    \pgfmathsetmacro{\XMLONG}{\EJESEXTRA}
+    \pgfmathsetmacro{\XPLONG}{\EJESLONG}
+    % Eje y
+    \pgfmathsetmacro{\YMLONG}{\EJESEXTRA}
+    \pgfmathsetmacro{\YPLONG}{\EJESLONG}
+    % Vector P
+    \pgfmathsetmacro{\PMOD}{2.5}
+    \pgfmathsetmacro{\PANG}{40}
+    % Fondo
+    \pgfmathsetmacro{\HORZ}{0.25}
+    \pgfmathsetmacro{\VERT}{0.25}
+    % 
+    \centering
+    \begin{tikzpicture}[%
+      scale=\scl,
+      every node/.style={black,font=\small},
+      eje/.style={->},
+      proyeccion/.style={black!60, densely dotted},
+      vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt,\colorV},
+      textooriginal/.style={\colorTorig},
+      pcirculo/.style={fill=\colorPorig, draw=black},
+      angulogirado/.style={fill=\colorAngGreen, draw=\colorGirodos},
+      background/.style={
+        line width=\bgborderwidth,
+        draw=\bgbordercolor,
+        fill=\bgcolor,
+      },
+      ]
+      % COORDENADAS
+      % Origen
+      \coordinate (O) at (0,0);
+      % Extremo izdo del eje x e inferior del eje y
+      \coordinate (xini) at (\XMLONG cm,0);
+      \coordinate (yini) at (0,\YMLONG cm);
+      % Eje x
+      \path[save path=\ejex] (xini) -- coordinate[pos=0.5] (xtexto) (\XPLONG cm, 0)
+      coordinate (xfin);
+      % Eje y
+      \path[save path=\ejey] (yini) -- coordinate[pos=0.6] (ytexto) (0, \YPLONG cm)
+      coordinate (yfin);
+      % Vector
+      \path[save path=\vector] (O) -- coordinate[pos=0.5] (pmid) (\PANG:\PMOD cm)
+      coordinate (P);
+      % Proyección de P en los ejes
+      \path[save path=\proyx] (P) |- (xfin);
+      \path[save path=\proyy] (P) -| (yfin);
+
+      % DIBUJOS
+      % Ángulo theta
+      \path (xfin) -- (O) -- (P) pic
+      [-{Latex[width=2.5pt,length=3.7pt]},angulogirado,
+      "\footnotesize $\theta$",angle radius=20pt, angle eccentricity=0.68]
+      {angle = xfin--O--P};
+      % Proyección de P en los ejes
+      \draw[proyeccion, use path=\proyx];
+      \draw[proyeccion, use path=\proyy];
+      % Ejes
+      % x
+      \draw[eje, use path=\ejex];
+      \node[right] at (xfin) {$x$};
+      \node[below] at (xtexto) {$r\cos\theta$};
+      % y
+      \draw[eje, use path=\ejey];
+      \node[above] at (yfin) {$y$};
+      \node[rotate=90, left=8pt] at (ytexto) {$r\sin\theta$};
+      % Vector y punto  P
+      \draw[vector, use path=\vector];
+      \node[above left=-3pt and -1pt] at (pmid) {$\vvv{r}$};
+      \filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
+      \node[above] at (P) {$P$};
+
+      % Origen
+      \filldraw (O) circle [radius=.2pt];
+      % Fondo amarillo
+      \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+      \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);    
+      \begin{scope}[on background layer]
+        \draw[background] (SW) rectangle (NE);
+      \end{scope}
+    \end{tikzpicture}
+    \caption{Vector de posición $\vvv{r}$, y coordenadas $x$ e $y$ en función de $r$ y
+      $\theta$.}
+  \label{fig:R2:vector-r-R2}
+\end{minipage}
 \end{figure}
 
 \subsection{Relación con las coordenadas cartesianas}
-De la figura se desprenden las siguientes relaciones
+De la figura \ref{fig:R2:vector-r-R2} se desprenden las siguientes relaciones
+
+
 \begin{subequations}
   \begin{align}
     x &= r\cos\theta\\
@@ -618,7 +716,190 @@ Vamos a calcular la métrica y los factores de escala de varias formas:
   donde se han tenido en cuenta las ecuaciones~\eqref{eq:R2-dx} y ~\eqref{eq:R2-dy} y que
   los vectores unitarios $\xhat{r}$ y $\xhat{\theta}$ son ortogonales.
 
-  \item De forma intuitiva,
+\item De forma intuitiva,
+%  \begin{figure}[ht]
+%    \centering
+%    \begin{minipage}{0.40\linewidth}
+%      % Escala
+%      \def\scl{1}
+%      % 
+%      \pgfmathsetmacro{\EJESEXTRA}{-0.2}
+%      \pgfmathsetmacro{\EJESLONG}{2.3}
+%      % Eje x
+%      \pgfmathsetmacro{\XMLONG}{\EJESEXTRA}
+%      \pgfmathsetmacro{\XPLONG}{\EJESLONG}
+%      % Eje y
+%      \pgfmathsetmacro{\YMLONG}{\EJESEXTRA}
+%      \pgfmathsetmacro{\YPLONG}{\EJESLONG}
+%      % Vector P
+%      \pgfmathsetmacro{\PMOD}{2.5}
+%      \pgfmathsetmacro{\PANG}{40}
+%      % Fondo
+%      \pgfmathsetmacro{\HORZ}{0.25}
+%      \pgfmathsetmacro{\VERT}{0.25}
+%      % 
+%      \centering
+%      \begin{tikzpicture}[%
+%        scale=\scl,
+%        every node/.style={black,font=\small},
+%        eje/.style={->},
+%        proyeccion/.style={black!60, densely dotted},
+%        vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt,\colorV},
+%        textooriginal/.style={\colorTorig},
+%        pcirculo/.style={fill=\colorPorig, draw=black},
+%        angulogirado/.style={fill=\colorAngGreen, draw=\colorGirodos},
+%        background/.style={
+%          line width=\bgborderwidth,
+%          draw=\bgbordercolor,
+%          fill=\bgcolor,
+%        },
+%        ]
+%        % COORDENADAS
+%        % Origen
+%        \coordinate (O) at (0,0);
+%        % Extremo izdo del eje x e inferior del eje y
+%        \coordinate (xini) at (\XMLONG cm,0);
+%        \coordinate (yini) at (0,\YMLONG cm);
+%        % Eje x
+%        \path[save path=\ejex] (xini) -- coordinate[pos=0.5] (xtexto) (\XPLONG cm, 0)
+%        coordinate (xfin);
+%        % Eje y
+%        \path[save path=\ejey] (yini) -- coordinate[pos=0.6] (ytexto) (0, \YPLONG cm)
+%        coordinate (yfin);
+%        % Vector
+%        \path[save path=\vector] (O) -- coordinate[pos=0.5] (pmid) (\PANG:\PMOD cm)
+%        coordinate (P);
+%        % Proyección de P en los ejes
+%        \path[save path=\proyx] (P) |- (xfin);
+%        \path[save path=\proyy] (P) -| (yfin);
+%
+%        % DIBUJOS
+%        % Ángulo theta
+%        \path (xfin) -- (O) -- (P) pic
+%        [-{Latex[width=2.5pt,length=3.7pt]},angulogirado,
+%        "\footnotesize $\theta$",angle radius=20pt, angle eccentricity=0.68]
+%        {angle = xfin--O--P};
+%        % Proyección de P en los ejes
+%        \draw[proyeccion, use path=\proyx];
+%        \draw[proyeccion, use path=\proyy];
+%        % Ejes
+%        % x
+%        \draw[eje, use path=\ejex];
+%        \node[right] at (xfin) {$x$};
+%        \node[below] at (xtexto) {$r\cos\theta$};
+%        % y
+%        \draw[eje, use path=\ejey];
+%        \node[above] at (yfin) {$y$};
+%        \node[rotate=90, left=8pt] at (ytexto) {$r\sin\theta$};
+%        % Vector y punto  P
+%        \draw[vector, use path=\vector];
+%        \node[above left=-3pt and -1pt] at (pmid) {$r$};
+%        \filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
+%        \node[above] at (P) {$P$};
+%    
+%        % Origen
+%        \filldraw (O) circle [radius=.2pt];
+%        % Fondo amarillo
+%        \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+%        \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
+%        \begin{scope}[on background layer]
+%          \draw[background] (SW) rectangle (NE);
+%        \end{scope}
+%      \end{tikzpicture}
+%    \end{minipage}
+%    \hspace{1em}
+%    \begin{minipage}{0.40\linewidth}
+%      % Escala
+%      \def\scl{1}
+%      % 
+%      \pgfmathsetmacro{\EJESEXTRA}{-0.2}
+%      \pgfmathsetmacro{\EJESLONG}{2.3}
+%      % Eje x
+%      \pgfmathsetmacro{\XMLONG}{\EJESEXTRA}
+%      \pgfmathsetmacro{\XPLONG}{\EJESLONG}
+%      % Eje y
+%      \pgfmathsetmacro{\YMLONG}{\EJESEXTRA}
+%      \pgfmathsetmacro{\YPLONG}{\EJESLONG}
+%      % Vector P
+%      \pgfmathsetmacro{\PMOD}{2.5}
+%      \pgfmathsetmacro{\PANG}{40}
+%      % Fondo
+%      \pgfmathsetmacro{\HORZ}{0.25}
+%      \pgfmathsetmacro{\VERT}{0.25}
+%      % 
+%      \centering
+%      \begin{tikzpicture}[%
+%        scale=\scl,
+%        every node/.style={black,font=\small},
+%        eje/.style={->},
+%        proyeccion/.style={black!60, densely dotted},
+%        vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt,\colorV},
+%        textooriginal/.style={\colorTorig},
+%        pcirculo/.style={fill=\colorPorig, draw=black},
+%        angulogirado/.style={fill=\colorAngGreen, draw=\colorGirodos},
+%        background/.style={
+%          line width=\bgborderwidth,
+%          draw=\bgbordercolor,
+%          fill=\bgcolor,
+%        },
+%        ]
+%        % COORDENADAS
+%        % Origen
+%        \coordinate (O) at (0,0);
+%        % Extremo izdo del eje x e inferior del eje y
+%        \coordinate (xini) at (\XMLONG cm,0);
+%        \coordinate (yini) at (0,\YMLONG cm);
+%        % Eje x
+%        \path[save path=\ejex] (xini) -- coordinate[pos=0.5] (xtexto) (\XPLONG cm, 0)
+%        coordinate (xfin);
+%        % Eje y
+%        \path[save path=\ejey] (yini) -- coordinate[pos=0.6] (ytexto) (0, \YPLONG cm)
+%        coordinate (yfin);
+%        % Vector
+%        \path[save path=\vector] (O) -- coordinate[pos=0.5] (pmid) (\PANG:\PMOD cm)
+%        coordinate (P);
+%        % Proyección de P en los ejes
+%        \path[save path=\proyx] (P) |- (xfin);
+%        \path[save path=\proyy] (P) -| (yfin);
+%
+%        % DIBUJOS
+%        % Ángulo theta
+%        \path (xfin) -- (O) -- (P) pic
+%        [-{Latex[width=2.5pt,length=3.7pt]},angulogirado,
+%        "\footnotesize $\theta$",angle radius=20pt, angle eccentricity=0.68]
+%        {angle = xfin--O--P};
+%        % Proyección de P en los ejes
+%        \draw[proyeccion, use path=\proyx];
+%        \draw[proyeccion, use path=\proyy];
+%        % Ejes
+%        % x
+%        \draw[eje, use path=\ejex];
+%        \node[right] at (xfin) {$x$};
+%        \node[below] at (xtexto) {$r\cos\theta$};
+%        % y
+%        \draw[eje, use path=\ejey];
+%        \node[above] at (yfin) {$y$};
+%        \node[rotate=90, left=8pt] at (ytexto) {$r\sin\theta$};
+%        % Vector y punto  P
+%        \draw[vector, use path=\vector];
+%        \node[above left=-3pt and -1pt] at (pmid) {$\vvv{r}$};
+%        \filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
+%        \node[above] at (P) {$P$};
+%    
+%        % Origen
+%        \filldraw (O) circle [radius=.2pt];
+%        % Fondo amarillo
+%        \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+%        \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
+%        \begin{scope}[on background layer]
+%          \draw[background] (SW) rectangle (NE);
+%        \end{scope}
+%      \end{tikzpicture}
+%    \end{minipage}
+%    \caption{Coordenadas cartesianas y polares planas de un punto $P$ del plano.}
+%    \label{fig:R2:polares-intuicion}
+%  \end{figure}
+  
 \end{enumerate}
 
 \subsection{Gradiente}
