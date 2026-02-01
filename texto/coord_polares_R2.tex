@@ -719,23 +719,26 @@ Vamos a calcular la métrica y los factores de escala de varias formas:
 \item De forma intuitiva,
   \begin{figure}[ht]
     \centering
-    \begin{minipage}{0.40\linewidth}
+    \begin{minipage}{0.42\linewidth}
+      % Esta gráfica muestra cómo afecta un cambio en la coordenada r a la distancia
+      % recorrida en el espacio R^2
       % Escala
-      \def\scl{1}
-      % 
+      \def\scl{1.45}
+      %
       \pgfmathsetmacro{\EJESEXTRA}{-0.2}
-      \pgfmathsetmacro{\EJESLONG}{2.3}
+      \pgfmathsetmacro{\EJESLONG}{2.5}
       % Eje x
       \pgfmathsetmacro{\XMLONG}{\EJESEXTRA}
       \pgfmathsetmacro{\XPLONG}{\EJESLONG}
       % Eje y
       \pgfmathsetmacro{\YMLONG}{\EJESEXTRA}
       \pgfmathsetmacro{\YPLONG}{\EJESLONG}
-      % Cambio en r
-      \pgfmathsetmacro{\INCr]{0.8}
-      % Vector P
-      \pgfmathsetmacro{\PMOD}{2.5}
-      \pgfmathsetmacro{\PANG}{40}
+      % Punto P original
+      \pgfmathsetmacro{\PMOD}{1.5}
+      \pgfmathsetmacro{\PANG}{30}
+      % Punto P final conservando el mismo ángulo
+      \pgfmathsetmacro{\PFINMOD}{2.4}
+      \pgfmathsetmacro{\PFINANG}{\PANG}      
       % Fondo
       \pgfmathsetmacro{\HORZ}{0.25}
       \pgfmathsetmacro{\VERT}{0.25}
@@ -745,11 +748,14 @@ Vamos a calcular la métrica y los factores de escala de varias formas:
         scale=\scl,
         every node/.style={black,font=\small},
         eje/.style={->},
-        proyeccion/.style={black!60, densely dotted},
-        vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt,\colorV},
+        r/.style={line width=.8pt, black},
+        rtxt/.style={black},
+        %rfin/.style={-{Latex[width=4pt,length=6pt]}, line width=1pt, \colorVred},
+        rfin/.style={line width=1pt, \colorVred},
+        rfintxt/.style={\colorTchg, rotate=\PANG},
         textooriginal/.style={\colorTorig},
-        pcirculo/.style={fill=\colorPorig, draw=black},
-        angulogirado/.style={fill=\colorAngGreen, draw=\colorGirodos},
+        pcirculo/.style={black, radius=1pt},
+        angulogirado/.style={fill=\colorAng, draw=\colorGirodos},
         background/.style={
           line width=\bgborderwidth,
           draw=\bgbordercolor,
@@ -762,73 +768,82 @@ Vamos a calcular la métrica y los factores de escala de varias formas:
         % Extremo izdo del eje x e inferior del eje y
         \coordinate (xini) at (\XMLONG cm,0);
         \coordinate (yini) at (0,\YMLONG cm);
-        % Inicio de cambio en r
-        
         % Eje x
-        \path[save path=\ejex] (xini) -- coordinate[pos=0.5] (xtexto) (\XPLONG cm, 0)
-        coordinate (xfin);
+        \path[save path=\ejex] (xini) -- coordinate[pos=0.5] (xtexto)
+        (\XPLONG cm, 0) coordinate (xfin);
         % Eje y
-        \path[save path=\ejey] (yini) -- coordinate[pos=0.6] (ytexto) (0, \YPLONG cm)
-        coordinate (yfin);
-        % Cambio en r
-        \path[save path=\Incr] (
-        % Vector
-        \path[save path=\vector] (O) -- coordinate[pos=0.5] (pmid) (\PANG:\PMOD cm)
-        coordinate (P);
-        % Proyección de P en los ejes
-        \path[save path=\proyx] (P) |- (xfin);
-        \path[save path=\proyy] (P) -| (yfin);
-
+        \path[save path=\ejey] (yini) -- coordinate[pos=0.6] (ytexto)
+        (0, \YPLONG cm) coordinate (yfin);
+        % Punto P original
+        \path[save path=\porig] (O) -- coordinate[pos=0.65] (rorigtxt)
+        (\PANG:\PMOD cm) coordinate (P);
+        % Punto P final
+        \path[save path=\pfin] (P) -- coordinate[pos=0.5] (rfintxt)
+        (\PFINANG:\PFINMOD cm) coordinate (P');
+        
         % DIBUJOS
         % Ángulo theta
         \path (xfin) -- (O) -- (P) pic
         [-{Latex[width=2.5pt,length=3.7pt]},angulogirado,
-        "\footnotesize $\theta$",angle radius=20pt, angle eccentricity=0.68]
+        "\scriptsize $\theta$",angle radius=24pt, angle eccentricity=0.72]
         {angle = xfin--O--P};
-        % Proyección de P en los ejes
-        \draw[proyeccion, use path=\proyx];
-        \draw[proyeccion, use path=\proyy];
         % Ejes
         % x
         \draw[eje, use path=\ejex];
         \node[right] at (xfin) {$x$};
-        %\node[below] at (xtexto) {$r\cos\theta$};
         % y
         \draw[eje, use path=\ejey];
         \node[above] at (yfin) {$y$};
-        %\node[rotate=90, left=8pt] at (ytexto) {$r\sin\theta$};
-        % Vector y punto  P
-        \draw[vector, use path=\vector];
-        \node[above left=-3pt and -1pt] at (pmid) {$r$};
-        \filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
-        \node[above] at (P) {$P$};
-    
+        % Coordenada r original
+        \draw[r, use path=\porig];
+        \node[rtxt, above left=-3pt and -1pt] at (rorigtxt) {\footnotesize $r$};
+        % Vector r final
+        \draw[rfin, use path=\pfin];
+        \node[rfintxt, above] at (rfintxt) {\footnotesize $\Delta s = \Delta r$};
+        % Puntos
+        \fill[pcirculo] (P) circle;
+        \fill[pcirculo] (P') circle;
+        \node[rtxt, below right] at (P) {\scriptsize $P$};
+        \node[rtxt, below right] at (P') {\scriptsize $P'$};
         % Origen
-        \filldraw (O) circle [radius=.2pt];
+        \filldraw (O) circle [radius=.4pt];
         % Fondo amarillo
-        \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
-        \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
+        \coordinate (SW)
+        at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+        \coordinate (NE)
+        at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
         \begin{scope}[on background layer]
           \draw[background] (SW) rectangle (NE);
         \end{scope}
       \end{tikzpicture}
+      \caption{Al cambiar la coordenada $r$, manteniendo constante $\theta$, se recorre
+        una distancia igual en el espacio $\symbb{R}^2$. Por tanto, $h_r=1$ y
+        $g_{11} = 1$.}
+    \label{fig:R2:polares-intuicion1}      
     \end{minipage}
     \hspace{1em}
-    \begin{minipage}{0.40\linewidth}
+    \begin{minipage}{0.42\linewidth}
       % Escala
-      \def\scl{1}
-      % 
+      \def\scl{1.45}
+      %
       \pgfmathsetmacro{\EJESEXTRA}{-0.2}
-      \pgfmathsetmacro{\EJESLONG}{2.3}
+      \pgfmathsetmacro{\EJESLONG}{2.5}
       % Eje x
       \pgfmathsetmacro{\XMLONG}{\EJESEXTRA}
       \pgfmathsetmacro{\XPLONG}{\EJESLONG}
       % Eje y
       \pgfmathsetmacro{\YMLONG}{\EJESEXTRA}
       \pgfmathsetmacro{\YPLONG}{\EJESLONG}
-      % Vector P
-      \pgfmathsetmacro{\PMOD}{2.5}
-      \pgfmathsetmacro{\PANG}{40}
+      % Punto P original
+      \pgfmathsetmacro{\PMOD}{2.0}
+      \pgfmathsetmacro{\PANG}{25}
+      % Punto P final conservando el mismo radio
+      \pgfmathsetmacro{\PFINMOD}{\PMOD}
+      \pgfmathsetmacro{\PFINANG}{70}
+      % Texto en arco
+      \pgfmathsetmacro{\PARCANG}{0.5*(\PFINANG) + \PANG)}
+      \pgfmathsetmacro{\PARCMOD}{\PMOD * 1.2}
+      \
       % Fondo
       \pgfmathsetmacro{\HORZ}{0.25}
       \pgfmathsetmacro{\VERT}{0.25}
@@ -838,17 +853,22 @@ Vamos a calcular la métrica y los factores de escala de varias formas:
         scale=\scl,
         every node/.style={black,font=\small},
         eje/.style={->},
-        proyeccion/.style={black!60, densely dotted},
-        vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt,\colorV},
+        r/.style={line width=.8pt, black},
+        rtxt/.style={black},
+        rfin/.style={line width=1pt, \colorVred},
+        rfintxt/.style={\colorTchg},
         textooriginal/.style={\colorTorig},
-        pcirculo/.style={fill=\colorPorig, draw=black},
-        angulogirado/.style={fill=\colorAngGreen, draw=\colorGirodos},
+        pcirculo/.style={black, radius=1pt},
+        angulo/.style={fill=\colorAng, draw=\colorGirodos},
+        angulogirado/.style={fill=\colorAngPink, draw=\colorGiroRed},
+        arco/.style={line width=1pt, draw=\colorGiroRed},
         background/.style={
           line width=\bgborderwidth,
           draw=\bgbordercolor,
           fill=\bgcolor,
         },
         ]
+
         % COORDENADAS
         % Origen
         \coordinate (O) at (0,0);
@@ -856,54 +876,68 @@ Vamos a calcular la métrica y los factores de escala de varias formas:
         \coordinate (xini) at (\XMLONG cm,0);
         \coordinate (yini) at (0,\YMLONG cm);
         % Eje x
-        \path[save path=\ejex] (xini) -- coordinate[pos=0.5] (xtexto) (\XPLONG cm, 0)
-        coordinate (xfin);
+        \path[save path=\ejex] (xini) -- coordinate[pos=0.5] (xtexto)
+        (\XPLONG cm, 0) coordinate (xfin);
         % Eje y
-        \path[save path=\ejey] (yini) -- coordinate[pos=0.6] (ytexto) (0, \YPLONG cm)
-        coordinate (yfin);
-        % Vector
-        \path[save path=\vector] (O) -- coordinate[pos=0.5] (pmid) (\PANG:\PMOD cm)
-        coordinate (P);
-        % Proyección de P en los ejes
-        \path[save path=\proyx] (P) |- (xfin);
-        \path[save path=\proyy] (P) -| (yfin);
+        \path[save path=\ejey] (yini) -- coordinate[pos=0.6] (ytexto)
+        (0, \YPLONG cm) coordinate (yfin);
+        % Punto P original
+        \path[save path=\porig] (O) -- coordinate[pos=0.65] (rorigtxt)
+        (\PANG:\PMOD cm) coordinate (P);
+        % Punto P final
+        \path[save path=\pfin] (O) -- coordinate[pos=0.65] (rfintxt)
+        (\PFINANG:\PFINMOD cm) coordinate (P');
 
         % DIBUJOS
         % Ángulo theta
         \path (xfin) -- (O) -- (P) pic
-        [-{Latex[width=2.5pt,length=3.7pt]},angulogirado,
-        "\footnotesize $\theta$",angle radius=20pt, angle eccentricity=0.68]
+        [angulo, "\scriptsize $\theta$",angle radius=24pt, angle eccentricity=0.72]
         {angle = xfin--O--P};
-        % Proyección de P en los ejes
-        \draw[proyeccion, use path=\proyx];
-        \draw[proyeccion, use path=\proyy];
+        % Incremento de theta
+        \path (P) -- (O) -- (P') pic
+        [-{Latex[width=3.0pt,length=4.5pt]}, angulogirado,
+        "\scriptsize $\Delta\theta$",angle radius=24pt, angle eccentricity=0.72]
+        {angle = P--O--P'};
         % Ejes
         % x
         \draw[eje, use path=\ejex];
         \node[right] at (xfin) {$x$};
-        \node[below] at (xtexto) {$r\cos\theta$};
         % y
         \draw[eje, use path=\ejey];
         \node[above] at (yfin) {$y$};
-        \node[rotate=90, left=8pt] at (ytexto) {$r\sin\theta$};
-        % Vector y punto  P
-        \draw[vector, use path=\vector];
-        \node[above left=-3pt and -1pt] at (pmid) {$\vvv{r}$};
-        \filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
-        \node[above] at (P) {$P$};
-    
+        % Longitud r original
+        \draw[r, use path=\porig];
+        \node[rtxt, below right=-2pt and 0pt] at (rorigtxt) {\footnotesize $r$};
+        % Longitud r final
+        \draw[r, use path=\pfin];
+        \node[rtxt, above left = -2pt and 0pt] at (rfintxt) {\footnotesize $r$};
+        % Arco recorrido
+        \draw[arco] (P) arc (\PANG:\PFINANG:\PMOD)
+        node[rfintxt,above,midway,sloped] {\footnotesize$\Delta s = r\Delta\theta$};
+        
+        \fill (arctxt) circle[radius=1pt];
+        % Puntos
+        \fill[pcirculo] (P) circle;
+        \fill[pcirculo] (P') circle;
+        \node[rtxt, below right=-3pt and 0pt] at (P) {\scriptsize $P$};
+        \node[rtxt, above left=0pt and -3pt] at (P') {\scriptsize $P'$};
         % Origen
-        \filldraw (O) circle [radius=.2pt];
+        \filldraw (O) circle [radius=.4pt];
         % Fondo amarillo
-        \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
-        \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
+        \coordinate (SW)
+        at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+        \coordinate (NE)
+        at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
         \begin{scope}[on background layer]
           \draw[background] (SW) rectangle (NE);
         \end{scope}
+
       \end{tikzpicture}
+      \caption{Al cambiar la coordenada $\theta$, manteniendo $r$ constante, se  recorre
+        una distancia proporcional a $r$ y a $\Delta\theta$. Por tanto, $h_\theta = r$ y
+        $g_{22} = r^2$.}
+    \label{fig:R2:polares-intuicion2}
     \end{minipage}
-    \caption{Coordenadas cartesianas y polares planas de un punto $P$ del plano.}
-    \label{fig:R2:polares-intuicion}
   \end{figure}
   
 \end{enumerate}
