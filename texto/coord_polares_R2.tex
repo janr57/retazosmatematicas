@@ -136,7 +136,7 @@ derivadas---, lo que será importante para obtener la métrica en estas coordena
 \end{subequations}
 Estos vectores de la base son importantes para calcular la métrica en cartesianas
 \begin{equation}\label{eq:R2-basefundamental}
-  B=\set{\vvv{e}_x, \vvv{e}_y} = \set{\uvec{\i}, \uvec{\j}}
+  B=\set{\vvv{e}_x, \vvv{e}_y} = \set{\uvec{\i},\, \uvec{\j}}
 \end{equation}
 Hacemos notar que los vectores de esta base son unitarios tradicionales en este sistema
 de coordenadas, $\uvec{\i}$ y $\uvec{\j}$.
@@ -476,18 +476,18 @@ punto, ver figura \ref{fig:R2:coordenadas-R2}.
 
 \subsection{Relación con las coordenadas cartesianas}
 De la figura \ref{fig:R2:vector-r-R2} se desprenden las siguientes relaciones
-
-
 \begin{subequations}
-  \begin{align}
+  \begin{align}\label{eq:R2-x-rtheta}
     x &= r\cos\theta\\
+    \label{eq:R2-y-rtheta}
     y &= r\sin\theta
   \end{align}
 \end{subequations}
 y, sus inversas
 \begin{subequations}
-  \begin{align}
+  \begin{align}\label{eq:R2-r-xy}
     r &= \sqrt{x^2 + y^2}\\
+    \label{eq:R2-theta-xy}
     \theta &= \arctan\left(\frac{y}{x}\right)
   \end{align}
 \end{subequations}
@@ -977,6 +977,36 @@ Vamos a calcular la métrica y los factores de escala de varias formas:
 \end{enumerate}
 
 \subsection{Gradiente}
+Cálculos preliminares. Se utilizan las expresiones \eqref{eq:R2-x-rtheta},
+\eqref{eq:R2-y-rtheta}, \eqref{eq:R2-r-xy} y \eqref{eq:R2-theta-xy}
+{\small
+\begin{subequations}
+  \begin{align}
+    \dfrac{\partial r}{\partial x}
+    &=
+      \dfrac{1}{\cancelout{2}\sqrt{x^2+y^2}}\cdot \cancelout{2}x
+      = \dfrac{\cancelout{r}\cos\theta}{\cancelout{r}} = \cos\theta\\
+    \dfrac{\partial r}{\partial y}
+    &=
+      \dfrac{1}{\cancelout{2}\sqrt{x^2+y^2}}\cdot \cancelout{2}y
+      = \dfrac{\cancelout{r}\sin\theta}{\cancelout{r}} = \sin\theta\\
+    \dfrac{\partial\theta}{\partial x}
+    &=
+      \dfrac{1}{1+\dfrac{y^2}{x^2}}\,\left(-\dfrac{y}{x}\right)
+      = -\dfrac{x^{\cancelout{\scriptstyle{2}}}}{x^2+y^2}\,\dfrac{y}{\cancelout{x}}
+      = -\dfrac{y}{x^2+y^2}
+      = -\dfrac{\cancelout{r}\sin\theta}{r^{\cancelout{2}}}
+      = -\dfrac{\sin\theta}{r}\\
+    \dfrac{\partial\theta}{\partial x}
+    &=
+      \dfrac{1}{1+\dfrac{y^2}{x^2}}\,\dfrac{1}{x}
+      = \dfrac{x^{\cancelout{\scriptstyle{2}}}}{x^2+y^2}\,\dfrac{1}{\cancelout{x}}
+      = \dfrac{y}{x^2+y^2}
+      = \dfrac{\cancelout{r}\cos\theta}{r^{\cancelout{\scriptstyle{2}}}}
+      = \dfrac{\cos\theta}{r}
+  \end{align}
+\end{subequations}
+}
 
 \subsection{Divergencia}
 
