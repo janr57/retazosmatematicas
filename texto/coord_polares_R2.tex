@@ -755,11 +755,11 @@ Vamos a calcular la métrica y los factores de escala de varias formas:
     \end{subequations}
     \begin{figure}[ht]
       \centering
-      \begin{minipage}{0.42\linewidth}
+      \begin{minipage}{0.40\linewidth}
         % Esta gráfica muestra cómo afecta un cambio en la coordenada r a la distancia
         % recorrida en el espacio R^2
         % Escala
-        \def\scl{1.45}
+        \def\scl{1.35}
         % 
         \pgfmathsetmacro{\EJESEXTRA}{-0.2}
         \pgfmathsetmacro{\EJESLONG}{2.5}
@@ -857,9 +857,9 @@ Vamos a calcular la métrica y los factores de escala de varias formas:
         \label{fig:R2-polares-intuicion-h-r}
       \end{minipage}
       \hspace{1em}
-      \begin{minipage}{0.42\linewidth}
+      \begin{minipage}{0.40\linewidth}
         % Escala
-        \def\scl{1.45}
+        \def\scl{1.35}
         % 
         \pgfmathsetmacro{\EJESEXTRA}{-0.2}
         \pgfmathsetmacro{\EJESLONG}{2.5}
@@ -1007,6 +1007,77 @@ Cálculos preliminares. Se utilizan las expresiones \eqref{eq:R2-x-rtheta},
   \end{align}
 \end{subequations}
 }
+{\small
+  \begin{subequations}
+    \begin{align*}
+      \dfrac{\partial f}{\partial x}\,\uvec{\i}
+      &=
+        \left(%
+        \dfrac{\partial f}{\partial r}\dfrac{\partial r}{\partial x}
+        + \dfrac{\partial f}{\partial\theta}\dfrac{\partial\theta}{\partial x}
+        \right)
+        \left(%
+        \cos\theta\,\xhat{r}-\sin\theta\,\xhat{\theta}
+        \right)\\
+      &=
+        \left[%
+        \dfrac{\partial f}{\partial r}\cos\theta
+        + \dfrac{\partial f}{\partial\theta}\left(-\dfrac{\sin\theta}{r}\right)
+        \right]
+        \left(%
+        \cos\theta\,\xhat{r} - \sin\theta\,\xhat{\theta}
+        \right)\\
+      &=
+        \cos^2\theta\dfrac{\partial f}{\partial r}\,\xhat{r}
+        -\dfrac{\sin\theta\cos\theta}{r}\dfrac{\partial f}{\partial\theta}\,\xhat{r}
+        - \sin\theta\cos\theta\dfrac{\partial f}{\partial r}\,\xhat{\theta}
+        + \dfrac{\cos^2\theta}{r}\dfrac{\partial f}{\partial\theta}\,\xhat{\theta}
+    \end{align*}
+  \end{subequations}
+}
+{\small
+  \begin{subequations}
+    \begin{align*}
+      \dfrac{\partial f}{\partial y}\,\uvec{\j}
+      &=
+        \left(%
+        \dfrac{\partial f}{\partial r}\dfrac{\partial f}{\partial y}
+        + \dfrac{\partial f}{\partial\theta}\dfrac{\partial\theta}{\partial y}
+        \right)
+        \left(%
+        \sin\theta\,\xhat{r}-\cos\theta\,\xhat{\theta}
+        \right)\\
+      &=
+        \left[%
+        \dfrac{\partial f}{\partial r}\sin\theta
+        + \dfrac{\partial f}{\partial\theta}\dfrac{\cos\theta}{r}
+        \right]
+        \left(%
+        \sin\theta\,\xhat{r} - \cos\theta\,\xhat{\theta}
+        \right)\\
+      &=
+        \sin^2\theta\dfrac{\partial f}{\partial r}\,\xhat{r}
+        + \dfrac{\sin\theta\cos\theta}{r}\dfrac{\partial f}{\partial\theta}\,\xhat{r}
+        + \sin\theta\cos\theta\dfrac{\partial f}{\partial r}\,\xhat{\theta}
+        + \dfrac{\cos^2\theta}{r}\dfrac{\partial f}{\partial\theta}\,\xhat{\theta}
+    \end{align*}
+  \end{subequations}
+}
+
+El gradiente en polares se obtiene sustituyendo en las dos expresiones anteriores y
+sumándolos. A continuación presentamos el resultado
+{\small
+  \begin{equation}
+    \vvv{\nabla}\cdot f
+    =
+      \dfrac{\partial f}{\partial x}\,\uvec{\i}
+      + \dfrac{\partial f}{\partial y}\,\uvec{\j}
+      = \dfrac{\partial f}{\partial r}\,\xhat{r}
+      + \dfrac{1}{r}\dfrac{\partial f}{\partial\theta}\,\xhat{\theta}
+  \end{equation}
+}
+
+
 
 \subsection{Divergencia}
 
