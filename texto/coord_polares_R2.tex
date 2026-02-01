@@ -716,228 +716,263 @@ Vamos a calcular la métrica y los factores de escala de varias formas:
   donde se han tenido en cuenta las ecuaciones~\eqref{eq:R2-dx} y ~\eqref{eq:R2-dy} y que
   los vectores unitarios $\xhat{r}$ y $\xhat{\theta}$ son ortogonales.
 
-\item De forma intuitiva,
-  \begin{figure}[ht]
-    \centering
-    \begin{minipage}{0.42\linewidth}
-      % Esta gráfica muestra cómo afecta un cambio en la coordenada r a la distancia
-      % recorrida en el espacio R^2
-      % Escala
-      \def\scl{1.45}
-      %
-      \pgfmathsetmacro{\EJESEXTRA}{-0.2}
-      \pgfmathsetmacro{\EJESLONG}{2.5}
-      % Eje x
-      \pgfmathsetmacro{\XMLONG}{\EJESEXTRA}
-      \pgfmathsetmacro{\XPLONG}{\EJESLONG}
-      % Eje y
-      \pgfmathsetmacro{\YMLONG}{\EJESEXTRA}
-      \pgfmathsetmacro{\YPLONG}{\EJESLONG}
-      % Punto P original
-      \pgfmathsetmacro{\PMOD}{1.5}
-      \pgfmathsetmacro{\PANG}{30}
-      % Punto P final conservando el mismo ángulo
-      \pgfmathsetmacro{\PFINMOD}{2.4}
-      \pgfmathsetmacro{\PFINANG}{\PANG}      
-      % Fondo
-      \pgfmathsetmacro{\HORZ}{0.25}
-      \pgfmathsetmacro{\VERT}{0.25}
-      % 
+\item De forma intuitiva podemos interpretar la métrica. Veamos
+  \begin{itemize}
+  \item Las variables $r$ y $\theta$ son ortogonales, un cambio en una de ellas no afecta
+    a la otra, como se puede comprobar observando las figuras
+    \ref{fig:R2-polares-intuicion-h-r} y \ref{fig:R2-polares-intuicion-h-theta}.
+    De esta manera, vemos que los elementos no diagonales de la métrica valen cero,
+    $g_{12}=g_{21}=0$.
+  \item Por otro lado, en la figura \ref{fig:R2-polares-intuicion-h-r} observamos que
+    cuando modificamos la variable $r$ en una cierta distancia $\Delta r$, estamos
+    desplazándonos en el espacio la misma distancia $\Delta s$. esto significa que
+    el coeficiente de escala $h_r$ vale la unidad. Esto implica que el elemento
+    $g_{11}$ de la métrica vale lo mismo.
+    \begin{subequations}
+      \begin{align}
+        h_r
+        &=
+          \dfrac{\Delta s}{\Delta r} = 1\\[2pt]
+        g_{11}
+        &=
+          h_x^2 = 1
+      \end{align}
+    \end{subequations}
+
+  \item En cuanto al coeficiente de escala $h_\theta$, cuando se modifica $\theta$ en una
+    cierta cantidad $\Delta\theta$, la distancia que se recorre en el espacio es
+    el ángulo por el radio, $\Delta s = r\Delta\theta$. Además, $g_{22} = r^2$. Ver
+    figura \ref{fig:R2-polares-intuicion-h-theta}
+    \begin{subequations}
+      \begin{align}
+        h_\theta
+        &=
+          \dfrac{\Delta s}{\Delta\theta} = \dfrac{r\Delta\theta}{\Delta\theta} = r\\[2pt]
+        g_{22}
+        &=
+          h_\theta^2 = r^2
+      \end{align}
+    \end{subequations}
+    \begin{figure}[ht]
       \centering
-      \begin{tikzpicture}[%
-        scale=\scl,
-        every node/.style={black,font=\small},
-        eje/.style={->},
-        r/.style={line width=.8pt, black},
-        rtxt/.style={black},
-        %rfin/.style={-{Latex[width=4pt,length=6pt]}, line width=1pt, \colorVred},
-        rfin/.style={line width=1pt, \colorVred},
-        rfintxt/.style={\colorTchg, rotate=\PANG},
-        textooriginal/.style={\colorTorig},
-        pcirculo/.style={black, radius=1pt},
-        angulogirado/.style={fill=\colorAng, draw=\colorGirodos},
-        background/.style={
-          line width=\bgborderwidth,
-          draw=\bgbordercolor,
-          fill=\bgcolor,
-        },
-        ]
-        % COORDENADAS
-        % Origen
-        \coordinate (O) at (0,0);
-        % Extremo izdo del eje x e inferior del eje y
-        \coordinate (xini) at (\XMLONG cm,0);
-        \coordinate (yini) at (0,\YMLONG cm);
+      \begin{minipage}{0.42\linewidth}
+        % Esta gráfica muestra cómo afecta un cambio en la coordenada r a la distancia
+        % recorrida en el espacio R^2
+        % Escala
+        \def\scl{1.45}
+        % 
+        \pgfmathsetmacro{\EJESEXTRA}{-0.2}
+        \pgfmathsetmacro{\EJESLONG}{2.5}
         % Eje x
-        \path[save path=\ejex] (xini) -- coordinate[pos=0.5] (xtexto)
-        (\XPLONG cm, 0) coordinate (xfin);
+        \pgfmathsetmacro{\XMLONG}{\EJESEXTRA}
+        \pgfmathsetmacro{\XPLONG}{\EJESLONG}
         % Eje y
-        \path[save path=\ejey] (yini) -- coordinate[pos=0.6] (ytexto)
-        (0, \YPLONG cm) coordinate (yfin);
+        \pgfmathsetmacro{\YMLONG}{\EJESEXTRA}
+        \pgfmathsetmacro{\YPLONG}{\EJESLONG}
         % Punto P original
-        \path[save path=\porig] (O) -- coordinate[pos=0.65] (rorigtxt)
-        (\PANG:\PMOD cm) coordinate (P);
-        % Punto P final
-        \path[save path=\pfin] (P) -- coordinate[pos=0.5] (rfintxt)
-        (\PFINANG:\PFINMOD cm) coordinate (P');
+        \pgfmathsetmacro{\PMOD}{1.5}
+        \pgfmathsetmacro{\PANG}{30}
+        % Punto P final conservando el mismo ángulo
+        \pgfmathsetmacro{\PFINMOD}{2.4}
+        \pgfmathsetmacro{\PFINANG}{\PANG}      
+        % Fondo
+        \pgfmathsetmacro{\HORZ}{0.25}
+        \pgfmathsetmacro{\VERT}{0.25}
+        % 
+        \centering
+        \begin{tikzpicture}[%
+          scale=\scl,
+          every node/.style={black,font=\small},
+          eje/.style={->},
+          r/.style={line width=.8pt, black},
+          rtxt/.style={black},
+          rfin/.style={line width=1pt, \colorVred},
+          rfintxt/.style={\colorTchg, rotate=\PANG},
+          textooriginal/.style={\colorTorig},
+          pcirculo/.style={black, radius=1pt},
+          angulogirado/.style={fill=\colorAng, draw=\colorGirodos},
+          background/.style={
+            line width=\bgborderwidth,
+            draw=\bgbordercolor,
+            fill=\bgcolor,
+          },
+          ]
+          % COORDENADAS
+          % Origen
+          \coordinate (O) at (0,0);
+          % Extremo izdo del eje x e inferior del eje y
+          \coordinate (xini) at (\XMLONG cm,0);
+          \coordinate (yini) at (0,\YMLONG cm);
+          % Eje x
+          \path[save path=\ejex] (xini) -- coordinate[pos=0.5] (xtexto)
+          (\XPLONG cm, 0) coordinate (xfin);
+          % Eje y
+          \path[save path=\ejey] (yini) -- coordinate[pos=0.6] (ytexto)
+          (0, \YPLONG cm) coordinate (yfin);
+          % Punto P original
+          \path[save path=\porig] (O) -- coordinate[pos=0.65] (rorigtxt)
+          (\PANG:\PMOD cm) coordinate (P);
+          % Punto P final
+          \path[save path=\pfin] (P) -- coordinate[pos=0.5] (rfintxt)
+          (\PFINANG:\PFINMOD cm) coordinate (P');
         
-        % DIBUJOS
-        % Ángulo theta
-        \path (xfin) -- (O) -- (P) pic
-        [-{Latex[width=2.5pt,length=3.7pt]},angulogirado,
-        "\scriptsize $\theta$",angle radius=24pt, angle eccentricity=0.72]
-        {angle = xfin--O--P};
-        % Ejes
-        % x
-        \draw[eje, use path=\ejex];
-        \node[right] at (xfin) {$x$};
-        % y
-        \draw[eje, use path=\ejey];
-        \node[above] at (yfin) {$y$};
-        % Coordenada r original
-        \draw[r, use path=\porig];
-        \node[rtxt, above left=-3pt and -1pt] at (rorigtxt) {\footnotesize $r$};
-        % Vector r final
-        \draw[rfin, use path=\pfin];
-        \node[rfintxt, above] at (rfintxt) {\footnotesize $\Delta s = \Delta r$};
-        % Puntos
-        \fill[pcirculo] (P) circle;
-        \fill[pcirculo] (P') circle;
-        \node[rtxt, below right] at (P) {\scriptsize $P$};
-        \node[rtxt, below right] at (P') {\scriptsize $P'$};
-        % Origen
-        \filldraw (O) circle [radius=.4pt];
-        % Fondo amarillo
-        \coordinate (SW)
-        at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
-        \coordinate (NE)
-        at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
-        \begin{scope}[on background layer]
-          \draw[background] (SW) rectangle (NE);
-        \end{scope}
-      \end{tikzpicture}
-      \caption{Al cambiar la coordenada $r$, manteniendo constante $\theta$, se recorre
-        una distancia igual en el espacio $\symbb{R}^2$. Por tanto, $h_r=1$ y
-        $g_{11} = 1$.}
-    \label{fig:R2:polares-intuicion1}      
-    \end{minipage}
-    \hspace{1em}
-    \begin{minipage}{0.42\linewidth}
-      % Escala
-      \def\scl{1.45}
-      %
-      \pgfmathsetmacro{\EJESEXTRA}{-0.2}
-      \pgfmathsetmacro{\EJESLONG}{2.5}
-      % Eje x
-      \pgfmathsetmacro{\XMLONG}{\EJESEXTRA}
-      \pgfmathsetmacro{\XPLONG}{\EJESLONG}
-      % Eje y
-      \pgfmathsetmacro{\YMLONG}{\EJESEXTRA}
-      \pgfmathsetmacro{\YPLONG}{\EJESLONG}
-      % Punto P original
-      \pgfmathsetmacro{\PMOD}{2.0}
-      \pgfmathsetmacro{\PANG}{25}
-      % Punto P final conservando el mismo radio
-      \pgfmathsetmacro{\PFINMOD}{\PMOD}
-      \pgfmathsetmacro{\PFINANG}{70}
-      % Texto en arco
-      \pgfmathsetmacro{\PARCANG}{0.5*(\PFINANG) + \PANG)}
-      \pgfmathsetmacro{\PARCMOD}{\PMOD * 1.2}
-      \
-      % Fondo
-      \pgfmathsetmacro{\HORZ}{0.25}
-      \pgfmathsetmacro{\VERT}{0.25}
-      % 
-      \centering
-      \begin{tikzpicture}[%
-        scale=\scl,
-        every node/.style={black,font=\small},
-        eje/.style={->},
-        r/.style={line width=.8pt, black},
-        rtxt/.style={black},
-        rfin/.style={line width=1pt, \colorVred},
-        rfintxt/.style={\colorTchg},
-        textooriginal/.style={\colorTorig},
-        pcirculo/.style={black, radius=1pt},
-        angulo/.style={fill=\colorAng, draw=\colorGirodos},
-        angulogirado/.style={fill=\colorAngPink, draw=\colorGiroRed},
-        arco/.style={line width=1pt, draw=\colorGiroRed},
-        background/.style={
-          line width=\bgborderwidth,
-          draw=\bgbordercolor,
-          fill=\bgcolor,
-        },
-        ]
-
-        % COORDENADAS
-        % Origen
-        \coordinate (O) at (0,0);
-        % Extremo izdo del eje x e inferior del eje y
-        \coordinate (xini) at (\XMLONG cm,0);
-        \coordinate (yini) at (0,\YMLONG cm);
+          % DIBUJOS
+          % Ángulo theta
+          \path (xfin) -- (O) -- (P) pic
+          [-{Latex[width=2.5pt,length=3.7pt]},angulogirado,
+          "\scriptsize $\theta$",angle radius=24pt, angle eccentricity=0.72]
+          {angle = xfin--O--P};
+          % Ejes
+          % x
+          \draw[eje, use path=\ejex];
+          \node[right] at (xfin) {$x$};
+          % y
+          \draw[eje, use path=\ejey];
+          \node[above] at (yfin) {$y$};
+          % Coordenada r original
+          \draw[r, use path=\porig];
+          \node[rtxt, above left=-3pt and -1pt] at (rorigtxt) {\footnotesize $r$};
+          % Vector r final
+          \draw[rfin, use path=\pfin];
+          \node[rfintxt, above] at (rfintxt) {\footnotesize $\Delta s = \Delta r$};
+          % Puntos
+          \fill[pcirculo] (P) circle;
+          \fill[pcirculo] (P') circle;
+          \node[rtxt, below right] at (P) {\scriptsize $P$};
+          \node[rtxt, below right] at (P') {\scriptsize $P'$};
+          % Origen
+          \filldraw (O) circle [radius=.4pt];
+          % Fondo amarillo
+          \coordinate (SW)
+          at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+          \coordinate (NE)
+          at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
+          \begin{scope}[on background layer]
+            \draw[background] (SW) rectangle (NE);
+          \end{scope}
+        \end{tikzpicture}
+        \caption{Al cambiar la coordenada $r$, manteniendo constante $\theta$, se recorre
+          una distancia igual en el espacio $\symbb{R}^2$. Por tanto, $h_r=1$ y
+          $g_{11} = 1$.}
+        \label{fig:R2-polares-intuicion-h-r}
+      \end{minipage}
+      \hspace{1em}
+      \begin{minipage}{0.42\linewidth}
+        % Escala
+        \def\scl{1.45}
+        % 
+        \pgfmathsetmacro{\EJESEXTRA}{-0.2}
+        \pgfmathsetmacro{\EJESLONG}{2.5}
         % Eje x
-        \path[save path=\ejex] (xini) -- coordinate[pos=0.5] (xtexto)
-        (\XPLONG cm, 0) coordinate (xfin);
+        \pgfmathsetmacro{\XMLONG}{\EJESEXTRA}
+        \pgfmathsetmacro{\XPLONG}{\EJESLONG}
         % Eje y
-        \path[save path=\ejey] (yini) -- coordinate[pos=0.6] (ytexto)
-        (0, \YPLONG cm) coordinate (yfin);
+        \pgfmathsetmacro{\YMLONG}{\EJESEXTRA}
+        \pgfmathsetmacro{\YPLONG}{\EJESLONG}
         % Punto P original
-        \path[save path=\porig] (O) -- coordinate[pos=0.65] (rorigtxt)
-        (\PANG:\PMOD cm) coordinate (P);
-        % Punto P final
-        \path[save path=\pfin] (O) -- coordinate[pos=0.65] (rfintxt)
-        (\PFINANG:\PFINMOD cm) coordinate (P');
+        \pgfmathsetmacro{\PMOD}{2.0}
+        \pgfmathsetmacro{\PANG}{25}
+        % Punto P final conservando el mismo radio
+        \pgfmathsetmacro{\PFINMOD}{\PMOD}
+        \pgfmathsetmacro{\PFINANG}{70}
+        % Texto en arco
+        \pgfmathsetmacro{\PARCANG}{0.5*(\PFINANG) + \PANG)}
+        \pgfmathsetmacro{\PARCMOD}{\PMOD * 1.2}
+        % Fondo
+        \pgfmathsetmacro{\HORZ}{0.25}
+        \pgfmathsetmacro{\VERT}{0.25}
+        % 
+        \centering
+        \begin{tikzpicture}[%
+          scale=\scl,
+          every node/.style={black,font=\small},
+          eje/.style={->},
+          r/.style={line width=.8pt, black},
+          rtxt/.style={black},
+          rfin/.style={line width=1pt, \colorVred},
+          rfintxt/.style={\colorTchg},
+          textooriginal/.style={\colorTorig},
+          pcirculo/.style={black, radius=1pt},
+          angulo/.style={fill=\colorAng, draw=\colorGirodos},
+          angulogirado/.style={fill=\colorAngPink, draw=\colorGiroRed},
+          arco/.style={line width=1pt, draw=\colorGiroRed},
+          background/.style={
+            line width=\bgborderwidth,
+            draw=\bgbordercolor,
+            fill=\bgcolor,
+          },
+          ]
 
-        % DIBUJOS
-        % Ángulo theta
-        \path (xfin) -- (O) -- (P) pic
-        [angulo, "\scriptsize $\theta$",angle radius=24pt, angle eccentricity=0.72]
-        {angle = xfin--O--P};
-        % Incremento de theta
-        \path (P) -- (O) -- (P') pic
-        [-{Latex[width=3.0pt,length=4.5pt]}, angulogirado,
-        "\scriptsize $\Delta\theta$",angle radius=24pt, angle eccentricity=0.72]
-        {angle = P--O--P'};
-        % Ejes
-        % x
-        \draw[eje, use path=\ejex];
-        \node[right] at (xfin) {$x$};
-        % y
-        \draw[eje, use path=\ejey];
-        \node[above] at (yfin) {$y$};
-        % Longitud r original
-        \draw[r, use path=\porig];
-        \node[rtxt, below right=-2pt and 0pt] at (rorigtxt) {\footnotesize $r$};
-        % Longitud r final
-        \draw[r, use path=\pfin];
-        \node[rtxt, above left = -2pt and 0pt] at (rfintxt) {\footnotesize $r$};
-        % Arco recorrido
-        \draw[arco] (P) arc (\PANG:\PFINANG:\PMOD)
-        node[rfintxt,above,midway,sloped] {\footnotesize$\Delta s = r\Delta\theta$};
+          % COORDENADAS
+          % Origen
+          \coordinate (O) at (0,0);
+          % Extremo izdo del eje x e inferior del eje y
+          \coordinate (xini) at (\XMLONG cm,0);
+          \coordinate (yini) at (0,\YMLONG cm);
+          % Eje x
+          \path[save path=\ejex] (xini) -- coordinate[pos=0.5] (xtexto)
+          (\XPLONG cm, 0) coordinate (xfin);
+          % Eje y
+          \path[save path=\ejey] (yini) -- coordinate[pos=0.6] (ytexto)
+          (0, \YPLONG cm) coordinate (yfin);
+          % Punto P original
+          \path[save path=\porig] (O) -- coordinate[pos=0.65] (rorigtxt)
+          (\PANG:\PMOD cm) coordinate (P);
+          % Punto P final
+          \path[save path=\pfin] (O) -- coordinate[pos=0.65] (rfintxt)
+          (\PFINANG:\PFINMOD cm) coordinate (P');
+
+          % DIBUJOS
+          % Ángulo theta
+          \path (xfin) -- (O) -- (P) pic
+          [angulo, "\scriptsize $\theta$",angle radius=24pt, angle eccentricity=0.72]
+          {angle = xfin--O--P};
+          % Incremento de theta
+          \path (P) -- (O) -- (P') pic
+          [-{Latex[width=3.0pt,length=4.5pt]}, angulogirado,
+          "\scriptsize $\Delta\theta$",angle radius=24pt, angle eccentricity=0.72]
+          {angle = P--O--P'};
+          % Ejes
+          % x
+          \draw[eje, use path=\ejex];
+          \node[right] at (xfin) {$x$};
+          % y
+          \draw[eje, use path=\ejey];
+          \node[above] at (yfin) {$y$};
+          % Longitud r original
+          \draw[r, use path=\porig];
+          \node[rtxt, below right=-2pt and 0pt] at (rorigtxt) {\footnotesize $r$};
+          % Longitud r final
+          \draw[r, use path=\pfin];
+          \node[rtxt, above left = -2pt and 0pt] at (rfintxt) {\footnotesize $r$};
+          % Arco recorrido
+          \draw[arco] (P) arc (\PANG:\PFINANG:\PMOD)
+          node[rfintxt,above,midway,sloped] {\footnotesize$\Delta s = r\Delta\theta$};
         
-        % Puntos
-        \fill[pcirculo] (P) circle;
-        \fill[pcirculo] (P') circle;
-        \node[rtxt, below right=-3pt and 0pt] at (P) {\scriptsize $P$};
-        \node[rtxt, above left=0pt and -3pt] at (P') {\scriptsize $P'$};
-        % Origen
-        \filldraw (O) circle [radius=.4pt];
-        % Fondo amarillo
-        \coordinate (SW)
-        at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
-        \coordinate (NE)
-        at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
-        \begin{scope}[on background layer]
-          \draw[background] (SW) rectangle (NE);
-        \end{scope}
+          % Puntos
+          \fill[pcirculo] (P) circle;
+          \fill[pcirculo] (P') circle;
+          \node[rtxt, below right=-3pt and 0pt] at (P) {\scriptsize $P$};
+          \node[rtxt, above left=0pt and -3pt] at (P') {\scriptsize $P'$};
+          % Origen
+          \filldraw (O) circle [radius=.4pt];
+          % Fondo amarillo
+          \coordinate (SW)
+          at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+          \coordinate (NE)
+          at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
+          \begin{scope}[on background layer]
+            \draw[background] (SW) rectangle (NE);
+          \end{scope}
 
-      \end{tikzpicture}
-      \caption{Al cambiar la coordenada $\theta$, manteniendo $r$ constante, se  recorre
-        una distancia proporcional a $r$ y a $\Delta\theta$. Por tanto, $h_\theta = r$ y
-        $g_{22} = r^2$.}
-    \label{fig:R2:polares-intuicion2}
-    \end{minipage}
-  \end{figure}
+        \end{tikzpicture}
+        \caption{Al cambiar la coordenada $\theta$, manteniendo $r$ constante, se  recorre
+          una distancia proporcional a $r$ y a $\Delta\theta$. Por tanto, $h_\theta = r$ y
+          $g_{22} = r^2$.}
+        \label{fig:R2-polares-intuicion-h-theta}
+      \end{minipage}
+    \end{figure}
+  \end{itemize}
   
 \end{enumerate}
 
