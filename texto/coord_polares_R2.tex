@@ -262,7 +262,7 @@ El operador gradiente se comporta como un vector bajo rotaciones
   solenoidal.  
 \item La laplaciana de un campo escalar $f(x,y)$ es la divergencia del gradiente y es un
   escalar
-  \begin{equation}
+  \begin{equation}\label{eq:R2-gradiente-cartesianas}
     \Delta \phi
     =
     \nabla^2 \phi
@@ -526,7 +526,8 @@ la base estándar de coordenadas cartesianas, como
 Los vectores ---no necesariamente unitarios--- que llevan información del cambio de
 posición al variar cada coordenada forman una base $\set{\vvv{e}_r, \vvv{e}_\theta}$ y se
 calculan derivando parcialmente el vector $\vvv{r}$ con respecto de las variables $r$ y
-$\theta$.
+$\theta$
+{\small
 \begin{subequations}
 \begin{align}
   \vvv{e}_r
@@ -539,6 +540,47 @@ $\theta$.
     = -r\sin\theta\,\uvec{\i} + r\cos\theta\,\uvec{\j}
 \end{align}
 \end{subequations}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Estos vectores son los que se utilizarán para calcular la métrica en coordenadas polares.
 
 \subsubsection{Vectores unitarios}
@@ -1088,8 +1130,8 @@ Cálculos preliminares. Se utilizan las expresiones \eqref{eq:R2-x-rtheta},
   \end{subequations}
 }
 
-El gradiente en polares se obtiene sustituyendo en las dos expresiones anteriores y
-sumándolos. A continuación presentamos el resultado
+El gradiente en polares se obtiene sustituyendo las dos expresiones anteriores en
+\eqref{eq:R2-gradiente-cartesianas} y sumando. A continuación presentamos el resultado
 {\small
   \begin{equation}
     \vvv{\nabla}\cdot f
