@@ -281,7 +281,29 @@ El operador laplaciano es
 \end{equation}
 \end{itemize}
 
-\subsection{Elemento de área, Jacobiano}
+\subsection{Elemento de área}
+El elemento diferencial de área en cartesianas es
+\begin{equation}
+  d^2a = dx\,dy
+\end{equation}
+
+Este elemento se relaciona trivialmente con el jacobiano de la
+\emph{transformación identidad} $f(x,y) \longrightarrow f(x,y)$
+\[
+  d^2a = \dfrac{\partial(x,y)}{\partial(x,y)} dx dy
+  = \begin{vmatrix}
+    \partial x/\partial x & \partial x/\partial y\\
+    \partial y/\partial x & \partial y/\partial y
+  \end{vmatrix}
+  dx\,dy
+  = \begin{vmatrix}
+    1 & 0\\
+    0 & 1
+  \end{vmatrix}
+  dx\,dy
+  = 1\,dx\,dy
+  = dx\,dy
+\]
 
 
 \section{Coordenadas polares planas}
@@ -1080,10 +1102,34 @@ sumándolos. A continuación presentamos el resultado
 }
 
 
-
 \subsection{Divergencia}
 
 \subsection{Laplaciana} 
+
+\subsection{Elemento de área en coordenadas polares planas}
+\begin{align*}
+  d^2a
+  &=
+    \dfrac{\partial(x,y)}{\partial(r,\theta)} dr\,d\theta
+  = \begin{vmatrix}
+    \partial x/\partial r & \partial x/\partial\theta\\
+    \partial y/\partial r & \partial y/\partial\theta
+  \end{vmatrix}
+  dr\,d\theta
+  = \begin{vmatrix}
+    \cos\theta & -r\sin\theta\\
+    \sin\theta & r\cos\theta
+  \end{vmatrix}
+    dr\,d\theta\\
+  &=
+    (r\cos^2\theta + r\sin^2\theta)\,dr\,d\theta
+    = r (\cos^2\theta + \sin^2\theta)\,dr\,d\theta
+\end{align*}
+donde hemos utilizado las relaciones \eqref{eq:R2-x-rtheta} y \eqref{eq:R2-y-rtheta}.
+Simplificando finalmente, queda
+\begin{equation}
+  d^2a = rdr\,d\theta
+\end{equation}
 
 
 
