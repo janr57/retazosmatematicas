@@ -1,0 +1,1184 @@
+% jacobiano.tex
+%
+% Copyright (C) 2022--2026 José A. Navarro Ramón <janr.devel@gmail.com>
+% Licencia del código GPLv2
+% Licencia Creative Commons Recognition Non-Commercial Share-alike.
+% (CC-BY-NC-SA)
+
+\chapter{Jacobiano de una transformación}
+\section{Cambio de variable en integración de una variable}
+Normalmente se utiliza un cambio de variable (sustitución) cuando queremos simplificar
+una integral.
+
+
+%Vector de posición de cualquier punto del espacio $\symbb{R}^2$ en coordenadas
+%cartesianas
+%\begin{equation}\label{eq:R2-r-cartesianas}
+%  \vvv{r}
+%  = x\,\uvec{\i} + y\,\uvec{\j}
+%\end{equation}
+%
+%\begin{figure}[ht]
+%  % Escala
+%  \def\scl{1}
+%  %
+%  \pgfmathsetmacro{\EJESEXTRA}{-0.2}
+%  \pgfmathsetmacro{\EJESLONG}{2.3}
+%  % Eje x
+%  \pgfmathsetmacro{\XMLONG}{\EJESEXTRA}
+%  \pgfmathsetmacro{\XPLONG}{\EJESLONG}
+%  % Eje y
+%  \pgfmathsetmacro{\YMLONG}{\EJESEXTRA}
+%  \pgfmathsetmacro{\YPLONG}{\EJESLONG}
+%  % Versores
+%  \pgfmathsetmacro{\VMOD}{0.7}
+%  % Vector P
+%  \pgfmathsetmacro{\PMOD}{2.5}
+%  \pgfmathsetmacro{\PANG}{40}
+%  % Fondo
+%  \pgfmathsetmacro{\HORZ}{0.25}
+%  \pgfmathsetmacro{\VERT}{0.25}
+%  % 
+%  \centering
+%  \begin{tikzpicture}[%
+%    scale=\scl,
+%    every node/.style={black,font=\small},
+%    eje/.style={->},
+%    proyeccion/.style={black!60, densely dotted},
+%    vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt,\colorV},
+%    versor/.style={-{Latex[round, width=4pt, length=8pt]}, line width=1pt, \colorVred},
+%    textooriginal/.style={\colorTorig},
+%    pcirculo/.style={fill=\colorPorig, draw=black},
+%    angulogirado/.style={fill=\colorAngGreen, draw=\colorGirodos},
+%    background/.style={
+%      line width=\bgborderwidth,
+%      draw=\bgbordercolor,
+%      fill=\bgcolor,
+%    },
+%    ]
+%    % COORDENADAS
+%    % Origen
+%    \coordinate (O) at (0,0);
+%    % Extremo izdo del eje x e inferior del eje y
+%    \coordinate (xini) at (\XMLONG cm,0);
+%    \coordinate (yini) at (0,\YMLONG cm);
+%    \coordinate (ifin) at (\VMOD cm, 0);
+%    \coordinate (jfin) at (0, \VMOD cm);
+%    % Eje x
+%    \path[save path=\ejex] (xini) -- coordinate[pos=0.55] (xtexto) (\XPLONG cm, 0)
+%    coordinate (xfin);
+%    % Eje y
+%    \path[save path=\ejey] (yini) -- coordinate[pos=0.55] (ytexto) (0, \YPLONG cm)
+%    coordinate (yfin);
+%    % Versores i y j
+%    \path[save path=\i] (O) -- coordinate[pos=0.5] (itexto) (ifin);
+%    \path[save path=\j] (O) -- coordinate[pos=0.5] (jtexto) (jfin);    
+%    % Vector
+%    \path[save path=\vector] (O) -- coordinate[pos=0.5] (pmid) (\PANG:\PMOD cm)
+%    coordinate (P);
+%    % Proyección de P en los ejes
+%    \path[save path=\proyx] (P) |- (xfin);
+%    \path[save path=\proyy] (P) -| (yfin);
+%
+%    % DIBUJOS
+%    % Proyección de P en los ejes
+%    \draw[proyeccion, use path=\proyx];
+%    \draw[proyeccion, use path=\proyy];
+%    % Ejes
+%    % x
+%    \draw[eje, use path=\ejex];
+%    \node[right] at (xfin) {$x$};
+%    \node[below] at (xtexto) {$x$};
+%    % y
+%    \draw[eje, use path=\ejey];
+%    \node[above] at (yfin) {$y$};
+%    \node[left] at (ytexto) {$y$};
+%    % Versores
+%    \draw[versor, use path=\i];
+%    \node[below, \colorTred] at (itexto) {\footnotesize $\uvec{\i}$};
+%    \draw[versor, use path=\j];
+%    \node[left, \colorTred] at (jtexto) {\footnotesize $\uvec{\j}$};
+%    % Vector y punto  P
+%    \draw[vector, use path=\vector];
+%    \node[above left=-3pt and -1pt] at (pmid) {$\vvv{r}$};
+%    \filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
+%    \node[above] at (P) {$P$};
+%    
+%    % Origen
+%    \filldraw (O) circle [radius=.2pt];
+%    % Fondo amarillo
+%    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+%    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);    
+%    \begin{scope}[on background layer]
+%      \draw[background] (SW) rectangle (NE);
+%    \end{scope}
+%  \end{tikzpicture}
+%  \caption{Coordenadas cartesianas de un punto $P$ del plano y vectores unitarios.}
+%  \label{fig:R2:coordenadas-cartesianas-R2}
+%\end{figure}
+%
+%\subsection{Base, vectores unitarios y su producto escalar}
+%\subsubsection{Base y vectores unitarios}
+%Si derivamos el vector de posición anterior \eqref{eq:R2-r-cartesianas}, con respecto a
+%cada una de las coordenadas, obtenemos los vectores de una  posible base en estas
+%coordenadas. Estos vectores llevan información concreta acerca de cómo varia la posición
+%en el espacio cuando variamos cada una de las coordenadas ---tal y como sugieren las
+%derivadas---, lo que será importante para obtener la métrica en estas coordenadas.
+%\begin{subequations}
+%  \begin{align}\label{eq:R2-ex}
+%    \vvv{e}_x
+%    &=
+%      \dfrac{\partial\vvv{r}}{\partial x}
+%      = \uvec{\i}\\
+%    \label{eq:R2-ey}
+%    \vvv{e}_y
+%    &= \dfrac{\partial\vvv{r}}{\partial y}
+%      = \uvec{\j}
+%  \end{align}
+%\end{subequations}
+%Estos vectores de la base son importantes para calcular la métrica en cartesianas
+%\begin{equation}\label{eq:R2-basefundamental}
+%  B=\set{\vvv{e}_x, \vvv{e}_y} = \set{\uvec{\i},\, \uvec{\j}}
+%\end{equation}
+%Hacemos notar que los vectores de esta base son unitarios tradicionales en este sistema
+%de coordenadas, $\uvec{\i}$ y $\uvec{\j}$.
+%
+%\subsubsection{Producto escalar de los vectores de la base}
+%Los vectores de la base fundamental son vectores unitarios.
+%La base normalizada en coordenadas cartesianas en este espacio está formada por los vectores $\uvec{\i}$ y $\uvec{\j}$, en los ejes $x$ e $y$, respectivamente.
+%A continuación resumimos el valor de los productos escalares entre ellos
+%\begin{subequations}
+%  \begin{align}
+%    \label{eq:R2-ii-producto-escalar}
+%    \vvv{e}_x\cdot\vvv{e}_x = \uvec{\i}\cdot\uvec{\i}
+%    &= |\uvec{\i}|\,|\uvec{\i}|\cos 0 = 1\\
+%    \label{eq:R2-ij-producto-escalar}    
+%    \vvv{e}_x\cdot\vvv{e}_y = \uvec{\i}\cdot\uvec{\j}
+%    &= |\uvec{\i}|\,|\uvec{\j}|\cos\pi/2 = 0\\
+%    \label{eq:R2-ji-producto-escalar} 
+%    \vvv{e}_y\cdot\vvv{e}_x = \uvec{\j}\cdot\uvec{\i}
+%    &= |\uvec{\j}|\,|\uvec{\i}|\cos\pi/2 = 0\\
+%    \label{eq:R2-jj-producto-escalar}
+%    \vvv{e}_y\cdot\vvv{e}_y = \uvec{\j}\cdot\uvec{\j}
+%    &= |\uvec{\j}|\,|\uvec{\j}|\cos 0 = 1
+%  \end{align}
+%\end{subequations}
+%
+%\subsection{Métrica y factores de escala}
+%La métrica en cartesianas se calcula utilizando los vectores de la base calculada en
+%\eqref{eq:R2-ex} y \eqref{eq:R2-ey}. Los productos escalares se calcularon en
+%\eqref{eq:R2-ii-producto-escalar}, \eqref{eq:R2-ij-producto-escalar},
+%\eqref{eq:R2-ji-producto-escalar} y \eqref{eq:R2-jj-producto-escalar}
+%\begin{equation}\label{eq:R2-metrica-cartesianas}
+%  \mmm{g}
+%  = g_{ij}
+%  = \begin{pmatrix}
+%    g_{ii} & g_{ij}\\
+%    g_{ji} & g_{jj}
+%    \end{pmatrix}
+%  = \begin{pmatrix}
+%      \vvv{e}_x\cdot\vvv{e}_x & \vvv{e}_x\cdot\vvv{e}_y\\
+%      \vvv{e}_y\cdot\vvv{e}_x & \vvv{e}_y\cdot\vvv{e}_y
+%  \end{pmatrix}
+%  = \begin{pmatrix}
+%      \uvec{\i}\cdot\uvec{\i} & \uvec{\i}\cdot\uvec{\j}\\
+%      \uvec{i}\cdot\uvec{j} & \uvec{\j}\cdot\uvec{\j}
+%  \end{pmatrix}
+%  = \begin{pmatrix}
+%    1 & 0\\
+%    0 & 1
+%  \end{pmatrix}
+%\end{equation}
+%
+%Se llaman \emph{factores de escala} o \emph{coeficientes métricos} a la raíz cuadrada de
+%los elementos diagonales en la métrica en un sistema de coordenadas ortogonales, como el
+%que nos ocupa. En coordenadas cartesianas estándar serían
+%\begin{align*}
+%  h_x &= \sqrt{g_{11}} = \sqrt{1} = 1\\
+%  h_y &= \sqrt{g_{22}} = \sqrt{1} = 1  
+%\end{align*}
+%
+%Fijémonos en la métrica \eqref{eq:R2-metrica-cartesianas}
+%\begin{itemize}
+%\item Los elementos no diagonales son nulos. Esto se interpreta como que los vectores
+%  unitarios $\uvec{\i}$ y $\uvec{\j}$ son independientes, esto es, son ortogonales.
+%  Así, un cambio en una coordenada no afecta a la otra. Así, si nos desplazamos una
+%  distancia cualquiera en el eje $x$, no habremos recorrido ninguna distancia en el eje
+%  $y$, y viceversa, por lo que $h_{xy}=h_{yx}=0$.
+%\item Los elementos diagonales valen la unidad. Cada elemento diagonal de la métrica que
+%  vale la unidad implica que un cambio en la coordenada respectiva implica una distancia
+%  recorrida de una unidad en el espacio. En realidad, el espacio recorrido es el factor
+%  de escala correspondiente, pero en este caso da lo mismo
+%  \begin{subequations}
+%    \begin{align}
+%      \Delta s &= h_x \Delta x = \sqrt{1}\, \Delta x = \Delta x\\
+%      \Delta s &= h_y \Delta y = \sqrt{1}\, \Delta y = \Delta y
+%    \end{align}
+%  \end{subequations}
+%  Para adquirir algo de intuición, imagina que cambiamos la posición en el eje $x$
+%  cualquier distancia, digamos un metro, es fácil entender que en el espacio nos habremos
+%  desplazado la misma distancia. Por tanto es lógico razonar que el factor de escala
+%  $h_x$ vale 1. Lo mismo podemos decir para el factor de escala en el eje $y$, $h_y=1$.
+%\end{itemize}
+%
+%\subsection{Gradiente, divergencia y laplaciana}
+%Presentamos un resumen de estas operaciones
+%\begin{itemize}
+%\item El gradiente de un campo escalar $\phi(x,y)$ es un vector
+%\begin{equation}
+%  \vvv{\nabla}\phi
+%  = \dfrac{\partial \phi}{\partial x}\,\uvec{\i}
+%  + \dfrac{\partial \phi}{\partial y}\,\uvec{\j}
+%  = \begin{pmatrix}
+%    \partial \phi/\partial x\\
+%    \partial \phi/\partial y
+%    \end{pmatrix}
+%\end{equation}
+%El vector gradiente de $\phi$ evaluado en un punto genérico $(x,y)$ del dominio de $\phi$
+%indica la dirección en la cual el campo $\phi$ varía más rápidamente y su módulo
+%representa el ritmo de variación de $\phi$ en la dirección de dicho vector gradiente.
+%
+%El operador gradiente se comporta como un vector bajo rotaciones
+%\begin{equation}
+%  \vvv{\nabla}
+%  = \dfrac{\partial}{\partial x}\,\uvec{\i}
+%  + \dfrac{\partial}{\partial y}\,\uvec{\j}
+%  = \begin{pmatrix}
+%    \partial/\partial x\\
+%    \partial/\partial y
+%    \end{pmatrix}
+%\end{equation}
+%
+%\item La divergencia de un campo vectorial $\vvv{A}=(A_x, A_y)$ es un escalar
+%  \begin{equation}
+%    \vvv{\nabla}\cdot\vvv{A}
+%    = \dfrac{\partial A_x}{\partial x}
+%    + \dfrac{\partial A_y}{\partial y}
+%  \end{equation}
+%  La divergencia mide la diferencia entre el flujo saliente y el flujo entrante de un
+%  campo vectorial sobre la superficie que rodea a un volumen de control, por tanto, si el
+%  campo tiene ''fuentes'' la divergencia será positiva, y si tiene "sumideros", la
+%  divergencia será negativa. La divergencia mide la rapidez neta con la que se conduce la
+%  materia al exterior de cada punto, y en el caso de ser la divergencia idénticamente
+%  igual a cero, describe al flujo incompresible del fluido, llamado también campo
+%  solenoidal.  
+%\item La laplaciana de un campo escalar $f(x,y)$ es la divergencia del gradiente y es un
+%  escalar
+%  \begin{equation}\label{eq:R2-gradiente-cartesianas}
+%    \Delta \phi
+%    =
+%    \nabla^2 \phi
+%    = \vvv{\nabla}\cdot\vvv{\nabla}\phi
+%    = \dfrac{\partial^2 \phi}{\partial x^2}
+%    + \dfrac{\partial^2 \phi}{\partial y^2}
+%  \end{equation}
+%Mide la concentración de un campo en un punto. Si es negativo, indica una tendencia a la
+%concentración (fuente); si es positivo, indica dispersión.
+%
+%El operador laplaciano es
+%\begin{equation}
+%  \nabla^2
+%  = \dfrac{\partial^2}{\partial x^2}
+%  + \dfrac{\partial^2}{\partial y^2}
+%\end{equation}
+%\end{itemize}
+%
+%\subsection{Elemento de área}
+%El elemento diferencial de área en cartesianas es
+%\begin{equation}
+%  d^2a = dx\,dy
+%\end{equation}
+%
+%Este elemento se relaciona trivialmente con el jacobiano de la
+%\emph{transformación identidad} $f(x,y) \longrightarrow f(x,y)$
+%\[
+%  d^2a = \dfrac{\partial(x,y)}{\partial(x,y)} dx dy
+%  = \begin{vmatrix}
+%    \partial x/\partial x & \partial x/\partial y\\
+%    \partial y/\partial x & \partial y/\partial y
+%  \end{vmatrix}
+%  dx\,dy
+%  = \begin{vmatrix}
+%    1 & 0\\
+%    0 & 1
+%  \end{vmatrix}
+%  dx\,dy
+%  = 1\,dx\,dy
+%  = dx\,dy
+%\]
+%
+%
+%\section{Coordenadas polares planas}
+%En este sistema, se utilizan dos coordenadas, $r$ y $\theta$. La primera coordenada es la
+%distancia entre el origen de coordenadas y un punto del espacio, y la segunda es el
+%ángulo que forma el eje de abcisas con la línea que une el origen de coordenadas con el
+%punto, ver figura \ref{fig:R2:coordenadas-R2}.
+%
+%\begin{figure}[ht]
+%  \centering
+%  \begin{minipage}{0.40\linewidth}
+%    % Escala
+%    \def\scl{1.25}
+%    % 
+%    \pgfmathsetmacro{\EJESEXTRA}{-0.2}
+%    \pgfmathsetmacro{\EJESLONG}{2.3}
+%    % Eje x
+%    \pgfmathsetmacro{\XMLONG}{\EJESEXTRA}
+%    \pgfmathsetmacro{\XPLONG}{\EJESLONG}
+%    % Eje y
+%    \pgfmathsetmacro{\YMLONG}{\EJESEXTRA}
+%    \pgfmathsetmacro{\YPLONG}{\EJESLONG}
+%    % Vector P
+%    \pgfmathsetmacro{\PMOD}{2.5}
+%    \pgfmathsetmacro{\PANG}{40}
+%    % Fondo
+%    \pgfmathsetmacro{\HORZ}{0.25}
+%    \pgfmathsetmacro{\VERT}{0.25}
+%    % 
+%    \centering
+%    \begin{tikzpicture}[%
+%      scale=\scl,
+%      every node/.style={black,font=\small},
+%      eje/.style={->},
+%      proyeccion/.style={black!60, densely dotted},
+%      longitud/.style={line width=.5pt,\colorV},
+%      textooriginal/.style={\colorTorig},
+%      pcirculo/.style={fill=\colorPorig, draw=black},
+%      angulogirado/.style={fill=\colorAngGreen, draw=\colorGirodos},
+%      background/.style={
+%        line width=\bgborderwidth,
+%        draw=\bgbordercolor,
+%        fill=\bgcolor,
+%      },
+%      ]
+%      % COORDENADAS
+%      % Origen
+%      \coordinate (O) at (0,0);
+%      % Extremo izdo del eje x e inferior del eje y
+%      \coordinate (xini) at (\XMLONG cm,0);
+%      \coordinate (yini) at (0,\YMLONG cm);
+%      % Eje x
+%      \path[save path=\ejex] (xini) -- coordinate[pos=0.5] (xtexto) (\XPLONG cm, 0)
+%      coordinate (xfin);
+%      % Eje y
+%      \path[save path=\ejey] (yini) -- coordinate[pos=0.6] (ytexto) (0, \YPLONG cm)
+%      coordinate (yfin);
+%      % Vector
+%      \path[save path=\r] (O) -- coordinate[pos=0.5] (pmid) (\PANG:\PMOD cm)
+%      coordinate (P);
+%      % Proyección de P en los ejes
+%      \path[save path=\proyx] (P) |- (xfin);
+%      \path[save path=\proyy] (P) -| (yfin);
+%
+%      % DIBUJOS
+%      % Ángulo theta
+%      \path (xfin) -- (O) -- (P) pic
+%      [-{Latex[width=2.5pt,length=3.7pt]},angulogirado,
+%      "\footnotesize $\theta$",angle radius=20pt, angle eccentricity=0.68]
+%      {angle = xfin--O--P};
+%      % Proyección de P en los ejes
+%      \draw[proyeccion, use path=\proyx];
+%      \draw[proyeccion, use path=\proyy];
+%      % Ejes
+%      % x
+%      \draw[eje, use path=\ejex];
+%      \node[right] at (xfin) {$x$};
+%      %\node[below] at (xtexto) {$r\cos\theta$};
+%      % y
+%      \draw[eje, use path=\ejey];
+%      \node[above] at (yfin) {$y$};
+%      %\node[rotate=90, left=8pt] at (ytexto) {$r\sin\theta$};
+%      % Coordenada r y punto  P
+%      \draw[longitud, use path=\r];
+%      \node[above left=-3pt and -1pt] at (pmid) {$r$};
+%      \filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
+%      \node[above] at (P) {$P$};
+%
+%      % Origen
+%      \filldraw (O) circle [radius=.2pt];
+%      % Fondo amarillo
+%      \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+%      \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);    
+%      \begin{scope}[on background layer]
+%        \draw[background] (SW) rectangle (NE);
+%      \end{scope}
+%    \end{tikzpicture}
+%  \caption{Coordenadas polares $r$ y $\theta$ de un punto $P$ del plano.}
+%  \label{fig:R2:coordenadas-R2}
+%\end{minipage}
+%\hspace{1em}
+%\begin{minipage}{0.40\linewidth}
+%    % Escala
+%    \def\scl{1.20}
+%    % 
+%    \pgfmathsetmacro{\EJESEXTRA}{-0.2}
+%    \pgfmathsetmacro{\EJESLONG}{2.3}
+%    % Eje x
+%    \pgfmathsetmacro{\XMLONG}{\EJESEXTRA}
+%    \pgfmathsetmacro{\XPLONG}{\EJESLONG}
+%    % Eje y
+%    \pgfmathsetmacro{\YMLONG}{\EJESEXTRA}
+%    \pgfmathsetmacro{\YPLONG}{\EJESLONG}
+%    % Vector P
+%    \pgfmathsetmacro{\PMOD}{2.5}
+%    \pgfmathsetmacro{\PANG}{40}
+%    % Fondo
+%    \pgfmathsetmacro{\HORZ}{0.25}
+%    \pgfmathsetmacro{\VERT}{0.25}
+%    % 
+%    \centering
+%    \begin{tikzpicture}[%
+%      scale=\scl,
+%      every node/.style={black,font=\small},
+%      eje/.style={->},
+%      proyeccion/.style={black!60, densely dotted},
+%      vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt,\colorV},
+%      textooriginal/.style={\colorTorig},
+%      pcirculo/.style={fill=\colorPorig, draw=black},
+%      angulogirado/.style={fill=\colorAngGreen, draw=\colorGirodos},
+%      background/.style={
+%        line width=\bgborderwidth,
+%        draw=\bgbordercolor,
+%        fill=\bgcolor,
+%      },
+%      ]
+%      % COORDENADAS
+%      % Origen
+%      \coordinate (O) at (0,0);
+%      % Extremo izdo del eje x e inferior del eje y
+%      \coordinate (xini) at (\XMLONG cm,0);
+%      \coordinate (yini) at (0,\YMLONG cm);
+%      % Eje x
+%      \path[save path=\ejex] (xini) -- coordinate[pos=0.5] (xtexto) (\XPLONG cm, 0)
+%      coordinate (xfin);
+%      % Eje y
+%      \path[save path=\ejey] (yini) -- coordinate[pos=0.6] (ytexto) (0, \YPLONG cm)
+%      coordinate (yfin);
+%      % Vector
+%      \path[save path=\vector] (O) -- coordinate[pos=0.5] (pmid) (\PANG:\PMOD cm)
+%      coordinate (P);
+%      % Proyección de P en los ejes
+%      \path[save path=\proyx] (P) |- (xfin);
+%      \path[save path=\proyy] (P) -| (yfin);
+%
+%      % DIBUJOS
+%      % Ángulo theta
+%      \path (xfin) -- (O) -- (P) pic
+%      [-{Latex[width=2.5pt,length=3.7pt]},angulogirado,
+%      "\footnotesize $\theta$",angle radius=20pt, angle eccentricity=0.68]
+%      {angle = xfin--O--P};
+%      % Proyección de P en los ejes
+%      \draw[proyeccion, use path=\proyx];
+%      \draw[proyeccion, use path=\proyy];
+%      % Ejes
+%      % x
+%      \draw[eje, use path=\ejex];
+%      \node[right] at (xfin) {$x$};
+%      \node[below] at (xtexto) {$r\cos\theta$};
+%      % y
+%      \draw[eje, use path=\ejey];
+%      \node[above] at (yfin) {$y$};
+%      \node[rotate=90, left=8pt] at (ytexto) {$r\sin\theta$};
+%      % Vector y punto  P
+%      \draw[vector, use path=\vector];
+%      \node[above left=-3pt and -1pt] at (pmid) {$\vvv{r}$};
+%      \filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
+%      \node[above] at (P) {$P$};
+%
+%      % Origen
+%      \filldraw (O) circle [radius=.2pt];
+%      % Fondo amarillo
+%      \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+%      \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);    
+%      \begin{scope}[on background layer]
+%        \draw[background] (SW) rectangle (NE);
+%      \end{scope}
+%    \end{tikzpicture}
+%    \caption{Vector de posición $\vvv{r}$, y coordenadas $x$ e $y$ en función de $r$ y
+%      $\theta$.}
+%  \label{fig:R2:vector-r-R2}
+%\end{minipage}
+%\end{figure}
+%
+%\subsection{Relación con las coordenadas cartesianas}
+%De la figura \ref{fig:R2:vector-r-R2} se desprenden las siguientes relaciones
+%\begin{subequations}
+%  \begin{align}\label{eq:R2-x-rtheta}
+%    x &= r\cos\theta\\
+%    \label{eq:R2-y-rtheta}
+%    y &= r\sin\theta
+%  \end{align}
+%\end{subequations}
+%y, sus inversas
+%\begin{subequations}
+%  \begin{align}\label{eq:R2-r-xy}
+%    r &= \sqrt{x^2 + y^2}\\
+%    \label{eq:R2-theta-xy}
+%    \theta &= \arctan\left(\frac{y}{x}\right)
+%  \end{align}
+%\end{subequations}
+%
+%\subsection{Bases, vectores unitarios, sus productos escalares y derivadas}
+%El vector $\vvv{r}$ que representa cualquier punto de $\symbb{R}^2$ se puede escribir, en
+%la base estándar de coordenadas cartesianas, como
+%\begin{equation}
+%  \vvv{r} = r\cos\theta\,\uvec{\i} + r\sin\theta\,\uvec{\j}
+%\end{equation}
+%\subsubsection{Derivadas parciales de la posición}
+%Los vectores ---no necesariamente unitarios--- que llevan información del cambio de
+%posición al variar cada coordenada forman una base $\set{\vvv{e}_r, \vvv{e}_\theta}$ y se
+%calculan derivando parcialmente el vector $\vvv{r}$ con respecto de las variables $r$ y
+%$\theta$
+%{\small
+%\begin{subequations}
+%\begin{align}
+%  \vvv{e}_r
+%  &=
+%    \dfrac{\partial\vvv{r}}{\partial r}
+%    = \cos\theta\,\uvec{\i} + \sin\theta\,\uvec{\j}\\
+%  \vvv{e}_\theta
+%  &=
+%    \dfrac{\partial\vvv{r}}{\partial\theta}
+%    = -r\sin\theta\,\uvec{\i} + r\cos\theta\,\uvec{\j}
+%\end{align}
+%\end{subequations}
+%}
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%Estos vectores son los que se utilizarán para calcular la métrica en coordenadas polares.
+%
+%\subsubsection{Vectores unitarios}
+%Calculamos los vectores unitarios en coordenadas polares, $\xhat{r}$ y $\xhat{\theta}$
+%{\small
+%\begin{subequations}
+%  \begin{align}
+%    \xhat{r}
+%    &= \dfrac{\vvv{e}_r}{|\vvv{e}_r|}
+%    =\dfrac{\cos\theta\,\uvec{\i}+\sin\theta\,\uvec{\j}}
+%    {\sqrt{\cos^2\theta+\sin^2\theta}}
+%    = \dfrac{\cos\theta\,\uvec{\i}+\sin\theta\,\uvec{\j}}{1}
+%  = \cos\theta\,\uvec{\i} + \sin\theta\,\uvec{\j}\\
+%  \xhat{\theta}
+%  &= \dfrac{\vvv{e}_\theta}{|\vvv{e}_\theta|}
+%  = \dfrac{-r\sin\theta\,\uvec{\i}+\cos\theta\,\uvec{\j}}
+%  {\sqrt{r^2(\cos^2\theta+\sin^2\theta)}}
+%  = \dfrac{-r\sin\theta\,\uvec{\i}+r\cos\theta\,\uvec{\j}}{r}
+%  = -\sin\theta\,\uvec{\i} + \cos\theta\,\uvec{\j}
+%  \end{align}
+%\end{subequations}
+%}
+%Resumimos este cambio de base y su inversa en forma matricial
+%\begin{subequations}
+%\begin{align}
+%  \begin{pmatrix}
+%    \xhat{r}\\
+%    \xhat{\theta}
+%  \end{pmatrix}
+%  &=
+%  \begin{pmatrix}
+%    \cos\theta & \sin\theta\\
+%    -\sin\theta & \cos\theta
+%  \end{pmatrix}
+%  \,
+%  \begin{pmatrix}
+%    \uvec{\i}\\
+%    \uvec{\j}
+%  \end{pmatrix}\\
+%\begin{pmatrix}
+%    \uvec{\i}\\
+%    \uvec{\j}
+%  \end{pmatrix}
+%  &=
+%  \begin{pmatrix}
+%    \cos\theta & -\sin\theta\\
+%    \sin\theta & \cos\theta
+%  \end{pmatrix}
+%  \,
+%  \begin{pmatrix}
+%    \xhat{r}\\
+%    \xhat{\theta}
+%  \end{pmatrix} 
+%\end{align}
+%\end{subequations}
+%donde se ha utilizado la inversa de la matriz de cambio de base, que por ser ortogonal,
+%la inversa es su transpuesta.
+%
+%Nótese que los vectores $\vvv{e}_r$ y $\vvv{e}_\theta$ se pueden escribir como
+%\begin{subequations}
+%\begin{align}
+%  \vvv{e}_r &= \xhat{r}\\
+%  \vvv{e}_\theta &= r\xhat{\theta}
+%\end{align}
+%\end{subequations}
+%
+%\subsubsection{Productos escalares}
+%\begin{itemize}
+%\item De los vectores unitarios
+%{\small
+%\begin{subequations}
+%  \begin{align}
+%    \xhat{r}\cdot\xhat{r}
+%    &=
+%      (\cos\theta\,\uvec{\i}+\sin\theta\,\uvec{\j})
+%      \cdot
+%      (\cos\theta\,\uvec{\i}+\sin\theta\,\uvec{\j})
+%      = \cos^2\theta + \sin^2\theta = 1\\
+%    \xhat{r}\cdot\xhat{\theta}
+%    &=
+%      \xhat{\theta}\cdot\xhat{r}
+%      = (\cos\theta\,\uvec{\i}+\sin\theta\,\uvec{\j})
+%      \cdot
+%      (-\sin\theta\,\uvec{\i}+\cos\theta\,\uvec{\j})
+%      = -\sin\theta\cos\theta + \sin\theta\cos\theta = 0\\
+%    \xhat{\theta}\cdot\xhat{\theta}
+%    &=
+%      (-\sin\theta\,\uvec{\i}+\cos\theta\,\uvec{\j})
+%      \cdot
+%      (-\sin\theta\,\uvec{\i}+\cos\theta\,\uvec{\j})
+%      = \sin^2\theta + \cos^2\theta = 1
+%  \end{align}
+%\end{subequations}
+%}
+%
+%\item De los vectores $\vvv{e}_r$ y $\vvv{e}_\theta$
+%\begin{subequations}
+%  \begin{align}\label{eq:R2-erer-productoescalar}
+%    \vvv{e}_r\cdot\vvv{e}_r
+%    &=
+%      \xhat{r}\cdot\vvv{r} = 1\\
+%    \label{eq:R2-eretheta-productoescalar}
+%    \vvv{e}_r\cdot\vvv{e}_\theta
+%    &=
+%      \vvv{e}_\theta\cdot\vvv{e}_r
+%      = \xhat{r}\cdot r\xhat{\theta} = r \xhat{r}\cdot\xhat{\theta} = 0\\
+%    \label{eq:R2-ethetaetheta-productoescalar}
+%    \vvv{e}_r\cdot\vvv{e}_\theta
+%    &=
+%      \vvv{e}_\theta\cdot\vvv{e}_\theta
+%      = r\xhat{\theta}\cdot r\xhat{\theta}
+%      = r^2 \xhat{\theta}\cdot\xhat{\theta} = r^2\\    
+%  \end{align}
+%\end{subequations}
+%\end{itemize}
+%
+%\subsubsection{Derivadas de los vectores unitarios}
+%Para terminar, nos interesan las derivadas de los vectores $\xhat{r}$ y $\xhat{\theta}$
+%con respecto de $r$
+%\begin{subequations}
+%\begin{align}
+%  \dfrac{d\xhat{r}}{dr}
+%  &= 0\\
+%  \dfrac{d\xhat{\theta}}{dr}
+%  &= 0
+%\end{align}
+%\end{subequations}
+%Derivadas con respecto de $\theta$
+%\begin{subequations}
+%\begin{align}
+%  \dfrac{d\xhat{r}}{d\theta}
+%  &= -\sin\theta\,\uvec{\i} + \cos\theta\,\uvec{\j} = \xhat{\theta}\\
+%  \dfrac{d\xhat{\theta}}{d\theta}
+%  &= -\cos\theta\,\uvec{\i} - \sin\theta\,\uvec{\j} = -\xhat{r}
+%\end{align}
+%\end{subequations}
+%
+%\subsection{Métrica y factores de escala}
+%Vamos a calcular la métrica y los factores de escala de varias formas:
+%\begin{enumerate}
+%\item Directamente, utilizando los productos escalares
+%  \eqref{eq:R2-erer-productoescalar}, \eqref{eq:R2-eretheta-productoescalar} y
+%   \eqref{eq:R2-ethetaetheta-productoescalar}
+%  \[
+%    \mmm{g}
+%    = g_{ij}
+%    = \begin{pmatrix}
+%      g_{11} & g_{12}\\
+%      g_{21} & g_{22}
+%      \end{pmatrix}
+%    = \begin{pmatrix}
+%      \vvv{e}_r\cdot\vvv{e}_r & \vvv{e}_r\cdot\vvv{e}_\theta\\
+%      \vvv{e}_\theta\cdot\vvv{e}_r & \vvv{e}_\theta\cdot\vvv{e}_\theta
+%    \end{pmatrix}
+%    = \begin{pmatrix}
+%      1 & 0\\
+%      0 & r^2
+%    \end{pmatrix}
+%  \]
+%  
+%\item Empezamos calculando las diferenciales $dx$ y $dy$
+%  {\small
+%    \begin{subequations}
+%      \begin{align}\label{eq:R2-dx}
+%        dx
+%        &=
+%          \dfrac{\partial x}{\partial r} dr + \dfrac{\partial x}{\partial\theta} d\theta
+%          = \cos\theta dr - r\sin\theta d\theta\\
+%        \label{eq:R2-dy}
+%        dy
+%        &=
+%          \dfrac{\partial y}{\partial r} dr + \dfrac{\partial y}{\partial\theta} d\theta
+%          = \sin\theta dr + r\cos\theta d\theta
+%      \end{align}
+%    \end{subequations}
+%  }
+%
+%  La métrica se puede deducir a partir del cuadrado de la distancia recorrida en el
+%  espacio al cambiar las coordenadas
+%  {\footnotesize
+%    \begin{align*}
+%      ds^2
+%      &=
+%        dx^2 + dy^2
+%        = (\cos\theta dr - r\sin\theta d\theta)^2
+%        + (\sin\theta dr + r\cos\theta d\theta)^2\\
+%      &=
+%        \cos^2\theta dr^2
+%        + \!r^2\sin^2\theta d\theta^2
+%        - \!\cancelout{2r\sin\theta \cos\theta dr d\theta}
+%        + \!\sin^2\theta dr^2
+%        + \!r^2 \cos^2\theta d\theta^2
+%        + \!\cancelout{2r\sin\theta \cos\theta dr d\theta}\\
+%      &=
+%        (\cos^2\theta + \sin^2\theta) dr^2 + r^2(\sin^2\theta + \cos^2\theta) d\theta^2
+%        = dr^2 + r^2 d\theta^2
+%    \end{align*}
+%  }
+%  donde se han tenido en cuenta las ecuaciones~\eqref{eq:R2-dx} y ~\eqref{eq:R2-dy} y que
+%  los vectores unitarios $\xhat{r}$ y $\xhat{\theta}$ son ortogonales.
+%
+%\item De forma intuitiva podemos interpretar la métrica. Veamos
+%  \begin{itemize}
+%  \item Las variables $r$ y $\theta$ son ortogonales, un cambio en una de ellas no afecta
+%    a la otra, como se puede comprobar observando las figuras
+%    \ref{fig:R2-polares-intuicion-h-r} y \ref{fig:R2-polares-intuicion-h-theta}.
+%    De esta manera, vemos que los elementos no diagonales de la métrica valen cero,
+%    $g_{12}=g_{21}=0$.
+%  \item Por otro lado, en la figura \ref{fig:R2-polares-intuicion-h-r} observamos que
+%    cuando modificamos la variable $r$ en una cierta distancia $\Delta r$, estamos
+%    desplazándonos en el espacio la misma distancia $\Delta s$. esto significa que
+%    el coeficiente de escala $h_r$ vale la unidad. Esto implica que el elemento
+%    $g_{11}$ de la métrica vale lo mismo.
+%    \begin{subequations}
+%      \begin{align}
+%        h_r
+%        &=
+%          \dfrac{\Delta s}{\Delta r} = 1\\[2pt]
+%        g_{11}
+%        &=
+%          h_x^2 = 1
+%      \end{align}
+%    \end{subequations}
+%
+%  \item En cuanto al coeficiente de escala $h_\theta$, cuando se modifica $\theta$ en una
+%    cierta cantidad $\Delta\theta$, la distancia que se recorre en el espacio es
+%    el ángulo por el radio, $\Delta s = r\Delta\theta$. Además, $g_{22} = r^2$. Ver
+%    figura \ref{fig:R2-polares-intuicion-h-theta}
+%    \begin{subequations}
+%      \begin{align}
+%        h_\theta
+%        &=
+%          \dfrac{\Delta s}{\Delta\theta} = \dfrac{r\Delta\theta}{\Delta\theta} = r\\[2pt]
+%        g_{22}
+%        &=
+%          h_\theta^2 = r^2
+%      \end{align}
+%    \end{subequations}
+%    \begin{figure}[ht]
+%      \centering
+%      \begin{minipage}{0.40\linewidth}
+%        % Esta gráfica muestra cómo afecta un cambio en la coordenada r a la distancia
+%        % recorrida en el espacio R^2
+%        % Escala
+%        \def\scl{1.35}
+%        % 
+%        \pgfmathsetmacro{\EJESEXTRA}{-0.2}
+%        \pgfmathsetmacro{\EJESLONG}{2.5}
+%        % Eje x
+%        \pgfmathsetmacro{\XMLONG}{\EJESEXTRA}
+%        \pgfmathsetmacro{\XPLONG}{\EJESLONG}
+%        % Eje y
+%        \pgfmathsetmacro{\YMLONG}{\EJESEXTRA}
+%        \pgfmathsetmacro{\YPLONG}{\EJESLONG}
+%        % Punto P original
+%        \pgfmathsetmacro{\PMOD}{1.5}
+%        \pgfmathsetmacro{\PANG}{30}
+%        % Punto P final conservando el mismo ángulo
+%        \pgfmathsetmacro{\PFINMOD}{2.4}
+%        \pgfmathsetmacro{\PFINANG}{\PANG}      
+%        % Fondo
+%        \pgfmathsetmacro{\HORZ}{0.25}
+%        \pgfmathsetmacro{\VERT}{0.25}
+%        % 
+%        \centering
+%        \begin{tikzpicture}[%
+%          scale=\scl,
+%          every node/.style={black,font=\small},
+%          eje/.style={->},
+%          r/.style={line width=.8pt, black},
+%          rtxt/.style={black},
+%          rfin/.style={line width=1pt, \colorVred},
+%          rfintxt/.style={\colorTchg, rotate=\PANG},
+%          textooriginal/.style={\colorTorig},
+%          pcirculo/.style={black, radius=1pt},
+%          angulogirado/.style={fill=\colorAng, draw=\colorGirodos},
+%          background/.style={
+%            line width=\bgborderwidth,
+%            draw=\bgbordercolor,
+%            fill=\bgcolor,
+%          },
+%          ]
+%          % COORDENADAS
+%          % Origen
+%          \coordinate (O) at (0,0);
+%          % Extremo izdo del eje x e inferior del eje y
+%          \coordinate (xini) at (\XMLONG cm,0);
+%          \coordinate (yini) at (0,\YMLONG cm);
+%          % Eje x
+%          \path[save path=\ejex] (xini) -- coordinate[pos=0.5] (xtexto)
+%          (\XPLONG cm, 0) coordinate (xfin);
+%          % Eje y
+%          \path[save path=\ejey] (yini) -- coordinate[pos=0.6] (ytexto)
+%          (0, \YPLONG cm) coordinate (yfin);
+%          % Punto P original
+%          \path[save path=\porig] (O) -- coordinate[pos=0.65] (rorigtxt)
+%          (\PANG:\PMOD cm) coordinate (P);
+%          % Punto P final
+%          \path[save path=\pfin] (P) -- coordinate[pos=0.5] (rfintxt)
+%          (\PFINANG:\PFINMOD cm) coordinate (P');
+%        
+%          % DIBUJOS
+%          % Ángulo theta
+%          \path (xfin) -- (O) -- (P) pic
+%          [-{Latex[width=2.5pt,length=3.7pt]},angulogirado,
+%          "\scriptsize $\theta$",angle radius=24pt, angle eccentricity=0.72]
+%          {angle = xfin--O--P};
+%          % Ejes
+%          % x
+%          \draw[eje, use path=\ejex];
+%          \node[right] at (xfin) {$x$};
+%          % y
+%          \draw[eje, use path=\ejey];
+%          \node[above] at (yfin) {$y$};
+%          % Coordenada r original
+%          \draw[r, use path=\porig];
+%          \node[rtxt, above left=-3pt and -1pt] at (rorigtxt) {\footnotesize $r$};
+%          % Vector r final
+%          \draw[rfin, use path=\pfin];
+%          \node[rfintxt, above] at (rfintxt) {\footnotesize $\Delta s = \Delta r$};
+%          % Puntos
+%          \fill[pcirculo] (P) circle;
+%          \fill[pcirculo] (P') circle;
+%          \node[rtxt, below right] at (P) {\scriptsize $P$};
+%          \node[rtxt, below right] at (P') {\scriptsize $P'$};
+%          % Origen
+%          \filldraw (O) circle [radius=.4pt];
+%          % Fondo amarillo
+%          \coordinate (SW)
+%          at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+%          \coordinate (NE)
+%          at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
+%          \begin{scope}[on background layer]
+%            \draw[background] (SW) rectangle (NE);
+%          \end{scope}
+%        \end{tikzpicture}
+%        \caption{Al cambiar la coordenada $r$, manteniendo constante $\theta$, se recorre
+%          una distancia igual en el espacio $\symbb{R}^2$. Por tanto, $h_r=1$ y
+%          $g_{11} = 1$.}
+%        \label{fig:R2-polares-intuicion-h-r}
+%      \end{minipage}
+%      \hspace{1em}
+%      \begin{minipage}{0.40\linewidth}
+%        % Escala
+%        \def\scl{1.35}
+%        % 
+%        \pgfmathsetmacro{\EJESEXTRA}{-0.2}
+%        \pgfmathsetmacro{\EJESLONG}{2.5}
+%        % Eje x
+%        \pgfmathsetmacro{\XMLONG}{\EJESEXTRA}
+%        \pgfmathsetmacro{\XPLONG}{\EJESLONG}
+%        % Eje y
+%        \pgfmathsetmacro{\YMLONG}{\EJESEXTRA}
+%        \pgfmathsetmacro{\YPLONG}{\EJESLONG}
+%        % Punto P original
+%        \pgfmathsetmacro{\PMOD}{2.0}
+%        \pgfmathsetmacro{\PANG}{25}
+%        % Punto P final conservando el mismo radio
+%        \pgfmathsetmacro{\PFINMOD}{\PMOD}
+%        \pgfmathsetmacro{\PFINANG}{70}
+%        % Texto en arco
+%        \pgfmathsetmacro{\PARCANG}{0.5*(\PFINANG) + \PANG)}
+%        \pgfmathsetmacro{\PARCMOD}{\PMOD * 1.2}
+%        % Fondo
+%        \pgfmathsetmacro{\HORZ}{0.25}
+%        \pgfmathsetmacro{\VERT}{0.25}
+%        % 
+%        \centering
+%        \begin{tikzpicture}[%
+%          scale=\scl,
+%          every node/.style={black,font=\small},
+%          eje/.style={->},
+%          r/.style={line width=.8pt, black},
+%          rtxt/.style={black},
+%          rfin/.style={line width=1pt, \colorVred},
+%          rfintxt/.style={\colorTchg},
+%          textooriginal/.style={\colorTorig},
+%          pcirculo/.style={black, radius=1pt},
+%          angulo/.style={fill=\colorAng, draw=\colorGirodos},
+%          angulogirado/.style={fill=\colorAngPink, draw=\colorGiroRed},
+%          arco/.style={line width=1pt, draw=\colorGiroRed},
+%          background/.style={
+%            line width=\bgborderwidth,
+%            draw=\bgbordercolor,
+%            fill=\bgcolor,
+%          },
+%          ]
+%
+%          % COORDENADAS
+%          % Origen
+%          \coordinate (O) at (0,0);
+%          % Extremo izdo del eje x e inferior del eje y
+%          \coordinate (xini) at (\XMLONG cm,0);
+%          \coordinate (yini) at (0,\YMLONG cm);
+%          % Eje x
+%          \path[save path=\ejex] (xini) -- coordinate[pos=0.5] (xtexto)
+%          (\XPLONG cm, 0) coordinate (xfin);
+%          % Eje y
+%          \path[save path=\ejey] (yini) -- coordinate[pos=0.6] (ytexto)
+%          (0, \YPLONG cm) coordinate (yfin);
+%          % Punto P original
+%          \path[save path=\porig] (O) -- coordinate[pos=0.65] (rorigtxt)
+%          (\PANG:\PMOD cm) coordinate (P);
+%          % Punto P final
+%          \path[save path=\pfin] (O) -- coordinate[pos=0.65] (rfintxt)
+%          (\PFINANG:\PFINMOD cm) coordinate (P');
+%
+%          % DIBUJOS
+%          % Ángulo theta
+%          \path (xfin) -- (O) -- (P) pic
+%          [angulo, "\scriptsize $\theta$",angle radius=24pt, angle eccentricity=0.72]
+%          {angle = xfin--O--P};
+%          % Incremento de theta
+%          \path (P) -- (O) -- (P') pic
+%          [-{Latex[width=3.0pt,length=4.5pt]}, angulogirado,
+%          "\scriptsize $\Delta\theta$",angle radius=24pt, angle eccentricity=0.72]
+%          {angle = P--O--P'};
+%          % Ejes
+%          % x
+%          \draw[eje, use path=\ejex];
+%          \node[right] at (xfin) {$x$};
+%          % y
+%          \draw[eje, use path=\ejey];
+%          \node[above] at (yfin) {$y$};
+%          % Longitud r original
+%          \draw[r, use path=\porig];
+%          \node[rtxt, below right=-2pt and 0pt] at (rorigtxt) {\footnotesize $r$};
+%          % Longitud r final
+%          \draw[r, use path=\pfin];
+%          \node[rtxt, above left = -2pt and 0pt] at (rfintxt) {\footnotesize $r$};
+%          % Arco recorrido
+%          \draw[arco] (P) arc (\PANG:\PFINANG:\PMOD)
+%          node[rfintxt,above,midway,sloped] {\footnotesize$\Delta s = r\Delta\theta$};
+%        
+%          % Puntos
+%          \fill[pcirculo] (P) circle;
+%          \fill[pcirculo] (P') circle;
+%          \node[rtxt, below right=-3pt and 0pt] at (P) {\scriptsize $P$};
+%          \node[rtxt, above left=0pt and -3pt] at (P') {\scriptsize $P'$};
+%          % Origen
+%          \filldraw (O) circle [radius=.4pt];
+%          % Fondo amarillo
+%          \coordinate (SW)
+%          at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+%          \coordinate (NE)
+%          at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
+%          \begin{scope}[on background layer]
+%            \draw[background] (SW) rectangle (NE);
+%          \end{scope}
+%
+%        \end{tikzpicture}
+%        \caption{Al cambiar la coordenada $\theta$, manteniendo $r$ constante, se  recorre
+%          una distancia proporcional a $r$ y a $\Delta\theta$. Por tanto, $h_\theta = r$ y
+%          $g_{22} = r^2$.}
+%        \label{fig:R2-polares-intuicion-h-theta}
+%      \end{minipage}
+%    \end{figure}
+%  \end{itemize}
+%  
+%\end{enumerate}
+%
+%\subsection{Gradiente}
+%Cálculos preliminares. Se utilizan las expresiones \eqref{eq:R2-x-rtheta},
+%\eqref{eq:R2-y-rtheta}, \eqref{eq:R2-r-xy} y \eqref{eq:R2-theta-xy}
+%{\small
+%\begin{subequations}
+%  \begin{align}
+%    \dfrac{\partial r}{\partial x}
+%    &=
+%      \dfrac{1}{\cancelout{2}\sqrt{x^2+y^2}}\cdot \cancelout{2}x
+%      = \dfrac{\cancelout{r}\cos\theta}{\cancelout{r}} = \cos\theta\\
+%    \dfrac{\partial r}{\partial y}
+%    &=
+%      \dfrac{1}{\cancelout{2}\sqrt{x^2+y^2}}\cdot \cancelout{2}y
+%      = \dfrac{\cancelout{r}\sin\theta}{\cancelout{r}} = \sin\theta\\
+%    \dfrac{\partial\theta}{\partial x}
+%    &=
+%      \dfrac{1}{1+\dfrac{y^2}{x^2}}\,\left(-\dfrac{y}{x}\right)
+%      = -\dfrac{x^{\cancelout{\scriptstyle{2}}}}{x^2+y^2}\,\dfrac{y}{\cancelout{x}}
+%      = -\dfrac{y}{x^2+y^2}
+%      = -\dfrac{\cancelout{r}\sin\theta}{r^{\cancelout{2}}}
+%      = -\dfrac{\sin\theta}{r}\\
+%    \dfrac{\partial\theta}{\partial x}
+%    &=
+%      \dfrac{1}{1+\dfrac{y^2}{x^2}}\,\dfrac{1}{x}
+%      = \dfrac{x^{\cancelout{\scriptstyle{2}}}}{x^2+y^2}\,\dfrac{1}{\cancelout{x}}
+%      = \dfrac{y}{x^2+y^2}
+%      = \dfrac{\cancelout{r}\cos\theta}{r^{\cancelout{\scriptstyle{2}}}}
+%      = \dfrac{\cos\theta}{r}
+%  \end{align}
+%\end{subequations}
+%}
+%{\small
+%  \begin{subequations}
+%    \begin{align*}
+%      \dfrac{\partial f}{\partial x}\,\uvec{\i}
+%      &=
+%        \left(%
+%        \dfrac{\partial f}{\partial r}\dfrac{\partial r}{\partial x}
+%        + \dfrac{\partial f}{\partial\theta}\dfrac{\partial\theta}{\partial x}
+%        \right)
+%        \left(%
+%        \cos\theta\,\xhat{r}-\sin\theta\,\xhat{\theta}
+%        \right)\\
+%      &=
+%        \left[%
+%        \dfrac{\partial f}{\partial r}\cos\theta
+%        + \dfrac{\partial f}{\partial\theta}\left(-\dfrac{\sin\theta}{r}\right)
+%        \right]
+%        \left(%
+%        \cos\theta\,\xhat{r} - \sin\theta\,\xhat{\theta}
+%        \right)\\
+%      &=
+%        \cos^2\theta\dfrac{\partial f}{\partial r}\,\xhat{r}
+%        -\dfrac{\sin\theta\cos\theta}{r}\dfrac{\partial f}{\partial\theta}\,\xhat{r}
+%        - \sin\theta\cos\theta\dfrac{\partial f}{\partial r}\,\xhat{\theta}
+%        + \dfrac{\cos^2\theta}{r}\dfrac{\partial f}{\partial\theta}\,\xhat{\theta}
+%    \end{align*}
+%  \end{subequations}
+%}
+%{\small
+%  \begin{subequations}
+%    \begin{align*}
+%      \dfrac{\partial f}{\partial y}\,\uvec{\j}
+%      &=
+%        \left(%
+%        \dfrac{\partial f}{\partial r}\dfrac{\partial f}{\partial y}
+%        + \dfrac{\partial f}{\partial\theta}\dfrac{\partial\theta}{\partial y}
+%        \right)
+%        \left(%
+%        \sin\theta\,\xhat{r}-\cos\theta\,\xhat{\theta}
+%        \right)\\
+%      &=
+%        \left[%
+%        \dfrac{\partial f}{\partial r}\sin\theta
+%        + \dfrac{\partial f}{\partial\theta}\dfrac{\cos\theta}{r}
+%        \right]
+%        \left(%
+%        \sin\theta\,\xhat{r} - \cos\theta\,\xhat{\theta}
+%        \right)\\
+%      &=
+%        \sin^2\theta\dfrac{\partial f}{\partial r}\,\xhat{r}
+%        + \dfrac{\sin\theta\cos\theta}{r}\dfrac{\partial f}{\partial\theta}\,\xhat{r}
+%        + \sin\theta\cos\theta\dfrac{\partial f}{\partial r}\,\xhat{\theta}
+%        + \dfrac{\cos^2\theta}{r}\dfrac{\partial f}{\partial\theta}\,\xhat{\theta}
+%    \end{align*}
+%  \end{subequations}
+%}
+%
+%El gradiente en polares se obtiene sustituyendo las dos expresiones anteriores en
+%\eqref{eq:R2-gradiente-cartesianas} y sumando. A continuación presentamos el resultado
+%{\small
+%  \begin{equation}
+%    \vvv{\nabla}\cdot f
+%    =
+%      \dfrac{\partial f}{\partial x}\,\uvec{\i}
+%      + \dfrac{\partial f}{\partial y}\,\uvec{\j}
+%      = \dfrac{\partial f}{\partial r}\,\xhat{r}
+%      + \dfrac{1}{r}\dfrac{\partial f}{\partial\theta}\,\xhat{\theta}
+%  \end{equation}
+%}
+%
+%
+%\subsection{Divergencia}
+%
+%\subsection{Laplaciana} 
+%
+%\subsection{Elemento de área en coordenadas polares planas}
+%\begin{align*}
+%  d^2a
+%  &=
+%    \dfrac{\partial(x,y)}{\partial(r,\theta)} dr\,d\theta
+%  = \begin{vmatrix}
+%    \partial x/\partial r & \partial x/\partial\theta\\
+%    \partial y/\partial r & \partial y/\partial\theta
+%  \end{vmatrix}
+%  dr\,d\theta
+%  = \begin{vmatrix}
+%    \cos\theta & -r\sin\theta\\
+%    \sin\theta & r\cos\theta
+%  \end{vmatrix}
+%    dr\,d\theta\\
+%  &=
+%    (r\cos^2\theta + r\sin^2\theta)\,dr\,d\theta
+%    = r (\cos^2\theta + \sin^2\theta)\,dr\,d\theta
+%\end{align*}
+%donde hemos utilizado las relaciones \eqref{eq:R2-x-rtheta} y \eqref{eq:R2-y-rtheta}.
+%Simplificando finalmente, queda
+%\begin{equation}
+%  d^2a = rdr\,d\theta
+%\end{equation}
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: luatex
+%%% TeX-master: "../retazosmatematicas.tex"
+%%% End:
