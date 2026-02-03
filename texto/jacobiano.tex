@@ -9,6 +9,33 @@
 \section{Cambio de variable en integración de una variable}
 Normalmente se utiliza un cambio de variable (sustitución) cuando queremos simplificar
 una integral.
+Supongamos que tenemos la siguiente integral
+\begin{equation}
+  I= \int_a^b \!f(x)\, dx
+\end{equation}
+y, para resolverla, realizamos la siguiente sustitución $x = g(u)$. Como consecuencia,
+obtenemos también la diferencial $dx=g'(u)\,du$
+\begin{equation}
+  I = \int_c^d \!f(g(u))\,g'(u)\,du
+\end{equation}
+donde $a=g(c)$ y $b=g(d)$.
+
+La ecuación anterior también se puede escribir como
+\begin{equation}
+  I = \int_c^d\!f(g(u))\,\dfrac{dx}{du}\,du
+\end{equation}
+Vemos que para resolver la integral, tenemos que sustituir en $f(x)$ la $x$ por $u$, y
+después sustituir $dx$ por $dx/du$ multiplicado por $du$
+\begin{equation}
+  dx = \dfrac{dx}{du}\,du
+\end{equation}
+Esto se puede interpretar como que, al cambiar de variable, de $x$ a $u$, mediante una
+transformación $x=g(u)$ o $u=g^{-1}(x)$, la diferencial de longitud $dx$ se puede
+sustituir por una derivada multiplicada por la diferencial de la nueva variable.
+Aunque sea adelantar conceptos, llamamos \emph{jacobiano de la transformación} a lo que
+multiplica a la diferencial de la nueva variable.
+En este ejemplo de una variable, el jacobiano es una derivada (determinante $1\times 1$.
+En integrales múltiples de orden $N$ el jacobiano será un determinante $N\times N$.
 
 
 %Vector de posición de cualquier punto del espacio $\symbb{R}^2$ en coordenadas
