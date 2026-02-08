@@ -735,7 +735,7 @@ Vamos a calcular la métrica y los factores de escala de varias formas:
 \item Directamente, utilizando los productos escalares
   \eqref{eq:R2-erer-productoescalar}, \eqref{eq:R2-eretheta-productoescalar} y
    \eqref{eq:R2-ethetaetheta-productoescalar}
-  \[
+  \begin{equation}\label{eq:R2-metrica-polares}
     \mmm{g}
     = g_{ij}
     = \begin{pmatrix}
@@ -750,7 +750,7 @@ Vamos a calcular la métrica y los factores de escala de varias formas:
       1 & 0\\
       0 & r^2
     \end{pmatrix}
-  \]
+  \end{equation}
   
 \item Empezamos calculando las diferenciales $dx$ y $dy$
   {\small
@@ -1154,8 +1154,41 @@ El gradiente en polares se obtiene sustituyendo las dos expresiones anteriores e
   \end{equation}
 }
 
-
 \subsection{Divergencia}
+La divergencia de un campo vectorial en polares la calcularemos de varias formas pero,
+sin que sirva de precedente, la primera que presentaré no es correcta.
+\begin{enumerate}
+\item En este producto escalar se utiliza la métrica en polares
+  \eqref{eq:R2-metrica-polares}
+{\small
+\begin{equation}
+  \vvv{\nabla}\cdot\vvv{A}
+  \neq \begin{pmatrix}
+    \partial/\partial r & \partial/\partial\theta      
+  \end{pmatrix}
+  \begin{pmatrix}
+    1 & 0\\
+    0 & r^2
+  \end{pmatrix}
+  \begin{pmatrix}
+    A_r\\
+    A_\theta
+  \end{pmatrix}
+  = \begin{pmatrix}
+    \partial/\partial x & \partial/\partial y      
+  \end{pmatrix}
+  \begin{pmatrix}
+    A_r\\
+    r^2A_\theta
+  \end{pmatrix}
+  = \dfrac{\partial A_r}{\partial r}
+  + \dfrac{\partial r^2A_\theta}{\partial\theta}
+\end{equation}
+}
+
+
+\end{enumerate}
+
 
 \subsection{Laplaciana} 
 
