@@ -250,6 +250,17 @@ El operador gradiente se comporta como un vector bajo rotaciones
 \item La divergencia de un campo vectorial $\vvv{A}=(A_x, A_y)$ es un escalar
   \begin{equation}
     \vvv{\nabla}\cdot\vvv{A}
+    = \begin{pmatrix}
+      \partial/\partial x & \partial/\partial y      
+    \end{pmatrix}
+    \begin{pmatrix}
+      1 & 0\\
+      0 & 1
+    \end{pmatrix}
+    \begin{pmatrix}
+      A_x\\
+      A_y
+    \end{pmatrix}
     = \dfrac{\partial A_x}{\partial x}
     + \dfrac{\partial A_y}{\partial y}
   \end{equation}
