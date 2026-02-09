@@ -15,7 +15,6 @@ cartesianas
   \vvv{r}
   = x\,\uvec{\i} + y\,\uvec{\j}
 \end{equation}
-
 \begin{figure}[ht]
   % Escala
   \def\scl{1}
@@ -48,7 +47,7 @@ cartesianas
     textooriginal/.style={\colorTorig},
     pcirculo/.style={fill=\colorPorig, draw=black},
     angulogirado/.style={fill=\colorAngGreen, draw=\colorGirodos},
-    background/.style={
+    background/.style={%
       line width=\bgborderwidth,
       draw=\bgbordercolor,
       fill=\bgcolor,
@@ -112,7 +111,7 @@ cartesianas
     \end{scope}
   \end{tikzpicture}
   \caption{Coordenadas cartesianas de un punto $P$ del plano y vectores unitarios.}
-  \label{fig:R2:coordenadas-cartesianas-R2}
+  \label{fig:R2-coordenadas-cartesianas-R2}
 \end{figure}
 
 \subsection{Base, vectores unitarios y su producto escalar}
@@ -248,7 +247,7 @@ El operador gradiente se comporta como un vector bajo rotaciones
 \end{equation}
 
 \item La divergencia de un campo vectorial $\vvv{A}=(A_x, A_y)$ es un escalar
-  \begin{equation}
+  \begin{equation}\label{eq:R2-divergencia-cartesianas}
     \vvv{\nabla}\cdot\vvv{A}
     = \begin{pmatrix}
       \partial/\partial x & \partial/\partial y      
@@ -321,7 +320,7 @@ Este elemento se relaciona trivialmente con el jacobiano de la
 En este sistema, se utilizan dos coordenadas, $r$ y $\theta$. La primera coordenada es la
 distancia entre el origen de coordenadas y un punto del espacio, y la segunda es el
 ángulo que forma el eje de abcisas con la línea que une el origen de coordenadas con el
-punto, ver figura \ref{fig:R2:coordenadas-R2}.
+punto, ver figura \ref{fig:R2-coordenadas-R2}.
 
 \begin{figure}[ht]
   \centering
@@ -354,7 +353,7 @@ punto, ver figura \ref{fig:R2:coordenadas-R2}.
       textooriginal/.style={\colorTorig},
       pcirculo/.style={fill=\colorPorig, draw=black},
       angulogirado/.style={fill=\colorAngGreen, draw=\colorGirodos},
-      background/.style={
+      background/.style={%
         line width=\bgborderwidth,
         draw=\bgbordercolor,
         fill=\bgcolor,
@@ -407,13 +406,13 @@ punto, ver figura \ref{fig:R2:coordenadas-R2}.
       \filldraw (O) circle [radius=.2pt];
       % Fondo amarillo
       \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
-      \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);    
+      \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
       \begin{scope}[on background layer]
         \draw[background] (SW) rectangle (NE);
       \end{scope}
     \end{tikzpicture}
   \caption{Coordenadas polares $r$ y $\theta$ de un punto $P$ del plano.}
-  \label{fig:R2:coordenadas-R2}
+  \label{fig:R2-coordenadas-R2}
 \end{minipage}
 \hspace{1em}
 \begin{minipage}{0.40\linewidth}
@@ -445,7 +444,7 @@ punto, ver figura \ref{fig:R2:coordenadas-R2}.
       textooriginal/.style={\colorTorig},
       pcirculo/.style={fill=\colorPorig, draw=black},
       angulogirado/.style={fill=\colorAngGreen, draw=\colorGirodos},
-      background/.style={
+      background/.style={%
         line width=\bgborderwidth,
         draw=\bgbordercolor,
         fill=\bgcolor,
@@ -498,7 +497,7 @@ punto, ver figura \ref{fig:R2:coordenadas-R2}.
       \filldraw (O) circle [radius=.2pt];
       % Fondo amarillo
       \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
-      \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);    
+      \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
       \begin{scope}[on background layer]
         \draw[background] (SW) rectangle (NE);
       \end{scope}
@@ -868,7 +867,7 @@ Vamos a calcular la métrica y los factores de escala de varias formas:
           textooriginal/.style={\colorTorig},
           pcirculo/.style={black, radius=1pt},
           angulogirado/.style={fill=\colorAng, draw=\colorGirodos},
-          background/.style={
+          background/.style={%
             line width=\bgborderwidth,
             draw=\bgbordercolor,
             fill=\bgcolor,
@@ -973,7 +972,7 @@ Vamos a calcular la métrica y los factores de escala de varias formas:
           angulo/.style={fill=\colorAng, draw=\colorGirodos},
           angulogirado/.style={fill=\colorAngPink, draw=\colorGiroRed},
           arco/.style={line width=1pt, draw=\colorGiroRed},
-          background/.style={
+          background/.style={%
             line width=\bgborderwidth,
             draw=\bgbordercolor,
             fill=\bgcolor,
@@ -1156,37 +1155,116 @@ El gradiente en polares se obtiene sustituyendo las dos expresiones anteriores e
 
 \subsection{Divergencia}
 La divergencia de un campo vectorial en polares la calcularemos de varias formas pero,
-sin que sirva de precedente, la primera que presentaré no es correcta.
+sin que sirva de precedente, la primera que presentaré no es correcta:
 \begin{enumerate}
 \item En este producto escalar se utiliza la métrica en polares
   \eqref{eq:R2-metrica-polares}
-{\small
-\begin{equation}
-  \vvv{\nabla}\cdot\vvv{A}
-  \neq \begin{pmatrix}
-    \partial/\partial r & \partial/\partial\theta      
-  \end{pmatrix}
-  \begin{pmatrix}
-    1 & 0\\
-    0 & r^2
-  \end{pmatrix}
-  \begin{pmatrix}
-    A_r\\
-    A_\theta
-  \end{pmatrix}
-  = \begin{pmatrix}
-    \partial/\partial x & \partial/\partial y      
-  \end{pmatrix}
-  \begin{pmatrix}
-    A_r\\
-    r^2A_\theta
-  \end{pmatrix}
-  = \dfrac{\partial A_r}{\partial r}
-  + \dfrac{\partial r^2A_\theta}{\partial\theta}
-\end{equation}
-}
+  \begin{equation}
+    \vvv{\nabla}\cdot\vvv{A}
+    \neq
+    \cancelout{%
+        \begin{pmatrix}
+          \partial/\partial r & \partial/\partial\theta      
+        \end{pmatrix}
+        \begin{pmatrix}
+          1 & 0\\
+          0 & r^2
+        \end{pmatrix}
+        \begin{pmatrix}
+          A_r\\
+          A_\theta
+        \end{pmatrix}
+      }
+      = \cancelout{%
+        \dfrac{\partial A_r}{\partial r}
+        + \dfrac{\partial r^2A_\theta}{\partial\theta}
+      }
+    \end{equation}
+  ¿Por qué no es correcto este cálculo, si se ha utilizado la métrica correcta en
+  polares, de forma similar a lo que se hizo en cartesianas, ver
+  \eqref{eq:R2-divergencia-cartesianas}?
+  
+  El fallo se debe a que hemos utilizado la métrica, y esto solo corrige el factor de
+  escala en coordenadas polares. Pero en este cálculo matricial y en el que se realizó en
+  cartesianas, se ha supuesto implícitamente que los vectores de la base son inmutables,
+  lo que es correcto en cartesianas pero, en polares, los vectores cambian con la
+  posición ($\xhat{\theta}$ depende de la posición en el plano $\symbb{R}^2$).
+  El sistema de coordenadas polares es curvilíneo y esa curvatura hay que tenerla en
+  cuenta, ver figura \ref{fig:R2-coordenadas-polares}.
+  \begin{figure}[ht]
+  % Escala
+  \def\scl{1}
+  %
+  % Número de círcunferencias
+  \pgfmathsetmacro{\NUMCIRC}{4} 
+  % Longitud de un versor
+  \pgfmathsetmacro{\VERSOR}{0.5}
+  % Longitud de línea radial
+  \pgfmathsetmacro{\LINEARADIAL}{\NUMCIRC * \VERSOR + 0.25}
+  %
+  % Fondo
+  \pgfmathsetmacro{\HORZ}{0.25}
+  \pgfmathsetmacro{\VERT}{0.25}
+  % 
+  \centering
+  \begin{tikzpicture}[%
+    scale=\scl,
+    every node/.style={black,font=\small},
+    eje/.style={->},
+    proyeccion/.style={black!60, densely dotted},
+    versor/.style={-{Latex[round, width=4pt, length=8pt]}, line width=1pt, \colorVred},
+    textooriginal/.style={\colorTorig},
+    pcirculo/.style={fill=\colorPorig, draw=black},
+    angulogirado/.style={fill=\colorAngGreen, draw=\colorGirodos},
+    polares/.style={draw=black!30, line width=0.5pt},
+    background/.style={%
+      line width=\bgborderwidth,
+      draw=\bgbordercolor,
+      fill=\bgcolor,
+    },
+    ]
+    % COORDENADAS
+    % Origen
+    \coordinate (O) at (0,0);
 
+    % DIBUJOS
+    % Coordenadas polares
+    \foreach \angulo in {0,30,...,330}
+    {%
+      \draw[polares] (O) -- ++(\angulo:\LINEARADIAL)
+      node[pos=1.1] {\scriptsize$\angulo^\circ$};
+    };
+    \foreach \radio [evaluate=\radio] in {\VERSOR*1,\VERSOR*...,\VERSOR*\NUMCIRC}
+    {%
+      \draw[polares] (O) circle[radius=\radio cm];
+      % Versor en primer cuadrante
+      %\draw (O) ++(30:\radio) -- 
+    };
 
+    \foreach \radio [evaluate=\radio] in{\VERSOR*3}
+    \foreach \angulo in {60, 150,270,330}
+    {%
+      \draw (O) ++(\angulo:\radio) circle[radius=1pt];
+    };
+    % Origen
+    \filldraw (O) circle [radius=.2pt];
+    
+    % Fondo amarillo
+    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);    
+    \begin{scope}[on background layer]
+      \draw[background] (SW) rectangle (NE);
+    \end{scope}
+  \end{tikzpicture}
+  \caption{Coordenadas polares (curvilíneas) $r$ y $\theta$, donde $r$ representa la
+    distancia al origen (polo) y $\theta$ es el ángulo que forma con el eje $x$, junto
+    con los vectores unidad $\xhat{r}$ y $\xhat{\theta}$ respectivos, en distintas
+    posiciones del plano $\symbb{R}^2$.}
+  \label{fig:R2-coordenadas-polares}
+\end{figure}
+
+\item Segundo método
+  
 \end{enumerate}
 
 
