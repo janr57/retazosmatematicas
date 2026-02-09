@@ -1193,15 +1193,14 @@ sin que sirva de precedente, la primera que presentaré no es correcta:
   cuenta, ver figura \ref{fig:R2-coordenadas-polares}.
   \begin{figure}[ht]
   % Escala
-  \def\scl{1}
-  %
+  \def\scl{0.9}
+  % 
   % Número de círcunferencias
-  \pgfmathsetmacro{\NUMCIRC}{4} 
+  \pgfmathsetmacro{\NUMCIRC}{5}
   % Longitud de un versor
   \pgfmathsetmacro{\VERSOR}{0.5}
   % Longitud de línea radial
   \pgfmathsetmacro{\LINEARADIAL}{\NUMCIRC * \VERSOR + 0.25}
-  %
   % Fondo
   \pgfmathsetmacro{\HORZ}{0.25}
   \pgfmathsetmacro{\VERT}{0.25}
@@ -1210,58 +1209,105 @@ sin que sirva de precedente, la primera que presentaré no es correcta:
   \begin{tikzpicture}[%
     scale=\scl,
     every node/.style={black,font=\small},
-    eje/.style={->},
-    proyeccion/.style={black!60, densely dotted},
-    versor/.style={-{Latex[round, width=4pt, length=8pt]}, line width=1pt, \colorVred},
-    textooriginal/.style={\colorTorig},
-    pcirculo/.style={fill=\colorPorig, draw=black},
-    angulogirado/.style={fill=\colorAngGreen, draw=\colorGirodos},
-    polares/.style={draw=black!30, line width=0.5pt},
+    vtexto/.style={font=\footnotesize, pos=1.4},
+    vtheta/.style={-{Latex[round, width=4pt, length=5pt]},
+      line width=0.6pt, \colorVred},
+    vr/.style={vtheta, \colorV},
+    polares/.style={draw=black!20, line width=0.4pt},
     background/.style={%
       line width=\bgborderwidth,
       draw=\bgbordercolor,
-      fill=\bgcolor,
+      fill=\bgcolor
     },
     ]
     % COORDENADAS
     % Origen
     \coordinate (O) at (0,0);
 
-    % DIBUJOS
-    % Coordenadas polares
-    \foreach \angulo in {0,30,...,330}
-    {%
-      \draw[polares] (O) -- ++(\angulo:\LINEARADIAL)
-      node[pos=1.1] {\scriptsize$\angulo^\circ$};
-    };
-    \foreach \radio [evaluate=\radio] in {\VERSOR*1,\VERSOR*...,\VERSOR*\NUMCIRC}
-    {%
-      \draw[polares] (O) circle[radius=\radio cm];
-      % Versor en primer cuadrante
-      %\draw (O) ++(30:\radio) -- 
-    };
+      % DIBUJOS
+      % Coordenadas polares (Radios de los ángulos)
+      \foreach \angulo / \label
+      in {%
+        0/{0}, 30/{\pi/6}, 60/{\pi/3},
+        90/{\pi/2}, 120/{2\pi/3}, 150/{5\pi/6},
+        180/{\pi}, 210/{7\pi/6}, 240/{4\pi/3},
+        270/{3\pi/2}, 300/{5\pi/3}, 330/{11\pi/6}
+      }
+      {%
+        \draw[polares] (O) -- ++(\angulo:\LINEARADIAL)
+        node[pos=1.12] {\scriptsize $\label$};
+      };
+      \foreach \radio [evaluate=\radio] in {\VERSOR*1,\VERSOR*...,\VERSOR*\NUMCIRC}
+      {%
+        % Circunferencias
+        \draw[polares] (O) circle[radius=\radio cm];
+      };
 
-    \foreach \radio [evaluate=\radio] in{\VERSOR*3}
-    \foreach \angulo in {60, 150,270,330}
-    {%
-      \draw (O) ++(\angulo:\radio) circle[radius=1pt];
-    };
-    % Origen
-    \filldraw (O) circle [radius=.2pt];
+      % Vectores unitarios en r=1.0
+      \foreach \radio [evaluate=\radio] in{\VERSOR*1}
+      \foreach \angulo in {30}
+      {%
+        % Vectores unitario radiales
+        \draw[vr] (O) ++(\angulo:\radio) -- ++(\angulo:\VERSOR)
+        node[vtexto, rotate=\angulo-90] {$\xhat{r}$};
+        % Vectores unitarios angulares
+        \draw[vtheta] (O) ++(\angulo:\radio) -- ++(90+\angulo:\VERSOR)
+        node[vtexto, rotate=\angulo-90, \colorTred] {$\xhat{\theta}$};
+      };
+      
+      
+      % Vectores unitarios en r=2.0
+      \foreach \radio [evaluate=\radio] in{\VERSOR*2}
+      \foreach \angulo in {150}
+      {%
+        % Vectores unitario radiales
+        \draw[vr] (O) ++(\angulo:\radio) -- ++(\angulo:\VERSOR)
+        node[vtexto, rotate=\angulo-90] {$\xhat{r}$};
+        % Vectores unitarios angulares
+        \draw[vtheta] (O) ++(\angulo:\radio) -- ++(90+\angulo:\VERSOR)
+        node[vtexto, rotate=\angulo-90, \colorTred] {$\xhat{\theta}$};
+      };
+      
+      % Vectores unitarios en r=3.0
+      \foreach \radio [evaluate=\radio] in{\VERSOR*3}
+      \foreach \angulo in {210, 330}
+      {%
+        % Vectores unitario radiales
+        \draw[vr] (O) ++(\angulo:\radio) -- ++(\angulo:\VERSOR)
+        node[vtexto, rotate=\angulo-90] {$\xhat{r}$};
+        % Vectores unitarios angulares
+        \draw[vtheta] (O) ++(\angulo:\radio) -- ++(90+\angulo:\VERSOR)
+        node[vtexto, rotate=\angulo-90, \colorTred] {$\xhat{\theta}$};
+      };
+
+      % Vectores unitarios en r=4.0
+      \foreach \radio [evaluate=\radio] in{\VERSOR*4}
+      \foreach \angulo in {60,270}
+      {%
+        % Vectores unitario radiales
+        \draw[vr] (O) ++(\angulo:\radio) -- ++(\angulo:\VERSOR)
+        node[vtexto, rotate=\angulo-90] {$\xhat{r}$};
+        % Vectores unitarios angulares
+        \draw[vtheta] (O) ++(\angulo:\radio) -- ++(90+\angulo:\VERSOR)
+        node[vtexto, rotate=\angulo-90, \colorTred] {$\xhat{\theta}$};
+      };      
+      
+      % Origen
+      \filldraw (O) circle [radius=.2pt];
     
-    % Fondo amarillo
-    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
-    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);    
-    \begin{scope}[on background layer]
-      \draw[background] (SW) rectangle (NE);
-    \end{scope}
-  \end{tikzpicture}
-  \caption{Coordenadas polares (curvilíneas) $r$ y $\theta$, donde $r$ representa la
-    distancia al origen (polo) y $\theta$ es el ángulo que forma con el eje $x$, junto
-    con los vectores unidad $\xhat{r}$ y $\xhat{\theta}$ respectivos, en distintas
-    posiciones del plano $\symbb{R}^2$.}
-  \label{fig:R2-coordenadas-polares}
-\end{figure}
+      % Fondo amarillo
+      \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+      \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
+      \begin{scope}[on background layer]
+        \draw[background] (SW) rectangle (NE);
+      \end{scope}
+    \end{tikzpicture}
+    \caption{Coordenadas polares (curvilíneas) $r$ y $\theta$, donde $r$ representa la
+      distancia al origen (polo) y $\theta$ es el ángulo que forma con el eje $x$, junto
+      con los vectores unidad $\xhat{r}$ y $\xhat{\theta}$, respectivos, en distintas
+      posiciones del plano $\symbb{R}^2$.}
+    \label{fig:R2-coordenadas-polares}
+  \end{figure}
 
 \item Segundo método
   
