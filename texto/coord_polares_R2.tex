@@ -1215,6 +1215,7 @@ sin que sirva de precedente, la primera que presentaré no es correcta:
       line width=0.6pt, \colorVred},
     vr/.style={vtheta, \colorV},
     polares/.style={draw=black!20, line width=0.4pt},
+    punto/.style={fill=black, radius=1.25pt},
     background/.style={%
       line width=\bgborderwidth,
       draw=\bgbordercolor,
@@ -1254,6 +1255,8 @@ sin que sirva de precedente, la primera que presentaré no es correcta:
         % Vectores unitarios angulares
         \draw[vtheta] (O) ++(\angulo:\radio) -- ++(90+\angulo:\VERSOR)
         node[vtexto, rotate=\angulo-90, \colorTred] {$\xhat{\theta}$};
+        % Posición
+        \fill[punto] (O) ++(\angulo:\radio) circle;
       };
       
       
@@ -1267,6 +1270,8 @@ sin que sirva de precedente, la primera que presentaré no es correcta:
         % Vectores unitarios angulares
         \draw[vtheta] (O) ++(\angulo:\radio) -- ++(90+\angulo:\VERSOR)
         node[vtexto, rotate=\angulo-90, \colorTred] {$\xhat{\theta}$};
+        % Posición
+        \fill[punto] (O) ++(\angulo:\radio) circle;
       };
       
       % Vectores unitarios en r=3.0
@@ -1279,6 +1284,8 @@ sin que sirva de precedente, la primera que presentaré no es correcta:
         % Vectores unitarios angulares
         \draw[vtheta] (O) ++(\angulo:\radio) -- ++(90+\angulo:\VERSOR)
         node[vtexto, rotate=\angulo-90, \colorTred] {$\xhat{\theta}$};
+        % Posición
+        \fill[punto] (O) ++(\angulo:\radio) circle;
       };
 
       % Vectores unitarios en r=4.0
@@ -1291,6 +1298,8 @@ sin que sirva de precedente, la primera que presentaré no es correcta:
         % Vectores unitarios angulares
         \draw[vtheta] (O) ++(\angulo:\radio) -- ++(90+\angulo:\VERSOR)
         node[vtexto, rotate=\angulo-90, \colorTred] {$\xhat{\theta}$};
+        % Posición
+        \fill[punto] (O) ++(\angulo:\radio) circle;
       };      
       
       % Origen
@@ -1303,10 +1312,10 @@ sin que sirva de precedente, la primera que presentaré no es correcta:
         \draw[background] (SW) rectangle (NE);
       \end{scope}
     \end{tikzpicture}
-    \caption{Coordenadas polares (curvilíneas) $r$ y $\theta$, donde $r$ representa la
-      distancia al origen (polo) y $\theta$ es el ángulo que forma con el eje $x$, junto
-      con los vectores unidad $\xhat{r}$ y $\xhat{\theta}$, respectivos, en distintas
-      posiciones del plano $\symbb{R}^2$.}
+    \caption{Coordenadas polares (curvilíneas), donde $r$ representa la distancia al
+      origen (polo) y $\theta$ es el ángulo que forma el vector de posición con el eje
+      $x$. Además se muestran algunos vectores unidad $\xhat{r}$ y $\xhat{\theta}$ en
+      distintas posiciones del plano $\symbb{R}^2$.}
     \label{fig:R2-coordenadas-polares}
   \end{figure}
 
