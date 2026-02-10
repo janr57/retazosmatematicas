@@ -1187,11 +1187,12 @@ sin que sirva de precedente, la primera que presentaré no es correcta:
   \eqref{eq:R2-divergencia-cartesianas}?
   
   %\hspace{1em}
-  El problema se debe a que, aunque hemos utilizado la métrica, esta solo corrige el
-  factor de escala en coordenadas polares. Pero en este cálculo matricial, y en el que se
-  realizó en cartesianas, se supone implícitamente que los vectores de la base son
-  inmutables, lo que es correcto en cartesianas pero no en polares, dado que los
-  vectores cambian con la posición en el plano $\symbb{R}^2$.
+  El problema se debe a que, aunque hemos utilizado la métrica, esta no es lo único que
+  cambia cuando pasas de cartesianas a polares, esto es, no solo cambian las distancias
+  (la métrica), sino también cambian los vectores de la base con la posición en el plano.
+  En este cálculo matricial, y en el que se realizó en cartesianas, está implícito el que
+  los vectores de la base son inmutables, lo que es correcto en cartesianas pero no en
+  polares, dado que los vectores cambian con la posición en el plano $\symbb{R}^2$.
   En resumen, el sistema de coordenadas polares es curvilíneo y esa curvatura hay que
   tenerla en cuenta, ver figura \ref{fig:R2-coordenadas-polares}.
   \begin{figure}[ht]
@@ -1216,7 +1217,7 @@ sin que sirva de precedente, la primera que presentaré no es correcta:
     vtheta/.style={-{Latex[round, width=4pt, length=5pt]},
       line width=0.6pt, \colorVred},
     vr/.style={vtheta, \colorV},
-    polares/.style={draw=black!20, line width=0.4pt},
+    polares/.style={draw=black!25, line width=0.4pt},
     punto/.style={fill=black, radius=1.25pt},
     background/.style={%
       line width=\bgborderwidth,
