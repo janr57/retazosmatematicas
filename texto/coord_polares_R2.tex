@@ -551,59 +551,20 @@ $\theta$
 \end{align}
 \end{subequations}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Estos vectores son los que se utilizarán para calcular la métrica en coordenadas polares.
 
 \subsubsection{Vectores unitarios}
 Calculamos los vectores unitarios en coordenadas polares, $\xhat{r}$ y $\xhat{\theta}$
 {\small
 \begin{subequations}
-  \begin{align}
+  \begin{align}\label{eq:R2-versor-r}
     \xhat{r}
     &= \dfrac{\vvv{e}_r}{|\vvv{e}_r|}
     =\dfrac{\cos\theta\,\uvec{\i}+\sin\theta\,\uvec{\j}}
     {\sqrt{\cos^2\theta+\sin^2\theta}}
     = \dfrac{\cos\theta\,\uvec{\i}+\sin\theta\,\uvec{\j}}{1}
-  = \cos\theta\,\uvec{\i} + \sin\theta\,\uvec{\j}\\
+      = \cos\theta\,\uvec{\i} + \sin\theta\,\uvec{\j}\\
+    \label{eq:R2-versor-theta}
   \xhat{\theta}
   &= \dfrac{\vvv{e}_\theta}{|\vvv{e}_\theta|}
   = \dfrac{-r\sin\theta\,\uvec{\i}+\cos\theta\,\uvec{\j}}
@@ -711,20 +672,30 @@ Nótese que los vectores $\vvv{e}_r$ y $\vvv{e}_\theta$ se pueden escribir como
 Para terminar, nos interesan las derivadas de los vectores $\xhat{r}$ y $\xhat{\theta}$
 con respecto de $r$
 \begin{subequations}
-\begin{align}
-  \dfrac{d\xhat{r}}{dr}
-  &= 0\\
-  \dfrac{d\xhat{\theta}}{dr}
-  &= 0
+\begin{align}\label{eq:R2-partial-versor_r-r}
+  \dfrac{\partial\xhat{r}}{\partial r}
+  &=
+  \dfrac{\partial}{\partial r}(\cos\theta\,\uvec{\i}+\sin\theta\,\uvec{\j})
+  = 0\\
+  \label{eq:R2-partial-versor_theta-r}
+  \dfrac{\partial\xhat{\theta}}{\partial r}
+  &=
+  \dfrac{\partial}{\partial r}(-\sin\theta\,\uvec{\i}+\cos\theta\,\uvec{\j})
+  = 0
 \end{align}
 \end{subequations}
 Derivadas con respecto de $\theta$
 \begin{subequations}
-\begin{align}
-  \dfrac{d\xhat{r}}{d\theta}
-  &= -\sin\theta\,\uvec{\i} + \cos\theta\,\uvec{\j} = \xhat{\theta}\\
-  \dfrac{d\xhat{\theta}}{d\theta}
-  &= -\cos\theta\,\uvec{\i} - \sin\theta\,\uvec{\j} = -\xhat{r}
+\begin{align}\label{eq:R2-partial-versor_r-theta}
+  \dfrac{\partial\xhat{r}}{\partial\theta}
+  &=
+  \dfrac{\partial}{\partial r}(\cos\theta\,\uvec{\i}+\sin\theta\,\uvec{\j})  
+  = -\sin\theta\,\uvec{\i} + \cos\theta\,\uvec{\j} = \xhat{\theta}\\
+  \label{eq:R2-partial-versor_theta-theta}
+  \dfrac{\partial\xhat{\theta}}{\partial\theta}
+  &=
+  \dfrac{\partial}{\partial r}(-\sin\theta\,\uvec{\i}+\cos\theta\,\uvec{\j})  
+  = -\cos\theta\,\uvec{\i} - \sin\theta\,\uvec{\j} = -\xhat{r}
 \end{align}
 \end{subequations}
 
@@ -1187,12 +1158,12 @@ sin que sirva de precedente, la primera que presentaré no es correcta:
   \eqref{eq:R2-divergencia-cartesianas}?
   
   %\hspace{1em}
-  El problema se debe a que, aunque hemos utilizado la métrica, esta no es lo único que
-  cambia cuando pasas de cartesianas a polares, esto es, no solo cambian las distancias
+  No lo es porque, aunque hemos utilizado la métrica, esta no es lo único que cambia
+  cuando se pasa de cartesianas a polares, esto es, no solo cambian las distancias
   (la métrica), sino también cambian los vectores de la base con la posición en el plano.
   En este cálculo matricial, y en el que se realizó en cartesianas, estaba implícito el
   que los vectores de la base eran inmutables, lo que es correcto en cartesianas pero no
-  en polares, dado que los vectores cambian con la posición en el plano $\symbb{R}^2$.
+  lo es en polares, dado que estos cambian con la posición en el plano $\symbb{R}^2$.
 
   En resumen, el sistema de coordenadas polares es curvilíneo ver figura
   \ref{fig:R2-coordenadas-polares}, y esa curvatura hay quetenerla en cuenta.
@@ -1295,7 +1266,7 @@ sin que sirva de precedente, la primera que presentaré no es correcta:
 
       % Vectores unitarios en r=4.0
       \foreach \radio [evaluate=\radio] in{\VERSOR*4}
-      \foreach \angulo in {60,270}
+      \foreach \angulo in {30,90,270}
       {%
         % Vectores unitario radiales
         \draw[vr] (O) ++(\angulo:\radio) -- ++(\angulo:\VERSOR)
@@ -1324,11 +1295,39 @@ sin que sirva de precedente, la primera que presentaré no es correcta:
     \label{fig:R2-coordenadas-polares}
   \end{figure}
   ¿Entonces, no se puede plantear un enfoque matricial para obtener la divergencia en
-  polares? Sí es posible y lo veremos al final.
+  polares? Sí es posible, y lo veremos al final.
   
-\item Enfoque basado en los vectores unitarios.
+\item Enfoque basado en la variación de los vectores unitarios.
 
-  
+  Cuando el operador nabla actúa sobre un campo vectorial como
+  $\vvv{A} = A_r\xhat{r}+A_\theta\xhat{\theta}$, no solo actúa sobre las componentes $A_r$ y
+  $A_\theta$, sino también sobre los vectores unitarios $\xhat{r}$ y $\xhat{\theta}$,
+  ver \eqref{eq:R2-versor-r} y \eqref{eq:R2-versor-theta}. Necesitaremos las derivadas
+  de los versores de la base que se calcularon en \eqref{eq:R2-partial-versor_r-r},
+  \eqref{eq:R2-partial-versor_theta-r}, \eqref{eq:R2-partial-versor_r-theta} y
+  \eqref{eq:R2-partial-versor_theta-theta}, que resumimos a continuación:
+  \begin{itemize}
+  \item Al desplazarnos radialmente, los versores $\xhat{r}$ y $\xhat{\theta}$ no
+    cambian, ver ángulo $\pi/6$\,\unit{\radian} en la figura
+    \ref{fig:R2-coordenadas-polares}
+  \begin{equation}
+    \dfrac{\partial\xhat{r}}{\partial r} = \dfrac{\partial\xhat{\theta}}{\partial r}
+    = 0
+  \end{equation}
+  \item Al desplazarnos tangencialmente en sentido antihorario, $\xhat{r}$ cambia según
+    $\xhat{\theta}$, ver por ejemplo, ángulos $\pi/6$\,\unit{\radian} y
+    $\pi/2$\,\unit{\radian} en la figura \ref{fig:R2-coordenadas-polares}
+  \begin{equation}
+    \dfrac{\partial\xhat{r}}{\partial\theta} = \xhat{\theta}
+  \end{equation}
+\item Al desplazarnos tangencialmente en sentido antihorario, $\xhat{\theta}$ cambia
+  según el sentido contrario a $\xhat{r}$, ver por ejemplo, ángulos
+  $\pi/6$\,\unit{\radian} y $\pi/2$\,\unit{\radian} en la
+  figura~\ref{fig:R2-coordenadas-polares}
+  \begin{equation}
+    \dfrac{\partial\xhat{\theta}}{\partial\theta} = -\xhat{r}
+  \end{equation}  
+\end{itemize}  
   
 \end{enumerate}
 
