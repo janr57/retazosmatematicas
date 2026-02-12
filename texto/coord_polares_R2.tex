@@ -1126,49 +1126,48 @@ El gradiente en polares se obtiene sustituyendo las dos expresiones anteriores e
 
 \subsection{Divergencia}
 La divergencia de un campo vectorial en polares la calcularemos de varias formas pero,
-sin que sirva de precedente, la primera que presentaré no es correcta:
-\begin{enumerate}
-\item Enfoque matricial.
-  
-  En este producto escalar se utiliza la métrica en polares
-  \eqref{eq:R2-metrica-polares}
-  \begin{equation}
-    \vvv{\nabla}\cdot\vvv{A}
-    \neq
-    \cancelout{%
-        \begin{pmatrix}
-          \partial/\partial r & \partial/\partial\theta      
-        \end{pmatrix}
-        \begin{pmatrix}
-          1 & 0\\
-          0 & r^2
-        \end{pmatrix}
-        \begin{pmatrix}
-          A_r\\
-          A_\theta
-        \end{pmatrix}
-      }
-      = \cancelout{%
-        \dfrac{\partial A_r}{\partial r}
-        + \dfrac{\partial r^2A_\theta}{\partial\theta}
-      }
-    \end{equation}
-  ¿Por qué no es correcto este cálculo, si se ha utilizado la métrica correcta en
-  polares, de forma similar a lo que se hizo en cartesianas, ver
-  \eqref{eq:R2-divergencia-cartesianas}?
-  
-  %\hspace{1em}
-  No lo es porque, aunque hemos utilizado la métrica, esta no es lo único que cambia
-  cuando se pasa de cartesianas a polares, esto es, no solo cambian las distancias
-  (la métrica), sino también cambian los vectores de la base con la posición en el plano.
-  En este cálculo matricial, y en el que se realizó en cartesianas, estaba implícito el
-  que los vectores de la base eran inmutables, lo que es correcto en cartesianas pero no
-  lo es en polares, dado que estos cambian con la posición en el plano $\symbb{R}^2$.
+sin que sirva de precedente, la primera que presentaré no es correcta.
 
-  En resumen, el sistema de coordenadas polares es curvilíneo ver figura
-  \ref{fig:R2-coordenadas-polares}, y esa curvatura hay quetenerla en cuenta.
+Realizamos un cálculo matricial, similar al realizado en coordenadas cartesianas,
+teniendo en cuenta que en este producto escalar se utiliza la métrica en polares
+\eqref{eq:R2-metrica-polares}
+\begin{equation}
+  \vvv{\nabla}\cdot\vvv{A}
+  \neq
+  \cancelout{%
+    \begin{pmatrix}
+      \partial/\partial r & \partial/\partial\theta      
+    \end{pmatrix}
+    \begin{pmatrix}
+      1 & 0\\
+      0 & r^2
+    \end{pmatrix}
+    \begin{pmatrix}
+      A_r\\
+      A_\theta
+    \end{pmatrix}
+  }
+  = \cancelout{%
+    \dfrac{\partial A_r}{\partial r}
+    + \dfrac{\partial r^2A_\theta}{\partial\theta}
+  }
+\end{equation}
+¿Por qué no es correcto este cálculo, si se ha utilizado la métrica correcta en
+polares, de forma similar a lo que se hizo en cartesianas, ver
+\eqref{eq:R2-divergencia-cartesianas}?
 
-  \begin{figure}[ht]
+% \hspace{1em}
+No lo es porque, aunque hemos utilizado la métrica, esta no es lo único que cambia
+cuando se pasa de cartesianas a polares, esto es, no solo cambian las distancias
+(la métrica), sino también cambian los vectores de la base con la posición en el plano.
+En este cálculo matricial, y en el que se realizó en cartesianas, estaba implícito el
+que los vectores de la base eran inmutables, lo que es correcto en cartesianas pero no
+lo es en polares, dado que estos cambian con la posición en el plano $\symbb{R}^2$.
+
+En resumen, el sistema de coordenadas polares es curvilíneo ver figura
+\ref{fig:R2-coordenadas-polares}, y esa curvatura hay quetenerla en cuenta.
+
+\begin{figure}[ht]
   % Escala
   \def\scl{0.9}
   % 
@@ -1201,107 +1200,108 @@ sin que sirva de precedente, la primera que presentaré no es correcta:
     % COORDENADAS
     % Origen
     \coordinate (O) at (0,0);
-
-      % DIBUJOS
-      % Coordenadas polares (Radios de los ángulos)
-      \foreach \angulo / \label
-      in {%
-        0/{0}, 30/{\pi/6}, 60/{\pi/3},
-        90/{\pi/2}, 120/{2\pi/3}, 150/{5\pi/6},
-        180/{\pi}, 210/{7\pi/6}, 240/{4\pi/3},
-        270/{3\pi/2}, 300/{5\pi/3}, 330/{11\pi/6}
-      }
-      {%
-        \draw[polares] (O) -- ++(\angulo:\LINEARADIAL)
-        node[pos=1.12] {\scriptsize $\label$};
-      };
-      \foreach \radio [evaluate=\radio] in {\VERSOR*1,\VERSOR*...,\VERSOR*\NUMCIRC}
-      {%
-        % Circunferencias
-        \draw[polares] (O) circle[radius=\radio cm];
-      };
-
-      % Vectores unitarios en r=1.0
-      \foreach \radio [evaluate=\radio] in{\VERSOR*1}
-      \foreach \angulo in {30}
-      {%
-        % Vectores unitario radiales
-        \draw[vr] (O) ++(\angulo:\radio) -- ++(\angulo:\VERSOR)
-        node[vtexto, rotate=\angulo-90] {$\xhat{r}$};
-        % Vectores unitarios angulares
-        \draw[vtheta] (O) ++(\angulo:\radio) -- ++(90+\angulo:\VERSOR)
-        node[vtexto, rotate=\angulo-90, \colorTred] {$\xhat{\theta}$};
-        % Posición
-        \fill[punto] (O) ++(\angulo:\radio) circle;
-      };
-      
-      
-      % Vectores unitarios en r=2.0
-      \foreach \radio [evaluate=\radio] in{\VERSOR*2}
-      \foreach \angulo in {150}
-      {%
-        % Vectores unitario radiales
-        \draw[vr] (O) ++(\angulo:\radio) -- ++(\angulo:\VERSOR)
-        node[vtexto, rotate=\angulo-90] {$\xhat{r}$};
-        % Vectores unitarios angulares
-        \draw[vtheta] (O) ++(\angulo:\radio) -- ++(90+\angulo:\VERSOR)
-        node[vtexto, rotate=\angulo-90, \colorTred] {$\xhat{\theta}$};
-        % Posición
-        \fill[punto] (O) ++(\angulo:\radio) circle;
-      };
-      
-      % Vectores unitarios en r=3.0
-      \foreach \radio [evaluate=\radio] in{\VERSOR*3}
-      \foreach \angulo in {210, 330}
-      {%
-        % Vectores unitario radiales
-        \draw[vr] (O) ++(\angulo:\radio) -- ++(\angulo:\VERSOR)
-        node[vtexto, rotate=\angulo-90] {$\xhat{r}$};
-        % Vectores unitarios angulares
-        \draw[vtheta] (O) ++(\angulo:\radio) -- ++(90+\angulo:\VERSOR)
-        node[vtexto, rotate=\angulo-90, \colorTred] {$\xhat{\theta}$};
-        % Posición
-        \fill[punto] (O) ++(\angulo:\radio) circle;
-      };
-
-      % Vectores unitarios en r=4.0
-      \foreach \radio [evaluate=\radio] in{\VERSOR*4}
-      \foreach \angulo in {30,90,270}
-      {%
-        % Vectores unitario radiales
-        \draw[vr] (O) ++(\angulo:\radio) -- ++(\angulo:\VERSOR)
-        node[vtexto, rotate=\angulo-90] {$\xhat{r}$};
-        % Vectores unitarios angulares
-        \draw[vtheta] (O) ++(\angulo:\radio) -- ++(90+\angulo:\VERSOR)
-        node[vtexto, rotate=\angulo-90, \colorTred] {$\xhat{\theta}$};
-        % Posición
-        \fill[punto] (O) ++(\angulo:\radio) circle;
-      };      
-      
-      % Origen
-      \filldraw (O) circle [radius=.2pt];
     
-      % Fondo amarillo
-      \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
-      \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
-      \begin{scope}[on background layer]
-        \draw[background] (SW) rectangle (NE);
-      \end{scope}
-    \end{tikzpicture}
-    \caption{Coordenadas polares (curvilíneas), donde $r$ representa la distancia al
-      origen (polo) y $\theta$ es el ángulo que forma el vector de posición con el eje
-      $x$, aquí expresado en radianes. Además se muestran algunos vectores unidad
-      $\xhat{r}$ y $\xhat{\theta}$ en distintas posiciones del plano $\symbb{R}^2$.}
-    \label{fig:R2-coordenadas-polares}
-  \end{figure}
-  ¿Entonces, no se puede plantear un enfoque matricial para obtener la divergencia en
-  polares? Sí es posible, y lo veremos al final.
-  
-\item Enfoque basado en la variación de los vectores unitarios.
+    % DIBUJOS
+    % Coordenadas polares (Radios de los ángulos)
+    \foreach \angulo / \label
+    in {%
+      0/{0}, 30/{\pi/6}, 60/{\pi/3},
+      90/{\pi/2}, 120/{2\pi/3}, 150/{5\pi/6},
+      180/{\pi}, 210/{7\pi/6}, 240/{4\pi/3},
+      270/{3\pi/2}, 300/{5\pi/3}, 330/{11\pi/6}
+    }
+    {%
+      \draw[polares] (O) -- ++(\angulo:\LINEARADIAL)
+      node[pos=1.12] {\scriptsize $\label$};
+    };
+    \foreach \radio [evaluate=\radio] in {\VERSOR*1,\VERSOR*...,\VERSOR*\NUMCIRC}
+    {%
+      % Circunferencias
+      \draw[polares] (O) circle[radius=\radio cm];
+    };
+    
+    % Vectores unitarios en r=1.0
+    \foreach \radio [evaluate=\radio] in{\VERSOR*1}
+    \foreach \angulo in {30}
+    {%
+      % Vectores unitario radiales
+      \draw[vr] (O) ++(\angulo:\radio) -- ++(\angulo:\VERSOR)
+      node[vtexto, rotate=\angulo-90] {$\xhat{r}$};
+      % Vectores unitarios angulares
+      \draw[vtheta] (O) ++(\angulo:\radio) -- ++(90+\angulo:\VERSOR)
+      node[vtexto, rotate=\angulo-90, \colorTred] {$\xhat{\theta}$};
+      % Posición
+      \fill[punto] (O) ++(\angulo:\radio) circle;
+    };
+    
+    % Vectores unitarios en r=2.0
+    \foreach \radio [evaluate=\radio] in{\VERSOR*2}
+    \foreach \angulo in {150}
+    {%
+      % Vectores unitario radiales
+      \draw[vr] (O) ++(\angulo:\radio) -- ++(\angulo:\VERSOR)
+      node[vtexto, rotate=\angulo-90] {$\xhat{r}$};
+      % Vectores unitarios angulares
+      \draw[vtheta] (O) ++(\angulo:\radio) -- ++(90+\angulo:\VERSOR)
+      node[vtexto, rotate=\angulo-90, \colorTred] {$\xhat{\theta}$};
+      % Posición
+      \fill[punto] (O) ++(\angulo:\radio) circle;
+    };
+    
+    % Vectores unitarios en r=3.0
+    \foreach \radio [evaluate=\radio] in{\VERSOR*3}
+    \foreach \angulo in {210, 330}
+    {%
+      % Vectores unitario radiales
+      \draw[vr] (O) ++(\angulo:\radio) -- ++(\angulo:\VERSOR)
+      node[vtexto, rotate=\angulo-90] {$\xhat{r}$};
+      % Vectores unitarios angulares
+      \draw[vtheta] (O) ++(\angulo:\radio) -- ++(90+\angulo:\VERSOR)
+      node[vtexto, rotate=\angulo-90, \colorTred] {$\xhat{\theta}$};
+      % Posición
+      \fill[punto] (O) ++(\angulo:\radio) circle;
+    };
+    
+    % Vectores unitarios en r=4.0
+    \foreach \radio [evaluate=\radio] in{\VERSOR*4}
+    \foreach \angulo in {30,90,270}
+    {%
+      % Vectores unitario radiales
+      \draw[vr] (O) ++(\angulo:\radio) -- ++(\angulo:\VERSOR)
+      node[vtexto, rotate=\angulo-90] {$\xhat{r}$};
+      % Vectores unitarios angulares
+      \draw[vtheta] (O) ++(\angulo:\radio) -- ++(90+\angulo:\VERSOR)
+      node[vtexto, rotate=\angulo-90, \colorTred] {$\xhat{\theta}$};
+      % Posición
+      \fill[punto] (O) ++(\angulo:\radio) circle;
+    };      
+    
+    % Origen
+    \filldraw (O) circle [radius=.2pt];
+    
+    % Fondo amarillo
+    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
+    \begin{scope}[on background layer]
+      \draw[background] (SW) rectangle (NE);
+    \end{scope}
+  \end{tikzpicture}
+  \caption{Coordenadas polares (curvilíneas), donde $r$ representa la distancia al
+    origen (polo) y $\theta$ es el ángulo que forma el vector de posición con el eje
+    $x$, aquí expresado en radianes. Además se muestran algunos vectores unidad
+    $\xhat{r}$ y $\xhat{\theta}$ en distintas posiciones del plano $\symbb{R}^2$.}
+  \label{fig:R2-coordenadas-polares}
+\end{figure}
+¿Entonces, no se puede plantear un enfoque matricial para obtener la divergencia en
+polares? Sí es posible, y lo veremos al final.
 
+\begin{enumerate}
+\item Enfoque basado en la variación de los vectores unitarios.
+  
   Cuando el operador nabla actúa sobre un campo vectorial como
-  $\vvv{A} = A_r\xhat{r}+A_\theta\xhat{\theta}$, no solo actúa sobre las componentes $A_r$ y
-  $A_\theta$, sino también sobre los vectores unitarios $\xhat{r}$ y $\xhat{\theta}$,
+  $\vvv{A} = A_r\xhat{r}+A_\theta\xhat{\theta}$, no solo actúa sobre las componentes
+  $A_r$ y $A_\theta$, sino también sobre los vectores unitarios $\xhat{r}$ y
+  $\xhat{\theta}$,
   ver \eqref{eq:R2-versor-r} y \eqref{eq:R2-versor-theta}. Necesitaremos las derivadas
   de los versores de la base que se calcularon en \eqref{eq:R2-partial-versor_r-r},
   \eqref{eq:R2-partial-versor_theta-r}, \eqref{eq:R2-partial-versor_r-theta} y
@@ -1310,117 +1310,117 @@ sin que sirva de precedente, la primera que presentaré no es correcta:
   \item Al desplazarnos radialmente, los versores $\xhat{r}$ y $\xhat{\theta}$ no
     cambian, ver ángulo $\pi/6$\,\unit{\radian} en la figura
     \ref{fig:R2-coordenadas-polares}
-  \begin{equation}
-    \dfrac{\partial\xhat{r}}{\partial r} = \dfrac{\partial\xhat{\theta}}{\partial r}
-    = 0
-  \end{equation}
-\item Al desplazarnos infinitesimalmente en sentido antihorario, $\xhat{r}$ cambia
-  según $\xhat{\theta}$, ver por ejemplo, ángulos $\pi/6$\,\unit{\radian} y
+    \begin{equation}
+      \dfrac{\partial\xhat{r}}{\partial r} = \dfrac{\partial\xhat{\theta}}{\partial r}
+      = 0
+    \end{equation}
+  \item Al desplazarnos infinitesimalmente en sentido antihorario, $\xhat{r}$ cambia
+    según $\xhat{\theta}$, ver por ejemplo, ángulos $\pi/6$\,\unit{\radian} y
     $\pi/2$\,\unit{\radian} en la figura \ref{fig:R2-coordenadas-polares}
-  \begin{equation}
-    \dfrac{\partial\xhat{r}}{\partial\theta} = \xhat{\theta}
-  \end{equation}
-\item Al desplazarnos infinitesimalmente en sentido antihorario, $\xhat{\theta}$ cambia
-  según el sentido contrario a $\xhat{r}$, ver por ejemplo, ángulos
-  $\pi/6$\,\unit{\radian} y $\pi/2$\,\unit{\radian} en la
-  figura~\ref{fig:R2-coordenadas-polares}
-  \begin{equation}
-    \dfrac{\partial\xhat{\theta}}{\partial\theta} = -\xhat{r}
-  \end{equation}
-  También necesitamos el operador nabla en polares, que podemos obtenerlo a partir del
-  gradiente de un campo escalar en polares \eqref{eq:R2-gradiente_escalar}
-  \begin{equation}
-    \vvv{\nabla}
-    = \xhat{r}\,\dfrac{\partial}{\partial r}
-    + \xhat{\theta}\,\dfrac{1}{r}\dfrac{\partial}{\partial\theta}
-  \end{equation}
-\end{itemize}
-
-Con todo lo anterior, planteamos el cálculo de la divergencia de un campo vectorial en
-polares
-\[
-  \vvv{\nabla}\cdot\vvv{A}
-  =
+    \begin{equation}
+      \dfrac{\partial\xhat{r}}{\partial\theta} = \xhat{\theta}
+    \end{equation}
+  \item Al desplazarnos infinitesimalmente en sentido antihorario, $\xhat{\theta}$ cambia
+    según el sentido contrario a $\xhat{r}$, ver por ejemplo, ángulos
+    $\pi/6$\,\unit{\radian} y $\pi/2$\,\unit{\radian} en la
+    figura~\ref{fig:R2-coordenadas-polares}
+    \begin{equation}
+      \dfrac{\partial\xhat{\theta}}{\partial\theta} = -\xhat{r}
+    \end{equation}
+    También necesitamos el operador nabla en polares, que podemos obtenerlo a partir del
+    gradiente de un campo escalar en polares \eqref{eq:R2-gradiente_escalar}
+    \begin{equation}
+      \vvv{\nabla}
+      = \xhat{r}\,\dfrac{\partial}{\partial r}
+      + \xhat{\theta}\,\dfrac{1}{r}\dfrac{\partial}{\partial\theta}
+    \end{equation}
+  \end{itemize}
+  
+  Con todo lo anterior, planteamos el cálculo de la divergencia de un campo vectorial en
+  polares
+  \[
+    \vvv{\nabla}\cdot\vvv{A}
+    =
     \left(%
-    \xhat{r}\dfrac{\partial}{\partial r}
-    + \xhat{\theta}\dfrac{\partial}{\partial\theta}
+      \xhat{r}\dfrac{\partial}{\partial r}
+      + \xhat{\theta}\dfrac{\partial}{\partial\theta}
     \right)
     \cdot
     (A_r\xhat{r}+A_\theta\xhat{\theta})
-\]
-Obteniendo dos sumandos
-\begin{equation}\label{eq:R2-divergencia-sumandos}
-  \vvv{\nabla}\cdot\vvv{A}
-  = \xhat{r}\cdot
-  \dfrac{\partial}{\partial r}\left(A_r\xhat{r}+A_\theta\xhat{\theta}\right)
-  + \dfrac{1}{r}\xhat{\theta}\cdot\dfrac{\partial}{\partial\theta}
-  \left(A_r\xhat{r}+A_\theta\xhat{\theta}\right)
-\end{equation}
-
-Desarrollamos el primer sumando, teniendo en cuenta que se anulan, tanto las derivadas
-parciales con respecto a $r$, como el término que contiene a $\xhat{\theta}$, dado que al
-multiplicarlo por $\xhat{r}$ dará cero, ya que son ortogonales
-\begin{align*}
-  \xhat{r}\cdot
-  \dfrac{\partial}{\partial r}\left(A_r\xhat{r}+A_\theta\xhat{\theta}\right)
-  &=
+  \]
+  Obtenemos dos sumandos
+  \begin{equation}\label{eq:R2-divergencia-sumandos}
+    \vvv{\nabla}\cdot\vvv{A}
+    = \xhat{r}\cdot
+    \dfrac{\partial}{\partial r}\left(A_r\xhat{r}+A_\theta\xhat{\theta}\right)
+    + \dfrac{1}{r}\xhat{\theta}\cdot\dfrac{\partial}{\partial\theta}
+    \left(A_r\xhat{r}+A_\theta\xhat{\theta}\right)
+  \end{equation}
+  
+  Desarrollamos el primer sumando, teniendo en cuenta que se anulan, tanto las derivadas
+  parciales con respecto a $r$, como el término que contiene a $\xhat{\theta}$, dado que
+  al multiplicarlo por $\xhat{r}$ dará cero, ya que son ortogonales
+  \begin{align*}
     \xhat{r}\cdot
-    \left(%
-    \dfrac{\partial A_r}{\partial r}\xhat{r}
-    + \cancelout{A_r\dfrac{\partial\xhat{r}}{\partial r}}
-    + \cancelout{\dfrac{\partial A_\theta}{\partial r}\xhat{\theta}}
-    + \cancelout{A_\theta\dfrac{\partial\xhat{\theta}}{\partial r}}
-    \right)\\
-  &=
-    \dfrac{\partial A_r}{\partial r}\,\xhat{r}\cdot\xhat{r}
+    \dfrac{\partial}{\partial r}\left(A_r\xhat{r}+A_\theta\xhat{\theta}\right)
+    &=
+      \xhat{r}\cdot
+      \left(%
+      \dfrac{\partial A_r}{\partial r}\xhat{r}
+      + \cancelout{A_r\dfrac{\partial\xhat{r}}{\partial r}}
+      + \cancelout{\dfrac{\partial A_\theta}{\partial r}\xhat{\theta}}
+      + \cancelout{A_\theta\dfrac{\partial\xhat{\theta}}{\partial r}}
+      \right)\\
+    &=
+      \dfrac{\partial A_r}{\partial r}\,\xhat{r}\cdot\xhat{r}
+      = \dfrac{\partial A_r}{\partial r}
+  \end{align*}
+  Ahora desarrollamos el último sumando, sustituyendo el valor de las derivadas parciales
+  y teniendo en cuenta que $\xhat{r}$ y $\xhat{\theta}$ son ortogonales
+  \begin{align*}
+    \dfrac{1}{r}\xhat{\theta}\cdot\dfrac{\partial}{\partial\theta}
+    \left(A_r\xhat{r}+A_\theta\xhat{\theta}\right)
+    &=
+      \dfrac{1}{r}\xhat{\theta}\cdot
+      \left(%
+      \cancelout{\dfrac{\partial A_r}{\partial\theta}\xhat{r}}
+      + A_r\dfrac{\partial\xhat{r}}{\partial\theta}
+      + \dfrac{\partial A_\theta}{\partial\theta}\xhat{\theta}
+      + A_\theta\dfrac{\partial\xhat{\theta}}{\partial\theta}
+      \right)\\
+    &= 
+      \dfrac{1}{r}\xhat{\theta}\cdot
+      \left(%
+      A_r\xhat{\theta}
+      + \dfrac{\partial A_\theta}{\partial\theta}\xhat{\theta}
+      + \cancelout{A_\theta\,(-\xhat{r})}
+      \right)\\
+    &=
+      \dfrac{1}{r}
+      \left(%
+      A_r + \dfrac{\partial A_\theta}{\partial\theta}
+      \right)
+      \xhat{\theta}\cdot\xhat{\theta}
+      = \dfrac{1}{r}\dfrac{\partial A_\theta}{\partial\theta}
+      + \dfrac{1}{r}A_r
+  \end{align*}
+  
+  Sustituimos estos resultados en los dos sumandos de la divergencia
+  \eqref{eq:R2-divergencia-sumandos}
+  \[
+    \vvv{\nabla}\cdot\vvv{A}
     = \dfrac{\partial A_r}{\partial r}
-\end{align*}
-Ahora desarrollamos el último sumando, sustituyendo el valor de las derivadas parciales
-y teniendo en cuenta que $\xhat{r}$ y $\xhat{\theta}$ son ortogonales
-\begin{align*}
-  \dfrac{1}{r}\xhat{\theta}\cdot\dfrac{\partial}{\partial\theta}
-  \left(A_r\xhat{r}+A_\theta\xhat{\theta}\right)
-  &=
-    \dfrac{1}{r}\xhat{\theta}\cdot
-    \left(%
-    \cancelout{\dfrac{\partial A_r}{\partial\theta}\xhat{r}}
-    + A_r\dfrac{\partial\xhat{r}}{\partial\theta}
-    + \dfrac{\partial A_\theta}{\partial\theta}\xhat{\theta}
-    + A_\theta\dfrac{\partial\xhat{\theta}}{\partial\theta}
-    \right)\\
-  &= 
-    \dfrac{1}{r}\xhat{\theta}\cdot
-    \left(%
-    A_r\xhat{\theta}
-    + \dfrac{\partial A_\theta}{\partial\theta}\xhat{\theta}
-    + \cancelout{A_\theta\,(-\xhat{r})}
-    \right)\\
-  &=
-    \dfrac{1}{r}
-    \left(%
-    A_r + \dfrac{\partial A_\theta}{\partial\theta}
-    \right)
-    \xhat{\theta}\cdot\xhat{\theta}
-    = \dfrac{1}{r}\dfrac{\partial A_\theta}{\partial\theta}
-    + \dfrac{1}{r}A_r
-\end{align*}
-
-Sustituimos estos resultados en los dos sumandos de la divergencia
-\eqref{eq:R2-divergencia-sumandos}
-\[
-  \vvv{\nabla}\cdot\vvv{A}
-  = \dfrac{\partial A_r}{\partial r}
-  + \dfrac{1}{r} A_r
-  + \dfrac{1}{r} \dfrac{\partial A_\theta}{\partial\theta}
-\]
-
-Agrupando términos
-\begin{equation}
-  \vvv{\nabla}\cdot\vvv{A}
-  = \dfrac{1}{r}\dfrac{\partial}{\partial r}(rA_r)
-  + \dfrac{1}{r}\dfrac{\partial A_\theta}{\partial\theta}
-\end{equation}
-
+    + \dfrac{1}{r} A_r
+    + \dfrac{1}{r} \dfrac{\partial A_\theta}{\partial\theta}
+  \]
+  
+  Agrupando términos
+  \begin{equation}
+    \vvv{\nabla}\cdot\vvv{A}
+    = \dfrac{1}{r}\dfrac{\partial}{\partial r}(rA_r)
+    + \dfrac{1}{r}\dfrac{\partial A_\theta}{\partial\theta}
+  \end{equation}
+  
 \end{enumerate}
 
 
