@@ -1114,7 +1114,7 @@ Cálculos preliminares. Se utilizan las expresiones \eqref{eq:R2-x-rtheta},
 El gradiente en polares se obtiene sustituyendo las dos expresiones anteriores en
 \eqref{eq:R2-gradiente-cartesianas} y sumando. A continuación presentamos el resultado
 {\small
-  \begin{equation}\label{eq:R2-gradiente_escalar}
+  \begin{equation}\label{eq:R2-gradiente-polares}
     \vvv{\nabla}\cdot f
     =
       \dfrac{\partial f}{\partial x}\,\uvec{\i}
@@ -1329,7 +1329,7 @@ polares? Sí es posible, y lo veremos al final.
     \end{equation}
     
   \item También necesitamos el operador nabla en polares, que podemos obtenerlo a
-    partir del gradiente de un campo escalar en polares \eqref{eq:R2-gradiente_escalar}
+    partir del gradiente de un campo escalar en polares \eqref{eq:R2-gradiente-polares}
     \begin{equation}
       \vvv{\nabla}
       = \xhat{r}\,\dfrac{\partial}{\partial r}
@@ -1416,7 +1416,7 @@ polares? Sí es posible, y lo veremos al final.
   \]
   
   Agrupando términos obtenemos la divergencia en polares
-  \begin{equation}
+  \begin{equation}\label{eq:R2-divergencia-polares}
     \vvv{\nabla}\cdot\vvv{A}
     = \dfrac{1}{r}\dfrac{\partial}{\partial r}(rA_r)
     + \dfrac{1}{r}\dfrac{\partial A_\theta}{\partial\theta}
