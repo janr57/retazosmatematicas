@@ -1334,56 +1334,93 @@ sin que sirva de precedente, la primera que presentaré no es correcta:
     = \xhat{r}\,\dfrac{\partial}{\partial r}
     + \xhat{\theta}\,\dfrac{1}{r}\dfrac{\partial}{\partial\theta}
   \end{equation}
+\end{itemize}
 
-  Con todo lo anterior, pasamos a calcular la divergencia de un campo vectorial en
-  polares
-  {\scriptsize
-  \begin{align*}
-    \vvv{\nabla}\cdot\vvv{A}
-    &=
-      \left(%
-      \xhat{r}\dfrac{\partial}{\partial r} + \xhat{\theta}\dfrac{\partial}{\partial\theta}
-      \right)
-      \cdot
-      (A_r\xhat{r}+A_\theta\xhat{\theta})\\
-      &= \xhat{r}\cdot
-      \dfrac{\partial}{\partial r}\left(A_r\xhat{r}+A_\theta\xhat{\theta}\right)
-      + \dfrac{1}{r}\xhat{\theta}\cdot\dfrac{\partial}{\partial\theta}
-        \left(A_r\xhat{r}+A_\theta\xhat{\theta}\right)\\
-    &=
-      \xhat{r}\cdot
-      \left(%
-      \dfrac{\partial A_r}{\partial r}\xhat{r}
-      + \cancelout{A_r\dfrac{\partial\xhat{r}}{\partial r}}
-      + \dfrac{\partial A_\theta}{\partial r}\xhat{\theta}
-      + \cancelout{A_\theta\dfrac{\partial\xhat{\theta}}{\partial r}}
-      \right)
-      + \dfrac{1}{r}\xhat{\theta}\cdot
-      \left(%
-      \dfrac{\partial A_r}{\partial\theta}\xhat{r}
-      + A_r\dfrac{\partial\xhat{r}}{\partial\theta}\xhat{\theta}
-      + \dfrac{\partial A_\theta}{\partial\theta}\xhat{\theta}
-      + A_\theta\dfrac{\partial\xhat{\theta}}{\partial\theta}
-      \right)
-  \end{align*}
-}
-{\footnotesize
-\begin{align*}
+Con todo lo anterior, planteamos el cálculo de la divergencia de un campo vectorial en
+polares
+\[
   \vvv{\nabla}\cdot\vvv{A}
+  =
+    \left(%
+    \xhat{r}\dfrac{\partial}{\partial r}
+    + \xhat{\theta}\dfrac{\partial}{\partial\theta}
+    \right)
+    \cdot
+    (A_r\xhat{r}+A_\theta\xhat{\theta})
+\]
+Obteniendo dos sumandos
+\begin{equation}\label{eq:R2-divergencia-sumandos}
+  \vvv{\nabla}\cdot\vvv{A}
+  = \xhat{r}\cdot
+  \dfrac{\partial}{\partial r}\left(A_r\xhat{r}+A_\theta\xhat{\theta}\right)
+  + \dfrac{1}{r}\xhat{\theta}\cdot\dfrac{\partial}{\partial\theta}
+  \left(A_r\xhat{r}+A_\theta\xhat{\theta}\right)
+\end{equation}
+
+Desarrollamos el primer sumando, teniendo en cuenta que se anulan, tanto las derivadas
+parciales con respecto a $r$, como el término que contiene a $\xhat{\theta}$, dado que al
+multiplicarlo por $\xhat{r}$ dará cero, ya que son ortogonales
+\begin{align*}
+  \xhat{r}\cdot
+  \dfrac{\partial}{\partial r}\left(A_r\xhat{r}+A_\theta\xhat{\theta}\right)
+  &=
+    \xhat{r}\cdot
+    \left(%
+    \dfrac{\partial A_r}{\partial r}\xhat{r}
+    + \cancelout{A_r\dfrac{\partial\xhat{r}}{\partial r}}
+    + \cancelout{\dfrac{\partial A_\theta}{\partial r}\xhat{\theta}}
+    + \cancelout{A_\theta\dfrac{\partial\xhat{\theta}}{\partial r}}
+    \right)\\
   &=
     \dfrac{\partial A_r}{\partial r}\,\xhat{r}\cdot\xhat{r}
-    + \dfrac{\partial A_\theta}{\partial r}\,\xhat{r}\cdot\xhat{\theta}
-    + \dfrac{1}{r}
-    \left(%
-    \dfrac{\partial A_r}{\partial\theta}\xhat{\theta}\cdot\xhat{r}
-    + A_r \theta
-    + \dfrac{\partial A_r}{\partial\theta}\xhat{\theta}\cdot\xhat{r}
-    \right)
+    = \dfrac{\partial A_r}{\partial r}
 \end{align*}
-}
+Ahora desarrollamos el último sumando, sustituyendo el valor de las derivadas parciales
+y teniendo en cuenta que $\xhat{r}$ y $\xhat{\theta}$ son ortogonales
+\begin{align*}
+  \dfrac{1}{r}\xhat{\theta}\cdot\dfrac{\partial}{\partial\theta}
+  \left(A_r\xhat{r}+A_\theta\xhat{\theta}\right)
+  &=
+    \dfrac{1}{r}\xhat{\theta}\cdot
+    \left(%
+    \cancelout{\dfrac{\partial A_r}{\partial\theta}\xhat{r}}
+    + A_r\dfrac{\partial\xhat{r}}{\partial\theta}
+    + \dfrac{\partial A_\theta}{\partial\theta}\xhat{\theta}
+    + A_\theta\dfrac{\partial\xhat{\theta}}{\partial\theta}
+    \right)\\
+  &= 
+    \dfrac{1}{r}\xhat{\theta}\cdot
+    \left(%
+    A_r\xhat{\theta}
+    + \dfrac{\partial A_\theta}{\partial\theta}\xhat{\theta}
+    + \cancelout{A_\theta\,(-\xhat{r})}
+    \right)\\
+  &=
+    \dfrac{1}{r}
+    \left(%
+    A_r + \dfrac{\partial A_\theta}{\partial\theta}
+    \right)
+    \xhat{\theta}\cdot\xhat{\theta}
+    = \dfrac{1}{r}\dfrac{\partial A_\theta}{\partial\theta}
+    + \dfrac{1}{r}A_r
+\end{align*}
 
-\end{itemize}
-  
+Sustituimos estos resultados en los dos sumandos de la divergencia
+\eqref{eq:R2-divergencia-sumandos}
+\[
+  \vvv{\nabla}\cdot\vvv{A}
+  = \dfrac{\partial A_r}{\partial r}
+  + \dfrac{1}{r} A_r
+  + \dfrac{1}{r} \dfrac{\partial A_\theta}{\partial\theta}
+\]
+
+Agrupando términos
+\begin{equation}
+  \vvv{\nabla}\cdot\vvv{A}
+  = \dfrac{1}{r}\dfrac{\partial}{\partial r}(rA_r)
+  + \dfrac{1}{r}\dfrac{\partial A_\theta}{\partial\theta}
+\end{equation}
+
 \end{enumerate}
 
 
