@@ -1422,8 +1422,56 @@ polares? Sí es posible, y lo veremos al final.
     + \dfrac{1}{r}\dfrac{\partial A_\theta}{\partial\theta}
   \end{equation}
 
-\item Cálculo utilizando la métrica 
-  
+\item Cálculo utilizando la métrica y válido en polares y en espacios curvos
+  \begin{equation}
+    \vvv{\nabla}\cdot\vvv{A}
+    = \dfrac{1}{\sqrt{g}}\,\partial_i\big(\sqrt{g} A^i\big)
+  \end{equation}
+  Aplicando la fórmula, sabiendo que la raíz cuadrada del valor absoluto de la métrica
+  es $g=r$ y que $r$ es independiente de $\theta$
+  \begin{align*}
+    \vvv{\nabla}\cdot\vvv{A}
+    &=
+      \dfrac{1}{r}\,\left[%
+      \partial_r\!\left(rA^r\right) + \partial_\theta\!\left(rA^\theta\right)
+      \right]
+    =
+      \dfrac{1}{r}\,\left[%
+      \partial_r\!\left(rA^r\right) + r\,\partial_\theta A^\theta
+      \right]      
+  \end{align*}
+  donde $A^r$ y $A^\theta$ son las componentes contravariantes del vector. En física
+  normalmente se usan las componentes covariantes $A_r$ y $A_\theta$.
+
+  Calculamos la inversa del tensor métrico, que como es diagonal, la inversa de cada
+  elemento es el recíproco de los elementos diagonales
+  \begin{equation}
+    \mmm{g} = \begin{pmatrix}1 & 0\\ 0 & 1/r^2 \end{pmatrix}
+  \end{equation}
+  Para bajar el índice, multiplicamos por la inversa del  tensor métrico $A^i = g^{ij}
+  A_j$.
+  Así, desarrollando el sumatorio
+  \begin{align*}
+    A^r
+    &=
+      g^{rr}A_r + g^{r\theta}A_\theta = 1\cdot A_r + 0\cdot A_\theta = A_r\\
+    A^\theta
+    &=
+      g^{\theta r}A_r + g^{\theta\theta}A_\theta = 0\cdot A_r + \dfrac{1}{r^2} A_\theta
+      = \dfrac{1}{r^2}A_\theta
+  \end{align*}
+  Sustituimos en
+  \begin{align*}
+    \vvv{\nabla}\cdot\vvv{A}
+    = \dfrac{1}{r}\left[%
+    \dfrac{\partial}{\partial r}\!\left(r\,A_r\right)
+    + r\, \partial_\theta\left(\dfrac{1}{r^2}\, A_\theta\right)
+    \right]
+    = \dfrac{1}{r}\left[%
+    \dfrac{\partial}{\partial r}\!\left(r\,A_r\right)
+    + \dfrac{1}{r}\, \partial_\theta A_\theta
+    \right]
+  \end{align*}
   
 \end{enumerate}
 
