@@ -110,17 +110,25 @@ cartesianas
       \draw[background] (SW) rectangle (NE);
     \end{scope}
   \end{tikzpicture}
-  \caption{Coordenadas cartesianas de un punto $P$ del plano y vectores unitarios.}
+  \caption{Coordenadas cartesianas de un punto $P$ del plano y vectores unitarios.
+    De esta figura, comprobamos que $\vvv{r} = x\uvec{i} + y\uvec{j}$.}
   \label{fig:R2-coordenadas-cartesianas-R2}
 \end{figure}
 
-\subsection{Base, vectores unitarios y su producto escalar}
-\subsubsection{Base y vectores unitarios}
+\subsection{Base natural, vectores unitarios y su producto escalar}
+\subsubsection{Base natural y vectores unitarios}
 Si derivamos el vector de posición anterior \eqref{eq:R2-r-cartesianas}, con respecto a
 cada una de las coordenadas, obtenemos los vectores de una  posible base en estas
 coordenadas. Estos vectores llevan información concreta acerca de cómo varia la posición
 en el espacio cuando variamos cada una de las coordenadas ---tal y como sugieren las
 derivadas---, lo que será importante para obtener la métrica en estas coordenadas.
+
+Como
+\begin{equation}
+  \vvv{r} = x\uvec{\i} + y\uvec{\j}
+\end{equation}
+
+Entonces
 \begin{subequations}
   \begin{align}\label{eq:R2-ex}
     \vvv{e}_x
@@ -133,17 +141,26 @@ derivadas---, lo que será importante para obtener la métrica en estas coordena
       = \uvec{\j}
   \end{align}
 \end{subequations}
-Estos vectores de la base son importantes para calcular la métrica en cartesianas
+La base así obtenida la denominamos \emph{base natural}. Estos son importantes para
+calcular la métrica en cartesianas
 \begin{equation}\label{eq:R2-basefundamental}
   B=\set{\vvv{e}_x, \vvv{e}_y} = \set{\uvec{\i},\, \uvec{\j}}
 \end{equation}
-Hacemos notar que los vectores de esta base son unitarios tradicionales en este sistema
-de coordenadas, $\uvec{\i}$ y $\uvec{\j}$.
+Hacemos notar que los vectores de esta base natural, en este sistema de coordenadas, son
+los vectores unitarios tradicionales en este sistemas, $\uvec{\i}$ y $\uvec{\j}$.
+De aquí se puede inferir que la métrica en coordenadas cartesianas rectangulares en
+$\symbb{R}^2$ se representará como una matriz unidad (en el apartado
+\ref{ssect:R2-metrica-factores_escala} se calculará con detalle).
 
-\subsubsection{Producto escalar de los vectores de la base}
+\subsection{Métrica y factores de escala}
+\label{ssect:R2-metrica-factores_escala}
+
+\subsubsection{Producto escalar de los vectores de la base natural}
 Los vectores de la base fundamental son vectores unitarios.
 La base normalizada en coordenadas cartesianas en este espacio está formada por los vectores $\uvec{\i}$ y $\uvec{\j}$, en los ejes $x$ e $y$, respectivamente.
-A continuación resumimos el valor de los productos escalares entre ellos
+A continuación resumimos el valor de los productos escalares entre ellos, tal y como
+aprendimos en cálculo vectorial fundamental en coordenadas cartesianas o en física
+elemental
 \begin{subequations}
   \begin{align}
     \label{eq:R2-ii-producto-escalar}
@@ -161,7 +178,7 @@ A continuación resumimos el valor de los productos escalares entre ellos
   \end{align}
 \end{subequations}
 
-\subsection{Métrica y factores de escala}
+\subsubsection{Métrica y factores de escala}
 La métrica en cartesianas se calcula utilizando los vectores de la base calculada en
 \eqref{eq:R2-ex} y \eqref{eq:R2-ey}. Los productos escalares se calcularon en
 \eqref{eq:R2-ii-producto-escalar}, \eqref{eq:R2-ij-producto-escalar},
@@ -198,14 +215,15 @@ que nos ocupa. En coordenadas cartesianas estándar serían
 Fijémonos en la métrica \eqref{eq:R2-metrica-cartesianas}
 \begin{itemize}
 \item Los elementos no diagonales son nulos. Esto se interpreta como que los vectores
-  unitarios $\uvec{\i}$ y $\uvec{\j}$ son independientes, esto es, son ortogonales.
-  Así, un cambio en una coordenada no afecta a la otra. Así, si nos desplazamos una
-  distancia cualquiera en el eje $x$, no habremos recorrido ninguna distancia en el eje
-  $y$, y viceversa, por lo que $h_{xy}=h_{yx}=0$.
+  $\vvv{e}_x$ y $\vvv{e}_y$ son independientes, esto es, son ortogonales.
+  Esto implica que un cambio en una coordenada no afecta a la otra. Así, si nos
+  desplazamos una distancia cualquiera en el eje $x$, no habremos recorrido ninguna
+  distancia en el eje $y$, y viceversa, por lo que $h_{xy}=h_{yx}=0$.
 \item Los elementos diagonales valen la unidad. Cada elemento diagonal de la métrica que
   vale la unidad implica que un cambio en la coordenada respectiva implica una distancia
   recorrida de una unidad en el espacio. En realidad, el espacio recorrido es el factor
-  de escala correspondiente, pero en este caso da lo mismo
+  de escala correspondiente (la raíz cuadrada del elemento diagonal correspondiente),
+  pero en este caso da lo mismo
   \begin{subequations}
     \begin{align}
       \Delta s &= h_x \Delta x = \sqrt{1}\, \Delta x = \Delta x\\
@@ -214,12 +232,37 @@ Fijémonos en la métrica \eqref{eq:R2-metrica-cartesianas}
   \end{subequations}
   Para adquirir algo de intuición, imagina que cambiamos la posición en el eje $x$
   cualquier distancia, digamos un metro, es fácil entender que en el espacio nos habremos
-  desplazado la misma distancia. Por tanto es lógico razonar que el factor de escala
+  desplazado esa misma distancia. Por tanto es lógico razonar que el factor de escala
   $h_x$ vale 1. Lo mismo podemos decir para el factor de escala en el eje $y$, $h_y=1$.
 \end{itemize}
 
+\subsubsection{Revisión del producto escalar}
+El concepto de producto escalar se puede ampliar mediante cálculo matricial, utilizando
+la métrica (en otros sistemas de coordenadas veremos que esto tiene importancia, mientras
+que en cartesianas se puede obviar)
+\[
+  \vvv{v}\cdot\vvv{w}
+  =
+  \vvv{v}^\transp \mmm{g} \vvv{w}
+  =
+  \begin{pmatrix}
+    v_x &  v_y
+  \end{pmatrix}
+  \begin{pmatrix}
+    1 & 0\\
+    0 & 1
+  \end{pmatrix}
+  \begin{pmatrix}
+    w_x\\
+    w_y
+    \end{pmatrix}
+    =
+    v_xw_x + v_y w_y
+\]
+
 \subsection{Gradiente, divergencia y laplaciana}
-Presentamos un resumen de estas operaciones
+Presentamos un resumen de estas operaciones, tal y como se estudia en un curso básico de
+cálculo
 \begin{itemize}
 \item El gradiente de un campo escalar $\phi(x,y)$ es un vector
 \begin{equation}
@@ -317,10 +360,11 @@ Este elemento se relaciona trivialmente con el jacobiano de la
 
 
 \section{Coordenadas polares planas}
-En este sistema, se utilizan dos coordenadas, $r$ y $\theta$. La primera coordenada es la
-distancia entre el origen de coordenadas y un punto del espacio, y la segunda es el
-ángulo que forma el eje de abcisas con la línea que une el origen de coordenadas con el
-punto, ver figura \ref{fig:R2-coordenadas-R2}.
+Aquí se ponen las cosas algo más interesantes. En este sistema, se utilizan dos
+coordenadas, $r$ y $\theta$. La primera coordenada es la distancia entre el origen de
+coordenadas y un punto del espacio, y la segunda es el ángulo que forma el eje de
+abcisas con la línea que une el origen de coordenadas con el punto, ver figura
+\ref{fig:R2-coordenadas-R2}.
 
 \begin{figure}[ht]
   \centering
