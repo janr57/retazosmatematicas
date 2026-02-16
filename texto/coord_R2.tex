@@ -70,7 +70,7 @@ Vector de posición de cualquier punto del espacio $\symbb{R}^2$ en coordenadas 
     eje/.style={->},
     proyeccion/.style={black!60, densely dotted},
     vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt,\colorV},
-    versor/.style={-{Latex[round, width=4pt, length=8pt]}, line width=1pt, \colorVred},
+    versor/.style={-{Latex[round, width=4pt, length=6pt]}, line width=1pt, \colorVred},
     textooriginal/.style={\colorTorig},
     pcirculo/.style={fill=\colorPorig, draw=black},
     angulogirado/.style={fill=\colorAngGreen, draw=\colorGirodos},
@@ -94,7 +94,7 @@ Vector de posición de cualquier punto del espacio $\symbb{R}^2$ en coordenadas 
     % Eje y
     \path[save path=\ejey] (yini) -- coordinate[pos=0.55] (ytexto) (0, \YPLONG cm)
     coordinate (yfin);
-    p% Versores i y j
+    % Versores i y j
     \path[save path=\i] (O) -- coordinate[pos=0.5] (itexto) (ifin);
     \path[save path=\j] (O) -- coordinate[pos=0.45] (jtexto) (jfin);    
     % Vector
@@ -119,9 +119,9 @@ Vector de posición de cualquier punto del espacio $\symbb{R}^2$ en coordenadas 
     \node[left] at (ytexto) {$y$};
     % Versores
     \draw[versor, use path=\i];
-    \node[below, \colorTred] at (itexto) {\footnotesize $\uvec{\i}$};
+    \node[below, \colorTred] at (itexto) {\scriptsize $\uvec{\i}$};
     \draw[versor, use path=\j];
-    \node[left, \colorTred] at (jtexto) {\footnotesize $\uvec{\j}$};
+    \node[left, \colorTred] at (jtexto) {\scriptsize $\uvec{\j}$};
     % Vector y punto  P
     \draw[vector, use path=\vector];
     \node[above left=-3pt and -1pt] at (pmid) {$\vvv{r}$};
@@ -524,6 +524,331 @@ Este elemento se relaciona trivialmente con el jacobiano de la
 \]
 
 \section{Coordenadas cartesianas oblícuas}
+
+\begin{figure}[ht]
+  \centering
+  % Escala
+  \def\scl{1.00}
+  % 
+  \pgfmathsetmacro{\EJESCARTLONG}{2.3}
+  \pgfmathsetmacro{\EJEOBLICLONG}{2.0}
+  % Eje x
+  \pgfmathsetmacro{\XLONG}{\EJESCARTLONG}
+    % Eje y
+    \pgfmathsetmacro{\YLONG}{\EJESCARTLONG}
+    % Eje xtilde
+    \pgfmathsetmacro{\XTILDEANG}{0}
+    \pgfmathsetmacro{\XTILDELONG}{\EJESCARTLONG}    
+    % Eje ytilde
+    \pgfmathsetmacro{\YTILDEANG}{60}
+    \pgfmathsetmacro{\YTILDELONG}{\EJESCARTLONG}
+    % Versores
+    \pgfmathsetmacro{\VTILDEMOD}{1.4}
+    \pgfmathsetmacro{\VXTILDEANG}{0}
+    \pgfmathsetmacro{\VYTILDEANG}{\YTILDEANG}   
+    % Vector P
+    \pgfmathsetmacro{\PMOD}{2.5}
+    \pgfmathsetmacro{\PANG}{40}
+    % Fondo
+    \pgfmathsetmacro{\HORZ}{0.25}
+    \pgfmathsetmacro{\VERT}{0.25}
+    % 
+    \centering
+    \begin{tikzpicture}[%
+      scale=\scl,
+      every node/.style={black,font=\small},
+      ejecart/.style={->, black!30},
+      ejeoblic/.style={->, black},
+      proyeccion/.style={black!60, densely dotted},
+      %longitud/.style={line width=.5pt,\colorV},
+      texto/.style={black},
+      textoapagado/.style={\colorTorig},
+      vtilde/.style={%
+        -{Latex[round,width=4pt,length=6pt]}, line width=1pt, \colorVred},
+      pcirculo/.style={fill=\colorPorig, draw=black},
+      angulo/.style={draw=\colorGirodos},
+      background/.style={%
+        line width=\bgborderwidth,
+        draw=\bgbordercolor,
+        fill=\bgcolor,
+      },
+      ]
+      % COORDENADAS
+      % Origen
+      \coordinate (O) at (0,0);
+      % Eje x
+      \path[save path=\ejex] (O) -- (\XLONG cm, 0) coordinate (xfin);
+      % Eje y
+      \path[save path=\ejey] (O) -- (0, \YLONG cm) coordinate (yfin);
+      % Eje xtilde
+      \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
+      coordinate (xtildefin);
+      % Eje ytilde
+      \path[save path=\ejeytilde] (O) -- ++(\YTILDEANG:\YTILDELONG cm)
+      coordinate (ytildefin);
+      % Versores tilde
+      \path[save path=\vxtilde] (O) -- coordinate[pos=1.0] (vxtildetxt)
+      ++(\VXTILDEANG:\VTILDEMOD cm);
+      \path[save path=\vytilde] (O) -- coordinate[pos=1.1] (vytildetxt)
+      ++(\VYTILDEANG:\VTILDEMOD cm) coordinate (e2fin);
+      % Vector
+      %\path[save path=\r] (O) -- coordinate[pos=0.5] (pmid) (\PANG:\PMOD cm)
+      %coordinate (P);
+      % Proyección de P en los ejes
+      \path[save path=\proyx] (e2fin) |- (xfin);
+      \path[save path=\proyy] (e2fin) -| (yfin);
+
+      % DIBUJOS
+      % Ángulo theta
+      \path (xfin) -- (O) -- (ytildefin) pic
+      [angulo, "\footnotesize $\alpha$",angle radius=12pt, angle eccentricity=0.68]
+      {angle = xfin--O--ytildefin};
+      % Proyección de etilde2 en los ejes
+      \draw[proyeccion, use path=\proyx];
+      \draw[proyeccion, use path=\proyy];
+      % Ejes
+      % x
+      \draw[ejecart, use path=\ejex];
+      \node[textoapagado, below] at (xfin) {$x,\color{black}{\tilde{x}^1}$};
+      %\node[below] at (xtexto) {$r\cos\theta$};
+      % y
+      \draw[ejecart, use path=\ejey];
+      \node[above, textoapagado] at (yfin) {$y$};
+      % xtilde
+      \draw[ejeoblic, use path=\ejextilde];
+      %\node[below, texto] at (xtildefin) {$\tilde{x}^1$};
+      % ytilde
+      \draw[ejeoblic, use path=\ejeytilde];
+      \node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{x}^2$};
+      % \node[rotate=90, left=8pt] at (ytexto) {$r\sin\theta$};
+      % Versores
+      \draw[vtilde, use path=\vxtilde];
+      \node[\colorTred, below] at (vxtildetxt) {\footnotesize $\xtilde{e}_1$};
+      \draw[vtilde, use path=\vytilde];
+      \node[\colorTred,left=2pt] at (vytildetxt) {\footnotesize $\xtilde{e}_2$};
+%      % Coordenada r y punto  P
+%      \draw[longitud, use path=\r];
+%      \node[above left=-3pt and -1pt] at (pmid) {$r$};
+%      \filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
+%      \node[above] at (P) {$P$};
+
+      % Origen
+      \filldraw (O) circle [radius=.2pt];
+      
+      % Fondo amarillo
+      \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+      \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
+      \begin{scope}[on background layer]
+        \draw[background] (SW) rectangle (NE);
+      \end{scope}
+    \end{tikzpicture}
+    \caption{Sistema de coordenadas cartesianas oblícuas que forman un ángulo $\alpha$.
+      También se representan los ejes cartesianos tradicionales como referencia.
+      Por último se aprecian en rojo los vectores unitarios del sistema oblícuo.}
+  %\label{fig:R2-coordenadas-R2}
+\end{figure}
+
+%\begin{figure}[ht]
+%  \centering
+%  \begin{minipage}{0.40\linewidth}
+%    % Escala
+%    \def\scl{1.00}
+%    % 
+%    \pgfmathsetmacro{\EJESCARTLONG}{2.3}
+%    \pgfmathsetmacro{\EJEOBLICLONG}{2.0}
+%    % Eje x
+%    \pgfmathsetmacro{\XLONG}{\EJESCARTLONG}
+%    % Eje y
+%    \pgfmathsetmacro{\YLONG}{\EJESCARTLONG}
+%    % Eje xtilde
+%    \pgfmathsetmacro{\XTILDEANG}{0}
+%    \pgfmathsetmacro{\XTILDELONG}{\EJESCARTLONG}    
+%    % Eje ytilde
+%    \pgfmathsetmacro{\YTILDEANG}{70}
+%    \pgfmathsetmacro{\YTILDELONG}{\EJESCARTLONG}
+%    % Vector P
+%    \pgfmathsetmacro{\PMOD}{2.5}
+%    \pgfmathsetmacro{\PANG}{40}
+%    % Fondo
+%    \pgfmathsetmacro{\HORZ}{0.25}
+%    \pgfmathsetmacro{\VERT}{0.25}
+%    % 
+%    \centering
+%    \begin{tikzpicture}[%
+%      scale=\scl,
+%      every node/.style={black,font=\small},
+%      ejecart/.style={->, black!30},
+%      ejeoblic/.style={->, black},
+%      proyeccion/.style={black!60, densely dotted},
+%      %longitud/.style={line width=.5pt,\colorV},
+%      texto/.style={black!80},
+%      textoapagado/.style={\colorTorig},
+%      pcirculo/.style={fill=\colorPorig, draw=black},
+%      %angulogirado/.style={fill=\colorAngGreen, draw=\colorGirodos},
+%      background/.style={%
+%        line width=\bgborderwidth,
+%        draw=\bgbordercolor,
+%        fill=\bgcolor,
+%      },
+%      ]
+%      % COORDENADAS
+%      % Origen
+%      \coordinate (O) at (0,0);
+%      % Eje x
+%      \path[save path=\ejex] (O) -- (\XLONG cm, 0) coordinate (xfin);
+%      % Eje y
+%      \path[save path=\ejey] (O) -- (0, \YLONG cm) coordinate (yfin);
+%      % Eje xtilde
+%      \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
+%      coordinate (xtildefin);
+%      % Eje ytilde
+%      \path[save path=\ejeytilde] (O) -- ++(\YTILDEANG:\YTILDELONG cm)
+%      coordinate (ytildefin);
+%      % Vector
+%      %\path[save path=\r] (O) -- coordinate[pos=0.5] (pmid) (\PANG:\PMOD cm)
+%      %coordinate (P);
+%      % Proyección de P en los ejes
+%      \path[save path=\proyx] (P) |- (xfin);
+%      \path[save path=\proyy] (P) -| (yfin);
+%
+%      % DIBUJOS
+%%      % Ángulo theta
+%%      \path (xfin) -- (O) -- (P) pic
+%%      [-{Latex[width=2.5pt,length=3.7pt]},angulogirado,
+%%      "\footnotesize $\theta$",angle radius=20pt, angle eccentricity=0.68]
+%%      {angle = xfin--O--P};
+%%      % Proyección de P en los ejes
+%%      \draw[proyeccion, use path=\proyx];
+%%      \draw[proyeccion, use path=\proyy];
+%      % Ejes
+%      % x
+%      \draw[ejecart, use path=\ejex];
+%      \node[textoapagado, right] at (xfin) {$x$};
+%      %\node[below] at (xtexto) {$r\cos\theta$};
+%      % y
+%      \draw[ejecart, use path=\ejey];
+%      \node[above, textoapagado] at (yfin) {$y$};
+%      % xtilde
+%      \draw[ejeoblic, use path=\ejextilde];
+%      \node[below, texto] at (xtildefin) {$\tilde{x}^1$};
+%      % ytilde
+%      \draw[ejeoblic, use path=\ejeytilde];
+%      \node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{x}^2$};
+%      %\node[rotate=90, left=8pt] at (ytexto) {$r\sin\theta$};
+%%      % Coordenada r y punto  P
+%%      \draw[longitud, use path=\r];
+%%      \node[above left=-3pt and -1pt] at (pmid) {$r$};
+%%      \filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
+%%      \node[above] at (P) {$P$};
+%
+%      % Origen
+%      \filldraw (O) circle [radius=.2pt];
+%      
+%%      % Fondo amarillo
+%%      \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+%%      \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
+%%      \begin{scope}[on background layer]
+%%        \draw[background] (SW) rectangle (NE);
+%%      \end{scope}
+%    \end{tikzpicture}
+%  \caption{Coordenadas polares $r$ y $\theta$ de un punto $P$ del plano.}
+%  %\label{fig:R2-coordenadas-R2}
+%\end{minipage}
+%\hspace{1em}
+%\begin{minipage}{0.40\linewidth}
+%    % Escala
+%    \def\scl{1.20}
+%    % 
+%    \pgfmathsetmacro{\EJESEXTRA}{-0.2}
+%    \pgfmathsetmacro{\EJESLONG}{2.3}
+%    % Eje x
+%    \pgfmathsetmacro{\XMLONG}{\EJESEXTRA}
+%    \pgfmathsetmacro{\XPLONG}{\EJESLONG}
+%    % Eje y
+%    \pgfmathsetmacro{\YMLONG}{\EJESEXTRA}
+%    \pgfmathsetmacro{\YPLONG}{\EJESLONG}
+%    % Vector P
+%    \pgfmathsetmacro{\PMOD}{2.5}
+%    \pgfmathsetmacro{\PANG}{40}
+%    % Fondo
+%    \pgfmathsetmacro{\HORZ}{0.25}
+%    \pgfmathsetmacro{\VERT}{0.25}
+%    % 
+%    \centering
+%    \begin{tikzpicture}[%
+%      scale=\scl,
+%      every node/.style={black,font=\small},
+%      eje/.style={->},
+%      proyeccion/.style={black!60, densely dotted},
+%      vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt,\colorV},
+%      textooriginal/.style={\colorTorig},
+%      pcirculo/.style={fill=\colorPorig, draw=black},
+%      angulogirado/.style={fill=\colorAngGreen, draw=\colorGirodos},
+%      background/.style={%
+%        line width=\bgborderwidth,
+%        draw=\bgbordercolor,
+%        fill=\bgcolor,
+%      },
+%      ]
+%      % COORDENADAS
+%      % Origen
+%      \coordinate (O) at (0,0);
+%      % Extremo izdo del eje x e inferior del eje y
+%      \coordinate (xini) at (\XMLONG cm,0);
+%      \coordinate (yini) at (0,\YMLONG cm);
+%      % Eje x
+%      \path[save path=\ejex] (xini) -- coordinate[pos=0.5] (xtexto) (\XPLONG cm, 0)
+%      coordinate (xfin);
+%      % Eje y
+%      \path[save path=\ejey] (yini) -- coordinate[pos=0.6] (ytexto) (0, \YPLONG cm)
+%      coordinate (yfin);
+%      % Vector
+%      \path[save path=\vector] (O) -- coordinate[pos=0.5] (pmid) (\PANG:\PMOD cm)
+%      coordinate (P);
+%      % Proyección de P en los ejes
+%      \path[save path=\proyx] (P) |- (xfin);
+%      \path[save path=\proyy] (P) -| (yfin);
+%
+%      % DIBUJOS
+%      % Ángulo theta
+%      \path (xfin) -- (O) -- (P) pic
+%      [-{Latex[width=2.5pt,length=3.7pt]},angulogirado,
+%      "\footnotesize $\theta$",angle radius=20pt, angle eccentricity=0.68]
+%      {angle = xfin--O--P};
+%      % Proyección de P en los ejes
+%      \draw[proyeccion, use path=\proyx];
+%      \draw[proyeccion, use path=\proyy];
+%      % Ejes
+%      % x
+%      \draw[eje, use path=\ejex];
+%      \node[right] at (xfin) {$x$};
+%      \node[below] at (xtexto) {$r\cos\theta$};
+%      % y
+%      \draw[eje, use path=\ejey];
+%      \node[above] at (yfin) {$y$};
+%      \node[rotate=90, left=8pt] at (ytexto) {$r\sin\theta$};
+%      % Vector y punto  P
+%      \draw[vector, use path=\vector];
+%      \node[above left=-3pt and -1pt] at (pmid) {$\vvv{r}$};
+%      \filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
+%      \node[above] at (P) {$P$};
+%
+%      % Origen
+%      \filldraw (O) circle [radius=.2pt];
+%      % Fondo amarillo
+%      \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+%      \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
+%      \begin{scope}[on background layer]
+%        \draw[background] (SW) rectangle (NE);
+%      \end{scope}
+%    \end{tikzpicture}
+%    \caption{Vector de posición $\vvv{r}$, y coordenadas $x$ e $y$ en función de $r$ y
+%      $\theta$.}
+%  %\label{fig:R2:vector-r-R2}
+%\end{minipage}
+%\end{figure}
+
+
 
 \section{Coordenadas polares planas}
 Aquí se ponen las cosas algo más interesantes. En este sistema, se utilizan dos
