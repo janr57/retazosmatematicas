@@ -11,7 +11,8 @@ FILES =	retazosmatematicas.pkg.sty\
 	retazosmatematicas.defs.sty\
 	portada/portada.tex\
 	tablacontenidos/tablacontenidos.tex\
-	texto/coord_polares_R2.tex\
+	prefacio/prefacio.tex\
+	texto/coord_R2.tex\
 	$(IMGSTATICDIR)/Cc-by-nc-sa_icon.pdf
 
 retazosmatematicas.pdf: retazosmatematicas.tex $(FILES)
