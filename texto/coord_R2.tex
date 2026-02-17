@@ -186,139 +186,135 @@ unidad (en el apartado \ref{ssect:R2-cart-metrica-factores_escala} se calculará
 \subsection{Métrica y factores de escala}
 \label{ssect:R2-cart-metrica-factores_escala}
 
-%\subsubsection{Producto escalar de los vectores de la base natural}
-%Los vectores de la base fundamental son vectores unitarios.
-%La base normalizada en coordenadas cartesianas en este espacio está formada por los vectores $\uvec{\i}$ y $\uvec{\j}$, en los ejes $x$ e $y$, respectivamente.
-%A continuación resumimos el valor de los productos escalares entre ellos, tal y como
-%aprendimos en cálculo vectorial fundamental en coordenadas cartesianas o en física
-%elemental
-%\begin{subequations}
-%  \begin{align}
-%    \label{eq:R2-ii-producto-escalar}
-%    \vvv{e}_x\cdot\vvv{e}_x = \uvec{\i}\cdot\uvec{\i}
-%    &= |\uvec{\i}|\,|\uvec{\i}|\cos 0 = 1\\
-%    \label{eq:R2-ij-producto-escalar}    
-%    \vvv{e}_x\cdot\vvv{e}_y = \uvec{\i}\cdot\uvec{\j}
-%    &= |\uvec{\i}|\,|\uvec{\j}|\cos\pi/2 = 0\\
-%    \label{eq:R2-ji-producto-escalar} 
-%    \vvv{e}_y\cdot\vvv{e}_x = \uvec{\j}\cdot\uvec{\i}
-%    &= |\uvec{\j}|\,|\uvec{\i}|\cos\pi/2 = 0\\
-%    \label{eq:R2-jj-producto-escalar}
-%    \vvv{e}_y\cdot\vvv{e}_y = \uvec{\j}\cdot\uvec{\j}
-%    &= |\uvec{\j}|\,|\uvec{\j}|\cos 0 = 1
-%  \end{align}
-%\end{subequations}
-%
-%\subsubsection{Métrica y factores de escala}
-%La métrica en cartesianas se calcula utilizando los vectores de la base natural, calculada en \eqref{eq:R2-ex} y \eqref{eq:R2-ey}. Los productos escalares se calcularon en
-%\eqref{eq:R2-ii-producto-escalar}, \eqref{eq:R2-ij-producto-escalar},
-%\eqref{eq:R2-ji-producto-escalar} y \eqref{eq:R2-jj-producto-escalar}
-%\begin{equation}\label{eq:R2-metrica-cartesianas}
-%  \mmm{g}
-%  = g_{ij}
-%  = \begin{pmatrix}
-%    g_{ii} & g_{ij}\\
-%    g_{ji} & g_{jj}
-%    \end{pmatrix}
-%  = \begin{pmatrix}
-%      \vvv{e}_x\cdot\vvv{e}_x & \vvv{e}_x\cdot\vvv{e}_y\\
-%      \vvv{e}_y\cdot\vvv{e}_x & \vvv{e}_y\cdot\vvv{e}_y
-%  \end{pmatrix}
-%  = \begin{pmatrix}
-%      \uvec{\i}\cdot\uvec{\i} & \uvec{\i}\cdot\uvec{\j}\\
-%      \uvec{i}\cdot\uvec{j} & \uvec{\j}\cdot\uvec{\j}
-%  \end{pmatrix}
-%  = \begin{pmatrix}
-%    1 & 0\\
-%    0 & 1
-%  \end{pmatrix}
-%\end{equation}
-%
-%Se llaman \emph{factores de escala} o \emph{coeficientes métricos} a la raíz cuadrada de
-%los elementos diagonales en la métrica en un sistema de coordenadas ortogonales, como el
-%que nos ocupa. En coordenadas cartesianas estándar serían
-%\begin{align*}
-%  h_x &= \sqrt{g_{11}} = \sqrt{1} = 1\\
-%  h_y &= \sqrt{g_{22}} = \sqrt{1} = 1  
-%\end{align*}
-%
-%Fijémonos en la métrica \eqref{eq:R2-metrica-cartesianas}:
-%\begin{itemize}
-%\item Los elementos no diagonales son nulos. Esto se interpreta como que los vectores
-%  $\vvv{e}_x$ y $\vvv{e}_y$ son independientes, esto es, son ortogonales.
-%  Esto implica que un cambio en una coordenada no afecta a la otra. Así, si nos
-%  desplazamos una distancia cualquiera en el eje $x$, no habremos recorrido ninguna
-%  distancia en el eje $y$, y viceversa, por lo que $h_{xy}=h_{yx}=0$.
-%\item Los elementos diagonales valen la unidad. Cada elemento diagonal de la métrica que
-%  vale la unidad implica que un cambio en la coordenada respectiva implica una distancia
-%  recorrida de una unidad en el espacio. En realidad, el espacio recorrido es el factor
-%  de escala correspondiente (la raíz cuadrada del elemento diagonal correspondiente),
-%  pero en este caso da lo mismo
-%  \begin{subequations}
-%    \begin{align}
-%      \Delta s &= h_x \Delta x = \sqrt{1}\, \Delta x = \Delta x\\
-%      \Delta s &= h_y \Delta y = \sqrt{1}\, \Delta y = \Delta y
-%    \end{align}
-%  \end{subequations}
-%  Para adquirir algo de intuición, imagina que cambiamos la posición en el eje $x$
-%  cualquier distancia, digamos un metro, es fácil entender que en el espacio nos habremos
-%  desplazado esa misma distancia. Por tanto es lógico razonar que el factor de escala
-%  $h_x$ vale 1. Lo mismo podemos decir para el factor de escala en el eje $y$, $h_y=1$.
-%\end{itemize}
-%
-%\subsubsection{Revisión del producto escalar}
-%Hemos dicho que la métrica permite calcular distancias. En concreto, el cuadrado de la
-%longitud (módulo) de un vector $\vvv{A}$ se mide realizando el producto escalar del
-%vector por sí mismo.
-%El concepto de producto escalar se puede ampliar mediante el cálculo matricial, utilizando
-%la métrica (en otros sistemas de coordenadas veremos que esto tiene importancia, mientras
-%que en cartesianas se puede obviar)
-%\[
-%  \vvv{v}\cdot\vvv{w}
-%  =
-%  \vvv{v}^\transp \mmm{g} \vvv{w}
-%  =
-%  \begin{pmatrix}
-%    v_x &  v_y
-%  \end{pmatrix}
-%  \begin{pmatrix}
-%    1 & 0\\
-%    0 & 1
-%  \end{pmatrix}
-%  \begin{pmatrix}
-%    w_x\\
-%    w_y
-%  \end{pmatrix}
-%  =
-%  v_xw_x + v_y w_y
-%\]
-%  
-%Así, el cuadrado del módulo de un vector en cartesianas es
-%\[
-%  v^2
-%  =
-%  \|\vvv{v}\|^2
-%  =
-%  \vvv{v}\cdot\vvv{v}
-%  =
-%  \vvv{v}^\transp \mmm{g} \vvv{v}
-%  =
-%  \begin{pmatrix}
-%  v_x &  v_y
-%\end{pmatrix}
-%\begin{pmatrix}
-%  1 & 0\\
-%  0 & 1
-%\end{pmatrix}
-%\begin{pmatrix}
-%  v_x\\
-%  v_y
-%\end{pmatrix}
-%=
-%v_x^2 + v_y^2
-%\]
-%que coincide con el valor que sabíamos del cálculo vectorial básico.
-%
+\subsubsection{Producto escalar de los vectores de la base natural}
+Los vectores de la base fundamental son vectores unitarios.
+La base normalizada en coordenadas cartesianas en este espacio está formada por los vectores $\uvec{\i}$ y $\uvec{\j}$, en los ejes $x$ e $y$, respectivamente.
+A continuación resumimos el valor de los productos escalares entre ellos, tal y como
+aprendimos en cálculo vectorial fundamental en coordenadas cartesianas o en física
+elemental
+\begin{subequations}
+  \begin{align}
+    \label{eq:R2-cart-ii_prod_escalar}
+    \vvv{e}_x\cdot\vvv{e}_x = \uvec{\i}\cdot\uvec{\i}
+    &= |\uvec{\i}|\,|\uvec{\i}|\cos 0 = 1\\
+    \label{eq:R2-cart-ij_prod_escalar}    
+    \vvv{e}_x\cdot\vvv{e}_y = \uvec{\i}\cdot\uvec{\j}
+    &= |\uvec{\i}|\,|\uvec{\j}|\cos\pi/2 = 0\\
+    \label{eq:R2-cart-ji_prod_escalar} 
+    \vvv{e}_y\cdot\vvv{e}_x = \uvec{\j}\cdot\uvec{\i}
+    &= |\uvec{\j}|\,|\uvec{\i}|\cos\pi/2 = 0\\
+    \label{eq:R2-cart-jj_prod_escalar}
+    \vvv{e}_y\cdot\vvv{e}_y = \uvec{\j}\cdot\uvec{\j}
+    &= |\uvec{\j}|\,|\uvec{\j}|\cos 0 = 1
+  \end{align}
+\end{subequations}
+
+\subsubsection{Métrica y factores de escala}
+La métrica en cartesianas se calcula utilizando los vectores de la base natural,
+calculada en \eqref{eq:R2-cart-ex} y \eqref{eq:R2-cart-ey}.
+Los productos escalares se calcularon en \eqref{eq:R2-cart-ii_prod_escalar},
+\eqref{eq:R2-cart-ij_prod_escalar}, \eqref{eq:R2-cart-ji_prod_escalar} y
+\eqref{eq:R2-cart-jj_prod_escalar}
+\begin{equation}\label{eq:R2-cart-metrica}
+  \mmm{g}
+  = g_{ij}
+  = \begin{pmatrix}
+    g_{11} & g_{12}\\
+    g_{21} & g_{22}
+    \end{pmatrix}
+  = \begin{pmatrix}
+      \vvv{e}_x\cdot\vvv{e}_x & \vvv{e}_x\cdot\vvv{e}_y\\
+      \vvv{e}_y\cdot\vvv{e}_x & \vvv{e}_y\cdot\vvv{e}_y
+  \end{pmatrix}
+  = \begin{pmatrix}
+    1 & 0\\
+    0 & 1
+  \end{pmatrix}
+\end{equation}
+
+La raíz cuadrada de los elementos diagonales de la métrica en un sistema de coordenadas ortogonales, como el que nos ocupa, se llaman \emph{factores de escala} o \emph{coeficientes métricos}. En coordenadas cartesianas rectangulares serían
+\begin{align*}
+  h_x &= \sqrt{g_{11}} = \sqrt{1} = 1\\
+  h_y &= \sqrt{g_{22}} = \sqrt{1} = 1  
+\end{align*}
+
+Fijémonos en la métrica \eqref{eq:R2-cart-metrica}:
+\begin{itemize}
+\item Los elementos no diagonales son nulos. Esto se interpreta como que los vectores
+  $\vvv{e}_x$ y $\vvv{e}_y$ son independientes, esto es, son ortogonales.
+  Esto implica que un cambio en una coordenada no afecta a la otra. Así, si nos
+  desplazamos una distancia cualquiera en el eje $x$, no habremos recorrido ninguna
+  distancia en el eje $y$, y viceversa, por lo que $h_{xy}=h_{yx}=0$.
+\item Los elementos diagonales valen la unidad. Cada elemento diagonal de la métrica que
+  vale la unidad implica que un cambio en la coordenada respectiva implica una distancia
+  recorrida de una unidad en el espacio. En realidad, el espacio recorrido es el factor
+  de escala correspondiente (la raíz cuadrada del elemento diagonal correspondiente),
+  pero en este caso da lo mismo
+  \begin{subequations}
+    \begin{align}
+      \Delta s &= h_x \Delta x = \sqrt{1}\, \Delta x = \Delta x\\
+      \Delta s &= h_y \Delta y = \sqrt{1}\, \Delta y = \Delta y
+    \end{align}
+  \end{subequations}
+  Para adquirir algo de intuición, imaginemos que nos desplazamos cualquier distancia en
+  el eje $x$, digamos un metro; es fácil entender que en el espacio nos habremos
+  desplazado esa misma distancia. Por tanto es lógico razonar que el factor de escala
+  $h_x$ vale 1. Lo mismo podemos decir para el factor de escala en el eje $y$, $h_y=1$.
+\end{itemize}
+
+\subsubsection{Revisión del producto escalar}
+Dijimos que la métrica nos permite calcular distancias. En concreto, el cuadrado del
+módulo de un vector $\vvv{A}$ se mide realizando el producto escalar del vector por sí
+mismo.
+El producto escalar se encarga de esto, y se puede ampliar mediante el cálculo
+matricial, utilizando la métrica (en otros sistemas de coordenadas veremos que es más
+importante, mientras que en cartesianas se puede obviar)
+\[
+  \vvv{v}\cdot\vvv{w}
+  =
+  \vvv{v}^\transp \mmm{g} \vvv{w}
+  =
+  \begin{pmatrix}
+    v_x &  v_y
+  \end{pmatrix}
+  \begin{pmatrix}
+    1 & 0\\
+    0 & 1
+  \end{pmatrix}
+  \begin{pmatrix}
+    w_x\\
+    w_y
+  \end{pmatrix}
+  =
+  v_xw_x + v_y w_y
+\]
+  
+Así, el cuadrado del módulo de un vector en cartesianas es
+\[
+  v^2
+  =
+  \|\vvv{v}\|^2
+  =
+  \vvv{v}\cdot\vvv{v}
+  =
+  \vvv{v}^\transp \mmm{g} \vvv{v}
+  =
+  \begin{pmatrix}
+  v_x &  v_y
+\end{pmatrix}
+\begin{pmatrix}
+  1 & 0\\
+  0 & 1
+\end{pmatrix}
+\begin{pmatrix}
+  v_x\\
+  v_y
+\end{pmatrix}
+=
+v_x^2 + v_y^2
+\]
+que coincide con el valor que obteníamos en el cálculo vectorial básico.
+
 %\subsection{Gradiente, divergencia y laplaciana}
 %Presentamos un resumen de estas operaciones, tal y como se estudia en un curso básico de
 %cálculo
