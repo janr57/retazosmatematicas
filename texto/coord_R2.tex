@@ -390,136 +390,136 @@ El operador laplaciano es
 \end{equation}
 \end{itemize}
 
-%\subsection{Elemento de área}
-%El elemento diferencial de área en cartesianas es
-%\begin{equation}
-%  d^2a = dx\,dy
-%\end{equation}
-%\begin{figure}[ht]
-%  % Escala
-%  \def\scl{1}
-%  %
-%  \pgfmathsetmacro{\EJESEXTRA}{-0.4}
-%  \pgfmathsetmacro{\EJESLONG}{2.3}
-%  % Eje x
-%  \pgfmathsetmacro{\XMLONG}{\EJESEXTRA}
-%  \pgfmathsetmacro{\XPLONG}{\EJESLONG}
-%  % Eje y
-%  \pgfmathsetmacro{\YMLONG}{\EJESEXTRA}
-%  \pgfmathsetmacro{\YPLONG}{\EJESLONG}
-%  % dx, dy
-%  \pgfmathsetmacro{\LONG}{0.9}
-%  \pgfmathsetmacro{\DX}{\LONG}
-%  \pgfmathsetmacro{\DY}{\LONG}
-%  % Posición del elemento de área
-%  \pgfmathsetmacro{\PX}{0.5}
-%  \pgfmathsetmacro{\PY}{1.0}
-%  % Fondo
-%  \pgfmathsetmacro{\HORZ}{0.25}
-%  \pgfmathsetmacro{\VERT}{0.25}
-%  % 
-%  \centering
-%  \begin{tikzpicture}[%
-%    scale=\scl,
-%    every node/.style={black,font=\small},
-%    eje/.style={->},
-%    proyeccion/.style={black!60, densely dotted},
-%    area/.style={fill=green!40, draw=black!20},
-%    %vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt,\colorV},
-%    %versor/.style={-{Latex[round, width=4pt, length=8pt]}, line width=1pt, \colorVred},
-%    textooriginal/.style={\colorTorig},
-%    %pcirculo/.style={fill=\colorPorig, draw=black},
-%    %angulogirado/.style={fill=\colorAngGreen, draw=\colorGirodos},
-%    background/.style={%
-%      line width=\bgborderwidth,
-%      draw=\bgbordercolor,
-%      fill=\bgcolor,
-%    },
-%    ]
-%    % COORDENADAS
-%    % Origen
-%    \coordinate (O) at (0,0);
-%    % Extremo izdo del eje x e inferior del eje y
-%    \coordinate (xini) at (\XMLONG cm,0);
-%    \coordinate (yini) at (0,\YMLONG cm);
-%    % Eje x
-%    \path[save path=\ejex] (xini) -- (\XPLONG cm, 0) coordinate (xfin);
-%    % Eje y
-%    \path[save path=\ejey] (yini) -- (0, \YPLONG cm) coordinate (yfin);
-%    % Punto P
-%    \coordinate (P) at (\PX, \PY);
-%    %
-%    \path (P) -- coordinate[pos=0.5] (dxtext) ++(\DX, 0) coordinate (PDX);
-%    \path (P) -- coordinate[pos=0.5] (dytext) ++(0, \DY) coordinate (PDY);
-%%    % Vector
-%%    \path[save path=\vector] (O) -- coordinate[pos=0.5] (pmid) (\PANG:\PMOD cm)
-%%    coordinate (P);
-%%    % Proyección de elemento de área en los ejes
-%    \path[save path=\proyPx] (P) |- coordinate (Px) (xfin);
-%    \path[save path=\proyPy] (P) -| coordinate (Py) (yfin);
-%    \path[save path=\proyPhorx] (PDX) |- coordinate (Phorx) (xfin);
-%    \path[save path=\proyPverty] (PDY) -| coordinate (Pverty) (yfin);
-%    % Texto de las proyecciones en los ejes
-%    \path (Px) -- coordinate[pos=0.5] (dxtexto) (Phorx);
-%    \path (Py) -- coordinate[pos=0.5] (dytexto) (Pverty);
-%    
-%    % DIBUJOS
+\subsection{Elemento de área}
+El elemento diferencial de área en cartesianas es
+\begin{equation}
+  d^2a = dx\,dy
+\end{equation}
+\begin{figure}[ht]
+  % Escala
+  \def\scl{1}
+  %
+  \pgfmathsetmacro{\EJESEXTRA}{-0.4}
+  \pgfmathsetmacro{\EJESLONG}{2.3}
+  % Eje x
+  \pgfmathsetmacro{\XMLONG}{\EJESEXTRA}
+  \pgfmathsetmacro{\XPLONG}{\EJESLONG}
+  % Eje y
+  \pgfmathsetmacro{\YMLONG}{\EJESEXTRA}
+  \pgfmathsetmacro{\YPLONG}{\EJESLONG}
+  % dx, dy
+  \pgfmathsetmacro{\LONG}{0.9}
+  \pgfmathsetmacro{\DX}{\LONG}
+  \pgfmathsetmacro{\DY}{\LONG}
+  % Posición del elemento de área
+  \pgfmathsetmacro{\PX}{0.5}
+  \pgfmathsetmacro{\PY}{1.0}
+  % Fondo
+  \pgfmathsetmacro{\HORZ}{0.25}
+  \pgfmathsetmacro{\VERT}{0.25}
+  % 
+  \centering
+  \begin{tikzpicture}[%
+    scale=\scl,
+    every node/.style={black,font=\small},
+    eje/.style={->},
+    proyeccion/.style={black!60, densely dotted},
+    area/.style={fill=green!40, draw=black!20},
+    %vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt,\colorV},
+    %versor/.style={-{Latex[round, width=4pt, length=8pt]}, line width=1pt, \colorVred},
+    textooriginal/.style={\colorTorig},
+    %pcirculo/.style={fill=\colorPorig, draw=black},
+    %angulogirado/.style={fill=\colorAngGreen, draw=\colorGirodos},
+    background/.style={%
+      line width=\bgborderwidth,
+      draw=\bgbordercolor,
+      fill=\bgcolor,
+    },
+    ]
+    % COORDENADAS
+    % Origen
+    \coordinate (O) at (0,0);
+    % Extremo izdo del eje x e inferior del eje y
+    \coordinate (xini) at (\XMLONG cm,0);
+    \coordinate (yini) at (0,\YMLONG cm);
+    % Eje x
+    \path[save path=\ejex] (xini) -- (\XPLONG cm, 0) coordinate (xfin);
+    % Eje y
+    \path[save path=\ejey] (yini) -- (0, \YPLONG cm) coordinate (yfin);
+    % Punto P
+    \coordinate (P) at (\PX, \PY);
+    %
+    \path (P) -- coordinate[pos=0.5] (dxtext) ++(\DX, 0) coordinate (PDX);
+    \path (P) -- coordinate[pos=0.5] (dytext) ++(0, \DY) coordinate (PDY);
+%    % Vector
+%    \path[save path=\vector] (O) -- coordinate[pos=0.5] (pmid) (\PANG:\PMOD cm)
+%    coordinate (P);
 %    % Proyección de elemento de área en los ejes
-%    \draw[proyeccion, use path=\proyPx];
-%    \draw[proyeccion, use path=\proyPy];
-%    \draw[proyeccion, use path=\proyPhorx];
-%    \draw[proyeccion, use path=\proyPverty];
-%    % Texto dx y dy en los ejes
-%    \node[below] at (dxtexto) {$dx$};
-%    \node[left] at (dytexto) {$dy$};
-%    
-%    % Ejes
-%    % x
-%    \draw[eje, use path=\ejex];
-%    \node[right] at (xfin) {$x$};
-%    %\node[below] at (xtexto) {$x$};
-%    % y
-%    \draw[eje, use path=\ejey];
-%    \node[above] at (yfin) {$y$};
-%    % \node[left] at (ytexto) {$y$};
-%    % Punto P
-%    % \fill (P) circle[radius=1.2pt];
-%    % Elemento de área
-%    \filldraw[area] (P) rectangle coordinate (centro) ++(\DX, \DY);
-%    \node at (centro) {\footnotesize $d^2a$};
-%
-%    % Origen
-%    \filldraw (O) circle [radius=.2pt];
-%
-%    % Fondo amarillo
-%    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
-%    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);    
-%    \begin{scope}[on background layer]
-%      \draw[background] (SW) rectangle (NE);
-%    \end{scope}
-%  \end{tikzpicture}
-%  \caption{Elemento de área en coordenadas cartesianas, $d^2a = dx dy$.}
-%  \label{fig:R2-coord_rect-elemento_area}
-%\end{figure}
-%
-%Este elemento se relaciona trivialmente con el jacobiano de la
-%\emph{transformación identidad} $f(x,y) \longrightarrow f(x,y)$
-%\[
-%  d^2a = \dfrac{\partial(x,y)}{\partial(x,y)} dx dy
-%  = \begin{vmatrix}
-%    \partial x/\partial x & \partial x/\partial y\\
-%    \partial y/\partial x & \partial y/\partial y
-%  \end{vmatrix}
-%  dx dy
-%  = \begin{vmatrix}
-%    1 & 0\\
-%    0 & 1
-%  \end{vmatrix}
-%  dx dy
-%  = 1\,dx dy
-%  = dxdy
-%\]
-%
+    \path[save path=\proyPx] (P) |- coordinate (Px) (xfin);
+    \path[save path=\proyPy] (P) -| coordinate (Py) (yfin);
+    \path[save path=\proyPhorx] (PDX) |- coordinate (Phorx) (xfin);
+    \path[save path=\proyPverty] (PDY) -| coordinate (Pverty) (yfin);
+    % Texto de las proyecciones en los ejes
+    \path (Px) -- coordinate[pos=0.5] (dxtexto) (Phorx);
+    \path (Py) -- coordinate[pos=0.5] (dytexto) (Pverty);
+    
+    % DIBUJOS
+    % Proyección de elemento de área en los ejes
+    \draw[proyeccion, use path=\proyPx];
+    \draw[proyeccion, use path=\proyPy];
+    \draw[proyeccion, use path=\proyPhorx];
+    \draw[proyeccion, use path=\proyPverty];
+    % Texto dx y dy en los ejes
+    \node[below] at (dxtexto) {$dx$};
+    \node[left] at (dytexto) {$dy$};
+    
+    % Ejes
+    % x
+    \draw[eje, use path=\ejex];
+    \node[right] at (xfin) {$x$};
+    %\node[below] at (xtexto) {$x$};
+    % y
+    \draw[eje, use path=\ejey];
+    \node[above] at (yfin) {$y$};
+    % \node[left] at (ytexto) {$y$};
+    % Punto P
+    % \fill (P) circle[radius=1.2pt];
+    % Elemento de área
+    \filldraw[area] (P) rectangle coordinate (centro) ++(\DX, \DY);
+    \node at (centro) {\footnotesize $d^2a$};
+
+    % Origen
+    \filldraw (O) circle [radius=.2pt];
+
+    % Fondo amarillo
+    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);    
+    \begin{scope}[on background layer]
+      \draw[background] (SW) rectangle (NE);
+    \end{scope}
+  \end{tikzpicture}
+  \caption{Elemento de área en coordenadas cartesianas, $d^2a = dx dy$.}
+  \label{fig:R2-rect-elemento_area}
+\end{figure}
+
+Este elemento se relaciona trivialmente con el jacobiano de la
+\emph{transformación identidad} $f(x,y) \longrightarrow f(x,y)$
+\[
+  d^2a = \dfrac{\partial(x,y)}{\partial(x,y)} dx dy
+  = \begin{vmatrix}
+    \partial x/\partial x & \partial x/\partial y\\
+    \partial y/\partial x & \partial y/\partial y
+  \end{vmatrix}
+  dx dy
+  = \begin{vmatrix}
+    1 & 0\\
+    0 & 1
+  \end{vmatrix}
+  dx dy
+  = 1\,dx dy
+  = dxdy
+\]
+
 %\section{Coordenadas cartesianas oblícuas}
 %
 %\begin{figure}[ht]
