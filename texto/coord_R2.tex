@@ -143,49 +143,49 @@ Vector de posición de cualquier punto del espacio $\symbb{R}^2$ en coordenadas 
   \label{fig:R2-coord_rect-ij}
 \end{figure}
 
-%\subsection{Base natural, vectores unitarios y su producto escalar}
-%\subsubsection{Base natural y vectores unitarios}
-%Si derivamos el vector de posición anterior \eqref{eq:R2-r-cartesianas}, con respecto a
-%cada una de las coordenadas, obtenemos los vectores de una  posible base en estas
-%coordenadas. Estos vectores llevan información concreta acerca de cómo varia la posición
-%en el espacio cuando variamos cada una de las coordenadas ---tal y como sugieren las
-%derivadas---, lo que será importante para obtener la métrica en estas coordenadas.
-%
-%Como
-%\begin{equation}
-%  \vvv{r} = x\uvec{\i} + y\uvec{\j}
-%\end{equation}
-%
-%Entonces
-%\begin{subequations}
-%  \begin{align}\label{eq:R2-ex}
-%    \vvv{e}_x
-%    &=
-%      \dfrac{\partial\vvv{r}}{\partial x}
-%      = \uvec{\i}\\
-%    \label{eq:R2-ey}
-%    \vvv{e}_y
-%    &= \dfrac{\partial\vvv{r}}{\partial y}
-%      = \uvec{\j}
-%  \end{align}
-%\end{subequations}
-%Estos vectores forman la denominada \emph{base natural} en cartesianas, que en este
-%sistema coincide con los vectores unitarios tradicionales $\uvec{\i}$ y $\uvec{\j}$
-%\begin{equation}\label{eq:R2-basefundamental}
-%  B=\set{\vvv{e}_x, \vvv{e}_y} = \set{\uvec{\i},\, \uvec{\j}}
-%\end{equation}
-%
-%La métrica en cada sistema de coordenadas define la estructura del espacio, en
-%particular, sin ella no se pueden medir ni distancias ni ángulos. Es como si
-%proporcionara un sistema de reglas y goniómetros con los cuales medir.
-%
-%De la equivalencia de la base natural con la unitaria, se puede inferir que la métrica en
-%coordenadas cartesianas rectangulares en $\symbb{R}^2$ se representará como una matriz
-%unidad (en el apartado \ref{ssect:R2-metrica-factores_escala} se calculará con detalle).
-%
-%\subsection{Métrica y factores de escala}
-%\label{ssect:R2-metrica-factores_escala}
-%
+\subsection{Base natural, vectores unitarios y su producto escalar}
+\subsubsection{Base natural y vectores unitarios}
+Si derivamos el vector de posición anterior \eqref{eq:R2-r_rect}, con respecto a
+cada una de las coordenadas, obtenemos los vectores de una  posible base en estas
+coordenadas. Estos vectores llevan información concreta acerca de cómo varia la posición
+en el espacio cuando variamos cada una de las coordenadas ---tal y como sugieren las
+derivadas---, lo que será importante para obtener la métrica en estas coordenadas.
+
+Como
+\begin{equation}
+  \vvv{r} = x\uvec{\i} + y\uvec{\j}
+\end{equation}
+
+Entonces, derivandi se obtiene
+\begin{subequations}
+  \begin{align}\label{eq:R2-cart-ex}
+    \vvv{e}_x
+    &=
+      \dfrac{\partial\vvv{r}}{\partial x}
+      = \uvec{\i}\\
+    \label{eq:R2-cart-ey}
+    \vvv{e}_y
+    &= \dfrac{\partial\vvv{r}}{\partial y}
+      = \uvec{\j}
+  \end{align}
+\end{subequations}
+Estos vectores forman la denominada \emph{base natural} en cartesianas que, en este
+sistema coincide con los vectores unitarios tradicionales $\uvec{\i}$ y $\uvec{\j}$
+\begin{equation}\label{eq:R2-cart-base}
+  B=\set{\vvv{e}_x, \vvv{e}_y} = \set{\uvec{\i},\, \uvec{\j}}
+\end{equation}
+
+La métrica en cada sistema de coordenadas define la estructura del espacio, en
+particular, sin ella no se pueden medir ni distancias ni ángulos. Es como si
+proporcionara un sistema de reglas y goniómetros con los cuales medir.
+
+De la equivalencia de la base natural con la unitaria, se puede inferir que la métrica en
+coordenadas cartesianas rectangulares en $\symbb{R}^2$ se representará como una matriz
+unidad (en el apartado \ref{ssect:R2-cart-metrica-factores_escala} se calculará con detalle).
+
+\subsection{Métrica y factores de escala}
+\label{ssect:R2-cart-metrica-factores_escala}
+
 %\subsubsection{Producto escalar de los vectores de la base natural}
 %Los vectores de la base fundamental son vectores unitarios.
 %La base normalizada en coordenadas cartesianas en este espacio está formada por los vectores $\uvec{\i}$ y $\uvec{\j}$, en los ejes $x$ e $y$, respectivamente.
