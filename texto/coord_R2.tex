@@ -36,113 +36,113 @@ matemáticas. Lo nos interesa ahora es que, con estos conocimientos, se podrán 
 siguientes capítulos que versen sobre otros sistemas de coordenadas. Por descontado, la
 geometría diferencial es mucho más que lo que aquí se presenta.
 
-%\section{Coordenadas cartesianas rectangulares}
-%Vector de posición de cualquier punto del espacio $\symbb{R}^2$ en coordenadas cartesianas
-%\begin{equation}\label{eq:R2-r_rect}
-%  \vvv{r}
-%  = x\,\uvec{\i} + y\,\uvec{\j}
-%\end{equation}
-%\begin{figure}[ht]
-%  % Escala
-%  \def\scl{1}
-%  %
-%  \pgfmathsetmacro{\EJESEXTRA}{-0.2}
-%  \pgfmathsetmacro{\EJESLONG}{2.3}
-%  % Eje x
-%  \pgfmathsetmacro{\XMLONG}{\EJESEXTRA}
-%  \pgfmathsetmacro{\XPLONG}{\EJESLONG}
-%  % Eje y
-%  \pgfmathsetmacro{\YMLONG}{\EJESEXTRA}
-%  \pgfmathsetmacro{\YPLONG}{\EJESLONG}
-%  % Versores
-%  \pgfmathsetmacro{\VMOD}{0.6}
-%  % Vector P
-%  \pgfmathsetmacro{\PMOD}{2.5}
-%  \pgfmathsetmacro{\PANG}{40}
-%  % Fondo
-%  \pgfmathsetmacro{\HORZ}{0.25}
-%  \pgfmathsetmacro{\VERT}{0.25}
-%  % 
-%  \centering
-%  \begin{tikzpicture}[%
-%    scale=\scl,
-%    every node/.style={black,font=\small},
-%    eje/.style={->},
-%    proyeccion/.style={black!60, densely dotted},
-%    vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt,\colorV},
-%    versor/.style={-{Latex[round, width=4pt, length=6pt]}, line width=1pt, \colorVred},
-%    textooriginal/.style={\colorTorig},
-%    pcirculo/.style={fill=\colorPorig, draw=black},
-%    angulogirado/.style={fill=\colorAngGreen, draw=\colorGirodos},
-%    background/.style={%
-%      line width=\bgborderwidth,
-%      draw=\bgbordercolor,
-%      fill=\bgcolor,
-%    },
-%    ]
-%    % COORDENADAS
-%    % Origen
-%    \coordinate (O) at (0,0);
-%    % Extremo izdo del eje x e inferior del eje y
-%    \coordinate (xini) at (\XMLONG cm,0);
-%    \coordinate (yini) at (0,\YMLONG cm);
-%    \coordinate (ifin) at (\VMOD cm, 0);
-%    \coordinate (jfin) at (0, \VMOD cm);
-%    % Eje x
-%    \path[save path=\ejex] (xini) -- coordinate[pos=0.55] (xtexto) (\XPLONG cm, 0)
-%    coordinate (xfin);
-%    % Eje y
-%    \path[save path=\ejey] (yini) -- coordinate[pos=0.55] (ytexto) (0, \YPLONG cm)
-%    coordinate (yfin);
-%    % Versores i y j
-%    \path[save path=\i] (O) -- coordinate[pos=0.5] (itexto) (ifin);
-%    \path[save path=\j] (O) -- coordinate[pos=0.45] (jtexto) (jfin);    
-%    % Vector
-%    \path[save path=\vector] (O) -- coordinate[pos=0.5] (pmid) (\PANG:\PMOD cm)
-%    coordinate (P);
-%    % Proyección de P en los ejes
-%    \path[save path=\proyx] (P) |- (xfin);
-%    \path[save path=\proyy] (P) -| (yfin);
-%
-%    % DIBUJOS
-%    % Proyección de P en los ejes
-%    \draw[proyeccion, use path=\proyx];
-%    \draw[proyeccion, use path=\proyy];
-%    % Ejes
-%    % x
-%    \draw[eje, use path=\ejex];
-%    \node[right] at (xfin) {$x$};
-%    \node[below] at (xtexto) {$x$};
-%    % y
-%    \draw[eje, use path=\ejey];
-%    \node[above] at (yfin) {$y$};
-%    \node[left] at (ytexto) {$y$};
-%    % Versores
-%    \draw[versor, use path=\i];
-%    \node[below, \colorTred] at (itexto) {\scriptsize $\uvec{\i}$};
-%    \draw[versor, use path=\j];
-%    \node[left, \colorTred] at (jtexto) {\scriptsize $\uvec{\j}$};
-%    % Vector y punto  P
-%    \draw[vector, use path=\vector];
-%    \node[above left=-3pt and -1pt] at (pmid) {$\vvv{r}$};
-%    \filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
-%    \node[above] at (P) {$P$};
-%    
-%    % Origen
-%    \filldraw (O) circle [radius=.2pt];
-%    % Fondo amarillo
-%    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
-%    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);    
-%    \begin{scope}[on background layer]
-%      \draw[background] (SW) rectangle (NE);
-%    \end{scope}
-%  \end{tikzpicture}
-%  \caption{Coordenadas cartesianas de un punto $P$ del plano (en verde) y vectores
-%    unitarios (en rojo). Se puede comprobar que el vector de posición del punto es
-%    $\vvv{r} = x\uvec{i} + y\uvec{j}$.}
-%  \label{fig:R2-coord_rect}
-%\end{figure}
-%
+\section{Coordenadas cartesianas rectangulares}
+Vector de posición de cualquier punto del espacio $\symbb{R}^2$ en coordenadas cartesianas
+\begin{equation}\label{eq:R2-r_rect}
+  \vvv{r}
+  = x\,\uvec{\i} + y\,\uvec{\j}
+\end{equation}
+\begin{figure}[ht]
+  % Escala
+  \def\scl{1}
+  %
+  \pgfmathsetmacro{\EJESEXTRA}{-0.2}
+  \pgfmathsetmacro{\EJESLONG}{2.3}
+  % Eje x
+  \pgfmathsetmacro{\XMLONG}{\EJESEXTRA}
+  \pgfmathsetmacro{\XPLONG}{\EJESLONG}
+  % Eje y
+  \pgfmathsetmacro{\YMLONG}{\EJESEXTRA}
+  \pgfmathsetmacro{\YPLONG}{\EJESLONG}
+  % Versores
+  \pgfmathsetmacro{\VMOD}{0.6}
+  % Vector P
+  \pgfmathsetmacro{\PMOD}{2.5}
+  \pgfmathsetmacro{\PANG}{40}
+  % Fondo
+  \pgfmathsetmacro{\HORZ}{0.25}
+  \pgfmathsetmacro{\VERT}{0.25}
+  % 
+  \centering
+  \begin{tikzpicture}[%
+    scale=\scl,
+    every node/.style={black,font=\small},
+    eje/.style={->},
+    proyeccion/.style={black!60, densely dotted},
+    vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt,\colorV},
+    versor/.style={-{Latex[round, width=4pt, length=6pt]}, line width=1pt, \colorVred},
+    textooriginal/.style={\colorTorig},
+    pcirculo/.style={fill=\colorPorig, draw=black},
+    angulogirado/.style={fill=\colorAngGreen, draw=\colorGirodos},
+    background/.style={%
+      line width=\bgborderwidth,
+      draw=\bgbordercolor,
+      fill=\bgcolor,
+    },
+    ]
+    % COORDENADAS
+    % Origen
+    \coordinate (O) at (0,0);
+    % Extremo izdo del eje x e inferior del eje y
+    \coordinate (xini) at (\XMLONG cm,0);
+    \coordinate (yini) at (0,\YMLONG cm);
+    \coordinate (ifin) at (\VMOD cm, 0);
+    \coordinate (jfin) at (0, \VMOD cm);
+    % Eje x
+    \path[save path=\ejex] (xini) -- coordinate[pos=0.55] (xtexto) (\XPLONG cm, 0)
+    coordinate (xfin);
+    % Eje y
+    \path[save path=\ejey] (yini) -- coordinate[pos=0.55] (ytexto) (0, \YPLONG cm)
+    coordinate (yfin);
+    % Versores i y j
+    \path[save path=\i] (O) -- coordinate[pos=0.5] (itexto) (ifin);
+    \path[save path=\j] (O) -- coordinate[pos=0.45] (jtexto) (jfin);    
+    % Vector
+    \path[save path=\vector] (O) -- coordinate[pos=0.5] (pmid) (\PANG:\PMOD cm)
+    coordinate (P);
+    % Proyección de P en los ejes
+    \path[save path=\proyx] (P) |- (xfin);
+    \path[save path=\proyy] (P) -| (yfin);
+
+    % DIBUJOS
+    % Proyección de P en los ejes
+    \draw[proyeccion, use path=\proyx];
+    \draw[proyeccion, use path=\proyy];
+    % Ejes
+    % x
+    \draw[eje, use path=\ejex];
+    \node[right] at (xfin) {$x$};
+    \node[below] at (xtexto) {$x$};
+    % y
+    \draw[eje, use path=\ejey];
+    \node[above] at (yfin) {$y$};
+    \node[left] at (ytexto) {$y$};
+    % Versores
+    \draw[versor, use path=\i];
+    \node[below, \colorTred] at (itexto) {\scriptsize $\uvec{\i}$};
+    \draw[versor, use path=\j];
+    \node[left, \colorTred] at (jtexto) {\scriptsize $\uvec{\j}$};
+    % Vector y punto  P
+    \draw[vector, use path=\vector];
+    \node[above left=-3pt and -1pt] at (pmid) {$\vvv{r}$};
+    \filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
+    \node[above right=0pt and -5pt] at (P) {$P(x,y)$};
+    
+    % Origen
+    \filldraw (O) circle [radius=.2pt];
+    % Fondo amarillo
+    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);    
+    \begin{scope}[on background layer]
+      \draw[background] (SW) rectangle (NE);
+    \end{scope}
+  \end{tikzpicture}
+  \caption{Coordenadas cartesianas de un punto $P$ del plano (en verde) y vectores
+    unitarios (en rojo). Se puede comprobar que el vector de posición del punto es
+    $\vvv{r} = x\uvec{i} + y\uvec{j}$.}
+  \label{fig:R2-coord_rect-ij}
+\end{figure}
+
 %\subsection{Base natural, vectores unitarios y su producto escalar}
 %\subsubsection{Base natural y vectores unitarios}
 %Si derivamos el vector de posición anterior \eqref{eq:R2-r-cartesianas}, con respecto a
