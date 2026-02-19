@@ -17,24 +17,25 @@ Este capítulo tiene dos objetivos:
 
 En el capítulo se analizan brevemente unos pocos sistemas de coordenadas en el plano,
 seguido de la acción del operador nabla sobre campos escalares y vectoriales
-n
-El capítulo comienza recordando conceptos básicos del sistema de coordenadas cartesianas
-rectangulares, en adelante, \emph{coordenadas cartesianas}, mientras no se diga lo
-contrario.
 
-Se sigue con una descripción de sistemas de coordenadas cartesianas oblícuas, en adelante,
-coordenadas oblícuas, mientras no se diga lo contrario. 
+El capítulo comienza recordando conceptos básicos del sistema de coordenadas cartesianas
+rectangulares. Cuando digamos coordenadas \emph{cartesianas} sin más, nos referimos a
+estas.
+
+Se sigue con una descripción de sistemas de coordenadas cartesianas oblícuas, en adelante, coordenadas \emph{oblícuas}, en contraposición con las \emph{rectangulares},
+cuando convenga compararlas, pues ambas son \emph{cartesianas}.
 
 Después nos adentramos en la descripción de las coordenadas polares planas.
 
 Se introducen determinados conceptos de geometría diferencial, como \emph{base natural},
 \emph{base unitaria}, \emph{métrica}, \emph{factores de escala},
-\emph{vectores y coordenadas covariantes y contravariantes}, \emph{tensor},
-\emph{espacio dual}, etc., unos con más detalle que otros, conforme se van necesitando,
+\emph{vectores y coordenadas contravariantes y covariantes}, \emph{tensores},
+\emph{espacio dual}, etc., conforme se van necesitando, unos con más detalle que otros,
 de manera que, al final del capítulo, se termina con una idea básica de esta rama de las
 matemáticas. Lo nos interesa ahora es que, con estos conocimientos, se podrán seguir los
 siguientes capítulos que versen sobre otros sistemas de coordenadas. Por descontado, la
-geometría diferencial es mucho más que lo que aquí se presenta.
+geometría diferencial es mucho más que lo que aquí se presenta, pues solo se ha arañado
+parte de la superficie.
 
 \section{Coordenadas cartesianas rectangulares}
 Vector de posición de cualquier punto del espacio $\symbb{R}^2$ en coordenadas cartesianas
@@ -522,6 +523,9 @@ Este elemento se relaciona trivialmente con el jacobiano de la
 \]
 
 \section{Coordenadas cartesianas oblícuas}
+En esta sección encontraremos ...
+
+\subsection{Introducción y base natural}
 En coordenadas oblícuas es importante el ángulo que forman los dos ejes. Llamaremos
 $\alpha$ a este ángulo. Los ejes oblícuos los representamos por $\tilde{x}^1$ y
 $\tilde{x}^2$. La base natural está formada por los vectores unitarios $\xhat{e}_1$ y
@@ -660,16 +664,148 @@ oblícuas. Ver figura \ref{fig:R2-coord_oblicuas_e1e2}.
   \label{fig:R2-coord_oblicuas_e1e2}
 \end{figure}
 
-\subsection{Métrica}
-Con los conocimientos que hemos adquirido, la forma más rápida para obtener la métrica
-en coordenadas oblícuas es utilizar el método seguido en la expresión
-\eqref{eq:R2-cart-metrica}. Para ello debemos calcular el producto escalar de los
-vectores de la base \eqref{eq:R2-oblic_base}, pero antes vamos a expresar estos vectores
-en función de los $\uvec{\i}$ y $\uvec{\j}$ de las cartesianas rectangulares
+Vamos a expresar estos vectores en función de los $\uvec{\i}$ y $\uvec{\j}$ de las
+cartesianas rectangulares
 \begin{align}
   \xhat{e}_1 &= \uvec{\i}\\
   \xhat{e}_2 &= \cos{\alpha}\, \uvec{\i} + \sin{\alpha}\, \uvec{\j}
 \end{align}
+Nótese que los vectores de la base son unitarios, por esta razón los habíamos
+representado desde el principio con el acento circunflejo
+\begin{align}
+  \|\xhat{e}_1\|
+  &=
+    \|\uvec{\i}|| = 1\\
+  \|\xhat{e}_2\|
+  &=
+    (\cos\theta\,\uvec{\i}+\sin\theta\,\uvec{\j})^2
+    = \cos^2\theta + \sin^2\theta = 1
+\end{align}
+
+De aquí deducimos la matriz de transformación de la base rectangular a la oblícua y su
+inversa
+\begin{subequations}
+\begin{align}
+  \begin{pmatrix}
+    \xhat{e}_1\\
+    \xhat{e}_2
+  \end{pmatrix}
+  &=
+    \begin{pmatrix}
+      1 & 0\\
+      \cos\alpha & \sin\alpha
+    \end{pmatrix}
+    \,
+    \begin{pmatrix}
+      \uvec{\i}\\
+      \uvec{\j}
+    \end{pmatrix}\\
+  \begin{pmatrix}
+    \uvec{\i}\\
+    \uvec{\j}
+  \end{pmatrix}
+  &=
+    \dfrac{1}{\sin\alpha}
+    \begin{pmatrix}
+      \sin\alpha & 0\\
+      -\cos\alpha & \sin\alpha
+    \end{pmatrix}
+    \,
+    \begin{pmatrix}
+      \xhat{e}_1\\
+      \xhat{e}_2
+    \end{pmatrix}      
+   =
+    \begin{pmatrix}
+      1 & 0\\
+      -\cot\alpha & \csc\alpha
+    \end{pmatrix}
+    \,
+    \begin{pmatrix}
+      \xhat{e}_1\\
+      \xhat{e}_2
+    \end{pmatrix}  
+\end{align}
+\end{subequations}
+
+Por tanto, las matrices de transformación de bases de rectangulares a oblícuas y su
+inversa son
+\begin{align}
+  \mmm{M}
+  &=
+    \begin{pmatrix}
+      1 & 0\\
+      \cos\alpha & \sin\alpha
+    \end{pmatrix}\\
+  \mmm{M}^{-1}
+  &=
+    \begin{pmatrix}
+      1 & 0\\
+      -\cot\alpha & \csc\alpha
+    \end{pmatrix}
+\end{align}
+
+\subsubsection{Ejemplo de transformación de componentes}
+Los vectores se transforman de forma inversa a la base. Así, si tenemos un vector en
+coordenadas rectangulares $\vvv{u} = 2\,\uvec{i} - 4\,\uvec{j}$, entonces, para hallar
+las componentes en un sistema de coordenadas oblícuas, con
+$\alpha = \pi/3\unit{\radian}$, tenemos que aplicar la inversa de $M$
+{\small
+\begin{align*}
+  \begin{pmatrix}
+    u^1\\
+    u^2
+  \end{pmatrix}
+  &=
+  \begin{pmatrix}
+    1 & 0\\
+    -\cot(\pi/3) & \csc(\pi/3)
+  \end{pmatrix}
+  \,
+  \begin{pmatrix}
+    2\\
+    -4
+  \end{pmatrix}
+  =
+  \dfrac{1}{\sin(\pi/3)}
+  \begin{pmatrix}
+    \sin(\pi/3) & 0\\
+    -\cos(\pi/3) & 1
+  \end{pmatrix}
+  \,
+  \begin{pmatrix}
+    2\\
+    -4
+  \end{pmatrix}\\
+  &=
+    \dfrac{1}{\sin(\pi/3)}
+    \begin{pmatrix}
+      2\sin(\pi/3)\\
+      2\cos(\pi/3)-4
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      2\\
+      \dfrac{2\cos(\pi/3)-4}{\sin(\pi/3)}
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      2\\
+      \dfrac{2\dfrac{1}{2}\dfrac{\sqrt{3}}{2}-4}{1/2}
+    \end{pmatrix}
+\end{align*}
+}
+
+
+
+\subsection{Producto escalar de los vectores de la base}
+
+
+\subsection{Métrica}
+Con los conocimientos que hemos adquirido, la forma más rápida para obtener la métrica
+en coordenadas oblícuas es utilizar el método seguido en la expresión
+\eqref{eq:R2-cart-metrica}. Para ello debemos calcular el producto escalar de los
+vectores de la base \eqref{eq:R2-oblic_base}.
 
 Multiplicamos escalarmente estos vectores
 \begin{subequations}
