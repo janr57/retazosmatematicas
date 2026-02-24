@@ -832,6 +832,7 @@ las nuevas componentes serían $(100, 200)\,\unit{\centi\metre}$.
 En otras palabras, la base ``se ha hecho 100 veces menor'', pero las componentes
 ``se han hecho 100 veces mayor''.
 
+\subsubsection{Concepto}
 Estas componentes han variado de forma contraria a como lo hizo la base elegida.
 A las componentes que se comportan de esta manera se les llama \emph{contravariantes} y,
 aunque no es necesario en la mayor parte de las situaciones, se suele utilizar el índice
@@ -845,6 +846,124 @@ En notación de Einstein sería
 \[
   \vvv{v} = A^i\vvv{b}_i
 \]
+
+\subsubsection{Representación gráfica de las componentes contravariantes}
+La componentes contravariantes en el sistema de coordenadas oblícuas se pueden
+representar gráficamente, ver figura \ref{fig:R2-oblic_contrav}.
+\begin{figure}[ht]
+  % Escala
+  \def\scl{1.00}
+  % 
+  \pgfmathsetmacro{\EJESCARTLONG}{3.0}
+  \pgfmathsetmacro{\EJEOBLICLONG}{2.7}
+  % Eje x
+  %\pgfmathsetmacro{\XLONG}{\EJESCARTLONG}
+  % Eje y
+  %\pgfmathsetmacro{\YLONG}{\EJESCARTLONG}
+  % Eje xtilde
+  \pgfmathsetmacro{\XTILDEANG}{0}
+  \pgfmathsetmacro{\XTILDELONG}{\EJEOBLICLONG}    
+  % Eje ytilde
+  \pgfmathsetmacro{\YTILDEANG}{70}
+  \pgfmathsetmacro{\YTILDELONG}{\EJESCARTLONG}
+  % Vector P
+  \pgfmathsetmacro{\PMOD}{2.3}
+  \pgfmathsetmacro{\PANG}{40}
+  % Fondo
+  \pgfmathsetmacro{\HORZ}{0.25}
+  \pgfmathsetmacro{\VERT}{0.25}
+  % 
+  \centering
+  \begin{tikzpicture}[%
+    scale=\scl,
+    every node/.style={black,font=\small},
+    %ejecart/.style={->, black!30},
+    ejeoblic/.style={->, black},
+    proyeccion/.style={black!20, line width=0.4},
+    % longitud/.style={line width=.5pt,\colorV},
+    texto/.style={black},
+    %textoapagado/.style={\colorTorig},
+    vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt,\colorV},
+    contravariante/.style={%
+      -{Latex[round,width=5pt,length=8pt]},line width=1.2pt, orange!80!black},
+    contravtxt/.style={orange!60!black},
+    pcirculo/.style={fill=\colorPorig, draw=black},
+    background/.style={%
+      line width=\bgborderwidth,
+      draw=\bgbordercolor,
+      fill=\bgcolor,
+    },
+    ]
+    % COORDENADAS
+    % Origen
+    \coordinate (O) at (0,0);
+    % Eje xtilde
+    \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
+    coordinate (xtildefin);
+    \node[texto, below] at (xtildefin) {\footnotesize $\tilde{x}^1$};
+    % Eje ytilde
+    \path[save path=\ejeytilde, name path=O--ytilde] (O) -- ++(\YTILDEANG:\YTILDELONG cm)
+    coordinate (ytildefin);
+    % Vector
+    \path[save path=\r] (O) -- coordinate[pos=0.6] (posvecttxt) (\PANG:\PMOD cm)
+    coordinate (P);
+    % Proyección de P en los ejes
+    % Con eje x
+    \path[save path=\proyx] (e2fin) |- (xfin) coordinate[pos=0.5] (e2x) (xfin);
+    % Componentes contravariantes
+    % Intersección de horizontal desde P hasta ytilde
+    % -> Componente contravariante eje ytilde (CTV2) 
+    \path[name path=P--y] (P) -| (yfin);
+    \path[name intersections={of=P--y and O--ytilde,by=CTV2}];
+    % Paralela (CTV2) -- (O) que pase por (P)
+    % -> Componente contravariante eje xtilde (CTV1)
+    \path (P) -- ($(P) - (CTV2) - (O)$) coordinate (CTV1);
+    
+    % DIBUJOS
+    % Proyecciones de componentes
+    % Contravariantes
+    \draw[proyeccion] (P) -- (CTV1);
+    %\node[below] at (CTV1) {\footnotesize $\hat{x}^1$};
+    \draw[proyeccion] (P) -- (CTV2);
+    %\node[left] at (CTV2) {\footnotesize $\hat{x}^2$};
+    % xtilde
+    \draw[ejeoblic, use path=\ejextilde];
+    % ytilde
+    \draw[ejeoblic, use path=\ejeytilde];
+    \node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{x}^2$};
+    % Vector P
+    \draw[vector, use path=\r];
+    \node[above left=-3pt and -1pt] at (posvecttxt) {\footnotesize $\vvv{v}$};
+    \filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
+    \node[above right=0pt and -5pt] at (P) {\footnotesize $P$};
+
+    % Marcar en color la componentes contravariantes
+    \draw[contravariante]
+    (O) -- node[contravtxt,pos=0.5, below]
+    {$\hat{A}^1\xhat{e}_1$} (CTV1);
+    \draw[contravariante] (O) -- node[contravtxt,pos=0.5,above left=-2pt and -2pt]
+    {$\hat{A}^2\xhat{e}_2$} (CTV2);
+    
+    % Origen
+    \fill[orange!80!black] (O) circle [radius=1pt];
+    
+    % Fondo amarillo
+    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
+    \begin{scope}[on background layer]
+      \draw[background] (SW) rectangle (NE);
+    \end{scope}
+  \end{tikzpicture}
+  \caption{Componentes contravariantes $A^i$ en coordenadas oblícuas. El vector $\vvv{v}$
+    se representa como $\vvv{v}=A^1\,\xhat{e}_1 + A^2\,\xhat{e}_2$. Las componentes
+    contravariantes nos indican el desplazamiento en el espacio.}
+  \label{fig:R2-oblic_contrav}
+\end{figure}
+
+Para centrar ideas, supongamos que el vector $\vvv{v}$ de la figura representa un
+desplazamiento en $\symbb{R}^2$. la suma de Las componentes contravariantes $A^i$
+multiplicadas por sus respectivos vectores unidad, nos da el desplazamiento que nos señala el vector.
+
 
 \subsection{Forma matricial de la base y de las componentes}
 Recordemos que los vectores de una base se pueden representar matricialmente situando los
@@ -873,7 +992,6 @@ la que se representa un conjunto de vectores que forman una base. Lo único que 
 común es que son una representación matricial, aunque de cosas diferentes.
 
 
-
 \subsection{Transformación de componentes}
 Las componentes contravariantes de un vector se representan en columna y en la expresión
 matemática interviene la matriz inversa (las componentes contravariantes se transforman
@@ -882,11 +1000,12 @@ obtienen a partir de las antiguas mediante $\mmm{M}^{-1}$, mientras que las anti
 transforman a partir de las nuevas mediante $\mmm{M}$, la inversa de la anterior
 \begin{subequations}
   \begin{align}
-    \left[A^i\right]_{B'} &= \mmm{M}^{-1} \left[A^i\right]_{B}\\
-    \left[A^i\right]_{B} &= \mmm{M} \left[A^i\right]_{B'}
+    &\left[A^i\right]_{B'} = \mmm{M}^{-1} \left[A^i\right]_{B}\\
+    &\left[A^i\right]_{B}\hspace{0.4em} = \mmm{M} \left[A^i\right]_{B'}
   \end{align}
 \end{subequations}
 
+En coordenadas oblícuas en $\symbb{R}^2$
 \begin{subequations}
   \begin{align}
     \begin{pmatrix}
@@ -1014,171 +1133,6 @@ y quisiéramos obtener las coordenadas rectangulares, deberíamos obtener $(2,-4
     \end{pmatrix}  
 \end{align*}
 
-\subsubsection{Representación gráfica de las componentes contravariantes}
-La componentes contravariantes en el sistema de coordenadas oblícuas se pueden
-representar gráficamente, ver figura \ref{fig:R2-oblcontrav}.
-\begin{figure}[ht]
-  % Escala
-  \def\scl{1.00}
-  % 
-  \pgfmathsetmacro{\EJESCARTLONG}{3.0}
-  \pgfmathsetmacro{\EJEOBLICLONG}{2.7}
-  % Eje x
-  %\pgfmathsetmacro{\XLONG}{\EJESCARTLONG}
-  % Eje y
-  %\pgfmathsetmacro{\YLONG}{\EJESCARTLONG}
-  % Eje xtilde
-  \pgfmathsetmacro{\XTILDEANG}{0}
-  \pgfmathsetmacro{\XTILDELONG}{\EJEOBLICLONG}    
-  % Eje ytilde
-  \pgfmathsetmacro{\YTILDEANG}{70}
-  \pgfmathsetmacro{\YTILDELONG}{\EJESCARTLONG}
-  % Vector P
-  \pgfmathsetmacro{\PMOD}{2.3}
-  \pgfmathsetmacro{\PANG}{40}
-  % Fondo
-  \pgfmathsetmacro{\HORZ}{0.25}
-  \pgfmathsetmacro{\VERT}{0.25}
-  % 
-  \centering
-  \begin{tikzpicture}[%
-    scale=\scl,
-    every node/.style={black,font=\small},
-    %ejecart/.style={->, black!30},
-    ejeoblic/.style={->, black},
-    proyeccion/.style={black!20, line width=0.4},
-    % longitud/.style={line width=.5pt,\colorV},
-    texto/.style={black},
-    %textoapagado/.style={\colorTorig},
-    vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt,\colorV},
-    contravariante/.style={line width=2pt, orange!90!black},
-    %vtilde/.style={%
-    %  -{Latex[round,width=4pt,length=6pt]}, line width=1pt, \colorVred},
-    pcirculo/.style={fill=\colorPorig, draw=black},
-    angulo/.style={fill=green!15, draw=\colorGirodos},
-    background/.style={%
-      line width=\bgborderwidth,
-      draw=\bgbordercolor,
-      fill=\bgcolor,
-    },
-    ]
-    % COORDENADAS
-    % Origen
-    \coordinate (O) at (0,0);
-    % Eje x
-    %\path[save path=\ejex] (O) -- (\XLONG cm, 0) coordinate (xfin);
-    % Eje y
-    %\path[save path=\ejey] (O) -- (0, \YLONG cm) coordinate (yfin);
-    % Eje xtilde
-    \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
-    coordinate (xtildefin);
-    \node[texto, below] at (xtildefin) {\footnotesize $\tilde{x}^1$};
-    % Eje ytilde
-    \path[save path=\ejeytilde, name path=O--ytilde] (O) -- ++(\YTILDEANG:\YTILDELONG cm)
-    coordinate (ytildefin);
-    % Vector
-    \path[save path=\r] (O) -- coordinate[pos=0.6] (posvecttxt) (\PANG:\PMOD cm)
-    coordinate (P);
-    % Proyección de P en los ejes
-    % Con eje x
-    \path[save path=\proyx] (e2fin) |- (xfin) coordinate[pos=0.5] (e2x) (xfin);
-    % Posición de texto en eje x
-    % \path (O) -- coordinate[pos=0.5] (extxt) (e2x);
-    % Con eje y
-    %\path[save path=\proyy] (e2fin) -| coordinate[pos=0.5] (e2y) (yfin);
-    % Posición de texto en eje y
-    % \path (O) -- coordinate[pos=0.5] (eytxt) (e2y);
-    % Componentes covariantes y contravariantes
-    % Intersección de horizontal desde P hasta ytilde
-    % -> Componente contravariante eje ytilde (CTV2) 
-    \path[name path=P--y] (P) -| (yfin);
-    \path[name intersections={of=P--y and O--ytilde,by=CTV2}];
-    % Paralela (CTV2) -- (O) que pase por (P)
-    % -> Componente contravariante eje xtilde (CTV1)
-    \path (P) -- ($(P) - (CTV2) - (O)$) coordinate (CTV1);
-    % Componente covariante con eje xtilde (COV1)
-    %\path (P) |- coordinate[pos=0.5] (COV1) (xtildefin);
-    % Perpendicular a O--ytilde que pasa por P
-    % -> Componente covariante con eje ytilde (COV2)
-    %\path (P) -- ($(O)!(P)!(ytildefin)$) coordinate (COV2);
-    % Proyecciones de las componentes
-    
-    % DIBUJOS
-    % Ángulo theta
-    %\path (xfin) -- (O) -- (ytildefin) pic
-    %[angulo, angle radius=15pt]
-    %{angle = xfin--O--ytildefin};
-    %\node[above right=-2pt and 4pt] at (O) {\scriptsize $\alpha$};
-%    
-    % Proyecciones de componentes
-    % Contravariantes
-    \draw[proyeccion] (P) -- (CTV1);
-    %\node[below] at (CTV1) {\footnotesize $\hat{x}^1$};
-    \draw[proyeccion] (P) -- (CTV2);
-    %\node[left] at (CTV2) {\footnotesize $\hat{x}^2$};
-    % Covariantes
-    %\draw[proyeccion] (P) -- (COV1);
-    %\node[below] at (COV1) {\footnotesize $\hat{x}_1$};
-    %\draw[proyeccion] (P) -- (COV2);
-    %\node[above left=-2pt and -2pt] at (COV2) {\footnotesize $\hat{x}_2$};
-    
-    % Ejes
-    % x
-    %\draw[ejecart, use path=\ejex];
-    %\node[textoapagado, below=3pt] at (xfin) {\small $x$};
-    % y
-    %\draw[ejecart, use path=\ejey];
-    %\node[above, textoapagado] at (yfin) {$y$};
-    % xtilde
-    \draw[ejeoblic, use path=\ejextilde];
-    % \node[below, texto] at (xtildefin) {$\tilde{x}^1$};
-    % ytilde
-    \draw[ejeoblic, use path=\ejeytilde];
-    \node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{x}^2$};
-    % \node[rotate=90, left=8pt] at (ytexto) {$r\sin\theta$};
-    % Vector P
-    \draw[vector, use path=\r];
-    \node[above left=-3pt and -1pt] at (posvecttxt) {\footnotesize $\vvv{v}$};
-    \filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
-    \node[above right=0pt and -5pt] at (P) {\footnotesize $P$};
-
-    % Marcar en gris la componentes contravariantes
-    \draw[contravariante] (O) -- node[pos=0.5, below] {$\hat{A}^1$} (CTV1);
-    \draw[contravariante] (O) -- node[pos=0.5, above left=-2pt and -4pt] {$\hat{A}^2$} (CTV2);
-    
-%    % Versores
-%    \draw[vtilde, use path=\vxtilde];
-%    \node[\colorTred, below] at (vxtildetxt) {\footnotesize $\xhat{e}_1$};
-%    \draw[vtilde, use path=\vytilde];
-%    \node[\colorTred,above left=-4pt and 2pt] at (vytildetxt)
-%    {\footnotesize $\xhat{e}_2$};
-%    %     % Coordenada r y punto  P
-%    % \draw[longitud, use path=\r];
-%    % \node[above left=-3pt and -1pt] at (pmid) {$r$};
-%    % \filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
-%    % \node[above] at (P) {$P$};
-    
-    % Origen
-    \fill[orange!80!black] (O) circle [radius=1pt];
-    
-    % Fondo amarillo
-    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
-    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
-    \begin{scope}[on background layer]
-      \draw[background] (SW) rectangle (NE);
-    \end{scope}
-  \end{tikzpicture}
-  \label{fig:R2-oblcontrav}
-  \caption{Componentes contravariantes $A^i$ en coordenadas oblícuas. El vector $\vvv{v}$
-    se representa como $\vvv{v}=A^1\,\xhat{e}_1 + A^2\,\xhat{e}_2$. No se representan los
-    vectores de la base oblícua para no complicar la figura innecesariamente.
-    Las componentes contravariantes indican el desplazamiento en el espacio
-    $\symbb{R}^2$.}
-\end{figure}
-
-
-\subsection{Producto escalar de los vectores de la base}
-
 
 \subsection{Métrica}
 Con los conocimientos que hemos adquirido, la forma más rápida para obtener la métrica
@@ -1228,7 +1182,121 @@ La métrica en coordenadas oblícuas queda
   \end{pmatrix}
 \end{equation}
 
-%fig:R2-oblic_CTV
+
+\subsection{Componentes covariantes}
+Vamos a suponer que un vector $\vvv{v}$ representa un gradiente de un campo escalar
+$\vvv{\nabla}\phi$.
+Representaremos las componentes covariantes con subíndice $A_i$.
+\begin{figure}[ht]
+  % Escala
+  \def\scl{1.00}
+  % 
+  \pgfmathsetmacro{\EJESCARTLONG}{3.0}
+  \pgfmathsetmacro{\EJEOBLICLONG}{2.7}
+  % Eje xtilde
+  \pgfmathsetmacro{\XTILDEANG}{0}
+  \pgfmathsetmacro{\XTILDELONG}{\EJEOBLICLONG}    
+  % Eje ytilde
+  \pgfmathsetmacro{\YTILDEANG}{70}
+  \pgfmathsetmacro{\YTILDELONG}{\EJESCARTLONG}
+  % Vector P
+  \pgfmathsetmacro{\PMOD}{2.3}
+  \pgfmathsetmacro{\PANG}{40}
+  % Fondo
+  \pgfmathsetmacro{\HORZ}{0.25}
+  \pgfmathsetmacro{\VERT}{0.25}
+  % 
+  \centering
+  \begin{tikzpicture}[%
+    scale=\scl,
+    every node/.style={black,font=\small},
+    ejeoblic/.style={->, black},
+    proyeccion/.style={black!20, line width=0.4},
+    texto/.style={black},
+    vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt,\colorV},
+    covariante/.style={%
+      -{Latex[round,width=5pt,length=8pt]},line width=1.2pt, cyan!70!black},
+    covtxt/.style={cyan!40!black},
+    pcirculo/.style={fill=\colorPorig, draw=black},
+    background/.style={%
+      line width=\bgborderwidth,
+      draw=\bgbordercolor,
+      fill=\bgcolor,
+    },
+    ]
+    % COORDENADAS
+    % Origen
+    \coordinate (O) at (0,0);
+    % Eje xtilde
+    \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
+    coordinate (xtildefin);
+    % Eje ytilde
+    \path[save path=\ejeytilde, name path=O--ytilde] (O) -- ++(\YTILDEANG:\YTILDELONG cm)
+    coordinate (ytildefin);
+    % Vector
+    \path[save path=\r] (O) -- coordinate[pos=0.6] (posvecttxt) (\PANG:\PMOD cm)
+    coordinate (P);
+    % Componentes covariantes
+    % Proyección de P en los ejes
+    % Con eje x
+    \path[save path=\proyx] (e2fin) |- (xfin) coordinate[pos=0.5] (e2x) (xfin);
+    % Componente covariante con eje xtilde (COV1)
+    \path (P) |- coordinate[pos=0.5] (COV1) (xtildefin);
+    % Perpendicular a O--ytilde que pasa por P
+    % -> Componente covariante con eje ytilde (COV2)
+    \path (P) -- ($(O)!(P)!(ytildefin)$) coordinate (COV2);
+ 
+    
+    % DIBUJOS
+    % Covariantes
+    \draw[proyeccion] (P) -- (COV1);
+    \draw[proyeccion] (P) -- (COV2);
+    
+    % Ejes
+    % xtilde
+    \draw[ejeoblic, use path=\ejextilde];
+    \node[texto, right] at (xtildefin) {\footnotesize $\tilde{x}^1$};
+    % ytilde
+    \draw[ejeoblic, use path=\ejeytilde];
+    \node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{x}^2$};
+    % \node[rotate=90, left=8pt] at (ytexto) {$r\sin\theta$};
+    % Vector P
+    \draw[vector, use path=\r];
+    \node[above left=-3pt and -1pt] at (posvecttxt) {\footnotesize $\vvv{v}$};
+    \filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
+    \node[above right=0pt and -5pt] at (P) {\footnotesize $P$};
+
+    % Marcar en gris la componentes contravariantes
+    \draw[covariante]
+    (O) -- node[covtxt,pos=0.5, below]
+    {$\hat{A}_1\xhat{e}^1$} (COV1);
+    \draw[covariante] (O) -- node[covtxt,pos=0.5,above left=-2pt and -2pt]
+    {$\hat{A}_2\xhat{e}^2$} (COV2);
+    
+    % Origen
+    \fill[orange!80!black] (O) circle [radius=1pt];
+    
+    % Fondo amarillo
+    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
+    \begin{scope}[on background layer]
+      \draw[background] (SW) rectangle (NE);
+    \end{scope}
+  \end{tikzpicture}
+  \caption{Componentes covariantes $A_i$ en coordenadas oblícuas. El vector $\vvv{v}$
+    se representa como $\vvv{v}=A_1\,\xhat{e}^1 + A_2\,\xhat{e}^2$. Las componentes
+    contravariantes nos indican el desplazamiento en el espacio.}
+  \label{fig:R2-oblic_cov}
+\end{figure}
+
+
+
+
+
+
+
+
+
 
 
 
