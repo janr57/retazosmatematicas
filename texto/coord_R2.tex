@@ -525,7 +525,7 @@ Este elemento se relaciona trivialmente con el jacobiano de la
 \section{Coordenadas cartesianas oblícuas}
 En esta sección encontraremos ...
 
-\subsection{Introducción y base natural}
+\subsection{Base natural}
 En coordenadas oblícuas es importante el ángulo que forman los dos ejes. Llamaremos
 $\alpha$ a este ángulo. Los ejes oblícuos los representamos por $\tilde{x}^1$ y
 $\tilde{x}^2$. La base natural está formada por los vectores unitarios $\xhat{e}_1$ y
@@ -534,7 +534,7 @@ $\xhat{e}_2$
   B' = \set{\xhat{e}_1, \xhat{e}_2}
 \end{equation}
 
-\subsubsection{Transformación de vectores. Cambio de base}
+\subsection{Cambio de base}
 Para relacionar esta base $B'$ con la estándar de las rectilíneas
 $B=\set{\uvec{\i},\uvec{\j}}$, haremos coincidir el versor $\xhat{e}_1$ con $\uvec{\i}$,
 esto es, el eje $\tilde{x}^1$ coincide con el eje $x$ de las cartesianas. Véase la figura
@@ -717,101 +717,7 @@ rectangular. Es importante darse cuenta que los vectores se representan en filas
   \end{pmatrix}
 \]
 
-\subsubsection{Transformación de componentes de vectores. Componentes
-  contravariantes}
-Este apartado es importante y conviene presentarlo con cierto detalle.
-
-Cuando un vector se expresa en una determinada base, se obtiene una expresión de ese
-vector en función de unas determinadas componentes. Por ejemplo, en dos dimensiones y
-tomando una base genérica $\set{\vvv{b}_1,\vvv{b}_2}$, escribiríamos
-\[
-  \vvv{v} = A_1\vvv{b}_1 + A_2\vvv{b}_2
-\]
-que, como sabemos significa que el vector $\vvv{v}$ se puede representar sumando
-los productos de cada cada componente por el vector correspondiente de la base.
-
-Si la base estuviera formada por muchos vectores, o este número no estuviera definido,
-entonces sería conveniente utilizar un sumatorio, como
-\[
-  \vvv{v} = \sum_{i=1}^n A_i\vvv{b}_i
-\]
-
-Cuando se opera con expresiones un tanto largas, se suele utilizar la notación de
-Einstein, donde se prescinde del sumatorio y se tiene en cuenta que cuando en un
-monomio se encuentra el mismo índice, por ejemplo $i$, se debe sumar para todos los
-valores de ese índice
-\[
-  \vvv{v} = \sum_i A_i\vvv{b}_i = A_i \vvv{b}_i
-\]
-
-Otro aspecto importante es notar que las componentes de un vector dependen de la base
-elegida. Si se cambia de base, las componentes varían. Por ejemplo, si utilizáramos
-la base $\set{\vvv{\tilde{b}}_1, \vvv{\tilde{b}}_2}$, las nuevas componentes serían las $\tilde{A}_i$
-\[
-  \vvv{v} = \tilde{A}_1\vvv{\tilde{b}}_1 + \tilde{A}_2\vvv{\tilde{b}}_2
-\]
-Cambian las componentes, pero el vector tiene que ser el mismo, el vector no cambia, lo
-hace su representación dependiendo de la base utilizada.
-
-Para seguir, vamos a poner un ejemplo concreto. Supongamos que medimos un cierto vector
-y para ello, por sencillez, utilizamos la base estándar en coordenadas cartesianas
-rectangulares en metros $B=\set{\uvec{\i}, \uvec{\j}}$, y obtenemos que mide
-\qty{1}{\metre} en el eje $x$ y \qty{2}{\metre} en el eje $y$. El vector se podrá
-representar como
-\[
-  \vvv{v} = 1\,\uvec{\i} + 2\,\uvec{\j}\,\unit{\metre}
-\]
-esto es, las componentes serían $(1, 2)\,\unit{\metre}$.
-
-Supongamos también que deseamos cambiar la base elegida, a otra
-$B' = \set{\uvec{\i}' + \uvec{\j}'}$ que mide en centímetros. La nueva base
-\emph{es más pequeña} (``$B' < B$'') que la antigua (centímetros en lugar de metros). Pero, para que el vector $\vvv{v}$ no cambie, los valores medidos en centímetros deben
-\emph{aumentar} con respecto a las componentes en metros ($A'_i > A_i$)
-\[
-  \vvv{v} = 100\,\uvec{\i} + 200\,\uvec{\j}\,\unit{\centi\metre}
-\]
-las nuevas componentes serían $(100, 200)\,\unit{\centi\metre}$.
-En otras palabras, la base ``se ha hecho 100 veces menor'', pero las componentes
-``se han hecho 100 veces mayor''.
-
-Estas componentes han variado de forma contraria a como lo hizo la base elegida.
-A las componentes que se comportan de esta manera se les llama \emph{contravariantes} y,
-aunque no es necesario en la mayor parte de las situaciones, se suele utilizar el índice
-que las acompaña como un \emph{superíndice} (que no indican ninguna potencia o
-exponente). Así, un vector como el que hemos puesto de ejemplo, se podría representar en
-forma genérica como
-\[
-  \vvv{v} = A^1\vvv{b}_1 + A^2\vvv{b}_2
-\]
-En notación de Einstein sería
-\[
-  \vvv{v} = A^i\vvv{b}_i
-\]
-
-\subsubsection{Forma matricial de la base y de las componentes}
-En forma matricial, las componentes del vector $\vvv{v}$ en una cierta base se
-representan en columna. Así, el vector anterior se puede expresar en la base elegida como
-\[
-  \vvv{v} =
-  \begin{pmatrix}
-    A^1\\
-    A^2
-  \end{pmatrix}
-\]
-Recordemos que los vectores de una base lo hacen situando los vectores en fila
-\[
-  B =
-  \begin{pmatrix}
-    \vvv{b}_1 & \vvv{b}_2
-  \end{pmatrix}
-\]
-Es importante distinguir entre estas dos notaciones y darse cuenta de que no son
-comparables. La primera es la forma en la que se representa un vector en función de sus
-componentes contravariantes en una cierta base, mientras que la segunda es la forma en
-la que se representa un conjunto de vectores que forman una base. Lo único que tienen en
-común es que son una representación matricial, pero de cosas diferentes.
-
-\subsubsection{Cambio de base}
+\subsubsection{Resumiendo el cambio de base}
 Como dijimo, la matriz de cambio de base de $B$ a $B'$ está formada por las componentes
 de los vectores de la expresión dispuestos en columnas. A continuación se representan, esta matriz de cambio de base y su inversa
 \begin{subequations}
@@ -871,13 +777,116 @@ filas
 \end{subequations}
 
 
-\subsubsection{Transformación de componentes}
-Las componentes de un vector se representan en columna y en la expresión matemática
-interviene la matriz inversa (las componentes contravariantes se transforman de forma
-inversa a como lo hacían los vectores de la base). Así, las nuevas componentes se
-obtienen a partir de las antiguas mediante $\mmm{M}^{-1}$, mientras que las antiguas
-se transforman a partir de las nuevas mediante la inversa de la anterior, esto es
-$\mmm{V}$
+\subsection{Componentes de los vectores}
+Cuando un vector se expresa en una determinada base, se obtiene una expresión de ese
+vector en función de unas determinadas componentes. Por ejemplo, en dos dimensiones y
+tomando una base genérica $\set{\vvv{b}_1,\vvv{b}_2}$, escribiríamos
+\[
+  \vvv{v} = A_1\vvv{b}_1 + A_2\vvv{b}_2
+\]
+que, como sabemos significa que el vector $\vvv{v}$ se puede representar sumando
+los productos de cada cada componente por el vector correspondiente de la base.
+
+Si la base estuviera formada por muchos vectores, o este número no estuviera definido,
+entonces sería conveniente utilizar un sumatorio, como
+\[
+  \vvv{v} = \sum_{i=1}^n A_i\vvv{b}_i
+\]
+
+Cuando se opera con expresiones un tanto largas, se suele utilizar la notación de
+Einstein, donde se prescinde del sumatorio y se tiene en cuenta que cuando en un
+monomio se encuentra el mismo índice, por ejemplo $i$, se debe sumar para todos los
+valores de ese índice
+\[
+  \vvv{v} = \sum_i A_i\vvv{b}_i = A_i \vvv{b}_i
+\]
+
+Otro aspecto importante es notar que las componentes de un vector dependen de la base
+elegida. Si se cambia de base, las componentes varían. Por ejemplo, si utilizáramos
+la base $\set{\vvv{\tilde{b}}_1, \vvv{\tilde{b}}_2}$, las nuevas componentes serían las $\tilde{A}_i$
+\[
+  \vvv{v} = \tilde{A}_1\vvv{\tilde{b}}_1 + \tilde{A}_2\vvv{\tilde{b}}_2
+\]
+Cambian las componentes, pero el vector tiene que ser el mismo, el vector no cambia, lo
+hace su representación dependiendo de la base utilizada.
+
+\subsection{Componentes contravariantes}
+Para seguir, vamos a poner un ejemplo concreto. Supongamos que medimos un cierto vector
+y para ello, por sencillez, utilizamos la base estándar en coordenadas cartesianas
+rectangulares en metros $B=\set{\uvec{\i}, \uvec{\j}}$, y obtenemos que mide
+\qty{1}{\metre} en el eje $x$ y \qty{2}{\metre} en el eje $y$. El vector se podrá
+representar como
+\[
+  \vvv{v} = 1\,\uvec{\i} + 2\,\uvec{\j}\,\unit{\metre}
+\]
+esto es, las componentes serían $(1, 2)\,\unit{\metre}$.
+
+Supongamos también que deseamos cambiar la base elegida, a otra
+$B' = \set{\uvec{\i}' + \uvec{\j}'}$ que mide en centímetros. La nueva base
+\emph{es más pequeña} (``$B' < B$'') que la antigua (centímetros en lugar de metros). Pero, para que el vector $\vvv{v}$ no cambie, los valores medidos en centímetros deben
+\emph{aumentar} con respecto a las componentes en metros ($A'_i > A_i$)
+\[
+  \vvv{v} = 100\,\uvec{\i} + 200\,\uvec{\j}\,\unit{\centi\metre}
+\]
+las nuevas componentes serían $(100, 200)\,\unit{\centi\metre}$.
+En otras palabras, la base ``se ha hecho 100 veces menor'', pero las componentes
+``se han hecho 100 veces mayor''.
+
+Estas componentes han variado de forma contraria a como lo hizo la base elegida.
+A las componentes que se comportan de esta manera se les llama \emph{contravariantes} y,
+aunque no es necesario en la mayor parte de las situaciones, se suele utilizar el índice
+que las acompaña como un \emph{superíndice} (que no indican ninguna potencia o
+exponente). Así, un vector como el que hemos puesto de ejemplo, se podría representar en
+forma genérica como
+\[
+  \vvv{v} = A^1\vvv{b}_1 + A^2\vvv{b}_2
+\]
+En notación de Einstein sería
+\[
+  \vvv{v} = A^i\vvv{b}_i
+\]
+
+\subsection{Forma matricial de la base y de las componentes}
+Recordemos que los vectores de una base se pueden representar matricialmente situando los
+vectores en fila
+\[
+  B =
+  \begin{pmatrix}
+    \vvv{b}_1 & \vvv{b}_2
+  \end{pmatrix}
+\]
+
+En forma matricial, las componentes contravariantes del vector $\vvv{v}$, en una cierta
+base, se representan en columna. Así, el vector anterior se puede expresar en la base
+elegida como
+\[
+  \vvv{v} =
+  \begin{pmatrix}
+    A^1\\
+    A^2
+  \end{pmatrix}
+\]
+Es importante distinguir entre estas dos notaciones y darse cuenta de que no son
+comparables. La primera es la forma en la que se representa un vector en función de sus
+componentes contravariantes en una cierta base, mientras que la segunda es la forma en
+la que se representa un conjunto de vectores que forman una base. Lo único que tienen en
+común es que son una representación matricial, aunque de cosas diferentes.
+
+
+
+\subsection{Transformación de componentes}
+Las componentes contravariantes de un vector se representan en columna y en la expresión
+matemática interviene la matriz inversa (las componentes contravariantes se transforman
+de forma inversa a como lo hacían los vectores de la base). Así, las nuevas componentes se
+obtienen a partir de las antiguas mediante $\mmm{M}^{-1}$, mientras que las antiguas se
+transforman a partir de las nuevas mediante $\mmm{M}$, la inversa de la anterior
+\begin{subequations}
+  \begin{align}
+    \left[A^i\right]_{B'} &= \mmm{M}^{-1} \left[A^i\right]_{B}\\
+    \left[A^i\right]_{B} &= \mmm{M} \left[A^i\right]_{B'}
+  \end{align}
+\end{subequations}
+
 \begin{subequations}
   \begin{align}
     \begin{pmatrix}
@@ -913,56 +922,259 @@ $\mmm{V}$
 
 
 \subsubsection{Ejemplo de transformación de componentes}
-Los vectores se transforman de forma inversa a la base. Así, si tenemos un vector en
-coordenadas rectangulares $\vvv{u} = 2\,\uvec{i} - 4\,\uvec{j}$, entonces, para hallar
-las componentes en un sistema de coordenadas oblícuas, con
-$\alpha = \pi/3\unit{\radian}$, tenemos que aplicar la inversa de $M$
-{\small
+Supongamos que tenemos un vector en coordenadas rectangulares
+\[
+  \vvv{v}
+  = A^1\,\xhat{u}_1 + A^2\,\xhat{u}_1 = A^i\,\xhat{u}_i
+  = 2\,\uvec{\i} - 4\,\uvec{\j}
+\]
+y estamos interesados en obtener las componentes $\tilde{A}^i$ en un sistema de
+coordenadas oblícuas, donde el ángulo que forman sus ejes vale
+$\alpha = \pi/3\,\unit{\radian}$. Tendremos que aplicar la inversa de la matriz de
+transformación de base de $B$ a $B'$
 \begin{align*}
   \begin{pmatrix}
-    u^1\\
-    u^2
+    \tilde{A}^1\\
+    \tilde{A}^2
   \end{pmatrix}
   &=
   \begin{pmatrix}
-    1 & 0\\
-    -\cot(\pi/3) & \csc(\pi/3)
+    1 & -\cot{\pi/3}\\
+    0 & \phantom{-}\csc{\pi/3}
   \end{pmatrix}
   \,
   \begin{pmatrix}
-    2\\
-    -4
+    A^1\\
+    A^2
   \end{pmatrix}
-  =
-  \dfrac{1}{\sin(\pi/3)}
-  \begin{pmatrix}
-    \sin(\pi/3) & 0\\
-    -\cos(\pi/3) & 1
-  \end{pmatrix}
-  \,
-  \begin{pmatrix}
-    2\\
-    -4
-  \end{pmatrix}\\
-  &=
-    \dfrac{1}{\sin(\pi/3)}
+    =
     \begin{pmatrix}
-      2\sin(\pi/3)\\
-      2\cos(\pi/3)-4
+      1 & -1/\sqrt{3}\\
+      0 & \phantom{-}2/\sqrt{3}
+    \end{pmatrix}
+    \,
+    \begin{pmatrix}
+      \phantom{-}2\\
+      -4
     \end{pmatrix}
     =
     \begin{pmatrix}
-      2\\
-      \dfrac{2\cos(\pi/3)-4}{\sin(\pi/3)}
-    \end{pmatrix}
-    =
-    \begin{pmatrix}
-      2\\
-      \dfrac{2\dfrac{1}{2}\dfrac{\sqrt{3}}{2}-4}{1/2}
+      2+\dfrac{4}{\sqrt{3}}\\[3ex]
+      -\dfrac{8}{\sqrt{3}}
     \end{pmatrix}
 \end{align*}
-}
 
+Así
+\[
+  \vvv{v}
+  = \tilde{A}^1\,\xhat{e}_1 + \tilde{A}^2\,\xhat{e}_2 = \tilde{A}^i\,\xhat{e}_i
+  = \left(2+\dfrac{4}{\sqrt{3}}\right)\,\xhat{e}_1 - \dfrac{8}{\sqrt{3}}\,\xhat{e}_2
+\]
+
+
+Si nos dieran las componentes en coordenadas oblícuas
+\[
+  \left(\tilde{A}^1, \tilde{A}^2\right) = \left(2+4/\sqrt{3}, -8/\sqrt{3}\right)
+\]
+y quisiéramos obtener las coordenadas rectangulares, deberíamos obtener $(2,-4)$
+\begin{align*}
+  \begin{pmatrix}
+    A^1\\
+    A^2
+  \end{pmatrix}
+  &=
+  \begin{pmatrix}
+    1 & \cos{\pi/3}\\
+    0 & \sin{\pi/3}
+  \end{pmatrix}
+  \,
+  \begin{pmatrix}
+    \tilde{A}^1\\
+    \tilde{A}^2
+  \end{pmatrix}
+    =
+  \begin{pmatrix}
+    1 & 1/2\\
+    0 & \sqrt{3}/2
+  \end{pmatrix}
+  \,
+  \begin{pmatrix}
+    2+4/\sqrt{3}\\
+    -8/\sqrt{3}
+  \end{pmatrix}\\
+  &=
+    \begin{pmatrix}
+      2+4/\sqrt{3}-4/\sqrt{3}\\
+      -\sqrt{3}/2\, \left(-8/\sqrt{3}\right)
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      \phantom{-}2\\
+      -4
+    \end{pmatrix}  
+\end{align*}
+
+\subsubsection{Representación gráfica de las componentes contravariantes}
+La componentes contravariantes en el sistema de coordenadas oblícuas se pueden
+representar gráficamente, ver figura \ref{fig:R2-oblcontrav}.
+\begin{figure}[ht]
+  % Escala
+  \def\scl{1.00}
+  % 
+  \pgfmathsetmacro{\EJESCARTLONG}{3.0}
+  \pgfmathsetmacro{\EJEOBLICLONG}{2.7}
+  % Eje x
+  %\pgfmathsetmacro{\XLONG}{\EJESCARTLONG}
+  % Eje y
+  %\pgfmathsetmacro{\YLONG}{\EJESCARTLONG}
+  % Eje xtilde
+  \pgfmathsetmacro{\XTILDEANG}{0}
+  \pgfmathsetmacro{\XTILDELONG}{\EJEOBLICLONG}    
+  % Eje ytilde
+  \pgfmathsetmacro{\YTILDEANG}{70}
+  \pgfmathsetmacro{\YTILDELONG}{\EJESCARTLONG}
+  % Vector P
+  \pgfmathsetmacro{\PMOD}{2.3}
+  \pgfmathsetmacro{\PANG}{40}
+  % Fondo
+  \pgfmathsetmacro{\HORZ}{0.25}
+  \pgfmathsetmacro{\VERT}{0.25}
+  % 
+  \centering
+  \begin{tikzpicture}[%
+    scale=\scl,
+    every node/.style={black,font=\small},
+    %ejecart/.style={->, black!30},
+    ejeoblic/.style={->, black},
+    proyeccion/.style={black!20, line width=0.4},
+    % longitud/.style={line width=.5pt,\colorV},
+    texto/.style={black},
+    %textoapagado/.style={\colorTorig},
+    vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt,\colorV},
+    contravariante/.style={line width=2pt, orange!90!black},
+    %vtilde/.style={%
+    %  -{Latex[round,width=4pt,length=6pt]}, line width=1pt, \colorVred},
+    pcirculo/.style={fill=\colorPorig, draw=black},
+    angulo/.style={fill=green!15, draw=\colorGirodos},
+    background/.style={%
+      line width=\bgborderwidth,
+      draw=\bgbordercolor,
+      fill=\bgcolor,
+    },
+    ]
+    % COORDENADAS
+    % Origen
+    \coordinate (O) at (0,0);
+    % Eje x
+    %\path[save path=\ejex] (O) -- (\XLONG cm, 0) coordinate (xfin);
+    % Eje y
+    %\path[save path=\ejey] (O) -- (0, \YLONG cm) coordinate (yfin);
+    % Eje xtilde
+    \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
+    coordinate (xtildefin);
+    \node[texto, below] at (xtildefin) {\footnotesize $\tilde{x}^1$};
+    % Eje ytilde
+    \path[save path=\ejeytilde, name path=O--ytilde] (O) -- ++(\YTILDEANG:\YTILDELONG cm)
+    coordinate (ytildefin);
+    % Vector
+    \path[save path=\r] (O) -- coordinate[pos=0.6] (posvecttxt) (\PANG:\PMOD cm)
+    coordinate (P);
+    % Proyección de P en los ejes
+    % Con eje x
+    \path[save path=\proyx] (e2fin) |- (xfin) coordinate[pos=0.5] (e2x) (xfin);
+    % Posición de texto en eje x
+    % \path (O) -- coordinate[pos=0.5] (extxt) (e2x);
+    % Con eje y
+    %\path[save path=\proyy] (e2fin) -| coordinate[pos=0.5] (e2y) (yfin);
+    % Posición de texto en eje y
+    % \path (O) -- coordinate[pos=0.5] (eytxt) (e2y);
+    % Componentes covariantes y contravariantes
+    % Intersección de horizontal desde P hasta ytilde
+    % -> Componente contravariante eje ytilde (CTV2) 
+    \path[name path=P--y] (P) -| (yfin);
+    \path[name intersections={of=P--y and O--ytilde,by=CTV2}];
+    % Paralela (CTV2) -- (O) que pase por (P)
+    % -> Componente contravariante eje xtilde (CTV1)
+    \path (P) -- ($(P) - (CTV2) - (O)$) coordinate (CTV1);
+    % Componente covariante con eje xtilde (COV1)
+    %\path (P) |- coordinate[pos=0.5] (COV1) (xtildefin);
+    % Perpendicular a O--ytilde que pasa por P
+    % -> Componente covariante con eje ytilde (COV2)
+    %\path (P) -- ($(O)!(P)!(ytildefin)$) coordinate (COV2);
+    % Proyecciones de las componentes
+    
+    % DIBUJOS
+    % Ángulo theta
+    %\path (xfin) -- (O) -- (ytildefin) pic
+    %[angulo, angle radius=15pt]
+    %{angle = xfin--O--ytildefin};
+    %\node[above right=-2pt and 4pt] at (O) {\scriptsize $\alpha$};
+%    
+    % Proyecciones de componentes
+    % Contravariantes
+    \draw[proyeccion] (P) -- (CTV1);
+    %\node[below] at (CTV1) {\footnotesize $\hat{x}^1$};
+    \draw[proyeccion] (P) -- (CTV2);
+    %\node[left] at (CTV2) {\footnotesize $\hat{x}^2$};
+    % Covariantes
+    %\draw[proyeccion] (P) -- (COV1);
+    %\node[below] at (COV1) {\footnotesize $\hat{x}_1$};
+    %\draw[proyeccion] (P) -- (COV2);
+    %\node[above left=-2pt and -2pt] at (COV2) {\footnotesize $\hat{x}_2$};
+    
+    % Ejes
+    % x
+    %\draw[ejecart, use path=\ejex];
+    %\node[textoapagado, below=3pt] at (xfin) {\small $x$};
+    % y
+    %\draw[ejecart, use path=\ejey];
+    %\node[above, textoapagado] at (yfin) {$y$};
+    % xtilde
+    \draw[ejeoblic, use path=\ejextilde];
+    % \node[below, texto] at (xtildefin) {$\tilde{x}^1$};
+    % ytilde
+    \draw[ejeoblic, use path=\ejeytilde];
+    \node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{x}^2$};
+    % \node[rotate=90, left=8pt] at (ytexto) {$r\sin\theta$};
+    % Vector P
+    \draw[vector, use path=\r];
+    \node[above left=-3pt and -1pt] at (posvecttxt) {\footnotesize $\vvv{v}$};
+    \filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
+    \node[above right=0pt and -5pt] at (P) {\footnotesize $P$};
+
+    % Marcar en gris la componentes contravariantes
+    \draw[contravariante] (O) -- node[pos=0.5, below] {$\hat{A}^1$} (CTV1);
+    \draw[contravariante] (O) -- node[pos=0.5, above left=-2pt and -4pt] {$\hat{A}^2$} (CTV2);
+    
+%    % Versores
+%    \draw[vtilde, use path=\vxtilde];
+%    \node[\colorTred, below] at (vxtildetxt) {\footnotesize $\xhat{e}_1$};
+%    \draw[vtilde, use path=\vytilde];
+%    \node[\colorTred,above left=-4pt and 2pt] at (vytildetxt)
+%    {\footnotesize $\xhat{e}_2$};
+%    %     % Coordenada r y punto  P
+%    % \draw[longitud, use path=\r];
+%    % \node[above left=-3pt and -1pt] at (pmid) {$r$};
+%    % \filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
+%    % \node[above] at (P) {$P$};
+    
+    % Origen
+    \fill[orange!80!black] (O) circle [radius=1pt];
+    
+    % Fondo amarillo
+    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
+    \begin{scope}[on background layer]
+      \draw[background] (SW) rectangle (NE);
+    \end{scope}
+  \end{tikzpicture}
+  \label{fig:R2-oblcontrav}
+  \caption{Componentes contravariantes $A^i$ en coordenadas oblícuas. El vector $\vvv{v}$
+    se representa como $\vvv{v}=A^1\,\xhat{e}_1 + A^2\,\xhat{e}_2$. No se representan los
+    vectores de la base oblícua para no complicar la figura innecesariamente.
+    Las componentes contravariantes indican el desplazamiento en el espacio
+    $\symbb{R}^2$.}
+\end{figure}
 
 
 \subsection{Producto escalar de los vectores de la base}
@@ -999,7 +1211,7 @@ Multiplicamos escalarmente estos vectores
 \end{subequations}
 
 La métrica en coordenadas oblícuas queda
-\begin{equation}\label{eq:R2-cart-metrica}
+\begin{equation}\label{eq:R2-oblic_metrica}
   \mmm{g}
   = g_{ij}
   = \begin{pmatrix}
@@ -1016,7 +1228,7 @@ La métrica en coordenadas oblícuas queda
   \end{pmatrix}
 \end{equation}
 
-
+%fig:R2-oblic_CTV
 
 
 
@@ -1167,13 +1379,6 @@ La métrica en coordenadas oblícuas queda
       \draw[background] (SW) rectangle (NE);
     \end{scope}
   \end{tikzpicture}
-  % \caption {Componentes contravariantes.}
-  % \end{minipage}
-  \hspace{0.5em}
-  % \begin{minipage}{0.40\linewidth}
-  %   \centering
-  %   \caption {Componentes covariantes.}
-  % \end{minipage}
   \caption{Componentes contravariantes y covariantes. El ángulo $\alpha$ entre los ejes
   está marcado en verde.}
 \end{figure}
