@@ -531,19 +531,23 @@ $\alpha$ a este ángulo. Los ejes oblícuos los representamos por $\tilde{x}^1$ 
 $\tilde{x}^2$. La base natural está formada por los vectores unitarios $\xhat{e}_1$ y
 $\xhat{e}_2$
 \begin{equation}\label{eq:R2-oblic_base}
-  B = \set{\xhat{e}_1, \xhat{e}_2}
+  B' = \set{\xhat{e}_1, \xhat{e}_2}
 \end{equation}
 
-Nótese que el versor $\xhat{e}_1=\uvec{\i}$ debido a que representamos el
-eje $x$ en coordenadas rectangulares coincidiendo con $\hat{x}^1$ en coordenadas
-oblícuas. Ver figura \ref{fig:R2-coord_oblicuas_e1e2}.
+\subsubsection{Transformación de vectores. Cambio de base}
+Para relacionar esta base $B'$ con la estándar de las rectilíneas
+$B=\set{\uvec{\i},\uvec{\j}}$, haremos coincidir el versor $\xhat{e}_1$ con $\uvec{\i}$,
+esto es, el eje $\tilde{x}^1$ coincide con el eje $x$ de las cartesianas. Véase la figura
+\ref{fig:R2-coord_oblicuas_e1e2}.
 \begin{figure}[ht]
   \centering
   % Escala
   \def\scl{1.00}
-  %
-  \pgfmathsetmacro{\EJESCARTLONG}{3.0}
-  \pgfmathsetmacro{\EJEOBLICLONG}{2.7}
+  % 
+  % \pgfmathsetmacro{\EJESCARTLONG}{3.0}
+  % \pgfmathsetmacro{\EJEOBLICLONG}{2.7}
+  \pgfmathsetmacro{\EJESCARTLONG}{2.5}
+  \pgfmathsetmacro{\EJEOBLICLONG}{2.1}
   % Eje x
   \pgfmathsetmacro{\XLONG}{\EJESCARTLONG}
   % Eje y
@@ -557,7 +561,7 @@ oblícuas. Ver figura \ref{fig:R2-coord_oblicuas_e1e2}.
   % Versores
   \pgfmathsetmacro{\VTILDEMOD}{1.4}
   \pgfmathsetmacro{\VXTILDEANG}{0}
-  \pgfmathsetmacro{\VYTILDEANG}{\YTILDEANG}   
+  \pgfmathsetmacro{\VYTILDEANG}{\YTILDEANG}
   % Vector P
   \pgfmathsetmacro{\PMOD}{2.3}
   \pgfmathsetmacro{\PANG}{40}
@@ -667,83 +671,246 @@ oblícuas. Ver figura \ref{fig:R2-coord_oblicuas_e1e2}.
 Vamos a expresar estos vectores en función de los $\uvec{\i}$ y $\uvec{\j}$ de las
 cartesianas rectangulares
 \begin{align}
-  \xhat{e}_1 &= \uvec{\i}\\
+  \label{eq:R2-e1-ij}
+  \xhat{e}_1 &= 1\uvec{\i} + 0\uvec{\j} = \uvec{\i}\\
+  \label{eq:R2-e2-ij}
   \xhat{e}_2 &= \cos{\alpha}\, \uvec{\i} + \sin{\alpha}\, \uvec{\j}
 \end{align}
 Nótese que los vectores de la base son unitarios, por esta razón los habíamos
-representado desde el principio con el acento circunflejo
+representado, ya desde el principio, con el acento circunflejo
 \begin{align}
   \|\xhat{e}_1\|
   &=
-    \|\uvec{\i}|| = 1\\
+    \|\uvec{\i}\| = 1\\
   \|\xhat{e}_2\|
   &=
     (\cos\theta\,\uvec{\i}+\sin\theta\,\uvec{\j})^2
     = \cos^2\theta + \sin^2\theta = 1
 \end{align}
 
-De aquí deducimos la matriz de transformación de la base rectangular a la oblícua y su
-inversa
+La matriz que permite obtener la nueva base $B'$ a partir de la antigua $B$, está formada
+por las componentes de los vectores $(1,0)$ y $(\cos\alpha,\sin\alpha)$ obtenidos en las
+expresiones \eqref{eq:R2-e1-ij} y \eqref{eq:R2-e2-ij}, dispuestas en columnas
+\[
+  \mmm{M}
+  =
+  \begin{pmatrix}
+    1 & \cos\alpha\\
+    0 & \sin\alpha
+  \end{pmatrix}
+\]
+
+Utilizamos esta matriz para obtener los vectores de la base oblícua a partir de la
+rectangular. Es importante darse cuenta que los vectores se representan en filas
+\[
+  \begin{pmatrix}
+    \xhat{e}_1 &  \xhat{e}_2
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \uvec{\i} & \uvec{\j}
+  \end{pmatrix}
+  \,
+  \begin{pmatrix}
+    1 & \cos\alpha\\
+    0 & \sin\alpha
+  \end{pmatrix}
+\]
+
+\subsubsection{Transformación de componentes de vectores. Componentes
+  contravariantes}
+Este apartado es importante y conviene presentarlo con cierto detalle.
+
+Cuando un vector se expresa en una determinada base, se obtiene una expresión de ese
+vector en función de unas determinadas componentes. Por ejemplo, en dos dimensiones y
+tomando una base genérica $\set{\vvv{b}_1,\vvv{b}_2}$, escribiríamos
+\[
+  \vvv{v} = A_1\vvv{b}_1 + A_2\vvv{b}_2
+\]
+que, como sabemos significa que el vector $\vvv{v}$ se puede representar sumando
+los productos de cada cada componente por el vector correspondiente de la base.
+
+Si la base estuviera formada por muchos vectores, o este número no estuviera definido,
+entonces sería conveniente utilizar un sumatorio, como
+\[
+  \vvv{v} = \sum_{i=1}^n A_i\vvv{b}_i
+\]
+
+Cuando se opera con expresiones un tanto largas, se suele utilizar la notación de
+Einstein, donde se prescinde del sumatorio y se tiene en cuenta que cuando en un
+monomio se encuentra el mismo índice, por ejemplo $i$, se debe sumar para todos los
+valores de ese índice
+\[
+  \vvv{v} = \sum_i A_i\vvv{b}_i = A_i \vvv{b}_i
+\]
+
+Otro aspecto importante es notar que las componentes de un vector dependen de la base
+elegida. Si se cambia de base, las componentes varían. Por ejemplo, si utilizáramos
+la base $\set{\vvv{\tilde{b}}_1, \vvv{\tilde{b}}_2}$, las nuevas componentes serían las $\tilde{A}_i$
+\[
+  \vvv{v} = \tilde{A}_1\vvv{\tilde{b}}_1 + \tilde{A}_2\vvv{\tilde{b}}_2
+\]
+Cambian las componentes, pero el vector tiene que ser el mismo, el vector no cambia, lo
+hace su representación dependiendo de la base utilizada.
+
+Para seguir, vamos a poner un ejemplo concreto. Supongamos que medimos un cierto vector
+y para ello, por sencillez, utilizamos la base estándar en coordenadas cartesianas
+rectangulares en metros $B=\set{\uvec{\i}, \uvec{\j}}$, y obtenemos que mide
+\qty{1}{\metre} en el eje $x$ y \qty{2}{\metre} en el eje $y$. El vector se podrá
+representar como
+\[
+  \vvv{v} = 1\,\uvec{\i} + 2\,\uvec{\j}\,\unit{\metre}
+\]
+esto es, las componentes serían $(1, 2)\,\unit{\metre}$.
+
+Supongamos también que deseamos cambiar la base elegida, a otra
+$B' = \set{\uvec{\i}' + \uvec{\j}'}$ que mide en centímetros. La nueva base
+\emph{es más pequeña} (``$B' < B$'') que la antigua (centímetros en lugar de metros). Pero, para que el vector $\vvv{v}$ no cambie, los valores medidos en centímetros deben
+\emph{aumentar} con respecto a las componentes en metros ($A'_i > A_i$)
+\[
+  \vvv{v} = 100\,\uvec{\i} + 200\,\uvec{\j}\,\unit{\centi\metre}
+\]
+las nuevas componentes serían $(100, 200)\,\unit{\centi\metre}$.
+En otras palabras, la base ``se ha hecho 100 veces menor'', pero las componentes
+``se han hecho 100 veces mayor''.
+
+Estas componentes han variado de forma contraria a como lo hizo la base elegida.
+A las componentes que se comportan de esta manera se les llama \emph{contravariantes} y,
+aunque no es necesario en la mayor parte de las situaciones, se suele utilizar el índice
+que las acompaña como un \emph{superíndice} (que no indican ninguna potencia o
+exponente). Así, un vector como el que hemos puesto de ejemplo, se podría representar en
+forma genérica como
+\[
+  \vvv{v} = A^1\vvv{b}_1 + A^2\vvv{b}_2
+\]
+En notación de Einstein sería
+\[
+  \vvv{v} = A^i\vvv{b}_i
+\]
+
+\subsubsection{Forma matricial de la base y de las componentes}
+En forma matricial, las componentes del vector $\vvv{v}$ en una cierta base se
+representan en columna. Así, el vector anterior se puede expresar en la base elegida como
+\[
+  \vvv{v} =
+  \begin{pmatrix}
+    A^1\\
+    A^2
+  \end{pmatrix}
+\]
+Recordemos que los vectores de una base lo hacen situando los vectores en fila
+\[
+  B =
+  \begin{pmatrix}
+    \vvv{b}_1 & \vvv{b}_2
+  \end{pmatrix}
+\]
+Es importante distinguir entre estas dos notaciones y darse cuenta de que no son
+comparables. La primera es la forma en la que se representa un vector en función de sus
+componentes contravariantes en una cierta base, mientras que la segunda es la forma en
+la que se representa un conjunto de vectores que forman una base. Lo único que tienen en
+común es que son una representación matricial, pero de cosas diferentes.
+
+\subsubsection{Cambio de base}
+Como dijimo, la matriz de cambio de base de $B$ a $B'$ está formada por las componentes
+de los vectores de la expresión dispuestos en columnas. A continuación se representan, esta matriz de cambio de base y su inversa
+\begin{subequations}
+  \begin{align}
+    &\mmm{M}
+      =
+      \begin{pmatrix}
+        1 & \cos\alpha\\
+        0 & \sin\alpha
+      \end{pmatrix}\\
+    &\mmm{M}^{-1}
+      =
+      \dfrac{1}{\sin\alpha}
+      \begin{pmatrix}
+        \sin\alpha & -\cos\alpha\\
+        0 & 1        
+      \end{pmatrix}
+      =
+      \begin{pmatrix}
+        1 & -\cot\alpha\\
+        0 & \phantom{-}\csc\alpha
+      \end{pmatrix}
+  \end{align}
+\end{subequations}
+Utilizaremos la matriz directa $M$ para transformar la base rectangular $B$ en la nueva
+base oblícua $B'$. En cambio, para obtener la base rectangular a partir de la oblícua,
+utilizaríamos la matriz inversa $\mmm{M}^{-1}$. Nótese que los vectores se representan en
+filas
 \begin{subequations}
 \begin{align}
-  \begin{pmatrix}
-    \xhat{e}_1\\
-    \xhat{e}_2
+  &\begin{pmatrix}
+    \xhat{e}_1 &  \xhat{e}_2
   \end{pmatrix}
-  &=
+  =
     \begin{pmatrix}
-      1 & 0\\
-      \cos\alpha & \sin\alpha
+      \uvec{\i} & \uvec{\j}
     \end{pmatrix}
     \,
     \begin{pmatrix}
-      \uvec{\i}\\
-      \uvec{\j}
+      1 & \cos\alpha\\
+      0 & \sin\alpha
     \end{pmatrix}\\
-  \begin{pmatrix}
-    \uvec{\i}\\
-    \uvec{\j}
+  &\begin{pmatrix}
+    \uvec{\i} & \uvec{\j}
   \end{pmatrix}
-  &=
-    \dfrac{1}{\sin\alpha}
+  =
     \begin{pmatrix}
-      \sin\alpha & 0\\
-      -\cos\alpha & \sin\alpha
+      \xhat{e}_1 & \xhat{e}_2
     \end{pmatrix}
     \,
     \begin{pmatrix}
-      \xhat{e}_1\\
-      \xhat{e}_2
-    \end{pmatrix}      
-   =
-    \begin{pmatrix}
-      1 & 0\\
-      -\cot\alpha & \csc\alpha
+      1 & -\cot\alpha\\
+      0 & \phantom{-}\csc\alpha
     \end{pmatrix}
     \,
-    \begin{pmatrix}
-      \xhat{e}_1\\
-      \xhat{e}_2
-    \end{pmatrix}  
 \end{align}
 \end{subequations}
 
-Por tanto, las matrices de transformación de bases de rectangulares a oblícuas y su
-inversa son
-\begin{align}
-  \mmm{M}
-  &=
+
+\subsubsection{Transformación de componentes}
+Las componentes de un vector se representan en columna y en la expresión matemática
+interviene la matriz inversa (las componentes contravariantes se transforman de forma
+inversa a como lo hacían los vectores de la base). Así, las nuevas componentes se
+obtienen a partir de las antiguas mediante $\mmm{M}^{-1}$, mientras que las antiguas
+se transforman a partir de las nuevas mediante la inversa de la anterior, esto es
+$\mmm{V}$
+\begin{subequations}
+  \begin{align}
     \begin{pmatrix}
-      1 & 0\\
-      \cos\alpha & \sin\alpha
-    \end{pmatrix}\\
-  \mmm{M}^{-1}
-  &=
-    \begin{pmatrix}
-      1 & 0\\
-      -\cot\alpha & \csc\alpha
+      \tilde{A}^1\\
+      \tilde{A}^2
     \end{pmatrix}
-\end{align}
+    &=
+      \begin{pmatrix}
+        1 & -\cot\alpha\\
+        0 & \phantom{-}\csc\alpha
+      \end{pmatrix}
+      \,
+    \begin{pmatrix}
+      A^1\\
+      A^2
+    \end{pmatrix}\\
+    \begin{pmatrix}
+      A^1\\
+      A^2
+    \end{pmatrix}
+    &=
+      \begin{pmatrix}
+        1 & \cos\alpha\\
+        0 & \sin\alpha
+      \end{pmatrix}
+      \,
+    \begin{pmatrix}
+      \tilde{A}^1\\
+      \tilde{A}^2
+    \end{pmatrix}
+  \end{align}
+\end{subequations}
+
 
 \subsubsection{Ejemplo de transformación de componentes}
 Los vectores se transforman de forma inversa a la base. Así, si tenemos un vector en
