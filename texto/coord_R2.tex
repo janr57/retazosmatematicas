@@ -524,6 +524,9 @@ Este elemento se relaciona trivialmente con el jacobiano de la
 
 \section{Coordenadas cartesianas oblícuas}
 En esta sección encontraremos ...
+Aquí introduciremos los conceptos de \emph{componentes contravariantes y covariantes}.
+No lo hemos hecho en el sistema cartesiano rectangular porque ambas componentes son
+idénticas, pero aquí sí hay diferencia.
 
 \subsection{Base natural}
 En coordenadas oblícuas es importante el ángulo que forman los dos ejes. Llamaremos
@@ -811,6 +814,7 @@ Cambian las componentes, pero el vector tiene que ser el mismo, el vector no cam
 hace su representación dependiendo de la base utilizada.
 
 \subsection{Componentes contravariantes}
+\label{ssect:R2-contravariantes}
 Para seguir, vamos a poner un ejemplo concreto. Supongamos que medimos un cierto vector
 y para ello, por sencillez, utilizamos la base estándar en coordenadas cartesianas
 rectangulares en metros $B=\set{\uvec{\i}, \uvec{\j}}$, y obtenemos que mide
@@ -849,7 +853,9 @@ En notación de Einstein sería
 
 \subsubsection{Representación gráfica de las componentes contravariantes}
 La componentes contravariantes en el sistema de coordenadas oblícuas se pueden
-representar gráficamente, ver figura \ref{fig:R2-oblic_contrav}.
+representar gráficamente, trazando líneas paralelas a los ejes a partir del extremo del
+segmento orientado. Esta es la forma natural con la que sumamos vectores mediante la
+regla del paralelogramo, ver figura \ref{fig:R2-oblic_contrav}.
 \begin{figure}[ht]
   % Escala
   \def\scl{1.00}
@@ -945,7 +951,7 @@ representar gráficamente, ver figura \ref{fig:R2-oblic_contrav}.
     {$\hat{A}^2\xhat{e}_2$} (CTV2);
     
     % Origen
-    \fill[orange!80!black] (O) circle [radius=1pt];
+    \fill[orange!80!black] (O) circle [radius=0.8pt];
     
     % Fondo amarillo
     \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
@@ -962,7 +968,9 @@ representar gráficamente, ver figura \ref{fig:R2-oblic_contrav}.
 
 Para centrar ideas, supongamos que el vector $\vvv{v}$ de la figura representa un
 desplazamiento en $\symbb{R}^2$. la suma de Las componentes contravariantes $A^i$
-multiplicadas por sus respectivos vectores unidad, nos da el desplazamiento que nos señala el vector.
+multiplicadas por sus respectivos vectores unidad, nos da el desplazamiento que nos
+señala el vector. Visto de otra manera, cada componente contravariante $A^i$,
+proporcionan información acerca del espacio recorrido en cada eje.
 
 
 \subsection{Forma matricial de la base y de las componentes}
@@ -1184,9 +1192,9 @@ La métrica en coordenadas oblícuas queda
 
 
 \subsection{Componentes covariantes}
-Vamos a suponer que un vector $\vvv{v}$ representa un gradiente de un campo escalar
-$\vvv{\nabla}\phi$.
-Representaremos las componentes covariantes con subíndice $A_i$.
+Cuando vimos las componentes contravariantes de un vector en la sección
+\ref{ssect:R2-contravariantes}, lo proyectamos trazando líneas paralelas a los ejes. Así
+es como sumamos vectores gráficamente, mediante la regla del paralelogramo.
 \begin{figure}[ht]
   % Escala
   \def\scl{1.00}
@@ -1274,7 +1282,7 @@ Representaremos las componentes covariantes con subíndice $A_i$.
     {$\hat{A}_2\xhat{e}^2$} (COV2);
     
     % Origen
-    \fill[orange!80!black] (O) circle [radius=1pt];
+    \fill[cyan!80!black] (O) circle [radius=0.8pt];
     
     % Fondo amarillo
     \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
@@ -1288,6 +1296,27 @@ Representaremos las componentes covariantes con subíndice $A_i$.
     contravariantes nos indican el desplazamiento en el espacio.}
   \label{fig:R2-oblic_cov}
 \end{figure}
+
+En cambio, hay otra forma de proyectar el vector, y es trazando líneas perpendiculares a
+los ejes, como se aprecia en la figura \ref{fig:R2-oblic_cov}.
+Estas \emph{componentes covariantes} las representaremos mediante subíndices $A_i$.
+Mientras que las contravariantes te dicen cuánto \emph{avanzas} a lo largo de cada eje,
+las covariantes miden la \emph{sombra} o proyección sobre ese eje.
+
+Hay una definición más formal de las componentes covariantes, que procede de la geometría
+diferencial. Esto implica la introducción del concepto de \emph{1-forma} o
+\emph{covector}. Es como si el espacio (en nuestro caso $\symbb{R}^2$) no contuviera solo
+segmentos orientados (vectores normales), sino que también contiene
+\emph{superficies de nivel} o \emph{gradientes}.
+  
+Una forma de asimilar este tipo de componentes es suponer que un vector $\vvv{v}$
+representa el gradiente de un campo escalar $\vvv{\nabla}\phi$.
+Si aumentamos la escala de medida (utilizamos una base \emph{mayor}), las superficies
+de nivel (gradiente) se comprimen y, aunque el vector se ve más pequeño (componentes
+contravariantes), la densidad de líneas de nivel aumenta (componentes covariantes).
+
+
+
 
 
 
