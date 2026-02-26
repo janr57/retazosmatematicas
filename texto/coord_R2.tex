@@ -1048,7 +1048,7 @@ En coordenadas oblícuas en $\symbb{R}^2$
 \end{subequations}
 
 
-\subsubsection{Ejemplo de transformación de componentes}
+\subsubsection{Ejemplo}
 Supongamos que tenemos un vector en coordenadas rectangulares
 \[
   \vvv{v}
@@ -1143,8 +1143,8 @@ y quisiéramos obtener las coordenadas rectangulares, deberíamos obtener $(2,-4
 
 
 \subsection{Métrica}
-Con los conocimientos que hemos adquirido, la forma más rápida para obtener la métrica
-en coordenadas oblícuas es utilizar el método seguido en la expresión
+Con los conocimientos que hemos adquirido, la forma más rápida para obtener el tensor
+métrico en coordenadas oblícuas es utilizar el método seguido en la expresión
 \eqref{eq:R2-cart-metrica}. Para ello debemos calcular el producto escalar de los
 vectores de la base \eqref{eq:R2-oblic_base}.
 
@@ -1192,9 +1192,10 @@ La métrica en coordenadas oblícuas queda
 
 
 \subsection{Componentes covariantes}
-Cuando vimos las componentes contravariantes de un vector en la sección
-\ref{ssect:R2-contravariantes}, lo proyectamos trazando líneas paralelas a los ejes. Así
-es como sumamos vectores gráficamente, mediante la regla del paralelogramo.
+En la sección \ref{ssect:R2-contravariantes}, proyectamos un vector trazando líneas
+paralelas a los ejes. Así es como sumamos vectores gráficamente ---mediante la regla del
+paralelogramo---. Los resultados de esas proyecciones paralelas eran las componentes
+contravariantes del vector.
 \begin{figure}[ht]
   % Escala
   \def\scl{1.00}
@@ -1293,35 +1294,58 @@ es como sumamos vectores gráficamente, mediante la regla del paralelogramo.
   \end{tikzpicture}
   \caption{Componentes covariantes $A_i$ en coordenadas oblícuas. El vector $\vvv{v}$
     se representa como $\vvv{v}=A_1\,\xhat{e}^1 + A_2\,\xhat{e}^2$. Las componentes
-    contravariantes nos indican el desplazamiento en el espacio.}
+    contravariantes nos indican el desplazamiento en el espacio. Nótese que la base
+    utilizada no es la natural.}
   \label{fig:R2-oblic_cov}
 \end{figure}
 
-En cambio, hay otra forma de proyectar el vector, y es trazando líneas perpendiculares a
-los ejes, como se aprecia en la figura \ref{fig:R2-oblic_cov}.
-Estas \emph{componentes covariantes} las representaremos mediante subíndices $A_i$.
-Mientras que las contravariantes te dicen cuánto \emph{avanzas} a lo largo de cada eje,
-las covariantes miden la \emph{sombra} o proyección sobre ese eje.
+En cambio, hay otra forma de proyectar un vector, y es trazando líneas perpendiculares a
+los ejes, figura \ref{fig:R2-oblic_cov}.
+Estas \emph{componentes covariantes} las representaremos mediante subíndices $A_i$
+\begin{equation}
+  \vvv{v} = A_1\vvv{e}^1 + A_2\vvv{e}^2 = A_i \vvv{e}^i
+\end{equation}
+La base utilizada aquí $\vvv{e}^i$, no es la natural de coordenadas oblícuas,
+\eqref{eq:R2-oblic_base}, pues contiene un superíndice (no es un exponente).
+Más adelante se dará una explicación sencilla.
 
-Hay una definición más formal de las componentes covariantes, que procede de la geometría
-diferencial. Esto implica la introducción del concepto de \emph{1-forma} o
-\emph{covector}. Es como si el espacio (en nuestro caso $\symbb{R}^2$) no contuviera solo
-segmentos orientados (vectores normales), sino que también contiene
-\emph{superficies de nivel} o \emph{gradientes}.
-  
+Mientras las componentes contravariantes te dicen cuánto \emph{avanzas} a lo largo
+de cada eje, las covariantes miden la \emph{sombra} o proyección sobre ese eje.
+En coordenadas cartesianas rectangulares ambas coinciden, pero en este sistema no.
+En la figura \ref{fig:R2-oblic_contrav_cov} se pueden comparar visualmente ambas
+componentes.
+
+Hay una definición más formal de las componentes covariantes, que procede del álgebra
+lineal y de la geometría diferencial. Esto implica la introducción de los conceptos de
+\emph{espacio dual} y \emph{1-forma} (o \emph{covector}). Es como si el espacio (en
+nuestro caso $\symbb{R}^2$) no contuviera solo segmentos orientados (vectores normales),
+cuya base es la B' en \eqref{eq:R2-oblic_base}, sino que también contiene \emph{superficies de nivel} o \emph{gradientes} ---en nuestro ejemplo en dos dimensiones,
+más que superficies de nivel serían líneas de nivel---.
+
 Una forma de asimilar este tipo de componentes es suponer que un vector $\vvv{v}$
-representa el gradiente de un campo escalar $\vvv{\nabla}\phi$.
-Si aumentamos la escala de medida (utilizamos una base \emph{mayor}), las superficies
-de nivel (gradiente) se comprimen y, aunque el vector se ve más pequeño (componentes
-contravariantes), la densidad de líneas de nivel aumenta (componentes covariantes).
+representa el gradiente de un cierto campo escalar $\vvv{\nabla}\phi$.
+Este gradiente se puede representar gráficamente como una serie de líneas de contorno o
+superficies de nivel, que indica cuánto cambia un determinado escalar cuando nos
+desplazamos en el espacio (en nuestro caso concreto en $\symbb{R}^2$).
 
+Si aumentáramaos la escala de medida (utilizando una base \emph{mayor}, por ejemplo, en
+el caso de distancias, usar metros en lugar de centímetros), las superficies de nivel
+(gradiente) se comprimirían y, aunque el vector se vería más pequeño proporcionalmente
+(componentes contravariantes), la densidad de líneas de nivel aumentaría, también
+proporcionalmente.
 
+En otras palabras, cuando un vector se visualiza mediante un cierto tipo de
+recorrido en el espacio, como desplazamiento, velocidad, aceleración, etc.
+---mediante sus componentes contravariantes---, al aumentar la escala de medida, las
+líneas de nivel se comprimen, aumenta su densidad y el cambio en la ``altura'' debido al
+gradiente es mayor, las componentes covariantes aumentan en consecuencia. Estas
+componentes no varían inversamente con la escala de medida, sino que lo hace en el mismo
+sentido. Estas son las \emph{componentes covariantes}.
 
+Hay varias formas de introducir estas componentes. Por un lado tenemos la explicación
+geométrica y por otro una explicación más abstracta.
 
-
-
-
-
+Empecemos por la explicación geométrica...
 
 
 
@@ -1425,14 +1449,14 @@ contravariantes), la densidad de líneas de nivel aumenta (componentes covariant
     % Proyecciones de componentes
     % Contravariantes
     \draw[proyeccion] (P) -- (CTV1);
-    \node[below] at (CTV1) {\footnotesize $\hat{x}^1$};
+    \node[below] at (CTV1) {\footnotesize $A^1$};
     \draw[proyeccion] (P) -- (CTV2);
-    \node[left] at (CTV2) {\footnotesize $\hat{x}^2$};
+    \node[left] at (CTV2) {\footnotesize $A^2$};
     % Covariantes
     \draw[proyeccion] (P) -- (COV1);
-    \node[below] at (COV1) {\footnotesize $\hat{x}_1$};
+    \node[below] at (COV1) {\footnotesize $A_1$};
     \draw[proyeccion] (P) -- (COV2);
-    \node[above left=-2pt and -2pt] at (COV2) {\footnotesize $\hat{x}_2$};
+    \node[above left=-2pt and -2pt] at (COV2) {\footnotesize $A_2$};
     
     % Ejes
     % x
@@ -1477,7 +1501,8 @@ contravariantes), la densidad de líneas de nivel aumenta (componentes covariant
     \end{scope}
   \end{tikzpicture}
   \caption{Componentes contravariantes y covariantes. El ángulo $\alpha$ entre los ejes
-  está marcado en verde.}
+    está marcado en verde.}
+  \label{fig:R2-oblic_contrav_cov}
 \end{figure}
 
 
