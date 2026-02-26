@@ -524,16 +524,13 @@ Este elemento se relaciona trivialmente con el jacobiano de la
 \]
 
 \section{Coordenadas cartesianas oblícuas}
-En esta sección encontraremos ...
-Aquí introduciremos los conceptos de \emph{componentes contravariantes y covariantes}.
-No lo hemos hecho en el sistema cartesiano rectangular porque ambas componentes son
-idénticas, pero aquí sí hay diferencia.
+Aquí introduciremos los conceptos de \emph{componentes contravariantes y covariantes},
+algo que no hicimos en el sistema cartesiano rectangular porque en este último ambas componentes son idénticas, pero aquí sí hay diferencia.
 
 \subsection{Base natural}
-En coordenadas oblícuas es importante el ángulo que forman los dos ejes. Llamaremos
-$\alpha$ a este ángulo. Los ejes oblícuos los representamos por $\tilde{x}^1$ y
-$\tilde{x}^2$. La base natural está formada por los vectores unitarios $\xhat{e}_1$ y
-$\xhat{e}_2$
+En coordenadas oblícuas es importante el ángulo $\alpha$ que forman los dos ejes.
+Los ejes oblícuos los representamos por $\tilde{x}$ e $\tilde{y}$. La base natural está
+formada por los vectores unitarios $\xhat{e}_1$ y $\xhat{e}_2$
 \begin{equation}\label{eq:R2-oblic_base}
   B' = \set{\xhat{e}_1, \xhat{e}_2}
 \end{equation}
@@ -541,7 +538,7 @@ $\xhat{e}_2$
 \subsection{Cambio de base}
 Para relacionar esta base $B'$ con la estándar de las rectilíneas
 $B=\set{\uvec{\i},\uvec{\j}}$, haremos coincidir el versor $\xhat{e}_1$ con $\uvec{\i}$,
-esto es, el eje $\tilde{x}^1$ coincide con el eje $x$ de las cartesianas. Véase la figura
+esto es, el eje $\tilde{x}$ coincide con el eje $x$ de las cartesianas. Véase la figura
 \ref{fig:R2-coord_oblicuas_e1e2}.
 \begin{figure}[ht]
   \centering
@@ -636,17 +633,19 @@ esto es, el eje $\tilde{x}^1$ coincide con el eje $x$ de las cartesianas. Véase
     % Ejes
     % x
     \draw[ejecart, use path=\ejex];
-    \node[textoapagado, below=3pt] at (xfin) {\small $x$};
+    \node[textoapagado, below=1.2pt] at (xfin) {\small $x$};
     % \node[below] at (xtexto) {$r\cos\theta$};
     % y
     \draw[ejecart, use path=\ejey];
     \node[above, textoapagado] at (yfin) {$y$};
     % xtilde
     \draw[ejeoblic, use path=\ejextilde];
-    \node[texto, below] at (xtildefin) {\footnotesize $\tilde{x}^1$};
+    %\node[texto, below] at (xtildefin) {\footnotesize $\tilde{x}^1$};
+    \node[texto, below] at (xtildefin) {\footnotesize $\tilde{x}$};
     % ytilde
     \draw[ejeoblic, use path=\ejeytilde];
-    \node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{x}^2$};
+    %\node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{x}^2$};
+    \node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{y}$};
     % \node[rotate=90, left=8pt] at (ytexto) {$r\sin\theta$};
     % Versores
     \draw[vtilde, use path=\vxtilde];
@@ -664,11 +663,11 @@ esto es, el eje $\tilde{x}^1$ coincide con el eje $x$ de las cartesianas. Véase
       \draw[background] (SW) rectangle (NE);
     \end{scope}
   \end{tikzpicture}
-  \caption{Sistema de coordenadas cartesianas oblícuas que forman un ángulo $\alpha$
-    entre sí. También se representan los ejes cartesianos $x$ e $y$ tradicionales, como
-    referencia en tono algo apagado. Por último se aprecian en rojo los vectores
-    unitarios $\xhat{e}_1$ y $\xhat{e}_2$ del sistema oblícuo y sus proyecciones
-    en los ejex $x$ e $y$.}
+  \caption{Sistema de coordenadas cartesianas oblícuas $\tilde{x}$ e $\tilde{y}$, que
+    forman un ángulo $\alpha$ entre sí. También se representan los ejes cartesianos $x$ e
+    $y$ tradicionales, como referencia en tono algo apagado. Por último se aprecian en
+    rojo los vectores unitarios $\xhat{e}_1$ y $\xhat{e}_2$ del sistema oblícuo y sus
+    proyecciones en los ejex $x$ e $y$.}
   \label{fig:R2-coord_oblicuas_e1e2}
 \end{figure}
 
@@ -726,12 +725,14 @@ Como dijimo, la matriz de cambio de base de $B$ a $B'$ está formada por las com
 de los vectores de la expresión dispuestos en columnas. A continuación se representan, esta matriz de cambio de base y su inversa
 \begin{subequations}
   \begin{align}
+    \label{eq:R2-oblic_M}
     &\mmm{M}
       =
       \begin{pmatrix}
         1 & \cos\alpha\\
         0 & \sin\alpha
       \end{pmatrix}\\
+    \label{eq:R2-oblic_Minv}
     &\mmm{M}^{-1}
       =
       \dfrac{1}{\sin\alpha}
@@ -782,14 +783,14 @@ filas
 
 
 \subsection{Componentes de los vectores}
-Cuando un vector se expresa en una determinada base, se obtiene una expresión de ese
-vector en función de unas determinadas componentes. Por ejemplo, en dos dimensiones y
-tomando una base genérica $\set{\vvv{b}_1,\vvv{b}_2}$, escribiríamos
+Cuando un vector se expresa en una determinada base, se obtiene su representación en
+función de unas determinadas componentes. Por ejemplo, en dos dimensiones y tomando una
+base genérica $\set{\vvv{b}_1,\vvv{b}_2}$, escribiríamos
 \[
   \vvv{v} = A_1\vvv{b}_1 + A_2\vvv{b}_2
 \]
-que, como sabemos significa que el vector $\vvv{v}$ se puede representar sumando
-los productos de cada cada componente por el vector correspondiente de la base.
+que, como sabemos, significa que el vector $\vvv{v}$ se obtiene sumando los productos de
+cada cada componente por el vector correspondiente de la base.
 
 Si la base estuviera formada por muchos vectores, o este número no estuviera definido,
 entonces sería conveniente utilizar un sumatorio, como
@@ -807,28 +808,27 @@ valores de ese índice
 
 Otro aspecto importante es notar que las componentes de un vector dependen de la base
 elegida. Si se cambia de base, las componentes varían. Por ejemplo, si utilizáramos
-la base $\set{\vvv{\tilde{b}}_1, \vvv{\tilde{b}}_2}$, las nuevas componentes serían las $\tilde{A}_i$
-\[
-  \vvv{v} = \tilde{A}_1\vvv{\tilde{b}}_1 + \tilde{A}_2\vvv{\tilde{b}}_2
+la base $\set{\vvv{b}'_1, \vvv{b}'_2}$, las nuevas componentes serían $A'_i$ y $A'_2$
+\[ 
+  \vvv{v} = A'_1\vvv{b}'_1 + A'_2\vvv{b}'_2
 \]
 Cambian las componentes, pero el vector tiene que ser el mismo, el vector no cambia, lo
 hace su representación dependiendo de la base utilizada.
 
 \subsection{Componentes contravariantes}
 \label{ssect:R2-contravariantes}
-Para seguir, vamos a poner un ejemplo concreto. Supongamos que medimos un cierto vector
-y para ello, por sencillez, utilizamos la base estándar en coordenadas cartesianas
-rectangulares en metros $B=\set{\uvec{\i}, \uvec{\j}}$, y obtenemos que mide
-\qty{1}{\metre} en el eje $x$ y \qty{2}{\metre} en el eje $y$. El vector se podrá
-representar como
+Para introducir este tipo de componentes, vamos a poner un ejemplo concreto. Supongamos
+que medimos un cierto vector y para ello, por sencillez, utilizamos la base estándar en coordenadas cartesianas rectangulares en metros $B=\set{\uvec{\i},\,\uvec{\j}}$, y
+obtenemos que mide \qty{1}{\metre} en el eje $x$ y \qty{2}{\metre} en el eje $y$.
+El vector se podrá representar como
 \[
   \vvv{v} = 1\,\uvec{\i} + 2\,\uvec{\j}\,\unit{\metre}
 \]
 esto es, las componentes serían $(1, 2)\,\unit{\metre}$.
 
 Supongamos también que deseamos cambiar la base elegida, a otra
-$B' = \set{\uvec{\i}' + \uvec{\j}'}$ que mide en centímetros. La nueva base
-\emph{es más pequeña} (``$B' < B$'') que la antigua (centímetros en lugar de metros). Pero, para que el vector $\vvv{v}$ no cambie, los valores medidos en centímetros deben
+$B' = \set{\uvec{\i}',\, \uvec{\j}'}$ que mide en centímetros. La nueva base
+\emph{es más pequeña} que la antigua (centímetros en lugar de metros). Pero, para que el vector $\vvv{v}$ no cambie, los valores medidos en centímetros deben
 \emph{aumentar} con respecto a las componentes en metros ($A'_i > A_i$)
 \[
   \vvv{v} = 100\,\uvec{\i} + 200\,\uvec{\j}\,\unit{\centi\metre}
@@ -841,9 +841,8 @@ En otras palabras, la base ``se ha hecho 100 veces menor'', pero las componentes
 Estas componentes han variado de forma contraria a como lo hizo la base elegida.
 A las componentes que se comportan de esta manera se les llama \emph{contravariantes} y,
 aunque no es necesario en la mayor parte de las situaciones, se suele utilizar el índice
-que las acompaña como un \emph{superíndice} (que no indican ninguna potencia o
-exponente). Así, un vector como el que hemos puesto de ejemplo, se podría representar en
-forma genérica como
+que las acompaña como \emph{superíndice} (que no representa un exponente). Así, un vector
+como el que hemos puesto de ejemplo, se podría representar en forma genérica como
 \[
   \vvv{v} = A^1\vvv{b}_1 + A^2\vvv{b}_2
 \]
@@ -851,18 +850,20 @@ En notación de Einstein sería
 \[
   \vvv{v} = A^i\vvv{b}_i
 \]
+donde $i = 1, 2$.
 
 \subsubsection{Representación gráfica de las componentes contravariantes}
 La componentes contravariantes en el sistema de coordenadas oblícuas se pueden
 representar gráficamente, trazando líneas paralelas a los ejes a partir del extremo del
-segmento orientado. Esta es la forma natural con la que sumamos vectores mediante la
-regla del paralelogramo, ver figura \ref{fig:R2-oblic_contrav}.
+segmento orientado $\vvv{v}$. Esta es la forma natural con la que sumamos vectores mediante la regla del paralelogramo, ver figura \ref{fig:R2-oblic_contrav}.
 \begin{figure}[ht]
   % Escala
   \def\scl{1.00}
   % 
-  \pgfmathsetmacro{\EJESCARTLONG}{3.0}
-  \pgfmathsetmacro{\EJEOBLICLONG}{2.7}
+  %\pgfmathsetmacro{\EJESCARTLONG}{3.0}
+  %\pgfmathsetmacro{\EJEOBLICLONG}{2.7}
+  \pgfmathsetmacro{\EJESCARTLONG}{2.8}
+  \pgfmathsetmacro{\EJEOBLICLONG}{2.5}
   % Eje x
   %\pgfmathsetmacro{\XLONG}{\EJESCARTLONG}
   % Eje y
@@ -907,7 +908,8 @@ regla del paralelogramo, ver figura \ref{fig:R2-oblic_contrav}.
     % Eje xtilde
     \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
     coordinate (xtildefin);
-    \node[texto, below] at (xtildefin) {\footnotesize $\tilde{x}^1$};
+    %\node[texto, below] at (xtildefin) {\footnotesize $\tilde{x}^1$};
+    \node[texto, below] at (xtildefin) {\footnotesize $\tilde{x}$};
     % Eje ytilde
     \path[save path=\ejeytilde, name path=O--ytilde] (O) -- ++(\YTILDEANG:\YTILDELONG cm)
     coordinate (ytildefin);
@@ -937,7 +939,8 @@ regla del paralelogramo, ver figura \ref{fig:R2-oblic_contrav}.
     \draw[ejeoblic, use path=\ejextilde];
     % ytilde
     \draw[ejeoblic, use path=\ejeytilde];
-    \node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{x}^2$};
+    %\node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{x}^2$};
+    \node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{y}$};
     % Vector v
     \draw[vector, use path=\r];
     \node[above left=-3pt and -1pt] at (posvecttxt) {\footnotesize $\vvv{v}$};
@@ -961,21 +964,22 @@ regla del paralelogramo, ver figura \ref{fig:R2-oblic_contrav}.
       \draw[background] (SW) rectangle (NE);
     \end{scope}
   \end{tikzpicture}
-  \caption{Componentes contravariantes $A^i$ en coordenadas oblícuas. El vector $\vvv{v}$
-    se representa como $\vvv{v}=A^1\,\xhat{e}_1 + A^2\,\xhat{e}_2$. Las componentes
-    contravariantes nos indican el desplazamiento en el espacio.}
+  \caption{Componentes contravariantes $A^i$, en coordenadas oblícuas. El vector $\vvv{v}$
+    se representa como $\vvv{v}=A^1\,\xhat{e}_1 + A^2\,\xhat{e}_2$. La componente
+    contravariante en un cierto eje nos indica el desplazamiento que se ha producido en
+    ese eje.}
   \label{fig:R2-oblic_contrav}
 \end{figure}
 
 Para centrar ideas, supongamos que el vector $\vvv{v}$ de la figura representa un
-desplazamiento en $\symbb{R}^2$. la suma de Las componentes contravariantes $A^i$
-multiplicadas por sus respectivos vectores unidad, nos da el desplazamiento que nos
-señala el vector. Visto de otra manera, cada componente contravariante $A^i$,
-proporcionan información acerca del espacio recorrido en cada eje.
+desplazamiento en $\symbb{R}^2$. La componente $A^1$ nos indica el espacio recorrido
+en el eje $\tilde{x}$ y $A^2$ nos da el espacio recorrido en el eje $\tilde{y}$.
+La suma de las componentes contravariantes $A^i$ multiplicadas por sus respectivos
+vectores unidad, nos da el desplazamiento que nos indica el vector. 
 
 
 \subsection{Forma matricial de la base y de las componentes}
-Recordemos que los vectores de una base se pueden representar matricialmente situando los
+Recordemos que los vectores de una base se representan matricialmente situando los
 vectores en fila
 \[
   B =
@@ -995,18 +999,26 @@ elegida como
   \end{pmatrix}
 \]
 Es importante distinguir entre estas dos notaciones y darse cuenta de que no son
-comparables. La primera es la forma en la que se representa un vector en función de sus
-componentes contravariantes en una cierta base, mientras que la segunda es la forma en
-la que se representa un conjunto de vectores que forman una base. Lo único que tienen en
-común es que son una representación matricial, aunque de cosas diferentes.
+comparables. La primera, es la forma en la que se representa un conjunto de vectores que
+forman una base, mientras que la segunda representa las componentes de un vector en una
+cierta base. Lo único que tienen en común es que ambas son representaciones matriciales,
+aunque de cosas diferentes.
 
 
 \subsection{Transformación de componentes}
+Un cambio de base, por ejemplo de $B$ a $B'$, se produce mediante una matriz de
+transformación $\mmm{M}$
+\begin{equation}
+  B' = \mmm{M} B
+\end{equation}
+Entonces, las componentes de cualquier vector también se modifican.
+
 Las componentes contravariantes de un vector se representan en columna y en la expresión
-matemática interviene la matriz inversa (las componentes contravariantes se transforman
-de forma inversa a como lo hacían los vectores de la base). Así, las nuevas componentes se
-obtienen a partir de las antiguas mediante $\mmm{M}^{-1}$, mientras que las antiguas se
-transforman a partir de las nuevas mediante $\mmm{M}$, la inversa de la anterior
+matemática de la transformación interviene la matriz inversa del cambio de base (porque
+las componentes  contravariantes se transforman de forma inversa a como lo hacían los
+vectores de la base). Así, las nuevas componentes se obtienen a partir de las antiguas
+mediante $\mmm{M}^{-1}$, mientras que las antiguas se transforman a partir de las nuevas
+mediante $\mmm{M}$
 \begin{subequations}
   \begin{align}
     &\left[A^i\right]_{B'} = \mmm{M}^{-1} \left[A^i\right]_{B}\\
@@ -1014,7 +1026,8 @@ transforman a partir de las nuevas mediante $\mmm{M}$, la inversa de la anterior
   \end{align}
 \end{subequations}
 
-En coordenadas oblícuas en $\symbb{R}^2$
+En coordenadas oblícuas en $\symbb{R}^2$ utilizamos las matrices inversa
+\eqref{eq:R2-oblic_Minv} y directa \eqref{eq:R2-oblic_M}, respectivamente
 \begin{subequations}
   \begin{align}
     \begin{pmatrix}
@@ -1050,13 +1063,14 @@ En coordenadas oblícuas en $\symbb{R}^2$
 
 
 \subsubsection{Ejemplo}
-Supongamos que tenemos un vector en coordenadas rectangulares
+Supongamos que tenemos un vector en coordenadas cartesianas rectangulares
 \[
   \vvv{v}
-  = A^1\,\xhat{u}_1 + A^2\,\xhat{u}_1 = A^i\,\xhat{u}_i
+  = A^1\,\xhat{u}_1 + A^2\,\xhat{u}_2 = A^i\,\xhat{u}_i
   = 2\,\uvec{\i} - 4\,\uvec{\j}
 \]
-y estamos interesados en obtener las componentes $\tilde{A}^i$ en un sistema de
+donde $\xhat{u}_1 = \uvec{\i}$ y $\xhat{u}_2 = \uvec{\j}$.
+Estamos interesados en obtener las componentes $\tilde{A}^i$ en un sistema de
 coordenadas oblícuas, donde el ángulo que forman sus ejes vale
 $\alpha = \pi/3\,\unit{\radian}$. Tendremos que aplicar la inversa de la matriz de
 transformación de base de $B$ a $B'$
@@ -1173,7 +1187,7 @@ Multiplicamos escalarmente estos vectores
   \end{align}
 \end{subequations}
 
-La métrica en coordenadas oblícuas queda
+El tensor métrico en coordenadas oblícuas resulta
 \begin{equation}\label{eq:R2-oblic_metrica}
   \mmm{g}
   = g_{ij}
@@ -1190,6 +1204,15 @@ La métrica en coordenadas oblícuas queda
     \cos\alpha & 1
   \end{pmatrix}
 \end{equation}
+
+Analizamos la métrica obtenida
+\begin{itemize}
+\item Los elementos diagonales valen la unidad. Esto significa que un cambio en cualquiera
+  de las coordenadas $\tilde{x}$ o $\tilde{y}$, representan ese mismo valor de
+  desplazamiento en el espacio.
+\item Los elementos no diagonales no son cero, lo que indica que un cambio cualquiera en
+  las coordenadas implica un cambio en la otra, y viceversa (los ejes no son ortogonales).
+\end{itemize}
 
 
 \subsection{Componentes covariantes}
@@ -1265,10 +1288,12 @@ contravariantes del vector.
     % Ejes
     % xtilde
     \draw[ejeoblic, use path=\ejextilde];
-    \node[texto, right] at (xtildefin) {\footnotesize $\tilde{x}^1$};
+    %\node[texto, right] at (xtildefin) {\footnotesize $\tilde{x}^1$};
+    \node[texto, right] at (xtildefin) {\footnotesize $\tilde{x}$};
     % ytilde
     \draw[ejeoblic, use path=\ejeytilde];
-    \node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{x}^2$};
+    %\node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{x}^2$};
+    \node[texto, above right=0pt and -4pt] at (ytildefin) {$\tilde{y}$};
     % \node[rotate=90, left=8pt] at (ytexto) {$r\sin\theta$};
     % Vector P
     \draw[vector, use path=\r];
@@ -1386,10 +1411,12 @@ Líneas de nivel
       % Ejes
       % xtilde
       \draw[ejeoblic, use path=\ejextilde];
-      \node[texto, right] at (xtildefin) {\footnotesize $\tilde{x}^1$};
+      %\node[texto, right] at (xtildefin) {\footnotesize $\tilde{x}^1$};
+      \node[texto, right] at (xtildefin) {\footnotesize $\tilde{x}$};
       % ytilde
       \draw[ejeoblic, use path=\ejeytilde];
-      \node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{x}^2$};
+      %\node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{x}^2$};
+      \node[texto, above right=0pt and -4pt] at (ytildefin) {$\tilde{y}$};
       % \node[rotate=90, left=8pt] at (ytexto) {$r\sin\theta$};
       % Vector P
       \draw[vector, use path=\r];
@@ -1414,7 +1441,9 @@ Líneas de nivel
         \draw[background] (SW) rectangle (NE);
       \end{scope}
     \end{tikzpicture}
-    \caption{La componente covariante $A_1$ del vector en coordenadas oblícuas .}
+    \caption{La componente covariante $A_1$ de un vector $\vvv{v}$ en coordenadas
+      oblícuas, en azul, y se puede interpretar geométricamente como la proyección del
+      vector o sombra en el eje $x$.}
     \label{fig:R2-oblic_cov1}
   \end{minipage}
   \hspace{1em}
@@ -1506,10 +1535,12 @@ Líneas de nivel
       % Ejes
       % xtilde
       \draw[ejeoblic, use path=\ejextilde];
-      \node[texto, right] at (xtildefin) {\footnotesize $\tilde{x}^1$};
+      %\node[texto, right] at (xtildefin) {\footnotesize $\tilde{x}^1$};
+      \node[texto, right] at (xtildefin) {\footnotesize $\tilde{x}$};
       % ytilde
       \draw[ejeoblic, use path=\ejeytilde];
-      \node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{x}^2$};
+      %\node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{x}^2$};
+      \node[texto, above right=0pt and -4pt] at (ytildefin) {$\tilde{y}$};
       % \node[rotate=90, left=8pt] at (ytexto) {$r\sin\theta$};
       % Vector P
       \draw[vector, gray, use path=\r];
