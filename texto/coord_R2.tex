@@ -1207,11 +1207,30 @@ El tensor métrico en coordenadas oblícuas resulta
 
 Analizamos la métrica obtenida
 \begin{itemize}
-\item Los elementos diagonales valen la unidad. Esto significa que un cambio en cualquiera
-  de las coordenadas $\tilde{x}$ o $\tilde{y}$, representan ese mismo valor de
-  desplazamiento en el espacio.
+\item Los elementos diagonales valen la unidad. Esto significa que un cambio en
+  cualquiera  de las coordenadas $\tilde{x}$ o $\tilde{y}$, representan ese mismo valor
+  de desplazamiento en el espacio.
 \item Los elementos no diagonales no son cero, lo que indica que un cambio cualquiera en
-  las coordenadas implica un cambio en la otra, y viceversa (los ejes no son ortogonales).
+  las coordenadas implica un cambio en la otra, y viceversa (los ejes no son
+  ortogonales).
+  \begin{itemize}
+  \item Un caso extremo posible se produciría cuando
+    $\alpha = \pi/2\,\unit{\radian} = \qty{90}{\degree}$. En este caso
+    $\cos\alpha = \cos\pi/2 = 0$ y el tensor métrico se representaría mediante la matriz
+    unidad. En esta situación, los ejes serían ortogonales y no tendríamos un sistema de
+    coordenadas oblículo, sino un sistema de coordenadas cartesianas rectangulares, como
+    al inicio del capítulo.
+  \item El otro caso extremo, que no produciría ningún sistema de referencia en
+    $\symbb{R}^2$, se daría cuando $\alpha = 0$. En este caso $\cos\alpha = \cos 0 = 1$
+    y los dos ejes $\tilde{x}$ y $\tilde{y}$, coincidirían. Además, los vectores
+    unitarios respectivos, serían iguales $\xhat{e}_1 = \xhat{e}_2 = \uvec{\i}$ y ya no
+    formarían una base del plano, ni tendríamos un sistema de coordenadas válido (el
+    determinante de la métrica sería nulo, la matriz sería singular y no tendría
+    inversa) y el sistema colapsaría. En todo caso tendríamos un subespacio vectorial de
+    $\symbb{R}^2$, con una dimensión, definiendo el espacio de los reales $\symbb{R}$,
+    pero no un sistema de coordenadas válido para el plano.
+    
+  \end{itemize}
 \end{itemize}
 
 
