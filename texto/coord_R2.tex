@@ -1236,9 +1236,25 @@ Analizamos la métrica obtenida
 
 \subsection{Componentes covariantes}
 En la sección \ref{ssect:R2-contravariantes}, proyectamos un vector trazando líneas
-paralelas a los ejes. Así es como sumamos vectores gráficamente ---mediante la regla del
+paralelas a los ejes; así es como sumamos vectores gráficamente ---mediante la regla del
 paralelogramo---. Los resultados de esas proyecciones paralelas eran las componentes
 contravariantes del vector.
+
+En cambio, hay otra forma de proyectar un vector, y es trazando líneas perpendiculares a
+los ejes, figura \ref{fig:R2-oblic_cov}.
+Estas \emph{componentes covariantes} las representaremos mediante subíndices $A_i$
+\begin{equation}
+  \vvv{v} = A_1\xhat{e}^1 + A_2\xhat{e}^2 = A_i \xhat{e}^i
+\end{equation}
+La base utilizada aquí $\xhat{e}^i$, no es la natural de coordenadas oblícuas,
+\eqref{eq:R2-oblic_base}, pues contiene un superíndice (de nuevo, no es un exponente).
+
+Mientras las componentes contravariantes te dicen cuánto \emph{avanzas} a lo largo
+de cada eje, las covariantes miden la \emph{sombra} o proyección sobre ese eje.
+En coordenadas cartesianas rectangulares ambas coinciden, pero en este sistema no.
+En la figura \ref{fig:R2-oblic_contrav_cov} se pueden comparar visualmente ambas
+componentes.
+
 \begin{figure}[ht]
   % Escala
   \def\scl{1.00}
@@ -1323,9 +1339,9 @@ contravariantes del vector.
     % Marcar en azul la componentes covariantes
     \draw[covariante]
     (O) -- node[covtxt,pos=0.5, below]
-    {$\hat{A}_1\xhat{e}^1$} (COV1);
+    {$A_1\xhat{e}^1$} (COV1);
     \draw[covariante] (O) -- node[covtxt,pos=0.5,above left=-2pt and -2pt]
-    {$\hat{A}_2\xhat{e}^2$} (COV2);
+    {$A_2\xhat{e}^2$} (COV2);
     
     % Origen
     \fill[cyan!80!black] (O) circle [radius=0.8pt];
@@ -1344,23 +1360,42 @@ contravariantes del vector.
   \label{fig:R2-oblic_cov}
 \end{figure}
 
+Hay una definición más formal de las componentes covariantes, que procede del álgebra
+lineal de la geometría diferencial. Esto implica la introducción de los conceptos de
+\emph{espacio dual} y \emph{1-forma} (o \emph{covector}). Es como si el espacio (en
+nuestro caso $\symbb{R}^2$) no contuviera solo segmentos orientados (vectores normales),
+cuya base es la B' en \eqref{eq:R2-oblic_base}, sino que también contiene \emph{superficies de nivel} o \emph{gradientes} ---en nuestro ejemplo en dos dimensiones,
+más que superficies de nivel serían líneas de nivel---.
 
-Líneas de nivel
+
+
+
+
+
+
+
+
+
+
+
+
 \begin{figure}[ht]
   \begin{minipage}{0.45\linewidth}
     % Escala
     \def\scl{1.00}
     % 
-    \pgfmathsetmacro{\EJESCARTLONG}{3.0}
-    \pgfmathsetmacro{\EJEOBLICLONG}{2.7}
-    % Eje xtilde
+    % \pgfmathsetmacro{\EJESCARTLONG}{3.0}
+    % \pgfmathsetmacro{\EJEOBLICLONG}{2.7}
+     \pgfmathsetmacro{\EJESCARTLONG}{3.3}
+    \pgfmathsetmacro{\EJEOBLICLONG}{3.0}
+    %Eje xtilde
     \pgfmathsetmacro{\XTILDEANG}{0}
     \pgfmathsetmacro{\XTILDELONG}{\EJEOBLICLONG}
     % Eje ytilde
     \pgfmathsetmacro{\YTILDEANG}{70}
     \pgfmathsetmacro{\YTILDELONG}{\EJESCARTLONG}
     % Vector P
-    \pgfmathsetmacro{\PMOD}{2.3}
+    \pgfmathsetmacro{\PMOD}{2.2}
     \pgfmathsetmacro{\PANG}{40}
     \pgfmathsetmacro{\XVECTOR}{\PMOD * cos(\PANG)}
     % Líneas de nivel x
@@ -1371,8 +1406,8 @@ Líneas de nivel
     \pgfmathsetmacro{\ALTURALINEAS}{\YTILDELONG*cos(90-\YTILDEANG)-\INICIOALTURA - 0.1}
     \pgfmathsetmacro{\XPOSLINEACOV}{\XVECTOR / \XUNIT}
     % Fondo
-    \pgfmathsetmacro{\HORZ}{0.25}
-    \pgfmathsetmacro{\VERT}{0.25}
+    \pgfmathsetmacro{\HORZ}{0.90}
+    \pgfmathsetmacro{\VERT}{0.44}
     % 
     \centering
     \begin{tikzpicture}[%
@@ -1382,9 +1417,10 @@ Líneas de nivel
       ejeoblic/.style={->, black},
       proyeccion/.style={black!20, line width=0.4},
       texto/.style={black},
-      vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt,\colorV},
-      covariante/.style={%
-        -{Latex[round,width=5pt,length=8pt]},line width=1.2pt, cyan!70!black},
+      vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt, black!40},
+     % covariante/.style={%
+     % -{Latex[round,width=5pt,length=8pt]},line width=1.2pt, cyan!70!black},
+     covariante/.style={line width=1.8pt, cyan!70!black},
       covtxt/.style={cyan!40!black},
       pcirculo/.style={fill=\colorPorig, draw=black},
       background/.style={%
@@ -1444,9 +1480,10 @@ Líneas de nivel
       %\node[above right=0pt and -5pt] at (P) {\footnotesize $P$};
 
       % Marcar en azul la componentes covariantes
-      \draw[covariante]
-      (O) -- node[covtxt,pos=0.5, below]
-      {$\hat{A}_1\xhat{e}^1$} (COV1);
+      %\draw[covariante]
+      %(O) -- node[covtxt,pos=0.5, below]
+      %{$A_1\xhat{e}^1$} (COV1);
+      \draw[covariante] (O) --node[covtxt,pos=0.5,below] {$A_1$} (COV1);
       %\draw[covariante] (O) -- node[covtxt,pos=0.5,above left=-2pt and -2pt]
       %{$\hat{A}_2\xhat{e}^2$} (COV2);
       
@@ -1460,9 +1497,11 @@ Líneas de nivel
         \draw[background] (SW) rectangle (NE);
       \end{scope}
     \end{tikzpicture}
-    \caption{La componente covariante $A_1$ de un vector $\vvv{v}$ en coordenadas
-      oblícuas, en azul, y se puede interpretar geométricamente como la proyección del
-      vector o sombra en el eje $x$.}
+    \caption{En azul, la componente covariante $A_1$ de un vector $\vvv{v}$ en
+      coordenadas oblícuas, interpretada geométricamente como la proyección del vector o
+      su \emph{sombra} en el eje $\tilde{x}$. En rojo aparecen las líneas de nivel
+      perpendiculares al eje que son \emph{atravesadas} por $\vvv{v}$.
+      En gris, las líneas que no son \emph{atravesadas}.}
     \label{fig:R2-oblic_cov1}
   \end{minipage}
   \hspace{1em}
@@ -1470,8 +1509,10 @@ Líneas de nivel
     % Escala
     \def\scl{1.00}
     % 
-    \pgfmathsetmacro{\EJESCARTLONG}{3.0}
-    \pgfmathsetmacro{\EJEOBLICLONG}{2.7}
+    %\pgfmathsetmacro{\EJESCARTLONG}{3.0}
+    %\pgfmathsetmacro{\EJEOBLICLONG}{2.7}
+    \pgfmathsetmacro{\EJESCARTLONG}{3.3}
+    \pgfmathsetmacro{\EJEOBLICLONG}{3.0}
     % Eje xtilde
     \pgfmathsetmacro{\XTILDEANG}{0}
     \pgfmathsetmacro{\XTILDELONG}{\EJEOBLICLONG}
@@ -1479,7 +1520,7 @@ Líneas de nivel
     \pgfmathsetmacro{\YTILDEANG}{70}
     \pgfmathsetmacro{\YTILDELONG}{\EJESCARTLONG}
     % Vector P
-    \pgfmathsetmacro{\PMOD}{2.3}
+    \pgfmathsetmacro{\PMOD}{2.22}
     \pgfmathsetmacro{\PANG}{40}
     \pgfmathsetmacro{\YVECTOR}{\PMOD * sin(\PANG)}
     % Lineas de nivel y
@@ -1492,7 +1533,7 @@ Líneas de nivel
     \pgfmathsetmacro{\THETAANG}{\YTILDEANG - \PANG}
     \pgfmathsetmacro{\YPOSLINEACOV}{\PMOD*cos(\THETAANG)/(\YUNIT*cos(90-\YTILDEANG)}
     % Fondo
-    \pgfmathsetmacro{\HORZ}{0.25}
+    \pgfmathsetmacro{\HORZ}{0.70}
     \pgfmathsetmacro{\VERT}{0.25}
     % 
     \centering
@@ -1503,9 +1544,10 @@ Líneas de nivel
       ejeoblic/.style={->, black},
       proyeccion/.style={black!20, line width=0.4},
       texto/.style={black},
-      vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt,\colorV},
-      covariante/.style={%
-        -{Latex[round,width=5pt,length=8pt]},line width=1.2pt, cyan!70!black},
+      vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt, black!40},
+      %covariante/.style={%
+      %  -{Latex[round,width=5pt,length=8pt]},line width=1.2pt, cyan!70!black},
+      covariante/.style={line width=1.8pt, cyan!70!black},
       covtxt/.style={cyan!40!black},
       pcirculo/.style={fill=\colorPorig, draw=black},
       background/.style={%
@@ -1562,7 +1604,7 @@ Líneas de nivel
       \node[texto, above right=0pt and -4pt] at (ytildefin) {$\tilde{y}$};
       % \node[rotate=90, left=8pt] at (ytexto) {$r\sin\theta$};
       % Vector P
-      \draw[vector, gray, use path=\r];
+      \draw[vector, use path=\r];
       \node[above left=-3pt and -1pt,gray] at (posvecttxt) {\footnotesize $\vvv{v}$};
       %\filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
       %\node[above right=0pt and -5pt] at (P) {\footnotesize $P$};
@@ -1571,8 +1613,7 @@ Líneas de nivel
       %\draw[covariante]
       %(O) -- node[covtxt,pos=0.5, below]
       %{$\hat{A}_1\xhat{e}^1$} (COV1);
-      \draw[covariante] (O) -- node[covtxt,pos=0.5,above left=-2pt and -2pt]
-      {$\hat{A}_2\xhat{e}^2$} (COV2);
+      \draw[covariante] (O)--node[covtxt,pos=0.5,above left=-2pt and -2pt]{$A_2$} (COV2);
       
       % Origen
       \fill[cyan!80!black] (O) circle [radius=0.8pt];
@@ -1584,274 +1625,14 @@ Líneas de nivel
         \draw[background] (SW) rectangle (NE);
       \end{scope}
     \end{tikzpicture}
-    \caption{Componente covariante $A_2$ del vector en coordenadas oblícuas.}
+    \caption{En azul, la componente covariante $A_2$ de un vector $\vvv{v}$ en
+      coordenadas oblícuas, interpretada geométricamente como la proyección del vector o
+      su \emph{sombra} en el eje $\tilde{y}$. En rojo aparecen las líneas de nivel
+      perpendiculares al eje que son \emph{atravesadas} por $\vvv{v}$.
+      En gris, las líneas que no son \emph{atravesadas}.}
     \label{fig:R2-oblic_cov2}
   \end{minipage}
 \end{figure}
-
-
-%\begin{figure}[ht]
-%  \begin{minipage}{0.45\linewidth}
-%    % Escala
-%    \def\scl{1.00}
-%    % 
-%    \pgfmathsetmacro{\EJESCARTLONG}{3.0}
-%    \pgfmathsetmacro{\EJEOBLICLONG}{2.7}
-%    % Eje xtilde
-%    \pgfmathsetmacro{\XTILDEANG}{0}
-%    \pgfmathsetmacro{\XTILDELONG}{\EJEOBLICLONG}
-%    % Eje ytilde
-%    \pgfmathsetmacro{\YTILDEANG}{70}
-%    \pgfmathsetmacro{\YTILDELONG}{\EJESCARTLONG}
-%    % Vector P
-%    \pgfmathsetmacro{\PMOD}{2.3}
-%    \pgfmathsetmacro{\PANG}{40}
-%    % Líneas de nivel x
-%    \pgfmathsetmacro{\INICIOALTURA}{-0}
-%    \pgfmathsetmacro{\XNUMLINEASMASUNA}{20}
-%    \pgfmathsetmacro{\XNUMLINEAS}{\XNUMLINEASMASUNA - 1}
-%    \pgfmathsetmacro{\XUNIT}{\XTILDELONG / \XNUMLINEASMASUNA}
-%    \pgfmathsetmacro{\ALTURALINEAS}{\YTILDELONG * cos(90-\YTILDEANG) - \INICIOALTURA}
-%      % Lineas de nivel y
-%      \pgfmathsetmacro{\YNUMLINEAS}{4}
-%      \pgfmathsetmacro{\YUNIT}{\YTILDELONG / (\YNUMLINEAS + 1)}
-%    % Fondo
-%    \pgfmathsetmacro{\HORZ}{0.25}
-%    \pgfmathsetmacro{\VERT}{0.25}
-%    % 
-%    \centering
-%    \begin{tikzpicture}[%
-%      scale=\scl,
-%      every node/.style={black,font=\small},
-%      lineanivel/.style={black!20},
-%      ejeoblic/.style={->, black},
-%      proyeccion/.style={black!20, line width=0.4},
-%      texto/.style={black},
-%      vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt,\colorV},
-%      covariante/.style={%
-%        -{Latex[round,width=5pt,length=8pt]},line width=1.2pt, cyan!70!black},
-%      covtxt/.style={cyan!40!black},
-%      pcirculo/.style={fill=\colorPorig, draw=black},
-%      background/.style={%
-%        line width=\bgborderwidth,
-%        draw=\bgbordercolor,
-%        fill=\bgcolor,
-%      },
-%      ]
-%      % COORDENADAS
-%      % Origen
-%      \coordinate (O) at (0,0);
-%      % Eje xtilde
-%      \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
-%      coordinate (xtildefin);
-%      % Eje ytilde
-%      \path[save path=\ejeytilde, name path=O--ytilde]
-%      (O) -- ++(\YTILDEANG:\YTILDELONG cm)
-%      coordinate (ytildefin);
-%      % Vector
-%      \path[save path=\r] (O) -- coordinate[pos=0.6] (posvecttxt) (\PANG:\PMOD cm)
-%      coordinate (P);
-%      % Componentes covariantes
-%      % Proyección de P en los ejes
-%      % Con eje x
-%      \path[save path=\proyx] (e2fin) |- (xfin) coordinate[pos=0.5] (e2x) (xfin);
-%      % Componente covariante con eje xtilde (COV1)
-%      \path (P) |- coordinate[pos=0.5] (COV1) (xtildefin);
-%      % Perpendicular a O--ytilde que pasa por P
-%      % -> Componente covariante con eje ytilde (COV2)
-%      \path (P) -- ($(O)!(P)!(ytildefin)$) coordinate (COV2);
-%    
-%      % DIBUJOS
-%      % Covariantes
-%      %\draw[proyeccion] (P) -- (COV1);
-%      %\draw[proyeccion] (P) -- (COV2);
-%
-%      \foreach \num in {0,...,\XNUMLINEAS}
-%      \draw[lineanivel] (\XUNIT * \num, \INICIOALTURA) -- ++(0, \ALTURALINEAS);
-%      
-%      % Ejes
-%      % xtilde
-%      \draw[ejeoblic, use path=\ejextilde];
-%      \node[texto, right] at (xtildefin) {\footnotesize $\tilde{x}^1$};
-%      % ytilde
-%      \draw[ejeoblic, use path=\ejeytilde];
-%      \node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{x}^2$};
-%      % \node[rotate=90, left=8pt] at (ytexto) {$r\sin\theta$};
-%      % Vector P
-%      %\draw[vector, use path=\r];
-%      %\node[above left=-3pt and -1pt] at (posvecttxt) {\footnotesize $\vvv{v}$};
-%      %\filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
-%      %\node[above right=0pt and -5pt] at (P) {\footnotesize $P$};
-%
-%      % Marcar en azul la componentes covariantes
-%      \draw[covariante]
-%      (O) -- node[covtxt,pos=0.5, below]
-%      {$\hat{A}_1\xhat{e}^1$} (COV1);
-%      %\draw[covariante] (O) -- node[covtxt,pos=0.5,above left=-2pt and -2pt]
-%      %{$\hat{A}_2\xhat{e}^2$} (COV2);
-%      
-%      % Origen
-%      \fill[cyan!80!black] (O) circle [radius=0.8pt];
-%    
-%      % Fondo amarillo
-%      \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
-%      \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
-%      \begin{scope}[on background layer]
-%        \draw[background] (SW) rectangle (NE);
-%      \end{scope}
-%    \end{tikzpicture}
-%    \caption{Componentes covariantes $A_i$ en coordenadas oblícuas. El vector $\vvv{v}$
-%      se representa como $\vvv{v}=A_1\,\xhat{e}^1 + A_2\,\xhat{e}^2$. Las componentes
-%      contravariantes nos indican el desplazamiento en el espacio. Nótese que la base
-%      utilizada no es la natural.}
-%    \label{fig:R2-oblic_cov}
-%  \end{minipage}
-%  \hspace{1em}
-%  \begin{minipage}{0.45\linewidth}
-%    % Escala
-%    \def\scl{1.00}
-%    % 
-%    \pgfmathsetmacro{\EJESCARTLONG}{3.0}
-%    \pgfmathsetmacro{\EJEOBLICLONG}{2.7}
-%    % Eje xtilde
-%    \pgfmathsetmacro{\XTILDEANG}{0}
-%    \pgfmathsetmacro{\XTILDELONG}{\EJEOBLICLONG}
-%    % Eje ytilde
-%    \pgfmathsetmacro{\YTILDEANG}{70}
-%    \pgfmathsetmacro{\YTILDELONG}{\EJESCARTLONG}
-%    % Vector P
-%    \pgfmathsetmacro{\PMOD}{2.3}
-%    \pgfmathsetmacro{\PANG}{40}
-%    % Líneas de nivel x
-%    \pgfmathsetmacro{\INICIOALTURA}{-0}
-%    \pgfmathsetmacro{\XNUMLINEASMASUNA}{20}
-%    \pgfmathsetmacro{\XNUMLINEAS}{\XNUMLINEASMASUNA - 1}
-%    \pgfmathsetmacro{\XUNIT}{\XTILDELONG / \XNUMLINEASMASUNA}
-%    \pgfmathsetmacro{\ALTURALINEAS}{\YTILDELONG * cos(90-\YTILDEANG) - \INICIOALTURA}
-%    % Lineas de nivel y
-%    \pgfmathsetmacro{\YANGULOROT}{\YTILDEANG - 90}
-%    \pgfmathsetmacro{\INICIOLONGITUD}{-0}
-%    \pgfmathsetmacro{\YNUMLINEASMASUNA}{20}
-%    \pgfmathsetmacro{\YNUMLINEAS}{\YNUMLINEASMASUNA - 1}
-%    \pgfmathsetmacro{\YUNIT}{\XTILDELONG / \YNUMLINEAS}
-%    \pgfmathsetmacro{\LONGITUDLINEAS}{\XTILDELONG - \INICIOLONGITUD}
-%    % Fondo
-%    \pgfmathsetmacro{\HORZ}{0.25}
-%    \pgfmathsetmacro{\VERT}{0.25}
-%    % 
-%    \centering
-%    \begin{tikzpicture}[%
-%      scale=\scl,
-%      every node/.style={black,font=\small},
-%      lineanivel/.style={black!20},
-%      ejeoblic/.style={->, black},
-%      proyeccion/.style={black!20, line width=0.4},
-%      texto/.style={black},
-%      vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt,\colorV},
-%      covariante/.style={%
-%        -{Latex[round,width=5pt,length=8pt]},line width=1.2pt, cyan!70!black},
-%      covtxt/.style={cyan!40!black},
-%      pcirculo/.style={fill=\colorPorig, draw=black},
-%      background/.style={%
-%        line width=\bgborderwidth,
-%        draw=\bgbordercolor,
-%        fill=\bgcolor,
-%      },
-%      ]
-%      % COORDENADAS
-%      % Origen
-%      \coordinate (O) at (0,0);
-%      % Eje xtilde
-%      \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
-%      coordinate (xtildefin);
-%      
-%      % Eje ytilde
-%      \path[save path=\ejeytilde, name path=O--ytilde]
-%      (O) -- ++(\YTILDEANG:\YTILDELONG cm)
-%      coordinate (ytildefin);
-%      % Vector
-%      \path[save path=\r] (O) -- coordinate[pos=0.6] (posvecttxt) (\PANG:\PMOD cm)
-%      coordinate (P);
-%      % Componentes covariantes
-%      % Proyección de P en los ejes
-%      % Con eje x
-%      \path[save path=\proyx] (e2fin) |- (xfin) coordinate[pos=0.5] (e2x) (xfin);
-%      % Componente covariante con eje xtilde (COV1)
-%      %\path (P) |- coordinate[pos=0.5] (COV1) (xtildefin);
-%      % Perpendicular a O--ytilde que pasa por P
-%      % -> Componente covariante con eje ytilde (COV2)
-%      \path (P) -- ($(O)!(P)!(ytildefin)$) coordinate (COV2);
-%    
-%      % DIBUJOS
-%      % Covariantes
-%      %\draw[proyeccion] (P) -- (COV1);
-%      %\draw[proyeccion] (P) -- (COV2);
-%
-%      \foreach \num in {0,...,\YNUMLINEASMASUNA}
-%      \draw[lineanivel,rotate=\YANGULOROT]
-%      (\INICIOLONGITUD, \YUNIT * \num) -- ++(\LONGITUDLINEAS, 0);
-%      
-%      % Ejes
-%      % xtilde
-%      \draw[ejeoblic, use path=\ejextilde];
-%      \node[texto, right] at (xtildefin) {\footnotesize $\tilde{x}^1$};
-%      % ytilde
-%      \draw[ejeoblic, use path=\ejeytilde];
-%      \node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{x}^2$};
-%      % \node[rotate=90, left=8pt] at (ytexto) {$r\sin\theta$};
-%      % Vector P
-%      %\draw[vector, use path=\r];
-%      %\node[above left=-3pt and -1pt] at (posvecttxt) {\footnotesize $\vvv{v}$};
-%      %\filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
-%      %\node[above right=0pt and -5pt] at (P) {\footnotesize $P$};
-%
-%      % Marcar en azul la componentes covariantes
-%      %\draw[covariante]
-%      %(O) -- node[covtxt,pos=0.5, below]
-%      %{$\hat{A}_1\xhat{e}^1$} (COV1);
-%      \draw[covariante] (O) -- node[covtxt,pos=0.5,above left=-2pt and -2pt]
-%      {$\hat{A}_2\xhat{e}^2$} (COV2);
-%      
-%      % Origen
-%      \fill[cyan!80!black] (O) circle [radius=0.8pt];
-%    
-%      % Fondo amarillo
-%      \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
-%      \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
-%      \begin{scope}[on background layer]
-%        \draw[background] (SW) rectangle (NE);
-%      \end{scope}
-%    \end{tikzpicture}
-%    \caption{Componentes covariantes $A_i$ en coordenadas oblícuas. El vector $\vvv{v}$
-%      se representa como $\vvv{v}=A_1\,\xhat{e}^1 + A_2\,\xhat{e}^2$. Las componentes
-%      contravariantes nos indican el desplazamiento en el espacio. Nótese que la base
-%      utilizada no es la natural.}
-%    \label{fig:R2-oblic_cov2}
-%  \end{minipage}
-%\end{figure}
-
-En cambio, hay otra forma de proyectar un vector, y es trazando líneas perpendiculares a
-los ejes, figura \ref{fig:R2-oblic_cov}.
-Estas \emph{componentes covariantes} las representaremos mediante subíndices $A_i$
-\begin{equation}
-  \vvv{v} = A_1\vvv{e}^1 + A_2\vvv{e}^2 = A_i \vvv{e}^i
-\end{equation}
-La base utilizada aquí $\vvv{e}^i$, no es la natural de coordenadas oblícuas,
-\eqref{eq:R2-oblic_base}, pues contiene un superíndice (no es un exponente).
-Más adelante se dará una explicación sencilla.
-
-Mientras las componentes contravariantes te dicen cuánto \emph{avanzas} a lo largo
-de cada eje, las covariantes miden la \emph{sombra} o proyección sobre ese eje.
-En coordenadas cartesianas rectangulares ambas coinciden, pero en este sistema no.
-En la figura \ref{fig:R2-oblic_contrav_cov} se pueden comparar visualmente ambas
-componentes.
-
-Hay una definición más formal de las componentes covariantes, que procede del álgebra
-lineal y de la geometría diferencial. Esto implica la introducción de los conceptos de
-\emph{espacio dual} y \emph{1-forma} (o \emph{covector}). Es como si el espacio (en
-nuestro caso $\symbb{R}^2$) no contuviera solo segmentos orientados (vectores normales),
-cuya base es la B' en \eqref{eq:R2-oblic_base}, sino que también contiene \emph{superficies de nivel} o \emph{gradientes} ---en nuestro ejemplo en dos dimensiones,
-más que superficies de nivel serían líneas de nivel---.
 
 Una forma de asimilar este tipo de componentes es suponer que un vector $\vvv{v}$
 representa el gradiente de un cierto campo escalar $\vvv{\nabla}\phi$.
