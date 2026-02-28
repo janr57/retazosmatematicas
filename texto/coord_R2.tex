@@ -219,8 +219,7 @@ Los productos escalares se calcularon en \eqref{eq:R2-cart-ii_prod_escalar},
 \eqref{eq:R2-cart-ij_prod_escalar}, \eqref{eq:R2-cart-ji_prod_escalar} y
 \eqref{eq:R2-cart-jj_prod_escalar}
 \begin{equation}\label{eq:R2-cart-metrica}
-  \mmm{g}
-  = g_{ij}
+  \mmm{g}_{ij}
   = \begin{pmatrix}
     g_{11} & g_{12}\\
     g_{21} & g_{22}
@@ -275,7 +274,7 @@ importante, mientras que en cartesianas se puede obviar)
 \[
   \vvv{v}\cdot\vvv{w}
   =
-  \vvv{v}^\transp \mmm{g} \vvv{w}
+  \vvv{v}^\transp \mmm{g}_{ij} \vvv{w}
   =
   \begin{pmatrix}
     v_x &  v_y
@@ -300,7 +299,7 @@ Así, el cuadrado del módulo de un vector en cartesianas es
   =
   \vvv{v}\cdot\vvv{v}
   =
-  \vvv{v}^\transp \mmm{g} \vvv{v}
+  \vvv{v}^\transp \mmm{g}_{ij} \vvv{v}
   =
   \begin{pmatrix}
   v_x &  v_y
@@ -1189,8 +1188,7 @@ Multiplicamos escalarmente estos vectores
 
 El tensor métrico en coordenadas oblícuas resulta
 \begin{equation}\label{eq:R2-oblic_metrica}
-  \mmm{g}
-  = g_{ij}
+  \mmm{g}_{ij}
   = \begin{pmatrix}
     g_{11} & g_{12}\\
     g_{21} & g_{22}
@@ -1882,26 +1880,26 @@ Desarrollando la expresión
     &=
       U^1\left(\sum_{j=1}^2g_{1j}\,V^j\right) + U^2\left(\sum_{j=1}^2g_{2j}\,V^j\right)\\
     &=
-      \sum_{i=1}^2 U^i \left(\sum_{j=1}^2g_{ij}\,V^j\right)\\
+      \sum_{i=1}^2 U^i \left(\sum_{j=1}^2\mmm{g}_{ij}\,V^j\right)\\
     &=
-      \sum_{i=1}^2\sum_{j=1}^2g_{ij}\,U^i\,V^j
+      \sum_{i=1}^2\sum_{j=1}^2\mmm{g}_{ij}\,U^i\,V^j
   \end{align*}
 }
 
 En notación de Einstein
 \begin{equation}
   \vvv{u}\cdot\vvv{v}
-  = g_{ij}\,U^i\,V^j
+  = \mmm{g}_{ij}\,U^i\,V^j
 \end{equation}
 
 Regorganizando términos ---que son escalares y se cumple la propiedad conmutativa
 \[
   \vvv{u}\cdot\vvv{v}
-  = \,U^ig_{ij}\,V^j
+  = \,U^i\mmm{g}_{ij}\,V^j
 \]
 
 Ahora, utilizamos la métrica para bajar el índice $j$, porque
-$U_i = g_{ij}V^j$
+$U_i = \mmm{g}_{ij}V^j$
 \begin{equation}
   \vvv{u}\cdot\vvv{v}
   = U^i\,V_i = U_i\,V^i
@@ -1915,17 +1913,22 @@ a) Calcula el cuadrado de su módulo.\\
 b) Nos proponemos realizar un cambio de base desde el sistema rectangular a otro oblícuo,
 con un ángulo entre ejes de \qty{60}{\degree}. Calcula la expresión de los vectores
 unitarios de la base nueva. ¿Cuál es su módulo?
-Escribe la matriz $\mmm{M}$ de cambio de base y su inversa $\mmm{M}^{-1}$.\\
+Escribe la matriz $\mmm{M}$ de cambio de base y su inversa.\\
 c) Obtén el tensor métrico en el sistema oblícuo anterior.\\
-d) Halla las componentes contravariantes del vector del apartado a).\\
-e) ¿Cuáles son las componentes covariantes del vector?\\
+d) Halla las componentes contravariantes del vector.\\
+e) ¿Cuáles son las componentes covariantes?\\
 f) Halla el cuadrado del módulo del vector en el sistema oblícuo.\\
 
+\noindent
+\textbf{Solución}
+
+\noindent
 a) El cuadrado del módulo del vector es
 \[
   v^2 = v_x^2 + v_y^2 = 3^2 + 4^2 = 25
 \]
 
+\noindent
 b) Utilizando la figura \ref{fig:R2-coord_oblicuas_e1e2}, la nueva base estaría formada
 por dos vectores unitarios, que en función del sistema rectangular son
 \begin{align*}
@@ -1953,13 +1956,13 @@ nueva base en función de la antigua, dispuestos en columnas
   \end{pmatrix}
 \]
 
+{\footnotesize
 Comprobación
 \[
   \tilde{B} = B \mmm{M}
 \]
 
 Los vectores de la base los disponemos en filas
-{\small
 \[
   \begin{pmatrix}
     \xhat{e}_1 & \xhat{e}_2
@@ -1991,20 +1994,98 @@ determinante de la matriz por la adjunta de su transpuesta. El resultado es
   \end{pmatrix}
   =
   \begin{pmatrix}
-    1 & -\dfrac{\sqrt{3}}{3}\\[2ex]
-    0 & \dfrac{2\sqrt{3}}{3}
+    1 & -\sqrt{3}/3\\[1ex]
+    0 & 2\sqrt{3}/3
   \end{pmatrix}
 \]
 
+\noindent
+c) El tensor métrico en el sistema oblícuo, con $\alpha = \pi/3\,\unit{\radian}$ es
+\[
+  \mmm{g}_{ij}
+  =\begin{pmatrix}
+    g_{11} & g_{12}\\
+    g_{21} & g_{22}
+  \end{pmatrix}
+  = \begin{pmatrix}
+    \xhat{e}_1\cdot\xhat{e}_1 & \xhat{e}_1\cdot\xhat{e}_2\\
+    \xhat{e}_2\cdot\xhat{e}_1 & \xhat{e}_2\cdot\xhat{e}_2\\
+  \end{pmatrix}
+  = \begin{pmatrix}
+    1 & \cos\pi/3\\
+    \cos\pi/3 & 1
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    1 & 1/2\\
+    1/2 & 1
+  \end{pmatrix}
+\]
 
-%c) El tensor métrico en el sistema oblícuo, con $\alpha = \pi/3\,\unit{\radian}$ es
-%\[
-%  g_{ij}
-%  = \begin{pmatrix}
-%    g_{11} 
-%    \end{pmatrix}
-%\]
+\noindent
+d) Para hallar las componentes contravariantes, debemos aplicar la inversa de la matriz
+de cambio de base
+\[
+  \left[A^i\right]_{\tilde{B}} = \mmm{M}^{-1}\, \left[A^i\right]_{B}
+\]
+donde las componentes contravarianes en la base rectangular $[A^i]_{B}$ son iguales
+que las covariantes y valen $(3, 4)$.
 
+\[
+  \begin{pmatrix}
+    A^1\\
+    A^2
+  \end{pmatrix}
+  = \begin{pmatrix}
+    1 & -\sqrt{3}/3\\
+    0 & 2\sqrt{3}/3
+  \end{pmatrix}
+  \,
+  \begin{pmatrix}
+    3\\
+    4
+  \end{pmatrix}
+  = \begin{pmatrix}
+    3 - \dfrac{4\sqrt{3}}{3}\\[2ex]
+    \dfrac{8\sqrt{3}}{3}
+  \end{pmatrix}
+\]
+
+\noindent
+e) Las componentes covariantes se obtienen bajando índices
+\[
+  A_i = \mmm{g}_{ij}\,A^j
+\]
+Desarrollando la expresión para $A_1$ y $A_2$ y teniendo en cuenta la métrica,
+$g_{11} = 1$, $g_{12}=g_{21}=1/2$ y $g_{22}=1$
+\begin{align*}
+  A_1
+  &= g_{11}A^1 + g_{12}A^2 = A^1 + \dfrac{1}{2}A^2
+  = 3 - \cancelout{\dfrac{4\sqrt{3}}{3}} + \cancelout{\dfrac{1}{2}\dfrac{8\sqrt{3}}{3}}
+    = 3\\
+  A_2
+  &= g_{21}A^1 + g_{22} A^2 = \dfrac{1}{2}A^1 + A^2
+    = \dfrac{1}{2}\left(3-\dfrac{4\sqrt{3}}{3}\right) + \dfrac{8\sqrt{3}}{3}
+    = \dfrac{3}{2} + 2\sqrt{3}
+\end{align*}
+
+\noindent
+f) El cuadrado del módulo del vector calculado con las componentes oblícuas debe ser
+$25$, pues tiene que dar en mismo resultado que en rectangulares (apartado a).
+\begin{align*}
+  \vvv{v}\cdot\vvv{v}
+  &=
+    A^iA_i
+    = A^1 A_1 + A^2 A_2
+    = \left(3-\dfrac{4\sqrt{3}}{3}\right) 3
+    + \dfrac{8\sqrt{3}}{3} \left(\dfrac{3}{2} + 2\sqrt{3}\right)\\
+  &=
+    9 - 4\sqrt{3}
+    + \dfrac{\cancelout{3}\cdot 8\sqrt{3}}{2\cdot\cancelout{3}}
+    + \dfrac{2\cdot 8\cdot \cancelout{3}}{\cancelout{3}}
+    = 9 - \cancelout{4\sqrt{3}} + \cancelout{4\sqrt{3}} + 16
+    = 25
+\end{align*}
 
 
 %
@@ -2408,8 +2489,7 @@ determinante de la matriz por la adjunta de su transpuesta. El resultado es
 %  \eqref{eq:R2-erer-productoescalar}, \eqref{eq:R2-eretheta-productoescalar} y
 %   \eqref{eq:R2-ethetaetheta-productoescalar}
 %  \begin{equation}\label{eq:R2-metrica-polares}
-%    \mmm{g}
-%    = g_{ij}
+%    \mmm{g}_{ij}
 %    = \begin{pmatrix}
 %      g_{11} & g_{12}\\
 %      g_{21} & g_{22}
@@ -3146,7 +3226,7 @@ determinante de la matriz por la adjunta de su transpuesta. El resultado es
 %  Calculamos la inversa del tensor métrico, que como es diagonal, la inversa de cada
 %  elemento es el recíproco de los elementos diagonales
 %  \begin{equation}
-%    \mmm{g} = \begin{pmatrix}1 & 0\\ 0 & 1/r^2 \end{pmatrix}
+%    \mmm{g}_{ij} = \begin{pmatrix}1 & 0\\ 0 & 1/r^2 \end{pmatrix}
 %  \end{equation}
 %  Para bajar el índice, multiplicamos por la inversa del  tensor métrico $A^i = g^{ij}
 %  A_j$.
