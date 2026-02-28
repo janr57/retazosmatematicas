@@ -1208,8 +1208,8 @@ El tensor métrico en coordenadas oblícuas resulta
 Analizamos la métrica obtenida
 \begin{itemize}
 \item Los elementos diagonales valen la unidad. Esto significa que un cambio en
-  cualquiera  de las coordenadas $\tilde{x}$ o $\tilde{y}$, representan ese mismo valor
-  de desplazamiento en el espacio.
+  cualquiera  de los ejes $\tilde{x}$ o $\tilde{y}$ o componentes $A^i$, representan ese
+  mismo valor de desplazamiento en el espacio.
 \item Los elementos no diagonales no son cero, lo que indica que un cambio cualquiera en
   las coordenadas implica un cambio en la otra, y viceversa (los ejes no son
   ortogonales).
@@ -1839,12 +1839,171 @@ un vector en un covector y viceversa.
 Para terminar, el álgebra lineal proporciona la estructura algebráica, mientras que la geometría diferencial proporciona el marco geométrico y físico.
 
 \subsection{Producto escalar}
+Ahora que se han introducido las componentes covariantes y contravariantes, y el tensor
+métrico, estamos en disposición de ver el producto escalar de dos vectores.
+Definiremos el producto escalar de dos vectores $\vvv{u}$ y $\vvv{v}$ matricialmente en
+$\symbb{R}^2$ como
+\begin{equation}
+  \vvv{u}\cdot\vvv{v}
+  = \vvv{u}^\transp  \mmm{g}_{ij} \vvv{v}
+  = \begin{pmatrix}
+    U^1 & U^2
+  \end{pmatrix}
+  \,\begin{pmatrix}
+    g_{11} & g_{12}\\
+    g_{21} & g_{22}
+  \end{pmatrix}
+  \,
+  \begin{pmatrix}
+    V^1\\
+    V^2
+  \end{pmatrix}
+\end{equation}
+
+Desarrollando la expresión
+{\small
+  \begin{align*}
+    \vvv{u}\cdot\vvv{v}
+    &=
+      \begin{pmatrix}
+        U^1 g_{11}+U^2g_{21} & U^1g_{12}+U^2g_{22}
+      \end{pmatrix}
+      \,
+      \begin{pmatrix}
+        V^1\\
+        V^2
+      \end{pmatrix}\\
+    &=
+      \left(U^1\,g_{11}+U^2\,g_{21}\right) V^1 + \left(U^1\,g_{12}+U^2\,g_{22}\right) V^2\\
+    &=
+      U^1g_{11}\,V^1 + U^2g_{21}\,V^1 + U^1g_{12}\,V^2 + U^2g_{22}\,V^2\\
+    &=
+      U^1\left(g_{11}\,V^1+g_{12}\,V^2\right)+U^2\left(g_{21}\,V^1+g_{22}\,V^2\right)\\
+    &=
+      U^1\left(\sum_{j=1}^2g_{1j}\,V^j\right) + U^2\left(\sum_{j=1}^2g_{2j}\,V^j\right)\\
+    &=
+      \sum_{i=1}^2 U^i \left(\sum_{j=1}^2g_{ij}\,V^j\right)\\
+    &=
+      \sum_{i=1}^2\sum_{j=1}^2g_{ij}\,U^i\,V^j
+  \end{align*}
+}
+
+En notación de Einstein
+\begin{equation}
+  \vvv{u}\cdot\vvv{v}
+  = g_{ij}\,U^i\,V^j
+\end{equation}
+
+Regorganizando términos ---que son escalares y se cumple la propiedad conmutativa
+\[
+  \vvv{u}\cdot\vvv{v}
+  = \,U^ig_{ij}\,V^j
+\]
+
+Ahora, utilizamos la métrica para bajar el índice $j$, porque
+$U_i = g_{ij}V^j$
+\begin{equation}
+  \vvv{u}\cdot\vvv{v}
+  = U^i\,V_i = U_i\,V^i
+\end{equation}
+
+\section{Ejercicios de resumen}
+\subsection{Primero}
+\noindent Supongamos un cierto vector en coordenadas rectangulares,
+$\vvv{v} = 3\,\uvec{\i} + 4\,\uvec{\j}$.\\
+a) Calcula el cuadrado de su módulo.\\
+b) Nos proponemos realizar un cambio de base desde el sistema rectangular a otro oblícuo,
+con un ángulo entre ejes de \qty{60}{\degree}. Calcula la expresión de los vectores
+unitarios de la base nueva. ¿Cuál es su módulo?
+Escribe la matriz $\mmm{M}$ de cambio de base y su inversa $\mmm{M}^{-1}$.\\
+b) Obtén el tensor métrico en el sistema oblícuo anterior.\\
+d) Halla las componentes contravariantes del vector del apartado a).\\
+e) ¿Cuáles son las componentes covariantes del vector?\\
+f) Halla el cuadrado del módulo del vector en el sistema oblícuo.\\
+
+a) El cuadrado del módulo del vector es
+\[
+  v^2 = v_x^2 + v_y^2 = 3^2 + 4^2 = 25
+\]
+
+b) Utilizando la figura \ref{fig:R2-coord_oblicuas_e1e2}, la nueva base estaría formada
+por dos vectores unitarios, que en función del sistema rectangular son
+\begin{align*}
+  \xhat{e}_1 &= \uvec{\i}
+  \longrightarrow |\xhat{e}_1| = 1\\ 
+  \xhat{e}_2 &= \cos\pi/3\,\uvec{\i} + \sin\pi/3\,\uvec{\j}
+               = \dfrac{1}{2}\,\uvec{\i} + \dfrac{\sqrt{3}}{2}\,\uvec{\j}
+               \longrightarrow |\xhat{e}_2| = \cos^2\pi/3 + \sin^2\pi/3 = 1
+\end{align*}
+
+La nueva base sería
+\[
+  \tilde{B} = \set{\xhat{e}_1, \xhat{e}_2}
+  = \Set{\uvec{\i}, \dfrac{1}{2}\,\uvec{\i} + \dfrac{\sqrt{3}}{2}\,\uvec{\j}}
+  = \Set{(1,0),\, (1/2, \sqrt{3}/2)}
+\]
+
+De acuerdo con esto, la matriz de cambio de base estaría formada por los vectores de la
+nueva base en función de la antigua, dispuestos en columnas
+\[
+  \mmm{M}
+  = \begin{pmatrix}
+    1 & 1/2\\
+    0 & \sqrt{3}/2
+  \end{pmatrix}
+\]
+
+Comprobación
+\[
+  \tilde{B} = B \mmm{M}
+\]
+
+Los vectores de la base los disponemos en filas
+{\small
+\[
+  \begin{pmatrix}
+    \xhat{e}_1 & \xhat{e}_2
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \uvec{\i} & \uvec{\j}
+  \end{pmatrix}
+  \,
+  \begin{pmatrix}
+    1 & 1/2\\
+    0 & \sqrt{3}/2
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \uvec{\i} & \dfrac{1}{2}\,\uvec{\i} + \dfrac{\sqrt{3}}{2}\,\uvec{\j}
+  \end{pmatrix}
+\]
+}
+La inversa de la matriz de cambio de base se calcula multiplicando la inversa del
+determinante de la matriz por la adjunta de su transpuesta. El resultado es
+\[
+  \mmm{M}^{-1}
+  = \dfrac{1}{\det(\mmm{M})}\,\text{adj}\left(\mmm{M}^\transp\right)
+  = \dfrac{1}{\sqrt{3}/2}
+  \begin{pmatrix}
+    \sqrt{3}/2 & -1/2\\[1ex]
+    0 & 1
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    1 & -\dfrac{\sqrt{3}}{3}\\[2ex]
+    0 & \dfrac{2\sqrt{3}}{3}
+  \end{pmatrix}
+\]
 
 
-
-
-
-
+%c) El tensor métrico en el sistema oblícuo, con $\alpha = \pi/3\,\unit{\radian}$ es
+%\[
+%  g_{ij}
+%  = \begin{pmatrix}
+%    g_{11} 
+%    \end{pmatrix}
+%\]
 
 
 
