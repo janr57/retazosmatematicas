@@ -22,7 +22,7 @@ El capítulo comienza recordando conceptos básicos del sistema de coordenadas c
 rectangulares. Cuando digamos coordenadas \emph{cartesianas} sin más, nos referimos a
 estas.
 
-Se sigue con una descripción de sistemas de coordenadas cartesianas oblícuas, en adelante, coordenadas \emph{oblícuas}, en contraposición con las \emph{rectangulares},
+Se sigue con una descripción de sistemas de coordenadas cartesianas oblicuas, en adelante, coordenadas \emph{oblicuas}, en contraposición con las \emph{rectangulares},
 cuando convenga compararlas, pues ambas son \emph{cartesianas}.
 
 Después nos adentramos en la descripción de las coordenadas polares planas.
@@ -522,12 +522,12 @@ Este elemento se relaciona trivialmente con el jacobiano de la
   = dxdy
 \]
 
-\section{Coordenadas cartesianas oblícuas}
+\section{Coordenadas cartesianas oblicuas}
 Aquí introduciremos los conceptos de \emph{componentes contravariantes y covariantes},
 algo que no hicimos en el sistema cartesiano rectangular porque en este último ambas componentes son idénticas, pero aquí sí hay diferencia.
 
 \subsection{Base natural}
-En coordenadas oblícuas es importante el ángulo $\alpha$ que forman los dos ejes.
+En coordenadas oblicuas es importante el ángulo $\alpha$ que forman los dos ejes.
 Los ejes oblícuos los representamos por $\tilde{x}$ e $\tilde{y}$. La base natural está
 formada por los vectores unitarios $\xhat{e}_1$ y $\xhat{e}_2$
 \begin{equation}\label{eq:R2-oblic_base}
@@ -662,7 +662,7 @@ esto es, el eje $\tilde{x}$ coincide con el eje $x$ de las cartesianas. Véase l
       \draw[background] (SW) rectangle (NE);
     \end{scope}
   \end{tikzpicture}
-  \caption{Sistema de coordenadas cartesianas oblícuas $\tilde{x}$ e $\tilde{y}$, que
+  \caption{Sistema de coordenadas cartesianas oblicuas $\tilde{x}$ e $\tilde{y}$, que
     forman un ángulo $\alpha$ entre sí. También se representan los ejes cartesianos $x$ e
     $y$ tradicionales, como referencia en tono algo apagado. Por último se aprecian en
     rojo los vectores unitarios $\xhat{e}_1$ y $\xhat{e}_2$ del sistema oblícuo y sus
@@ -852,7 +852,7 @@ En notación de Einstein sería
 donde $i = 1, 2$.
 
 \subsubsection{Representación gráfica de las componentes contravariantes}
-La componentes contravariantes en el sistema de coordenadas oblícuas se pueden
+La componentes contravariantes en el sistema de coordenadas oblicuas se pueden
 representar gráficamente, trazando líneas paralelas a los ejes a partir del extremo del
 segmento orientado $\vvv{v}$. Esta es la forma natural con la que sumamos vectores mediante la regla del paralelogramo, ver figura \ref{fig:R2-oblic_contrav}.
 \begin{figure}[ht]
@@ -963,7 +963,7 @@ segmento orientado $\vvv{v}$. Esta es la forma natural con la que sumamos vector
       \draw[background] (SW) rectangle (NE);
     \end{scope}
   \end{tikzpicture}
-  \caption{Componentes contravariantes $A^i$, en coordenadas oblícuas. El vector $\vvv{v}$
+  \caption{Componentes contravariantes $A^i$, en coordenadas oblicuas. El vector $\vvv{v}$
     se representa como $\vvv{v}=A^1\,\xhat{e}_1 + A^2\,\xhat{e}_2$. La componente
     contravariante en un cierto eje nos indica el desplazamiento que se ha producido en
     ese eje.}
@@ -1025,7 +1025,7 @@ mediante $\mmm{M}$
   \end{align}
 \end{subequations}
 
-En coordenadas oblícuas en $\symbb{R}^2$ utilizamos las matrices inversa
+En coordenadas oblicuas en $\symbb{R}^2$ utilizamos las matrices inversa
 \eqref{eq:R2-oblic_Minv} y directa \eqref{eq:R2-oblic_M}, respectivamente
 \begin{subequations}
   \begin{align}
@@ -1070,7 +1070,7 @@ Supongamos que tenemos un vector en coordenadas cartesianas rectangulares
 \]
 donde $\xhat{u}_1 = \uvec{\i}$ y $\xhat{u}_2 = \uvec{\j}$.
 Estamos interesados en obtener las componentes $\tilde{A}^i$ en un sistema de
-coordenadas oblícuas, donde el ángulo que forman sus ejes vale
+coordenadas oblicuas, donde el ángulo que forman sus ejes vale
 $\alpha = \pi/3\,\unit{\radian}$. Tendremos que aplicar la inversa de la matriz de
 transformación de base de $B$ a $B'$
 \begin{align*}
@@ -1113,7 +1113,7 @@ Así
 \]
 
 
-Si nos dieran las componentes en coordenadas oblícuas
+Si nos dieran las componentes en coordenadas oblicuas
 \[
   \left(\tilde{A}^1, \tilde{A}^2\right) = \left(2+4/\sqrt{3}, -8/\sqrt{3}\right)
 \]
@@ -1158,7 +1158,7 @@ y quisiéramos obtener las coordenadas rectangulares, deberíamos obtener $(2,-4
 
 \subsection{Métrica}
 Con los conocimientos que hemos adquirido, la forma más rápida para obtener el tensor
-métrico en coordenadas oblícuas es utilizar el método seguido en la expresión
+métrico en coordenadas oblicuas es utilizar el método seguido en la expresión
 \eqref{eq:R2-cart-metrica}. Para ello debemos calcular el producto escalar de los
 vectores de la base \eqref{eq:R2-oblic_base}.
 
@@ -1186,7 +1186,7 @@ Multiplicamos escalarmente estos vectores
   \end{align}
 \end{subequations}
 
-El tensor métrico en coordenadas oblícuas resulta
+El tensor métrico en coordenadas oblicuas resulta
 \begin{equation}\label{eq:R2-oblic_metrica}
   \mmm{g}_{ij}
   = \begin{pmatrix}
@@ -1244,7 +1244,7 @@ Estas \emph{componentes covariantes} las representaremos mediante subíndices $A
 \begin{equation}
   \vvv{v} = A_1\xhat{e}^1 + A_2\xhat{e}^2 = A_i \xhat{e}^i
 \end{equation}
-La base utilizada aquí $\xhat{e}^i$, no es la natural de coordenadas oblícuas,
+La base utilizada aquí $\xhat{e}^i$, no es la natural de coordenadas oblicuas,
 \eqref{eq:R2-oblic_base}, pues contiene un superíndice (de nuevo, no es un exponente).
 
 Mientras las componentes contravariantes te dicen cuánto \emph{avanzas} a lo largo
@@ -1348,7 +1348,7 @@ componentes.
         \draw[background] (SW) rectangle (NE);
       \end{scope}
     \end{tikzpicture}
-    \caption{Componentes covariantes $A_i$ en coordenadas oblícuas. El vector $\vvv{v}$
+    \caption{Componentes covariantes $A_i$ en coordenadas oblicuas. El vector $\vvv{v}$
       se representa como $\vvv{v}=A_1\,\xhat{e}^1 + A_2\,\xhat{e}^2$. Las componentes
       contravariantes nos indican el desplazamiento en el espacio.}
     \label{fig:R2-oblic_cov}
@@ -1616,7 +1616,7 @@ Ver figuras \ref{fig:R2-oblic_cov1} y \ref{fig:R2-oblic_cov2}.
       \end{scope}
     \end{tikzpicture}
     \caption{En azul, la componente covariante $A_1$ de un vector $\vvv{v}$ en
-      coordenadas oblícuas, interpretada geométricamente como la proyección del vector o
+      coordenadas oblicuas, interpretada geométricamente como la proyección del vector o
       su \emph{sombra} en el eje $\tilde{x}$. En rojo aparecen las líneas de nivel
       perpendiculares al eje que son \emph{atravesadas} por $\vvv{v}$.
       En gris, las líneas que no son \emph{atravesadas}.}
@@ -1744,7 +1744,7 @@ Ver figuras \ref{fig:R2-oblic_cov1} y \ref{fig:R2-oblic_cov2}.
       \end{scope}
     \end{tikzpicture}
     \caption{En azul, la componente covariante $A_2$ de un vector $\vvv{v}$ en
-      coordenadas oblícuas, interpretada geométricamente como la proyección del vector o
+      coordenadas oblicuas, interpretada geométricamente como la proyección del vector o
       su \emph{sombra} en el eje $\tilde{y}$. En rojo aparecen las líneas de nivel
       perpendiculares al eje que son \emph{atravesadas} por $\vvv{v}$.
       En gris, las líneas que no son \emph{atravesadas}.}
@@ -2070,7 +2070,7 @@ $g_{11} = 1$, $g_{12}=g_{21}=1/2$ y $g_{22}=1$
 \end{align*}
 
 \noindent
-f) El cuadrado del módulo del vector calculado con las componentes oblícuas debe ser
+f) El cuadrado del módulo del vector calculado con las componentes oblicuas debe ser
 $25$, pues tiene que dar en mismo resultado que en rectangulares (apartado a).
 \begin{align*}
   \vvv{v}\cdot\vvv{v}
