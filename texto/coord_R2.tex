@@ -2154,7 +2154,10 @@ que tiene el segundo observador (recordemos que $O'$ se mueve con velocidad cons
 con respecto a $O$); además, vamos a suponer que en el instante $t=0$, ambos se
 encontraban en la misma posición $x'=0$ medida desde $O$. Como la velocidad es constante
 la gráfica del movimiento de $O'$ respecto de $O$ es una línea de pendiente constante
-$\alpha = \arccot(t/x)$, o bien, $\cot\alpha = t/x$.
+$\alpha = \arccot(t/x)$. De la figura \ref{fig:R2-oblic_OO'_u}, se deduce que la velocidad relativa de $O'$ respecto de $O$ es
+\begin{equation}
+  u= \dfrac{x}{t} =\cot\alpha
+\end{equation}
 \begin{figure}[ht]
   \begin{minipage}{0.45\linewidth}
     % Escala
@@ -2244,6 +2247,8 @@ $\alpha = \arccot(t/x)$, o bien, $\cot\alpha = t/x$.
       % Trayectoria
       \draw[line width=1pt, use path=\trayect];
       
+      % Texto informativo
+      \node[above right] at (trayfin) {$u=\dfrac{x}{t} = \cot\alpha$};
       % Origen
       \filldraw (O) circle [radius=.2pt];
       
@@ -2255,8 +2260,10 @@ $\alpha = \arccot(t/x)$, o bien, $\cot\alpha = t/x$.
       \end{scope}
     \end{tikzpicture}
     \caption{Gráfica del movimiento uniforme de $O'$ con respecto de $O$. Es una línea
-      recta de pendiente $\tan\alpha = t/x$ o $\cot\alpha = x/t$.}
-    % \label{fig:R2-oblic_contrav_cov}
+      recta de pendiente $\tan\alpha = t/x$ o $\cot\alpha = x/t$.
+      La velocidad constante de $O'$ con respecto de $O$ es $u=\cot\alpha$.
+      La distancia $x$ representa la distancia entre $O$ y $O'$ en cada instante $t$.}
+    \label{fig:R2-oblic_OO'_u}
   \end{minipage}
   \hspace{1em}
   \begin{minipage}{0.45\linewidth}
@@ -2399,9 +2406,6 @@ $\alpha = \arccot(t/x)$, o bien, $\cot\alpha = t/x$.
     % \label{fig:R2-oblic_contrav_cov}
   \end{minipage}
 \end{figure}
-
-
-
 
 
 En forma matricial tendríamos\footnotemark{}
