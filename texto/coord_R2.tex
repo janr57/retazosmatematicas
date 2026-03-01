@@ -2156,25 +2156,21 @@ encontraban en la misma posición $x'=0$ medida desde $O$. Como la velocidad es 
 la gráfica del movimiento de $O'$ respecto de $O$ es una línea de pendiente constante
 $\alpha = \arccot(t/x)$, o bien, $\cot\alpha = t/x$.
 \begin{figure}[ht]
-  \begin{minipage}{0.45\linewidth}  
+  \begin{minipage}{0.45\linewidth}
     % Escala
     \def\scl{1.00}
     % 
     \pgfmathsetmacro{\EJESCARTLONG}{3.0}
-    \pgfmathsetmacro{\EJEOBLICLONG}{2.7}
     % Eje x
     \pgfmathsetmacro{\XLONG}{\EJESCARTLONG}
     % Eje y
-    \pgfmathsetmacro{\YLONG}{\EJESCARTLONG}
-    % Eje xtilde
-    \pgfmathsetmacro{\XTILDEANG}{0}
-    \pgfmathsetmacro{\XTILDELONG}{\EJEOBLICLONG}    
-    % Eje ytilde
-    \pgfmathsetmacro{\YTILDEANG}{70}
-    \pgfmathsetmacro{\YTILDELONG}{\EJESCARTLONG}
-    % Vector P
-    \pgfmathsetmacro{\PMOD}{2.3}
-    \pgfmathsetmacro{\PANG}{40}
+    \pgfmathsetmacro{\TLONG}{\EJESCARTLONG}
+    % Trayectoria
+    \pgfmathsetmacro{\TRAYLONG}{1.0*\EJESCARTLONG}
+    \pgfmathsetmacro{\TRAYANG}{70}
+    % Punto
+    \pgfmathsetmacro{\PMOD}{0.85*\TRAYLONG}
+    \pgfmathsetmacro{\PANG}{\TRAYANG}
     % Fondo
     \pgfmathsetmacro{\HORZ}{0.90}
     \pgfmathsetmacro{\VERT}{0.25}
@@ -2189,7 +2185,6 @@ $\alpha = \arccot(t/x)$, o bien, $\cot\alpha = t/x$.
       % longitud/.style={line width=.5pt,\colorV},
       texto/.style={black},
       textoapagado/.style={\colorTorig},
-      vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt,\colorV},
       % vtilde/.style={%
       % -{Latex[round,width=4pt,length=6pt]}, line width=1pt, \colorVred},
       pcirculo/.style={fill=\colorPorig, draw=black},
@@ -2205,80 +2200,49 @@ $\alpha = \arccot(t/x)$, o bien, $\cot\alpha = t/x$.
       \coordinate (O) at (0,0);
       % Eje x
       \path[save path=\ejex] (O) -- (\XLONG cm, 0) coordinate (xfin);
-      % Eje y
-      \path[save path=\ejey] (O) -- (0, \YLONG cm) coordinate (yfin);
-      % Eje xtilde
-      \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
-      coordinate (xtildefin);
-      %\node[texto, below] at (xtildefin) {\footnotesize $\tilde{x}$};
-      % Eje ytilde
-      \path[save path=\ejeytilde,name path=O--ytilde](O) -- ++(\YTILDEANG:\YTILDELONG cm)
-      coordinate (ytildefin);
-      % Vector
-      \path[save path=\r] (O) -- coordinate[pos=0.5] (pmid) (\PANG:\PMOD cm)
-      coordinate (P);
+      % Eje t
+      \path[save path=\ejet] (O) -- (0, \TLONG cm) coordinate (tfin);
+      % Trayectoria
+      \path[save path=\trayect](O) -- ++(\TRAYANG:\TRAYLONG cm)
+      coordinate (trayfin);
+      % Punto
+      \coordinate (P) at (\PANG:\PMOD cm);
       % Proyección de P en los ejes
       % Con eje x
-      \path[save path=\proyx] (e2fin) |- (xfin) coordinate[pos=0.5] (e2x) (xfin);
+      \path (P) |-  coordinate (px) (xfin);
+      \path[save path=\proyx] (P) -- coordinate (pttxt) (px);
       % Posición de texto en eje x
-      % \path (O) -- coordinate[pos=0.5] (extxt) (e2x);
-      % Con eje y
-      \path[save path=\proyy] (e2fin) -| coordinate[pos=0.5] (e2y) (yfin);
-      % Posición de texto en eje y
-      % \path (O) -- coordinate[pos=0.5] (eytxt) (e2y);
-      % Componentes covariantes y contravariantes
-      % Intersección de horizontal desde P hasta ytilde
-      % -> Componente contravariante eje ytilde (CTV2) 
-      \path[name path=P--y] (P) -| (yfin);
-      \path[name intersections={of=P--y and O--ytilde,by=CTV2}];
-      % Paralela (CTV2) -- (O) que pase por (P)
-      % -> Componente contravariante eje xtilde (CTV1)
-      \path (P) -- ($(P) - (CTV2) - (O)$) coordinate (CTV1);
-      % Componente covariante con eje xtilde (COV1)
-      \path (P) |- coordinate[pos=0.5] (COV1) (xtildefin);
-      % Perpendicular a O--ytilde que pasa por P
-      % -> Componente covariante con eje ytilde (COV2)
-      \path (P) -- ($(O)!(P)!(ytildefin)$) coordinate (COV2);
-      % Proyecciones de las componentes
+      \path (O) -- coordinate[pos=0.6] (pxtxt) (px);
+      % Con eje t
+      \path (P) -| coordinate[pos=0.5] (py) (tfin);
+      \path[save path=\proyt] (P) -- (py);
+      % Posición de texto en eje t
+      \path (O) -- coordinate[pos=0.5] (pymed) (py);
+      % Punto
+      \fill (P) circle[radius=1pt];
       
       % DIBUJOS
       % Ángulo theta
       \path (xfin) -- (O) -- (ytildefin) pic
-      [angulo, "\footnotesize $\alpha$",angle radius=15pt, angle eccentricity=0.65]
-      {angle = xfin--O--ytildefin};
-      % \node[above right=-2pt and 4pt] at (O) {\scriptsize $\alpha$};
-      % 
+      [angulo, "\footnotesize $\alpha$",angle radius=11pt, angle eccentricity=0.6]
+      {angle = xfin--O--trayfin};
       % Proyecciones de componentes
-      % Contravariantes
-      %\draw[proyeccion] (P) -- (CTV1);
-      %\node[orange!70!black, below=-1pt] at (CTV1) {\footnotesize $A^1$};
-      %\draw[proyeccion] (P) -- (CTV2);
-      %\node[orange!70!black, left=-1.5pt] at (CTV2) {\footnotesize $A^2$};
-      % Covariantes
-      %\draw[proyeccion] (P) -- (COV1);
-      %\node[cyan!50!black, below=1pt] at (COV1) {\footnotesize $A_1$};
-      %\draw[proyeccion] (P) -- (COV2);
-      %\node[cyan!50!black, above left=-2pt and -2pt] at (COV2) {\footnotesize $A_2$};
-      
+      % Eje x
+      \draw[proyeccion, use path=\proyx];
+      \node[below] at (pxtxt) {$x$};
+      % Eje t
+      \draw[proyeccion, use path=\proyt];
+      \node[right] at (pttxt) {$t$};
+
       % Ejes
       % x
       \draw[ejecart, use path=\ejex];
       \node[below=1.2pt] at (xfin) {\small $x$};
-      % y
+      % t
       \draw[ejecart, use path=\ejey];
       \node[above] at (yfin) {$t$};
-      % xtilde
-      %\draw[ejeoblic, use path=\ejextilde];
-      % \node[below, texto] at (xtildefin) {$\tilde{x}^1$};
-      % ytilde
-      \draw[line width=1pt, use path=\ejeytilde];
-      \node[above right=0pt and -4pt, texto] at (ytildefin) {$O'$};
-      % \node[rotate=90, left=8pt] at (ytexto) {$r\sin\theta$};
-      % Vector P
-      %\draw[vector, use path=\r];
-      %\node[above left=-3pt and -1pt] at (pmid) {\footnotesize $\vvv{r}$};
-      %\filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
-      %\node[above right=0pt and -5pt] at (P) {\footnotesize $P$};
+      % Trayectoria
+      \draw[line width=1pt, use path=\trayect];
       
       % Origen
       \filldraw (O) circle [radius=.2pt];
@@ -2358,11 +2322,11 @@ $\alpha = \arccot(t/x)$, o bien, $\cot\alpha = t/x$.
       coordinate (P);
       % Proyección de P en los ejes
       % Con eje x
-      \path[save path=\proyx] (e2fin) |- (xfin) coordinate[pos=0.5] (e2x) (xfin);
+      %\path[save path=\proyx] (e2fin) |- (xfin) coordinate[pos=0.5] (e2x) (xfin);
       % Posición de texto en eje x
       % \path (O) -- coordinate[pos=0.5] (extxt) (e2x);
       % Con eje y
-      \path[save path=\proyy] (e2fin) -| coordinate[pos=0.5] (e2y) (yfin);
+      %\path[save path=\proyy] (e2fin) -| coordinate[pos=0.5] (e2y) (yfin);
       % Posición de texto en eje y
       % \path (O) -- coordinate[pos=0.5] (eytxt) (e2y);
       % Componentes covariantes y contravariantes
