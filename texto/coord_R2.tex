@@ -2087,11 +2087,121 @@ $25$, pues tiene que dar en mismo resultado que en rectangulares (apartado a).
 \end{align*}
 
 \section{Relatividad de Galileo}
-El principio de relatividad de Galileo se puede interpretar utilizando un sistema de
-coordenadas oblicuo, un tanto especial. Aquí presentamos una versión bidimensional,
-$x$ y $t$.
+En esta sección vamos a discutir un tipo de sistema de coordenadas oblicuo un tanto
+peculiar. De hecho, no será un sistema de coordenadas en $\symbb{R}^2$, como hace
+referencia el título del capítulo. Aun así, será un sistema de referencia en dos
+dimensiones: espacio y tiempo.
+En particular el espacio se limitará a $\symbb{R}$ (una coordenada $x$), y además
+tomaremos en consideración el tiempo $t$. Es decir, será un sistema con dos ejes $x$ y
+$t$.
 
-Supongamos un observador inercial $O$ que supondremos en reposo.
+\subsection{Principio de relatividad de Galileo}
+Empezaremos enunciando el principio de relatividad de Galileo y algunas suposiciones
+que lleva implícitas.
+El principio de relatividad de Galileo dice que
+\begin{quote}
+  \emph{%
+    Las leyes de la mecánica son idénticas en todos los sistemas de referencia inerciales
+    \footnotemark{}
+  }.
+\end{quote}
+Esto significa que ningún experimento realizado en un sistema aislado puede
+determinar si está quieto o moviéndose con velocidad constante.
+\footnotetext{Marcos de referencia sin aceleración, es decir, con velocidad constante
+  (incluido el reposo, $v=0$, que también es una velocidad constante).}
+
+Este principio parte de unas suposiciones
+\begin{enumerate}
+\item El espacio es absoluto y euclídeo, independiente de los observadores.
+\item El tiempo es absoluto. El tiempo es el mismo para todos los observadores,
+  independientemente de su movimiento.
+\item Existencia de los sistemas de referencia inerciales.
+\item La masa de un objeto es la misma para todos los observadores inerciales.
+\item Transformación lineal de velocidades. Las velocidades se suman o restan de forma
+  lineal. Por ejemplo, si se lanza una piedra a \qty{5}{\kilo\metre\per\hour} desde un
+  vehículo a \qty{100}{\kilo\metre\per\hour} en el sentido de avance de este, un
+  observador en la carretera medirá la velocidad de la piedra con el valor de
+  $5 + 100 = \qty{105}{\kilo\metre\per\hour}$. En particular, la velocidad de la luz
+  también está sujeta a esta suposición.
+\item Las interacciones entre objetos tiene lugar instantáneamente.
+\end{enumerate}
+
+\subsection{Transformaciones de Galileo}
+Una transformación de Galileo es un cambio de coordenadas y velocidades que deja
+invariante las ecuaciones de Newton. Como avanzamos atrás, en esta sección nos
+centraremos en un eje espacial $x$ y el tiempo $t$.
+
+Para centrar ideas, supongamos que tenemos un observador $O$ en reposo y otro
+$O'$ que lleva una velocidad constante $u$ con respecto del anterior.
+El principio de Galileo permite relacionar las mediciones de posición y tiempo
+de un objeto, realizadas por ambos observadores $(x,t)$ y $(x',t')$
+\begin{align*}
+  x' &= x - ut\\
+  t' &= t
+\end{align*}
+
+En forma matricial tendríamos\footnotemark{}
+\footnotetext{En relatividad especial (Einstein), es costumbre cambiar el orden y
+  escribir primero la componente temporal y después las espaciales, dando a la primera
+  el índice cero. Aquí, por sencillez, no seguiremos ese convenio.}
+\[
+  \begin{pmatrix}
+    x'\\
+    t'
+  \end{pmatrix}
+  = \begin{pmatrix}
+    1 & -u \\
+    0 & 1
+  \end{pmatrix}
+  \,
+  \begin{pmatrix}
+    x\\
+    t
+  \end{pmatrix}
+\]
+
+Estas componentes son contravariantes, luego podremos escribir $X^1 = x$, $X^2 = t$, $\tilde{X}^1 = x'$ y $\tilde{X}^2 = t'$. Las transformaciones de Galileo quedarían
+\begin{equation}
+  \label{eq:R2-transf_galileo}
+  \begin{pmatrix}
+    \tilde{X}^1\\
+    \tilde{X}^2
+  \end{pmatrix}
+  = \begin{pmatrix}
+    1 & -u \\
+    0 & 1
+  \end{pmatrix}
+  \,
+  \begin{pmatrix}
+    X^1\\
+    X^2
+  \end{pmatrix}
+\end{equation}
+donde $u$ es la velocidad relativa de $O'$ con respecto de $O$.
+
+De \eqref{eq:R2-transf_galileo}, podemos deducir que la matriz de transformación es la
+inversa del cambio de base $\mmm{M}^{-1}$
+\begin{equation}
+  \mmm{M}^{-1}
+  &=
+  \begin{pmatrix}
+    1 & -u\\
+    0 & 1
+  \end{pmatrix}
+\end{pmatrix}
+\end{equation}
+
+Calculando la inversa de la anterior tendremos la matriz de cambio de base
+\begin{equation}
+  \mmm{M}
+  &=
+  \begin{pmatrix}
+    1 & u\\
+    0 & 1
+  \end{pmatrix}
+\end{pmatrix}
+\end{equation}
+
 
 %
 %\section{Coordenadas polares planas}
