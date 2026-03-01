@@ -1297,7 +1297,7 @@ componentes.
       \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
       coordinate (xtildefin);
       % Eje ytilde
-      \path[save path=\ejeytilde, name path=O--ytilde] (O) -- ++(\YTILDEANG:\YTILDELONG cm)
+      \path[save path=\ejeytilde,name path=O--ytilde](O) -- ++(\YTILDEANG:\YTILDELONG cm)
       coordinate (ytildefin);
       % Vector
       \path[save path=\r] (O) -- coordinate[pos=0.6] (posvecttxt) (\PANG:\PMOD cm)
@@ -1410,7 +1410,7 @@ componentes.
       coordinate (xtildefin);
       \node[texto, below] at (xtildefin) {\footnotesize $\tilde{x}$};
       % Eje ytilde
-      \path[save path=\ejeytilde, name path=O--ytilde] (O) -- ++(\YTILDEANG:\YTILDELONG cm)
+      \path[save path=\ejeytilde,name path=O--ytilde](O) -- ++(\YTILDEANG:\YTILDELONG cm)
       coordinate (ytildefin);
       % Vector
       \path[save path=\r] (O) -- coordinate[pos=0.5] (pmid) (\PANG:\PMOD cm)
@@ -1422,76 +1422,76 @@ componentes.
       % \path (O) -- coordinate[pos=0.5] (extxt) (e2x);
       % Con eje y
       \path[save path=\proyy] (e2fin) -| coordinate[pos=0.5] (e2y) (yfin);
-    % Posición de texto en eje y
-    % \path (O) -- coordinate[pos=0.5] (eytxt) (e2y);
-    % Componentes covariantes y contravariantes
-    % Intersección de horizontal desde P hasta ytilde
-    % -> Componente contravariante eje ytilde (CTV2) 
-    \path[name path=P--y] (P) -| (yfin);
-    \path[name intersections={of=P--y and O--ytilde,by=CTV2}];
-    % Paralela (CTV2) -- (O) que pase por (P)
-    % -> Componente contravariante eje xtilde (CTV1)
-    \path (P) -- ($(P) - (CTV2) - (O)$) coordinate (CTV1);
-    % Componente covariante con eje xtilde (COV1)
-    \path (P) |- coordinate[pos=0.5] (COV1) (xtildefin);
-    % Perpendicular a O--ytilde que pasa por P
-    % -> Componente covariante con eje ytilde (COV2)
-    \path (P) -- ($(O)!(P)!(ytildefin)$) coordinate (COV2);
-    % Proyecciones de las componentes
-    
-    % DIBUJOS
-    % Ángulo theta
-    \path (xfin) -- (O) -- (ytildefin) pic
-    [angulo, angle radius=15pt]
-    {angle = xfin--O--ytildefin};
-    %\node[above right=-2pt and 4pt] at (O) {\scriptsize $\alpha$};
-%    
-    % Proyecciones de componentes
-    % Contravariantes
-    \draw[proyeccion] (P) -- (CTV1);
-    \node[orange!70!black, below=-1pt] at (CTV1) {\footnotesize $A^1$};
-    \draw[proyeccion] (P) -- (CTV2);
-    \node[orange!70!black, left=-1.5pt] at (CTV2) {\footnotesize $A^2$};
-    % Covariantes
-    \draw[proyeccion] (P) -- (COV1);
-    \node[cyan!50!black, below=1pt] at (COV1) {\footnotesize $A_1$};
-    \draw[proyeccion] (P) -- (COV2);
-    \node[cyan!50!black, above left=-2pt and -2pt] at (COV2) {\footnotesize $A_2$};
-    
-    % Ejes
-    % x
-    \draw[ejecart, use path=\ejex];
-    \node[textoapagado, below=1.2pt] at (xfin) {\small $x$};
-    % y
-    \draw[ejecart, use path=\ejey];
-    \node[above, textoapagado] at (yfin) {$y$};
-    % xtilde
-    \draw[ejeoblic, use path=\ejextilde];
-    % \node[below, texto] at (xtildefin) {$\tilde{x}^1$};
-    % ytilde
-    \draw[ejeoblic, use path=\ejeytilde];
-    \node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{y}$};
-    % \node[rotate=90, left=8pt] at (ytexto) {$r\sin\theta$};
-    % Vector P
-    \draw[vector, use path=\r];
-    \node[above left=-3pt and -1pt] at (pmid) {\footnotesize $\vvv{r}$};
-    \filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
-    \node[above right=0pt and -5pt] at (P) {\footnotesize $P$};
-    
-    % Origen
-    \filldraw (O) circle [radius=.2pt];
-    
-    % Fondo amarillo
-    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
-    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
-    \begin{scope}[on background layer]
-      \draw[background] (SW) rectangle (NE);
-    \end{scope}
-  \end{tikzpicture}
-  \caption{Componentes contravariantes, en naranja y covariantes, en azul. El ángulo
-    entre los ejes está marcado en verde. El sistema de coordenadas rectangular se
-    muestra, algo apagado, como referencia.}
-  \label{fig:R2-oblic_contrav_cov}
+      % Posición de texto en eje y
+      % \path (O) -- coordinate[pos=0.5] (eytxt) (e2y);
+      % Componentes covariantes y contravariantes
+      % Intersección de horizontal desde P hasta ytilde
+      % -> Componente contravariante eje ytilde (CTV2) 
+      \path[name path=P--y] (P) -| (yfin);
+      \path[name intersections={of=P--y and O--ytilde,by=CTV2}];
+      % Paralela (CTV2) -- (O) que pase por (P)
+      % -> Componente contravariante eje xtilde (CTV1)
+      \path (P) -- ($(P) - (CTV2) - (O)$) coordinate (CTV1);
+      % Componente covariante con eje xtilde (COV1)
+      \path (P) |- coordinate[pos=0.5] (COV1) (xtildefin);
+      % Perpendicular a O--ytilde que pasa por P
+      % -> Componente covariante con eje ytilde (COV2)
+      \path (P) -- ($(O)!(P)!(ytildefin)$) coordinate (COV2);
+      % Proyecciones de las componentes
+      
+      % DIBUJOS
+      % Ángulo theta
+      \path (xfin) -- (O) -- (ytildefin) pic
+      [angulo, angle radius=15pt]
+      {angle = xfin--O--ytildefin};
+      % \node[above right=-2pt and 4pt] at (O) {\scriptsize $\alpha$};
+      % 
+      % Proyecciones de componentes
+      % Contravariantes
+      \draw[proyeccion] (P) -- (CTV1);
+      \node[orange!70!black, below=-1pt] at (CTV1) {\footnotesize $A^1$};
+      \draw[proyeccion] (P) -- (CTV2);
+      \node[orange!70!black, left=-1.5pt] at (CTV2) {\footnotesize $A^2$};
+      % Covariantes
+      \draw[proyeccion] (P) -- (COV1);
+      \node[cyan!50!black, below=1pt] at (COV1) {\footnotesize $A_1$};
+      \draw[proyeccion] (P) -- (COV2);
+      \node[cyan!50!black, above left=-2pt and -2pt] at (COV2) {\footnotesize $A_2$};
+      
+      % Ejes
+      % x
+      \draw[ejecart, use path=\ejex];
+      \node[textoapagado, below=1.2pt] at (xfin) {\small $x$};
+      % y
+      \draw[ejecart, use path=\ejey];
+      \node[above, textoapagado] at (yfin) {$y$};
+      % xtilde
+      \draw[ejeoblic, use path=\ejextilde];
+      % \node[below, texto] at (xtildefin) {$\tilde{x}^1$};
+      % ytilde
+      \draw[ejeoblic, use path=\ejeytilde];
+      \node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{y}$};
+      % \node[rotate=90, left=8pt] at (ytexto) {$r\sin\theta$};
+      % Vector P
+      \draw[vector, use path=\r];
+      \node[above left=-3pt and -1pt] at (pmid) {\footnotesize $\vvv{r}$};
+      \filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
+      \node[above right=0pt and -5pt] at (P) {\footnotesize $P$};
+      
+      % Origen
+      \filldraw (O) circle [radius=.2pt];
+      
+      % Fondo amarillo
+      \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+      \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
+      \begin{scope}[on background layer]
+        \draw[background] (SW) rectangle (NE);
+      \end{scope}
+    \end{tikzpicture}
+    \caption{Componentes contravariantes, en naranja y covariantes, en azul. El ángulo
+      entre los ejes está marcado en verde. El sistema de coordenadas rectangular se
+      muestra, algo apagado, como referencia.}
+    \label{fig:R2-oblic_contrav_cov}
   \end{minipage}
 \end{figure}
 Piensa en la base $\xhat{e}^i$ como una serie de líneas o superficies de nivel perpendiculares a cada uno de los ejes, que nos indican el valor de un cierto escalar o \emph{altura}. La componente covariante en ese eje nos indica de forma visual el
@@ -2091,9 +2091,9 @@ En esta sección vamos a discutir un tipo de sistema de coordenadas oblicuo un t
 peculiar. De hecho, no será un sistema de coordenadas en $\symbb{R}^2$, como hace
 referencia el título del capítulo. Aun así, será un sistema de referencia en dos
 dimensiones: espacio y tiempo.
-En particular el espacio se limitará a $\symbb{R}$ (una coordenada $x$), y además
+En particular el espacio será unidimensional $\symbb{R}$, (una coordenada $x$), y además
 tomaremos en consideración el tiempo $t$. Es decir, será un sistema con dos ejes $x$ y
-$t$.
+$t$ y lo que mediremos no serán posiciones en $\symbb{R}^2$, sino \emph{sucesos}.
 
 \subsection{Principio de relatividad de Galileo}
 Empezaremos enunciando el principio de relatividad de Galileo y algunas suposiciones
@@ -2128,53 +2128,357 @@ Este principio parte de unas suposiciones
 
 \subsection{Transformaciones de Galileo}
 Una transformación de Galileo es un cambio de coordenadas y velocidades que deja
-invariante las ecuaciones de Newton. Como avanzamos atrás, en esta sección nos
-centraremos en un eje espacial $x$ y el tiempo $t$.
+invariante las ecuaciones de Newton.
 
-Para centrar ideas, supongamos que tenemos un observador $O$ en reposo y otro
-$O'$ que lleva una velocidad constante $u$ con respecto del anterior.
-El principio de Galileo permite relacionar las mediciones de posición y tiempo
-de un objeto, realizadas por ambos observadores $(x,t)$ y $(x',t')$
+Como ya avanzamos, nuestro espacio no será el de posiciones $\symbb{R}^2$, sino el de
+\emph{sucesos}, tiempo, posición; así, nos centraremos en un eje temporal $t$ y otro
+espacial $x$, prescindiendo de las coordenadas $y$ y $z$ para tener una transformación
+de solo dos variables.
+
+Para centrar ideas, supongamos que tenemos dos observadores, uno $O$ en reposo y el otro
+$O'$ que lleva una velocidad constante $u$ con respecto al anterior.
+El principio de Galileo permite relacionar las mediciones de tiempo y posición de un suceso, realizadas por ambos observadores $(t,x)$ y $(t',x')$. Aun así, representaremos
+la posición en el eje de abcisas y el tiempo en ordenadas.
+Las transformaciones de Galileo en una dimensión espacial $x$ son
 \begin{align*}
-  x' &= x - ut\\
-  t' &= t
+  t' &= t\\
+  x' &= x - ut
 \end{align*}
+donde la segunda expresión indica que el tiempo es absoluto.
+
+Ahora es importante hablar de los ejes de coordenadas, para tener una visualización
+de estas transformaciones.
+Empecemos diciendo que el observador $O$ utiliza un sistema de  referencia rectangular,
+con ejes $t$ y $x$. Este observador puede registrar las posiciones y tiempos que observa
+que tiene el segundo observador (recordemos que $O'$ se mueve con velocidad constante
+con respecto a $O$); además, vamos a suponer que en el instante $t=0$, ambos se
+encontraban en la misma posición $x'=0$ medida desde $O$. Como la velocidad es constante
+la gráfica del movimiento de $O'$ respecto de $O$ es una línea de pendiente constante
+$\alpha = \arccot(t/x)$, o bien, $\cot\alpha = t/x$.
+\begin{figure}[ht]
+  \begin{minipage}{0.45\linewidth}  
+    % Escala
+    \def\scl{1.00}
+    % 
+    \pgfmathsetmacro{\EJESCARTLONG}{3.0}
+    \pgfmathsetmacro{\EJEOBLICLONG}{2.7}
+    % Eje x
+    \pgfmathsetmacro{\XLONG}{\EJESCARTLONG}
+    % Eje y
+    \pgfmathsetmacro{\YLONG}{\EJESCARTLONG}
+    % Eje xtilde
+    \pgfmathsetmacro{\XTILDEANG}{0}
+    \pgfmathsetmacro{\XTILDELONG}{\EJEOBLICLONG}    
+    % Eje ytilde
+    \pgfmathsetmacro{\YTILDEANG}{70}
+    \pgfmathsetmacro{\YTILDELONG}{\EJESCARTLONG}
+    % Vector P
+    \pgfmathsetmacro{\PMOD}{2.3}
+    \pgfmathsetmacro{\PANG}{40}
+    % Fondo
+    \pgfmathsetmacro{\HORZ}{0.90}
+    \pgfmathsetmacro{\VERT}{0.25}
+    % 
+    \centering
+    \begin{tikzpicture}[%
+      scale=\scl,
+      every node/.style={black,font=\small},
+      ejecart/.style={->},
+      ejeoblic/.style={->, black},
+      proyeccion/.style={black!20, line width=0.4},
+      % longitud/.style={line width=.5pt,\colorV},
+      texto/.style={black},
+      textoapagado/.style={\colorTorig},
+      vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt,\colorV},
+      % vtilde/.style={%
+      % -{Latex[round,width=4pt,length=6pt]}, line width=1pt, \colorVred},
+      pcirculo/.style={fill=\colorPorig, draw=black},
+      angulo/.style={fill=green!15, draw=\colorGirodos},
+      background/.style={%
+        line width=\bgborderwidth,
+        draw=\bgbordercolor,
+        fill=\bgcolor,
+      },
+      ]
+      % COORDENADAS
+      % Origen
+      \coordinate (O) at (0,0);
+      % Eje x
+      \path[save path=\ejex] (O) -- (\XLONG cm, 0) coordinate (xfin);
+      % Eje y
+      \path[save path=\ejey] (O) -- (0, \YLONG cm) coordinate (yfin);
+      % Eje xtilde
+      \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
+      coordinate (xtildefin);
+      %\node[texto, below] at (xtildefin) {\footnotesize $\tilde{x}$};
+      % Eje ytilde
+      \path[save path=\ejeytilde,name path=O--ytilde](O) -- ++(\YTILDEANG:\YTILDELONG cm)
+      coordinate (ytildefin);
+      % Vector
+      \path[save path=\r] (O) -- coordinate[pos=0.5] (pmid) (\PANG:\PMOD cm)
+      coordinate (P);
+      % Proyección de P en los ejes
+      % Con eje x
+      \path[save path=\proyx] (e2fin) |- (xfin) coordinate[pos=0.5] (e2x) (xfin);
+      % Posición de texto en eje x
+      % \path (O) -- coordinate[pos=0.5] (extxt) (e2x);
+      % Con eje y
+      \path[save path=\proyy] (e2fin) -| coordinate[pos=0.5] (e2y) (yfin);
+      % Posición de texto en eje y
+      % \path (O) -- coordinate[pos=0.5] (eytxt) (e2y);
+      % Componentes covariantes y contravariantes
+      % Intersección de horizontal desde P hasta ytilde
+      % -> Componente contravariante eje ytilde (CTV2) 
+      \path[name path=P--y] (P) -| (yfin);
+      \path[name intersections={of=P--y and O--ytilde,by=CTV2}];
+      % Paralela (CTV2) -- (O) que pase por (P)
+      % -> Componente contravariante eje xtilde (CTV1)
+      \path (P) -- ($(P) - (CTV2) - (O)$) coordinate (CTV1);
+      % Componente covariante con eje xtilde (COV1)
+      \path (P) |- coordinate[pos=0.5] (COV1) (xtildefin);
+      % Perpendicular a O--ytilde que pasa por P
+      % -> Componente covariante con eje ytilde (COV2)
+      \path (P) -- ($(O)!(P)!(ytildefin)$) coordinate (COV2);
+      % Proyecciones de las componentes
+      
+      % DIBUJOS
+      % Ángulo theta
+      \path (xfin) -- (O) -- (ytildefin) pic
+      [angulo, "\footnotesize $\alpha$",angle radius=15pt, angle eccentricity=0.65]
+      {angle = xfin--O--ytildefin};
+      % \node[above right=-2pt and 4pt] at (O) {\scriptsize $\alpha$};
+      % 
+      % Proyecciones de componentes
+      % Contravariantes
+      %\draw[proyeccion] (P) -- (CTV1);
+      %\node[orange!70!black, below=-1pt] at (CTV1) {\footnotesize $A^1$};
+      %\draw[proyeccion] (P) -- (CTV2);
+      %\node[orange!70!black, left=-1.5pt] at (CTV2) {\footnotesize $A^2$};
+      % Covariantes
+      %\draw[proyeccion] (P) -- (COV1);
+      %\node[cyan!50!black, below=1pt] at (COV1) {\footnotesize $A_1$};
+      %\draw[proyeccion] (P) -- (COV2);
+      %\node[cyan!50!black, above left=-2pt and -2pt] at (COV2) {\footnotesize $A_2$};
+      
+      % Ejes
+      % x
+      \draw[ejecart, use path=\ejex];
+      \node[below=1.2pt] at (xfin) {\small $x$};
+      % y
+      \draw[ejecart, use path=\ejey];
+      \node[above] at (yfin) {$t$};
+      % xtilde
+      %\draw[ejeoblic, use path=\ejextilde];
+      % \node[below, texto] at (xtildefin) {$\tilde{x}^1$};
+      % ytilde
+      \draw[line width=1pt, use path=\ejeytilde];
+      \node[above right=0pt and -4pt, texto] at (ytildefin) {$O'$};
+      % \node[rotate=90, left=8pt] at (ytexto) {$r\sin\theta$};
+      % Vector P
+      %\draw[vector, use path=\r];
+      %\node[above left=-3pt and -1pt] at (pmid) {\footnotesize $\vvv{r}$};
+      %\filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
+      %\node[above right=0pt and -5pt] at (P) {\footnotesize $P$};
+      
+      % Origen
+      \filldraw (O) circle [radius=.2pt];
+      
+      % Fondo amarillo
+      \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+      \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
+      \begin{scope}[on background layer]
+        \draw[background] (SW) rectangle (NE);
+      \end{scope}
+    \end{tikzpicture}
+    \caption{Gráfica del movimiento uniforme de $O'$ con respecto de $O$. Es una línea
+      recta de pendiente $\tan\alpha = t/x$ o $\cot\alpha = x/t$.}
+    % \label{fig:R2-oblic_contrav_cov}
+  \end{minipage}
+  \hspace{1em}
+  \begin{minipage}{0.45\linewidth}
+    % Escala
+    \def\scl{1.00}
+    % 
+    \pgfmathsetmacro{\EJESCARTLONG}{3.0}
+    \pgfmathsetmacro{\EJEOBLICLONG}{2.7}
+    % Eje x
+    \pgfmathsetmacro{\XLONG}{\EJESCARTLONG}
+    % Eje y
+    \pgfmathsetmacro{\YLONG}{\EJESCARTLONG}
+    % Eje xtilde
+    \pgfmathsetmacro{\XTILDEANG}{0}
+    \pgfmathsetmacro{\XTILDELONG}{\EJEOBLICLONG}    
+    % Eje ytilde
+    \pgfmathsetmacro{\YTILDEANG}{70}
+    \pgfmathsetmacro{\YTILDELONG}{\EJESCARTLONG}
+    % Vector P
+    \pgfmathsetmacro{\PMOD}{2.3}
+    \pgfmathsetmacro{\PANG}{40}
+    % Fondo
+    \pgfmathsetmacro{\HORZ}{0.90}
+    \pgfmathsetmacro{\VERT}{0.25}
+    % 
+    \centering
+    \begin{tikzpicture}[%
+      scale=\scl,
+      every node/.style={black,font=\small},
+      ejecart/.style={->, black!30},
+      ejeoblic/.style={->, black},
+      proyeccion/.style={black!20, line width=0.4},
+      % longitud/.style={line width=.5pt,\colorV},
+      texto/.style={black},
+      textoapagado/.style={\colorTorig},
+      vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt,\colorV},
+      % vtilde/.style={%
+      % -{Latex[round,width=4pt,length=6pt]}, line width=1pt, \colorVred},
+      pcirculo/.style={fill=\colorPorig, draw=black},
+      angulo/.style={fill=green!15, draw=\colorGirodos},
+      background/.style={%
+        line width=\bgborderwidth,
+        draw=\bgbordercolor,
+        fill=\bgcolor,
+      },
+      ]
+      % COORDENADAS
+      % Origen
+      \coordinate (O) at (0,0);
+      % Eje x
+      \path[save path=\ejex] (O) -- (\XLONG cm, 0) coordinate (xfin);
+      % Eje y
+      \path[save path=\ejey] (O) -- (0, \YLONG cm) coordinate (yfin);
+      % Eje xtilde
+      \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
+      coordinate (xtildefin);
+      \node[texto, below] at (xtildefin) {\footnotesize $\tilde{x}$};
+      % Eje ytilde
+      \path[save path=\ejeytilde,name path=O--ytilde](O) -- ++(\YTILDEANG:\YTILDELONG cm)
+      coordinate (ytildefin);
+      % Vector
+      \path[save path=\r] (O) -- coordinate[pos=0.5] (pmid) (\PANG:\PMOD cm)
+      coordinate (P);
+      % Proyección de P en los ejes
+      % Con eje x
+      \path[save path=\proyx] (e2fin) |- (xfin) coordinate[pos=0.5] (e2x) (xfin);
+      % Posición de texto en eje x
+      % \path (O) -- coordinate[pos=0.5] (extxt) (e2x);
+      % Con eje y
+      \path[save path=\proyy] (e2fin) -| coordinate[pos=0.5] (e2y) (yfin);
+      % Posición de texto en eje y
+      % \path (O) -- coordinate[pos=0.5] (eytxt) (e2y);
+      % Componentes covariantes y contravariantes
+      % Intersección de horizontal desde P hasta ytilde
+      % -> Componente contravariante eje ytilde (CTV2) 
+      \path[name path=P--y] (P) -| (yfin);
+      \path[name intersections={of=P--y and O--ytilde,by=CTV2}];
+      % Paralela (CTV2) -- (O) que pase por (P)
+      % -> Componente contravariante eje xtilde (CTV1)
+      \path (P) -- ($(P) - (CTV2) - (O)$) coordinate (CTV1);
+      % Componente covariante con eje xtilde (COV1)
+      \path (P) |- coordinate[pos=0.5] (COV1) (xtildefin);
+      % Perpendicular a O--ytilde que pasa por P
+      % -> Componente covariante con eje ytilde (COV2)
+      \path (P) -- ($(O)!(P)!(ytildefin)$) coordinate (COV2);
+      % Proyecciones de las componentes
+      
+      % DIBUJOS
+      % Ángulo theta
+      \path (xfin) -- (O) -- (ytildefin) pic
+      [angulo, angle radius=15pt]
+      {angle = xfin--O--ytildefin};
+      % \node[above right=-2pt and 4pt] at (O) {\scriptsize $\alpha$};
+      % 
+      % Proyecciones de componentes
+      % Contravariantes
+      \draw[proyeccion] (P) -- (CTV1);
+      \node[orange!70!black, below=-1pt] at (CTV1) {\footnotesize $A^1$};
+      \draw[proyeccion] (P) -- (CTV2);
+      \node[orange!70!black, left=-1.5pt] at (CTV2) {\footnotesize $A^2$};
+      % Covariantes
+      \draw[proyeccion] (P) -- (COV1);
+      \node[cyan!50!black, below=1pt] at (COV1) {\footnotesize $A_1$};
+      \draw[proyeccion] (P) -- (COV2);
+      \node[cyan!50!black, above left=-2pt and -2pt] at (COV2) {\footnotesize $A_2$};
+      
+      % Ejes
+      % x
+      \draw[ejecart, use path=\ejex];
+      \node[textoapagado, below=1.2pt] at (xfin) {\small $x$};
+      % y
+      \draw[ejecart, use path=\ejey];
+      \node[above, textoapagado] at (yfin) {$y$};
+      % xtilde
+      \draw[ejeoblic, use path=\ejextilde];
+      % \node[below, texto] at (xtildefin) {$\tilde{x}^1$};
+      % ytilde
+      \draw[ejeoblic, use path=\ejeytilde];
+      \node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{y}$};
+      % \node[rotate=90, left=8pt] at (ytexto) {$r\sin\theta$};
+      % Vector P
+      \draw[vector, use path=\r];
+      \node[above left=-3pt and -1pt] at (pmid) {\footnotesize $\vvv{r}$};
+      \filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
+      \node[above right=0pt and -5pt] at (P) {\footnotesize $P$};
+      
+      % Origen
+      \filldraw (O) circle [radius=.2pt];
+      
+      % Fondo amarillo
+      \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+      \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
+      \begin{scope}[on background layer]
+        \draw[background] (SW) rectangle (NE);
+      \end{scope}
+    \end{tikzpicture}
+    \caption{Componentes contravariantes, en naranja y covariantes, en azul. El ángulo
+      entre los ejes está marcado en verde. El sistema de coordenadas rectangular se
+      muestra, algo apagado, como referencia.}
+    % \label{fig:R2-oblic_contrav_cov}
+  \end{minipage}
+\end{figure}
+
+
+
+
 
 En forma matricial tendríamos\footnotemark{}
 \footnotetext{En relatividad especial (Einstein), es costumbre cambiar el orden y
   escribir primero la componente temporal y después las espaciales, dando a la primera
-  el índice cero. Aquí, por sencillez, no seguiremos ese convenio.}
+  el índice cero. Aquí, seguiremos este criterio, no porque sea necesario, sino porque
+  es el estándar que seguiremos, para después adaptarnos a la relatividad einsteniana.}
 \[
   \begin{pmatrix}
-    x'\\
-    t'
+    t'\\
+    x'
   \end{pmatrix}
   = \begin{pmatrix}
-    1 & -u \\
-    0 & 1
+    1 & 0 \\
+    -u & 1
   \end{pmatrix}
   \,
   \begin{pmatrix}
-    x\\
-    t
+    t\\
+    x
   \end{pmatrix}
 \]
 
-Estas componentes son contravariantes, luego podremos escribir $X^1 = x$, $X^2 = t$, $\tilde{X}^1 = x'$ y $\tilde{X}^2 = t'$. Las transformaciones de Galileo quedarían
+Estas componentes son contravariantes, debido a que si ampliamos la escala de medida de posiciones y/o tiempo, la componente respectiva se hace más pequeña, y viceversa.
+Por tanto, podremos escribir $X^0 = t$, $X^1 = x$, $\tilde{X}^0 = t'$ y
+$\tilde{X}^1 = x'$.
+Las transformaciones de Galileo quedarían
 \begin{equation}
   \label{eq:R2-transf_galileo}
   \begin{pmatrix}
-    \tilde{X}^1\\
-    \tilde{X}^2
+    \tilde{X}^0\\
+    \tilde{X}^1
   \end{pmatrix}
   = \begin{pmatrix}
-    1 & -u \\
-    0 & 1
+    1 & 0 \\
+    -u & 1
   \end{pmatrix}
   \,
   \begin{pmatrix}
-    X^1\\
-    X^2
+    X^0\\
+    X^1
   \end{pmatrix}
 \end{equation}
 donde $u$ es la velocidad relativa de $O'$ con respecto de $O$.
@@ -2183,24 +2487,24 @@ De \eqref{eq:R2-transf_galileo}, podemos deducir que la matriz de transformació
 inversa del cambio de base $\mmm{M}^{-1}$
 \begin{equation}
   \mmm{M}^{-1}
-  &=
+  =
   \begin{pmatrix}
-    1 & -u\\
-    0 & 1
+    1 & 0\\
+    -u & 1
   \end{pmatrix}
-\end{pmatrix}
 \end{equation}
 
 Calculando la inversa de la anterior tendremos la matriz de cambio de base
 \begin{equation}
   \mmm{M}
-  &=
+  =
   \begin{pmatrix}
-    1 & u\\
-    0 & 1
+    1 & 0\\
+    u & 1
   \end{pmatrix}
-\end{pmatrix}
 \end{equation}
+
+\subsection{Bases y matriz de cambio de base}
 
 
 %
