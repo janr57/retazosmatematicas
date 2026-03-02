@@ -2409,7 +2409,7 @@ $x'$ que mide $O'$ está de acuerdo con las transformación de Galileo
     \end{tikzpicture}
     \caption{Comprobación de una de las transformaciones de Galileo, la que relaciona
       la posición de un cierto suceso medido por $O$ y por $O'$ en un instante $t$.
-      Aunque está implícito en la figura, no se impone, con claridad, que el tiempo es
+      Aunque está implícito en la figura, no se impone con claridad que el tiempo es
       absoluto.}
     \label{fig:R2-oblic_suceso_transf2}
   \end{minipage}
@@ -2480,6 +2480,7 @@ Calculando la inversa de la anterior tendremos la matriz de cambio de base
 \end{equation}
 
 \subsection{Bases y matriz de cambio de base}
+\subsubsection{Base $B$ para el observador $O$ en reposo}
 Desde el punto de vista de $O$, que se considera en reposo, utiliza un sistema de
 coordenadas rectangular con base
 \begin{equation}
@@ -2491,135 +2492,52 @@ coordenadas rectangular con base
 donde el vector unitario $\xhat{e}_0$ está en unidades de tiempo, por ejemplo,
 \qty{1}{\second}, y el vector unitario $\xhat{e}_1$ está en unidades de longitud, por
 ejemplo \qty{1}{\metre}; luego no son equivalentes, como ocurría en $\symbb{R}^2$.
-En cualquier caso, prescindiendo de las unidades, valen la unidad.
+En cualquier caso, prescindiendo de las unidades, el módulo de estos dos vectores vale 1
+\begin{subequations}
+\begin{align}
+  |\xhat{e}_0| &= |\xhat{e}_t| = 1\\
+  |\xhat{e}_1| &= |\xhat{e}_x| = |\uvec{\i}| = 1
+\end{align}
+\end{subequations}
 
-Según lo visto en las figuras anteriores, el observador $O'$ que se considera en
+Según lo visto en las figuras anteriores, el observador $O'$, que se considera en
 movimiento, desde el punto de vista de $O$ tiene un eje de tiempo $t'$ inclinado un
 ángulo $\alpha$ que depende de la velocidad relativa $u$
 (ver \eqref{eq:R2-transfGalileo_u_alpha}); en cambio, el eje $x'$ coincide con el de
 $O$.
 
+Nótese que, desde el punto de vista de $O'$, supuesto en reposo, el eje del tiempo de
+$O$ se inclinaría en sentido antihorario formando un ángulo de $\pi/2+\alpha$.
+Lo importante es que recordemos que lo que comentamos es desde el punto de vista de $O$.
+
+\subsubsection{Base $B'$ para el observador $O'$ desde el punto de vista de $O$}
 La base utilizada por $O'$, sería
 \begin{equation}
   B' = \set{\xtilde{e}_0, \xtilde{e}_1}
-  = \set{\xtilde{e}_t, \xtilde{e}_x}
+  = \set{\xtilde{e}_t, \xhat{e}_x}
 \end{equation}
 
 En gran parte de nuestro desarrollo utilizaremos los índices numéricos $0$ y $1$ para
 referirnos a los vectores de las bases y a las componentes según ellos, excepto cuando
 nos interese referirnos a los valores de $x$, $t$, $x'$ y $t'$.
 
-\begin{equation}
-  u= \dfrac{x}{t} =\cot\alpha
-\end{equation}
-\begin{figure}[ht]
-  \begin{minipage}{0.45\linewidth}
-    % Escala
-    \def\scl{1.00}
-    % 
-    \pgfmathsetmacro{\EJESCARTLONG}{3.0}
-    % Eje x
-    \pgfmathsetmacro{\XLONG}{\EJESCARTLONG}
-    % Eje y
-    \pgfmathsetmacro{\TLONG}{\EJESCARTLONG}
-    % Trayectoria
-    \pgfmathsetmacro{\TRAYLONG}{1.0*\EJESCARTLONG}
-    \pgfmathsetmacro{\TRAYANG}{60}
-    % Punto
-    \pgfmathsetmacro{\PMOD}{0.85*\TRAYLONG}
-    \pgfmathsetmacro{\PANG}{\TRAYANG}
-    % Fondo
-    \pgfmathsetmacro{\HORZ}{0.90}
-    \pgfmathsetmacro{\VERT}{0.25}
-    % 
-    \centering
-    \begin{tikzpicture}[%
-      scale=\scl,
-      every node/.style={black,font=\small},
-      ejecart/.style={->},
-      ejeoblic/.style={->, black},
-      proyeccion/.style={black!20, line width=0.4},
-      % longitud/.style={line width=.5pt,\colorV},
-      texto/.style={black},
-      textoapagado/.style={\colorTorig},
-      % vtilde/.style={%
-      % -{Latex[round,width=4pt,length=6pt]}, line width=1pt, \colorVred},
-      pcirculo/.style={fill=\colorPorig, draw=black},
-      angulo/.style={fill=green!15, draw=\colorGirodos},
-      background/.style={%
-        line width=\bgborderwidth,
-        draw=\bgbordercolor,
-        fill=\bgcolor,
-      },
-      ]
-      % COORDENADAS
-      % Origen
-      \coordinate (O) at (0,0);
-      % Eje x
-      \path[save path=\ejex] (O) -- (\XLONG cm, 0) coordinate (xfin);
-      % Eje t
-      \path[save path=\ejet] (O) -- (0, \TLONG cm) coordinate (tfin);
-      % Trayectoria
-      \path[save path=\trayect](O) -- ++(\TRAYANG:\TRAYLONG cm)
-      coordinate (trayfin);
-      % Punto
-      \coordinate (P) at (\PANG:\PMOD cm);
-      % Proyección de P en los ejes
-      % Con eje x
-      \path (P) |-  coordinate (px) (xfin);
-      \path[save path=\proyx] (P) -- coordinate (pttxt) (px);
-      % Posición de texto en eje x
-      \path (O) -- coordinate[pos=0.6] (pxtxt) (px);
-      % Con eje t
-      \path (P) -| coordinate[pos=0.5] (py) (tfin);
-      \path[save path=\proyt] (P) -- (py);
-      % Posición de texto en eje t
-      \path (O) -- coordinate[pos=0.5] (pymed) (py);
-      % Punto
-      \fill (P) circle[radius=1pt];
-      
-      % DIBUJOS
-      % Ángulo theta
-      \path (xfin) -- (O) -- (ytildefin) pic
-      [angulo, "\footnotesize $\alpha$",angle radius=11pt, angle eccentricity=0.6]
-      {angle = xfin--O--trayfin};
-      % Proyecciones de componentes
-      % Eje x
-      \draw[proyeccion, use path=\proyx];
-      \node[below] at (pxtxt) {$x=ut$};
-      % Eje t
-      \draw[proyeccion, use path=\proyt];
-      \node[right] at (pttxt) {$t$};
+¿Qué módulo tienen estos vectores de $B'$. El del eje $x'$ es la unidad, igual que el
+de la base $B$ de $O$. Pero, debido a que el tiempo es absoluto, $t=t'$, las líneas
+horizontales son líneas de igual tiempo $t=t'$, el vector temporal de la base $B'$ tiene
+que ser mayor que el vector de la base temporal de $O$, que vale 1.
+\[
+  \cos(\pi/2 - \alpha) = \sin\alpha = \dfrac{|\xhat{e}_0|}{|\xtilde{e}_0|};\hspace{0.5em}
+  |\xtilde{e}_0| = \dfrac{1}{\sin\alpha}
+\]
 
-      % Ejes
-      % x
-      \draw[ejecart, use path=\ejex];
-      \node[below=1.2pt] at (xfin) {\small $x$};
-      % t
-      \draw[ejecart, use path=\ejey];
-      \node[above] at (yfin) {$t$};
-      % Trayectoria
-      \draw[line width=1pt, use path=\trayect];
-      
-      % Texto informativo
-      \node[above right] at (trayfin) {$u=\dfrac{x}{t} = \cot\alpha$};
-      % Origen
-      \filldraw (O) circle [radius=.2pt];
-      
-      % Fondo amarillo
-      \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
-      \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
-      \begin{scope}[on background layer]
-        \draw[background] (SW) rectangle (NE);
-      \end{scope}
-    \end{tikzpicture}
-    \caption{Gráfica del movimiento uniforme de $O'$ con respecto de $O$. Es una línea
-      recta de pendiente $\tan\alpha = t/x$ o $\cot\alpha = x/t$.
-      La velocidad constante de $O'$ con respecto de $O$ es $u=\cot\alpha$.
-      La distancia $x$ representa la distancia entre $O$ y $O'$ en cada instante $t$.}
-    %\label{fig:R2-oblic_OO'_u}
-  \end{minipage}
-  \hspace{1em}
+\begin{subequations}
+\begin{align}
+  |\xtilde{e}_0| &= |\tilde{e}_t| = \dfrac{1}{\sin\alpha}\\
+  |\xtilde{e}_1| &= |\xhat{e}_1| = 1
+\end{align}
+\end{subequations}
+
+\begin{figure}[ht]
   \begin{minipage}{0.45\linewidth}
     % Escala
     \def\scl{1.00}
@@ -2634,11 +2552,14 @@ nos interese referirnos a los valores de $x$, $t$, $x'$ y $t'$.
     \pgfmathsetmacro{\XTILDEANG}{0}
     \pgfmathsetmacro{\XTILDELONG}{\EJEOBLICLONG}    
     % Eje ytilde
-    \pgfmathsetmacro{\YTILDEANG}{70}
+    \pgfmathsetmacro{\YTILDEANG}{60}
     \pgfmathsetmacro{\YTILDELONG}{\EJESCARTLONG}
+    % Longitud del vector unidad en el eje x': etilde1
+    \pgfmathsetmacro{\EXTILDE}{0.60*\EJEOBLICLONG}
+    \pgfmathsetmacro{\ETTILDE}{\EXTILDE/(sin(\YTILDEANG))}
     % Vector P
-    \pgfmathsetmacro{\PMOD}{2.3}
-    \pgfmathsetmacro{\PANG}{40}
+    %\pgfmathsetmacro{\PMOD}{2.3}
+    %\pgfmathsetmacro{\PANG}{40}
     % Fondo
     \pgfmathsetmacro{\HORZ}{0.90}
     \pgfmathsetmacro{\VERT}{0.25}
@@ -2654,6 +2575,7 @@ nos interese referirnos a los valores de $x$, $t$, $x'$ y $t'$.
       texto/.style={black},
       textoapagado/.style={\colorTorig},
       vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt,\colorV},
+      versor/.style={-{Latex[round, width=4pt, length=6pt]}, line width=1pt, \colorVred},
       % vtilde/.style={%
       % -{Latex[round,width=4pt,length=6pt]}, line width=1pt, \colorVred},
       pcirculo/.style={fill=\colorPorig, draw=black},
@@ -2679,17 +2601,8 @@ nos interese referirnos a los valores de $x$, $t$, $x'$ y $t'$.
       \path[save path=\ejeytilde,name path=O--ytilde](O) -- ++(\YTILDEANG:\YTILDELONG cm)
       coordinate (ytildefin);
       % Vector
-      \path[save path=\r] (O) -- coordinate[pos=0.5] (pmid) (\PANG:\PMOD cm)
-      coordinate (P);
-      % Proyección de P en los ejes
-      % Con eje x
-      %\path[save path=\proyx] (e2fin) |- (xfin) coordinate[pos=0.5] (e2x) (xfin);
-      % Posición de texto en eje x
-      % \path (O) -- coordinate[pos=0.5] (extxt) (e2x);
-      % Con eje y
-      %\path[save path=\proyy] (e2fin) -| coordinate[pos=0.5] (e2y) (yfin);
-      % Posición de texto en eje y
-      % \path (O) -- coordinate[pos=0.5] (eytxt) (e2y);
+      %\path[save path=\r] (O) -- coordinate[pos=0.5] (pmid) (\PANG:\PMOD cm)
+      %coordinate (P);
       % Componentes covariantes y contravariantes
       % Intersección de horizontal desde P hasta ytilde
       % -> Componente contravariante eje ytilde (CTV2) 
@@ -2708,22 +2621,9 @@ nos interese referirnos a los valores de $x$, $t$, $x'$ y $t'$.
       % DIBUJOS
       % Ángulo theta
       \path (xfin) -- (O) -- (ytildefin) pic
-      [angulo, angle radius=15pt]
-      {angle = xfin--O--ytildefin};
-      % \node[above right=-2pt and 4pt] at (O) {\scriptsize $\alpha$};
-      % 
-      % Proyecciones de componentes
-      % Contravariantes
-      \draw[proyeccion] (P) -- (CTV1);
-      \node[orange!70!black, below=-1pt] at (CTV1) {\footnotesize $A^1$};
-      \draw[proyeccion] (P) -- (CTV2);
-      \node[orange!70!black, left=-1.5pt] at (CTV2) {\footnotesize $A^2$};
-      % Covariantes
-      \draw[proyeccion] (P) -- (COV1);
-      \node[cyan!50!black, below=1pt] at (COV1) {\footnotesize $A_1$};
-      \draw[proyeccion] (P) -- (COV2);
-      \node[cyan!50!black, above left=-2pt and -2pt] at (COV2) {\footnotesize $A_2$};
-      
+      [angulo, "\footnotesize $\alpha$",angle radius=11pt, angle eccentricity=0.6]
+      {angle = xfin--O--trayfin};
+
       % Ejes
       % x
       \draw[ejecart, use path=\ejex];
@@ -2737,13 +2637,148 @@ nos interese referirnos a los valores de $x$, $t$, $x'$ y $t'$.
       % ytilde
       \draw[ejeoblic, use path=\ejeytilde];
       \node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{y}$};
-      % \node[rotate=90, left=8pt] at (ytexto) {$r\sin\theta$};
-      % Vector P
-      \draw[vector, use path=\r];
-      \node[above left=-3pt and -1pt] at (pmid) {\footnotesize $\vvv{r}$};
-      \filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
-      \node[above right=0pt and -5pt] at (P) {\footnotesize $P$};
+
+      % Versor eT en gris
+      \draw[versor, gray] (O) -- node[gray, pos=0.6, left]
+        {\scriptsize $\xhat{e}_0$} ++(0, \EXTILDE cm) coordinate (e0fin);
+      % Versor etilde0
+      \draw[versor] (O) -- node[\colorTred, pos=0.55, right] {\scriptsize $\xtilde{e}_0$}
+      ++(\YTILDEANG:\ETTILDE cm) coordinate (etilde0fin);
+      % Versor etilde1
+      \draw[versor] (O) -- node[\colorTred, pos=0.6, below] {\scriptsize $\xhat{e}_1$}
+      ++(\EXTILDE cm, 0) coordinate (etilde1fin);
+
+      % Línea horizontal que une e0 con etilde0
+      \draw[proyeccion] (e0fin) -- (etilde0fin);
       
+      % Origen
+      \filldraw (O) circle [radius=.2pt];
+      
+      % Fondo amarillo
+      \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+      \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
+      \begin{scope}[on background layer]
+        \draw[background] (SW) rectangle (NE);
+      \end{scope}
+    \end{tikzpicture}
+    \caption{Componentes contravariantes, en naranja y covariantes, en azul. El ángulo
+      entre los ejes está marcado en verde. El sistema de coordenadas rectangular se
+      muestra, algo apagado, como referencia.}
+    % \label{fig:R2-oblic_contrav_cov}
+  \end{minipage}
+  \hspace{1em}
+  \begin{minipage}{0.45\linewidth}
+    % Escala
+    \def\scl{1.00}
+    % 
+    \pgfmathsetmacro{\EJESCARTLONG}{3.0}
+    \pgfmathsetmacro{\EJEOBLICLONG}{2.7}
+    % Eje x
+    \pgfmathsetmacro{\XLONG}{\EJESCARTLONG}
+    % Eje y
+    \pgfmathsetmacro{\YLONG}{\EJESCARTLONG}
+    % Eje xtilde
+    \pgfmathsetmacro{\XTILDEANG}{0}
+    \pgfmathsetmacro{\XTILDELONG}{\EJEOBLICLONG}    
+    % Eje ytilde
+    \pgfmathsetmacro{\YTILDEANG}{60}
+    \pgfmathsetmacro{\YTILDELONG}{\EJESCARTLONG}
+    % Longitud del vector unidad en el eje x': etilde1
+    \pgfmathsetmacro{\EXTILDE}{0.60*\EJEOBLICLONG}
+    \pgfmathsetmacro{\ETTILDE}{\EXTILDE/(sin(\YTILDEANG))}
+    % Vector P
+    %\pgfmathsetmacro{\PMOD}{2.3}
+    %\pgfmathsetmacro{\PANG}{40}
+    % Fondo
+    \pgfmathsetmacro{\HORZ}{0.90}
+    \pgfmathsetmacro{\VERT}{0.25}
+    % 
+    \centering
+    \begin{tikzpicture}[%
+      scale=\scl,
+      every node/.style={black,font=\small},
+      ejecart/.style={->, black!30},
+      ejeoblic/.style={->, black},
+      proyeccion/.style={black!20, line width=0.4},
+      % longitud/.style={line width=.5pt,\colorV},
+      texto/.style={black},
+      textoapagado/.style={\colorTorig},
+      vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt,\colorV},
+      versor/.style={-{Latex[round, width=4pt, length=6pt]}, line width=1pt, \colorVred},
+      % vtilde/.style={%
+      % -{Latex[round,width=4pt,length=6pt]}, line width=1pt, \colorVred},
+      pcirculo/.style={fill=\colorPorig, draw=black},
+      angulo/.style={fill=green!15, draw=\colorGirodos},
+      background/.style={%
+        line width=\bgborderwidth,
+        draw=\bgbordercolor,
+        fill=\bgcolor,
+      },
+      ]
+      % COORDENADAS
+      % Origen
+      \coordinate (O) at (0,0);
+      % Eje x
+      \path[save path=\ejex] (O) -- (\XLONG cm, 0) coordinate (xfin);
+      % Eje y
+      \path[save path=\ejey] (O) -- (0, \YLONG cm) coordinate (yfin);
+      % Eje xtilde
+      \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
+      coordinate (xtildefin);
+      \node[texto, below] at (xtildefin) {\footnotesize $\tilde{x}$};
+      % Eje ytilde
+      \path[save path=\ejeytilde,name path=O--ytilde](O) -- ++(\YTILDEANG:\YTILDELONG cm)
+      coordinate (ytildefin);
+      % Vector
+      %\path[save path=\r] (O) -- coordinate[pos=0.5] (pmid) (\PANG:\PMOD cm)
+      %coordinate (P);
+      % Componentes covariantes y contravariantes
+      % Intersección de horizontal desde P hasta ytilde
+      % -> Componente contravariante eje ytilde (CTV2) 
+      \path[name path=P--y] (P) -| (yfin);
+      \path[name intersections={of=P--y and O--ytilde,by=CTV2}];
+      % Paralela (CTV2) -- (O) que pase por (P)
+      % -> Componente contravariante eje xtilde (CTV1)
+      \path (P) -- ($(P) - (CTV2) - (O)$) coordinate (CTV1);
+      % Componente covariante con eje xtilde (COV1)
+      \path (P) |- coordinate[pos=0.5] (COV1) (xtildefin);
+      % Perpendicular a O--ytilde que pasa por P
+      % -> Componente covariante con eje ytilde (COV2)
+      \path (P) -- ($(O)!(P)!(ytildefin)$) coordinate (COV2);
+      % Proyecciones de las componentes
+      
+      % DIBUJOS
+      % Ángulo theta
+      \path (xfin) -- (O) -- (ytildefin) pic
+      [angulo, "\footnotesize $\alpha$",angle radius=11pt, angle eccentricity=0.6]
+      {angle = xfin--O--trayfin};
+
+      % Línea horizontal que une e0 con etilde0
+      \draw[proyeccion] (e0fin) -- (etilde0fin);
+      % Línea vertical de proyección de etilde0
+      \draw[proyeccion] (etilde0fin) |- (xtildefin);
+            
+      % Ejes
+      % x
+      \draw[ejecart, use path=\ejex];
+      \node[textoapagado, below=1.2pt] at (xfin) {\small $x$};
+      % y
+      \draw[ejecart, use path=\ejey];
+      \node[above, textoapagado] at (yfin) {$y$};
+      % xtilde
+      \draw[ejeoblic, use path=\ejextilde];
+      % \node[below, texto] at (xtildefin) {$\tilde{x}^1$};
+      % ytilde
+      \draw[ejeoblic, use path=\ejeytilde];
+      \node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{y}$};
+
+      % Versor etilde0
+      \draw[versor] (O) -- node[\colorTred, pos=0.65, left] {\scriptsize $\xtilde{e}_0$}
+      ++(\YTILDEANG:\ETTILDE cm) coordinate (etilde0fin);
+      % Versor etilde1
+      %\draw[versor] (O) -- node[\colorTred, pos=0.6, below] {\scriptsize $\xhat{e}_1$}
+      %++(\EXTILDE cm, 0) coordinate (etilde1fin);
+
       % Origen
       \filldraw (O) circle [radius=.2pt];
       
