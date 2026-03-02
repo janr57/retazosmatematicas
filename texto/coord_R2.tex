@@ -2524,7 +2524,7 @@ nos interese referirnos a los valores de $x$, $t$, $x'$ y $t'$.
 ¿Qué módulo tienen estos vectores de $B'$. El del eje $x'$ es la unidad, igual que el
 de la base $B$ de $O$. Pero, debido a que el tiempo es absoluto, $t=t'$, las líneas
 horizontales son líneas de igual tiempo $t=t'$, el vector temporal de la base $B'$ tiene
-que ser mayor que el vector de la base temporal de $O$, que vale 1.
+que ser mayor que el vector de la base temporal de $O$, que vale 1
 \[
   \cos(\pi/2 - \alpha) = \sin\alpha = \dfrac{|\xhat{e}_0|}{|\xtilde{e}_0|};\hspace{0.5em}
   |\xtilde{e}_0| = \dfrac{1}{\sin\alpha}
@@ -2555,13 +2555,13 @@ que ser mayor que el vector de la base temporal de $O$, que vale 1.
     \pgfmathsetmacro{\YTILDEANG}{60}
     \pgfmathsetmacro{\YTILDELONG}{\EJESCARTLONG}
     % Longitud del vector unidad en el eje x': etilde1
-    \pgfmathsetmacro{\EXTILDE}{0.60*\EJEOBLICLONG}
+    \pgfmathsetmacro{\EXTILDE}{0.70*\EJEOBLICLONG}
     \pgfmathsetmacro{\ETTILDE}{\EXTILDE/(sin(\YTILDEANG))}
     % Vector P
     %\pgfmathsetmacro{\PMOD}{2.3}
     %\pgfmathsetmacro{\PANG}{40}
     % Fondo
-    \pgfmathsetmacro{\HORZ}{0.90}
+    \pgfmathsetmacro{\HORZ}{0.65}
     \pgfmathsetmacro{\VERT}{0.25}
     % 
     \centering
@@ -2621,8 +2621,8 @@ que ser mayor que el vector de la base temporal de $O$, que vale 1.
       % DIBUJOS
       % Ángulo theta
       \path (xfin) -- (O) -- (ytildefin) pic
-      [angulo, "\footnotesize $\alpha$",angle radius=11pt, angle eccentricity=0.6]
-      {angle = xfin--O--trayfin};
+      [angulo, "\footnotesize $\alpha$",angle radius=12pt, angle eccentricity=0.65]
+      {angle = xfin--O--trayfin};p
 
       % Ejes
       % x
@@ -2640,16 +2640,23 @@ que ser mayor que el vector de la base temporal de $O$, que vale 1.
 
       % Versor eT en gris
       \draw[versor, gray] (O) -- node[gray, pos=0.6, left]
-        {\scriptsize $\xhat{e}_0$} ++(0, \EXTILDE cm) coordinate (e0fin);
+        {\scriptsize $\xhat{e}_t$} ++(0, \EXTILDE cm) coordinate (e0fin);
       % Versor etilde0
       \draw[versor] (O) -- node[\colorTred, pos=0.55, right] {\scriptsize $\xtilde{e}_0$}
       ++(\YTILDEANG:\ETTILDE cm) coordinate (etilde0fin);
       % Versor etilde1
-      \draw[versor] (O) -- node[\colorTred, pos=0.6, below] {\scriptsize $\xhat{e}_1$}
+      \draw[versor] (O) -- node[\colorTred, pos=0.6, below]
+      {\scriptsize $\xhat{e}_1 = \color{black!50}{\uvec{\i}}$}
       ++(\EXTILDE cm, 0) coordinate (etilde1fin);
 
       % Línea horizontal que une e0 con etilde0
       \draw[proyeccion] (e0fin) -- (etilde0fin);
+      % Extensión izda de la línea
+      \draw[proyeccion] (e0fin) --  ++(-0.8, 0);
+      % Extensión derecha de la línea
+      \draw[proyeccion] (etilde0fin) --
+      node[pos=0.6, above] {\footnotesize $\color{gray}{t = t' = \qty{1}{\second}}$}
+      ++(1.8, 0);
       
       % Origen
       \filldraw (O) circle [radius=.2pt];
@@ -2661,9 +2668,10 @@ que ser mayor que el vector de la base temporal de $O$, que vale 1.
         \draw[background] (SW) rectangle (NE);
       \end{scope}
     \end{tikzpicture}
-    \caption{Componentes contravariantes, en naranja y covariantes, en azul. El ángulo
-      entre los ejes está marcado en verde. El sistema de coordenadas rectangular se
-      muestra, algo apagado, como referencia.}
+    \caption{En rojo, los vectores de la base $B' = \set{\xtilde{e}_0, \xtilde{e}_1}$
+      deformados desde el punto de vista del observador en reposo $O$. En gris, el
+      vector unitario temporal de la base $B$. Las líneas horizontales son
+      equitemporales. La que se muestra equivale a \qty{1}{\second}.}
     % \label{fig:R2-oblic_contrav_cov}
   \end{minipage}
   \hspace{1em}
@@ -2684,7 +2692,7 @@ que ser mayor que el vector de la base temporal de $O$, que vale 1.
     \pgfmathsetmacro{\YTILDEANG}{60}
     \pgfmathsetmacro{\YTILDELONG}{\EJESCARTLONG}
     % Longitud del vector unidad en el eje x': etilde1
-    \pgfmathsetmacro{\EXTILDE}{0.60*\EJEOBLICLONG}
+    \pgfmathsetmacro{\EXTILDE}{0.7*\EJEOBLICLONG}
     \pgfmathsetmacro{\ETTILDE}{\EXTILDE/(sin(\YTILDEANG))}
     % Vector P
     %\pgfmathsetmacro{\PMOD}{2.3}
@@ -2729,35 +2737,29 @@ que ser mayor que el vector de la base temporal de $O$, que vale 1.
       % Eje ytilde
       \path[save path=\ejeytilde,name path=O--ytilde](O) -- ++(\YTILDEANG:\YTILDELONG cm)
       coordinate (ytildefin);
-      % Vector
-      %\path[save path=\r] (O) -- coordinate[pos=0.5] (pmid) (\PANG:\PMOD cm)
-      %coordinate (P);
-      % Componentes covariantes y contravariantes
-      % Intersección de horizontal desde P hasta ytilde
-      % -> Componente contravariante eje ytilde (CTV2) 
-      \path[name path=P--y] (P) -| (yfin);
-      \path[name intersections={of=P--y and O--ytilde,by=CTV2}];
-      % Paralela (CTV2) -- (O) que pase por (P)
-      % -> Componente contravariante eje xtilde (CTV1)
-      \path (P) -- ($(P) - (CTV2) - (O)$) coordinate (CTV1);
-      % Componente covariante con eje xtilde (COV1)
-      \path (P) |- coordinate[pos=0.5] (COV1) (xtildefin);
-      % Perpendicular a O--ytilde que pasa por P
-      % -> Componente covariante con eje ytilde (COV2)
-      \path (P) -- ($(O)!(P)!(ytildefin)$) coordinate (COV2);
-      % Proyecciones de las componentes
+      % Componente y
+      \path (O) -- coordinate[pos=0.5] (compy) (e0fin);
       
       % DIBUJOS
       % Ángulo theta
       \path (xfin) -- (O) -- (ytildefin) pic
-      [angulo, "\footnotesize $\alpha$",angle radius=11pt, angle eccentricity=0.6]
+      [angulo, "\footnotesize $\alpha$",angle radius=11pt, angle eccentricity=0.63]
       {angle = xfin--O--trayfin};
 
       % Línea horizontal que une e0 con etilde0
       \draw[proyeccion] (e0fin) -- (etilde0fin);
       % Línea vertical de proyección de etilde0
-      \draw[proyeccion] (etilde0fin) |- (xtildefin);
-            
+      \draw[proyeccion] (etilde0fin) |- coordinate[pos=0.5] (compx) (xtildefin);
+      
+      % Texto componente x
+      \path (O) -- node[pos=0.5, below]
+      {\footnotesize $|\xtilde{e}_0| \cos\alpha$} (compx);
+      %\node[below right=0pt and -4pt] at (compx)
+      %{\footnotesize $|\xtilde{e}_0| \cos\alpha$};
+      % Texto componente y
+      \node[rotate=90, above left=18pt and 0pt] at (compy)
+      {\footnotesize $|\xtilde{e}_0| \sin\alpha$};      
+      
       % Ejes
       % x
       \draw[ejecart, use path=\ejex];
@@ -2789,9 +2791,11 @@ que ser mayor que el vector de la base temporal de $O$, que vale 1.
         \draw[background] (SW) rectangle (NE);
       \end{scope}
     \end{tikzpicture}
-    \caption{Componentes contravariantes, en naranja y covariantes, en azul. El ángulo
-      entre los ejes está marcado en verde. El sistema de coordenadas rectangular se
-      muestra, algo apagado, como referencia.}
+    \caption{Componentes horizontales y espaciales en la base $B$ del observador en reposo
+      $O$ del vector temporal de la base $B'$. Como su módulo es
+      $|\xtilde{e}_0|=1/\sin\alpha$, se deduce que
+      $\xtilde{e}_0 = \cot\alpha\,\uvec{i} + \xhat{e}_t$ en la base $B$ del observador
+      en reposo $O$.}
     % \label{fig:R2-oblic_contrav_cov}
   \end{minipage}
 \end{figure}
