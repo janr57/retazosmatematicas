@@ -2087,17 +2087,14 @@ $25$, pues tiene que dar en mismo resultado que en rectangulares (apartado a).
 \end{align*}
 
 \section{Relatividad de Galileo}
-En esta sección vamos a discutir un tipo de sistema de coordenadas oblicuo un tanto
-peculiar. De hecho, no será un sistema de coordenadas en $\symbb{R}^2$, como hace
-referencia el título del capítulo. Aun así, será un sistema de referencia en dos
-dimensiones: espacio y tiempo.
-En particular el espacio será unidimensional $\symbb{R}$, (una coordenada $x$), y además
-tomaremos en consideración el tiempo $t$. Es decir, será un sistema con dos ejes $x$ y
-$t$ y lo que mediremos no serán posiciones en $\symbb{R}^2$, sino \emph{sucesos}.
+En esta sección vamos a discutir un sistema de coordenadas oblicuo un tanto peculiar. De
+hecho, el espacio no será $\symbb{R}^2$, como hace referencia el título del capítulo.
+Aun así, será un espacio bidimensional: espacio y tiempo.
+En particular tendremos una dimensión de espacio $\symbb{R}$, (una coordenada $x$), y el
+tiempo $t$. Tendremos un sistema con dos ejes $x$ y $t$ y lo que mediremos no serán
+posiciones o vectores en $\symbb{R}^2$, sino \emph{sucesos}.
 
 \subsection{Principio de relatividad de Galileo}
-Empezaremos enunciando el principio de relatividad de Galileo y algunas suposiciones
-que lleva implícitas.
 El principio de relatividad de Galileo dice que
 \begin{quote}
   \emph{%
@@ -2105,8 +2102,8 @@ El principio de relatividad de Galileo dice que
     \footnotemark{}
   }.
 \end{quote}
-Esto significa que ningún experimento realizado en un sistema aislado puede
-determinar si está quieto o moviéndose con velocidad constante.
+Esto significa que ningún experimento realizado en un sistema aislado puede determinar si
+está quieto o moviéndose con velocidad constante.
 \footnotetext{Marcos de referencia sin aceleración, es decir, con velocidad constante
   (incluido el reposo, $v=0$, que también es una velocidad constante).}
 
@@ -2127,38 +2124,38 @@ Este principio parte de unas suposiciones
 \end{enumerate}
 
 \subsection{Transformaciones de Galileo}
-Una transformación de Galileo es un cambio de coordenadas y velocidades que deja
+Las transformaciones de Galileo son un cambio de coordenadas y velocidades que deja
 invariante las ecuaciones de Newton.
 
-Como ya avanzamos, nuestro espacio no será el de posiciones $\symbb{R}^2$, sino el de
-\emph{sucesos}, tiempo, posición; así, nos centraremos en un eje temporal $t$ y otro
-espacial $x$, prescindiendo de las coordenadas $y$ y $z$ para tener una transformación
-de solo dos variables.
+Como dijimos, nuestro espacio no será $\symbb{R}^2$, sino el de \emph{sucesos}, posición
+y tiempo; así, nos centraremos en un eje temporal $t$ y otro espacial $x$, prescindiendo
+de las coordenadas $y$ y $z$ para tener una transformación de solo dos variables.
 
 Para centrar ideas, supongamos que tenemos dos observadores, uno $O$ en reposo y el otro
-$O'$ que lleva una velocidad constante $u$ con respecto al anterior.
-El principio de Galileo permite relacionar las mediciones de tiempo y posición de un suceso, realizadas por ambos observadores $(t,x)$ y $(t',x')$. Aun así, representaremos
-la posición en el eje de abcisas y el tiempo en ordenadas.
+$O'$ que lleva una velocidad constante $u$ con respecto al anterior. En el instante
+$t=0$, ambos se encuentran en la misma posición.
+El principio de Galileo permite relacionar las mediciones de posición y tiempo de un
+suceso, realizadas por ambos observadores $(x,t)$ y $(x',t')$. La posición la representaremos en el eje de abcisas y el tiempo en ordenadas, como se hace en relatividad
+especial y general.
+
 Las transformaciones de Galileo en una dimensión espacial $x$ son
 \begin{subequations}
-\begin{align}
-  \label{eq:R2-transf_Galileo1}
-  t' &= t\\
-  \label{eq:R2-transf_Galileo2}
-  x' &= x - ut
+  \begin{align}
+    \label{eq:R2-transf_Galileo_x}
+    x' &= x - ut\\  
+    \label{eq:R2-transf_Galileo_t}
+    t' &= t
 \end{align}
 \end{subequations}
-donde la segunda expresión indica que el tiempo es absoluto.
+La segunda indica que el tiempo es absoluto.
 
-Ahora es importante hablar de los ejes de coordenadas, para tener una visualización
-de estas transformaciones.
-Empecemos diciendo que el observador $O$ utiliza un sistema de  referencia rectangular,
-con ejes $t$ y $x$. Este observador puede registrar las posiciones y tiempos que observa
-que tiene el segundo observador (recordemos que $O'$ se mueve con velocidad constante
-con respecto a $O$); además, vamos a suponer que en el instante $t=0$, ambos se
-encontraban en la misma posición $x'=0$ medida desde $O$. Como la velocidad es constante
-la gráfica del movimiento de $O'$ respecto de $O$ es una línea de pendiente constante
-$\alpha = \arccot(t/x)$. De la figura \ref{fig:R2-oblic_OO'_u}, se deduce que la velocidad relativa de $O'$ respecto de $O$ es
+\subsubsection{Observador $O$ en reposo}
+Este observador utiliza un sistema de referencia cartesiano rectangular, ejes $x$ y $t$.
+Puede registrar las posiciones y tiempos del segundo observador o de cualquier otro
+suceso.
+Como la velocidad de $O'$ es constante, la gráfica del movimiento de $O'$ respecto de $O$
+es una línea de pendiente constante. De la figura \ref{fig:R2-oblic_OO'_u}, vemos que
+$\alpha = \arccot(x/t)$ y que la velocidad relativa de $O'$ respecto de $O$ es
 \begin{equation}
   \label{eq:R2-transfGalileo_u_alpha}
   u= \dfrac{x}{t} =\cot\alpha
@@ -2166,13 +2163,11 @@ $\alpha = \arccot(t/x)$. De la figura \ref{fig:R2-oblic_OO'_u}, se deduce que la
 En esta gráfica, cuanto menor sea $\alpha$, mayor será la velocidad relativa de
 $O'$\footnotemark{}.
 \footnotetext{Si hubiéramos representado el tiempo en abcisas y la posición en
-  ordenadas, a mayor pendiente la velocidad sería mayor.}
+  ordenadas, a mayor velocidad le correspondería una pendiente mayor.}
 
-En la figura \ref{fig:R2-oblic_suceso_transf2}, utilizamos lo visto en la anterior,
-centrando nuestra atención en un suceso $S$ que tiene lugar en un cierto tiempo $t$, que
-es observado por tanto por $O$, como por $O'$. En ella se comprueba que la distancia
-$x'$ que mide $O'$ está de acuerdo con las transformación de Galileo
-\eqref{eq:R2-transf_Galileo2}.
+Ahora, centramos nuestra atención en un suceso $S$ que tiene lugar en un cierto tiempo $t=t'$, y que es observado tanto por $O$, como por $O'$, pero desde el punto de vista
+de $O$, ver figura \ref{fig:R2-oblic_suceso_transf2}.
+En ella se comprueba que la distancia $x'$ que mide $O'$ está de acuerdo con la transformación de Galileo \eqref{eq:R2-transf_Galileo_x}.
 \begin{figure}[ht]
   \begin{minipage}{0.45\linewidth}
     % Escala
@@ -2415,11 +2410,11 @@ $x'$ que mide $O'$ está de acuerdo con las transformación de Galileo
   \end{minipage}
 \end{figure}
 
-En forma matricial tendríamos\footnotemark{}
+Las transformaciones de Galileo en forma matricial son\footnotemark{}
 \footnotetext{En relatividad especial (Einstein), es costumbre cambiar el orden y
   escribir primero la componente temporal y después las espaciales, dando a la primera
-  el índice cero. Aquí, seguiremos este criterio, no porque sea necesario, sino porque
-  es el estándar que seguiremos, para después adaptarnos a la relatividad einsteniana.}
+  el índice cero. Aquí, seguiremos este criterio, para familiarizarnos con él, no porque
+  sea necesario, sino porque es el estándar en relatividad einsteniana.}
 \[
   \begin{pmatrix}
     t'\\
@@ -2467,15 +2462,25 @@ inversa del cambio de base $\mmm{M}^{-1}$
     1 & 0\\
     -u & 1
   \end{pmatrix}
+  =
+  \begin{pmatrix}
+    1 & 0\\
+    -\cot\alpha & 1
+  \end{pmatrix}
 \end{equation}
 
-Calculando la inversa de la anterior tendremos la matriz de cambio de base
+La matriz inversa de la anterior es la matriz de cambio de base
 \begin{equation}
   \mmm{M}
   =
   \begin{pmatrix}
     1 & 0\\
     u & 1
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    1 & 0\\
+    \cot\alpha & 1
   \end{pmatrix}
 \end{equation}
 
@@ -2506,34 +2511,35 @@ movimiento, desde el punto de vista de $O$ tiene un eje de tiempo $t'$ inclinado
 (ver \eqref{eq:R2-transfGalileo_u_alpha}); en cambio, el eje $x'$ coincide con el de
 $O$.
 
-Nótese que, desde el punto de vista de $O'$, supuesto en reposo, el eje del tiempo de
-$O$ se inclinaría en sentido antihorario formando un ángulo de $\pi/2+\alpha$.
-Lo importante es que recordemos que lo que comentamos es desde el punto de vista de $O$.
+Nótese que, $O'$ tiene derecho, como sistema inercial, a considerarse en reposo, y desde
+este punto de vista de $O'$, el eje del tiempo de $O$ se inclinaría en sentido
+antihorario formando un ángulo de $\pi/2+\alpha$ con el eje $x$.
+
+En este texto supondremos siempre que $O$ es el que se encuentra en reposo (utilizamos
+el punto de vista de $O$).
 
 \subsubsection{Base $B'$ para el observador $O'$ desde el punto de vista de $O$}
 La base utilizada por $O'$, sería
 \begin{equation}
-  B' = \set{\xtilde{e}_0, \xtilde{e}_1}
-  = \set{\xtilde{e}_t, \xhat{e}_x}
+  B'
+  = \set{\xtilde{e}_0, \xtilde{e}_1}
+  = \set{\xtilde{e}_{t'}, \xhat{e}_{x'}}
 \end{equation}
 
-En gran parte de nuestro desarrollo utilizaremos los índices numéricos $0$ y $1$ para
-referirnos a los vectores de las bases y a las componentes según ellos, excepto cuando
-nos interese referirnos a los valores de $x$, $t$, $x'$ y $t'$.
-
-¿Qué módulo tienen estos vectores de $B'$. El del eje $x'$ es la unidad, igual que el
+¿Qué módulo tienen estos vectores de $B'$?. El del eje $x'$ es la unidad, igual que el
 de la base $B$ de $O$. Pero, debido a que el tiempo es absoluto, $t=t'$, las líneas
 horizontales son líneas de igual tiempo $t=t'$, el vector temporal de la base $B'$ tiene
-que ser mayor que el vector de la base temporal de $O$, que vale 1
+que ser mayor que el vector de la base temporal de $O$, que vale 1, ver figura
+\ref{fig:R2-oblic_etprima_et}
 \[
-  \cos(\pi/2 - \alpha) = \sin\alpha = \dfrac{|\xhat{e}_0|}{|\xtilde{e}_0|};\hspace{0.5em}
-  |\xtilde{e}_0| = \dfrac{1}{\sin\alpha}
+  \cos(\pi/2 - \alpha) = \sin\alpha = \dfrac{|\xhat{e}_t|}{|\xtilde{e}_{t'}|};\hspace{0.5em}
+  |\xtilde{e}_{t'}| = \dfrac{1}{\sin\alpha} = \csc\alpha
 \]
 
 \begin{subequations}
 \begin{align}
-  |\xtilde{e}_0| &= |\tilde{e}_t| = \dfrac{1}{\sin\alpha}\\
-  |\xtilde{e}_1| &= |\xhat{e}_1| = 1
+  |\xtilde{e}_0| &= |\tilde{e}_{t'}| = \csc\alpha\\
+  |\xtilde{e}_1| &= |\xhat{e}_{x'}| = 1
 \end{align}
 \end{subequations}
 
@@ -2640,13 +2646,13 @@ que ser mayor que el vector de la base temporal de $O$, que vale 1
 
       % Versor eT en gris
       \draw[versor, gray] (O) -- node[gray, pos=0.6, left]
-        {\scriptsize $\xhat{e}_t$} ++(0, \EXTILDE cm) coordinate (e0fin);
+        {$\xhat{e}_t$} ++(0, \EXTILDE cm) coordinate (e0fin);
       % Versor etilde0
-      \draw[versor] (O) -- node[\colorTred, pos=0.55, right] {\scriptsize $\xtilde{e}_0$}
+      \draw[versor] (O) -- node[\colorTred, pos=0.55, right] {$\xtilde{e}_{t'}$}
       ++(\YTILDEANG:\ETTILDE cm) coordinate (etilde0fin);
       % Versor etilde1
       \draw[versor] (O) -- node[\colorTred, pos=0.6, below]
-      {\scriptsize $\xhat{e}_1 = \color{black!50}{\uvec{\i}}$}
+      {$\xhat{e}_{x'} = \color{black!50}{\uvec{\i}}$}
       ++(\EXTILDE cm, 0) coordinate (etilde1fin);
 
       % Línea horizontal que une e0 con etilde0
@@ -2668,11 +2674,11 @@ que ser mayor que el vector de la base temporal de $O$, que vale 1
         \draw[background] (SW) rectangle (NE);
       \end{scope}
     \end{tikzpicture}
-    \caption{En rojo, los vectores de la base $B' = \set{\xtilde{e}_0, \xtilde{e}_1}$
-      deformados desde el punto de vista del observador en reposo $O$. En gris, el
-      vector unitario temporal de la base $B$. Las líneas horizontales son
-      equitemporales. La que se muestra equivale a \qty{1}{\second}.}
-    % \label{fig:R2-oblic_contrav_cov}
+    \caption{En rojo, los vectores de la base $B'$, donde $\xtilde{e}_{t'}$ se ve
+      inclinado, desde el punto de vista del observador en reposo $O$. En gris, los
+      vectores unitario temporal y espacial de la base $B$. Las líneas horizontales son
+      equitemporales. La que se muestra indica $t=t'=\qty{1}{\second}$.}
+    \label{fig:R2-oblic_etprima_et}
   \end{minipage}
   \hspace{1em}
   \begin{minipage}{0.45\linewidth}
@@ -2753,12 +2759,10 @@ que ser mayor que el vector de la base temporal de $O$, que vale 1
       
       % Texto componente x
       \path (O) -- node[pos=0.5, below]
-      {\footnotesize $|\xtilde{e}_0| \cos\alpha$} (compx);
-      %\node[below right=0pt and -4pt] at (compx)
-      %{\footnotesize $|\xtilde{e}_0| \cos\alpha$};
+      {\footnotesize $|\xtilde{e}_{t'}| \cos\alpha$} (compx);
       % Texto componente y
       \node[rotate=90, above left=18pt and 0pt] at (compy)
-      {\footnotesize $|\xtilde{e}_0| \sin\alpha$};      
+      {\footnotesize $|\xtilde{e}_{t'}| \sin\alpha$};      
       
       % Ejes
       % x
@@ -2767,15 +2771,15 @@ que ser mayor que el vector de la base temporal de $O$, que vale 1
       % y
       \draw[ejecart, use path=\ejey];
       \node[above, textoapagado] at (yfin) {$y$};
+
       % xtilde
       \draw[ejeoblic, use path=\ejextilde];
-      % \node[below, texto] at (xtildefin) {$\tilde{x}^1$};
       % ytilde
       \draw[ejeoblic, use path=\ejeytilde];
       \node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{y}$};
 
       % Versor etilde0
-      \draw[versor] (O) -- node[\colorTred, pos=0.65, left] {\scriptsize $\xtilde{e}_0$}
+      \draw[versor] (O) -- node[\colorTred,pos=0.65, left] {\small $\xtilde{e}_{t'}$}
       ++(\YTILDEANG:\ETTILDE cm) coordinate (etilde0fin);
       % Versor etilde1
       %\draw[versor] (O) -- node[\colorTred, pos=0.6, below] {\scriptsize $\xhat{e}_1$}
@@ -2796,7 +2800,7 @@ que ser mayor que el vector de la base temporal de $O$, que vale 1
       $|\xtilde{e}_0|=1/\sin\alpha$, se deduce que
       $\xtilde{e}_0 = \cot\alpha\,\uvec{i} + \xhat{e}_t$ en la base $B$ del observador
       en reposo $O$.}
-    % \label{fig:R2-oblic_contrav_cov}
+    \label{fig:R2-oblic_etprima}
   \end{minipage}
 \end{figure}
 
