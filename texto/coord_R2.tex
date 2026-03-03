@@ -2135,7 +2135,7 @@ Para centrar ideas, supongamos que tenemos dos observadores, uno $O$ en reposo y
 $O'$ que lleva una velocidad constante $u$ con respecto al anterior. En el instante
 $t=0$, ambos se encuentran en la misma posición.
 El principio de Galileo permite relacionar las mediciones de posición y tiempo de un
-suceso, realizadas por ambos observadores $(x,t)$ y $(x',t')$. La posición la representaremos en el eje de abcisas y el tiempo en ordenadas, como se hace en relatividad
+suceso, realizadas por ambos observadores $(t,x)$ y $(t',x')$. La posición la representaremos en el eje de abcisas y el tiempo en ordenadas, como se hace en relatividad
 especial y general.
 
 Las transformaciones de Galileo en una dimensión espacial $x$ son
@@ -2533,7 +2533,7 @@ La base utilizada por $O'$, sería
 
 ¿Qué módulo tienen estos vectores de $B'$?. El del eje $x'$ es la unidad, igual que el
 de la base $B$ de $O$. Pero, debido a que el tiempo es absoluto, $t=t'$, las líneas
-horizontales son líneas de igual tiempo $t=t'$, el vector temporal de la base $B'$ tiene
+paralelas al eje $x$ son líneas de igual tiempo $t=t'$, el vector temporal de la base $B'$ tiene
 que ser mayor que el vector de la base temporal de $O$, que vale 1, ver figura
 \ref{fig:R2-oblic_etprima_et}
 \[
@@ -2541,13 +2541,15 @@ que ser mayor que el vector de la base temporal de $O$, que vale 1, ver figura
   = \sin\alpha
   = \dfrac{|\xhat{e}_t|}{|\xtilde{e}_{t'}|}
   = \dfrac{1}{|\xtilde{e}_{t'}|}
-  \longrightarrow
+\]
+De donde
+\[
   |\xtilde{e}_{t'}| = \dfrac{1}{\sin\alpha} = \csc\alpha
 \]
 
 \begin{subequations}
 \begin{align}
-  |\xtilde{e}_0| &= |\tilde{e}_{t'}| = \csc\alpha\\
+  |\xtilde{e}_0| &= |\tilde{e}_{t'}| = \csc\alpha = \sqrt{1+u^2}\\
   |\xtilde{e}_1| &= |\xhat{e}_{x'}| = 1
 \end{align}
 \end{subequations}
@@ -2851,7 +2853,7 @@ nomenclatura de índices
     \,
     \begin{pmatrix}
       1 & 0\\
-      cot\alpha & 1
+      \cot\alpha & 1
     \end{pmatrix}\\
     %\label{eq:R2-oblic_cambio_base_txu}
     \begin{pmatrix}
@@ -2874,21 +2876,25 @@ La matriz de cambio de base coincide con la encontrada antes \eqref{eq:R2-M}.
 Calcularemos la métrica en a partir del producto escalar de los vectores de $B'$,
 y teniendo en cuenta que los vectores $\xhat{e}_t$ y $\uvec{\i}$ son ortogonales y
 unitarios
-\begin{align}
-  \xtilde{e}_0\cdot\xtilde{e}_0
-  &= \xtilde{e}_{t'}\cdot\xtilde{e}_{t'}
-    = (\xhat{e}_t+\cot\alpha\,\uvec{\i})\cdot(\xhat{e}_t+\cot\alpha\,\uvec{\i})
-    = 1 + \cot^2\alpha = \csc^2\alpha\\
-  \xtilde{e}_0\cdot\xtilde{e}_1
-  &= \xtilde{e}_{t'}\cdot\xtilde{e}_{x'}
-    = (\xhat{e}_t + \cot\alpha\,\uvec{\i})\cdot\uvec{\i}=\cot\alpha\\
-  \xtilde{e}_1\cdot\xtilde{e}_0
-  &= \xtilde{e}_{x'}\cdot\xtilde{e}_{t'}= \cdots = \cot\alpha\\
-  \xtilde{e}_1\cdot\xtilde{e}_1
-  &= \xtilde{e}_{x'}\cdot\xtilde{e}_{x'}
-    = \uvec{\i}\cdot\uvec{\i}
-    = 1
-\end{align}
+{\small
+\begin{subequations}
+  \begin{align}
+    \xtilde{e}_0\cdot\xtilde{e}_0
+    &= \xtilde{e}_{t'}\cdot\xtilde{e}_{t'}
+      = (\xhat{e}_t+\cot\alpha\,\uvec{\i})\cdot(\xhat{e}_t+\cot\alpha\,\uvec{\i})
+      = 1 + \cot^2\alpha = \csc^2\alpha\\
+    \xtilde{e}_0\cdot\xtilde{e}_1
+    &= \xtilde{e}_{t'}\cdot\xtilde{e}_{x'}
+      = (\xhat{e}_t + \cot\alpha\,\uvec{\i})\cdot\uvec{\i}=\cot\alpha\\
+    \xtilde{e}_1\cdot\xtilde{e}_0
+    &= \xtilde{e}_{x'}\cdot\xtilde{e}_{t'}= \cdots = \cot\alpha\\
+    \xtilde{e}_1\cdot\xtilde{e}_1
+    &= \xtilde{e}_{x'}\cdot\xtilde{e}_{x'}
+      = \uvec{\i}\cdot\uvec{\i}
+      = 1
+  \end{align}
+\end{subequations}
+}
 
 Como resultado, el tensor métrico en $O'$ desde el punto de vista de $O$ se puede
 representar como
@@ -2970,7 +2976,7 @@ Resultando
     \end{pmatrix}
 \end{equation}
 
-\subsection{Vectores y componentes covariantes y contravariantes}
+\subsection{Vectores covariantes y contravariantes}
 Hasta ahora, hemos tratado con los vectores covariantes y las componentes contravariantes
 en $O'$ desde el punto de vista de $O$.
 En notación de Einstein
@@ -3025,7 +3031,12 @@ Vectores contravariantes
   \xtilde{e}^1 &= \xtilde{e}^{x'} = -u\xhat{e}_t + \uvec{\i}
 \end{align}
 \end{subequations}
-  
+
+\subsection{Componentes covariantes y contravariantes}
+Bajar índices
+$X_t = g_{tt}X^{t} + g_{tx} X^{x}= X^{t} + u X^{x}$
+
+
 %
 %\section{Coordenadas polares planas}
 %Aquí se ponen las cosas algo más interesantes. En este sistema, se utilizan dos
