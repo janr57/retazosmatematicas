@@ -2816,28 +2816,58 @@ que ser mayor que el vector de la base temporal de $O$, que vale 1, ver figura
 
 Resumiendo, los vectores de la base $B'$ en función de $B$ valen
 \begin{align}
+  \label{eq:R2-oblic_cov_e0_et}
   \xtilde{e}_0
-  &= \xtilde{e}_{t'} = \xhat{e}_t + \cot\alpha\,\uvec{\i} = (1, \cot\alpha)\\
+  &=
+    \xtilde{e}_{t'}
+    = \xhat{e}_t + \cot\alpha\,\uvec{\i}
+    = (1, \cot\alpha)
+    = \xhat{e}_t + u\,\uvec{\i}
+    =(1, u)\\
+  \label{eq:R2-oblic_cov_e1_ex}
   \xhat{e}_1
-  &= \xhat{e}_{x'} = 0\xhat{e}_t+\xhat{e}_x = 0\xhat{e}_t + \uvec{\i} = (0, 1)
+  &=
+    \xhat{e}_{x'}
+    = 0\xhat{e}_t+\xhat{e}_x
+    = 0\xhat{e}_t + \uvec{\i}
+    = \uvec{\i}
+    = (0, 1)
 \end{align}
 
 La matriz de cambio de base se construye situando las componentes de los vectores de la
-base $B'$ en función de $B$ en columnas. Así $B' = B \mmm{M}$
-\begin{equation}
-  \begin{pmatrix}
-    \xtilde{e}_0 & \xtilde{e}_1
-  \end{pmatrix}
-  =
-  \begin{pmatrix}
-    \xhat{e}_0 & \xhat{e}_1
-  \end{pmatrix}
-  \,
-  \begin{pmatrix}
-    1 & 0\\
-    cot\alpha & 1
-  \end{pmatrix}
-\end{equation}
+base $B'$ en función de $B$ en columnas. Así $B' = B \mmm{M}$. A continuación
+expresamos lo mismo, tanto en función de $\alpha$, como de $u$, con distinta
+nomenclatura de índices
+\begin{subequations}
+  \begin{align}
+    %\label{eq:R2-oblic_cambio_base_01alpha}
+    \begin{pmatrix}
+      \xtilde{e}_0 & \xtilde{e}_1
+    \end{pmatrix}
+    &=
+    \begin{pmatrix}
+      \xhat{e}_0 & \xhat{e}_1
+    \end{pmatrix}
+    \,
+    \begin{pmatrix}
+      1 & 0\\
+      cot\alpha & 1
+    \end{pmatrix}\\
+    %\label{eq:R2-oblic_cambio_base_txu}
+    \begin{pmatrix}
+      \xtilde{e}_{t'} & \xtilde{e}_{x'}
+    \end{pmatrix}
+    &=
+      \begin{pmatrix}
+        \xhat{e}_{t} & \uvec{\i}
+      \end{pmatrix}
+      \,
+      \begin{pmatrix}
+        1 & 0\\
+        u & 1
+      \end{pmatrix}
+  \end{align}
+\end{subequations}
 La matriz de cambio de base coincide con la encontrada antes \eqref{eq:R2-M}.
 
 \subsection{Métrica en $O'$ desde el punto de vista de $O$}
@@ -2865,6 +2895,10 @@ representar como
 {\small
   \[
     \mmm{g}_{ij}
+    = \begin{pmatrix}
+      g_{00} & g_{01}\\
+      g_{10} & g_{11}
+    \end{pmatrix}
     = \begin{pmatrix}
       \xtilde{e}_0\cdot\xtilde{e}_0 & \xtilde{e}_0\cdot\xtilde{e}_1\\
       \xtilde{e}_1\cdot\xtilde{e}_0 & \xtilde{e}_1\cdot\xtilde{e}_1
@@ -2936,15 +2970,61 @@ Resultando
     \end{pmatrix}
 \end{equation}
 
-\subsection{Componentes covariantes}
+\subsection{Vectores y componentes covariantes y contravariantes}
 Hasta ahora, hemos tratado con los vectores covariantes y las componentes contravariantes
-en $O'$ desde el punto de vista de $O$. En notación de Einstein
+en $O'$ desde el punto de vista de $O$.
+En notación de Einstein
 \[
   \vvv{v} = X^i\,\tilde{e}_i
   \hspace{0.75em}\text{con } i = 0, 1
 \]
 
 Vamos a subir los índices de los vectores de $B$, $\xtilde{e}_i = g^{ij}\xtilde{e}_j$
+En la base $B'$
+\begin{align*}
+  \xtilde{e}^0
+  &=
+    g^{00}\xtilde{e}_0 + g^{01}\xtilde{e}_1
+    = 1\xtilde{e}_0 - u\xtilde{e}_1
+    = \xtilde{e}_0 - u\xtilde{e}_1\\
+  \xtilde{e}^1
+  &=
+    g^{10}\xtilde{e}_0 + g^{11}\xtilde{e}_1
+    = -u\xtilde{e}_0 + (1+u^2)\xtilde{e}_1
+\end{align*}
+
+En la base $B$, teniendo en cuenta \eqref{eq:R2-oblic_cov_e0_et}
+\eqref{eq:R2-oblic_cov_e1_ex}
+\begin{align}
+  \xtilde{e}^0
+  &=
+    \xtilde{e}_0 - u\xtilde{e}_1
+    = (\xhat{e}_t + u\,\uvec{\i}) - u\,\uvec{\i}
+    = \xhat{e}_t\\
+  \xtilde{e}^1
+  &=
+    -u\xtilde{e}_0 + (1+u^2)\xtilde{e}_1
+    -u (\xhat{e}_t + u\,\uvec{\i}) + (1 + u^2)\,\uvec{\i}
+    = -u\xhat{e}_t + \uvec{\i}
+\end{align}
+y volvemos a escribir los resultados para poder compararlas en la misma página, todas
+con respecto a la base rectangular $B$.
+
+Vectores covariantes
+\begin{subequations}
+\begin{align}
+  \xtilde{e}_0 &= \xtilde{e}_{t'} = \xhat{e}_{t} + u\,\uvec{\i}\\
+  \xtilde{e}_1 &= \xtilde{e}_{x'} = \uvec{\i}
+\end{align}
+\end{subequations}
+
+Vectores contravariantes
+\begin{subequations}
+\begin{align}
+  \xtilde{e}^0 &= \xtilde{e}^{t'} = \xhat{e}_t\\
+  \xtilde{e}^1 &= \xtilde{e}^{x'} = -u\xhat{e}_t + \uvec{\i}
+\end{align}
+\end{subequations}
   
 %
 %\section{Coordenadas polares planas}
