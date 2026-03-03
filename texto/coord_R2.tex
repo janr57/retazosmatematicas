@@ -2472,6 +2472,7 @@ inversa del cambio de base $\mmm{M}^{-1}$
 
 La matriz inversa de la anterior es la matriz de cambio de base
 \begin{equation}
+  \label{eq:R2-M}
   \mmm{M}
   =
   \begin{pmatrix}
@@ -2486,6 +2487,9 @@ La matriz inversa de la anterior es la matriz de cambio de base
 \end{equation}
 
 \subsection{Bases y matriz de cambio de base}
+El objetivo de este apartado es el de obtener, de una forma equivalente, la matriz de
+cambio de base, hallada en \eqref{eq:R2-M}, partiendo de las transformaciones de Galileo.
+
 \subsubsection{Base $B$ para el observador $O$ en reposo}
 Desde el punto de vista de $O$, que se considera en reposo, utiliza un sistema de
 coordenadas rectangular con base
@@ -2533,7 +2537,11 @@ horizontales son líneas de igual tiempo $t=t'$, el vector temporal de la base $
 que ser mayor que el vector de la base temporal de $O$, que vale 1, ver figura
 \ref{fig:R2-oblic_etprima_et}
 \[
-  \cos(\pi/2 - \alpha) = \sin\alpha = \dfrac{|\xhat{e}_t|}{|\xtilde{e}_{t'}|};\hspace{0.5em}
+  \cos(\pi/2 - \alpha)
+  = \sin\alpha
+  = \dfrac{|\xhat{e}_t|}{|\xtilde{e}_{t'}|}
+  = \dfrac{1}{|\xtilde{e}_{t'}|}
+  \longrightarrow
   |\xtilde{e}_{t'}| = \dfrac{1}{\sin\alpha} = \csc\alpha
 \]
 
@@ -2677,8 +2685,9 @@ que ser mayor que el vector de la base temporal de $O$, que vale 1, ver figura
     \end{tikzpicture}
     \caption{En rojo, los vectores de la base $B'$, donde $\xtilde{e}_{t'}$ se ve
       inclinado, desde el punto de vista del observador en reposo $O$. En gris, los
-      vectores unitario temporal y espacial de la base $B$. Las líneas horizontales son
-      equitemporales. La que se muestra indica $t=t'=\qty{1}{\second}$.}
+      vectores unitario temporal y espacial de la base $B$. Todas las líneas
+      horizontales que se puedan trazar son equitemporales. La que se muestra indica
+      $t=t'=\qty{1}{\second}$.}
     \label{fig:R2-oblic_etprima_et}
   \end{minipage}
   \hspace{1em}
@@ -2796,18 +2805,147 @@ que ser mayor que el vector de la base temporal de $O$, que vale 1, ver figura
         \draw[background] (SW) rectangle (NE);
       \end{scope}
     \end{tikzpicture}
-    \caption{Componentes horizontales y espaciales en la base $B$ del observador en reposo
-      $O$ del vector temporal de la base $B'$. Como su módulo es
-      $|\xtilde{e}_0|=1/\sin\alpha$, se deduce que
-      $\xtilde{e}_0 = \cot\alpha\,\uvec{i} + \xhat{e}_t$ en la base $B$ del observador
-      en reposo $O$.}
+    \caption{Componente espacial y temporal en la base $B$ del vector temporal de la
+      base $B'$, $\xtilde{e}_{t'}$, en rojo.
+      Como su módulo es $|\xtilde{e}_{t'}|= \csc\alpha$, se deduce que
+      $\xtilde{e}_{t'} = \cot\alpha\,\uvec{i} + \xhat{e}_t$ en la base $B$. Esto nos
+      servirá para deducir la matriz de cambio de base desde el punto de vista de $O$.}
     \label{fig:R2-oblic_etprima}
   \end{minipage}
 \end{figure}
 
+Resumiendo, los vectores de la base $B'$ en función de $B$ valen
+\begin{align}
+  \xtilde{e}_0
+  &= \xtilde{e}_{t'} = \xhat{e}_t + \cot\alpha\,\uvec{\i} = (1, \cot\alpha)\\
+  \xhat{e}_1
+  &= \xhat{e}_{x'} = 0\xhat{e}_t+\xhat{e}_x = 0\xhat{e}_t + \uvec{\i} = (0, 1)
+\end{align}
 
+La matriz de cambio de base se construye situando las componentes de los vectores de la
+base $B'$ en función de $B$ en columnas. Así $B' = B \mmm{M}$
+\begin{equation}
+  \begin{pmatrix}
+    \xtilde{e}_0 & \xtilde{e}_1
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \xhat{e}_0 & \xhat{e}_1
+  \end{pmatrix}
+  \,
+  \begin{pmatrix}
+    1 & 0\\
+    cot\alpha & 1
+  \end{pmatrix}
+\end{equation}
+La matriz de cambio de base coincide con la encontrada antes \eqref{eq:R2-M}.
 
+\subsection{Métrica en $O'$ desde el punto de vista de $O$}
+Calcularemos la métrica en a partir del producto escalar de los vectores de $B'$,
+y teniendo en cuenta que los vectores $\xhat{e}_t$ y $\uvec{\i}$ son ortogonales y
+unitarios
+\begin{align}
+  \xtilde{e}_0\cdot\xtilde{e}_0
+  &= \xtilde{e}_{t'}\cdot\xtilde{e}_{t'}
+    = (\xhat{e}_t+\cot\alpha\,\uvec{\i})\cdot(\xhat{e}_t+\cot\alpha\,\uvec{\i})
+    = 1 + \cot^2\alpha = \csc^2\alpha\\
+  \xtilde{e}_0\cdot\xtilde{e}_1
+  &= \xtilde{e}_{t'}\cdot\xtilde{e}_{x'}
+    = (\xhat{e}_t + \cot\alpha\,\uvec{\i})\cdot\uvec{\i}=\cot\alpha\\
+  \xtilde{e}_1\cdot\xtilde{e}_0
+  &= \xtilde{e}_{x'}\cdot\xtilde{e}_{t'}= \cdots = \cot\alpha\\
+  \xtilde{e}_1\cdot\xtilde{e}_1
+  &= \xtilde{e}_{x'}\cdot\xtilde{e}_{x'}
+    = \uvec{\i}\cdot\uvec{\i}
+    = 1
+\end{align}
 
+Como resultado, el tensor métrico en $O'$ desde el punto de vista de $O$ se puede
+representar como
+{\small
+  \[
+    \mmm{g}_{ij}
+    = \begin{pmatrix}
+      \xtilde{e}_0\cdot\xtilde{e}_0 & \xtilde{e}_0\cdot\xtilde{e}_1\\
+      \xtilde{e}_1\cdot\xtilde{e}_0 & \xtilde{e}_1\cdot\xtilde{e}_1
+    \end{pmatrix}
+    = \begin{pmatrix}
+      \xtilde{e}_{t'}\cdot\xtilde{e}_{t'} & \xtilde{e}_{t'}\cdot\xtilde{e}_{x'}\\
+      \xtilde{e}_{x'}\cdot\xtilde{e}_{t'} & \xtilde{e}_{x'}\cdot\xtilde{e}_{x'}
+    \end{pmatrix}
+    = \begin{pmatrix}
+      \csc^2\alpha & \cot\alpha\\
+      \cot\alpha & 1
+    \end{pmatrix}
+  \]
+}
+
+Como $u = \cot\alpha$ y $\csc^2\alpha$, según \ref{fig:R2-oblic_OO'_u}
+\begin{align*}
+  \csc\alpha
+  &=
+    \dfrac{\sqrt{t^2+u^2t^2}}{t}
+    = \dfrac{\sqrt{t^2(1+u^2)}}{t}
+    = \dfrac{\cancelout{t}\sqrt{1+u^2}}{\cancelout{t}}
+    = \sqrt{1+u^2}
+\end{align*}
+
+Entonces, la métrica se puede escribir como
+\begin{equation}
+  \mmm{g}_{ij}
+  = \begin{pmatrix}
+    \csc^2\alpha & \cot\alpha\\
+    \cot\alpha & 1      
+  \end{pmatrix}
+  = \begin{pmatrix}
+    1+u^2 & u\\
+    u & 1      
+  \end{pmatrix}
+\end{align}
+
+La inversa de la métrica sería
+\begin{align*}
+  \mmm{g}^{ij}
+  &=
+    \dfrac{1}{\csc^2\alpha-\cot^2\alpha}
+    \begin{pmatrix}
+      1 & -\cot\alpha\\
+      -\cot\alpha & \csc^2\alpha      
+    \end{pmatrix}
+    = \dfrac{1}{1}
+    \begin{pmatrix}
+      1 & -\cot\alpha\\
+      -\cot\alpha & \csc^2\alpha
+    \end{pmatrix}
+    = \begin{pmatrix}
+      1 & -\cot\alpha\\
+      -\cot\alpha & \csc^2\alpha
+    \end{pmatrix}    
+\end{align*}
+
+Resultando
+\begin{equation}
+  \mmm{g}^{ij}
+    = \begin{pmatrix}
+      1 & -\cot\alpha\\
+      -\cot\alpha & \csc^2\alpha
+    \end{pmatrix}
+    = \begin{pmatrix}
+      1 & -u\\
+      -u & 1+u^2
+    \end{pmatrix}
+\end{equation}
+
+\subsection{Componentes covariantes}
+Hasta ahora, hemos tratado con los vectores covariantes y las componentes contravariantes
+en $O'$ desde el punto de vista de $O$. En notación de Einstein
+\[
+  \vvv{v} = X^i\,\tilde{e}_i
+  \hspace{0.75em}\text{con } i = 0, 1
+\]
+
+Vamos a subir los índices de los vectores de $B$, $\xtilde{e}_i = g^{ij}\xtilde{e}_j$
+  
 %
 %\section{Coordenadas polares planas}
 %Aquí se ponen las cosas algo más interesantes. En este sistema, se utilizan dos
