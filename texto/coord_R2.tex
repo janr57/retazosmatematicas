@@ -681,10 +681,10 @@ cartesianas rectangulares
 Nótese que los vectores de la base son unitarios, por esta razón los habíamos
 representado, ya desde el principio, con el acento circunflejo
 \begin{align}
-  \|\xhat{e}_1\|
+  |\xhat{e}_1|
   &=
-    \|\uvec{\i}\| = 1\\
-  \|\xhat{e}_2\|
+    |\uvec{\i}| = 1\\
+  |\xhat{e}_2|
   &=
     (\cos\theta\,\uvec{\i}+\sin\theta\,\uvec{\j})^2
     = \cos^2\theta + \sin^2\theta = 1
@@ -784,9 +784,9 @@ filas
 \subsection{Componentes de los vectores}
 Cuando un vector se expresa en una determinada base, se obtiene su representación en
 función de unas determinadas componentes. Por ejemplo, en dos dimensiones y tomando una
-base genérica $\set{\vvv{b}_1,\vvv{b}_2}$, escribiríamos
+base genérica $\set{\vvv{e}_1,\vvv{e}_2}$, escribiríamos
 \[
-  \vvv{v} = A_1\vvv{b}_1 + A_2\vvv{b}_2
+  \vvv{v} = x_1\vvv{e}_1 + x_2\vvv{e}_2
 \]
 que, como sabemos, significa que el vector $\vvv{v}$ se obtiene sumando los productos de
 cada cada componente por el vector correspondiente de la base.
@@ -794,7 +794,7 @@ cada cada componente por el vector correspondiente de la base.
 Si la base estuviera formada por muchos vectores, o este número no estuviera definido,
 entonces sería conveniente utilizar un sumatorio, como
 \[
-  \vvv{v} = \sum_{i=1}^n A_i\vvv{b}_i
+  \vvv{v} = \sum_{i=1}^n x_i\vvv{e}_i
 \]
 
 Cuando se opera con expresiones un tanto largas, se suele utilizar la notación de
@@ -802,14 +802,14 @@ Einstein, donde se prescinde del sumatorio y se tiene en cuenta que cuando en un
 monomio se encuentra el mismo índice, por ejemplo $i$, se debe sumar para todos los
 valores de ese índice
 \[
-  \vvv{v} = \sum_i A_i\vvv{b}_i = A_i \vvv{b}_i
+  \vvv{v} = \sum_i x_i\vvv{e}_i = x_i \vvv{e}_i
 \]
 
 Otro aspecto importante es notar que las componentes de un vector dependen de la base
 elegida. Si se cambia de base, las componentes varían. Por ejemplo, si utilizáramos
-la base $\set{\vvv{b}'_1, \vvv{b}'_2}$, las nuevas componentes serían $A'_i$ y $A'_2$
+la base $\set{\vvv{x}'_1, \vvv{x}'_2}$, las nuevas componentes serían $x'_i$ y $x'_2$
 \[ 
-  \vvv{v} = A'_1\vvv{b}'_1 + A'_2\vvv{b}'_2
+  \vvv{v} = x'_1\vvv{e}'_1 + x'_2\vvv{e}'_2
 \]
 Cambian las componentes, pero el vector tiene que ser el mismo, el vector no cambia, lo
 hace su representación dependiendo de la base utilizada.
@@ -838,16 +838,19 @@ En otras palabras, la base ``se ha hecho 100 veces menor'', pero las componentes
 
 \subsubsection{Concepto}
 Estas componentes han variado de forma contraria a como lo hizo la base elegida.
-A las componentes que se comportan de esta manera se les llama \emph{contravariantes} y,
-aunque no es necesario en la mayor parte de las situaciones, se suele utilizar el índice
-que las acompaña como \emph{superíndice} (que no representa un exponente). Así, un vector
-como el que hemos puesto de ejemplo, se podría representar en forma genérica como
+A las que se comportan de esta manera se les llama \emph{contravariantes} y, aunque no
+es necesario en la mayor parte de las situaciones, se suele utilizar el índice que las
+acompaña como \emph{superíndice} (que no representa un exponente).
+Además, para facilitar la notación de Einstein, escribiremos las componentes
+contravariantes como $x^i$ (y también los ejes correspondientes), en lugar de $x$ e $y$.
+Así, un vector como el que hemos puesto de ejemplo, se podría representar en forma
+genérica como
 \[
-  \vvv{v} = A^1\vvv{b}_1 + A^2\vvv{b}_2
+  \vvv{v} = x^1\vvv{e}_1 + x^2\vvv{e}_2
 \]
 En notación de Einstein sería
 \[
-  \vvv{v} = A^i\vvv{b}_i
+  \vvv{v} = x^i\vvv{e}_i
 \]
 donde $i = 1, 2$.
 
@@ -907,8 +910,8 @@ segmento orientado $\vvv{v}$. Esta es la forma natural con la que sumamos vector
     % Eje xtilde
     \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
     coordinate (xtildefin);
-    %\node[texto, below] at (xtildefin) {\footnotesize $\tilde{x}^1$};
-    \node[texto, below] at (xtildefin) {\footnotesize $\tilde{x}$};
+    \node[texto, below] at (xtildefin) {\footnotesize $\tilde{x}^1$};
+    %\node[texto, below] at (xtildefin) {\footnotesize $\tilde{x}$};
     % Eje ytilde
     \path[save path=\ejeytilde, name path=O--ytilde] (O) -- ++(\YTILDEANG:\YTILDELONG cm)
     coordinate (ytildefin);
@@ -938,8 +941,8 @@ segmento orientado $\vvv{v}$. Esta es la forma natural con la que sumamos vector
     \draw[ejeoblic, use path=\ejextilde];
     % ytilde
     \draw[ejeoblic, use path=\ejeytilde];
-    %\node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{x}^2$};
-    \node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{y}$};
+    \node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{x}^2$};
+    %\node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{y}$};
     % Vector v
     \draw[vector, use path=\r];
     \node[above left=-3pt and -1pt] at (posvecttxt) {\footnotesize $\vvv{v}$};
@@ -949,9 +952,9 @@ segmento orientado $\vvv{v}$. Esta es la forma natural con la que sumamos vector
     % Marcar en color la componentes contravariantes
     \draw[contravariante]
     (O) -- node[contravtxt,pos=0.5, below]
-    {$\hat{A}^1\xhat{e}_1$} (CTV1);
+    {$\tilde{x}^1\xhat{e}_1$} (CTV1);
     \draw[contravariante] (O) -- node[contravtxt,pos=0.5,above left=-2pt and -2pt]
-    {$\hat{A}^2\xhat{e}_2$} (CTV2);
+    {$\tilde{x}^2\xhat{e}_2$} (CTV2);
     
     % Origen
     \fill[orange!80!black] (O) circle [radius=0.8pt];
@@ -963,18 +966,20 @@ segmento orientado $\vvv{v}$. Esta es la forma natural con la que sumamos vector
       \draw[background] (SW) rectangle (NE);
     \end{scope}
   \end{tikzpicture}
-  \caption{Componentes contravariantes $A^i$, en coordenadas oblicuas. El vector $\vvv{v}$
-    se representa como $\vvv{v}=A^1\,\xhat{e}_1 + A^2\,\xhat{e}_2$. La componente
+  \caption{Componentes contravariantes $\tilde{x}^i$, en coordenadas oblicuas. El vector
+    $\vvv{v}$ se representa como
+    $\vvv{v}=\tilde{x}^1\,\xhat{e}_1+\tilde{x}^2\,\xhat{e}_2$. La componente
     contravariante en un cierto eje nos indica el desplazamiento que se ha producido en
     ese eje.}
   \label{fig:R2-oblic_contrav}
 \end{figure}
 
 Para centrar ideas, supongamos que el vector $\vvv{v}$ de la figura representa un
-desplazamiento en $\symbb{R}^2$. La componente $A^1$ nos indica el espacio recorrido
-en el eje $\tilde{x}$ y $A^2$ nos da el espacio recorrido en el eje $\tilde{y}$.
-La suma de las componentes contravariantes $A^i$ multiplicadas por sus respectivos
-vectores unidad, nos da el desplazamiento que nos indica el vector. 
+desplazamiento en $\symbb{R}^2$. La componente $\tilde{x}^1$ nos indica el desplazamiento
+en el eje $\tilde{x}^1 = \tilde{x}$, y $\xtilde{x}^2$ nos lo da en el eje
+$\tilde{x}^2=\tilde{y}$.
+La suma de las componentes contravariantes $\tilde{x}^i$ multiplicadas por sus
+respectivos vectores unidad, nos da el desplazamiento indicado por el vector.
 
 
 \subsection{Forma matricial de la base y de las componentes}
@@ -983,7 +988,7 @@ vectores en fila
 \[
   B =
   \begin{pmatrix}
-    \vvv{b}_1 & \vvv{b}_2
+    \vvv{e}_1 & \vvv{e}_2
   \end{pmatrix}
 \]
 
@@ -993,8 +998,8 @@ elegida como
 \[
   \vvv{v} =
   \begin{pmatrix}
-    A^1\\
-    A^2
+    x^1\\
+    x^2
   \end{pmatrix}
 \]
 Es importante distinguir entre estas dos notaciones y darse cuenta de que no son
@@ -1020,8 +1025,8 @@ mediante $\mmm{M}^{-1}$, mientras que las antiguas se transforman a partir de la
 mediante $\mmm{M}$
 \begin{subequations}
   \begin{align}
-    &\left[A^i\right]_{B'} = \mmm{M}^{-1} \left[A^i\right]_{B}\\
-    &\left[A^i\right]_{B}\hspace{0.4em} = \mmm{M} \left[A^i\right]_{B'}
+    &\left[\tilde{x}^i\right]_{B'} = \mmm{M}^{-1} \left[x^i\right]_{B}\\
+    &\left[x^i\right]_{B}\hspace{0.4em} = \mmm{M} \left[\tilde{x}^i\right]_{B'}
   \end{align}
 \end{subequations}
 
@@ -1030,8 +1035,8 @@ En coordenadas oblicuas en $\symbb{R}^2$ utilizamos las matrices inversa
 \begin{subequations}
   \begin{align}
     \begin{pmatrix}
-      \tilde{A}^1\\
-      \tilde{A}^2
+      \tilde{x}^1\\
+      \tilde{x}^2
     \end{pmatrix}
     &=
       \begin{pmatrix}
@@ -1040,12 +1045,12 @@ En coordenadas oblicuas en $\symbb{R}^2$ utilizamos las matrices inversa
       \end{pmatrix}
       \,
     \begin{pmatrix}
-      A^1\\
-      A^2
+      x^1\\
+      x^2
     \end{pmatrix}\\
     \begin{pmatrix}
-      A^1\\
-      A^2
+      x^1\\
+      x^2
     \end{pmatrix}
     &=
       \begin{pmatrix}
@@ -1054,8 +1059,8 @@ En coordenadas oblicuas en $\symbb{R}^2$ utilizamos las matrices inversa
       \end{pmatrix}
       \,
     \begin{pmatrix}
-      \tilde{A}^1\\
-      \tilde{A}^2
+      \tilde{x}^1\\
+      \tilde{x}^2
     \end{pmatrix}
   \end{align}
 \end{subequations}
@@ -1065,7 +1070,7 @@ En coordenadas oblicuas en $\symbb{R}^2$ utilizamos las matrices inversa
 Supongamos que tenemos un vector en coordenadas cartesianas rectangulares
 \[
   \vvv{v}
-  = A^1\,\xhat{u}_1 + A^2\,\xhat{u}_2 = A^i\,\xhat{u}_i
+  = x^1\,\xhat{u}_1 + x^2\,\xhat{u}_2 = x^i\,\xhat{u}_i
   = 2\,\uvec{\i} - 4\,\uvec{\j}
 \]
 donde $\xhat{u}_1 = \uvec{\i}$ y $\xhat{u}_2 = \uvec{\j}$.
@@ -1075,8 +1080,8 @@ $\alpha = \pi/3\,\unit{\radian}$. Tendremos que aplicar la inversa de la matriz 
 transformación de base de $B$ a $B'$
 \begin{align*}
   \begin{pmatrix}
-    \tilde{A}^1\\
-    \tilde{A}^2
+    \tilde{x}^1\\
+    \tilde{x}^2
   \end{pmatrix}
   &=
   \begin{pmatrix}
@@ -1085,8 +1090,8 @@ transformación de base de $B$ a $B'$
   \end{pmatrix}
   \,
   \begin{pmatrix}
-    A^1\\
-    A^2
+    x^1\\
+    x^2
   \end{pmatrix}
     =
     \begin{pmatrix}
@@ -1108,20 +1113,19 @@ transformación de base de $B$ a $B'$
 Así
 \[
   \vvv{v}
-  = \tilde{A}^1\,\xhat{e}_1 + \tilde{A}^2\,\xhat{e}_2 = \tilde{A}^i\,\xhat{e}_i
+  = \tilde{x}^1\,\xhat{e}_1 + \tilde{x}^2\,\xhat{e}_2 = \tilde{x}^i\,\xhat{e}_i
   = \left(2+\dfrac{4}{\sqrt{3}}\right)\,\xhat{e}_1 - \dfrac{8}{\sqrt{3}}\,\xhat{e}_2
 \]
 
-
 Si nos dieran las componentes en coordenadas oblicuas
 \[
-  \left(\tilde{A}^1, \tilde{A}^2\right) = \left(2+4/\sqrt{3}, -8/\sqrt{3}\right)
+  \left(\tilde{x}^1, \tilde{x}^2\right) = \left(2+4/\sqrt{3}, -8/\sqrt{3}\right)
 \]
 y quisiéramos obtener las coordenadas rectangulares, deberíamos obtener $(2,-4)$
 \begin{align*}
   \begin{pmatrix}
-    A^1\\
-    A^2
+    x^1\\
+    x^2
   \end{pmatrix}
   &=
   \begin{pmatrix}
@@ -1130,8 +1134,8 @@ y quisiéramos obtener las coordenadas rectangulares, deberíamos obtener $(2,-4
   \end{pmatrix}
   \,
   \begin{pmatrix}
-    \tilde{A}^1\\
-    \tilde{A}^2
+    \tilde{x}^1\\
+    \tilde{x}^2
   \end{pmatrix}
     =
   \begin{pmatrix}
@@ -1240,9 +1244,9 @@ contravariantes.
 
 En cambio, hay otra forma de proyectar un vector, y es trazando líneas perpendiculares a
 los ejes, figura \ref{fig:R2-oblic_cov}.
-Estas \emph{componentes covariantes} las representaremos mediante subíndices $A_i$
+Estas \emph{componentes covariantes} las representaremos mediante subíndices $x_i$
 \begin{equation}
-  \vvv{v} = A_1\xhat{e}^1 + A_2\xhat{e}^2 = A_i \xhat{e}^i
+  \vvv{v} = x_1\xhat{e}^1 + x_2\xhat{e}^2 = x_i \xhat{e}^i
 \end{equation}
 La base utilizada aquí $\xhat{e}^i$, no es la natural de coordenadas oblicuas,
 \eqref{eq:R2-oblic_base}, pues contiene un superíndice (de nuevo, no es un exponente).
@@ -1334,9 +1338,9 @@ componentes.
       % \node[above right=0pt and -5pt] at (P) {\footnotesize $P$};
       
       % Marcar en azul la componentes covariantes
-      \draw[covariante] (O) -- node[covtxt,pos=0.5, below] {$A_1\xhat{e}^1$} (COV1);
+      \draw[covariante] (O) -- node[covtxt,pos=0.5, below] {$x_1\xhat{e}^1$} (COV1);
       \draw[covariante] (O) -- node[covtxt,pos=0.5,above left=-2pt and -2pt]
-      {$A_2\xhat{e}^2$} (COV2);
+      {$x_2\xhat{e}^2$} (COV2);
       
       % Origen
       \fill[cyan!80!black] (O) circle [radius=0.8pt];
@@ -1348,8 +1352,8 @@ componentes.
         \draw[background] (SW) rectangle (NE);
       \end{scope}
     \end{tikzpicture}
-    \caption{Componentes covariantes $A_i$ en coordenadas oblicuas. El vector $\vvv{v}$
-      se representa como $\vvv{v}=A_1\,\xhat{e}^1 + A_2\,\xhat{e}^2$. Las componentes
+    \caption{Componentes covariantes $x_i$ en coordenadas oblicuas. El vector $\vvv{v}$
+      se representa como $\vvv{v}=x_1\,\xhat{e}^1 + x_2\,\xhat{e}^2$. Las componentes
       contravariantes nos indican el desplazamiento en el espacio.}
     \label{fig:R2-oblic_cov}
   \end{minipage}
@@ -1449,14 +1453,14 @@ componentes.
       % Proyecciones de componentes
       % Contravariantes
       \draw[proyeccion] (P) -- (CTV1);
-      \node[orange!70!black, below=-1pt] at (CTV1) {\footnotesize $A^1$};
+      \node[orange!70!black, below=-1pt] at (CTV1) {\footnotesize $x^1$};
       \draw[proyeccion] (P) -- (CTV2);
-      \node[orange!70!black, left=-1.5pt] at (CTV2) {\footnotesize $A^2$};
+      \node[orange!70!black, left=-1.5pt] at (CTV2) {\footnotesize $x^2$};
       % Covariantes
       \draw[proyeccion] (P) -- (COV1);
-      \node[cyan!50!black, below=1pt] at (COV1) {\footnotesize $A_1$};
+      \node[cyan!50!black, below=1pt] at (COV1) {\footnotesize $x_1$};
       \draw[proyeccion] (P) -- (COV2);
-      \node[cyan!50!black, above left=-2pt and -2pt] at (COV2) {\footnotesize $A_2$};
+      \node[cyan!50!black, above left=-2pt and -2pt] at (COV2) {\footnotesize $x_2$};
       
       % Ejes
       % x
@@ -1601,9 +1605,9 @@ Ver figuras \ref{fig:R2-oblic_cov1} y \ref{fig:R2-oblic_cov2}.
       %\draw[covariante]
       %(O) -- node[covtxt,pos=0.5, below]
       %{$A_1\xhat{e}^1$} (COV1);
-      \draw[covariante] (O) --node[covtxt,pos=0.5,below] {$A_1$} (COV1);
+      \draw[covariante] (O) --node[covtxt,pos=0.5,below] {$x_1$} (COV1);
       %\draw[covariante] (O) -- node[covtxt,pos=0.5,above left=-2pt and -2pt]
-      %{$\hat{A}_2\xhat{e}^2$} (COV2);
+      %{$\hat{x}_2\xhat{e}^2$} (COV2);
       
       % Origen
       \fill[cyan!80!black] (O) circle [radius=0.8pt];
@@ -1615,7 +1619,7 @@ Ver figuras \ref{fig:R2-oblic_cov1} y \ref{fig:R2-oblic_cov2}.
         \draw[background] (SW) rectangle (NE);
       \end{scope}
     \end{tikzpicture}
-    \caption{En azul, la componente covariante $A_1$ de un vector $\vvv{v}$ en
+    \caption{En azul, la componente covariante $x_1$ de un vector $\vvv{v}$ en
       coordenadas oblicuas, interpretada geométricamente como la proyección del vector o
       su \emph{sombra} en el eje $\tilde{x}$. En rojo aparecen las líneas de nivel
       perpendiculares al eje que son \emph{atravesadas} por $\vvv{v}$.
@@ -1731,7 +1735,7 @@ Ver figuras \ref{fig:R2-oblic_cov1} y \ref{fig:R2-oblic_cov2}.
       %\draw[covariante]
       %(O) -- node[covtxt,pos=0.5, below]
       %{$\hat{A}_1\xhat{e}^1$} (COV1);
-      \draw[covariante] (O)--node[covtxt,pos=0.5,above left=-2pt and -2pt]{$A_2$} (COV2);
+      \draw[covariante] (O)--node[covtxt,pos=0.5,above left=-2pt and -2pt]{$x_2$} (COV2);
       
       % Origen
       \fill[cyan!80!black] (O) circle [radius=0.8pt];
@@ -1743,7 +1747,7 @@ Ver figuras \ref{fig:R2-oblic_cov1} y \ref{fig:R2-oblic_cov2}.
         \draw[background] (SW) rectangle (NE);
       \end{scope}
     \end{tikzpicture}
-    \caption{En azul, la componente covariante $A_2$ de un vector $\vvv{v}$ en
+    \caption{En azul, la componente covariante $x_2$ de un vector $\vvv{v}$ en
       coordenadas oblicuas, interpretada geométricamente como la proyección del vector o
       su \emph{sombra} en el eje $\tilde{y}$. En rojo aparecen las líneas de nivel
       perpendiculares al eje que son \emph{atravesadas} por $\vvv{v}$.
@@ -1845,7 +1849,7 @@ $\symbb{R}^2$ como
   \vvv{u}\cdot\vvv{v}
   = \vvv{u}^\transp  \mmm{g}_{ij} \vvv{v}
   = \begin{pmatrix}
-    U^1 & U^2
+    u^1 & u^2
   \end{pmatrix}
   \,\begin{pmatrix}
     g_{11} & g_{12}\\
@@ -1853,8 +1857,8 @@ $\symbb{R}^2$ como
   \end{pmatrix}
   \,
   \begin{pmatrix}
-    V^1\\
-    V^2
+    v^1\\
+    v^2
   \end{pmatrix}
 \end{equation}
 
@@ -1864,45 +1868,45 @@ Desarrollando la expresión
     \vvv{u}\cdot\vvv{v}
     &=
       \begin{pmatrix}
-        U^1 g_{11}+U^2g_{21} & U^1g_{12}+U^2g_{22}
+        u^1 g_{11}+ u^2g_{21} & u^1g_{12}+ u^2g_{22}
       \end{pmatrix}
       \,
       \begin{pmatrix}
-        V^1\\
-        V^2
+        v^1\\
+        v^2
       \end{pmatrix}\\
     &=
-      \left(U^1\,g_{11}+U^2\,g_{21}\right) V^1 + \left(U^1\,g_{12}+U^2\,g_{22}\right) V^2\\
+      \left(u^1\,g_{11}+ u^2\,g_{21}\right) v^1+\left(u^1\,g_{12}+u^2\,g_{22}\right) v^2\\
     &=
-      U^1g_{11}\,V^1 + U^2g_{21}\,V^1 + U^1g_{12}\,V^2 + U^2g_{22}\,V^2\\
+      u^1g_{11}\,v^1 + u^2g_{21}\,v^1 + u^1g_{12}\,v^2 + u^2g_{22}\,v^2\\
     &=
-      U^1\left(g_{11}\,V^1+g_{12}\,V^2\right)+U^2\left(g_{21}\,V^1+g_{22}\,V^2\right)\\
+      u^1\left(g_{11}\,v^1+g_{12}\,u^2\right) + v^2\left(g_{21}\,v^1+g_{22}\,v^2\right)\\
     &=
-      U^1\left(\sum_{j=1}^2g_{1j}\,V^j\right) + U^2\left(\sum_{j=1}^2g_{2j}\,V^j\right)\\
+      u^1\left(\sum_{j=1}^2g_{1j}\,v^j\right) + u^2\left(\sum_{j=1}^2g_{2j}\,v^j\right)\\
     &=
-      \sum_{i=1}^2 U^i \left(\sum_{j=1}^2\mmm{g}_{ij}\,V^j\right)\\
+      \sum_{i=1}^2 u^i \left(\sum_{j=1}^2\mmm{g}_{ij}\,v^j\right)\\
     &=
-      \sum_{i=1}^2\sum_{j=1}^2\mmm{g}_{ij}\,U^i\,V^j
+      \sum_{i=1}^2\sum_{j=1}^2\mmm{g}_{ij}\,u^i\,v^j
   \end{align*}
 }
 
 En notación de Einstein
 \begin{equation}
   \vvv{u}\cdot\vvv{v}
-  = \mmm{g}_{ij}\,U^i\,V^j
+  = \mmm{g}_{ij}\,u^i\,v^j
 \end{equation}
 
 Regorganizando términos ---que son escalares y se cumple la propiedad conmutativa
 \[
   \vvv{u}\cdot\vvv{v}
-  = \,U^i\mmm{g}_{ij}\,V^j
+  = \,u^i\mmm{g}_{ij}\,v^j
 \]
 
 Ahora, utilizamos la métrica para bajar el índice $j$, porque
-$U_i = \mmm{g}_{ij}V^j$
+$U_i = \mmm{g}_{ij}v^j$
 \begin{equation}
   \vvv{u}\cdot\vvv{v}
-  = U^i\,V_i = U_i\,V^i
+  = u^i\,v_i = u_i\,v^i
 \end{equation}
 
 \section{Ejercicio de resumen}
@@ -2025,15 +2029,15 @@ c) El tensor métrico en el sistema oblícuo, con $\alpha = \pi/3\,\unit{\radian
 d) Para hallar las componentes contravariantes, debemos aplicar la inversa de la matriz
 de cambio de base
 \[
-  \left[A^i\right]_{\tilde{B}} = \mmm{M}^{-1}\, \left[A^i\right]_{B}
+  \left[\tilde{x}^i\right]_{\tilde{B}} = \mmm{M}^{-1}\, \left[x^i\right]_{B}
 \]
-donde las componentes contravarianes en la base rectangular $[A^i]_{B}$ son iguales
+donde las componentes contravarianes en la base rectangular $[x^i]_{B}$ son iguales
 que las covariantes y valen $(3, 4)$.
 
 \[
   \begin{pmatrix}
-    A^1\\
-    A^2
+    x^1\\
+    x^2
   \end{pmatrix}
   = \begin{pmatrix}
     1 & -\sqrt{3}/3\\
@@ -2053,17 +2057,17 @@ que las covariantes y valen $(3, 4)$.
 \noindent
 e) Las componentes covariantes se obtienen bajando índices
 \[
-  A_i = \mmm{g}_{ij}\,A^j
+  x_i = \mmm{g}_{ij}\,x^j
 \]
-Desarrollando la expresión para $A_1$ y $A_2$ y teniendo en cuenta la métrica,
+Desarrollando la expresión para $x_1$ y $x_2$ y teniendo en cuenta la métrica,
 $g_{11} = 1$, $g_{12}=g_{21}=1/2$ y $g_{22}=1$
 \begin{align*}
-  A_1
-  &= g_{11}A^1 + g_{12}A^2 = A^1 + \dfrac{1}{2}A^2
-  = 3 - \cancelout{\dfrac{4\sqrt{3}}{3}} + \cancelout{\dfrac{1}{2}\dfrac{8\sqrt{3}}{3}}
+  x_1
+  &= g_{11}x^1 + g_{12}x^2 = x^1 + \dfrac{1}{2}x^2
+    = 3 - \cancelout{\dfrac{4\sqrt{3}}{3}} + \cancelout{\dfrac{1}{2}\dfrac{8\sqrt{3}}{3}}
     = 3\\
-  A_2
-  &= g_{21}A^1 + g_{22} A^2 = \dfrac{1}{2}A^1 + A^2
+  x_2
+  &= g_{21}x^1 + g_{22} x^2 = \dfrac{1}{2}x^1 + x^2
     = \dfrac{1}{2}\left(3-\dfrac{4\sqrt{3}}{3}\right) + \dfrac{8\sqrt{3}}{3}
     = \dfrac{3}{2} + 2\sqrt{3}
 \end{align*}
@@ -2074,8 +2078,8 @@ $25$, pues tiene que dar en mismo resultado que en rectangulares (apartado a).
 \begin{align*}
   \vvv{v}\cdot\vvv{v}
   &=
-    A^iA_i
-    = A^1 A_1 + A^2 A_2
+    x^ix_i
+    = x^1 x_1 + x^2 x_2
     = \left(3-\dfrac{4\sqrt{3}}{3}\right) 3
     + \dfrac{8\sqrt{3}}{3} \left(\dfrac{3}{2} + 2\sqrt{3}\right)\\
   &=
@@ -2473,14 +2477,14 @@ Las transformaciones de Galileo en forma matricial son\footnotemark{}
 \]
 
 Estas componentes son contravariantes, debido a que si ampliamos la escala de medida de posiciones y/o tiempo, la componente respectiva se hace más pequeña, y viceversa.
-Por tanto, podremos escribir $X^0 = t$, $X^1 = x$, $\tilde{X}^0 = t'$ y
-$\tilde{X}^1 = x'$.
+Por tanto, podremos escribir $x^0 = t$, $x^1 = x$, $\tilde{x}^0 = t'$ y
+$\tilde{x}^1 = x'$.
 Las transformaciones de Galileo quedarían
 \begin{equation}
   \label{eq:R2-transf_galileo}
   \begin{pmatrix}
-    \tilde{X}^0\\
-    \tilde{X}^1
+    \tilde{x}^0\\
+    \tilde{x}^1
   \end{pmatrix}
   = \begin{pmatrix}
     1 & 0 \\
@@ -2488,8 +2492,8 @@ Las transformaciones de Galileo quedarían
   \end{pmatrix}
   \,
   \begin{pmatrix}
-    X^0\\
-    X^1
+    x^0\\
+    x^1
   \end{pmatrix}
 \end{equation}
 donde $u$ es la velocidad relativa de $O'$ con respecto de $O$.
@@ -3021,7 +3025,7 @@ Hasta ahora, hemos tratado con los vectores covariantes y las componentes contra
 en $O'$ desde el punto de vista de $O$.
 En notación de Einstein
 \[
-  \vvv{v} = X^i\,\tilde{e}_i
+  \vvv{v} = x^i\,\tilde{e}_i
   \hspace{0.75em}\text{con } i = 0, 1
 \]
 
@@ -3074,7 +3078,7 @@ Vectores contravariantes
 
 \subsection{Componentes covariantes y contravariantes}
 Bajar índices
-$X_t = g_{tt}X^{t} + g_{tx} X^{x}= X^{t} + u X^{x}$
+$x_t = g_{tt}x^{t} + g_{tx} x^{x}= x^{t} + u x^{x}$
 
 
 %
@@ -3309,13 +3313,13 @@ $X_t = g_{tt}X^{t} + g_{tx} X^{x}= X^{t} + u X^{x}$
 %    \dfrac{\partial\vvv{r}}{\partial r}
 %    = \cos\theta\,\uvec{\i} + \sin\theta\,\uvec{\j}
 %    \longrightarrow
-%    \|\vvv{e}_r\| = 1\\
+%    |\vvv{e}_r| = 1\\
 %  \vvv{e}_\theta
 %  &=
 %    \dfrac{\partial\vvv{r}}{\partial\theta}
 %    = -r\sin\theta\,\uvec{\i} + r\cos\theta\,\uvec{\j}
 %    \longrightarrow
-%    \|\vvv{e}_\theta\| = r\\    
+%    |\vvv{e}_\theta| = r\\    
 %\end{align}
 %\end{subequations}
 %Estos vectores se utilizan en geometría diferencial y son los que se utilizarán para
