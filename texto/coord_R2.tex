@@ -2163,50 +2163,33 @@ contras:
   Usaremos como eje de abcisas el eje $x$ y el de ordenadas $t$, al contrario de lo que
   se suele hacer cuando se estudia el movimiento unidimensional en el tiempo en física
   elemental. La explicación es que, como estamos en la \emph{relatividad de Galileo},
-  quiero utilizar el esquema que se utiliza en \emph{relatividad especial}, aunque no voy a utilizar el eje
-  del tiempo multiplicado por la velocidad de propagación de la luz en el vacío $c$ como
-  se hace en esta última.
-\item La otra es, qué angulo utilizar para el desarrollo matemático que seguirá.
-  Teniendo en cuenta que esta línea del movimiento relativo de $O'$ respecto de $O$,
-  se convertirá en el eje $\tilde{t}$ de $O'$ desde el punto de vista de $O$.
-  Tenemos dos opciones:
+  quiero utilizar el esquema que se utiliza en \emph{relatividad especial}, aunque en
+  todo lo que implica esta.
+  
+\item La otra es, ¿qué angulo utilizar en las expresiones matemáticas que obtendremos?
+  Teniendo en cuenta que la línea del movimiento relativo de $O'$ respecto de $O$,
+  se convertirá en el eje de tiempo $\tilde{t}$ de $O'$ desde el punto de vista de $O$,
+  tenemos dos opciones:
   \begin{enumerate}
   \item Utilizar el ángulo $\alpha$ que forma el eje $x$ (abcisas) con la línea de
     pendiente constante. Como hemos dicho, este ángulo nos indicará cómo ve el
-    observador $O$, en reposo, el eje $\tilde{t}$ que utiliza $O'$ como referencia. El
-    observador en reposo siente que este último no utiliza ejes ortogonales, sino que
-    forman un ángulo distinto $\alpha$, en este caso menor de \qty{90}{\degree}, porque
-    $O'$ se aleja de $O$ en el sentido positivo del eje $x$ (sería mayor de
-    \qty{90}{\degree} si se alejara en sentido contrario.
-    \itme Utilizar el ángulo complementario $\theta = 90-\alpha\,\unit{\degree}$, que
-    forma la línea del movimiento de $O'$ con respecto del eje $t$.
+    observador $O$, en reposo, los ejes $\tilde{t}$ y $\tilde{x}$ que utiliza $O'$ como
+    referencia. El observador en reposo siente que este último no utiliza ejes
+    ortogonales, sino que forman un ángulo distinto $\alpha$, en este caso menor de
+    \qty{90}{\degree}, porque $O'$ se aleja de $O$ en el sentido positivo del eje $x$
+    (sería mayor de \qty{90}{\degree} si se alejara en sentido contrario.
+  \item Utilizar el ángulo complementario $\theta = 90-\alpha\,\unit{\degree}$, que
+    forma la línea del movimiento de $O'$ con respecto del eje $t$. La pendiente de esta
+    línea sería la tangente del ángulo y seo como cuánto se inclina el eje $\tilde{t}$
+    de $O'$ con respecto al eje $t$ de $O$. El problema que le veo es que el ángulo, así
+    interpretado, debería ser negativo, pues gira en sentido horario. Entiendo que es
+    posible no interpretarlo exactamente así y ponerlo positivo, pero no lo considero en
+    esta recopilación de notas.
   \end{enumerate}
 \end{enumerate}
 
-la otra decisión es, una vez decido por una de las anteriores, qué angulo utilizar para
-el desarrollo matemático, esto es, 
-utilizar el ángulo $\alpha$ que forma la línea con el eje $x$ o su complementario, el que
-forma el eje $t$ con la línea recta. Cualquiera de las dos opciones sería correcta, pero
-me he dedicido a utilizar el ángulo citado por varias razones:
-\begin{itemize}
-\item Este ángulo nos va a indicar cómo ve el observador $O$ en reposo los ejes que
-  utiliza $O'$ como referencia. El observador en reposo siente que este último no utiliza
-  ejes ortogonales, sino que forman un ángulo $\alpha$.
-\item El ángulo complementario, que voy a llamar $\theta = 90-\alpha$ en este comentario,
-  se puede interpretar (figura \ref{fig:R2-oblic_etprima_et}) como el ángulo que el
-  observador en reposo, ve con que \emph{cierra} el eje $t'$ sobre $x'$ del observador
-  $O'$ en movimiento. Desde mi punto de vista, este ángulo, debería ser $-\theta$, pues
-  se cierra en sentido horario. Aunque no es necesario tener en cuenta el signo
-  negativo, me siento un poco incómodo con esto. En todo caso, $\theta$ sería la
-  verdadera pendiente $x/t$ de la línea recta.
-\item Por otro lado, podría haber utilizado el eje $t$ como el de abcisas y el $x$ como
-  el de ordenadas, que es lo más normal en física elemental. Pero quiero acostumbrarme
-  al estilo en relatividad especial de situar el eje $t$ en ordenadas, aunque en la
-  relatividad de Galileo no es necesario hacerlo, y puede parecer algo artificial.
-\end{itemize}
-
-, vemos que
-$\alpha = \arccot(x/t)$ y que la velocidad relativa de $O'$ respecto de $O$ es
+En la figura, vemos que la velocidad relativa de $O'$ respecto de $O$ es la cotangente
+de $\alpha$
 \begin{equation}
   \label{eq:R2-transfGalileo_u_alpha}
   u= \dfrac{x}{t} =\cot\alpha
@@ -2214,7 +2197,8 @@ $\alpha = \arccot(x/t)$ y que la velocidad relativa de $O'$ respecto de $O$ es
 En esta gráfica, cuanto menor sea $\alpha$, mayor será la velocidad relativa de
 $O'$\footnotemark{}.
 \footnotetext{Si hubiéramos representado el tiempo en abcisas y la posición en
-  ordenadas, a mayor velocidad le correspondería una pendiente mayor.}
+  ordenadas, $\alpha$ sería la pendiente de la recta, $\alpha=\arctan(x/t)$ y a mayor
+  velocidad le correspondería una pendiente mayor.}
 
 Ahora, centramos nuestra atención en un suceso $S$ que tiene lugar en un cierto tiempo $t=t'$, y que es observado tanto por $O$, como por $O'$, pero desde el punto de vista
 de $O$, ver figura \ref{fig:R2-oblic_suceso_transf2}.
@@ -2461,9 +2445,8 @@ En ella se comprueba que la distancia $x'$ que mide $O'$ está de acuerdo con la
       \end{scope}
     \end{tikzpicture}
     \caption{Comprobación de una de las transformaciones de Galileo, la que relaciona
-      la posición de un cierto suceso medido por $O$ y por $O'$ en un instante $t$.
-      Aunque está implícito en la figura, no se impone con claridad que el tiempo es
-      absoluto.}
+      la posición de un cierto suceso medido por ambos, $O$ y $O'$ en un instante $t=t'$.
+      El tiempo absoluto está implícito en la esta figura.}
     \label{fig:R2-oblic_suceso_transf2}
   \end{minipage}
 \end{figure}
