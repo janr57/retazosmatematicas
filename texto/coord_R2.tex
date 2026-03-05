@@ -2135,8 +2135,9 @@ Para centrar ideas, supongamos que tenemos dos observadores, uno $O$ en reposo y
 $O'$ que lleva una velocidad constante $u$ con respecto al anterior. En el instante
 $t=0$, ambos se encuentran en la misma posición.
 El principio de Galileo permite relacionar las mediciones de posición y tiempo de un
-suceso, realizadas por ambos observadores $(t,x)$ y $(t',x')$. La posición la representaremos en el eje de abcisas y el tiempo en ordenadas, como se hace en relatividad
-especial y general.
+suceso, realizadas por ambos observadores $x$, $t$ y $x'$ y $t'$. La posición la
+representaremos en el eje de abcisas y el tiempo en ordenadas, como se hace en
+relatividad especial y general.
 
 Las transformaciones de Galileo en una dimensión espacial $x$ son
 \begin{subequations}
@@ -2151,10 +2152,60 @@ La segunda indica que el tiempo es absoluto.
 
 \subsubsection{Observador $O$ en reposo}
 Este observador utiliza un sistema de referencia cartesiano rectangular, ejes $x$ y $t$.
-Puede registrar las posiciones y tiempos del segundo observador o de cualquier otro
-suceso.
+Con él, $O$ puede registrar las posiciones y tiempos del segundo observador o de
+cualquier otro suceso.
 Como la velocidad de $O'$ es constante, la gráfica del movimiento de $O'$ respecto de $O$
-es una línea de pendiente constante. De la figura \ref{fig:R2-oblic_OO'_u}, vemos que
+es una línea de pendiente constante. En la figura \ref{fig:R2-oblic_OO'_u} y en las
+siguientes, he tomado dos decisiones, teniendo en cuenta que siempre hay sus pros y sus
+contras:
+\begin{enumerate}
+\item La primera es, ¿cuál de los ejes utilizo como abcisas y cual como ordenadas?
+  Usaremos como eje de abcisas el eje $x$ y el de ordenadas $t$, al contrario de lo que
+  se suele hacer cuando se estudia el movimiento unidimensional en el tiempo en física
+  elemental. La explicación es que, como estamos en la \emph{relatividad de Galileo},
+  quiero utilizar el esquema que se utiliza en \emph{relatividad especial}, aunque no voy a utilizar el eje
+  del tiempo multiplicado por la velocidad de propagación de la luz en el vacío $c$ como
+  se hace en esta última.
+\item La otra es, qué angulo utilizar para el desarrollo matemático que seguirá.
+  Teniendo en cuenta que esta línea del movimiento relativo de $O'$ respecto de $O$,
+  se convertirá en el eje $\tilde{t}$ de $O'$ desde el punto de vista de $O$.
+  Tenemos dos opciones:
+  \begin{enumerate}
+  \item Utilizar el ángulo $\alpha$ que forma el eje $x$ (abcisas) con la línea de
+    pendiente constante. Como hemos dicho, este ángulo nos indicará cómo ve el
+    observador $O$, en reposo, el eje $\tilde{t}$ que utiliza $O'$ como referencia. El
+    observador en reposo siente que este último no utiliza ejes ortogonales, sino que
+    forman un ángulo distinto $\alpha$, en este caso menor de \qty{90}{\degree}, porque
+    $O'$ se aleja de $O$ en el sentido positivo del eje $x$ (sería mayor de
+    \qty{90}{\degree} si se alejara en sentido contrario.
+    \itme Utilizar el ángulo complementario $\theta = 90-\alpha\,\unit{\degree}$, que
+    forma la línea del movimiento de $O'$ con respecto del eje $t$.
+  \end{enumerate}
+\end{enumerate}
+
+la otra decisión es, una vez decido por una de las anteriores, qué angulo utilizar para
+el desarrollo matemático, esto es, 
+utilizar el ángulo $\alpha$ que forma la línea con el eje $x$ o su complementario, el que
+forma el eje $t$ con la línea recta. Cualquiera de las dos opciones sería correcta, pero
+me he dedicido a utilizar el ángulo citado por varias razones:
+\begin{itemize}
+\item Este ángulo nos va a indicar cómo ve el observador $O$ en reposo los ejes que
+  utiliza $O'$ como referencia. El observador en reposo siente que este último no utiliza
+  ejes ortogonales, sino que forman un ángulo $\alpha$.
+\item El ángulo complementario, que voy a llamar $\theta = 90-\alpha$ en este comentario,
+  se puede interpretar (figura \ref{fig:R2-oblic_etprima_et}) como el ángulo que el
+  observador en reposo, ve con que \emph{cierra} el eje $t'$ sobre $x'$ del observador
+  $O'$ en movimiento. Desde mi punto de vista, este ángulo, debería ser $-\theta$, pues
+  se cierra en sentido horario. Aunque no es necesario tener en cuenta el signo
+  negativo, me siento un poco incómodo con esto. En todo caso, $\theta$ sería la
+  verdadera pendiente $x/t$ de la línea recta.
+\item Por otro lado, podría haber utilizado el eje $t$ como el de abcisas y el $x$ como
+  el de ordenadas, que es lo más normal en física elemental. Pero quiero acostumbrarme
+  al estilo en relatividad especial de situar el eje $t$ en ordenadas, aunque en la
+  relatividad de Galileo no es necesario hacerlo, y puede parecer algo artificial.
+\end{itemize}
+
+, vemos que
 $\alpha = \arccot(x/t)$ y que la velocidad relativa de $O'$ respecto de $O$ es
 \begin{equation}
   \label{eq:R2-transfGalileo_u_alpha}
@@ -2537,7 +2588,7 @@ La base utilizada por $O'$, sería
   = \set{\xtilde{e}_{t'}, \xhat{e}_{x'}}
 \end{equation}
 
-¿Qué módulo tienen estos vectores de $B'$?. El del eje $x'$ es la unidad, igual que el
+¿Qué módulo tienen estos vectores de $B'$? El del eje $x'$ es la unidad, igual que el
 de la base $B$ de $O$. Pero, debido a que el tiempo es absoluto, $t=t'$, las líneas
 paralelas al eje $x$ son líneas de igual tiempo $t=t'$, el vector temporal de la base $B'$ tiene
 que ser mayor que el vector de la base temporal de $O$, que vale 1, ver figura
