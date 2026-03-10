@@ -1231,10 +1231,28 @@ Analizamos la métrica obtenida
     inversa) y el sistema colapsaría. En todo caso tendríamos un subespacio vectorial de
     $\symbb{R}^2$, con una dimensión, definiendo el espacio de los reales $\symbb{R}$,
     pero no un sistema de coordenadas válido para el plano.
-    
   \end{itemize}
 \end{itemize}
 
+La métrica inversa es
+{\small
+\begin{equation}\label{eq:R2-oblic_metrica_inv}
+  \mmm{g}^{ij}
+  = \begin{pmatrix}
+    g^{11} & g^{12}\\
+    g^{21} & g^{22}
+    \end{pmatrix}
+    = \dfrac{1}{\sin^2\alpha}
+    \begin{pmatrix}
+      1 -\cos\alpha\\
+      -\cos\alpha & 1
+  \end{pmatrix}
+  = \begin{pmatrix}
+    1 & -\csc\alpha\cot\alpha\\
+    -\csc\alpha\cot\alpha & 1
+  \end{pmatrix}
+\end{equation}
+}
 
 \subsection{Componentes covariantes}
 En la sección \ref{ssect:R2-contravariantes}, proyectamos un vector trazando líneas
