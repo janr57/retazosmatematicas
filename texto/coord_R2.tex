@@ -1801,7 +1801,7 @@ Nótese que esta nueva base no tiene por qué ser unitaria --por ello, no les he
 el acento circunflejo. Para obtenerlos, tenemos que \emph{subir} índices.
 En notación de Einstein
 \begin{equation}
-  \vvv{e}^i = \mmm{g}^{ij}\xhat{e}_j
+  \vvv{e}^i = g^{ij}\xhat{e}_j
 \end{equation}
 
 Utilizamos la métrica inversa \eqref{eq:R2-oblic_metrica_inv}
@@ -1940,26 +1940,26 @@ Desarrollando la expresión
     &=
       u^1\left(\sum_{j=1}^2g_{1j}\,v^j\right) + u^2\left(\sum_{j=1}^2g_{2j}\,v^j\right)\\
     &=
-      \sum_{i=1}^2 u^i \left(\sum_{j=1}^2\mmm{g}_{ij}\,v^j\right)\\
+      \sum_{i=1}^2 u^i \left(\sum_{j=1}^2g_{ij}\,v^j\right)\\
     &=
-      \sum_{i=1}^2\sum_{j=1}^2\mmm{g}_{ij}\,u^i\,v^j
+      \sum_{i=1}^2\sum_{j=1}^2g_{ij}\,u^i\,v^j
   \end{align*}
 }
 
 En notación de Einstein
 \begin{equation}
   \vvv{u}\cdot\vvv{v}
-  = \mmm{g}_{ij}\,u^i\,v^j
+  = g_{ij}\,u^i\,v^j
 \end{equation}
 
 Regorganizando términos ---que son escalares y se cumple la propiedad conmutativa
 \[
   \vvv{u}\cdot\vvv{v}
-  = \,u^i\mmm{g}_{ij}\,v^j
+  = \,u^ig_{ij}\,v^j
 \]
 
 Ahora, utilizamos la métrica para bajar el índice $j$, porque
-$U_i = \mmm{g}_{ij}v^j$
+$U_i = g_{ij}v^j$
 \begin{equation}
   \vvv{u}\cdot\vvv{v}
   = u^i\,v_i = u_i\,v^i
@@ -2113,7 +2113,7 @@ que las covariantes y valen $(3, 4)$.
 \noindent
 e) Las componentes covariantes se obtienen bajando índices
 \[
-  x_i = \mmm{g}_{ij}\,x^j
+  x_i = g_{ij}\,x^j
 \]
 Desarrollando la expresión para $x_1$ y $x_2$ y teniendo en cuenta la métrica,
 $g_{11} = 1$, $g_{12}=g_{21}=1/2$ y $g_{22}=1$
@@ -2182,8 +2182,8 @@ $\nabla\phi_i=\partial\phi/\partial x^i$, tenemos que subir índices multiplican
 inversa de la métrica
 \begin{equation}
   \vvv{\nabla}\phi
-  = \mmm{g}^{ij}(\nabla\phi)_i\,\xhat{e}_j
-  = \mmm{g}^{ij} \dfrac{\partial\phi}{\partial x^i}\,\xhat{e}_j
+  = g^{ij}(\nabla\phi)_i\,\xhat{e}_j
+  = g^{ij} \dfrac{\partial\phi}{\partial x^i}\,\xhat{e}_j
   = (\nabla\phi)^j\,\xhat{e}_j
 \end{equation}
 
@@ -2220,7 +2220,7 @@ Simplificando, obtendríamos
   También se podrían haber calculado subiendo el índice de las componentes por separado
 \begin{equation}
   (\nabla\phi)^i
-  = \mmm{g}^{ij} (\nabla\phi)_j = \mmm{g}^{ij}\dfrac{\partial\phi}{\partial x^j}
+  = g^{ij} (\nabla\phi)_j = g^{ij}\dfrac{\partial\phi}{\partial x^j}
 \end{equation}
 }
 
@@ -3222,7 +3222,7 @@ En notación de Einstein
   \hspace{0.75em}\text{con } i = 0, 1
 \]
 
-Vamos a subir los índices de los vectores de $B$, $\xtilde{e}_i = \mmm{g}^{ij}\xtilde{e}_j$
+Vamos a subir los índices de los vectores de $B$, $\xtilde{e}_i = g^{ij}\xtilde{e}_j$
 En la base $B'$
 \begin{align*}
   \xtilde{e}^0
@@ -4412,7 +4412,7 @@ $x_t = g_{tt}x^{t} + g_{tx} x^{x}= x^{t} + u x^{x}$
 %  Calculamos la inversa del tensor métrico, que como es diagonal, la inversa de cada
 %  elemento es el recíproco de los elementos diagonales
 %  \begin{equation}
-%    \mmm{g}_{ij} = \begin{pmatrix}1 & 0\\ 0 & 1/r^2 \end{pmatrix}
+%    g_{ij} = \begin{pmatrix}1 & 0\\ 0 & 1/r^2 \end{pmatrix}
 %  \end{equation}
 %  Para bajar el índice, multiplicamos por la inversa del  tensor métrico $A^i = \mmm{g}^{ij}
 %  A_j$.
