@@ -2147,15 +2147,34 @@ $25$, pues tiene que dar en mismo resultado que en rectangulares (apartado a).
 \end{align*}
 
 \subsection{Gradiente}
-
-\subsubsection{En función de las componentes contravariantes}
-Supongamos que tenemos un campo escalar $\phi$ definido en $\symbb{R^2}$ y expresado en
-coordenadas oblicuas, según sus componentes contravariantes ---utilizando, para la
-posición en el espacio, la base unitaria $B= (\xhat{e}_1,\xhat{e}_2)$---
+Supongamos un campo escalar $\phi$, definido en $\symbb{R^2}$ y expresado en coordenadas
+oblicuas según sus componentes contravariantes ---utilizando, para la posición en el
+espacio, la base unitaria $B= (\xhat{e}_1,\xhat{e}_2)$---
 \begin{equation}
   \phi = \phi(x^1, x^2)
 \end{equation}
-Como sabemos, los vectores de esta base no cambian con la posición en el espacio.
+Los vectores de esta base $B$ no cambian con la posición en el espacio.
+
+\subsubsection{Componentes covariantes}
+El gradiente es un vector covariante (1-forma). Sus componentes se obtienen derivando
+parcialmente el campo escalar con respecto de las componentes contravariantes
+$(\nabla\phi)_i = \partial\phi/\partial x^i$. Desarrollando la expresión anterior,
+obtenemos
+\begin{align}
+  (\nabla\phi)_1 &= \dfrac{\partial\phi}{\partial x^1}\\
+  (\nabla\phi)_2 &= \dfrac{\partial\phi}{\partial x^2}
+\end{align}
+
+El vector gradiente será
+\begin{equation}
+  \vvv{\nabla}\phi
+  = (\nabla\phi)_i\xhat{e}^i
+  = \dfrac{\partial\phi}{\partial x^i}\xhat{e}^i
+  = \dfrac{\partial\phi}{\partial x^1}\xhat{e}^1
+  + \dfrac{\partial\phi}{\partial x^2}\xhat{e}^2
+\end{equation}
+
+\subsubsection{Componentes contravariantes}
 Por tanto, Para obtener el gradiente con sus componentes contravariantes $\nabla\phi^1$
 y $\nabla\phi^2$, tenemos que derivar parcialmente el campo con respecto a $x^i$, pero
 como este resultado es un vector covariante (1-forma)
@@ -2198,10 +2217,10 @@ Simplificando, obtendríamos
 \end{equation}
 
 {\small
-Nótese que también se podrían haber calculado las componentes por separado
+  También se podrían haber calculado subiendo el índice de las componentes por separado
 \begin{equation}
   (\nabla\phi)^i
-  = \mmm{g}^{ij}\dfrac{\partial\phi}{\partial x^j}
+  = \mmm{g}^{ij} (\nabla\phi)_j = \mmm{g}^{ij}\dfrac{\partial\phi}{\partial x^j}
 \end{equation}
 }
 
