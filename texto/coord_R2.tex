@@ -1801,7 +1801,7 @@ Nótese que esta nueva base no tiene por qué ser unitaria --por ello, no les he
 el acento circunflejo. Para obtenerlos, tenemos que \emph{subir} índices.
 En notación de Einstein
 \begin{equation}
-  \vvv{e}^i = g^{ij}\xhat{e}_j
+  \vvv{e}^i = \mmm{g}^{ij}\xhat{e}_j
 \end{equation}
 
 Utilizamos la métrica inversa \eqref{eq:R2-oblic_metrica_inv}
@@ -2147,12 +2147,100 @@ $25$, pues tiene que dar en mismo resultado que en rectangulares (apartado a).
 \end{align*}
 
 \subsection{Gradiente}
-Supongamos que tenemos un campo escalar $\phi$ definido en $\symbb{R^2}$ y expresado
-en coordenadas oblicuas, según sus componentes contravariantes (utilizando la base covariante $\xhat{e}_1$ y $\xhat{e}_2$)
+
+\subsubsection{En función de las componentes contravariantes}
+Supongamos que tenemos un campo escalar $\phi$ definido en $\symbb{R^2}$ y expresado en
+coordenadas oblicuas, según sus componentes contravariantes ---utilizando, para la
+posición en el espacio, la base unitaria $B= (\xhat{e}_1,\xhat{e}_2)$---
 \begin{equation}
   \phi = \phi(x^1, x^2)
 \end{equation}
-Como sabemos, los vectores unitarios no cambian con la
+Como sabemos, los vectores de esta base no cambian con la posición en el espacio.
+Por tanto, Para obtener el gradiente con sus componentes contravariantes $\nabla\phi^1$
+y $\nabla\phi^2$, tenemos que derivar parcialmente el campo con respecto a $x^i$, pero
+como este resultado es un vector covariante (1-forma)
+$\nabla\phi_i=\partial\phi/\partial x^i$, tenemos que subir índices multiplicando por la
+inversa de la métrica
+\begin{equation}
+  \vvv{\nabla}\phi
+  = \mmm{g}^{ij}(\nabla\phi)_i\,\xhat{e}_j
+  = \mmm{g}^{ij} \dfrac{\partial\phi}{\partial x^i}\,\xhat{e}_j
+  = (\nabla\phi)^j\,\xhat{e}_j
+\end{equation}
+
+Desarrollando la expresión anterior
+\begin{align*}
+  \vvv{\nabla}\phi
+  &=
+    \mmm{g}^{11}\dfrac{\partial\phi}{\partial x^1}\,\xhat{e}_1
+    + \mmm{g}^{12}\dfrac{\partial\phi}{\partial x^1}\,\xhat{e}_2
+    + \mmm{g}^{21}\dfrac{\partial\phi}{\partial x^2}\,\xhat{e}_1
+    + \mmm{g}^{22}\dfrac{\partial\phi}{\partial x^2}\,\xhat{e}_2\\
+  &=
+    \dfrac{1}{\sin^2\alpha}\,\dfrac{\partial\phi}{\partial x^1}\,\xhat{e}_1
+    - \dfrac{\cos\alpha}{\sin^2\alpha}\,\dfrac{\partial\phi}{\partial x^1}\,\xhat{e}_2
+    - \dfrac{\cos\alpha}{\sin^2\alpha}\,\dfrac{\partial\phi}{\partial x^2}\,\xhat{e}_1
+    + \dfrac{1}{\sin^2\alpha}\,\dfrac{\partial\phi}{\partial x^2}\,\xhat{e}_2
+\end{align*}
+
+Simplificando, obtendríamos
+\begin{equation}\label{eq:R2-oblic_gradiente_contrav}
+  \vvv{\nabla}\phi
+  = \dfrac{1}{\sin^2\alpha}
+  \left[%
+    \left(%
+      \dfrac{\partial\phi}{\partial x^1}-\cos\alpha\dfrac{\partial\phi}{\partial x^2}
+    \right) \xhat{e}_1
+    +\left(%
+      \dfrac{\partial\phi}{\partial x^2}-\cos\alpha\dfrac{\partial\phi}{\partial x^1}
+    \right) \xhat{e}_2
+  \right]
+\end{equation}
+
+{\small
+Nótese que también se podrían haber calculado las componentes por separado
+\begin{equation}
+  (\nabla\phi)^i
+  = \mmm{g}^{ij}\dfrac{\partial\phi}{\partial x^j}
+\end{equation}
+}
+
+{\small
+\begin{align*}
+  (\nabla\phi)^1
+  &=
+    g^{11} \dfrac{\partial\phi}{\partial x^1}
+    + g^{12} \dfrac{\partial\phi}{\partial x^2}
+    =
+    \dfrac{1}{\sin^2\alpha}\dfrac{\partial\phi}{\partial x^1}
+    - \dfrac{\cos\alpha}{\sin^2\alpha}\dfrac{\partial\phi}{\partial x^2}
+    =
+    \dfrac{1}{\sin^2\alpha}
+    \left(%
+    \dfrac{\partial\phi}{\partial x^1}-\cos\alpha\dfrac{\partial\phi}{\partial x^2}
+    \right)\\
+  (\nabla\phi)^2
+  &=
+    g^{21} \dfrac{\partial\phi}{\partial x^1}
+    + g^{22} \dfrac{\partial\phi}{\partial x^2}
+    =
+    - \dfrac{\cos\alpha}{\sin^2\alpha}\dfrac{\partial\phi}{\partial x^1}    
+    \dfrac{1}{\sin^2\alpha}\dfrac{\partial\phi}{\partial x^2}
+    =
+    \dfrac{1}{\sin^2\alpha}
+    \left(%
+    \dfrac{\partial\phi}{\partial x^2}-\cos\alpha\dfrac{\partial\phi}{\partial x^1}
+    \right)  
+\end{align*}
+}
+
+{\small
+Y luego sustituir lo anterior en
+\begin{equation}
+  \vvv{\nabla\phi} = (\nabla\phi)^1\,\xhat{e}_1 + (\nabla\phi)^2\,\xhat{e}_2
+\end{equation}
+dando el mismo resultado que en \eqref{eq:R2-oblic_gradiente_contrav}.
+}
 
 %\begin{equation}
 %  \begin{pmatrix}
@@ -3115,7 +3203,7 @@ En notación de Einstein
   \hspace{0.75em}\text{con } i = 0, 1
 \]
 
-Vamos a subir los índices de los vectores de $B$, $\xtilde{e}_i = g^{ij}\xtilde{e}_j$
+Vamos a subir los índices de los vectores de $B$, $\xtilde{e}_i = \mmm{g}^{ij}\xtilde{e}_j$
 En la base $B'$
 \begin{align*}
   \xtilde{e}^0
@@ -4307,7 +4395,7 @@ $x_t = g_{tt}x^{t} + g_{tx} x^{x}= x^{t} + u x^{x}$
 %  \begin{equation}
 %    \mmm{g}_{ij} = \begin{pmatrix}1 & 0\\ 0 & 1/r^2 \end{pmatrix}
 %  \end{equation}
-%  Para bajar el índice, multiplicamos por la inversa del  tensor métrico $A^i = g^{ij}
+%  Para bajar el índice, multiplicamos por la inversa del  tensor métrico $A^i = \mmm{g}^{ij}
 %  A_j$.
 %  Así, desarrollando el sumatorio
 %  \begin{align*}
