@@ -2266,6 +2266,130 @@ Y luego sustituir lo anterior en
 dando el mismo resultado que en \eqref{eq:R2-oblic_gradiente_contrav}.
 }
 
+\subsubsection{Relación con las componentes cartesianas rectangulares}
+Si conociéramos las componentes cartesianas rectangulares del gradiente
+$(\partial\phi/\partial x, \partial\phi/\partial y)$, podríamos utilizar la matriz
+inversa de cambio de base $\mmm{M}^{-1}$ \eqref{eq:R2-oblic_Minv}, para obtener las
+componentes covariantes en oblicuas en función de las rectangulares
+\begin{equation}
+  \begin{pmatrix}
+    \nabla\phi_1\\
+    \nabla\phi_2
+  \end{pmatrix}
+  = \begin{pmatrix}
+    \dfrac{\partial\phi}{\partial x^1}\\[2ex]
+    \dfrac{\partial\phi}{\partial x^2}
+  \end{pmatrix}
+  = \begin{pmatrix}
+   1 & -\cot\alpha\\
+    0 & \csc\alpha
+  \end{pmatrix}
+  \begin{pmatrix}
+    \dfrac{\partial\phi}{\partial x}\\[2ex]
+    \dfrac{\partial\phi}{\partial y}
+  \end{pmatrix}
+  = \begin{pmatrix}
+    \dfrac{\partial\phi}{\partial x}-\cot\alpha\,\dfrac{\partial\phi}{\partial y}\\[1ex]
+    \csc\alpha\,\dfrac{\partial\phi}{\partial y}
+  \end{pmatrix}
+\end{equation}
+
+Las componentes resultan
+\begin{subequations}
+  \begin{align}
+    (\nabla\phi)_1
+    &=
+      \dfrac{\partial\phi}{\partial x^1}
+      =  \dfrac{\partial\phi}{\partial x}-\cot\alpha\,\dfrac{\partial\phi}{\partial y}\\
+    (\nabla\phi)_2
+    &=
+      \dfrac{\partial\phi}{\partial x^2}
+      =  \csc\alpha\,\dfrac{\partial\phi}{\partial y}\\    
+  \end{align}
+\end{subequations}
+
+El gradiente se podrá representar como $\vvv{\nabla}\phi = (\nabla\phi)_i\,\vvv{e}^i$
+\begin{equation}
+  \vvv{\nabla}\phi
+  = \left(%
+    \dfrac{\partial\phi}{\partial x} - \cot\alpha\,\dfrac{\partial\phi}{\partial y}
+  \right)\vvv{e}^1
+  + \csc\alpha\,\dfrac{\partial\phi}{\partial y}\,\vvv{e}^2
+\end{equation}
+
+Las componentes contravariantes se pueden hallar subiendo índices
+\begin{equation}
+  (\nabla\phi)^i = g^{ij} (\nabla\phi)_j
+\end{equation}
+
+\begin{align*}
+  \nabla\phi^1
+  &=
+    \dfrac{\partial\phi}{\partial x_1}
+    = g^{11}(\nabla\phi)_1 + g^{12}(\nabla\phi)_2\\
+  &=
+    \dfrac{1}{\sin^2\alpha}
+    \left(%
+    \dfrac{\partial\phi}{\partial x}-\cot\alpha\,\dfrac{\partial\phi}{\partial y}
+    \right)
+    - \dfrac{\cos\alpha}{\sin^2\alpha}\csc\alpha\,\dfrac{\partial\phi}{\partial y}
+\end{align*}
+\begin{align*}
+  \nabla\phi^2
+  &=
+    \dfrac{\partial\phi}{\partial x_2}
+    = g^{21}(\nabla\phi)_1 + g^{22}(\nabla\phi)_2\\
+  &=
+    \left[%
+    - \dfrac{\cos\alpha}{\sin^2\alpha}
+    \left(%
+    \dfrac{\partial\phi}{\partial x}-\cot\alpha\,\dfrac{\partial\phi}{\partial y}
+    \right)
+    + \dfrac{1}{\sin^2\alpha}\csc\alpha\,\dfrac{\partial\phi}{\partial y}
+    \right]
+\end{align*}
+
+Simplificando las dos expresiones anteriores nos queda
+\begin{subequations}
+  \begin{align}
+    \nabla\phi^1
+    &=
+      \dfrac{1}{\sin^2\alpha}
+      \left(%
+      \dfrac{\partial\phi}{\partial x}
+      -2\cot\alpha\,\dfrac{\partial\phi}{\partial y}
+      \right)\\
+    \nabla\phi^2
+    &=
+      \dfrac{1}{\sin^2\alpha}
+      \left(%
+      -\cos\alpha\,\dfrac{\partial\phi}{\partial x}
+      + \dfrac{1+\cos^2\alpha}{\sin\alpha}\,\dfrac{\partial\phi}{\partial y}
+      \right)  
+  \end{align}
+\end{subequations}
+
+El gradiente se podrá escribir como
+{
+  \begin{equation}
+    \vvv{\nabla}\phi
+    =
+    \dfrac{1}{\sin^2\alpha}
+    \left[%
+      \left(%
+        \dfrac{\partial\phi}{\partial x}
+        - 2\cot\alpha\,\dfrac{\partial\phi}{\partial y}
+      \right)\xhat{e}_1
+      + \left(%
+        -\cos\alpha\,\dfrac{\partial\phi}{\partial x}
+        + \dfrac{1+\cos^2\alpha}{\sin\alpha}\,\dfrac{\partial\phi}{\partial y}
+        \right)\xhat{e}_2
+    \right]
+    \end{equation}
+  }
+
+
+
 %\begin{equation}
 %  \begin{pmatrix}
 %    \dfrac{\partial\phi}{\partial x^1}\\[2ex]
