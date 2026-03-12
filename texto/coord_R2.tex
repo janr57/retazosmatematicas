@@ -1234,7 +1234,7 @@ Analizamos la métrica obtenida
   \end{itemize}
 \end{itemize}
 
-La métrica inversa es
+Se propone como ejercicio demostrar que la métrica inversa es
 {\small
 \begin{equation}\label{eq:R2-oblic_metrica_inv}
   \mmm{g}^{ij}
@@ -1244,7 +1244,7 @@ La métrica inversa es
     \end{pmatrix}
     = \dfrac{1}{\sin^2\alpha}
     \begin{pmatrix}
-      1 -\cos\alpha\\
+      1 & -\cos\alpha\\
       -\cos\alpha & 1
   \end{pmatrix}
   = \begin{pmatrix}
@@ -1264,9 +1264,9 @@ En cambio, hay otra forma de proyectar un vector, y es trazando líneas perpendi
 los ejes, figura \ref{fig:R2-oblic_cov}.
 Estas \emph{componentes covariantes} las representaremos mediante subíndices $x_i$
 \begin{equation}
-  \vvv{v} = x_1\xhat{e}^1 + x_2\xhat{e}^2 = x_i \xhat{e}^i
+  \vvv{v} = x_1\vvv{e}^1 + x_2\vvv{e}^2 = x_i \vvv{e}^i
 \end{equation}
-La base utilizada aquí $\xhat{e}^i$, no es la natural de coordenadas oblicuas,
+La base utilizada aquí $\vvv{e}^i$, no es la natural de coordenadas oblicuas,
 \eqref{eq:R2-oblic_base}, pues contiene un superíndice (de nuevo, no es un exponente).
 
 Mientras las componentes contravariantes te dicen cuánto \emph{avanzas} a lo largo
@@ -1356,9 +1356,9 @@ componentes.
       % \node[above right=0pt and -5pt] at (P) {\footnotesize $P$};
       
       % Marcar en azul la componentes covariantes
-      \draw[covariante] (O) -- node[covtxt,pos=0.5, below] {$x_1\xhat{e}^1$} (COV1);
+      \draw[covariante] (O) -- node[covtxt,pos=0.5, below] {$x_1\vvv{e}^1$} (COV1);
       \draw[covariante] (O) -- node[covtxt,pos=0.5,above left=-2pt and -2pt]
-      {$x_2\xhat{e}^2$} (COV2);
+      {$x_2\vvv{e}^2$} (COV2);
       
       % Origen
       \fill[cyan!80!black] (O) circle [radius=0.8pt];
@@ -1371,7 +1371,7 @@ componentes.
       \end{scope}
     \end{tikzpicture}
     \caption{Componentes covariantes $x_i$ en coordenadas oblicuas. El vector $\vvv{v}$
-      se representa como $\vvv{v}=x_1\,\xhat{e}^1 + x_2\,\xhat{e}^2$. Las componentes
+      se representa como $\vvv{v}=x_1\,\vvv{e}^1 + x_2\,\vvv{e}^2$. Las componentes
       contravariantes nos indican el desplazamiento en el espacio.}
     \label{fig:R2-oblic_cov}
   \end{minipage}
@@ -1516,7 +1516,7 @@ componentes.
     \label{fig:R2-oblic_contrav_cov}
   \end{minipage}
 \end{figure}
-Piensa en la base $\xhat{e}^i$ como una serie de líneas o superficies de nivel perpendiculares a cada uno de los ejes, que nos indican el valor de un cierto escalar o \emph{altura}. La componente covariante en ese eje nos indica de forma visual el
+Piensa en la base $\vvv{e}^i$ como una serie de líneas o superficies de nivel perpendiculares a cada uno de los ejes, que nos indican el valor de un cierto escalar o \emph{altura}. La componente covariante en ese eje nos indica de forma visual el
 \emph{número de líneas o superficies de nivel} que el vector \emph{atraviesa}.
 Ver figuras \ref{fig:R2-oblic_cov1} y \ref{fig:R2-oblic_cov2}.
 \begin{figure}[ht]
@@ -1622,10 +1622,10 @@ Ver figuras \ref{fig:R2-oblic_cov1} y \ref{fig:R2-oblic_cov2}.
       % Marcar en azul la componentes covariantes
       %\draw[covariante]
       %(O) -- node[covtxt,pos=0.5, below]
-      %{$A_1\xhat{e}^1$} (COV1);
+      %{$A_1\vvv{e}^1$} (COV1);
       \draw[covariante] (O) --node[covtxt,pos=0.5,below] {$x_1$} (COV1);
       %\draw[covariante] (O) -- node[covtxt,pos=0.5,above left=-2pt and -2pt]
-      %{$\hat{x}_2\xhat{e}^2$} (COV2);
+      %{$\hat{x}_2\vvv{e}^2$} (COV2);
       
       % Origen
       \fill[cyan!80!black] (O) circle [radius=0.8pt];
@@ -1794,6 +1794,44 @@ gradiente es mayor, las componentes covariantes aumentan en consecuencia. Estas
 componentes no varían inversamente con la escala de medida, sino que lo hace en el mismo
 sentido. Estas son las \emph{componentes covariantes}.
 
+\subsubsection{Base contravariante}
+A continuación obtendremos una expresión de la base contravariante
+$B'=(\vvv{e}^1,\vvv{e}^2)$ en función de la covariante $B=(\xhat{e}_1, \xhat{e}_2)$.
+Nótese que esta nueva base no tiene por qué ser unitaria --por ello, no les hemos puesto
+el acento circunflejo. Para obtenerlos, tenemos que \emph{subir} índices.
+En notación de Einstein
+\begin{equation}
+  \vvv{e}^i = g^{ij}\xhat{e}_j
+\end{equation}
+
+Utilizamos la métrica inversa \eqref{eq:R2-oblic_metrica_inv}
+\begin{align*}
+  \vvv{e}^1
+  &=
+    g^{11}\xhat{e}_1 + g^{12}\xhat{e}_2
+    =
+    \dfrac{1}{\sin^2\alpha}\,\xhat{e}_1 - \dfrac{\cos\alpha}{\sin^2\alpha}\,\xhat{e}_2
+    = \dfrac{1}{\sin^2\alpha} (\xhat{e}_1 - \cos\alpha\,\xhat{e}_2)\\
+    \vvv{e}^2
+  &=
+    g^{21}\xhat{e}_1 + g^{22}\xhat{e}_2
+    =
+    -\dfrac{\cos\alpha}{\sin^2\alpha} \xhat{e}_1 + \dfrac{1}{\sin^2\alpha} \xhat{e}_2
+    = \dfrac{1}{\sin^2\alpha} (-\cos\alpha\,\xhat{e}_1 + \xhat{e}_2)\\
+\end{align*}
+
+Comprobamos el módulo de estos vectores, pudiéndose comprobar fácilmente que solo serían
+unitarios en un sistema cartesiano rectangular $\alpha=\qty{90}{\degree}$
+\begin{align}
+  \left|\vvv{e}_1\right|
+  &= \left(\dfrac{1}{\sin^2\alpha}\right)^2
+    \sqrt{1^2 + (-\cos\alpha)^2}
+    = \dfrac{\sqrt{1+\cos^2\alpha}}{\sin^4\alpha}\\
+  \left|\vvv{e}_2\right|
+  &= \left(\dfrac{1}{\sin^2\alpha}\right)^2
+    \sqrt{(-\cos\alpha)^2 + 1}
+    = \dfrac{\sqrt{1+\cos^2\alpha}}{\sin^4\alpha}
+\end{align}
 
 \subsection{Visión general de estas componentes}
 Por si se quiere profundizar algo más en las componentes covariantes y contravariantes,
@@ -2107,6 +2145,36 @@ $25$, pues tiene que dar en mismo resultado que en rectangulares (apartado a).
     = 9 - \cancelout{4\sqrt{3}} + \cancelout{4\sqrt{3}} + 16
     = 25
 \end{align*}
+
+\subsection{Gradiente}
+Supongamos que tenemos un campo escalar $\phi$ definido en $\symbb{R^2}$ y expresado
+en coordenadas oblicuas, según sus componentes contravariantes (utilizando la base covariante $\xhat{e}_1$ y $\xhat{e}_2$)
+\begin{equation}
+  \phi = \phi(x^1, x^2)
+\end{equation}
+Como sabemos, los vectores unitarios no cambian con la
+
+%\begin{equation}
+%  \begin{pmatrix}
+%    \dfrac{\partial\phi}{\partial x^1}\\[2ex]
+%    \dfrac{\partial\phi}{\partial x^2}
+%  \end{pmatrix}
+%  =
+%  \begin{pmatrix}
+%    1 & \cos\alpha\\
+%    0 & \sin\alpha
+%  \end{pmatrix}
+%  \begin{pmatrix}
+%    \dfrac{\partial\phi}{\partial x}\\[2ex]
+%    \dfrac{\partial\phi}{\partial y}
+%  \end{pmatrix}
+%  = \begin{pmatrix}
+%    \dfrac{\partial\phi}{\partial x} - \cot\alpha\dfrac{\partial\phi}{\partial y}\\
+%    \csc\alpha\dfrac{\partial\phi}{\partial y}
+%  \end{pmatrix}
+%\end{equation}
+
+
 
 \section{Relatividad de Galileo}
 En esta sección vamos a discutir un sistema de coordenadas oblicuo un tanto peculiar. De
