@@ -1965,7 +1965,7 @@ $U_i = g_{ij}v^j$
   = u^i\,v_i = u_i\,v^i
 \end{equation}
 
-\section{Ejercicio de resumen}
+\subsection{Ejercicio}
 \noindent Supongamos un cierto vector en coordenadas rectangulares,
 $\vvv{v} = 3\,\uvec{\i} + 4\,\uvec{\j}$.\\
 a) Calcula el cuadrado de su módulo.\\
@@ -2387,6 +2387,107 @@ El gradiente se podrá escribir como
     \right]
     \end{equation}
   }
+
+  \subsection{Ejercicio}
+  Obtener el gradiente de un campo escalar $\phi=\phi(x,y)$,  en coordenadas oblicuas con
+  componentes contravariantes, a partir del gradiente en coordenadas cartesianas
+  rectangulares
+  \[
+    \vvv{\nabla}\phi
+    = \dfrac{\partial\phi}{\partial x}\,\uvec{\i}
+    + \dfrac{\partial\phi}{\partial y}\,\uvec{\j}
+  \]
+
+\noindent
+\textbf{Solución}
+
+\noindent
+\begin{itemize}
+\item Obtenemos los vectores $\uvec{\i}$ y $\uvec{\j}$ en función de los vectores
+  unitarios de la base natural $B=(\xhat{e}_1, \xhat{e}_2)$, en coordenadas oblicuas que
+  forman un ángulo $\alpha$, utilizando la matriz inversa de cambio de base
+  $\mmm{M}^{-1}$, ver \eqref{eq:R2-oblic_Minv}
+  \[
+    \begin{pmatrix}
+      \uvec{\i} & \uvec{\j}
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      \xhat{e}_1 & \xhat{e}_2
+    \end{pmatrix}
+    \,
+    \begin{pmatrix}
+      1 & -\csc\alpha\\
+      0 & 1
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      \xhat{e}_1 & -\cot\alpha\,\xhat{e}_1 + \csc\alpha\,\xhat{e}_2
+    \end{pmatrix}
+  \]
+
+  Así obtenemos que
+  \begin{align*}
+    \uvec{\i} &= \xhat{e}_1\\
+    \uvec{\j} &= -\cot\alpha\,\xhat{e}_1 + \csc\alpha\,\xhat{e}_2
+  \end{align*}
+
+\item Calculamos la expresión de las derivadas parciales en coordenadas rectangulares
+  a partir de las componentes contravariantes en oblicuas
+  \[
+    \begin{pmatrix}
+      \dfrac{\partial\phi}{\partial x}\\[2ex]
+      \dfrac{\partial\phi}{\partial y}
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      1 & \cos\alpha\\
+      0 & \sin\alpha
+    \end{pmatrix}
+    \,
+    \begin{pmatrix}
+      \dfrac{\partial\phi}{\partial x^1}\\[2ex]
+      \dfrac{\partial\phi}{\partial x^2}      
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      \dfrac{\partial\phi}{\partial x^1}+\cos\alpha\,\dfrac{\partial\phi}{\partial x^2}\\
+      \sin\alpha\,\dfrac{\partial\phi}{\partial x^2}
+    \end{pmatrix}
+  \]
+
+  Así obtenemos que
+  \begin{align*}
+    \dfrac{\partial\phi}{\partial x}
+    &=
+      \dfrac{\partial\phi}{\partial x^1}+\cos\alpha\,\dfrac{\partial\phi}{\partial x^2}\\
+    \dfrac{\partial\phi}{\partial y}
+    &=
+      \sin\alpha\,\dfrac{\partial\phi}{\partial x^2}
+  \end{align*}
+\end{itemize}
+
+Ahora sustituimos en la expresión del gradiente en rectangulares
+\begin{align*}
+  \dfrac{\partial\phi}{\partial x}\,\uvec{\i}
+  + \dfrac{\partial\phi}{\partial y}\,\uvec{\j}
+  &=
+    \left(%
+    \dfrac{\partial\phi}{\partial x^1}+\cos\alpha\,\dfrac{\partial\phi}{\partial x^2}
+    \right) \xhat{e}_1
+    + \sin\alpha\,\dfrac{\partial\phi}{\partial x^2}
+    \left(%
+    -\cot\alpha\,\xhat{e}_1 + \csc\alpha\,\xhat{e}_2
+    \right)\\
+  &=
+    \dfrac{\partial\phi}{\partial x^1}\,\xhat{e}_1
+    + \cancelout{\cos\alpha\,\dfrac{\partial\phi}{\partial x^2}\,\xhat{e}_1}
+    - \cancelout{\cos\alpha\,\dfrac{\partial\phi}{\partial x^2}\,\xhat{e}_1}
+    + \dfrac{\partial\phi}{\partial x^2}\,\xhat{e}_2
+\end{align*}
+
+
+
 
 \section{Relatividad de Galileo}
 En esta sección vamos a discutir un sistema de coordenadas oblicuo un tanto peculiar. De
