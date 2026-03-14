@@ -2175,9 +2175,10 @@ $B=\set{\uvec{\i},\,\uvec{\j}}$ a la del sistema de coordenadas oblicuas, $B'$.
 Calcula también su inversa.\\
 d) Obtén las componentes contravariantes del vector $\vvv{v}$ en el sistema de
 coordenadas oblicuas, mediante una transformación de componentes.\\
-e) Calcula estas componentes mediante transformación de los vectores de la base $B$.\\
-f) Calcula los vectores de la base covariante $B'=\set{\vvv{e}_1, \vvv{e}_2}$ en función
-de la base en coordenadas ortogonales y comprueba que son unitarios.\\
+e) Calcula las componentes contravariantes, esta vez mediante transformación de los
+vectores de la base $B$.\\
+f) Calcula el producto escalar de los vectores de la base covariante
+$B'=\set{\vvv{e}_1, \vvv{e}_2}$ en función de la base en coordenadas ortogonales.\\
 g) Obtén el tensor métrico en el sistema oblicuo y su inversa.\\
 h) Calcula los vectores de la base contravariante $\set{\vvv{e}^1,\vvv{e}^2}$ en función
 de la base rectangular $\set{\uvec{\i},\,\uvec{\j}}$ y halla sus módulos, comprobando
@@ -2200,34 +2201,35 @@ a) Cuadrado del módulo de $\vvv{v} = 2\,\uvec{\i} + \sqrt{3}\,\uvec{\j}$
   |\vvv{v}|^2 = v^2 = v_x^2 + v_y^2 = 2^2 + \left(\sqrt{3}\right)^2 = 4 + 3 = 7
 \]
 
-\noindent
-b) Matriz de cambio de base $B=\set{\uvec{\i},\,\uvec{\j}}$ a la de coordenadas oblicuas
-que forman $\qty{60}{\degree}$, haciendo coincidir los ejes $x$ y $x'$. Calculando
-también su inversa.
+\noindent 
+b) Matriz de cambio de base de $B=\set{\uvec{\i},\,\uvec{\j}}$ a la de coordenadas
+oblicuas que forman $\qty{60}{\degree}$, haciendo coincidir los ejes $x$ y $x'$.
+Y también su inversa.
 
-En la figura \ref{fig:R2-coord_oblicuas_e1e2} se puede observar que, en nuestro caso
+En la figura \ref{fig:R2-coord_oblicuas_e1e2} se puede observar la relación entre estos
+vectores, y además podemos comprobar que son unitarios
 \begin{align*}
   \vvv{e}_1
   &=
-    \uvec{\i}\\
+    \uvec{\i}
+    \longrightarrow
+    |\vvv{e}_1| = |\uvec{\i}|
+    = 1\\
   \vvv{e}_2
   &=
     \cos(\pi/3)\,\uvec{\i} + \sin(\pi/3)\,\uvec{\j}
     = \dfrac{1}{2}\,\uvec{\i} + \dfrac{\sqrt{3}}{2}\,\uvec{\j}
+    \longrightarrow
+    |\vvv{e}_2| = \left|\dfrac{1}{2}\,\uvec{\i}+\dfrac{\sqrt{3}}{2}\,\uvec{\j}\right|
+    = \dfrac{1}{4} + \dfrac{3}{4}
+    = 1
 \end{align*}
 
-Estos vectores son unitarios
-\begin{align*}
-  |\uvec{e}_1|^2
-  &=
-    \uvec{\i}\cdot \uvec{\i} = 1\\
-  |\uvec{e}_2|^2
-  &=
-    \left(\dfrac{1}{2}\,\uvec{\i}+\dfrac{\sqrt{3}}{2}\,\uvec{\j}\right)\cdot\uvec{\i}
-    =1
-\end{align*}
+\noindent
+c) Matriz de cambio de base $B$ a $B'$ y su inversa.
 
-Se puede comprobar que
+La transformación de vectores de la base es $B'=B \mmm{M}$.
+Del apartado anterior se puede comprobar que
 \[
   \begin{pmatrix}
     \vvv{e}_1 & \vvv{e}_2
@@ -2241,30 +2243,43 @@ Se puede comprobar que
   \end{pmatrix}
 \]
 
-Entonces, la matriz de cambio de base de $B$ a $B'$ es
+Luego, la matriz de cambio de base de $B$ a $B'$ es
 \[
   \mmm{M}
   = \begin{pmatrix}
     1 & 1/2\\
     0 & \sqrt{3}/2
-    \end{pmatrix}
+  \end{pmatrix}
+\]
+
+Su inversa es
+\[
+  \mmm{M}^{-1}
+  = \dfrac{1}{\det(\mmm{M})}\,
+  \text{adj}(\mmm{M}^\transp)
+  = \dfrac{1}{\sqrt{3}/2}
+  \begin{pmatrix}
+    \sqrt{3}/2 & -1/2\\
+    0 & 1
+  \end{pmatrix}
+  = \begin{pmatrix}
+    1 & -\sqrt{3}/3\\
+    0 & 2\sqrt{3}/3
+  \end{pmatrix}
 \]
 
 \noindent
-c) La matriz de cambio de base $\mmm{M}$ se presentó en \ref{eq:R2-oblic_M}. Para
-calcular las componentes en la nueva base, tenemos que utilizar la matriz inversa
-$\mmm{M}^{-1}$, ver \ref{eq:R2-oblic_Minv}
-\[
-  [x]_{B'} = \mmm{M}^{-1} [x]_{B}
-\]
+d) Componentes contravariantes de $\vvv{v}$.
+
+Estas componentes se calculan con la inversa de la matriz de cambio de base
 \[
   \begin{pmatrix}
     x^1\\
     x^2
   \end{pmatrix}
   = \begin{pmatrix}
-    1 & -\cot\alpha\\
-    0 & \phantom{-}\csc\alpha
+    1 & -\sqrt{3}/3\\
+    0 & 2\sqrt{3}/3
   \end{pmatrix}
   \,\begin{pmatrix}
     x\\
@@ -2297,33 +2312,28 @@ Las coordenadas contravariantes en el nuevo sistema son
 \end{align*}
 
 \noindent
-d) Necesitamos obtener los vectores de la base antigua $B=\set{\uvec{\i},\uvec{\j}}$ en
-función de la nueva $B'=\set{\vvv{e}_1,\vvv{e}_2}$. Para ello utilizaremos inversa de la
-matriz de cambio de base
-\begin{align*}
+e) Componentes contravariantes mediante transformación de vectores de la base $B$.
+
+Necesitamos obtener los vectores de la base antigua $B=\set{\uvec{\i},\uvec{\j}}$ en
+función de la nueva $B'=\set{\vvv{e}_1,\vvv{e}_2}$. Para ello utilizaremos la inversa de
+la matriz de cambio de base
+\[
   \begin{pmatrix}
     \uvec{\i} & \uvec{\j}
   \end{pmatrix}
-  &=
-    \begin{pmatrix}
-      \vvv{e}_1 & \vvv{e}_2
-    \end{pmatrix}
-    \begin{pmatrix}
-      1 & -\cot\alpha\\
-      0 & \phantom{-}\csc\alpha
-    \end{pmatrix}
-    = \begin{pmatrix}
-      \vvv{e}_1 & \vvv{e}_2
-    \end{pmatrix}
-    \begin{pmatrix}
-      1 & -\dfrac{\sqrt{3}}{3}\\
-      0 & \dfrac{2\sqrt{3}}{3}
-    \end{pmatrix}\\
-    &=
-      \begin{pmatrix}
-        \vvv{e}_1 & -\dfrac{\sqrt{3}}{3}\vvv{e}_1+\dfrac{2\sqrt{3}}{3}\vvv{e}_2
-      \end{pmatrix}
-\end{align*}
+  =
+  \begin{pmatrix}
+    \vvv{e}_1 & \vvv{e}_2
+  \end{pmatrix}
+  \begin{pmatrix}
+    1 & -\dfrac{\sqrt{3}}{3}\\[1.4ex]
+    0 & \dfrac{2\sqrt{3}}{3}
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \vvv{e}_1 & -\dfrac{\sqrt{3}}{3}\vvv{e}_1+\dfrac{2\sqrt{3}}{3}\vvv{e}_2
+  \end{pmatrix}
+\]
 
 La transformación de vectores resulta
 \begin{align*}
@@ -2332,20 +2342,20 @@ La transformación de vectores resulta
 \end{align*}
 
 Por último, se sustituyen estos vectores de $B$ en la expresión de $\vvv{v}$
-\begin{align*}
-  \vvv{v}
-  &=
-    2\,\uvec{\i} + \sqrt{3}\,\uvec{\j}
-    = 2 \vvv{e}_1
-    +\sqrt{3}\left(-\dfrac{\sqrt{3}}{3}\vvv{e}_1+\dfrac{2\sqrt{3}}{3}\vvv{e}_2\right)\\
-  &=
-    2\vvv{e}_1 - \vvv{e}_1 + 2\vvv{e}_2
-    = \vvv{e}_1 + 2\vvv{e}_2 
-\end{align*}
-
-El vector expresado con componentes contravariantes es, en notación de Einstein
 \[
-  \vvv{v} = x^i\vvv{e}_i
+  \vvv{v}
+  =
+  2\,\uvec{\i} + \sqrt{3}\,\uvec{\j}
+  = 2 \vvv{e}_1
+  +\sqrt{3}\left(-\dfrac{\sqrt{3}}{3}\vvv{e}_1+\dfrac{2\sqrt{3}}{3}\vvv{e}_2\right)
+  =
+  2\vvv{e}_1 - \vvv{e}_1 + 2\vvv{e}_2
+  = \vvv{e}_1 + 2\vvv{e}_2 
+\]
+
+El vector expresado con componentes contravariantes es
+\[
+  \vvv{v} = x^i\vvv{e}_i = x^1\vvv{e}_1 + x^2\vvv{e}_2
 \]
 
 Comparando con nuestro resultado
@@ -2353,68 +2363,36 @@ Comparando con nuestro resultado
   \vvv{v} = x^1\vvv{e}_1 + x^2\vvv{e}_2 = 1\vvv{e}_1 + 2\vvv{e}_2
 \]
 
-Las componentes contravariantes son, obviamente, las mismas que en el apartado anterior
+Estas componentes son, obviamente, las mismas que en el apartado anterior
 \begin{align*}
   x^1 &= 1\\
   x^2 &= 2
 \end{align*}
 
 \noindent
-e) Vectores de la base covariante $B'=\set{\vvv{e}_1,\vvv{e}_2}$ en función de la base
-  en coordenadas cartesianas ortogonales $B=\set{\uvec{\i},\,\uvec{\j}}$.
-
-    \begin{align*}
-  \begin{pmatrix}
-    \vvv{e}_1 & \vvv{e}_2
-  \end{pmatrix}
-  &=
-    \begin{pmatrix}
-      \uvec{\i} & \uvec{\j}
-    \end{pmatrix}
-    \begin{pmatrix}
-      1 & \cos\alpha\\
-      0 & \sin\alpha
-    \end{pmatrix}
-    = \begin{pmatrix}
-      \uvec{\i} & \uvec{\j}
-    \end{pmatrix}
-    \begin{pmatrix}
-      1 & \dfrac{1}{2}\\[1.5ex]
-      0 & \dfrac{\sqrt{3}}{2}
-    \end{pmatrix}
-    =
-      \begin{pmatrix}
-        \uvec{\i} & \dfrac{1}{2}\uvec{\i}+\dfrac{\sqrt{3}}{2}\uvec{\j}
-      \end{pmatrix}
-\end{align*}
-
-Los vectores de la base natural resultan
+f) Producto escalar de los vectores de la base covariante $B=\set{\vvv{e}_1,\vvv{e}_2}$.
 \begin{align*}
-  \vvv{e}_1
-  &=
-    \uvec{\i}\\
-  \vvv{e}_2
-  &=
-    \dfrac{1}{2}\,\uvec{\i} + \dfrac{\sqrt{3}}{2}\,\uvec{\j}
-\end{align*}
-
-Estos vectores son unitarios $\vvv{e}_1 = \xhat{e}_1$ y $\vvv{e}_2 = \xhat{e}_2$
-\begin{align*}
-  |\vvv{e}_1|^2
+  \vvv{e}_1\cdot\vvv{e}_1
   &=
     \uvec{\i}\cdot\uvec{\i}
     = 1\\
-    |\vvv{e}_2|^2
-    &=
-    \left(\dfrac{1}{2}\uvec{\i}+\dfrac{\sqrt{3}}{2}\uvec{\j}\right)
+  \vvv{e}_1\cdot\vvv{e}_2
+  &=
+    \vvv{e}_2\cdot\vvv{e}_1
+    = \uvec{\i}\cdot\left(\dfrac{1}{2}\,\uvec{\i}+\dfrac{\sqrt{3}}{2}\,\uvec{\j}\right)
+    = \dfrac{1}{2}\\
+  \vvv{e}_2\cdot\vvv{e}_2
+  &=
+    \left(\dfrac{1}{2}\,\uvec{\i}+\dfrac{\sqrt{3}}{2}\,\uvec{\j}\right)
     \cdot
-      \left(\dfrac{1}{2}\uvec{\i}+\dfrac{\sqrt{3}}{2}\uvec{\j}\right)
-      = \dfrac{1}{4} + \dfrac{3}{4}
-      = 1
+    \left(\dfrac{1}{2}\,\uvec{\i}+\dfrac{\sqrt{3}}{2}\,\uvec{\j}\right)
+    = \left(\dfrac{1}{2}\right)^2 + \left(\dfrac{\sqrt{3}}{2}\right)^2
+    = \dfrac{1}{4} + \dfrac{3}{4}
+    = 1
 \end{align*}
 
 \noindent
-f) Tensor métrico y su inverso.
+g) Tensor métrico y su inverso.
 
 El tensor métrico sería
 \[
