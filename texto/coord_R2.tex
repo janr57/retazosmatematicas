@@ -2182,15 +2182,14 @@ $B'=\set{\vvv{e}_1, \vvv{e}_2}$ en función de la base en coordenadas ortogonale
 g) Obtén el tensor métrico en el sistema oblicuo y su inversa.\\
 h) Calcula los vectores de la base contravariante $\set{\vvv{e}^1,\vvv{e}^2}$ en función
 de la base rectangular $\set{\uvec{\i},\,\uvec{\j}}$ y halla sus módulos, comprobando
-que no son vectoes unitarios\\
-i) Calcula los productos escalares entre los elementos de la base covariante y la
-contravariante\\
+que no son vectores unitarios\\
+i) Halla el producto escalar entre los elementos de la base covariante y contravariante.\\
 j) Halla las componentes covariantes del vector.\\
 k) Halla el cuadrado del módulo del vector en el sistema oblicuo.\\
-l) Relaciona el apartado anterior con el hecho de que los vectores covariantes son
-elementos $\omega$ del espacio dual de los vectores $\vvv{v}$ del espacio tangente de $\symbb{R}^2$ y que estas $\omega$ son aplicaciones lineales que aplicadas sobre los
-vectores del espacio tangente, nos producen un escalar, y halla este escalar para nuestro
-vector $\vvv{v}$.\\
+l) Relaciona el apartado anterior, con el hecho de que los vectores covariantes son
+elementos $\omega$ del espacio dual de los vectores $\vvv{v}$ del espacio tangente de $\symbb{R}^2$, y que estas $\omega$ son aplicaciones lineales que al actuar sobre los
+vectores del espacio tangente, producen un escalar. Halla el escalar para nuestro vector
+$\vvv{v}$.\\
 
 \noindent
 \textbf{Solución}
@@ -2430,8 +2429,9 @@ La inversa del tensor métrico es
 \]
 
 \noindent
-g)
-En el apartado d) calculamos los vectores de la base covariante, resultando
+h) Base contravariante en función de $\uvec{\i}$ y $\uvec{\j}$.
+
+En el apartado d) se calcularon los vectores de la base covariante, resultando
 \begin{align*}
   \vvv{e}_1 &= \uvec{\i}\\
   \vvv{e}_2 &= \dfrac{1}{2}\,\uvec{\i} + \dfrac{\sqrt{3}}{2}\,\uvec{\j}
@@ -2478,7 +2478,7 @@ Calculamos sus módulos y comprobamos que no son vectores unitarios
 \end{align*}
 
 \noindent
-h) Productos escalares entre elementos de las bases covariante y contravariante
+i) Producto escalar entre elementos de las bases covariante y contravariante
 \begin{align*}
   \vvv{e}^1\cdot\vvv{e}_1
   &=
@@ -2511,7 +2511,9 @@ Y los productos cruzados
 \end{align*}
 
 \noindent
-i) Las componentes covariantes del vector se pueden calcular bajando el índice de las
+j) Componentes covariantes de $\vvv{v}$.
+
+Las componentes covariantes del vector se pueden calcular bajando el índice de las
 contravariantes
 \[
   x_i = g_{ij} x^j
@@ -2530,29 +2532,52 @@ contravariantes
 \end{align*}
 
 \noindent
-i) El vector $\vvv{v}$ es un elemento del espacio tangente de $\symbb{R}^2$
+k) Cuadrado de $\vvv{v}$ en el sistema oblicuo.
+
+Se comprueba que el vector no ha cambiado. Solo lo han hecho sus componentes en el nuevo
+sistema de coordenadas
+\[
+  |\vvv{v}|^2
+  = v^2
+  = x_ix^i
+  = x_1x^1 + x_2x^2
+  = 2\cdot 1 + \dfrac{5}{2}\cdot 2
+  = 2 + 5
+  = 7
+\]
+
+
+\noindent
+l) Explica el apartado anterior, con el hecho de que los vectores covariantes son
+elementos $\omega$ del espacio dual de los vectores $\vvv{v}$ del espacio tangente de
+$\symbb{R}^2$ y que estas $\omega$ son aplicaciones lineales que al actuar sobre un
+vector, producen un escalar.
+
+El vector $\vvv{v}$ es un elemento del espacio tangente de $\symbb{R}^2$
 \[
   \vvv{v} \in T_p\symbb{R}^2
 \]
 
-Podemos establecer una aplicación lineal $\omega$ que, aplicada a un vector produzca un
-escalar
+Podemos establecer una aplicación lineal $\omega$ que, al actuar sobre un vector, produce
+un escalar
 \[
   \omega: T_p\symbb{R}^2 \rightarrow \symbb{R}
 \]
-y diremos que $\omega$ es un elemento del \emph{espacio dual} del vector
+
+Diremos que $\omega$ es un elemento del \emph{espacio dual} del vector
 \[
   \omega \in \left(T_p\symbb{R}^2\right)^*
 \]
 
 Los vectores covariantes son estas aplicaciones lineales $\omega = x_ie^i$ y, como hemos
-dicho son elementos del espacio dual, que no es el espacio tangente donde \emph{viven}
-los vectores. La métrica permite relacionar los dos espacios (subir o bajar índices).
+dicho, son elementos del espacio dual, que no es el espacio tangente donde \emph{viven}
+los vectores. La métrica permite relacionar los dos espacios (subiendo o bajando índices).
 
 Ahora nos podemos preguntar que si
-$\omega = x_1\vvv{e}^1 + x_2\vvv{e}^2 = 2\vvv{e}^1 + \frac{5}{2}\vvv{e}^2$ es una de
-tales aplicaciones, debería \emph{comer} un vector como $\vvv{v}$ y producir un escalar
-(en este caso un número real).
+$\omega = x_1\vvv{e}^1 + x_2\vvv{e}^2 = 2\vvv{e}^1 + \frac{5}{2}\vvv{e}^2$, es una de
+tales aplicaciones lineales, debería \emph{comer} un vector como $\vvv{v}$ y producir un
+escalar (en este caso un número real).
+
 Veamos en notación de Einstein, que el número real es el cuadrado del módulo del vector
 \[
   \omega(\vvv{v}) = x_ie^i\cdot x^ie_i = x_ix^i = v^2
