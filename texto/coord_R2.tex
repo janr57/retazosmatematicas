@@ -2081,6 +2081,21 @@ c) El tensor métrico en el sistema oblicuo, con $\alpha = \pi/3\,\unit{\radian}
   \end{pmatrix}
 \]
 
+Su inversa es
+\[
+  \mmm{g}^{ij}
+  = \dfrac{1}{\det(\mmm{g}_{ij})}\, \text{adj}(\mmm{g}_{ij}^\transp)
+  = \dfrac{1}{3/4}
+  \begin{pmatrix}
+    1 & -1/2\\
+    -1/2 & 1
+  \end{pmatrix}
+  = \begin{pmatrix}
+    4/3 & -2/3\\
+    -2/3 & 4/3
+  \end{pmatrix}
+\]
+
 \noindent
 d) Para hallar las componentes contravariantes, debemos aplicar la inversa de la matriz
 de cambio de base
@@ -2149,32 +2164,96 @@ $25$, pues tiene que dar en mismo resultado que en rectangulares (apartado a).
 \subsection{Ejercicio 2}
 \noindent Supongamos un cierto vector en coordenadas rectangulares,
 $\vvv{v} = 2\,\uvec{\i} + \sqrt{3}\,\uvec{\j}$.\\
-a) Calcula el cuadrado del vector $\vvv{v}$.\\
-b) Calcula sus componentes contravariantes en un sistema de coordenadas oblicuas de \qty{60}{\degree}, mediante una transformación de componentes.\\
-c) Calcula estas componentes mediante transformación de los vectores de la base $B$.\\
-d) Obtén el tensor métrico en el sistema oblicuo.\\
-e) Halla las componentes covariantes del vector.\\
-f) Halla el cuadrado del módulo del vector en el sistema oblicuo.\\
+a) Calcula el cuadrado del módulo de $\vvv{v}$.\\
+b) Queremos utilizar un sistema de coordenadas oblicuo, cuyos ejes forman
+$\qty{60}{\degree}$ entre sí y haciendo coincidir los ejes $x$ y $x'$.
+Calcula los vectores de la base $B'=\set{\vvv{e}_1, \vvv{e}_2}$ en el sistema oblicuo
+en función de la base del sistema cartesiano ortogonal $B=\set{\uvec{\i},\,\uvec{\j}}$.
+Halla sus módulos y comprueba que son vectores unitarios.\\
+c) Halla la matriz de cambio de base del sistema cartesiano ortogonal
+$B=\set{\uvec{\i},\,\uvec{\j}}$ a la del sistema de coordenadas oblicuas, $B'$.
+Calcula también su inversa.\\
+d) Obtén las componentes contravariantes del vector $\vvv{v}$ en el sistema de
+coordenadas oblicuas, mediante una transformación de componentes.\\
+e) Calcula estas componentes mediante transformación de los vectores de la base $B$.\\
+f) Calcula los vectores de la base covariante $B'=\set{\vvv{e}_1, \vvv{e}_2}$ en función
+de la base en coordenadas ortogonales y comprueba que son unitarios.\\
+g) Obtén el tensor métrico en el sistema oblicuo y su inversa.\\
+h) Calcula los vectores de la base contravariante $\set{\vvv{e}^1,\vvv{e}^2}$ en función
+de la base rectangular $\set{\uvec{\i},\,\uvec{\j}}$ y halla sus módulos, comprobando
+que no son vectoes unitarios\\
+i) Calcula los productos escalares entre los elementos de la base covariante y la
+contravariante\\
+j) Halla las componentes covariantes del vector.\\
+k) Halla el cuadrado del módulo del vector en el sistema oblicuo.\\
+l) Relaciona el apartado anterior con el hecho de que los vectores covariantes son
+elementos $\omega$ del espacio dual de los vectores $\vvv{v}$ del espacio tangente de $\symbb{R}^2$ y que estas $\omega$ son aplicaciones lineales que aplicadas sobre los
+vectores del espacio tangente, nos producen un escalar, y halla este escalar para nuestro
+vector $\vvv{v}$.\\
 
 \noindent
 \textbf{Solución}
 
 \noindent
-a)
+a) Cuadrado del módulo de $\vvv{v} = 2\,\uvec{\i} + \sqrt{3}\,\uvec{\j}$
 \[
-|\vvv{v}|^2
-= \left(2\,\uvec{\i}+\sqrt{3}\,\uvec{\j}\right)
-\cdot
-\left(2\,\uvec{\i}+\sqrt{3}\,\uvec{\j}\right)
-= 2\cdot 2 + \sqrt{3}\cdot\sqrt{3}
-= 4 + 3
-= 7
+  |\vvv{v}|^2 = v^2 = v_x^2 + v_y^2 = 2^2 + \left(\sqrt{3}\right)^2 = 4 + 3 = 7
 \]
 
 \noindent
-b) La matriz de cambio de base $\mmm{M}$ es \ref{eq:R2-oblic_M}. Para calcular las
-componentes en la nueva base, tenemos que utilizar la matriz inversa $\mmm{M}^{-1}$,
-\ref{eq:R2-oblic_Minv}
+b) Matriz de cambio de base $B=\set{\uvec{\i},\,\uvec{\j}}$ a la de coordenadas oblicuas
+que forman $\qty{60}{\degree}$, haciendo coincidir los ejes $x$ y $x'$. Calculando
+también su inversa.
+
+En la figura \ref{fig:R2-coord_oblicuas_e1e2} se puede observar que, en nuestro caso
+\begin{align*}
+  \vvv{e}_1
+  &=
+    \uvec{\i}\\
+  \vvv{e}_2
+  &=
+    \cos(\pi/3)\,\uvec{\i} + \sin(\pi/3)\,\uvec{\j}
+    = \dfrac{1}{2}\,\uvec{\i} + \dfrac{\sqrt{3}}{2}\,\uvec{\j}
+\end{align*}
+
+Estos vectores son unitarios
+\begin{align*}
+  |\uvec{e}_1|^2
+  &=
+    \uvec{\i}\cdot \uvec{\i} = 1\\
+  |\uvec{e}_2|^2
+  &=
+    \left(\dfrac{1}{2}\,\uvec{\i}+\dfrac{\sqrt{3}}{2}\,\uvec{\j}\right)\cdot\uvec{\i}
+    =1
+\end{align*}
+
+Se puede comprobar que
+\[
+  \begin{pmatrix}
+    \vvv{e}_1 & \vvv{e}_2
+  \end{pmatrix}
+  = \begin{pmatrix}
+    \uvec{\i} & \uvec{\j}
+  \end{pmatrix}
+  \,\begin{pmatrix}
+    1 & 1/2\\
+    0 & \sqrt{3}/2
+  \end{pmatrix}
+\]
+
+Entonces, la matriz de cambio de base de $B$ a $B'$ es
+\[
+  \mmm{M}
+  = \begin{pmatrix}
+    1 & 1/2\\
+    0 & \sqrt{3}/2
+    \end{pmatrix}
+\]
+
+\noindent
+c) La matriz de cambio de base $\mmm{M}$ se presentó en \ref{eq:R2-oblic_M}. Para
+calcular las componentes en la nueva base, tenemos que utilizar la matriz inversa
+$\mmm{M}^{-1}$, ver \ref{eq:R2-oblic_Minv}
 \[
   [x]_{B'} = \mmm{M}^{-1} [x]_{B}
 \]
@@ -2218,7 +2297,7 @@ Las coordenadas contravariantes en el nuevo sistema son
 \end{align*}
 
 \noindent
-c) Necesitamos obtener los vectores de la base antigua $B=\set{\uvec{\i},\uvec{\j}}$ en
+d) Necesitamos obtener los vectores de la base antigua $B=\set{\uvec{\i},\uvec{\j}}$ en
 función de la nueva $B'=\set{\vvv{e}_1,\vvv{e}_2}$. Para ello utilizaremos inversa de la
 matriz de cambio de base
 \begin{align*}
@@ -2281,9 +2360,10 @@ Las componentes contravariantes son, obviamente, las mismas que en el apartado a
 \end{align*}
 
 \noindent
-d) Para calcular el tensor métrico y su inversa, tenemos que calcular el módulo de los
-vectores de la base $B'=(\vvv{e}_1, \vvv{e}_2)$
-\begin{align*}
+e) Vectores de la base covariante $B'=\set{\vvv{e}_1,\vvv{e}_2}$ en función de la base
+  en coordenadas cartesianas ortogonales $B=\set{\uvec{\i},\,\uvec{\j}}$.
+
+    \begin{align*}
   \begin{pmatrix}
     \vvv{e}_1 & \vvv{e}_2
   \end{pmatrix}
@@ -2308,7 +2388,7 @@ vectores de la base $B'=(\vvv{e}_1, \vvv{e}_2)$
       \end{pmatrix}
 \end{align*}
 
-Los vectores de la base natural
+Los vectores de la base natural resultan
 \begin{align*}
   \vvv{e}_1
   &=
@@ -2318,7 +2398,7 @@ Los vectores de la base natural
     \dfrac{1}{2}\,\uvec{\i} + \dfrac{\sqrt{3}}{2}\,\uvec{\j}
 \end{align*}
 
-Son vectores unitarios $\vvv{e}_1 = \xhat{e}_1$ y $\vvv{e}_2 = \xhat{e}_2$
+Estos vectores son unitarios $\vvv{e}_1 = \xhat{e}_1$ y $\vvv{e}_2 = \xhat{e}_2$
 \begin{align*}
   |\vvv{e}_1|^2
   &=
@@ -2332,6 +2412,9 @@ Son vectores unitarios $\vvv{e}_1 = \xhat{e}_1$ y $\vvv{e}_2 = \xhat{e}_2$
       = \dfrac{1}{4} + \dfrac{3}{4}
       = 1
 \end{align*}
+
+\noindent
+f) Tensor métrico y su inverso.
 
 El tensor métrico sería
 \[
@@ -2353,6 +2436,164 @@ El tensor métrico sería
   \end{pmatrix}
 \]
 
+La inversa del tensor métrico es
+\[
+  \mmm{g}^{ij}
+  = \dfrac{1}{\det(\mmm{g}_{ij})}\, \text{adj}(\mmm{g}_{ij}^\transp)
+  = \dfrac{1}{3/4}
+  \begin{pmatrix}
+    1 & -1/2\\
+    -1/2 & 1
+  \end{pmatrix}
+  = \begin{pmatrix}
+    4/3 & -2/3\\
+    -2/3 & 4/3
+  \end{pmatrix}
+\]
+
+\noindent
+g)
+En el apartado d) calculamos los vectores de la base covariante, resultando
+\begin{align*}
+  \vvv{e}_1 &= \uvec{\i}\\
+  \vvv{e}_2 &= \dfrac{1}{2}\,\uvec{\i} + \dfrac{\sqrt{3}}{2}\,\uvec{\j}
+\end{align*}
+
+Subiendo índices obtendríamos los vectores de la base contravariante
+\[
+  \vvv{e}^i = g^{ij}\vvv{e}_j
+\]
+\begin{align*}
+  \vvv{e}^1
+  &=
+    g^{11}\vvv{e}_1 + g^{12}\vvv{e}_2
+    = \dfrac{4}{3}\vvv{e}_1 - \dfrac{2}{3}\vvv{e}_2
+    = \dfrac{4}{3}\,\uvec{\i}
+    - \dfrac{2}{3}\,\left(\dfrac{1}{2}\,\uvec{\i}+\dfrac{\sqrt{3}}{2}\,\uvec{\j}\right)
+    = \uvec{\i} - \dfrac{\sqrt{3}}{3}\,\uvec{\j}\\
+  \vvv{e}^2
+  &=
+    g^{21}\vvv{e}_1 + g^{22}\vvv{e}_2
+    = -\dfrac{2}{3}\vvv{e}_1 + \dfrac{4}{3}\vvv{e}_2
+    = -\dfrac{2}{3}\,\uvec{\i}
+    + \dfrac{4}{3}\,\left(\dfrac{1}{2}\,\uvec{\i}+\dfrac{\sqrt{3}}{2}\,\uvec{\j}\right)
+    = \dfrac{2\sqrt{3}}{3}\,\uvec{\j}  
+\end{align*}
+
+Los vectores de la base contravariante son
+\begin{align*}
+  \vvv{e}^1 &= \uvec{\i} - \dfrac{\sqrt{3}}{3}\,\uvec{\j}\\
+  \vvv{e}^2 &= \dfrac{2\sqrt{3}}{3}\,\uvec{\j}
+\end{align*}
+
+Calculamos sus módulos y comprobamos que no son vectores unitarios
+\begin{align*}
+  \left|\vvv{e}^1\right|
+  &=
+    1^2 + \left(\dfrac{\sqrt{3}}{3}\right)^2
+    = 1 + \dfrac{1}{3}
+    = \dfrac{4}{3}\\
+  \left|\vvv{e}^2\right|
+  &=
+    \left(\dfrac{2\sqrt{3}}{3}\right)^2
+    = \dfrac{4}{3}
+\end{align*}
+
+\noindent
+h) Productos escalares entre elementos de las bases covariante y contravariante
+\begin{align*}
+  \vvv{e}^1\cdot\vvv{e}_1
+  &=
+    \left(\uvec{\i} - \dfrac{\sqrt{3}}{3}\,\uvec{\j}\right)
+    \cdot
+    \uvec{\i}
+    = 1\\
+  \vvv{e}^2\cdot\vvv{e}_2
+  &=
+    \left(\dfrac{2\sqrt{3}}{3}\,\uvec{\j}\right)
+    \cdot
+    \left(\dfrac{1}{2}\,\uvec{\i} + \dfrac{\sqrt{3}}{2}\,\uvec{\j}\right)
+    = 1
+\end{align*}
+Y los productos cruzados
+\begin{align*}
+  \vvv{e}^1\cdot\vvv{e}_2
+  &=
+    \left(\uvec{\i} - \dfrac{\sqrt{3}}{3}\,\uvec{\j}\right)
+    \cdot
+    \left(\dfrac{1}{2}\,\uvec{\i} + \dfrac{\sqrt{3}}{2}\,\uvec{\j}\right)
+    = \dfrac{1}{2} - \dfrac{\sqrt{3}}{3}\cdot\dfrac{\sqrt{3}}{2}
+    = \dfrac{1}{2} - \dfrac{1}{2}
+    = 0\\
+  \vvv{e}^2\cdot\vvv{e}_1
+  &=
+    \left(
+    \dfrac{2\sqrt{3}}{3}\,\uvec{\j}\right) \cdot \uvec{\i}
+    = 0
+\end{align*}
+
+\noindent
+i) Las componentes covariantes del vector se pueden calcular bajando el índice de las
+contravariantes
+\[
+  x_i = g_{ij} x^j
+\]
+\begin{align*}
+  x_1
+  &=
+    g_{11} x^1 + g_{12} x^2
+    = 1\cdot 1 + \dfrac{1}{2} \cdot 2
+    =  2\\
+  x_2
+  &=
+    g_{21} x^1 + g_{22} x^2
+    = \dfrac{1}{2} \cdot 1 + 1\cdot 2
+    = \dfrac{5}{2}
+\end{align*}
+
+\noindent
+i) El vector $\vvv{v}$ es un elemento del espacio tangente de $\symbb{R}^2$
+\[
+  \vvv{v} \in T_p\symbb{R}^2
+\]
+
+Podemos establecer una aplicación lineal $\omega$ que, aplicada a un vector produzca un
+escalar
+\[
+  \omega: T_p\symbb{R}^2 \rightarrow \symbb{R}
+\]
+y diremos que $\omega$ es un elemento del \emph{espacio dual} del vector
+\[
+  \omega \in \left(T_p\symbb{R}^2\right)^*
+\]
+
+Los vectores covariantes son estas aplicaciones lineales $\omega = x_ie^i$ y, como hemos
+dicho son elementos del espacio dual, que no es el espacio tangente donde \emph{viven}
+los vectores. La métrica permite relacionar los dos espacios (subir o bajar índices).
+
+Ahora nos podemos preguntar que si
+$\omega = x_1\vvv{e}^1 + x_2\vvv{e}^2 = 2\vvv{e}^1 + \frac{5}{2}\vvv{e}^2$ es una de
+tales aplicaciones, debería \emph{comer} un vector como $\vvv{v}$ y producir un escalar
+(en este caso un número real).
+Veamos en notación de Einstein, que el número real es el cuadrado del módulo del vector
+\[
+  \omega(\vvv{v}) = x_ie^i\cdot x^ie_i = x_ix^i = v^2
+\]
+
+En nuestro ejemplo, tendríamos
+\[
+  \omega(\vvv{v})
+  = \left(2\vvv{e}^1+\dfrac{5}{2}\vvv{e}^2\right)\cdot\left(1\vvv{e}_1+2\vvv{e}_2\right)
+  = 2\cdot 1 + \dfrac{5}{2}\cdot 2
+  = 2 + 5
+  = 7
+\]
+donde se han tenido en cuenta los productos escalares del apartado anterior.
+
+Recalcamos el hecho de que la aplicación lineal $\omega\in (T_p\symbb{R}^2)^*$
+(elemento del espacio dual de $\vvv{v} = 2\,\uvec{\i}+\sqrt{3}\,\uvec{\j}$), que es
+$\omega=2\vvv{e}^1+\frac{5}{2}\vvv{e}^2$, cuando se aplica al vector $\vvv{v}$ nos da un
+escalar, que resulta ser el cuadrado del módulo del vector.
 
 
 \subsection{Gradiente}
