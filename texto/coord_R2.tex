@@ -1833,72 +1833,11 @@ unitarios en un sistema cartesiano rectangular $\alpha=\qty{90}{\degree}$
     = \dfrac{\sqrt{1+\cos^2\alpha}}{\sin^4\alpha}
 \end{align}
 
-\subsection{Visión general de estas componentes}
-Por si se quiere profundizar algo más en las componentes covariantes y contravariantes,
-aquí se presentan algunas ideas útiles.
-
-Hay una definición más formal de estas componentes, que procede del álgebra lineal y de
-la geometría diferencial; de ambas, pero con propósitos y niveles de abstracción
-distintos.
-\begin{itemize}
-\item Por parte del álgebra lineal, la distinción entre componentes covariantes y
-  contravariantes nace de la relación entre un espacio vectorial $V$,
-  y su espacio dual $V^*$:
-\begin{itemize}
-\item Vectores (contravariantes): Son los elementos del espacio original $V$. Sus
-  elementos se transforman de manera inversa a los cambios de base para que el vector
-  físico permanezca igual.
-\item Covectores o formas lineales (covariantes): Son elementos del espacio dual $V^*$
-  asociado a $V$. Son funciones $\omega$ que actúan sobre los vectores y producen un
-  escalar. Sus componentes se transforman de la misma forma que los cambios de base.
-\end{itemize}
-A este nivel, las componentes covariantes son simplemente los coeficientes de una
-\emph{1-forma} o un funcional lineal ---las funciones que operan sobre un solo vector---.
-Estos coeficientes \emph{viven} en un espacio dual $V^*$ asociado al espacio vectorial
-$V$ original. En principio, esta es la relación entre los vectores y los covectores,
-pero viven en espacios distintos. Ahora bien, si disponemos de una métrica (un producto
-escalar definido en $V$, también lo tendremos en $V^*$) y ambos espacios se pueden
-conectar y el álgebra lineal te permite \emph{bajar} o \emph{subir} índices convirtiendo
-un vector en un covector y viceversa.
-
-\item Por su parte, la geometría diferencial toma estos conceptos del álgebra lineal y
-  los aplica a cada punto de una variedad ---una superficie curva, por ejemplo; una
-  superficie esférica o tórica en un espacio $\symbb{R}^3$---.
-  \begin{itemize}
-  \item Espacio tangente: En cada punto $P$\, de una curva o superficie, existe una
-    línea o un plano tangente al punto que es un espacio vectorial $V$, o
-    $T_p\symbb{R}^2$. Aquí es donde viven los vectores y tiene sentido el álgebra
-    lineal. En cada punto de la variedad hay definido un plano o espacio vectorial
-    diferente. En principio, no podríamos operar o comparar vectores de diferentes
-    espacios tangente (asociados a diferentes puntos de la variedad). Para ello, hay que
-    definir los conceptos de \emph{transporte paralelo} y \emph{derivada covariante},
-    para poder \emph{transportar} un vector desde su espacio en un punto a otro espacio
-    asociado a otro punto, y con ello poder realizar las operaciones comunes, suma,
-    resta, derivada, etc., en un mismo espacio.
-
-    En nuestro caso, como $\symbb{R}^2$ es plano, pues no tiene más dimensiones, todo él
-    es un mismo espacio vectorial, independientemente del punto de referencia y, por
-    tanto, tienen sentido todas las operaciones de suma, resta, comparación, derivada,
-    etc., sin necesidad del transporte paralelo y derivada covariante.
-  \item Campos tensoriales: La geometría diferencial estudia cómo estas componentes
-    (covariantes y contravariantes) cambian, no solo cuando cambias de base, sino cuando
-    te mueves de un punto a otro en un sistema de coordenadas curvilíneo ---cuando se
-    cambia de un punto a otro, los espacios tangentes cambian y, en principio, no se
-    pueden relacionar fácilmente, pero la geometría diferencial nos permite comparar y
-    operar con vectores de diferentes espacios tangente.
-
-    En geometría diferencial, las componentes covariantes suelen estar asociadas a los
-    gradientes de las funciones escalares (de ahí lo de las líneas o superficies de
-    nivel, mientras que las contravariantes se asocian a velocidades o desplazamientos
-    infinitesimales.
-  \end{itemize}
-\end{itemize}
-
-Para terminar, el álgebra lineal proporciona la estructura algebráica, mientras que la geometría diferencial proporciona el marco geométrico y físico.
-
 \subsection{Producto escalar}
 Ahora que se han introducido las componentes covariantes y contravariantes, y el tensor
-métrico, estamos en disposición de ver el producto escalar de dos vectores.
+métrico, estamos en disposición de ver el producto escalar de dos vectores
+contravariantes.
+
 Definiremos el producto escalar de dos vectores $\vvv{u}$ y $\vvv{v}$ matricialmente en
 $\symbb{R}^2$ como
 \begin{equation}
@@ -1964,6 +1903,70 @@ $U_i = g_{ij}v^j$
   \vvv{u}\cdot\vvv{v}
   = u^i\,v_i = u_i\,v^i
 \end{equation}
+
+\subsection{Visión general de estas componentes}
+Por si se quiere profundizar algo más en las componentes covariantes y contravariantes,
+aquí se presentan algunas ideas útiles.
+
+Hay una definición más formal de estas componentes, que procede del álgebra lineal y de
+la geometría diferencial; de ambas, pero con propósitos y niveles de abstracción
+distintos.
+\begin{itemize}
+\item Por parte del álgebra lineal, la distinción entre componentes covariantes y
+  contravariantes nace de la relación entre un espacio vectorial $V$,
+  y su espacio dual $V^*$:
+\begin{itemize}
+\item Vectores (contravariantes): Son los elementos del espacio original $V$. Sus
+  elementos se transforman de manera inversa a los cambios de base para que el vector
+  físico permanezca igual.
+\item Covectores o formas lineales (covariantes): Son elementos del espacio dual $V^*$
+  asociado a $V$. Son funciones $\omega$ que actúan sobre los vectores y producen un
+  escalar. Sus componentes se transforman de la misma forma que los cambios de base.
+\end{itemize}
+A este nivel, las componentes covariantes son simplemente los coeficientes de una
+\emph{1-forma} o un funcional lineal ---las funciones que operan sobre un solo vector---.
+Estos coeficientes \emph{viven} en un espacio dual $V^*$ asociado al espacio vectorial
+$V$ original. En principio, esta es la relación entre los vectores y los covectores,
+pero viven en espacios distintos. Ahora bien, si disponemos de una métrica (un producto
+escalar definido en $V$, también lo tendremos en $V^*$) y ambos espacios se pueden
+conectar y el álgebra lineal te permite \emph{bajar} o \emph{subir} índices convirtiendo
+un vector en un covector y viceversa.
+
+\item Por su parte, la geometría diferencial toma estos conceptos del álgebra lineal y
+  los aplica a cada punto de una variedad ---una superficie curva, por ejemplo; una
+  superficie esférica o tórica en un espacio $\symbb{R}^3$---.
+  \begin{itemize}
+  \item Espacio tangente: En cada punto $P$\, de una curva o superficie, existe una
+    línea o un plano tangente al punto que es un espacio vectorial $V$, o
+    $T_p\symbb{R}^2$. Aquí es donde viven los vectores y tiene sentido el álgebra
+    lineal. En cada punto de la variedad hay definido un plano o espacio vectorial
+    diferente. En principio, no podríamos operar o comparar vectores de diferentes
+    espacios tangente (asociados a diferentes puntos de la variedad). Para ello, hay que
+    definir los conceptos de \emph{transporte paralelo} y \emph{derivada covariante},
+    para poder \emph{transportar} un vector desde su espacio en un punto a otro espacio
+    asociado a otro punto, y con ello poder realizar las operaciones comunes, suma,
+    resta, derivada, etc., en un mismo espacio.
+
+    En nuestro caso, como $\symbb{R}^2$ es plano, pues no tiene más dimensiones, todo él
+    es un mismo espacio vectorial, independientemente del punto de referencia y, por
+    tanto, tienen sentido todas las operaciones de suma, resta, comparación, derivada,
+    etc., sin necesidad del transporte paralelo y derivada covariante.
+  \item Campos tensoriales: La geometría diferencial estudia cómo estas componentes
+    (covariantes y contravariantes) cambian, no solo cuando cambias de base, sino cuando
+    te mueves de un punto a otro en un sistema de coordenadas curvilíneo ---cuando se
+    cambia de un punto a otro, los espacios tangentes cambian y, en principio, no se
+    pueden relacionar fácilmente, pero la geometría diferencial nos permite comparar y
+    operar con vectores de diferentes espacios tangente.
+
+    En geometría diferencial, las componentes covariantes suelen estar asociadas a los
+    gradientes de las funciones escalares (de ahí lo de las líneas o superficies de
+    nivel, mientras que las contravariantes se asocian a velocidades o desplazamientos
+    infinitesimales.
+  \end{itemize}
+\end{itemize}
+
+Para terminar, el álgebra lineal proporciona la estructura algebráica, mientras que la geometría diferencial proporciona el marco geométrico y físico.
+
 
 \subsection{Ejercicio 1}
 \noindent Supongamos un cierto vector en coordenadas rectangulares,
@@ -2596,7 +2599,7 @@ donde se han tenido en cuenta los productos escalares del apartado anterior.
 Recalcamos el hecho de que la aplicación lineal $\omega\in (T_p\symbb{R}^2)^*$
 (elemento del espacio dual de $\vvv{v} = 2\,\uvec{\i}+\sqrt{3}\,\uvec{\j}$), que es
 $\omega=2\vvv{e}^1+\frac{5}{2}\vvv{e}^2$, cuando se aplica al vector $\vvv{v}$ nos da un
-escalar, que resulta ser el cuadrado del módulo del vector.
+escalar, que resulta ser el cuadrado del módulo del vector
 
 
 \subsection{Gradiente}
