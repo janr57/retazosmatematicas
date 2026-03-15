@@ -1854,7 +1854,8 @@ componentes.
 \end{figure}
 Piensa en la base $\vvv{e}^i$ como una serie de líneas o superficies de nivel perpendiculares a cada uno de los ejes, que nos indican el valor de un cierto escalar o \emph{altura}. La componente covariante en ese eje nos indica de forma visual el
 \emph{número de líneas o superficies de nivel} que el vector \emph{atraviesa}.
-Ver figuras \ref{fig:R2-oblic_cov1} y \ref{fig:R2-oblic_cov2}.
+Ver figuras \ref{fig:R2-oblic_cov1} y \ref{fig:R2-oblic_cov2} (comparar con figura
+\ref{fig:R2-oblic_ejes_ctv_cov}).
 \begin{figure}[ht]
   \begin{minipage}{0.45\linewidth}
     % Escala
@@ -2202,8 +2203,6 @@ $U_i = g_{ij}v^j$
   = u^i\,v_i = u_i\,v^i
 \end{equation}
 
-
-
 \subsection{Ejercicio 1}
 \noindent Supongamos un cierto vector en coordenadas rectangulares,
 $\vvv{v} = 3\,\uvec{\i} + 4\,\uvec{\j}$.\\
@@ -2414,8 +2413,7 @@ $B=\set{\uvec{\i},\,\uvec{\j}}$ a la del sistema de coordenadas oblicuas, $B'$.
 Calcula también su inversa.\\
 d) Obtén las componentes contravariantes del vector $\vvv{v}$ en el sistema de
 coordenadas oblicuas, mediante una transformación de componentes.\\
-e) Calcula las componentes contravariantes, esta vez mediante transformación de los
-vectores de la base $B$.\\
+e) Halla ahora las componentes, mediante transformación de los vectores de la base $B$.\\
 f) Calcula el producto escalar de los vectores de la base covariante
 $B'=\set{\vvv{e}_1, \vvv{e}_2}$ en función de la base en coordenadas ortogonales.\\
 g) Obtén el tensor métrico en el sistema oblicuo y su inversa.\\
@@ -2860,22 +2858,18 @@ obtenemos
 El vector gradiente será
 \begin{equation}
   \vvv{\nabla}\phi
-  = (\nabla\phi)_i\xhat{e}^i
-  = \dfrac{\partial\phi}{\partial x^i}\xhat{e}^i
-  = \dfrac{\partial\phi}{\partial x^1}\xhat{e}^1
-  + \dfrac{\partial\phi}{\partial x^2}\xhat{e}^2
+  = (\nabla\phi)_i\vvv{e}^i
+  = \dfrac{\partial\phi}{\partial x^i}\vvv{e}^i
+  = \dfrac{\partial\phi}{\partial x^1}\vvv{e}^1
+  + \dfrac{\partial\phi}{\partial x^2}\vvv{e}^2
 \end{equation}
 
 \subsubsection{Componentes contravariantes}
-Para que el gradiente nos indique la dirección y sentido que indica el máximo aumento del
-escalar tenemos que obtener sus componentes contravariantes (segmentos orientados en el
-espacio).
+Para que el gradiente nos indique la dirección y sentido (segmento orientado) que indica
+el máximo aumento del escalar tenemos que obtener sus componentes contravariantes.
 
-Para obtener el gradiente con sus componentes contravariantes $\nabla\phi^1$ y
-$\nabla\phi^2$, tenemos que derivar parcialmente el campo con respecto a $x^i$, pero como
-este resultado es un vector covariante (1-forma)
-$\nabla\phi_i=\partial\phi/\partial x^i$, tenemos que subir índices multiplicando por la
-inversa de la métrica
+Para obtener $\nabla\phi^1$ y $\nabla\phi^2$, tenemos que subir índices
+$\nabla\phi_i=\partial\phi/\partial x^i$, multiplicando por la inversa de la métrica
 \begin{equation}
   \vvv{\nabla}\phi
   = g^{ij}(\nabla\phi)_i\,\xhat{e}_j
@@ -2957,228 +2951,140 @@ Y luego sustituir lo anterior en
 dando el mismo resultado que en \eqref{eq:R2-oblic_gradiente_contrav}.
 }
 
-\subsubsection{Relación con las componentes cartesianas rectangulares}
-Si conociéramos las componentes cartesianas rectangulares del gradiente
-$(\partial\phi/\partial x, \partial\phi/\partial y)$, podríamos utilizar la matriz
-inversa de cambio de base $\mmm{M}^{-1}$ \eqref{eq:R2-oblic_Minv}, para obtener las
-componentes covariantes en oblicuas en función de las rectangulares
-\begin{equation}
-  \begin{pmatrix}
-    \nabla\phi_1\\
-    \nabla\phi_2
-  \end{pmatrix}
-  = \begin{pmatrix}
-    \dfrac{\partial\phi}{\partial x^1}\\[2ex]
-    \dfrac{\partial\phi}{\partial x^2}
-  \end{pmatrix}
-  = \begin{pmatrix}
-   1 & -\cot\alpha\\
-    0 & \csc\alpha
-  \end{pmatrix}
-  \begin{pmatrix}
-    \dfrac{\partial\phi}{\partial x}\\[2ex]
-    \dfrac{\partial\phi}{\partial y}
-  \end{pmatrix}
-  = \begin{pmatrix}
-    \dfrac{\partial\phi}{\partial x}-\cot\alpha\,\dfrac{\partial\phi}{\partial y}\\[1ex]
-    \csc\alpha\,\dfrac{\partial\phi}{\partial y}
-  \end{pmatrix}
-\end{equation}
-
-Las componentes resultan
-\begin{subequations}
-  \begin{align}
-    (\nabla\phi)_1
-    &=
-      \dfrac{\partial\phi}{\partial x^1}
-      =  \dfrac{\partial\phi}{\partial x}-\cot\alpha\,\dfrac{\partial\phi}{\partial y}\\
-    (\nabla\phi)_2
-    &=
-      \dfrac{\partial\phi}{\partial x^2}
-      =  \csc\alpha\,\dfrac{\partial\phi}{\partial y}\\    
-  \end{align}
-\end{subequations}
-
-El gradiente se podrá representar como $\vvv{\nabla}\phi = (\nabla\phi)_i\,\vvv{e}^i$
-\begin{equation}
+\subsection{Ejercicio}
+Conocido el gradiente de un campo escalar $\phi=\phi(x,y)$, en coordenadas cartesianas ortogonales
+\[
   \vvv{\nabla}\phi
-  = \left(%
-    \dfrac{\partial\phi}{\partial x} - \cot\alpha\,\dfrac{\partial\phi}{\partial y}
-  \right)\vvv{e}^1
-  + \csc\alpha\,\dfrac{\partial\phi}{\partial y}\,\vvv{e}^2
-\end{equation}
-
-Las componentes contravariantes se pueden hallar subiendo índices
-\begin{equation}
-  (\nabla\phi)^i = g^{ij} (\nabla\phi)_j
-\end{equation}
-
-\begin{align*}
-  \nabla\phi^1
-  &=
-    \dfrac{\partial\phi}{\partial x_1}
-    = g^{11}(\nabla\phi)_1 + g^{12}(\nabla\phi)_2\\
-  &=
-    \dfrac{1}{\sin^2\alpha}
-    \left(%
-    \dfrac{\partial\phi}{\partial x}-\cot\alpha\,\dfrac{\partial\phi}{\partial y}
-    \right)
-    - \dfrac{\cos\alpha}{\sin^2\alpha}\csc\alpha\,\dfrac{\partial\phi}{\partial y}
-\end{align*}
-\begin{align*}
-  \nabla\phi^2
-  &=
-    \dfrac{\partial\phi}{\partial x_2}
-    = g^{21}(\nabla\phi)_1 + g^{22}(\nabla\phi)_2\\
-  &=
-    \left[%
-    - \dfrac{\cos\alpha}{\sin^2\alpha}
-    \left(%
-    \dfrac{\partial\phi}{\partial x}-\cot\alpha\,\dfrac{\partial\phi}{\partial y}
-    \right)
-    + \dfrac{1}{\sin^2\alpha}\csc\alpha\,\dfrac{\partial\phi}{\partial y}
-    \right]
-\end{align*}
-
-Simplificando las dos expresiones anteriores nos queda
-\begin{subequations}
-  \begin{align}
-    \nabla\phi^1
-    &=
-      \dfrac{1}{\sin^2\alpha}
-      \left(%
-      \dfrac{\partial\phi}{\partial x}
-      -2\cot\alpha\,\dfrac{\partial\phi}{\partial y}
-      \right)\\
-    \nabla\phi^2
-    &=
-      \dfrac{1}{\sin^2\alpha}
-      \left(%
-      -\cos\alpha\,\dfrac{\partial\phi}{\partial x}
-      + \dfrac{1+\cos^2\alpha}{\sin\alpha}\,\dfrac{\partial\phi}{\partial y}
-      \right)  
-  \end{align}
-\end{subequations}
-
-El gradiente se podrá escribir como
-{
-  \begin{equation}
-    \vvv{\nabla}\phi
-    =
-    \dfrac{1}{\sin^2\alpha}
-    \left[%
-      \left(%
-        \dfrac{\partial\phi}{\partial x}
-        - 2\cot\alpha\,\dfrac{\partial\phi}{\partial y}
-      \right)\xhat{e}_1
-      + \left(%
-        -\cos\alpha\,\dfrac{\partial\phi}{\partial x}
-        + \dfrac{1+\cos^2\alpha}{\sin\alpha}\,\dfrac{\partial\phi}{\partial y}
-        \right)\xhat{e}_2
-    \right]
-    \end{equation}
-  }
-
-  \subsection{Ejercicio}
-  Obtener el gradiente de un campo escalar $\phi=\phi(x,y)$,  en coordenadas oblicuas con
-  componentes contravariantes, a partir del gradiente en coordenadas cartesianas
-  rectangulares
-  \[
-    \vvv{\nabla}\phi
-    = \dfrac{\partial\phi}{\partial x}\,\uvec{\i}
-    + \dfrac{\partial\phi}{\partial y}\,\uvec{\j}
-  \]
+  = \dfrac{\partial\phi}{\partial x}\,\uvec{\i}
+  + \dfrac{\partial\phi}{\partial y}\,\uvec{\j}
+\]
+\noindent
+a) Calcula sus componentes contravariantes en un sistema de coordenadas oblicuas, cuyos
+ejes forman un ángulo $\alpha$ entre sí.\\
+b) Calcula sus componentes covariantes en el sistema de coordenadas oblicuas.\\
 
 \noindent
 \textbf{Solución}
 
 \noindent
-\begin{itemize}
-\item Obtenemos los vectores $\uvec{\i}$ y $\uvec{\j}$ en función de los vectores
-  unitarios de la base natural $B=(\xhat{e}_1, \xhat{e}_2)$, en coordenadas oblicuas que
-  forman un ángulo $\alpha$, utilizando la matriz inversa de cambio de base
-  $\mmm{M}^{-1}$, ver \eqref{eq:R2-oblic_Minv}
-  \[
-    \begin{pmatrix}
-      \uvec{\i} & \uvec{\j}
-    \end{pmatrix}
-    =
-    \begin{pmatrix}
-      \xhat{e}_1 & \xhat{e}_2
-    \end{pmatrix}
-    \,
-    \begin{pmatrix}
-      1 & -\csc\alpha\\
-      0 & 1
-    \end{pmatrix}
-    =
-    \begin{pmatrix}
-      \xhat{e}_1 & -\cot\alpha\,\xhat{e}_1 + \csc\alpha\,\xhat{e}_2
-    \end{pmatrix}
-  \]
+a) Componentes contravariantes en función de $\partial\phi/\partial x$ y
+$\partial\phi/\partial y$.
 
-  Así obtenemos que
-  \begin{align*}
-    \uvec{\i} &= \xhat{e}_1\\
-    \uvec{\j} &= -\cot\alpha\,\xhat{e}_1 + \csc\alpha\,\xhat{e}_2
-  \end{align*}
+Obtenemos los vectores $\uvec{\i}$ y $\uvec{\j}$ en función de los vectores
+unitarios de la base natural $B=(\xhat{e}_1, \xhat{e}_2)$, en coordenadas oblicuas que
+forman un ángulo $\alpha$, utilizando la matriz inversa de cambio de base
+$\mmm{M}^{-1}$, ver \eqref{eq:R2-oblic_Minv}
+\[
+  \begin{pmatrix}
+    \uvec{\i} & \uvec{\j}
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \xhat{e}_1 & \xhat{e}_2
+  \end{pmatrix}
+  \,
+  \begin{pmatrix}
+    1 & -\cot\alpha\\
+    0 & \phantom{-}\csc\alpha
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \xhat{e}_1 & -\cot\alpha\,\xhat{e}_1 + \csc\alpha\,\xhat{e}_2
+  \end{pmatrix}
+\]
 
-\item Calculamos la expresión de las derivadas parciales en coordenadas rectangulares
-  a partir de las componentes contravariantes en oblicuas
-  \[
-    \begin{pmatrix}
-      \dfrac{\partial\phi}{\partial x}\\[2ex]
-      \dfrac{\partial\phi}{\partial y}
-    \end{pmatrix}
-    =
-    \begin{pmatrix}
-      1 & \cos\alpha\\
-      0 & \sin\alpha
-    \end{pmatrix}
-    \,
-    \begin{pmatrix}
-      \dfrac{\partial\phi}{\partial x^1}\\[2ex]
-      \dfrac{\partial\phi}{\partial x^2}      
-    \end{pmatrix}
-    =
-    \begin{pmatrix}
-      \dfrac{\partial\phi}{\partial x^1}+\cos\alpha\,\dfrac{\partial\phi}{\partial x^2}\\
-      \sin\alpha\,\dfrac{\partial\phi}{\partial x^2}
-    \end{pmatrix}
-  \]
-
-  Así obtenemos que
-  \begin{align*}
-    \dfrac{\partial\phi}{\partial x}
-    &=
-      \dfrac{\partial\phi}{\partial x^1}+\cos\alpha\,\dfrac{\partial\phi}{\partial x^2}\\
-    \dfrac{\partial\phi}{\partial y}
-    &=
-      \sin\alpha\,\dfrac{\partial\phi}{\partial x^2}
-  \end{align*}
-\end{itemize}
-
-Ahora sustituimos en la expresión del gradiente en rectangulares
+Así obtenemos que
 \begin{align*}
-  \dfrac{\partial\phi}{\partial x}\,\uvec{\i}
-  + \dfrac{\partial\phi}{\partial y}\,\uvec{\j}
-  &=
-    \left(%
-    \dfrac{\partial\phi}{\partial x^1}+\cos\alpha\,\dfrac{\partial\phi}{\partial x^2}
-    \right) \xhat{e}_1
-    + \sin\alpha\,\dfrac{\partial\phi}{\partial x^2}
-    \left(%
-    -\cot\alpha\,\xhat{e}_1 + \csc\alpha\,\xhat{e}_2
-    \right)\\
-  &=
-    \dfrac{\partial\phi}{\partial x^1}\,\xhat{e}_1
-    + \cancelout{\cos\alpha\,\dfrac{\partial\phi}{\partial x^2}\,\xhat{e}_1}
-    - \cancelout{\cos\alpha\,\dfrac{\partial\phi}{\partial x^2}\,\xhat{e}_1}
-    + \dfrac{\partial\phi}{\partial x^2}\,\xhat{e}_2
+  \uvec{\i} &= \xhat{e}_1\\
+  \uvec{\j} &= -\cot\alpha\,\xhat{e}_1 + \csc\alpha\,\xhat{e}_2
 \end{align*}
 
+Ahora sustituimos en la expresión del gradiente en cartesianas ortogonales
+\begin{align*}
+  \vvv{\nabla}\phi
+  &=
+    \dfrac{\partial\phi}{\partial x}\,\uvec{\i}
+    + \dfrac{\partial\phi}{\partial y}\,\uvec{\j}
+    = \dfrac{\partial\phi}{\partial x}\,\xhat{e}_1
+    + \dfrac{\partial\phi}{\partial y}
+    \left(-\cot\alpha\,\xhat{e}_1+\csc\alpha\,\xhat{e}_2\right)\\
+  &=
+    \dfrac{\partial\phi}{\partial x}\,\xhat{e}_1
+    - \cot\alpha\dfrac{\partial\phi}{\partial y}\,\xhat{e}_1
+    + \csc\alpha\dfrac{\partial\phi}{\partial y}\,\xhat{e}_2\\
+  &=
+    \left(%
+    \dfrac{\partial\phi}{\partial x}-\cot\alpha\dfrac{\partial\phi}{\partial y}
+    \right)\,\xhat{e}_1
+    + \csc\alpha\,\dfrac{\partial\phi}{\partial y}\,\xhat{e}_2
+    = (\nabla\phi)^1\,\xhat{e}_1 + (\nabla\phi)^2\,\xhat{e}_2
+\end{align*}
+Así
+\begin{align*}
+  (\nabla\phi)^1
+  &=
+    \dfrac{\partial\phi}{\partial x^1}
+    = \dfrac{\partial\phi}{\partial x}-\cot\alpha\dfrac{\partial\phi}{\partial y}\\
+  (\nabla\phi)^2
+  &=
+    \dfrac{\partial\phi}{\partial x^2}
+    = \csc\alpha\,\dfrac{\partial\phi}{\partial y}
+\end{align*}
+  
+\noindent
+b) Componentes covariantes en función de $\partial\phi/\partial x$ y
+$\partial\phi/\partial y$.
 
+Bajamos índices utilizando el tensor métrico
+\[
+  (\nabla\phi)_i = g_{ij}\,(\nabla\phi)^j
+\]
 
+\begin{align*}
+  (\nabla\phi)_1
+  &=
+    g_{11}(\nabla\phi)^1 + g_{12}(\nabla\phi)^2
+    = (\nabla\phi)^1 + \cos\alpha (\nabla\phi)^2\\
+  &=
+    \dfrac{\partial\phi}{\partial x}-\cot\alpha\dfrac{\partial\phi}{\partial y}
+    + \cos\alpha\csc\alpha\dfrac{\partial\phi}{\partial y}
+    = \dfrac{\partial\phi}{\partial x}
+    - \cancelout{\cot\alpha\dfrac{\partial\phi}{\partial y}}
+    + \cancelout{\cot\alpha\dfrac{\partial\phi}{\partial y}}
+    =
+    \dfrac{\partial\phi}{\partial x}
+\end{align*}
+
+\begin{align*}
+  (\nabla\phi)_2
+  &=
+    g_{21}(\nabla\phi)^1 + g_{22}(\nabla\phi)^2
+    = \cos\alpha (\nabla\phi)^1 + (\nabla\phi)^2\\
+  &=
+    \cos\alpha
+    \left(%
+    \dfrac{\partial\phi}{\partial x}-\cot\alpha\dfrac{\partial\phi}{\partial y}
+    \right)
+    + \csc\alpha\,\dfrac{\partial\phi}{\partial y}\\
+  &= \cos\alpha\,\dfrac{\partial\phi}{\partial x}
+    - \dfrac{\cos^2\alpha}{\sin\alpha}\,\dfrac{\partial\phi}{\partial y}
+    + \dfrac{1}{\sin\alpha}\,\dfrac{\partial\phi}{\partial y}
+    = \cos\alpha\,\dfrac{\partial\phi}{\partial x}
+    + \sin\alpha\,\dfrac{\partial\phi}{\partial y}
+\end{align*}
+
+Así
+\begin{align*}
+  (\nabla\phi)_1
+  &=
+    \dfrac{\partial\phi}{\partial x_1}
+    = \dfrac{\partial\phi}{\partial x}\\
+  (\nabla\phi)_2
+  &=
+    \dfrac{\partial\phi}{\partial x_2}
+    = \cos\alpha\,\dfrac{\partial\phi}{\partial x}
+    + \sin\alpha\,\dfrac{\partial\phi}{\partial y}
+\end{align*}
 
 \section{Relatividad de Galileo}
 En esta sección vamos a discutir un sistema de coordenadas oblicuo un tanto peculiar. De
