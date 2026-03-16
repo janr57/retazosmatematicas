@@ -2952,6 +2952,89 @@ dando el mismo resultado que en \eqref{eq:R2-oblic_gradiente_contrav}.
 }
 
 \subsection{Ejercicio 3}
+Un campo escalar está definido en $\symbb{R}^2$ por
+$\phi(x,y) = \dfrac{1}{4}x^2y$.\\[1ex]
+a) Calcula el gradiente en cartesianas ortogonales, su valor concreto en $(x,y)=(2,1)$
+y su módulo.
+b) Exprésalo en coordenadas cartesianas oblicuas que forman un ángulo de \qty{30}{\degree} entre sus ejes.\\
+c) Calcula el gradiente en oblicuas.
+
+\noindent
+\textbf{Solución}
+
+\noindent
+a) Gradiente, su valor y cuadrado en $(2,1)$
+\begin{align*}
+  &\vvv{\nabla}\phi
+    = \dfrac{\partial\phi}{\partial x}\,\uvec{\i}
+    +\dfrac{\partial\phi}{\partial x}\,\uvec{\j}
+    = \dfrac{1}{4}\left(2xy\,\uvec{\i} + x^2\,\uvec{\j}\right)
+    = \dfrac{1}{2}xy\,\uvec{\i} + \dfrac{1}{4}x^2\,\uvec{\j}\\
+  &\vvv{\nabla}\phi(2,1)
+    = \dfrac{1}{2}\cdot 2\cdot 1\,\uvec{\i} + \dfrac{1}{4}\cdot 2^2\,\uvec{\j}
+    = \uvec{\i} + \uvec{\j}\\
+  &|\vvv{\nabla}\phi(2,1)|
+    = \sqrt{1^2+1^2}
+    = \sqrt{2}
+\end{align*}
+
+\noindent
+b) Campo en coordenadas oblicuas
+\begin{align*}
+  \begin{pmatrix}
+    \uvec{\i} & \uvec{\j}
+  \end{pmatrix}
+  &= \begin{pmatrix}
+    \xhat{e}_1 & \xhat{e}_2
+  \end{pmatrix}
+  \,\begin{pmatrix}
+    1 & -\cot\alpha\\
+    0 & \csc\alpha
+  \end{pmatrix}
+  = \begin{pmatrix}
+    \xhat{e}_1 & \xhat{e}_2
+  \end{pmatrix}
+  \,\begin{pmatrix}
+    1 & -\cot(\pi/6)\\
+    0 & \csc(\pi/6)
+  \end{pmatrix}\\
+  &= \begin{pmatrix}
+    \xhat{e}_1 & \xhat{e}_2
+  \end{pmatrix}
+  \,\begin{pmatrix}
+    1 & -\dfrac{\sqrt{3}}{3}\\[1.2ex]
+    0 & \phantom{-}2
+  \end{pmatrix}
+    = \begin{pmatrix}
+      \xhat{e}_1 & -\dfrac{\sqrt{3}}{3}\,\xhat{e}_1 + 2\,\xhat{e}_2
+    \end{pmatrix}
+\end{align*}
+\begin{align*}
+  \uvec{\i} &= \xhat{e}_1\\
+  \uvec{\j} &= -\dfrac{\sqrt{3}}{3}\,\xhat{e}_1 + 2\,\xhat{e}_2
+\end{align*}
+\begin{align*}
+  \phi
+  &=
+    \dfrac{1}{2} xy\,\uvec{\i} + \dfrac{1}{4}x^2\,\uvec{\j}
+    = \dfrac{1}{2} xy\,\xhat{e}_1
+    + \dfrac{1}{4}x^2 \left(-\dfrac{\sqrt{3}}{3}\,\xhat{e}_1+2\,\xhat{e}_2\right)\\
+  &=
+    \left(\dfrac{1}{2} xy - \dfrac{\sqrt{3}}{12}x^2\right) \xhat{e}_1
+    + \dfrac{1}{2}x^2\,\xhat{e}_2
+    = \nabla\phi^1\,\xhat{e}_1 + \nabla\phi^2\,\xhat{e}_2
+\end{align*}
+\begin{align*}
+  \nabla\phi^1 &= \dfrac{1}{2} xy - \dfrac{\sqrt{3}}{12}x^2\\
+  \nabla\phi^2 &= \dfrac{1}{2}x^2
+\end{align*}
+
+
+
+
+
+
+\subsection{Ejercicio 4}
 Conocido el gradiente de un campo escalar $\phi=\phi(x,y)$, en coordenadas cartesianas ortogonales
 \[
   \vvv{\nabla}\phi
