@@ -2982,52 +2982,124 @@ a) Gradiente, su valor y cuadrado en $(2,1)$
 b) Campo en coordenadas oblicuas
 \begin{align*}
   \begin{pmatrix}
-    \uvec{\i} & \uvec{\j}
+    x\\
+    y
   \end{pmatrix}
-  &= \begin{pmatrix}
-    \xhat{e}_1 & \xhat{e}_2
-  \end{pmatrix}
-  \,\begin{pmatrix}
-    1 & -\cot\alpha\\
-    0 & \csc\alpha
-  \end{pmatrix}
-  = \begin{pmatrix}
-    \xhat{e}_1 & \xhat{e}_2
-  \end{pmatrix}
-  \,\begin{pmatrix}
-    1 & -\cot(\pi/6)\\
-    0 & \csc(\pi/6)
-  \end{pmatrix}\\
-  &= \begin{pmatrix}
-    \xhat{e}_1 & \xhat{e}_2
-  \end{pmatrix}
-  \,\begin{pmatrix}
-    1 & -\dfrac{\sqrt{3}}{3}\\[1.2ex]
-    0 & \phantom{-}2
-  \end{pmatrix}
+  &=
+    \,\begin{pmatrix}
+      1 & \cos\alpha\\
+      0 & \sin\alpha
+    \end{pmatrix}
+    \,\begin{pmatrix}
+      x^1\\
+      x^2
+    \end{pmatrix}
     = \begin{pmatrix}
-      \xhat{e}_1 & -\dfrac{\sqrt{3}}{3}\,\xhat{e}_1 + 2\,\xhat{e}_2
+      1 & \cos(\pi/6)\\
+      0 & \sin(\pi/6)
+    \end{pmatrix}
+    \,\begin{pmatrix}
+      x^1\\
+      x^2
+    \end{pmatrix}
+    = \begin{pmatrix}
+      1 & \sqrt{3}/2\\
+      0 & 1/2
+    \end{pmatrix}
+    \,\begin{pmatrix}
+      x^1\\
+      x^2
+    \end{pmatrix}\\
+  &=
+    \begin{pmatrix}
+      x^1+\dfrac{\sqrt{3}}{2}x^2\\[1.4ex]
+      \dfrac{1}{2}x^2
     \end{pmatrix}
 \end{align*}
 \begin{align*}
-  \uvec{\i} &= \xhat{e}_1\\
-  \uvec{\j} &= -\dfrac{\sqrt{3}}{3}\,\xhat{e}_1 + 2\,\xhat{e}_2
+  x &= x^1 + \dfrac{\sqrt{3}}{2}x^2\\
+  y &= \dfrac{1}{2}x^2
 \end{align*}
 \begin{align*}
   \phi
   &=
-    \dfrac{1}{2} xy\,\uvec{\i} + \dfrac{1}{4}x^2\,\uvec{\j}
-    = \dfrac{1}{2} xy\,\xhat{e}_1
-    + \dfrac{1}{4}x^2 \left(-\dfrac{\sqrt{3}}{3}\,\xhat{e}_1+2\,\xhat{e}_2\right)\\
+    \dfrac{1}{4}x^2y
+    = \dfrac{1}{4} \left(x^1 + \dfrac{\sqrt{3}}{2}x^2\right)^2 \dfrac{1}{2}x^2
+    = \dfrac{1}{8}\left[%
+    \left(x^1\right)^2 + \sqrt{3}x^1x^2 + \dfrac{3}{4}\left(x^2\right)^2
+    \right] x^2\\
   &=
-    \left(\dfrac{1}{2} xy - \dfrac{\sqrt{3}}{12}x^2\right) \xhat{e}_1
-    + \dfrac{1}{2}x^2\,\xhat{e}_2
-    = \nabla\phi^1\,\xhat{e}_1 + \nabla\phi^2\,\xhat{e}_2
+    \dfrac{1}{8}\left[%
+    \left(x^1\right)^2 x^2
+    + \sqrt{3}x^1\left(x^2\right)^2
+    + \dfrac{3}{4}\left(x^2\right)^3
+    \right]
 \end{align*}
+Derivadas parciales
 \begin{align*}
-  \nabla\phi^1 &= \dfrac{1}{2} xy - \dfrac{\sqrt{3}}{12}x^2\\
-  \nabla\phi^2 &= \dfrac{1}{2}x^2
+  \nabla\phi_1
+  &=
+    \dfrac{\partial\phi}{\partial x^1}
+    = \dfrac{1}{8}\left[%
+    2x^1x^2 + \sqrt{3}\left(x^2\right)^2
+    \right]\\
+  \nabla\phi_2
+  &=
+    \dfrac{\partial\phi}{\partial x^2}
+    = \dfrac{1}{8}\left[%
+    \left(x^1\right)^2 + 2\sqrt{3}x^1x^2+\dfrac{9}{4}\left(x^2\right)^2
+    \right]
 \end{align*}
+
+
+%\begin{align*}
+%  \begin{pmatrix}
+%    \uvec{\i} & \uvec{\j}
+%  \end{pmatrix}
+%  &= \begin{pmatrix}
+%    \xhat{e}_1 & \xhat{e}_2
+%  \end{pmatrix}
+%  \,\begin{pmatrix}
+%    1 & -\cot\alpha\\
+%    0 & \csc\alpha
+%  \end{pmatrix}
+%  = \begin{pmatrix}
+%    \xhat{e}_1 & \xhat{e}_2
+%  \end{pmatrix}
+%  \,\begin{pmatrix}
+%    1 & -\cot(\pi/6)\\
+%    0 & \csc(\pi/6)
+%  \end{pmatrix}\\
+%  &= \begin{pmatrix}
+%    \xhat{e}_1 & \xhat{e}_2
+%  \end{pmatrix}
+%  \,\begin{pmatrix}
+%    1 & -\dfrac{\sqrt{3}}{3}\\[1.2ex]
+%    0 & \phantom{-}2
+%  \end{pmatrix}
+%    = \begin{pmatrix}
+%      \xhat{e}_1 & -\dfrac{\sqrt{3}}{3}\,\xhat{e}_1 + 2\,\xhat{e}_2
+%    \end{pmatrix}
+%\end{align*}
+%\begin{align*}
+%  \uvec{\i} &= \xhat{e}_1\\
+%  \uvec{\j} &= -\dfrac{\sqrt{3}}{3}\,\xhat{e}_1 + 2\,\xhat{e}_2
+%\end{align*}
+%\begin{align*}
+%  \phi
+%  &=
+%    \dfrac{1}{2} xy\,\uvec{\i} + \dfrac{1}{4}x^2\,\uvec{\j}
+%    = \dfrac{1}{2} xy\,\xhat{e}_1
+%    + \dfrac{1}{4}x^2 \left(-\dfrac{\sqrt{3}}{3}\,\xhat{e}_1+2\,\xhat{e}_2\right)\\
+%  &=
+%    \left(\dfrac{1}{2} xy - \dfrac{\sqrt{3}}{12}x^2\right) \xhat{e}_1
+%    + \dfrac{1}{2}x^2\,\xhat{e}_2
+%    = \nabla\phi^1\,\xhat{e}_1 + \nabla\phi^2\,\xhat{e}_2
+%\end{align*}
+%\begin{align*}
+%  \nabla\phi^1 &= \dfrac{1}{2} xy - \dfrac{\sqrt{3}}{12}x^2\\
+%  \nabla\phi^2 &= \dfrac{1}{2}x^2
+%\end{align*}
 
 
 
