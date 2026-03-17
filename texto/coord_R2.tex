@@ -2979,10 +2979,12 @@ por
 \]
 También consideramos un sistema de coordenadas cartesianas oblicuas, cuyos ejes forman
 \qty{60}{\degree} entre sí, donde el eje de abcisas de ambos sistemas coinciden.\\
-a) Calcula el gradiente en cartesianas ortogonales y su módulo.\\
-b) Aplica los resultados anteriores al punto $P(2,1)$.\\
-c) Calcula la matriz de cambio de base $\mmm{M}$ y su inversa.\\
-d) Obtén la métrica y su inversa.\\
+a) Calcula el gradiente en cartesianas ortogonales y su módulo.
+Aplica los resultados anteriores al punto $P(3,2)$.\\
+b) Calcula la matriz de cambio de base $\mmm{M}$ y su inversa.
+Aplicar al sistema oblicuo con $\alpha=\qty{60}{\degree}.$\\
+c) Halla la base covariante en función de la base ortogonal.
+%d) Obtén la métrica y su inversa.\\
 
 %c) Halla el campo en coordenadas oblicuas que forman un ángulo de \qty{60}{\degree}
 
@@ -2996,7 +2998,7 @@ d) Obtén la métrica y su inversa.\\
 \textbf{Solución}
 
 \noindent
-a) Gradiente en cartesianas ortogonales y su cuadrado.
+a) Gradiente en cartesianas ortogonales y su módulo.
 
 Derivadas parciales
 \[
@@ -3005,30 +3007,31 @@ Derivadas parciales
   \dfrac{\partial\phi}{\partial y} = x
 \]
 
-Gradiente y cuadrado
+Gradiente y módulo
 \begin{align*}
   &\vvv{\nabla}\phi
     = \dfrac{\partial\phi}{\partial x}\,\uvec{\i}
     + \dfrac{\partial\phi}{\partial y}\,\uvec{\j}
     = (y+2)\,\uvec{\i} + x\,\uvec{\j}\\
-  &|\vvv{\nabla}\phi|^2
-    = (y+2)^2 + x^2
+  &|\vvv{\nabla}\phi|
+    = \sqrt{(y+2)^2 + x^2}
 \end{align*}
-
-\noindent
-b) Gradiente y cuadrado en el punto $x=2$ e $y=1$.
+ 
+Gradiente y módulo en el punto $x=3$ e $y=2$
 \begin{align*}
-  &\vvv{\nabla}\phi
+  &\vvv{\nabla}\phi(3,2)
     = (y+2)\,\uvec{\i} + x\,\uvec{\j}
-    = (1+2)\,\uvec{\i} + 2\,\uvec{\j}
-    = 3\,\uvec{\i} + 2\,\uvec{\j}\\
-  & |\vvv{\nabla}\phi|^2
-    = 3^2 + 2^2
-    = 13
+    = (2+2)\,\uvec{\i} + 3\,\uvec{\j}
+    = 4\,\uvec{\i} + 3\,\uvec{\j}\\
+  & |\vvv{\nabla}\phi|
+    = \sqrt{4^2 + 3^2}
+    = \sqrt{25}
+    = 5
 \end{align*}
 
 \noindent
-c) Matriz de cambio de base y su inversa.
+c) Matriz de cambio de base y su inversa. Aplicar al sistema oblicuo con
+\qty{60}{\degree}.
 
 El cambio de base es, según la figura \ref{fig:R2-coord_oblicuas_e1e2}
 \begin{align*}
@@ -3074,6 +3077,54 @@ La inversa resulta ser
     \end{pmatrix}
 \end{align*}
 
+En nuestro sistema oblicuo, con $\alpha = \qty{60}{\degree}$
+\begin{align*}
+  \mmm{M}
+  &=
+    \begin{pmatrix}
+      1 & \cos\pi/3\\
+      0 & \sin\pi/3
+    \end{pmatrix}
+    = \begin{pmatrix}
+      1 & 1/2\\
+      0 & \sqrt{3}/2
+    \end{pmatrix}\\
+  \mmm{M}^{-1}
+  &=
+    \begin{pmatrix}
+      1 & -\cot\pi/6\\
+      0 & \csc\pi/6
+    \end{pmatrix}
+    = \begin{pmatrix}
+      1 & -\sqrt{3}/3\\
+      0 & 2\sqrt{3}/3
+    \end{pmatrix}
+\end{align*}
+
+\noindent
+c) Base covariante en función de la base ortogonal.
+
+\begin{align*}
+  \begin{pmatrix}
+    \xhat{e}_1 & \xhat{e}_2
+  \end{pmatrix}
+  &=
+    \begin{pmatrix}
+      \uvec{\i} & \uvec{\j}
+    \end{pmatrix}
+    \,\begin{pmatrix}
+      1 & \cos\alpha\\
+      0 & \sin\alpha
+    \end{pmatrix}
+    = \begin{pmatrix}
+      \uvec{\i} & \cos\alpha\,\uvec{\i}+\sin\alpha\,\uvec{\j}
+    \end{pmatrix}
+\end{align*}
+Los vectores de la base covariante son
+\begin{align*}
+  &\xhat{e}_1 = \xhat{e}_1\\
+  &\xhat{e}_2 = \cos\alpha\,\uvec{\i} + \sin\alpha\,\uvec{\j}
+\end{align*}
 
 %\noindent
 %a) El campo en coordenadas oblicuas
