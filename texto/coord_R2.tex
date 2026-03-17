@@ -1237,21 +1237,41 @@ Analizamos la métrica obtenida
   \end{itemize}
 \end{itemize}
 
-Se propone como ejercicio demostrar que la métrica inversa es
+
+
+Calculamos la métrica inversa
+{\small
+  \begin{align*}
+    \mmm{g}^{ij}
+    &=
+      \dfrac{1}{\det(g_{ij})}
+      \text{adj}\left(g_{ij}^\transp\right)
+      = \dfrac{1}{\sin^2\alpha}
+      \begin{pmatrix}
+        1 & -\cos\alpha\\
+        -\cos\alpha & 1
+      \end{pmatrix}
+      = \begin{pmatrix}
+        \csc^2\alpha & -\csc\alpha\cot\alpha\\
+        -\csc\alpha\cot\alpha & 1
+      \end{pmatrix}
+  \end{align*}
+}
+Resultando
 {\small
 \begin{equation}\label{eq:R2-oblic_metrica_inv}
   \mmm{g}^{ij}
   = \begin{pmatrix}
     g^{11} & g^{12}\\
     g^{21} & g^{22}
-    \end{pmatrix}
-    = \dfrac{1}{\sin^2\alpha}
-    \begin{pmatrix}
-      1 & -\cos\alpha\\
-      -\cos\alpha & 1
+  \end{pmatrix}
+  = \dfrac{1}{\sin^2\alpha}
+  \begin{pmatrix}
+    1 & -\cos\alpha\\
+    -\cos\alpha & 1
   \end{pmatrix}
   = \begin{pmatrix}
-    1 & -\csc\alpha\cot\alpha\\
+    \csc^2\alpha & -\csc\alpha\cot\alpha\\
     -\csc\alpha\cot\alpha & 1
   \end{pmatrix}
 \end{equation}
@@ -2952,104 +2972,387 @@ dando el mismo resultado que en \eqref{eq:R2-oblic_gradiente_contrav}.
 }
 
 \subsection{Ejercicio 3}
-Un campo escalar está definido en $\symbb{R}^2$ por
-$\phi(x,y) = \dfrac{1}{4}x^2y$.\\[1ex]
-a) Calcula el gradiente en cartesianas ortogonales, su valor concreto en $(x,y)=(2,1)$
-y su módulo.
-b) Exprésalo en coordenadas cartesianas oblicuas que forman un ángulo de \qty{30}{\degree} entre sus ejes.\\
-c) Calcula el gradiente en oblicuas.
+Un campo escalar está definido en coordenadas cartesianas ortogonales en $\symbb{R}^2$
+por
+\[
+  \phi(x,y) = xy+2x
+\]
+También consideramos un sistema de coordenadas cartesianas oblicuas, cuyos ejes forman
+\qty{60}{\degree} entre sí, donde el eje de abcisas de ambos sistemas coinciden.\\
+a) Calcula el gradiente en cartesianas ortogonales y su módulo.\\
+b) Aplica los resultados anteriores al punto $P(2,1)$.\\
+c) Calcula la matriz de cambio de base $\mmm{M}$ y su inversa.\\
+d) Obtén la métrica y su inversa.\\
+
+%c) Halla el campo en coordenadas oblicuas que forman un ángulo de \qty{60}{\degree}
+
+%entre sus ejes.\\
+%b) Calcula el gradiente en cartesianas ortogonales.\\
+%c) Calcula el gradiente y su módulo en el punto $P=(2,1)$.\\
+%d) Calcula el gradiente en coordenadas cartesianas oblicuas.\\
+%e) Su valor y módulo en oblicuas, en el punto $P$.\\
 
 \noindent
 \textbf{Solución}
 
 \noindent
-a) Gradiente, su valor y cuadrado en $(2,1)$
+a) Gradiente en cartesianas ortogonales y su cuadrado.
+
+Derivadas parciales
+\[
+  \dfrac{\partial\phi}{\partial x} = y + 2
+  \,;\hspace{1em}
+  \dfrac{\partial\phi}{\partial y} = x
+\]
+
+Gradiente y cuadrado
 \begin{align*}
   &\vvv{\nabla}\phi
     = \dfrac{\partial\phi}{\partial x}\,\uvec{\i}
-    +\dfrac{\partial\phi}{\partial x}\,\uvec{\j}
-    = \dfrac{1}{4}\left(2xy\,\uvec{\i} + x^2\,\uvec{\j}\right)
-    = \dfrac{1}{2}xy\,\uvec{\i} + \dfrac{1}{4}x^2\,\uvec{\j}\\
-  &\vvv{\nabla}\phi(2,1)
-    = \dfrac{1}{2}\cdot 2\cdot 1\,\uvec{\i} + \dfrac{1}{4}\cdot 2^2\,\uvec{\j}
-    = \uvec{\i} + \uvec{\j}\\
-  &|\vvv{\nabla}\phi(2,1)|
-    = \sqrt{1^2+1^2}
-    = \sqrt{2}
+    + \dfrac{\partial\phi}{\partial y}\,\uvec{\j}
+    = (y+2)\,\uvec{\i} + x\,\uvec{\j}\\
+  &|\vvv{\nabla}\phi|^2
+    = (y+2)^2 + x^2
 \end{align*}
 
 \noindent
-b) Campo en coordenadas oblicuas
+b) Gradiente y cuadrado en el punto $x=2$ e $y=1$.
 \begin{align*}
+  &\vvv{\nabla}\phi
+    = (y+2)\,\uvec{\i} + x\,\uvec{\j}
+    = (1+2)\,\uvec{\i} + 2\,\uvec{\j}
+    = 3\,\uvec{\i} + 2\,\uvec{\j}\\
+  & |\vvv{\nabla}\phi|^2
+    = 3^2 + 2^2
+    = 13
+\end{align*}
+
+\noindent
+c) Matriz de cambio de base y su inversa.
+
+El cambio de base es, según la figura \ref{fig:R2-coord_oblicuas_e1e2}
+\begin{align*}
+  \xhat{e}_1 &= \uvec{\i}\\
+  \xhat{e}_2 &= \cos\alpha\,\uvec{\i} + \sin\alpha\,\uvec{\j}
+\end{align*}
+Lo anterior se representa matricialmente
+\[
   \begin{pmatrix}
-    x\\
-    y
+    \xhat{e}_1 & \xhat{e}_2
   \end{pmatrix}
+  = \begin{pmatrix}
+    \uvec{\i} & \uvec{\j}
+  \end{pmatrix}
+  \,\begin{pmatrix}
+    1 & \cos\alpha\\
+    0 & \sin\alpha
+  \end{pmatrix}
+\]
+De aquí, que la matriz de cambio de base sea
+\[
+  \mmm{M}
+  =\begin{pmatrix}
+    1 & \cos\alpha\\
+    0 & \sin\alpha
+  \end{pmatrix}
+\]
+
+La inversa resulta ser
+\begin{align*}
+  \mmm{M}^{-1}
   &=
-    \,\begin{pmatrix}
-      1 & \cos\alpha\\
-      0 & \sin\alpha
-    \end{pmatrix}
-    \,\begin{pmatrix}
-      x^1\\
-      x^2
-    \end{pmatrix}
-    = \begin{pmatrix}
-      1 & \cos(\pi/6)\\
-      0 & \sin(\pi/6)
-    \end{pmatrix}
-    \,\begin{pmatrix}
-      x^1\\
-      x^2
-    \end{pmatrix}
-    = \begin{pmatrix}
-      1 & \sqrt{3}/2\\
-      0 & 1/2
-    \end{pmatrix}
-    \,\begin{pmatrix}
-      x^1\\
-      x^2
-    \end{pmatrix}\\
-  &=
+    \dfrac{1}{\det(\mmm{M})}
+    \,\text{adj}(\mmm{M}^\transp)
+    = \dfrac{1}{\sin\alpha}
     \begin{pmatrix}
-      x^1+\dfrac{\sqrt{3}}{2}x^2\\[1.4ex]
-      \dfrac{1}{2}x^2
+      \sin\alpha & -\cos\alpha\\
+      0 & 1
+    \end{pmatrix}
+    = \begin{pmatrix}
+      1 & -\cot\alpha\\
+      0 & \phantom{-}\csc\alpha
     \end{pmatrix}
 \end{align*}
-\begin{align*}
-  x &= x^1 + \dfrac{\sqrt{3}}{2}x^2\\
-  y &= \dfrac{1}{2}x^2
-\end{align*}
-\begin{align*}
-  \phi
-  &=
-    \dfrac{1}{4}x^2y
-    = \dfrac{1}{4} \left(x^1 + \dfrac{\sqrt{3}}{2}x^2\right)^2 \dfrac{1}{2}x^2
-    = \dfrac{1}{8}\left[%
-    \left(x^1\right)^2 + \sqrt{3}x^1x^2 + \dfrac{3}{4}\left(x^2\right)^2
-    \right] x^2\\
-  &=
-    \dfrac{1}{8}\left[%
-    \left(x^1\right)^2 x^2
-    + \sqrt{3}x^1\left(x^2\right)^2
-    + \dfrac{3}{4}\left(x^2\right)^3
-    \right]
-\end{align*}
-Derivadas parciales
-\begin{align*}
-  \nabla\phi_1
-  &=
-    \dfrac{\partial\phi}{\partial x^1}
-    = \dfrac{1}{8}\left[%
-    2x^1x^2 + \sqrt{3}\left(x^2\right)^2
-    \right]\\
-  \nabla\phi_2
-  &=
-    \dfrac{\partial\phi}{\partial x^2}
-    = \dfrac{1}{8}\left[%
-    \left(x^1\right)^2 + 2\sqrt{3}x^1x^2+\dfrac{9}{4}\left(x^2\right)^2
-    \right]
-\end{align*}
+
+
+%\noindent
+%a) El campo en coordenadas oblicuas
+%\begin{align*}
+%  \begin{pmatrix}
+%    x\\
+%    y
+%  \end{pmatrix}
+%  &=
+%    \,\begin{pmatrix}
+%      1 & \cos\alpha\\
+%      0 & \sin\alpha
+%    \end{pmatrix}
+%    \,\begin{pmatrix}
+%      x^1\\
+%      x^2
+%    \end{pmatrix}
+%    = \begin{pmatrix}
+%      1 & \cos(\pi/6)\\
+%      0 & \sin(\pi/6)
+%    \end{pmatrix}
+%    \,\begin{pmatrix}
+%      x^1\\
+%      x^2
+%    \end{pmatrix}
+%    = \begin{pmatrix}
+%      1 & \sqrt{3}/2\\
+%      0 & 1/2
+%    \end{pmatrix}
+%    \,\begin{pmatrix}
+%      x^1\\
+%      x^2
+%    \end{pmatrix}
+%\end{align*}
+%\begin{align*}
+%  x &= x^1 + \dfrac{\sqrt{3}}{2}x^2\\
+%  y &= \dfrac{1}{2}x^2
+%\end{align*}
+%\begin{align*}
+%  \phi
+%  &=
+%    \dfrac{1}{4}x^2y
+%    = \dfrac{1}{4} \left(x^1 + \dfrac{\sqrt{3}}{2}x^2\right)^2 \dfrac{1}{2}x^2
+%    = \dfrac{1}{8}\left[%
+%    \left(x^1\right)^2 + \sqrt{3}x^1x^2 + \dfrac{3}{4}\left(x^2\right)^2
+%    \right] x^2\\
+%  &=
+%    \dfrac{1}{8}\left[%
+%    \left(x^1\right)^2 x^2
+%    + \sqrt{3}x^1\left(x^2\right)^2
+%    + \dfrac{3}{4}\left(x^2\right)^3
+%    \right]
+%\end{align*}
+%
+%\noindent
+%b) El gradiente en cartesianas ortogonales.
+%\[
+%  \vvv{\nabla}\phi
+%    = \dfrac{\partial\phi}{\partial x}\,\uvec{\i}
+%    +\dfrac{\partial\phi}{\partial x}\,\uvec{\j}
+%    = \dfrac{1}{4}\left(2xy\,\uvec{\i} + x^2\,\uvec{\j}\right)
+%    = \dfrac{1}{2}xy\,\uvec{\i} + \dfrac{1}{4}x^2\,\uvec{\j}
+%\]
+%
+%\noindent
+%c) El gradiente y su módulo en coordenadas ortogonales, en $P=(2,1)$.
+%\begin{align*}
+%  &\vvv{\nabla}\phi(2,1)
+%    = \dfrac{1}{2}\cdot 2\cdot 1\,\uvec{\i} + \dfrac{1}{4}\cdot 2^2\,\uvec{\j}
+%    = \uvec{\i} + \uvec{\j}\\
+%  &|\vvv{\nabla}\phi(2,1)|
+%    = \sqrt{1^2+1^2}
+%    = \sqrt{2}
+%\end{align*}
+%
+%\noindent
+%d) El gradiente en las coordenadas oblicuas.
+%
+%Derivadas parciales (componentes covariantes)
+%\begin{align*}
+%  \nabla\phi_1
+%  &=
+%    \dfrac{\partial\phi}{\partial x^1}
+%    = \dfrac{1}{8}\left[%
+%    2x^1x^2 + \sqrt{3}\left(x^2\right)^2
+%    \right]\\
+%  \nabla\phi_2
+%  &=
+%    \dfrac{\partial\phi}{\partial x^2}
+%    = \dfrac{1}{8}\left[%
+%    \left(x^1\right)^2 + 2\sqrt{3}x^1x^2+\dfrac{9}{4}\left(x^2\right)^2
+%    \right]
+%\end{align*}
+%
+%Para subir índices y obtener los componentes contravariantes, necesitamos la inversa
+%de la métrica
+%{\small
+%\[
+%  \mmm{g}^{ij}
+%  = \dfrac{1}{\sin^2(\pi/6)}
+%  \begin{pmatrix}
+%    1 & -\cos(\pi/6)\\
+%    -\cos(\pi/6) & 1
+%  \end{pmatrix}
+%  = 4 \begin{pmatrix}
+%    1 & - \sqrt{3}/2\\
+%    -\sqrt{3}/2 & 1
+%  \end{pmatrix}
+%  = \begin{pmatrix}
+%    4 & -2\sqrt{3}\\
+%    -2\sqrt{3} & 4
+%  \end{pmatrix}
+%\]
+%}
+%\[
+%  \nabla\phi^i = g^{ij}\nabla\phi_j
+%\]
+%\begin{align*}
+%  \nabla\phi^1
+%  &=
+%    g^{11} \nabla\phi_ 1 + g^{12} \nabla\phi_2
+%    = \dfrac{1}{\sin^2(\pi/6)} \left(\nabla\phi_1 - \cos(\pi/6) \nabla\phi_2\right)\\
+%  &=
+%    \dfrac{4}{8}
+%    \left[%
+%    2x^1x^2 + \sqrt{3}\left(x^2\right)^2
+%    \right]
+%    -\dfrac{2\sqrt{3}}{8}\left[%
+%    \left(x^1\right)^2
+%    + 2\sqrt{3}x^1x^2
+%    + \dfrac{9}{4}\left(x^2\right)^2
+%    \right]\\
+%  &=
+%    x^1x^2
+%    + \dfrac{\sqrt{3}}{2}\left(x^2\right)^2
+%    - \dfrac{\sqrt{3}}{4}\left(x^1\right)^2
+%    - \dfrac{3}{2}x^1x^2
+%    + \dfrac{9}{16}\left(x^2\right)^2\\
+%  &=
+%    -\dfrac{\sqrt{3}}{4}\left(x^1\right)^2
+%    -\dfrac{1}{2} x^1x^2
+%    + \dfrac{8\sqrt{3}+9}{16}\left(x^2\right)^2
+%\end{align*}
+%\begin{align*}
+%  \nabla\phi^2
+%  &=
+%    g^{21} \nabla\phi_ 1 + g^{22} \nabla\phi_2
+%    = \dfrac{1}{\sin^2(\pi/6)} \left(\nabla\phi_1 - \cos(\pi/6) \nabla\phi_2\right)\\
+%  &=
+%    -\dfrac{2\sqrt{3}}{8}
+%    \left[%
+%    2x^1x^2 + \sqrt{3}\left(x^2\right)^2
+%    \right]
+%    +\dfrac{4}{8}\left[%
+%    \left(x^1\right)^2
+%    + 2\sqrt{3}x^1x^2
+%    + \dfrac{9}{4}\left(x^2\right)^2
+%    \right]\\
+%  &=
+%    -\dfrac{\sqrt{3}}{2} x^1x^2
+%    + \dfrac{\sqrt{3}}{4}\left(x^2\right)^2
+%    - \dfrac{1}{2}\left(x^1\right)^2
+%    - \sqrt{3}x^1x^2
+%    + \dfrac{9}{8}\left(x^2\right)^2\\
+%  &=
+%    -\dfrac{1}{2}\left(x^1\right)^2
+%    -\dfrac{3\sqrt{3}}{2} x^1x^2
+%    + \dfrac{2\sqrt{3}+9}{8}\left(x^2\right)^2
+%\end{align*}
+%{\footnotesize
+%\[
+%  \vvv{\nabla}\phi
+%  =
+%  \left[%
+%    -\dfrac{\sqrt{3}}{4}\left(x^1\right)^2
+%    -\dfrac{1}{2} x^1x^2
+%    + \dfrac{8\sqrt{3}+9}{16}\left(x^2\right)^2
+%  \right]\xhat{e}_1
+%  + \left[%
+%    -\dfrac{1}{2}\left(x^1\right)^2
+%    -\dfrac{3\sqrt{3}}{2} x^1x^2
+%    + \dfrac{2\sqrt{3}+9}{8}\left(x^2\right)^2
+%  \right]\xhat{e}_2
+%\]
+%}
+%
+%\noindent
+%d) El gradiente y su módulo en coordenadas oblicuas, en el punto $P$.
+%\begin{align*}
+%  \begin{pmatrix}
+%    x^1\\
+%    x^2
+%  \end{pmatrix}
+%  &=
+%    \begin{pmatrix}
+%      1 & -\cot(\pi/6)\\
+%      0 & \csc(\pi/6)
+%    \end{pmatrix}
+%    \,\begin{pmatrix}
+%      2\\
+%      1
+%    \end{pmatrix}
+%    = \begin{pmatrix}
+%      1 & -\sqrt{3}\\
+%      0 & -2
+%    \end{pmatrix}
+%    \,\begin{pmatrix}
+%      2\\
+%      1
+%    \end{pmatrix}
+%    = \begin{pmatrix}
+%      2-\sqrt{3}\\
+%      -2
+%    \end{pmatrix}
+%\end{align*}
+%\begin{align*}
+%  \nabla\phi_1
+%  &=
+%    \dfrac{1}{8}\left[%
+%    2x^1x^2 + \sqrt{3}\left(x^2\right)^2
+%    \right]
+%    = \dfrac{1}{8}\left[%
+%    2 \left(2 - \sqrt{3}\right)(-2) + \sqrt{3}\cdot (-2)^2
+%    \right]\\
+%  &=
+%    \dfrac{1}{8}\left[%
+%    -8 - \cancelout{4\sqrt{3}} + \cancelout{4\sqrt{3}}
+%    \right]
+%    = -1
+%\end{align*}
+%\begin{align*}
+%  \nabla\phi_2
+%  &=
+%    \dfrac{1}{8}\left[%
+%    \left(x^1\right)^2 + 2\sqrt{3} x^1x^2 + \dfrac{9}{4}\left(x^2\right)^2
+%    \right]\\
+%  &=
+%    \dfrac{1}{8}\left[%
+%    \left(2 - \sqrt{3}\right)^2 + 2\sqrt{3} \left(2 - \sqrt{3}\right) (-2)
+%    + \dfrac{9}{4}\cdot (-2)^2
+%    \right]\\
+%  &=
+%    \dfrac{1}{8}\left[%
+%    4 - \cancelout{4\sqrt{3}} + 3 - 8\sqrt{3} + \cancelout{4\sqrt{3}} + 9
+%    \right]
+%    = 2 - \sqrt{3}
+%\end{align*}
+%\begin{align*}
+%  \nabla\phi^1
+%  &=
+%    g^{11}\nabla\phi_1 + g^{12}\nabla\phi_2
+%    = 4 (-1) - 2\sqrt{3} \left(2-\sqrt{3}\right)\\
+%  &=
+%    -4 - 4\sqrt{3} + 6
+%    = 2 - 4\sqrt{3}
+%\end{align*}
+%\begin{align*}
+%  \nabla\phi^2
+%  &=
+%    g^{21}\nabla\phi_1 + g^{22}\nabla\phi_2
+%    = -2\sqrt{3}\cdot (-1) + 4 \left(2-\sqrt{3}\right)\\
+%  &=
+%    2\sqrt{3} + 8 - 4\sqrt{3}
+%    = 8 - 2\sqrt{3}
+%\end{align*}
+%
+%\[
+%  \vvv{\nabla}\phi
+%  = \left(2-4\sqrt{3}\right)\xhat{e}_1 + \left(8-2\sqrt{3}\right)\,\xhat{e}_2
+%\]
+%\begin{align*}
+%  |\vvv{\nabla}\phi|
+%  &=
+%    \sqrt{\left(2-4\sqrt{3}\right)^2 + \left(8-2\sqrt{3}\right)^2}\\
+%  &=
+%    \sqrt{4 - 16\sqrt{3} + 48 + 64 - 32\sqrt{3} + 12}
+%    = \sqrt{128 - 16\sqrt{3}}
+%\end{align*}
+
 
 
 %\begin{align*}
