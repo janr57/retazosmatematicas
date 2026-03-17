@@ -1237,8 +1237,6 @@ Analizamos la métrica obtenida
   \end{itemize}
 \end{itemize}
 
-
-
 Calculamos la métrica inversa
 {\small
   \begin{align*}
@@ -2983,8 +2981,9 @@ a) Calcula el gradiente en cartesianas ortogonales y su módulo.
 Aplica los resultados anteriores al punto $P(3,2)$.\\
 b) Calcula la matriz de cambio de base $\mmm{M}$ y su inversa.
 Aplicar al sistema oblicuo con $\alpha=\qty{60}{\degree}.$\\
-c) Halla la base covariante en función de la base ortogonal.
-%d) Obtén la métrica y su inversa.\\
+c) Halla la base covariante en función de la base ortogonal. Y aplícala al sistema
+oblicuo.\\
+d) Obtén la métrica y su inversa. Aplícala al sistema oblicuo.\\
 
 %c) Halla el campo en coordenadas oblicuas que forman un ángulo de \qty{60}{\degree}
 
@@ -3122,9 +3121,71 @@ c) Base covariante en función de la base ortogonal.
 \end{align*}
 Los vectores de la base covariante son
 \begin{align*}
-  &\xhat{e}_1 = \xhat{e}_1\\
+  &\xhat{e}_1 = \uvec{\i}\\
   &\xhat{e}_2 = \cos\alpha\,\uvec{\i} + \sin\alpha\,\uvec{\j}
 \end{align*}
+
+En nuestro sistema oblicuo, los vectores de la base covariante son
+\begin{align*}
+  &\xhat{e}_1 = \uvec{\i}\\
+  &\xhat{e}_2 = \dfrac{1}{2}\,\uvec{\i} + \dfrac{\sqrt{3}}{2}\,\uvec{\j}
+\end{align*}
+
+\noindent
+d) Métrica y su inversa. Aplícala al sistema oblicuo.
+
+La métrica se calcula mediante el producto escalar de los vectores de la base
+\begin{align*}
+  \mmm{g}_{ij}
+  &=
+    \begin{pmatrix}
+      g_{11} & g_{12}\\
+      g_{21} & g_{22}
+    \end{pmatrix}
+    = \begin{pmatrix}
+      \xhat{e}_1\cdot \xhat{e}_1 & \xhat{e}_1\cdot\xhat{e}_2\\
+      \xhat{e}_2\cdot \xhat{e}_1 & \xhat{e}_2\cdot\xhat{e}_2
+    \end{pmatrix}
+    = \begin{pmatrix}
+      1 & \cos\alpha\\
+      \cos\alpha & 1
+    \end{pmatrix}
+\end{align*}
+
+La métrica inversa es
+\begin{align*}
+  \mmm{g}^{ij}
+  &=
+    \dfrac{1}{\det(g_{ij})}
+    \text{adj}\left(g_{ij}^\transp\right)
+    = \dfrac{1}{\sin^2\alpha}
+    \begin{pmatrix}
+      1 & -\cos\alpha\\
+      -\cos\alpha & 1
+    \end{pmatrix}
+\end{align*}
+
+En nuestro sistema oblicuo, con $\alpha = \qty{60}{\degree}$
+\begin{align*}
+  \mmm{g}_{ij}
+  &=
+    = \begin{pmatrix}
+      1 & 1/2\\
+      1/2 & 1
+    \end{pmatrix}\\
+  \mmm{g}^{ij}
+  &=
+    \dfrac{1}{3/4}
+    \begin{pmatrix}
+      1 & -1/2\\
+      -1/2 & 1
+    \end{pmatrix}
+    = \begin{pmatrix}
+      4/3 & -2/3\\
+      -2/3 & 4/3
+    \end{pmatrix}  
+\end{align*}
+
 
 %\noindent
 %a) El campo en coordenadas oblicuas
