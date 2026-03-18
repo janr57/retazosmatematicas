@@ -2986,7 +2986,9 @@ d) Halla las componentes contravariantes del gradiente en función de las $x$ e 
 sistema ortogonal.\\
 e) Calcula las componentes contravariantes del gradiente en función de las $x^i$ del
 sistema oblicuo.\\
-f) Obtén la métrica y su inversa.\\
+f) Obtén la métrica en coordenadas oblicuas y su inversa.\\
+g) Halla las componentes covariantes del gradiente.\\
+h) Calcula el módulo del gradiente en coordenadas oblicuas.\\
 
 %c) Halla el campo en coordenadas oblicuas que forman un ángulo de \qty{60}{\degree}
 
@@ -3202,6 +3204,7 @@ sustituimos $x=3$, $y=2$ y $\alpha=\pi/3$ en la expresión anterior
     = \dfrac{2\sqrt{3}}{3}
 \end{align*}
 
+\noindent
 e) Componentes contravariantes del gradiente en función de las componentes
 contravariantes $x^i$ del sistema oblicuo.
 
@@ -3288,9 +3291,22 @@ Sustituimos en las componentes contravariantes
   &=
     -x^1\,\dfrac{\cos^2\pi/6}{\sin\pi/6}
     =-\left(3-\dfrac{2\sqrt{3}}{3}\right)\,\dfrac{1/4}{\sqrt{3}/2}
-    = 
+    = \left(\dfrac{2\sqrt{3}}{3} - 3\right) \dfrac{1}{2\sqrt{3}}\\
+  &=
+    \left(\dfrac{2\sqrt{3}}{3} - 3\right) \dfrac{\sqrt{3}}{6}
+    = \dfrac{1}{3} - \dfrac{\sqrt{3}}{2}
 \end{align*}
-
+\begin{align*}
+  \nabla\phi^2
+  &=
+    x^1\csc\alpha + x^2 \cot\alpha
+    = \left(3-\dfrac{2\sqrt{3}}{3}\right)\,\csc\alpha + \dfrac{4\sqrt{3}}{3} \cot\alpha\\
+  &=
+    \left(3-\dfrac{2\sqrt{3}}{3}\right)\,\dfrac{2\sqrt{3}}{3}
+    + \dfrac{4\sqrt{3}}{3} \dfrac{\sqrt{3}}{3}
+    = 2\sqrt{3} - \cancelout{\dfrac{4}{3}} + \cancelout{\dfrac{4}{3}}
+    = 2\sqrt{3}
+\end{align*}
 
 
 \noindent
@@ -3346,6 +3362,30 @@ En nuestro sistema oblicuo, con $\alpha = \qty{60}{\degree}$
       4/3 & -2/3\\
       -2/3 & 4/3
     \end{pmatrix}  
+\end{align*}
+
+\noindent
+g) Componentes covariantes del gradiente.
+
+\begin{align*}
+  \nabla\phi_1
+  &=
+    g_{11}\nabla\phi^1 + g_{12}\nabla\phi^2
+    = \nabla\phi^1 + \nabla\phi^2 \cos\alpha
+    = -x^1\,\dfrac{\cos^2\alpha}{\sin\alpha}
+    + (x^1\csc\alpha + x^2\cot\alpha) \cos\alpha
+\end{align*}
+
+
+\noindent
+h) Módulo del gradiente en coordenadas oblicuas.\\
+El cuadrado del módulo es $\nabla\phi^i\nabla\phi_i$
+\begin{align*}
+  |\vvv{\nabla}\phi|^2
+  &=
+    \nabla\phi^1\nabla\phi_1 + \nabla\phi^2\nabla\phi_2
+    = -x^1\dfrac{\cos^2\alpha}{\sin\alpha}
+    +
 \end{align*}
 
 
