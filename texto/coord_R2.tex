@@ -2977,13 +2977,16 @@ por
 \]
 También consideramos un sistema de coordenadas cartesianas oblicuas, cuyos ejes forman
 \qty{60}{\degree} entre sí, donde el eje de abcisas de ambos sistemas coinciden.\\
-a) Calcula el gradiente en cartesianas ortogonales y su módulo.
-Aplica los resultados anteriores al punto $P(3,2)$.\\
-b) Calcula la matriz de cambio de base $\mmm{M}$ y su inversa.
-Aplicar al sistema oblicuo con $\alpha=\qty{60}{\degree}.$\\
-c) Halla la base covariante en función de la base ortogonal. Y aplícala al sistema
-oblicuo.\\
-d) Obtén la métrica y su inversa. Aplícala al sistema oblicuo.\\
+Calcula lo que se pide, primero en general, y después para nuestro sistema oblicuo
+concreto y en el punto $P(3,2)$, en los casos en los que sea pertinente.\\
+a) Calcula el gradiente en cartesianas ortogonales y su módulo.\\
+b) Calcula la matriz de cambio de base $\mmm{M}$ y su inversa.\\
+c) Halla la base covariante en función de la base ortogonal.\\
+d) Halla las componentes contravariantes del gradiente en función de las $x$ e $y$ del
+sistema ortogonal.\\
+e) Calcula las componentes contravariantes del gradiente en función de las $x^i$ del
+sistema oblicuo.\\
+f) Obtén la métrica y su inversa.\\
 
 %c) Halla el campo en coordenadas oblicuas que forman un ángulo de \qty{60}{\degree}
 
@@ -3029,8 +3032,7 @@ Gradiente y módulo en el punto $x=3$ e $y=2$
 \end{align*}
 
 \noindent
-c) Matriz de cambio de base y su inversa. Aplicar al sistema oblicuo con
-\qty{60}{\degree}.
+c) Matriz de cambio de base y su inversa.
 
 El cambio de base es, según la figura \ref{fig:R2-coord_oblicuas_e1e2}
 \begin{align*}
@@ -3132,7 +3134,167 @@ En nuestro sistema oblicuo, los vectores de la base covariante son
 \end{align*}
 
 \noindent
-d) Métrica y su inversa. Aplícala al sistema oblicuo.
+d) Componentes contravariantes del gradiente en función de las coordenadas $x$ e $y$ del
+sistema ortogonal.
+
+Sustituimos la base  por la covariante del sistema
+oblicuo , utilizando la matriz inversa de cambio de
+base
+Expresamos los vectores de la base $B=\set{\uvec{\i},\,\uvec{\j}}$ en función de los
+covariantes de la base oblicua $B'=\set{\xhat{e}_1, \xhat{e}_2}$
+\begin{align*}
+  \begin{pmatrix}
+    \uvec{\i} & \uvec{\j}
+  \end{pmatrix}
+  &=
+    \begin{pmatrix}
+      \xhat{e}_1 & \xhat{e}_2
+    \end{pmatrix}
+    \,\begin{pmatrix}
+      1 & -\cot\alpha\\
+      0 & \csc\alpha
+    \end{pmatrix}
+    = \begin{pmatrix}
+      \xhat{e}_1 & -\cot\alpha\,\xhat{e}_1+\csc\alpha\,\xhat{e}_2
+    \end{pmatrix}  
+\end{align*}
+
+Los vectores de  base ortogonal en función de los de la oblicua quedan
+\begin{align*}
+  \uvec{\i}
+  &=
+    \xhat{e}_1\\
+  \uvec{\j}
+  &=
+    -\cot\alpha\,\xhat{e}_1+\csc\alpha\,\xhat{e}_2
+\end{align*}
+
+Los sustituimos en el gradiente en cartesianas ortogonales del primer apartado
+\begin{align*}
+  \vvv{\nabla}\phi
+  &=
+    (y+2)\,\uvec{\i} + x\,\uvec{\j}
+    = (y+2)\,\xhat{e}_1 + x(-\cot\alpha\,\xhat{e}_1 + \csc\alpha\,\xhat{e}_2)\\
+  &=
+    (-x\cot\alpha+y+2)\,\xhat{e}_1 + x\csc\alpha\,\xhat{e}_2
+\end{align*}
+
+Como $\vvv{\nabla}\phi = \nabla\phi^i\xhat{e}_i$, comparando términos resulta
+\begin{align*}
+  \nabla\phi^1
+  &=
+    -x\cot\alpha + y + 2\\
+  \nabla\phi^2
+  &=
+    x\csc\alpha
+\end{align*}
+
+Calculamos estas componentes para el sistema oblicuo del ejercicio,
+sustituimos $x=3$, $y=2$ y $\alpha=\pi/3$ en la expresión anterior
+\begin{align*}
+  \nabla\phi^1
+  &=
+    -3\cot\pi/3 + 2 + 2
+  = -3\dfrac{\sqrt{3}}{3}\\
+  \nabla\phi^2
+  &=
+    \csc\pi/3
+    = \dfrac{2\sqrt{3}}{3}
+\end{align*}
+
+e) Componentes contravariantes del gradiente en función de las componentes
+contravariantes $x^i$ del sistema oblicuo.
+
+Obtenemos el  valor de las $x$ e $y$ del sistema ortogonal en función de las componentes
+contravariantes $x^i$, utilizando la matriz de cambio de base
+\begin{align*}
+  \begin{pmatrix}
+    x\\
+    y
+  \end{pmatrix}
+  &=
+    \,\begin{pmatrix}
+      1 & \cos\alpha\\
+      0 & \sin\alpha
+    \end{pmatrix}
+    \,\begin{pmatrix}
+      x^1\\
+      x^2
+    \end{pmatrix}
+    = \begin{pmatrix}
+      x^1+x^2\cos\alpha\\
+      x^2\sin\alpha
+    \end{pmatrix}
+\end{align*}
+\begin{align*}
+  x &= x^1+x^2\cos\alpha\\
+  y &= x^2\sin\alpha
+\end{align*}
+
+Ahora sustituimos en las componentes contravariantes en función de las $x$ e $y$ del
+apartado anterior
+\begin{align*}
+  \nabla\phi^1
+  &=
+    -x\cot\alpha + y + 2
+    = -(x^1+x^2\cos\alpha)\cot\alpha
+    = -x^1\,\dfrac{\cos^2\alpha}{\sin\alpha}\\
+  \nabla\phi^2
+  &=
+    x\csc\alpha
+    = (x^1+x^2\cos\alpha) \csc\alpha
+    = x^1\csc\alpha + x^2\cot\alpha
+\end{align*}
+
+El gradiente en coordenadas oblicuas es
+\[
+  \vvv{\nabla}\phi
+  = -x^1\,\dfrac{\cos^2\alpha}{\sin\alpha}\,\xhat{e}_1
+  + (x^1\csc\alpha + x^2\cot\alpha) \xhat{e}_2
+\]
+
+Ahora calculamos las componentes $x^i$ en función de nuestro sistema oblicuo y de las
+componentes ortogonales $P(3,2)$
+\begin{align*}
+  \begin{pmatrix}
+    x^1\\
+    x^2
+  \end{pmatrix}
+  &=
+    \,\begin{pmatrix}
+      1 & -\cot\alpha\\
+      0 & \csc\alpha
+    \end{pmatrix}
+    \,\begin{pmatrix}
+      3\\
+      2
+    \end{pmatrix}
+    = \begin{pmatrix}
+      3-2\cot\pi/3\\
+      2\csc\pi/3
+    \end{pmatrix}
+    = \begin{pmatrix}
+      3-2\sqrt{3}/3\\
+      4\sqrt{3}/3
+    \end{pmatrix}
+\end{align*}
+\begin{align*}
+  x^1 &= 3-\dfrac{2\sqrt{3}}{3}\\
+  x^2 &= \dfrac{4\sqrt{3}}{3}
+\end{align*}
+Sustituimos en las componentes contravariantes
+\begin{align*}
+  \nabla\phi^1
+  &=
+    -x^1\,\dfrac{\cos^2\pi/6}{\sin\pi/6}
+    =-\left(3-\dfrac{2\sqrt{3}}{3}\right)\,\dfrac{1/4}{\sqrt{3}/2}
+    = 
+\end{align*}
+
+
+
+\noindent
+f) Métrica y su inversa. Aplícala al sistema oblicuo.
 
 La métrica se calcula mediante el producto escalar de los vectores de la base
 \begin{align*}
@@ -3169,7 +3331,7 @@ En nuestro sistema oblicuo, con $\alpha = \qty{60}{\degree}$
 \begin{align*}
   \mmm{g}_{ij}
   &=
-    = \begin{pmatrix}
+    \begin{pmatrix}
       1 & 1/2\\
       1/2 & 1
     \end{pmatrix}\\
@@ -3185,6 +3347,8 @@ En nuestro sistema oblicuo, con $\alpha = \qty{60}{\degree}$
       -2/3 & 4/3
     \end{pmatrix}  
 \end{align*}
+
+
 
 
 %\noindent
