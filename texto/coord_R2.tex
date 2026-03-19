@@ -2982,13 +2982,15 @@ concreto y en el punto $P(3,2)$, en los casos en los que sea pertinente.\\
 a) Calcula el gradiente en cartesianas ortogonales y su módulo.\\
 b) Calcula la matriz de cambio de base $\mmm{M}$ y su inversa.\\
 c) Halla la base covariante en función de la base ortogonal.\\
-d) Halla las componentes contravariantes del gradiente en función de las $x$ e $y$ del
-sistema ortogonal.\\
-e) Calcula las componentes contravariantes del gradiente en función de las $x^i$ del
-sistema oblicuo.\\
-f) Obtén la métrica en coordenadas oblicuas y su inversa.\\
-g) Halla las componentes covariantes del gradiente.\\
-h) Calcula el módulo del gradiente en coordenadas oblicuas.\\
+d) Obtén la métrica en coordenadas oblicuas y su inversa.\\
+e) Calcula las componentes covariantes del gradiente.\\
+%d) Halla las componentes covariantes del gradiente en función de las $x$ e $y$.
+%e) Halla las componentes contravariantes del gradiente en función de las $x$ e $y$.\\
+
+%%e) Calcula las componentes contravariantes del gradiente en función de las $x^i$ del
+%%sistema oblicuo.\\
+%g) Halla las componentes covariantes del gradiente.\\
+%h) Calcula el módulo del gradiente en coordenadas oblicuas.\\
 
 %c) Halla el campo en coordenadas oblicuas que forman un ángulo de \qty{60}{\degree}
 
@@ -3034,15 +3036,18 @@ Gradiente y módulo en el punto $x=3$ e $y=2$
 \end{align*}
 
 \noindent
-c) Matriz de cambio de base y su inversa.
+b) Matriz de cambio de base y su inversa.
 
-El cambio de base es, según la figura \ref{fig:R2-coord_oblicuas_e1e2}
-\begin{align*}
-  \xhat{e}_1 &= \uvec{\i}\\
-  \xhat{e}_2 &= \cos\alpha\,\uvec{\i} + \sin\alpha\,\uvec{\j}
-\end{align*}
-Lo anterior se representa matricialmente
+Mostramos el cambio de base, según la figura \ref{fig:R2-coord_oblicuas_e1e2}, y
+su expresión matricial
 \[
+  \begin{cases}
+    \begin{array}{l}
+      \xhat{e}_1 = \uvec{\i}\\
+      \xhat{e}_2 = \cos\alpha\,\uvec{\i} + \sin\alpha\,\uvec{\j}
+    \end{array}
+  \end{cases}
+  \longrightarrow\hspace{1em}
   \begin{pmatrix}
     \xhat{e}_1 & \xhat{e}_2
   \end{pmatrix}
@@ -3054,7 +3059,8 @@ Lo anterior se representa matricialmente
     0 & \sin\alpha
   \end{pmatrix}
 \]
-De aquí, que la matriz de cambio de base sea
+
+De aquí, se deduce que la matriz de cambio de base es
 \[
   \mmm{M}
   =\begin{pmatrix}
@@ -3095,8 +3101,8 @@ En nuestro sistema oblicuo, con $\alpha = \qty{60}{\degree}$
   \mmm{M}^{-1}
   &=
     \begin{pmatrix}
-      1 & -\cot\pi/6\\
-      0 & \csc\pi/6
+      1 & -\cot\pi/3\\
+      0 & \csc\pi/3
     \end{pmatrix}
     = \begin{pmatrix}
       1 & -\sqrt{3}/3\\
@@ -3105,214 +3111,46 @@ En nuestro sistema oblicuo, con $\alpha = \qty{60}{\degree}$
 \end{align*}
 
 \noindent
-c) Base covariante en función de la base ortogonal.
+c) Transformación de la base ortogonal a la covariante del sistema oblicuo.
 
-\begin{align*}
+Con la matriz de cambio de base $\mmm{M}$, se obtienen los vectores de la base
+covariante
+\[
   \begin{pmatrix}
     \xhat{e}_1 & \xhat{e}_2
   \end{pmatrix}
-  &=
-    \begin{pmatrix}
-      \uvec{\i} & \uvec{\j}
-    \end{pmatrix}
-    \,\begin{pmatrix}
-      1 & \cos\alpha\\
-      0 & \sin\alpha
-    \end{pmatrix}
-    = \begin{pmatrix}
-      \uvec{\i} & \cos\alpha\,\uvec{\i}+\sin\alpha\,\uvec{\j}
-    \end{pmatrix}
-\end{align*}
-Los vectores de la base covariante son
-\begin{align*}
-  &\xhat{e}_1 = \uvec{\i}\\
-  &\xhat{e}_2 = \cos\alpha\,\uvec{\i} + \sin\alpha\,\uvec{\j}
-\end{align*}
-
-En nuestro sistema oblicuo, los vectores de la base covariante son
-\begin{align*}
-  &\xhat{e}_1 = \uvec{\i}\\
-  &\xhat{e}_2 = \dfrac{1}{2}\,\uvec{\i} + \dfrac{\sqrt{3}}{2}\,\uvec{\j}
-\end{align*}
-
-\noindent
-d) Componentes contravariantes del gradiente en función de las coordenadas $x$ e $y$ del
-sistema ortogonal.
-
-Sustituimos la base  por la covariante del sistema
-oblicuo , utilizando la matriz inversa de cambio de
-base
-Expresamos los vectores de la base $B=\set{\uvec{\i},\,\uvec{\j}}$ en función de los
-covariantes de la base oblicua $B'=\set{\xhat{e}_1, \xhat{e}_2}$
-\begin{align*}
-  \begin{pmatrix}
+  =\begin{pmatrix}
     \uvec{\i} & \uvec{\j}
   \end{pmatrix}
-  &=
-    \begin{pmatrix}
-      \xhat{e}_1 & \xhat{e}_2
-    \end{pmatrix}
-    \,\begin{pmatrix}
-      1 & -\cot\alpha\\
-      0 & \csc\alpha
-    \end{pmatrix}
-    = \begin{pmatrix}
-      \xhat{e}_1 & -\cot\alpha\,\xhat{e}_1+\csc\alpha\,\xhat{e}_2
-    \end{pmatrix}  
-\end{align*}
-
-Los vectores de  base ortogonal en función de los de la oblicua quedan
-\begin{align*}
-  \uvec{\i}
-  &=
-    \xhat{e}_1\\
-  \uvec{\j}
-  &=
-    -\cot\alpha\,\xhat{e}_1+\csc\alpha\,\xhat{e}_2
-\end{align*}
-
-Los sustituimos en el gradiente en cartesianas ortogonales del primer apartado
-\begin{align*}
-  \vvv{\nabla}\phi
-  &=
-    (y+2)\,\uvec{\i} + x\,\uvec{\j}
-    = (y+2)\,\xhat{e}_1 + x(-\cot\alpha\,\xhat{e}_1 + \csc\alpha\,\xhat{e}_2)\\
-  &=
-    (-x\cot\alpha+y+2)\,\xhat{e}_1 + x\csc\alpha\,\xhat{e}_2
-\end{align*}
-
-Como $\vvv{\nabla}\phi = \nabla\phi^i\xhat{e}_i$, comparando términos resulta
-\begin{align*}
-  \nabla\phi^1
-  &=
-    -x\cot\alpha + y + 2\\
-  \nabla\phi^2
-  &=
-    x\csc\alpha
-\end{align*}
-
-Calculamos estas componentes para el sistema oblicuo del ejercicio,
-sustituimos $x=3$, $y=2$ y $\alpha=\pi/3$ en la expresión anterior
-\begin{align*}
-  \nabla\phi^1
-  &=
-    -3\cot\pi/3 + 2 + 2
-  = -3\dfrac{\sqrt{3}}{3}\\
-  \nabla\phi^2
-  &=
-    \csc\pi/3
-    = \dfrac{2\sqrt{3}}{3}
-\end{align*}
-
-\noindent
-e) Componentes contravariantes del gradiente en función de las componentes
-contravariantes $x^i$ del sistema oblicuo.
-
-Obtenemos el  valor de las $x$ e $y$ del sistema ortogonal en función de las componentes
-contravariantes $x^i$, utilizando la matriz de cambio de base
-\begin{align*}
-  \begin{pmatrix}
-    x\\
-    y
+  \,\begin{pmatrix}
+    1 & \cos\alpha\\
+    0 & \sin\alpha
   \end{pmatrix}
-  &=
-    \,\begin{pmatrix}
-      1 & \cos\alpha\\
-      0 & \sin\alpha
-    \end{pmatrix}
-    \,\begin{pmatrix}
-      x^1\\
-      x^2
-    \end{pmatrix}
-    = \begin{pmatrix}
-      x^1+x^2\cos\alpha\\
-      x^2\sin\alpha
-    \end{pmatrix}
-\end{align*}
-\begin{align*}
-  x &= x^1+x^2\cos\alpha\\
-  y &= x^2\sin\alpha
-\end{align*}
+  \longrightarrow
+  \begin{cases}
+    \begin{array}{l}
+      \xhat{e}_1 = \uvec{\i}\\
+      \xhat{e}_2 = \cos\alpha\,\uvec{\i} + \sin\alpha\,\uvec{\j}
+    \end{array}
+  \end{cases}
+\]
+Estos vectores miden las componentes contravariantes de un vector en $\symbb{R}^2$ en
+coordenadas oblicuas.
 
-Ahora sustituimos en las componentes contravariantes en función de las $x$ e $y$ del
-apartado anterior
-\begin{align*}
-  \nabla\phi^1
-  &=
-    -x\cot\alpha + y + 2
-    = -(x^1+x^2\cos\alpha)\cot\alpha
-    = -x^1\,\dfrac{\cos^2\alpha}{\sin\alpha}\\
-  \nabla\phi^2
-  &=
-    x\csc\alpha
-    = (x^1+x^2\cos\alpha) \csc\alpha
-    = x^1\csc\alpha + x^2\cot\alpha
-\end{align*}
-
-El gradiente en coordenadas oblicuas es
+En nuestro sistema oblicuo, los vectores de la base covariante son
 \[
-  \vvv{\nabla}\phi
-  = -x^1\,\dfrac{\cos^2\alpha}{\sin\alpha}\,\xhat{e}_1
-  + (x^1\csc\alpha + x^2\cot\alpha) \xhat{e}_2
+  \begin{cases}
+    \begin{array}{l}
+      \xhat{e}_1 = \uvec{\i}\\
+      \xhat{e}_2 = \dfrac{1}{2}\,\uvec{\i} + \dfrac{\sqrt{3}}{2}\,\uvec{\j}
+    \end{array}
+  \end{cases}
 \]
 
-Ahora calculamos las componentes $x^i$ en función de nuestro sistema oblicuo y de las
-componentes ortogonales $P(3,2)$
-\begin{align*}
-  \begin{pmatrix}
-    x^1\\
-    x^2
-  \end{pmatrix}
-  &=
-    \,\begin{pmatrix}
-      1 & -\cot\alpha\\
-      0 & \csc\alpha
-    \end{pmatrix}
-    \,\begin{pmatrix}
-      3\\
-      2
-    \end{pmatrix}
-    = \begin{pmatrix}
-      3-2\cot\pi/3\\
-      2\csc\pi/3
-    \end{pmatrix}
-    = \begin{pmatrix}
-      3-2\sqrt{3}/3\\
-      4\sqrt{3}/3
-    \end{pmatrix}
-\end{align*}
-\begin{align*}
-  x^1 &= 3-\dfrac{2\sqrt{3}}{3}\\
-  x^2 &= \dfrac{4\sqrt{3}}{3}
-\end{align*}
-Sustituimos en las componentes contravariantes
-\begin{align*}
-  \nabla\phi^1
-  &=
-    -x^1\,\dfrac{\cos^2\pi/6}{\sin\pi/6}
-    =-\left(3-\dfrac{2\sqrt{3}}{3}\right)\,\dfrac{1/4}{\sqrt{3}/2}
-    = \left(\dfrac{2\sqrt{3}}{3} - 3\right) \dfrac{1}{2\sqrt{3}}\\
-  &=
-    \left(\dfrac{2\sqrt{3}}{3} - 3\right) \dfrac{\sqrt{3}}{6}
-    = \dfrac{1}{3} - \dfrac{\sqrt{3}}{2}
-\end{align*}
-\begin{align*}
-  \nabla\phi^2
-  &=
-    x^1\csc\alpha + x^2 \cot\alpha
-    = \left(3-\dfrac{2\sqrt{3}}{3}\right)\,\csc\alpha + \dfrac{4\sqrt{3}}{3} \cot\alpha\\
-  &=
-    \left(3-\dfrac{2\sqrt{3}}{3}\right)\,\dfrac{2\sqrt{3}}{3}
-    + \dfrac{4\sqrt{3}}{3} \dfrac{\sqrt{3}}{3}
-    = 2\sqrt{3} - \cancelout{\dfrac{4}{3}} + \cancelout{\dfrac{4}{3}}
-    = 2\sqrt{3}
-\end{align*}
-
-
 \noindent
-f) Métrica y su inversa. Aplícala al sistema oblicuo.
+d) Métrica y su inversa.
 
-La métrica se calcula mediante el producto escalar de los vectores de la base
+La métrica se calcula mediante el producto escalar de los vectores de la base covariante
 \begin{align*}
   \mmm{g}_{ij}
   &=
@@ -3344,49 +3182,330 @@ La métrica inversa es
 \end{align*}
 
 En nuestro sistema oblicuo, con $\alpha = \qty{60}{\degree}$
-\begin{align*}
-  \mmm{g}_{ij}
-  &=
-    \begin{pmatrix}
-      1 & 1/2\\
-      1/2 & 1
-    \end{pmatrix}\\
-  \mmm{g}^{ij}
-  &=
-    \dfrac{1}{3/4}
-    \begin{pmatrix}
-      1 & -1/2\\
-      -1/2 & 1
-    \end{pmatrix}
-    = \begin{pmatrix}
-      4/3 & -2/3\\
-      -2/3 & 4/3
-    \end{pmatrix}  
-\end{align*}
+\[
+  \begin{cases}
+    \begin{array}{l}
+      \mmm{g}_{ij}
+      = \begin{pmatrix}
+        1 & 1/2\\
+        1/2 & 1
+      \end{pmatrix}\\
+      \mmm{g}^{ij}
+      =
+      \dfrac{1}{3/4}
+      \begin{pmatrix}
+        1 & -1/2\\
+        -1/2 & 1
+      \end{pmatrix}
+      = \begin{pmatrix}
+        4/3 & -2/3\\
+        -2/3 & 4/3
+      \end{pmatrix}
+    \end{array}
+  \end{cases}
+\]
 
 \noindent
-g) Componentes covariantes del gradiente.
+e) Componentes covariantes del gradiente.
 
+Primero necesitamos obtener las coordenadas ortogonales a partir de las contravariantes,
+utilizando la matriz de cambio de base
+\[
+  \begin{pmatrix}
+    x\\
+    y
+  \end{pmatrix}
+  = \begin{pmatrix}
+    1 & \cos\alpha\\
+    0 & \sin\alpha
+  \end{pmatrix}
+  \,\begin{pmatrix}
+    x^1\\
+    x^2
+  \end{pmatrix}
+  \longrightarrow
+  \begin{cases}
+    \begin{array}{l}
+      x = x^1 + x^2\,\cos\alpha\\
+      y = x^2\sin\alpha
+    \end{array}
+  \end{cases}
+\]
+
+Expresamos las componentes ortogonales en función de las contravariantes
+\begin{align*}
+  \dfrac{\partial\phi}{\partial x}
+  &=
+    y + 2
+    = x^2\sin\alpha + 2\\
+  \dfrac{\partial\phi}{\partial y}
+  &=
+    x
+    = x^1 + x^2\cos\alpha
+\end{align*}
+
+Calculamos las componentes covariantes del gradiente, teniendo en cuenta las derivadas
+parciales de $x$ e $y$ respecto de $x^1$ y $x^2$, que dejamos como ejercicio
 \begin{align*}
   \nabla\phi_1
   &=
-    g_{11}\nabla\phi^1 + g_{12}\nabla\phi^2
-    = \nabla\phi^1 + \nabla\phi^2 \cos\alpha
-    = -x^1\,\dfrac{\cos^2\alpha}{\sin\alpha}
-    + (x^1\csc\alpha + x^2\cot\alpha) \cos\alpha
-\end{align*}
-
-
-\noindent
-h) Módulo del gradiente en coordenadas oblicuas.\\
-El cuadrado del módulo es $\nabla\phi^i\nabla\phi_i$
-\begin{align*}
-  |\vvv{\nabla}\phi|^2
+    \dfrac{\partial\phi}{\partial x^1}
+    = \dfrac{\partial\phi}{\partial x}\dfrac{\partial x}{\partial x^1}
+    + \dfrac{\partial\phi}{\partial y}\dfrac{\partial y}{\partial x^1}
+    = (x^2\sin\alpha+2)\cdot 1 + (x^1 + x^2\cos\alpha)\cdot 0\\
   &=
-    \nabla\phi^1\nabla\phi_1 + \nabla\phi^2\nabla\phi_2
-    = -x^1\dfrac{\cos^2\alpha}{\sin\alpha}
-    +
+    x^2\sin\alpha + 2
 \end{align*}
+\begin{align*}
+  \nabla\phi_2
+  &=
+    \dfrac{\partial\phi}{\partial x^2}
+    = \dfrac{\partial\phi}{\partial x}\dfrac{\partial x}{\partial x^2}
+    + \dfrac{\partial\phi}{\partial y}\dfrac{\partial y}{\partial x^2}
+    = (x^2\sin\alpha+2)\cdot\cos\alpha + (x^1 + x^2\cos\alpha)\cdot\sin\alpha\\
+  &=
+    x^2\sin\alpha\cos\alpha + 2\cos\alpha + x^1\sin\alpha + x^2\cos\alpha\sin\alpha\\
+  &=
+    x^1\sin\alpha + x^2 \sin(2\alpha) + 2\cos\alpha
+\end{align*}
+
+En nuestro sistema oblicuo
+\begin{align*}
+  \nabla\phi_1
+  &=
+    x^2\sin\pi/3 + 2
+    = \dfrac{\sqrt{3}}{2} x^2 + 2\\
+  \nabla\phi_2
+  &=
+    x^1\sin\alpha + x^2 \sin(2\alpha) + 2\cos\alpha
+    = \dfrac{\sqrt{3}}{2}x^1 + \dfrac{\sqrt{3}}{2} x^2 + 1
+\end{align*}
+
+\[
+  \begin{cases}
+    \begin{array}{l}
+      \nabla\phi_1
+      = x^2\sin\pi/3\\
+      \nabla\phi_2
+      = x^1\sin\pi/3 + x^2\sin(2\pi/3) + 2\cos\pi/3
+    \end{array}
+  \end{cases}
+\]
+
+%\noindent
+%e) Componentes covariantes del gradiente en función de $x$ e $y$.
+%
+%
+%
+%\noindent
+%e) Componentes contravariantes del gradiente en función de $x$ e $y$.
+%
+%Realizamos la transformación inversa del apartado anterior, utilizando la matriz de
+%cambio de base inversa $\mmm{M}^{-1}$
+%\begin{align*}
+%  \begin{pmatrix}
+%    \uvec{\i} & \uvec{\j}
+%  \end{pmatrix}
+%  &=
+%    \begin{pmatrix}
+%      \xhat{e}_1 & \xhat{e}_2
+%    \end{pmatrix}
+%    \,\begin{pmatrix}
+%      1 & -\cot\alpha\\
+%      0 & \csc\alpha
+%    \end{pmatrix}
+%    = \begin{pmatrix}
+%      \xhat{e}_1 & -\cot\alpha\,\xhat{e}_1+\csc\alpha\,\xhat{e}_2
+%    \end{pmatrix}  
+%\end{align*}
+%
+%Los vectores de  base ortogonal en función de los de la oblicua quedan
+%\begin{align*}
+%  \uvec{\i}
+%  &=
+%    \xhat{e}_1\\
+%  \uvec{\j}
+%  &=
+%    -\cot\alpha\,\xhat{e}_1+\csc\alpha\,\xhat{e}_2
+%\end{align*}
+%
+%Sustituimos en la fórmula del  gradiente en coordenadas ortogonales del apartado \emph{a)}
+%\begin{align*}
+%  \vvv{\nabla}\phi
+%  &=
+%    (y+2)\,\uvec{\i} + x\,\uvec{\j}
+%    = (y+2)\,\xhat{e}_1 + x(-\cot\alpha\,\xhat{e}_1 + \csc\alpha\,\xhat{e}_2)\\
+%  &=
+%    (-x\cot\alpha+y+2)\,\xhat{e}_1 + x\csc\alpha\,\xhat{e}_2
+%\end{align*}
+%
+%Como $\vvv{\nabla}\phi = \nabla\phi^i\xhat{e}_i$, comparando términos resulta
+%\begin{align*}
+%  \nabla\phi^1
+%  &=
+%    -x\cot\alpha + y + 2\\
+%  \nabla\phi^2
+%  &=
+%    x\csc\alpha
+%\end{align*}
+%
+%Calculamos estas componentes para el sistema oblicuo del ejercicio, sustituyendo $x=3$,
+%$y=2$ y $\alpha=\pi/3$ en la expresión anterior
+%\begin{align*}
+%  \nabla\phi^1
+%  &=
+%    -x\cot\alpha + y + 2
+%    = -3\cot\pi/3 + 2 + 2
+%    = 4 - 3\dfrac{\sqrt{3}}{3}
+%    = 4-\sqrt{3}\\
+%  \nabla\phi^2
+%  &=
+%    x\csc\pi/3
+%    = 3\,\dfrac{2\sqrt{3}}{3}
+%    = 2\sqrt{3}
+%\end{align*}
+%
+
+
+%\noindent
+%e) Componentes contravariantes del gradiente en función de las componentes
+%contravariantes $x^i$ del sistema oblicuo.
+%
+%Obtenemos el  valor de las $x$ e $y$ del sistema ortogonal en función de las componentes
+%contravariantes $x^i$, utilizando la matriz de cambio de base
+%\begin{align*}
+%  \begin{pmatrix}
+%    x\\
+%    y
+%  \end{pmatrix}
+%  &=
+%    \,\begin{pmatrix}
+%      1 & \cos\alpha\\
+%      0 & \sin\alpha
+%    \end{pmatrix}
+%    \,\begin{pmatrix}
+%      x^1\\
+%      x^2
+%    \end{pmatrix}
+%    = \begin{pmatrix}
+%      x^1+x^2\cos\alpha\\
+%      x^2\sin\alpha
+%    \end{pmatrix}
+%\end{align*}
+%\begin{align*}
+%  x &= x^1+x^2\cos\alpha\\
+%  y &= x^2\sin\alpha
+%\end{align*}
+%
+%Ahora sustituimos en las componentes contravariantes en función de las $x$ e $y$ del
+%apartado anterior
+%\begin{align*}
+%  \nabla\phi^1
+%  &=
+%    -x\cot\alpha + y + 2
+%    = -(x^1+x^2\cos\alpha)\cot\alpha
+%    = -x^1\,\dfrac{\cos^2\alpha}{\sin\alpha}\\
+%  \nabla\phi^2
+%  &=
+%    x\csc\alpha
+%    = (x^1+x^2\cos\alpha) \csc\alpha
+%    = x^1\csc\alpha + x^2\cot\alpha
+%\end{align*}
+%
+%El gradiente en coordenadas oblicuas es
+%\[
+%  \vvv{\nabla}\phi
+%  = -x^1\,\dfrac{\cos^2\alpha}{\sin\alpha}\,\xhat{e}_1
+%  + (x^1\csc\alpha + x^2\cot\alpha) \xhat{e}_2
+%\]
+%
+%Ahora calculamos las componentes $x^i$ en función de nuestro sistema oblicuo y de las
+%componentes ortogonales $P(3,2)$
+%\begin{align*}
+%  \begin{pmatrix}
+%    x^1\\
+%    x^2
+%  \end{pmatrix}
+%  &=
+%    \,\begin{pmatrix}
+%      1 & -\cot\alpha\\
+%      0 & \csc\alpha
+%    \end{pmatrix}
+%    \,\begin{pmatrix}
+%      3\\
+%      2
+%    \end{pmatrix}
+%    = \begin{pmatrix}
+%      3-2\cot\pi/3\\
+%      2\csc\pi/3
+%    \end{pmatrix}
+%    = \begin{pmatrix}
+%      3-2\sqrt{3}/3\\
+%      4\sqrt{3}/3
+%    \end{pmatrix}
+%\end{align*}
+%\begin{align*}
+%  x^1 &= 3-\dfrac{2\sqrt{3}}{3}\\
+%  x^2 &= \dfrac{4\sqrt{3}}{3}
+%\end{align*}
+%Sustituimos en las componentes contravariantes
+%\begin{align*}
+%  \nabla\phi^1
+%  &=
+%    -x^1\,\dfrac{\cos^2\pi/3}{\sin\pi/3}
+%    =-\left(3-\dfrac{2\sqrt{3}}{3}\right)\,\dfrac{1/4}{\sqrt{3}/2}
+%    = \left(\dfrac{2\sqrt{3}}{3} - 3\right) \dfrac{1}{2\sqrt{3}}\\
+%  &=
+%    \left(\dfrac{2\sqrt{3}}{3} - 3\right) \dfrac{\sqrt{3}}{6}
+%    = \dfrac{1}{3} - \dfrac{\sqrt{3}}{2}
+%\end{align*}
+%\begin{align*}
+%  \nabla\phi^2
+%  &=
+%    x^1\csc\alpha + x^2 \cot\alpha
+%    = \left(3-\dfrac{2\sqrt{3}}{3}\right)\,\csc\alpha + \dfrac{4\sqrt{3}}{3} \cot\alpha\\
+%  &=
+%    \left(3-\dfrac{2\sqrt{3}}{3}\right)\,\dfrac{2\sqrt{3}}{3}
+%    + \dfrac{4\sqrt{3}}{3} \dfrac{\sqrt{3}}{3}
+%    = 2\sqrt{3} - \cancelout{\dfrac{4}{3}} + \cancelout{\dfrac{4}{3}}
+%    = 2\sqrt{3}
+%\end{align*}
+%
+%
+%\noindent
+
+%\noindent
+%g) Componentes covariantes del gradiente.
+%
+%\begin{align*}
+%  \nabla\phi_1
+%  &=
+%    g_{11}\nabla\phi^1 + g_{12}\nabla\phi^2
+%    = \nabla\phi^1 + \nabla\phi^2 \cos\alpha\\
+%  &=
+%    -x^1\,\dfrac{\cos^2\alpha}{\sin\alpha} + (x^1\csc\alpha + x^2\cot\alpha) \cos\alpha
+%    = -x^1\,\dfrac{\cos^2\alpha}{\sin\alpha}
+%    + x^1\,\cot\alpha + x^2\,\dfrac{\cos^2\alpha}{\sin\alpha}\\
+%  &=  x^1\,\dfrac{\cos\alpha-\cos^2\alpha}{\sin\alpha}
+%    + x^2\,\dfrac{\cos^2\alpha}{\sin\alpha}
+%\end{align*}
+%
+%
+%\noindent
+%h) Módulo del gradiente en coordenadas oblicuas.\\
+%El cuadrado del módulo es $\nabla\phi^i\nabla\phi_i$
+%\begin{align*}
+%  \nabla\phi^1\nabla\phi_1
+%  &=
+%    -x^1\dfrac{\cos^2\alpha}{\sin\alpha}
+%    \left(%
+%    x^1\,\dfrac{\cos\alpha-\cos^2\alpha}{\sin\alpha}
+%    + x^2\,\dfrac{\cos^2\alpha}{\sin\alpha}
+%    \right)
+%    = x^1\left(%
+%    -\cot^2\alpha\csc\alpha + \cot^3\alpha
+%    \right)
+%\end{align*}
 
 
 
@@ -4530,7 +4649,7 @@ De donde
     %\pgfmathsetmacro{\PMOD}{2.3}
     %\pgfmathsetmacro{\PANG}{40}
     % Fondo
-    \pgfmathsetmacro{\HORZ}{0.90}
+    \pgfmathsetmacro{\HORZ}{0.80}
     \pgfmathsetmacro{\VERT}{0.25}
     % 
     \centering
