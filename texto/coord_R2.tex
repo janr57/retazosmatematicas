@@ -3865,6 +3865,16 @@ Para el sistema oblicuo y el vector $\vvv{v} = (3,2)$
 \noindent
 Resumen:
 \[
+  \hspace{1em}
+  \text{Sistema oblicuo general }
+  \begin{cases}
+    \begin{array}{l}
+      \nabla\phi_1 = x^2\sin\alpha + 2\\
+      \nabla\phi_2 = x^1\sin\alpha + x^2 2\sin\alpha\cos\alpha + 2 \cos\alpha
+    \end{array}
+  \end{cases}
+\]
+\[
   \begin{array}{ll}
     \text{Sistema oblicuo \qty{60}{\degree} } &
     \begin{cases}
@@ -3960,7 +3970,45 @@ Aplicado al vector $\vvv{v}=(3,2)$
   \nabla\phi^2
   &=
     \dfrac{2\sqrt{3}}{3} x^1 + \dfrac{\sqrt{3}}{3} x^2
+    = \dfrac{2\sqrt{3}}{3} \left(3-\dfrac{2\sqrt{3}}{3}\right)
+    + \dfrac{\sqrt{3}}{3}\,\dfrac{4\sqrt{3}}{3}\\
+  &=
+    2\sqrt{3}
+    - \dfrac{4}{3}
+    + \dfrac{4}{3}
+    = 2\sqrt{3}
 \end{align*}
+
+\noindent
+Resumen:
+\[
+  \text{Sistema oblicuo general }
+  \hspace{1.2em}
+  \begin{cases}
+    \begin{array}{l}
+      \nabla\phi^1 = -x^1\cot\alpha + x^2\,\dfrac{1-2\cos^2\alpha}{\sin\alpha} + 2\\
+      \nabla\phi^2 = x^1\csc\alpha + x^2 \cot\alpha
+    \end{array}
+  \end{cases}
+\]
+\[
+  \begin{array}{ll}
+    \text{Sistema oblicuo \qty{60}{\degree} } &
+    \begin{cases}
+      \begin{array}{l}
+        \nabla\phi^1 = -\dfrac{\sqrt{3}}{3} x^1 + \dfrac{\sqrt{3}}{3} x^2 + 2\\[2ex]
+        \nabla\phi^2 =\dfrac{2\sqrt{3}}{3} x^1 + \dfrac{\sqrt{3}}{3} x^2
+      \end{array}
+    \end{cases}\\[2ex]
+    \text{Sistema oblicuo y vector } \vvv{v} = (3,2) &
+    \begin{cases}
+      \begin{array}{l}
+        \nabla\phi^1 = 4 - \sqrt{3}\\
+        \nabla\phi^2 = 2\sqrt{3}
+      \end{array}
+    \end{cases}
+  \end{array}
+\]
 
 
 
