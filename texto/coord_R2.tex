@@ -3415,26 +3415,16 @@ por
 También consideramos un sistema de coordenadas cartesianas oblicuas, cuyos ejes forman
 \qty{60}{\degree} entre sí, donde el eje de abcisas de ambos sistemas coinciden.\\
 Calcula lo que se pide, primero en general, y después para nuestro sistema oblicuo
-concreto y en el punto $P(3,2)$, en los casos en los que sea pertinente.\\
-a) Calcula el gradiente en cartesianas ortogonales y su módulo.\\
-b) Calcula la matriz de cambio de base $\mmm{M}$ y su inversa.\\
-c) Halla la base covariante en función de la base ortogonal.\\
-d) Obtén la métrica en coordenadas oblicuas y su inversa.\\
-e) Calcula las componentes covariantes del gradiente.\\
-f) Halla las componentes contravariantes del gradiente.\\
-
-%%e) Calcula las componentes contravariantes del gradiente en función de las $x^i$ del
-%%sistema oblicuo.\\
-%g) Halla las componentes covariantes del gradiente.\\
-%h) Calcula el módulo del gradiente en coordenadas oblicuas.\\
-
-%c) Halla el campo en coordenadas oblicuas que forman un ángulo de \qty{60}{\degree}
-
-%entre sus ejes.\\
-%b) Calcula el gradiente en cartesianas ortogonales.\\
-%c) Calcula el gradiente y su módulo en el punto $P=(2,1)$.\\
-%d) Calcula el gradiente en coordenadas cartesianas oblicuas.\\
-%e) Su valor y módulo en oblicuas, en el punto $P$.\\
+concreto, y para el vector vector $\vvv{v} = (x,y) = (3,2)$, en los casos en los que sea
+pertinente.\\
+a) El gradiente en cartesianas ortogonales y su módulo.\\
+b) La matriz de cambio de base $\mmm{M}$ y su inversa.\\
+c) Las componentes contravariantes en función de las ortogonales.\\
+d) Las componentes ortogonales en función de las contravariantes.\\
+e) Halla la base covariante en función de la base ortogonal y viceversa.\\
+f) Obtén la métrica en coordenadas oblicuas y su inversa.\\
+g) Calcula las componentes covariantes del gradiente.\\
+h) Halla las componentes contravariantes del gradiente.\\
 
 \noindent
 \textbf{Solución}
@@ -3546,8 +3536,134 @@ En nuestro sistema oblicuo, con $\alpha = \qty{60}{\degree}$
     \end{pmatrix}
 \end{align*}
 
+Resumen:
+\[
+  \text{Matriz de cambio de base general e inversa }
+  \begin{cases}
+    \begin{array}{l}
+      \mmm{M}
+      = \begin{pmatrix}
+        1 & \cos\alpha\\
+        0 & \sin\alpha
+      \end{pmatrix}\\
+      \mmm{M}^{-1}
+      = \begin{pmatrix}
+        1 & -\cot\alpha\\
+        0 & \csc\alpha
+      \end{pmatrix}      
+    \end{array}
+  \end{cases}
+\]
+
+\[
+  \text{Matriz de cambio de base $\alpha=\qty{60}{\degree}$ e inversa }
+  \begin{cases}
+    \begin{array}{l}
+      \mmm{M}
+      = \begin{pmatrix}
+        1 & 1/2\\
+        0 & \sqrt{3}/2
+      \end{pmatrix}\\
+      \mmm{M}^{-1}
+      = \begin{pmatrix}
+        1 & -\sqrt{3}/3\\
+        0 & 2\sqrt{3}/3
+      \end{pmatrix}      
+    \end{array}
+  \end{cases}
+\]
+
 \noindent
-c) Transformación de la base ortogonal a la covariante del sistema oblicuo.
+c) Componentes contravariantes en función de las ortogonales.
+
+Valores de $x^1$ y $x^2$ para el vector $\vvv{v} = (x,y)$
+\[
+  \begin{pmatrix}
+    x^1\\
+    x^2
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    1 & -\cot\alpha\\
+    0 & \csc\alpha
+  \end{pmatrix}
+  \,\begin{pmatrix}
+    x\\
+    y
+  \end{pmatrix}
+  \longrightarrow
+  \begin{cases}
+    \begin{array}{l}
+      x^1 = x-y\cot\alpha\\
+      x^2 = y\csc\alpha
+    \end{array}
+  \end{cases}
+\]
+\[
+  \begin{array}{ll}
+  \text{Para nuestro sistema oblicuo y } \vvv{v} = (x,y)&
+  \begin{cases}
+    \begin{array}{l}
+      x^1 = x-\dfrac{\sqrt{3}}{3}\,y\\
+      x^2 = \dfrac{2\sqrt{3}}{3}\,y
+    \end{array}
+  \end{cases}\\
+  \text{Para nuestro sistema oblicuo y } \vvv{v} = (3,2)&
+  \begin{cases}
+    \begin{array}{l}
+      x^1 = 3-\dfrac{2\sqrt{3}}{3}\\
+      x^2 = \dfrac{4\sqrt{3}}{3}
+    \end{array}
+  \end{cases}
+  \end{array}
+\]
+
+\noindent
+d) Las componentes ortogonales en función de las contravariantes.\\
+\[
+  \begin{pmatrix}
+    x\\
+    y
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    1 & \cos\alpha\\
+    0 & \sin\alpha
+  \end{pmatrix}
+  \,\begin{pmatrix}
+    x^1\\
+    x^2
+  \end{pmatrix}
+  \longrightarrow
+  \begin{cases}
+    \begin{array}{l}
+      x = x^1 + x^2\cos\alpha\\
+      y = x^2\sin\alpha
+    \end{array}
+  \end{cases}
+\]
+
+\[
+  \begin{array}{ll}
+  \text{En nuestro sistema oblicuo \qty{60}{\degree} }&
+  \begin{cases}
+    \begin{array}{l}
+      \xhat{e}_1 = \uvec{\i}\\
+      \xhat{e}_2 = \dfrac{1}{2}\,\uvec{\i} + \dfrac{\sqrt{3}}{2}\,\uvec{\j}
+    \end{array}
+  \end{cases}\\[4ex]
+  \text{Para \qty{60}{\degree} y vector } \vvv{v} = (3,2)&
+  \begin{cases}
+    \begin{array}{l}
+      \uvec{\i} = \uvec{\i}\\
+      \uvec{\j} = -\dfrac{\sqrt{3}}{3}\,\xhat{e}_1 + \dfrac{2\sqrt{3}}{3}\,\xhat{e}_2
+    \end{array}
+  \end{cases}
+  \end{array}
+\]
+
+\noindent
+e) Transformación de la base ortogonal a la covariante del sistema oblicuo y su inversa.
 
 Con la matriz de cambio de base $\mmm{M}$, se obtienen los vectores de la base
 covariante
@@ -3573,18 +3689,49 @@ covariante
 Estos vectores miden las componentes contravariantes de un vector en $\symbb{R}^2$ en
 coordenadas oblicuas.
 
-En nuestro sistema oblicuo, los vectores de la base covariante son
+La transformación inversa es
 \[
+  \begin{pmatrix}
+    \uvec{\i} & \uvec{\j}                 
+  \end{pmatrix}
+  =\begin{pmatrix}
+    \xhat{e}_1 & \xhat{e}_2
+  \end{pmatrix}
+  \,\begin{pmatrix}
+    1 & -\cot\alpha\\
+    0 & \csc\alpha
+  \end{pmatrix}
+  \longrightarrow
+  \begin{cases}
+    \begin{array}{l}
+      \uvec{\i} = \uvec{\i}\\
+      \uvec{\j} = -\cot\alpha\,\xhat{e}_1 + \csc\alpha\,\xhat{e}_2
+    \end{array}
+  \end{cases}
+\]
+
+En nuestro sistema oblicuo $\alpha=\qty{60}{\degree}$, tenemos
+\[
+  \begin{array}{ll}
+  \text{Transformación de base ortogonal a oblicua }&
   \begin{cases}
     \begin{array}{l}
       \xhat{e}_1 = \uvec{\i}\\
       \xhat{e}_2 = \dfrac{1}{2}\,\uvec{\i} + \dfrac{\sqrt{3}}{2}\,\uvec{\j}
     \end{array}
+  \end{cases}\\[4ex]
+  \text{Transformación de base covariante a ortogonal }&
+  \begin{cases}
+    \begin{array}{l}
+      \uvec{\i} = \uvec{\i}\\
+      \uvec{\j} = -\dfrac{\sqrt{3}}{3}\,\xhat{e}_1 + \dfrac{2\sqrt{3}}{3}\,\xhat{e}_2
+    \end{array}
   \end{cases}
+  \end{array}
 \]
 
 \noindent
-d) Métrica y su inversa.
+f) Métrica y su inversa.
 
 La métrica se calcula mediante el producto escalar de los vectores de la base covariante
 \begin{align*}
@@ -3619,6 +3766,7 @@ La métrica inversa es
 
 En nuestro sistema oblicuo, con $\alpha = \qty{60}{\degree}$
 \[
+  \text{Tensor métrico y su inverso }
   \begin{cases}
     \begin{array}{l}
       \mmm{g}_{ij}
@@ -3642,7 +3790,7 @@ En nuestro sistema oblicuo, con $\alpha = \qty{60}{\degree}$
 \]
 
 \noindent
-e) Componentes covariantes del gradiente.
+g) Componentes covariantes del gradiente.
 
 Primero necesitamos obtener las coordenadas ortogonales a partir de las contravariantes,
 utilizando la matriz de cambio de base
@@ -3717,29 +3865,6 @@ En nuestro sistema oblicuo
     = \dfrac{\sqrt{3}}{2}x^1 + \dfrac{\sqrt{3}}{2} x^2 + 1
 \end{align*}
 
-Ahora necesitamos los valores de $x^1$ y $x^2$ para el punto $P(3,2)$
-\[
-  \begin{pmatrix}
-    x^1\\
-    x^2
-  \end{pmatrix}
-  =
-  \begin{pmatrix}
-    1 & -\sqrt{3}/3\\
-    0 & 2\sqrt{3}/3
-  \end{pmatrix}
-  \,\begin{pmatrix}
-    3\\
-    2
-  \end{pmatrix}
-  \longrightarrow
-  \begin{cases}
-    \begin{array}{l}
-      x^1 = 3-\dfrac{2\sqrt{3}}{3}\\
-      x^2 = \dfrac{4\sqrt{3}}{3}
-    \end{array}
-  \end{cases}
-\]
 
 \begin{align*}
   \nabla\phi_1
@@ -3768,7 +3893,7 @@ Ahora necesitamos los valores de $x^1$ y $x^2$ para el punto $P(3,2)$
 \]
 
 \noindent
-e) Componentes contravariantes del gradiente.
+h) Componentes contravariantes del gradiente.
 
 Se calculan mediante $\nabla\phi^i = g^{ij} \nabla\phi_j$
 {\small
