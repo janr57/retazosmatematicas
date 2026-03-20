@@ -3895,11 +3895,34 @@ Se calculan mediante $\nabla\phi^i = g^{ij} \nabla\phi_j$
   &=
     \dfrac{1}{\sin^2\alpha} \left(x^2\,\sin\alpha + 2\right)
     - \dfrac{\cos\alpha}{\sin^2\alpha}
-    \,\left(x^1\sin\alpha + x^2\sin(2\alpha) + 2\cos\alpha\right)\\
+    \,\left(x^1\sin\alpha
+    + x^2\,2\sin\alpha\cos\alpha
+    + 2\cos\alpha\right)\\
   &=
     - x^1\,\cot\alpha
     +x^2\,\dfrac{1-2\cos^2\alpha}{\sin\alpha}
     + 2
+\end{align*}
+\begin{align*}
+  \nabla\phi^2
+  &=
+    g^{21} \nabla\phi_1 + g^{22}\nabla\phi_2\\
+  &=
+    -\dfrac{\cos\alpha}{\sin^2\alpha} \left(x^2\,\sin\alpha + 2\right)
+    + \dfrac{1}{\sin^2\alpha}
+    \,\left(x^1\sin\alpha
+    + x^2\,2\sin\alpha\cos\alpha
+    + 2\cos\alpha\right)\\
+  &=
+    x^1\csc\alpha
+    + x^2\left(%
+    2\,\cot\alpha
+    -\cot\alpha
+    \right)
+    - \cancelout{\dfrac{2\cos\alpha}{\sin^2\alpha}}
+    + \cancelout{\dfrac{2\cos\alpha}{\sin^2\alpha}}
+    = x^1\csc\alpha
+    + x^2\cot\alpha
 \end{align*}
 
 Para el sistema oblicuo con $\alpha= \qty{60}{\degree}$
@@ -3915,62 +3938,29 @@ Para el sistema oblicuo con $\alpha= \qty{60}{\degree}$
     + \dfrac{2\cos\pi/3}{\sin^2\pi/3}
     = -\dfrac{\sqrt{3}}{3}x^1
     + \dfrac{\sqrt{3}}{3}x^2
-    + 2
-\end{align*}
-\begin{align*}
+    + 2\\
   \nabla\phi^2
   &=
-    g^{21} \nabla\phi_1 + g^{22}\nabla\phi_2\\
-  &=
-    - \dfrac{2}{3} (x^2\,\sin\alpha + 2)
-    + \dfrac{4}{3} (x^1\sin\alpha + x^2\,2\sin\alpha\cos\alpha + 2\cos\alpha)\\
-  &=
-    x^2\left(%
-    -\dfrac{2}{3}\dfrac{\sqrt{3}}{2}+\dfrac{4}{3}\cdot 2\,\dfrac{\sqrt{3}}{2}\dfrac{1}{2}
-    \right)
-    - \dfrac{4}{3}
-    + x^1 \,\dfrac{4}{3}\dfrac{\sqrt{3}}{2}
-    + 2\cdot \dfrac{4}{3}\, \dfrac{1}{2}\\
-  &=
-    x^2\, \dfrac{\sqrt{3}}{3}
-    + x^1\, \dfrac{2\sqrt{3}}{3}
-    + \dfrac{4}{3}
+    x^1 \csc\pi/3
+    + x^2 \cot\pi/3
+    = \dfrac{2\sqrt{3}}{3} x^1 + \dfrac{\sqrt{3}}{3} x^2
 \end{align*}
 
-En nuestro particular sistema oblicuo
+Aplicado al vector $\vvv{v}=(3,2)$
 \begin{align*}
   \nabla\phi^1
   &=
-    x^2\,\dfrac{\sqrt{3}}{3} - x^1\,\dfrac{\sqrt{3}}{3} + 2
-    = \dfrac{4\sqrt{3}}{3} \dfrac{\sqrt{3}}{3}
-    - \left(%
-    3 - \dfrac{2\sqrt{3}}{3}
-    \right) \dfrac{\sqrt{3}}{3}
-    + 2 \\
-  &=
-    \dfrac{4}{3} - \sqrt{3} + \dfrac{2}{3} + 2
-    = 2 - \sqrt{3}
-\end{align*}
-\begin{align*}
+    -\dfrac{\sqrt{3}}{3}\left(%
+    3-\dfrac{2\sqrt{3}}{3}
+    \right)
+    + \dfrac{\sqrt{3}}{3}\, \dfrac{4\sqrt{3}}{3}
+    + 2
+    = -\sqrt{3} + \dfrac{2}{3} + \dfrac{4}{3} + 2
+    = 4 - \sqrt{3}\\
   \nabla\phi^2
   &=
-    x^2\, \dfrac{\sqrt{3}}{3} + x^1\, \dfrac{2\sqrt{3}}{3} + \dfrac{4}{3}
-    = \dfrac{4\sqrt{3}}{3} \dfrac{\sqrt{3}}{3}
-    + \left(3 - \dfrac{2\sqrt{3}}{3}\right) \dfrac{2\sqrt{3}}{3}
-    + \dfrac{4}{3}\\
-  &=
-    \dfrac{4}{3} + 2\sqrt{3} - \dfrac{4}{3} + \dfrac{4}{3}
-    = \dfrac{4}{3} + 2\sqrt{3}
+    \dfrac{2\sqrt{3}}{3} x^1 + \dfrac{\sqrt{3}}{3} x^2
 \end{align*}
-\[
-  \begin{cases}
-    \begin{array}{l}
-      \nabla\phi^1 = 2 - \sqrt{3}\\
-      \nabla\phi^2 = \dfrac{4}{3} + 2\sqrt{3}
-    \end{array}
-  \end{cases}
-\]
-
 
 
 
