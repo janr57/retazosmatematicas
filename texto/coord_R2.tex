@@ -3644,22 +3644,13 @@ d) Las componentes ortogonales en función de las contravariantes.\\
 \]
 
 \[
-  \begin{array}{ll}
-  \text{En nuestro sistema oblicuo \qty{60}{\degree} }&
+  \text{En nuestro sistema oblicuo \qty{60}{\degree} }
   \begin{cases}
     \begin{array}{l}
-      \xhat{e}_1 = \uvec{\i}\\
-      \xhat{e}_2 = \dfrac{1}{2}\,\uvec{\i} + \dfrac{\sqrt{3}}{2}\,\uvec{\j}
-    \end{array}
-  \end{cases}\\[4ex]
-  \text{Para \qty{60}{\degree} y vector } \vvv{v} = (3,2)&
-  \begin{cases}
-    \begin{array}{l}
-      \uvec{\i} = \uvec{\i}\\
-      \uvec{\j} = -\dfrac{\sqrt{3}}{3}\,\xhat{e}_1 + \dfrac{2\sqrt{3}}{3}\,\xhat{e}_2
+      x = x^1 + \dfrac{1}{2} x^2\\
+      y = \dfrac{\sqrt{3}}{2} x^2
     \end{array}
   \end{cases}
-  \end{array}
 \]
 
 \noindent
@@ -3704,13 +3695,12 @@ La transformación inversa es
   \longrightarrow
   \begin{cases}
     \begin{array}{l}
-      \uvec{\i} = \uvec{\i}\\
+      \uvec{\i} = \xhat{e}_1\\
       \uvec{\j} = -\cot\alpha\,\xhat{e}_1 + \csc\alpha\,\xhat{e}_2
     \end{array}
   \end{cases}
 \]
-
-En nuestro sistema oblicuo $\alpha=\qty{60}{\degree}$, tenemos
+Resumen: En nuestro sistema oblicuo $\alpha=\qty{60}{\degree}$, tenemos
 \[
   \begin{array}{ll}
   \text{Transformación de base ortogonal a oblicua }&
@@ -3723,7 +3713,7 @@ En nuestro sistema oblicuo $\alpha=\qty{60}{\degree}$, tenemos
   \text{Transformación de base covariante a ortogonal }&
   \begin{cases}
     \begin{array}{l}
-      \uvec{\i} = \uvec{\i}\\
+      \uvec{\i} = \xhat{e}_1\\
       \uvec{\j} = -\dfrac{\sqrt{3}}{3}\,\xhat{e}_1 + \dfrac{2\sqrt{3}}{3}\,\xhat{e}_2
     \end{array}
   \end{cases}
@@ -3792,22 +3782,10 @@ En nuestro sistema oblicuo, con $\alpha = \qty{60}{\degree}$
 \noindent
 g) Componentes covariantes del gradiente.
 
-Primero necesitamos obtener las coordenadas ortogonales a partir de las contravariantes,
-utilizando la matriz de cambio de base
+Del apartado \emph{d)}, sabemos las coordenadas ortogonales a partir de las
+contravariantes. Las sustituimos en las derivadas parciales en cartesianas ortogonales
+de \emph{a)}
 \[
-  \begin{pmatrix}
-    x\\
-    y
-  \end{pmatrix}
-  = \begin{pmatrix}
-    1 & \cos\alpha\\
-    0 & \sin\alpha
-  \end{pmatrix}
-  \,\begin{pmatrix}
-    x^1\\
-    x^2
-  \end{pmatrix}
-  \longrightarrow
   \begin{cases}
     \begin{array}{l}
       x = x^1 + x^2\,\cos\alpha\\
@@ -3831,6 +3809,7 @@ Expresamos las componentes ortogonales en función de las contravariantes
 Calculamos las componentes covariantes del gradiente, teniendo en cuenta las derivadas
 parciales de $x$ e $y$ respecto de $x^1$ y $x^2$, que dejamos como ejercicio
 \begin{align*}
+  \hspace{-14em}
   \nabla\phi_1
   &=
     \dfrac{\partial\phi}{\partial x^1}
@@ -3841,6 +3820,7 @@ parciales de $x$ e $y$ respecto de $x^1$ y $x^2$, que dejamos como ejercicio
     x^2\sin\alpha + 2
 \end{align*}
 \begin{align*}
+  \hspace{1.3em}
   \nabla\phi_2
   &=
     \dfrac{\partial\phi}{\partial x^2}
@@ -3848,12 +3828,10 @@ parciales de $x$ e $y$ respecto de $x^1$ y $x^2$, que dejamos como ejercicio
     + \dfrac{\partial\phi}{\partial y}\dfrac{\partial y}{\partial x^2}
     = (x^2\sin\alpha+2)\cdot\cos\alpha + (x^1 + x^2\cos\alpha)\cdot\sin\alpha\\
   &=
-    x^2\sin\alpha\cos\alpha + 2\cos\alpha + x^1\sin\alpha + x^2\cos\alpha\sin\alpha\\
-  &=
-    x^1\sin\alpha + x^2 \sin(2\alpha) + 2\cos\alpha
+    x^1\sin\alpha + x^2 \,2\sin\alpha\cos\alpha + 2\cos\alpha
 \end{align*}
 
-En nuestro sistema oblicuo
+En nuestro sistema oblicuo \qty{60}{\degree}
 \begin{align*}
   \nabla\phi_1
   &=
@@ -3861,12 +3839,13 @@ En nuestro sistema oblicuo
     = \dfrac{\sqrt{3}}{2} x^2 + 2\\
   \nabla\phi_2
   &=
-    x^1\sin\alpha + x^2 \sin(2\alpha) + 2\cos\alpha
+    x^1\sin\pi/3 + x^2\,2\sin\pi/3\cos\pi/3 + 2\cos\pi/3
     = \dfrac{\sqrt{3}}{2}x^1 + \dfrac{\sqrt{3}}{2} x^2 + 1
 \end{align*}
 
-
+Para el sistema oblicuo y el vector $\vvv{v} = (3,2)$
 \begin{align*}
+  \hspace{-7em}
   \nabla\phi_1
   &=
     \dfrac{\sqrt{3}}{2}\cdot \dfrac{4\sqrt{3}}{3} + 2
@@ -3883,20 +3862,32 @@ En nuestro sistema oblicuo
     2+\dfrac{3\sqrt{3}}{2}
 \end{align*}
 
+\noindent
+Resumen:
 \[
-  \begin{cases}
-    \begin{array}{l}
-      \nabla\phi_1 = 4\\
-      \nabla\phi_2 = 2 + \dfrac{3\sqrt{3}}{2}
-    \end{array}
-  \end{cases}
+  \begin{array}{ll}
+    \text{Sistema oblicuo \qty{60}{\degree} } &
+    \begin{cases}
+      \begin{array}{l}
+        \nabla\phi_1 = \dfrac{\sqrt{3}}{2} x^2 + 2\\[2ex]
+        \nabla\phi_2 =\dfrac{\sqrt{3}}{2} x^1 + \dfrac{\sqrt{3}}{2} x^2 + 1
+      \end{array}
+    \end{cases}\\[2ex]
+    \text{Sistema oblicuo y vector } \vvv{v} = (3,2) &
+    \begin{cases}
+      \begin{array}{l}
+        \nabla\phi_1 = 4\\
+        \nabla\phi_2 = 2 + \dfrac{3\sqrt{3}}{2}
+      \end{array}
+    \end{cases}
+  \end{array}
 \]
 
 \noindent
 h) Componentes contravariantes del gradiente.
 
+\vspace*{1ex}
 Se calculan mediante $\nabla\phi^i = g^{ij} \nabla\phi_j$
-{\small
 \begin{align*}
   \nabla\phi^1
   &=
@@ -3906,56 +3897,36 @@ Se calculan mediante $\nabla\phi^i = g^{ij} \nabla\phi_j$
     - \dfrac{\cos\alpha}{\sin^2\alpha}
     \,\left(x^1\sin\alpha + x^2\sin(2\alpha) + 2\cos\alpha\right)\\
   &=
-    x^2\left(%
-    \dfrac{1}{\sin\alpha}
-    - \dfrac{\cos\alpha}{\sin^2\alpha} \cdot 2\sin\alpha\cos\alpha
-    \right)
-    - x^1\,\dfrac{\sin\alpha\cos\alpha}{\sin^2\alpha}
-    + \dfrac{2}{\sin^2\alpha} - \dfrac{2\cos^2\alpha}{\sin^2\alpha}\\
-  &=
-    x^2\, \dfrac{1-2\cos^2\alpha}{\sin\alpha}
     - x^1\,\cot\alpha
-    + 2 \left(\dfrac{1-2\cos^2\alpha}{\sin^2\alpha}\right)
+    +x^2\,\dfrac{1-2\cos^2\alpha}{\sin\alpha}
+    + 2
 \end{align*}
-}
 
+Para el sistema oblicuo con $\alpha= \qty{60}{\degree}$
 \begin{align*}
   \nabla\phi^1
   &=
-    x^2\,\dfrac{\sqrt{3}}{3}
-    - x^1 \dfrac{\sqrt{3}}{3}
-    + \dfrac{4}{3}
+    -x^1 \cot{\pi/3}
+    + x^2\,\dfrac{1-2\cos^2\pi/3}{\sin\pi/3}
+    + 2\\
+  &=
+    -\dfrac{\sqrt{3}}{3}x^1
+    +  \dfrac{1-2\,(1/4)}{\sqrt{3}/2} x^2
+    + \dfrac{2\cos\pi/3}{\sin^2\pi/3}
+    = -\dfrac{\sqrt{3}}{3}x^1
+    + \dfrac{\sqrt{3}}{3}x^2
+    + 2
 \end{align*}
-
-\begin{align*}
-  \nabla\phi^1
-  &=
-    g^{11} \nabla\phi_1 + g^{12}\nabla\phi_2\\
-  &=
-    \dfrac{4}{3} (x^2\,\sin\alpha + 2)
-    - \dfrac{2}{3}\,(x^1\sin\alpha + x^2\sin(2\alpha) + 2\cos\alpha)\\
-  &=
-    x^2 \left(%
-    \dfrac{4}{3}\dfrac{\sqrt{3}}{2} - \dfrac{2}{3}\dfrac{\sqrt{3}}{2}
-    \right)
-    + \dfrac{8}{3}
-    - x^1 \,\dfrac{2}{3} \dfrac{\sqrt{3}}{2}
-    - 2\cdot\dfrac{2}{3}\cdot\dfrac{1}{2}\\
-  &=
-    x^2 \dfrac{\sqrt{3}}{3} - x^1 \dfrac{\sqrt{3}}{3} + 2
-\end{align*}
-
-
 \begin{align*}
   \nabla\phi^2
   &=
     g^{21} \nabla\phi_1 + g^{22}\nabla\phi_2\\
   &=
     - \dfrac{2}{3} (x^2\,\sin\alpha + 2)
-    + \dfrac{4}{3} (x^1\sin\alpha + x^2\sin(2\alpha) + 2\cos\alpha)\\
+    + \dfrac{4}{3} (x^1\sin\alpha + x^2\,2\sin\alpha\cos\alpha + 2\cos\alpha)\\
   &=
     x^2\left(%
-    -\dfrac{2}{3} \dfrac{\sqrt{3}}{2}+\dfrac{4}{3}\dfrac{\sqrt{3}}{2}
+    -\dfrac{2}{3}\dfrac{\sqrt{3}}{2}+\dfrac{4}{3}\cdot 2\,\dfrac{\sqrt{3}}{2}\dfrac{1}{2}
     \right)
     - \dfrac{4}{3}
     + x^1 \,\dfrac{4}{3}\dfrac{\sqrt{3}}{2}
