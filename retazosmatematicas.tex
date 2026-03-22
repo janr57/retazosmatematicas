@@ -18,20 +18,30 @@
 % -----------------------------------------------------------------------------
 % Portada
 \thispagestyle{empty}
-\input{./portada/portada}
+\include{./portada/portada}
 % -----------------------------------------------------------------------------
 % Tabla de contenidos
 \thispagestyle{empty}
-\input{./tablacontenidos/tablacontenidos}
+\include{./tablacontenidos/tablacontenidos}
 % -----------------------------------------------------------------------------
 \frontmatter
 \include{./prefacio/prefacio}
 % -----------------------------------------------------------------------------
 % Teoría
 \mainmatter
-%\part{Teoría}
+\part{Teoría}
 \include{./texto/coord_R2}
+\include{./texto/coord_xt}
 \include{./texto/jacobiano}
+% -----------------------------------------------------------------------------
+% Ejercicios
+\part{Ejercicios resueltos}
+\chapter{Ejercicios en \mathinhead{\symbb{R}^2}{R2}}
+\include{./ejercicios/ej_coord_R2_01}
+\include{./ejercicios/ej_coord_R2_02}
+\include{./ejercicios/ej_coord_R2_03}
+\include{./ejercicios/ej_coord_R2_04}
+
 % -----------------------------------------------------------------------------
 %% Apéndices
 %\appendix

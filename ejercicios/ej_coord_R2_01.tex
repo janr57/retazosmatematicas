@@ -1,0 +1,210 @@
+% ej_coord_R2_01.tex
+%
+% Copyright (C) 2022--2026 José A. Navarro Ramón <janr.devel@gmail.com>
+% Licencia del código GPLv2
+% Licencia Creative Commons Recognition Non-Commercial Share-alike.
+% (CC-BY-NC-SA)
+
+\section{Ejercicio 1}
+Supongamos un cierto vector en coordenadas rectangulares,
+$\vvv{v} = 3\,\uvec{\i} + 4\,\uvec{\j}$.\\
+a) Calcula el cuadrado de su módulo.\\
+b) Nos proponemos realizar un cambio de base desde el sistema rectangular a otro oblicuo,
+con un ángulo entre ejes de \qty{60}{\degree}. Calcula la expresión de los vectores
+unitarios de la base nueva. ¿Cuál es su módulo?
+Escribe la matriz $\mmm{M}$ de cambio de base y su inversa.\\
+c) Obtén el tensor métrico en el sistema oblicuo anterior.\\
+d) Halla las componentes contravariantes del vector.\\
+e) ¿Cuáles son las componentes covariantes?\\
+f) Halla el cuadrado del módulo del vector en el sistema oblicuo.\\
+
+\noindent
+\textbf{Solución}
+
+\noindent
+a) El cuadrado del módulo del vector es
+\[
+  v^2 = v_x^2 + v_y^2 = 3^2 + 4^2 = 25
+\]
+
+\noindent
+b) Utilizando la figura \ref{fig:R2-coord_oblicuas_e1e2}, la nueva base estaría formada
+por dos vectores unitarios, que en función del sistema rectangular son
+\begin{align*}
+  \vvv{e}_1 &= \uvec{\i}
+  \longrightarrow |\vvv{e}_1| = 1\\ 
+  \vvv{e}_2 &= \cos\pi/3\,\uvec{\i} + \sin\pi/3\,\uvec{\j}
+               = \dfrac{1}{2}\,\uvec{\i} + \dfrac{\sqrt{3}}{2}\,\uvec{\j}
+               \longrightarrow |\vvv{e}_2| = \cos^2\pi/3 + \sin^2\pi/3 = 1
+\end{align*}
+
+La nueva base sería
+\[
+  \tilde{B} = \set{\vvv{e}_1, \vvv{e}_2}
+  = \Set{\uvec{\i}, \dfrac{1}{2}\,\uvec{\i} + \dfrac{\sqrt{3}}{2}\,\uvec{\j}}
+  = \Set{(1,0),\, (1/2, \sqrt{3}/2)}
+\]
+
+De acuerdo con esto, la matriz de cambio de base estaría formada por los vectores de la
+nueva base en función de la antigua, dispuestos en columnas
+\[
+  \mmm{M}
+  = \begin{pmatrix}
+    1 & 1/2\\
+    0 & \sqrt{3}/2
+  \end{pmatrix}
+\]
+
+{\footnotesize
+Comprobación
+\[
+  \tilde{B} = B \mmm{M}
+\]
+
+Los vectores de la base los disponemos en filas
+\[
+  \begin{pmatrix}
+    \vvv{e}_1 & \vvv{e}_2
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \uvec{\i} & \uvec{\j}
+  \end{pmatrix}
+  \,
+  \begin{pmatrix}
+    1 & 1/2\\
+    0 & \sqrt{3}/2
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \uvec{\i} & \dfrac{1}{2}\,\uvec{\i} + \dfrac{\sqrt{3}}{2}\,\uvec{\j}
+  \end{pmatrix}
+\]
+}
+La inversa de la matriz de cambio de base se calcula multiplicando la inversa del
+determinante de la matriz por la adjunta de su transpuesta. El resultado es
+\[
+  \mmm{M}^{-1}
+  = \dfrac{1}{\det(\mmm{M})}\,\text{adj}\left(\mmm{M}^\transp\right)
+  = \dfrac{1}{\sqrt{3}/2}
+  \begin{pmatrix}
+    \sqrt{3}/2 & -1/2\\[1ex]
+    0 & 1
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    1 & -\sqrt{3}/3\\[1ex]
+    0 & 2\sqrt{3}/3
+  \end{pmatrix}
+\]
+
+\noindent
+c) El tensor métrico en el sistema oblicuo, con $\alpha = \pi/3\,\unit{\radian}$ es
+\[
+  \mmm{g}_{ij}
+  =\begin{pmatrix}
+    g_{11} & g_{12}\\
+    g_{21} & g_{22}
+  \end{pmatrix}
+  = \begin{pmatrix}
+    \vvv{e}_1\cdot\vvv{e}_1 & \vvv{e}_1\cdot\vvv{e}_2\\
+    \vvv{e}_2\cdot\vvv{e}_1 & \vvv{e}_2\cdot\vvv{e}_2\\
+  \end{pmatrix}
+  = \begin{pmatrix}
+    1 & \cos\pi/3\\
+    \cos\pi/3 & 1
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    1 & 1/2\\
+    1/2 & 1
+  \end{pmatrix}
+\]
+
+Su inversa es
+\[
+  \mmm{g}^{ij}
+  = \dfrac{1}{\det(\mmm{g}_{ij})}\, \text{adj}(\mmm{g}_{ij}^\transp)
+  = \dfrac{1}{3/4}
+  \begin{pmatrix}
+    1 & -1/2\\
+    -1/2 & 1
+  \end{pmatrix}
+  = \begin{pmatrix}
+    4/3 & -2/3\\
+    -2/3 & 4/3
+  \end{pmatrix}
+\]
+
+\noindent
+d) Para hallar las componentes contravariantes, debemos aplicar la inversa de la matriz
+de cambio de base
+\[
+  \left[\tilde{x}^i\right]_{\tilde{B}} = \mmm{M}^{-1}\, \left[x^i\right]_{B}
+\]
+donde las componentes contravarianes en la base rectangular $[x^i]_{B}$ son iguales
+que las covariantes y valen $(3, 4)$.
+
+\[
+  \begin{pmatrix}
+    x^1\\
+    x^2
+  \end{pmatrix}
+  = \begin{pmatrix}
+    1 & -\dfrac{\sqrt{3}}{3}\\[1.5ex]
+    0 & \dfrac{2\sqrt{3}}{3}
+  \end{pmatrix}
+  \,
+  \begin{pmatrix}
+    3\\
+    4
+  \end{pmatrix}
+  = \begin{pmatrix}
+    3 - \dfrac{4\sqrt{3}}{3}\\[1.5ex]
+    \dfrac{8\sqrt{3}}{3}
+  \end{pmatrix}
+\]
+
+\noindent
+e) Las componentes covariantes se obtienen bajando índices
+\[
+  x_i = g_{ij}\,x^j
+\]
+Desarrollando la expresión para $x_1$ y $x_2$ y teniendo en cuenta la métrica,
+$g_{11} = 1$, $g_{12}=g_{21}=1/2$ y $g_{22}=1$
+\begin{align*}
+  x_1
+  &= g_{11}x^1 + g_{12}x^2 = x^1 + \dfrac{1}{2}x^2
+    = 3 - \cancelout{\dfrac{4\sqrt{3}}{3}} + \cancelout{\dfrac{1}{2}\dfrac{8\sqrt{3}}{3}}
+    = 3\\
+  x_2
+  &= g_{21}x^1 + g_{22} x^2 = \dfrac{1}{2}x^1 + x^2
+    = \dfrac{1}{2}\left(3-\dfrac{4\sqrt{3}}{3}\right) + \dfrac{8\sqrt{3}}{3}
+    = \dfrac{3}{2} + 2\sqrt{3}
+\end{align*}
+
+\noindent
+f) El cuadrado del módulo del vector calculado con las componentes oblicuas debe ser
+$25$, pues tiene que dar en mismo resultado que en rectangulares (apartado a).
+\begin{align*}
+  \vvv{v}\cdot\vvv{v}
+  &=
+    x^ix_i
+    = x^1 x_1 + x^2 x_2
+    = \left(3-\dfrac{4\sqrt{3}}{3}\right) 3
+    + \dfrac{8\sqrt{3}}{3} \left(\dfrac{3}{2} + 2\sqrt{3}\right)\\
+  &=
+    9 - 4\sqrt{3}
+    + \dfrac{\cancelout{3}\cdot 8\sqrt{3}}{2\cdot\cancelout{3}}
+    + \dfrac{2\cdot 8\cdot \cancelout{3}}{\cancelout{3}}
+    = 9 - \cancelout{4\sqrt{3}} + \cancelout{4\sqrt{3}} + 16
+    = 25
+\end{align*}
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: luatex
+%%% TeX-master: "../retazosmatematicas.tex"
+%%% End:

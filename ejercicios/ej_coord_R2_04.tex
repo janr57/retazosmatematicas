@@ -1,0 +1,148 @@
+% ej_coord_R2_04.tex
+%
+% Copyright (C) 2022--2026 José A. Navarro Ramón <janr.devel@gmail.com>
+% Licencia del código GPLv2
+% Licencia Creative Commons Recognition Non-Commercial Share-alike.
+% (CC-BY-NC-SA)
+
+\section{Ejercicio 4}
+Conocido el gradiente de un campo escalar $\phi=\phi(x,y)$, en coordenadas cartesianas ortogonales
+\[
+  \vvv{\nabla}\phi
+  = \dfrac{\partial\phi}{\partial x}\,\uvec{\i}
+  + \dfrac{\partial\phi}{\partial y}\,\uvec{\j}
+\]
+\noindent
+a) Calcula sus componentes contravariantes en un sistema de coordenadas oblicuas, cuyos
+ejes forman un ángulo $\alpha$ entre sí.\\
+b) Calcula sus componentes covariantes en el sistema de coordenadas oblicuas.\\
+
+\noindent
+\textbf{Solución}
+
+\noindent
+a) Componentes contravariantes en función de $\partial\phi/\partial x$ y
+$\partial\phi/\partial y$.
+
+Obtenemos los vectores $\uvec{\i}$ y $\uvec{\j}$ en función de los vectores
+unitarios de la base natural $B=(\xhat{e}_1, \xhat{e}_2)$, en coordenadas oblicuas que
+forman un ángulo $\alpha$, utilizando la matriz inversa de cambio de base
+$\mmm{M}^{-1}$, ver \eqref{eq:R2-oblic_Minv}
+\[
+  \begin{pmatrix}
+    \uvec{\i} & \uvec{\j}
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \xhat{e}_1 & \xhat{e}_2
+  \end{pmatrix}
+  \,
+  \begin{pmatrix}
+    1 & -\cot\alpha\\
+    0 & \phantom{-}\csc\alpha
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \xhat{e}_1 & -\cot\alpha\,\xhat{e}_1 + \csc\alpha\,\xhat{e}_2
+  \end{pmatrix}
+\]
+
+Así obtenemos que
+\begin{align*}
+  \uvec{\i} &= \xhat{e}_1\\
+  \uvec{\j} &= -\cot\alpha\,\xhat{e}_1 + \csc\alpha\,\xhat{e}_2
+\end{align*}
+
+Ahora sustituimos en la expresión del gradiente en cartesianas ortogonales
+\begin{align*}
+  \vvv{\nabla}\phi
+  &=
+    \dfrac{\partial\phi}{\partial x}\,\uvec{\i}
+    + \dfrac{\partial\phi}{\partial y}\,\uvec{\j}
+    = \dfrac{\partial\phi}{\partial x}\,\xhat{e}_1
+    + \dfrac{\partial\phi}{\partial y}
+    \left(-\cot\alpha\,\xhat{e}_1+\csc\alpha\,\xhat{e}_2\right)\\
+  &=
+    \dfrac{\partial\phi}{\partial x}\,\xhat{e}_1
+    - \cot\alpha\dfrac{\partial\phi}{\partial y}\,\xhat{e}_1
+    + \csc\alpha\dfrac{\partial\phi}{\partial y}\,\xhat{e}_2\\
+  &=
+    \left(%
+    \dfrac{\partial\phi}{\partial x}-\cot\alpha\dfrac{\partial\phi}{\partial y}
+    \right)\,\xhat{e}_1
+    + \csc\alpha\,\dfrac{\partial\phi}{\partial y}\,\xhat{e}_2
+    = (\nabla\phi)^1\,\xhat{e}_1 + (\nabla\phi)^2\,\xhat{e}_2
+\end{align*}
+Así
+\begin{align*}
+  (\nabla\phi)^1
+  &=
+    \dfrac{\partial\phi}{\partial x^1}
+    = \dfrac{\partial\phi}{\partial x}-\cot\alpha\dfrac{\partial\phi}{\partial y}\\
+  (\nabla\phi)^2
+  &=
+    \dfrac{\partial\phi}{\partial x^2}
+    = \csc\alpha\,\dfrac{\partial\phi}{\partial y}
+\end{align*}
+  
+\noindent
+b) Componentes covariantes en función de $\partial\phi/\partial x$ y
+$\partial\phi/\partial y$.
+
+Bajamos índices utilizando el tensor métrico
+\[
+  (\nabla\phi)_i = g_{ij}\,(\nabla\phi)^j
+\]
+
+\begin{align*}
+  (\nabla\phi)_1
+  &=
+    g_{11}(\nabla\phi)^1 + g_{12}(\nabla\phi)^2
+    = (\nabla\phi)^1 + \cos\alpha (\nabla\phi)^2\\
+  &=
+    \dfrac{\partial\phi}{\partial x}-\cot\alpha\dfrac{\partial\phi}{\partial y}
+    + \cos\alpha\csc\alpha\dfrac{\partial\phi}{\partial y}
+    = \dfrac{\partial\phi}{\partial x}
+    - \cancelout{\cot\alpha\dfrac{\partial\phi}{\partial y}}
+    + \cancelout{\cot\alpha\dfrac{\partial\phi}{\partial y}}
+    =
+    \dfrac{\partial\phi}{\partial x}
+\end{align*}
+
+\begin{align*}
+  (\nabla\phi)_2
+  &=
+    g_{21}(\nabla\phi)^1 + g_{22}(\nabla\phi)^2
+    = \cos\alpha (\nabla\phi)^1 + (\nabla\phi)^2\\
+  &=
+    \cos\alpha
+    \left(%
+    \dfrac{\partial\phi}{\partial x}-\cot\alpha\dfrac{\partial\phi}{\partial y}
+    \right)
+    + \csc\alpha\,\dfrac{\partial\phi}{\partial y}\\
+  &= \cos\alpha\,\dfrac{\partial\phi}{\partial x}
+    - \dfrac{\cos^2\alpha}{\sin\alpha}\,\dfrac{\partial\phi}{\partial y}
+    + \dfrac{1}{\sin\alpha}\,\dfrac{\partial\phi}{\partial y}
+    = \cos\alpha\,\dfrac{\partial\phi}{\partial x}
+    + \sin\alpha\,\dfrac{\partial\phi}{\partial y}
+\end{align*}
+
+Así
+\begin{align*}
+  (\nabla\phi)_1
+  &=
+    \dfrac{\partial\phi}{\partial x_1}
+    = \dfrac{\partial\phi}{\partial x}\\
+  (\nabla\phi)_2
+  &=
+    \dfrac{\partial\phi}{\partial x_2}
+    = \cos\alpha\,\dfrac{\partial\phi}{\partial x}
+    + \sin\alpha\,\dfrac{\partial\phi}{\partial y}
+\end{align*}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: luatex
+%%% TeX-master: "../retazosmatematicas.tex"
+%%% End:
