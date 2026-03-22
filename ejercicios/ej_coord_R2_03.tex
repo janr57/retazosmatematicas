@@ -6,684 +6,139 @@
 % (CC-BY-NC-SA)
 
 \section{Ejercicio 3}
-Un campo escalar está definido en coordenadas cartesianas ortogonales en $\symbb{R}^2$
-por
+Conocido el gradiente de un campo escalar $\phi=\phi(x,y)$, en coordenadas cartesianas ortogonales
 \[
-  \phi(x,y) = xy+2x
+  \vvv{\nabla}\phi
+  = \dfrac{\partial\phi}{\partial x}\,\uvec{\i}
+  + \dfrac{\partial\phi}{\partial y}\,\uvec{\j}
 \]
-Nos interesa utilizar un sistema de coordenadas cartesianas oblicuas, cuyos ejes forman
-\qty{60}{\degree} entre sí, donde el eje de abcisas de ambos sistemas coinciden.\\
-Calcula lo que se pide, primero en general para cualquier sistema oblicuo, y después
-para nuestro sistema oblicuo concreto. Por último, particulariza para el vector
-$\vvv{v} = (x,y) = (3,2)$, en los casos en los que sea pertinente.\\
-a) El gradiente en cartesianas ortogonales y su cuadrado.\\
-%b) La matriz de cambio de base $\mmm{M}$ y su inversa.\\
-%c) Las componentes contravariantes en función de las ortogonales.\\
-%d) Las componentes ortogonales en función de las contravariantes.\\
-%e) Halla la base covariante en función de la base ortogonal y viceversa.\\
-%f) Obtén la métrica en coordenadas oblicuas y su inversa.\\
-%g) Calcula las componentes covariantes del gradiente.\\
-%h) Halla las componentes contravariantes del gradiente.\\
-%i) Calcula el cuadrado del gradiente en coordenadas oblicuas.\\
+\noindent
+a) Calcula sus componentes contravariantes en un sistema de coordenadas oblicuas, cuyos
+ejes forman un ángulo $\alpha$ entre sí.\\
+b) Calcula sus componentes covariantes en el sistema de coordenadas oblicuas.\\
 
 \noindent
 \textbf{Solución}
 
 \noindent
-a) Gradiente en cartesianas ortogonales y su cuadrado.
+a) Componentes contravariantes en función de $\partial\phi/\partial x$ y
+$\partial\phi/\partial y$.
 
-Derivadas parciales
+Obtenemos los vectores $\uvec{\i}$ y $\uvec{\j}$ en función de los vectores
+unitarios de la base natural $B=(\xhat{e}_1, \xhat{e}_2)$, en coordenadas oblicuas que
+forman un ángulo $\alpha$, utilizando la matriz inversa de cambio de base
+$\mmm{M}^{-1}$, ver \eqref{eq:R2-oblic_Minv}
 \[
-  \dfrac{\partial\phi}{\partial x} = y + 2
-  \,;\hspace{1em}
-  \dfrac{\partial\phi}{\partial y} = x
+  \begin{pmatrix}
+    \uvec{\i} & \uvec{\j}
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \xhat{e}_1 & \xhat{e}_2
+  \end{pmatrix}
+  \,
+  \begin{pmatrix}
+    1 & -\cot\alpha\\
+    0 & \phantom{-}\csc\alpha
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \xhat{e}_1 & -\cot\alpha\,\xhat{e}_1 + \csc\alpha\,\xhat{e}_2
+  \end{pmatrix}
 \]
 
-Gradiente y su cuadrado
+Así obtenemos que
 \begin{align*}
-  &\vvv{\nabla}\phi
-    = \dfrac{\partial\phi}{\partial x}\,\uvec{\i}
+  \uvec{\i} &= \xhat{e}_1\\
+  \uvec{\j} &= -\cot\alpha\,\xhat{e}_1 + \csc\alpha\,\xhat{e}_2
+\end{align*}
+
+Ahora sustituimos en la expresión del gradiente en cartesianas ortogonales
+\begin{align*}
+  \vvv{\nabla}\phi
+  &=
+    \dfrac{\partial\phi}{\partial x}\,\uvec{\i}
     + \dfrac{\partial\phi}{\partial y}\,\uvec{\j}
-    = (y+2)\,\uvec{\i} + x\,\uvec{\j}\\
-  &|\vvv{\nabla}\phi|^2
-    = (y+2)^2 + x^2
+    = \dfrac{\partial\phi}{\partial x}\,\xhat{e}_1
+    + \dfrac{\partial\phi}{\partial y}
+    \left(-\cot\alpha\,\xhat{e}_1+\csc\alpha\,\xhat{e}_2\right)\\
+  &=
+    \dfrac{\partial\phi}{\partial x}\,\xhat{e}_1
+    - \cot\alpha\dfrac{\partial\phi}{\partial y}\,\xhat{e}_1
+    + \csc\alpha\dfrac{\partial\phi}{\partial y}\,\xhat{e}_2\\
+  &=
+    \left(%
+    \dfrac{\partial\phi}{\partial x}-\cot\alpha\dfrac{\partial\phi}{\partial y}
+    \right)\,\xhat{e}_1
+    + \csc\alpha\,\dfrac{\partial\phi}{\partial y}\,\xhat{e}_2
+    = (\nabla\phi)^1\,\xhat{e}_1 + (\nabla\phi)^2\,\xhat{e}_2
 \end{align*}
- 
-Gradiente y su cuadrado en el punto $x=3$ e $y=2$
+Así
 \begin{align*}
-  &\vvv{\nabla}\phi(3,2)
-    = (y+2)\,\uvec{\i} + x\,\uvec{\j}
-    = (2+2)\,\uvec{\i} + 3\,\uvec{\j}
-    = 4\,\uvec{\i} + 3\,\uvec{\j}\\
-  & |\vvv{\nabla}\phi|^2
-    = 4^2 + 3^2
-    = 25
+  (\nabla\phi)^1
+  &=
+    \dfrac{\partial\phi}{\partial x^1}
+    = \dfrac{\partial\phi}{\partial x}-\cot\alpha\dfrac{\partial\phi}{\partial y}\\
+  (\nabla\phi)^2
+  &=
+    \dfrac{\partial\phi}{\partial x^2}
+    = \csc\alpha\,\dfrac{\partial\phi}{\partial y}
+\end{align*}
+  
+\noindent
+b) Componentes covariantes en función de $\partial\phi/\partial x$ y
+$\partial\phi/\partial y$.
+
+Bajamos índices utilizando el tensor métrico
+\[
+  (\nabla\phi)_i = g_{ij}\,(\nabla\phi)^j
+\]
+
+\begin{align*}
+  (\nabla\phi)_1
+  &=
+    g_{11}(\nabla\phi)^1 + g_{12}(\nabla\phi)^2
+    = (\nabla\phi)^1 + \cos\alpha (\nabla\phi)^2\\
+  &=
+    \dfrac{\partial\phi}{\partial x}-\cot\alpha\dfrac{\partial\phi}{\partial y}
+    + \cos\alpha\csc\alpha\dfrac{\partial\phi}{\partial y}
+    = \dfrac{\partial\phi}{\partial x}
+    - \cancelout{\cot\alpha\dfrac{\partial\phi}{\partial y}}
+    + \cancelout{\cot\alpha\dfrac{\partial\phi}{\partial y}}
+    =
+    \dfrac{\partial\phi}{\partial x}
 \end{align*}
 
-\noindent
-%b) Matriz de cambio de base y su inversa.
-%
-%Mostramos el cambio de base, según la figura \ref{fig:R2-coord_oblicuas_e1e2}, y
-%su expresión matricial
-%\[
-%  \begin{cases}
-%    \begin{array}{l}
-%      \xhat{e}_1 = \uvec{\i}\\
-%      \xhat{e}_2 = \cos\alpha\,\uvec{\i} + \sin\alpha\,\uvec{\j}
-%    \end{array}
-%  \end{cases}
-%  \longrightarrow\hspace{1em}
-%  \begin{pmatrix}
-%    \xhat{e}_1 & \xhat{e}_2
-%  \end{pmatrix}
-%  = \begin{pmatrix}
-%    \uvec{\i} & \uvec{\j}
-%  \end{pmatrix}
-%  \,\begin{pmatrix}
-%    1 & \cos\alpha\\
-%    0 & \sin\alpha
-%  \end{pmatrix}
-%\]
-%
-%De aquí, se deduce que la matriz de cambio de base es
-%\[
-%  \mmm{M}
-%  =\begin{pmatrix}
-%    1 & \cos\alpha\\
-%    0 & \sin\alpha
-%  \end{pmatrix}
-%\]
-%
-%La inversa resulta ser
-%\begin{align*}
-%  \mmm{M}^{-1}
-%  &=
-%    \dfrac{1}{\det(\mmm{M})}
-%    \,\text{adj}(\mmm{M}^\transp)
-%    = \dfrac{1}{\sin\alpha}
-%    \begin{pmatrix}
-%      \sin\alpha & -\cos\alpha\\
-%      0 & 1
-%    \end{pmatrix}
-%    = \begin{pmatrix}
-%      1 & -\cot\alpha\\
-%      0 & \phantom{-}\csc\alpha
-%    \end{pmatrix}
-%\end{align*}
-%
-%En nuestro sistema oblicuo, con $\alpha = \qty{60}{\degree}$
-%\begin{align*}
-%  \mmm{M}
-%  &=
-%    \begin{pmatrix}
-%      1 & \cos\pi/3\\
-%      0 & \sin\pi/3
-%    \end{pmatrix}
-%    = \begin{pmatrix}
-%      1 & 1/2\\
-%      0 & \sqrt{3}/2
-%    \end{pmatrix}\\
-%  \mmm{M}^{-1}
-%  &=
-%    \begin{pmatrix}
-%      1 & -\cot\pi/3\\
-%      0 & \csc\pi/3
-%    \end{pmatrix}
-%    = \begin{pmatrix}
-%      1 & -\sqrt{3}/3\\
-%      0 & 2\sqrt{3}/3
-%    \end{pmatrix}
-%\end{align*}
-%
-%Resumen:
-%\[
-%  \text{Matriz de cambio de base general e inversa }
-%  \begin{cases}
-%    \begin{array}{l}
-%      \mmm{M}
-%      = \begin{pmatrix}
-%        1 & \cos\alpha\\
-%        0 & \sin\alpha
-%      \end{pmatrix}\\
-%      \mmm{M}^{-1}
-%      = \begin{pmatrix}
-%        1 & -\cot\alpha\\
-%        0 & \csc\alpha
-%      \end{pmatrix}      
-%    \end{array}
-%  \end{cases}
-%\]
-%
-%\[
-%  \text{Matriz de cambio de base $\alpha=\qty{60}{\degree}$ e inversa }
-%  \begin{cases}
-%    \begin{array}{l}
-%      \mmm{M}
-%      = \begin{pmatrix}
-%        1 & 1/2\\
-%        0 & \sqrt{3}/2
-%      \end{pmatrix}\\
-%      \mmm{M}^{-1}
-%      = \begin{pmatrix}
-%        1 & -\sqrt{3}/3\\
-%        0 & 2\sqrt{3}/3
-%      \end{pmatrix}      
-%    \end{array}
-%  \end{cases}
-%\]
-%
-%\noindent
-%c) Componentes contravariantes en función de las ortogonales.
-%
-%Valores de $x^1$ y $x^2$ para el vector $\vvv{v} = (x,y)$
-%\[
-%  \begin{pmatrix}
-%    x^1\\
-%    x^2
-%  \end{pmatrix}
-%  =
-%  \begin{pmatrix}
-%    1 & -\cot\alpha\\
-%    0 & \csc\alpha
-%  \end{pmatrix}
-%  \,\begin{pmatrix}
-%    x\\
-%    y
-%  \end{pmatrix}
-%  \longrightarrow
-%  \begin{cases}
-%    \begin{array}{l}
-%      x^1 = x-y\cot\alpha\\
-%      x^2 = y\csc\alpha
-%    \end{array}
-%  \end{cases}
-%\]
-%\[
-%  \begin{array}{ll}
-%  \text{Para nuestro sistema oblicuo y } \vvv{v} = (x,y)&
-%  \begin{cases}
-%    \begin{array}{l}
-%      x^1 = x-\dfrac{\sqrt{3}}{3}\,y\\
-%      x^2 = \dfrac{2\sqrt{3}}{3}\,y
-%    \end{array}
-%  \end{cases}\\
-%  \text{Para nuestro sistema oblicuo y } \vvv{v} = (3,2)&
-%  \begin{cases}
-%    \begin{array}{l}
-%      x^1 = 3-\dfrac{2\sqrt{3}}{3}\\
-%      x^2 = \dfrac{4\sqrt{3}}{3}
-%    \end{array}
-%  \end{cases}
-%  \end{array}
-%\]
-%
-%\noindent
-%d) Las componentes ortogonales en función de las contravariantes.\\
-%\[
-%  \begin{pmatrix}
-%    x\\
-%    y
-%  \end{pmatrix}
-%  =
-%  \begin{pmatrix}
-%    1 & \cos\alpha\\
-%    0 & \sin\alpha
-%  \end{pmatrix}
-%  \,\begin{pmatrix}
-%    x^1\\
-%    x^2
-%  \end{pmatrix}
-%  \longrightarrow
-%  \begin{cases}
-%    \begin{array}{l}
-%      x = x^1 + x^2\cos\alpha\\
-%      y = x^2\sin\alpha
-%    \end{array}
-%  \end{cases}
-%\]
-%
-%\[
-%  \text{En nuestro sistema oblicuo \qty{60}{\degree} }
-%  \begin{cases}
-%    \begin{array}{l}
-%      x = x^1 + \dfrac{1}{2} x^2\\
-%      y = \dfrac{\sqrt{3}}{2} x^2
-%    \end{array}
-%  \end{cases}
-%\]
-%
-%\noindent
-%e) Transformación de la base ortogonal a la covariante del sistema oblicuo y su inversa.
-%
-%Con la matriz de cambio de base $\mmm{M}$, se obtienen los vectores de la base
-%covariante
-%\[
-%  \begin{pmatrix}
-%    \xhat{e}_1 & \xhat{e}_2
-%  \end{pmatrix}
-%  =\begin{pmatrix}
-%    \uvec{\i} & \uvec{\j}
-%  \end{pmatrix}
-%  \,\begin{pmatrix}
-%    1 & \cos\alpha\\
-%    0 & \sin\alpha
-%  \end{pmatrix}
-%  \longrightarrow
-%  \begin{cases}
-%    \begin{array}{l}
-%      \xhat{e}_1 = \uvec{\i}\\
-%      \xhat{e}_2 = \cos\alpha\,\uvec{\i} + \sin\alpha\,\uvec{\j}
-%    \end{array}
-%  \end{cases}
-%\]
-%Estos vectores miden las componentes contravariantes de un vector en $\symbb{R}^2$ en
-%coordenadas oblicuas.
-%
-%La transformación inversa es
-%\[
-%  \begin{pmatrix}
-%    \uvec{\i} & \uvec{\j}                 
-%  \end{pmatrix}
-%  =\begin{pmatrix}
-%    \xhat{e}_1 & \xhat{e}_2
-%  \end{pmatrix}
-%  \,\begin{pmatrix}
-%    1 & -\cot\alpha\\
-%    0 & \csc\alpha
-%  \end{pmatrix}
-%  \longrightarrow
-%  \begin{cases}
-%    \begin{array}{l}
-%      \uvec{\i} = \xhat{e}_1\\
-%      \uvec{\j} = -\cot\alpha\,\xhat{e}_1 + \csc\alpha\,\xhat{e}_2
-%    \end{array}
-%  \end{cases}
-%\]
-%Resumen: En nuestro sistema oblicuo $\alpha=\qty{60}{\degree}$, tenemos
-%\[
-%  \begin{array}{ll}
-%  \text{Transformación de base ortogonal a oblicua }&
-%  \begin{cases}
-%    \begin{array}{l}
-%      \xhat{e}_1 = \uvec{\i}\\
-%      \xhat{e}_2 = \dfrac{1}{2}\,\uvec{\i} + \dfrac{\sqrt{3}}{2}\,\uvec{\j}
-%    \end{array}
-%  \end{cases}\\[4ex]
-%  \text{Transformación de base covariante a ortogonal }&
-%  \begin{cases}
-%    \begin{array}{l}
-%      \uvec{\i} = \xhat{e}_1\\
-%      \uvec{\j} = -\dfrac{\sqrt{3}}{3}\,\xhat{e}_1 + \dfrac{2\sqrt{3}}{3}\,\xhat{e}_2
-%    \end{array}
-%  \end{cases}
-%  \end{array}
-%\]
-%
-%\noindent
-%f) Métrica y su inversa.
-%
-%La métrica se calcula mediante el producto escalar de los vectores de la base covariante
-%\begin{align*}
-%  \mmm{g}_{ij}
-%  &=
-%    \begin{pmatrix}
-%      g_{11} & g_{12}\\
-%      g_{21} & g_{22}
-%    \end{pmatrix}
-%    = \begin{pmatrix}
-%      \xhat{e}_1\cdot \xhat{e}_1 & \xhat{e}_1\cdot\xhat{e}_2\\
-%      \xhat{e}_2\cdot \xhat{e}_1 & \xhat{e}_2\cdot\xhat{e}_2
-%    \end{pmatrix}
-%    = \begin{pmatrix}
-%      1 & \cos\alpha\\
-%      \cos\alpha & 1
-%    \end{pmatrix}
-%\end{align*}
-%
-%La métrica inversa es
-%\begin{align*}
-%  \mmm{g}^{ij}
-%  &=
-%    \dfrac{1}{\det(g_{ij})}\,
-%    \text{adj}\!\left(g_{ij}^\transp\right)
-%    = \dfrac{1}{\sin^2\alpha}
-%    \begin{pmatrix}
-%      1 & -\cos\alpha\\
-%      -\cos\alpha & 1
-%    \end{pmatrix}
-%\end{align*}
-%
-%\noindent
-%Resumen:
-%\[
-%  \hspace*{-5.5em}
-%  \text{Métrica general y su inversa }
-%  \begin{cases}
-%    \begin{array}{l}
-%      \mmm{g}_{ij}
-%      = \begin{pmatrix}
-%        1 & \cos\alpha\\
-%        \cos\alpha & 1
-%      \end{pmatrix}\\
-%      \mmm{g}^{ij}
-%      = \dfrac{1}{\sin^2\alpha}
-%      \begin{pmatrix}
-%        1 & -\cos\alpha\\
-%        -\cos\alpha & 1
-%      \end{pmatrix}
-%    \end{array}
-%  \end{cases}
-%\]
-%\[
-%  \text{Métrica y su inversa para \qty{60}{\degree} }
-%  \begin{cases}
-%    \begin{array}{l}
-%      \mmm{g}_{ij}
-%      = \begin{pmatrix}
-%        1 & 1/2\\
-%        1/2 & 1
-%      \end{pmatrix}\\
-%      \mmm{g}^{ij}
-%      =
-%      \dfrac{1}{3/4}
-%      \begin{pmatrix}
-%        1 & -1/2\\
-%        -1/2 & 1
-%      \end{pmatrix}
-%      = \begin{pmatrix}
-%        4/3 & -2/3\\
-%        -2/3 & 4/3
-%      \end{pmatrix}
-%    \end{array}
-%  \end{cases}
-%\]
-%
-%\noindent
-%g) Componentes covariantes del gradiente.
-%
-%Del apartado \emph{d)}, sabemos las coordenadas ortogonales a partir de las
-%contravariantes. Las sustituimos en las derivadas parciales en cartesianas ortogonales
-%de \emph{a)}
-%\[
-%  \begin{cases}
-%    \begin{array}{l}
-%      x = x^1 + x^2\,\cos\alpha\\
-%      y = x^2\sin\alpha
-%    \end{array}
-%  \end{cases}
-%\]
-%
-%Expresamos las componentes ortogonales en función de las contravariantes
-%\begin{align*}
-%  \dfrac{\partial\phi}{\partial x}
-%  &=
-%    y + 2
-%    = x^2\sin\alpha + 2\\
-%  \dfrac{\partial\phi}{\partial y}
-%  &=
-%    x
-%    = x^1 + x^2\cos\alpha
-%\end{align*}
-%
-%Calculamos las componentes covariantes del gradiente, teniendo en cuenta las derivadas
-%parciales de $x$ e $y$ respecto de $x^1$ y $x^2$, que dejamos como ejercicio
-%\begin{align*}
-%  \hspace{-14em}
-%  \nabla\phi_1
-%  &=
-%    \dfrac{\partial\phi}{\partial x^1}
-%    = \dfrac{\partial\phi}{\partial x}\dfrac{\partial x}{\partial x^1}
-%    + \dfrac{\partial\phi}{\partial y}\dfrac{\partial y}{\partial x^1}
-%    = (x^2\sin\alpha+2)\cdot 1 + (x^1 + x^2\cos\alpha)\cdot 0\\
-%  &=
-%    x^2\sin\alpha + 2
-%\end{align*}
-%\begin{align*}
-%  \hspace{1.3em}
-%  \nabla\phi_2
-%  &=
-%    \dfrac{\partial\phi}{\partial x^2}
-%    = \dfrac{\partial\phi}{\partial x}\dfrac{\partial x}{\partial x^2}
-%    + \dfrac{\partial\phi}{\partial y}\dfrac{\partial y}{\partial x^2}
-%    = (x^2\sin\alpha+2)\cdot\cos\alpha + (x^1 + x^2\cos\alpha)\cdot\sin\alpha\\
-%  &=
-%    x^1\sin\alpha + 2x^2\sin\alpha\cos\alpha + 2\cos\alpha
-%\end{align*}
-%
-%En nuestro sistema oblicuo \qty{60}{\degree}
-%\begin{align*}
-%  \nabla\phi_1
-%  &=
-%    x^2\sin\pi/3 + 2
-%    = \dfrac{\sqrt{3}}{2} x^2 + 2\\
-%  \nabla\phi_2
-%  &=
-%    x^1\sin\pi/3 + x^2\,2\sin\pi/3\cos\pi/3 + 2\cos\pi/3
-%    = \dfrac{\sqrt{3}}{2}x^1 + \dfrac{\sqrt{3}}{2} x^2 + 1
-%\end{align*}
-%
-%Para el sistema oblicuo y el vector $\vvv{v} = (3,2)$
-%\begin{align*}
-%  \hspace{-7em}
-%  \nabla\phi_1
-%  &=
-%    \dfrac{\sqrt{3}}{2}\cdot \dfrac{4\sqrt{3}}{3} + 2
-%    = 2 + 2
-%    = 4
-%\end{align*}
-%\begin{align*}
-%  \nabla\phi_2
-%  &=
-%    \dfrac{\sqrt{3}}{2}\cdot \left(3-2\dfrac{\sqrt{3}}{3}\right)
-%    + \dfrac{\sqrt{3}}{2}\cdot\dfrac{4\sqrt{3}}{3} + 1
-%    = \dfrac{3\sqrt{3}}{2} - 1 + 2 + 1\\
-%  &=
-%    2+\dfrac{3\sqrt{3}}{2}
-%\end{align*}
-%
-%\noindent
-%Resumen:
-%\[
-%  \hspace{1em}
-%  \text{Sistema oblicuo general }
-%  \begin{cases}
-%    \begin{array}{l}
-%      \nabla\phi_1 = x^2\sin\alpha + 2\\
-%      \nabla\phi_2 = x^1\sin\alpha + 2x^2\sin\alpha\cos\alpha + 2 \cos\alpha
-%    \end{array}
-%  \end{cases}
-%\]
-%\[
-%  \begin{array}{ll}
-%    \text{Sistema oblicuo \qty{60}{\degree} } &
-%    \begin{cases}
-%      \begin{array}{l}
-%        \nabla\phi_1 = \dfrac{\sqrt{3}}{2} x^2 + 2\\[2ex]
-%        \nabla\phi_2 =\dfrac{\sqrt{3}}{2} x^1 + \dfrac{\sqrt{3}}{2} x^2 + 1
-%      \end{array}
-%    \end{cases}\\[2ex]
-%    \text{Sistema oblicuo y vector } \vvv{v} = (3,2) &
-%    \begin{cases}
-%      \begin{array}{l}
-%        \nabla\phi_1 = 4\\
-%        \nabla\phi_2 = 2 + \dfrac{3\sqrt{3}}{2}
-%      \end{array}
-%    \end{cases}
-%  \end{array}
-%\]
-%
-%\noindent
-%h) Componentes contravariantes del gradiente.
-%
-%\vspace*{1ex}
-%Se calculan mediante $\nabla\phi^i = g^{ij} \nabla\phi_j$
-%\begin{align*}
-%  \nabla\phi^1
-%  &=
-%    g^{11} \nabla\phi_1 + g^{12}\nabla\phi_2\\
-%  &=
-%    \dfrac{1}{\sin^2\alpha} \left(x^2\,\sin\alpha + 2\right)
-%    - \dfrac{\cos\alpha}{\sin^2\alpha}
-%    \,\left(x^1\sin\alpha
-%    + 2x^2\sin\alpha\cos\alpha
-%    + 2\cos\alpha\right)\\
-%  &=
-%    - x^1\,\cot\alpha
-%    + x^2\,\dfrac{1-2\cos^2\alpha}{\sin\alpha}
-%    + 2
-%\end{align*}
-%\begin{align*}
-%  \nabla\phi^2
-%  &=
-%    g^{21} \nabla\phi_1 + g^{22}\nabla\phi_2\\
-%  &=
-%    -\dfrac{\cos\alpha}{\sin^2\alpha} \left(x^2\,\sin\alpha + 2\right)
-%    + \dfrac{1}{\sin^2\alpha}
-%    \,\left(x^1\sin\alpha
-%    + x^2\,2\sin\alpha\cos\alpha
-%    + 2\cos\alpha\right)\\
-%  &=
-%    x^1\csc\alpha
-%    + x^2\left(%
-%    2\,\cot\alpha
-%    -\cot\alpha
-%    \right)
-%    - \cancelout{\dfrac{2\cos\alpha}{\sin^2\alpha}}
-%    + \cancelout{\dfrac{2\cos\alpha}{\sin^2\alpha}}
-%    = x^1\csc\alpha
-%    + x^2\cot\alpha
-%\end{align*}
-%
-%Para el sistema oblicuo con $\alpha= \qty{60}{\degree}$
-%\begin{align*}
-%  \nabla\phi^1
-%  &=
-%    -x^1 \cot{\pi/3}
-%    + x^2\,\dfrac{1-2\cos^2\pi/3}{\sin\pi/3}
-%    + 2\\
-%  &=
-%    -\dfrac{\sqrt{3}}{3}x^1
-%    +  \dfrac{1-2\,(1/4)}{\sqrt{3}/2} x^2
-%    + \dfrac{2\cos\pi/3}{\sin^2\pi/3}
-%    = -\dfrac{\sqrt{3}}{3}x^1
-%    + \dfrac{\sqrt{3}}{3}x^2
-%    + 2\\
-%  \nabla\phi^2
-%  &=
-%    x^1 \csc\pi/3
-%    + x^2 \cot\pi/3
-%    = \dfrac{2\sqrt{3}}{3} x^1 + \dfrac{\sqrt{3}}{3} x^2
-%\end{align*}
-%
-%Aplicado al vector $\vvv{v}=(3,2)$
-%\begin{align*}
-%  \nabla\phi^1
-%  &=
-%    -\dfrac{\sqrt{3}}{3}\left(%
-%    3-\dfrac{2\sqrt{3}}{3}
-%    \right)
-%    + \dfrac{\sqrt{3}}{3}\, \dfrac{4\sqrt{3}}{3}
-%    + 2
-%    = -\sqrt{3} + \dfrac{2}{3} + \dfrac{4}{3} + 2
-%    = 4 - \sqrt{3}\\
-%  \nabla\phi^2
-%  &=
-%    \dfrac{2\sqrt{3}}{3} x^1 + \dfrac{\sqrt{3}}{3} x^2
-%    = \dfrac{2\sqrt{3}}{3} \left(3-\dfrac{2\sqrt{3}}{3}\right)
-%    + \dfrac{\sqrt{3}}{3}\,\dfrac{4\sqrt{3}}{3}\\
-%  &=
-%    2\sqrt{3}
-%    - \dfrac{4}{3}
-%    + \dfrac{4}{3}
-%    = 2\sqrt{3}
-%\end{align*}
-%
-%\noindent
-%Resumen:
-%\[
-%  \text{Sistema oblicuo general }
-%  \hspace{1.2em}
-%  \begin{cases}
-%    \begin{array}{l}
-%      \nabla\phi^1 = -x^1\cot\alpha
-%      + x^2\,\dfrac{1-2\cos^2\alpha}{\sin\alpha}
-%      + 2\\
-%      \nabla\phi^2 = x^1\csc\alpha + x^2 \cot\alpha
-%    \end{array}
-%  \end{cases}
-%\]
-%\[
-%  \begin{array}{ll}
-%    \text{Sistema oblicuo \qty{60}{\degree} } &
-%    \begin{cases}
-%      \begin{array}{l}
-%        \nabla\phi^1 = -\dfrac{\sqrt{3}}{3} x^1 + \dfrac{\sqrt{3}}{3} x^2 + 2\\[2ex]
-%        \nabla\phi^2 =\dfrac{2\sqrt{3}}{3} x^1 + \dfrac{\sqrt{3}}{3} x^2
-%      \end{array}
-%    \end{cases}\\[2ex]
-%    \text{Sistema oblicuo y vector } \vvv{v} = (3,2) &
-%    \begin{cases}
-%      \begin{array}{l}
-%        \nabla\phi^1 = 4 - \sqrt{3}\\
-%        \nabla\phi^2 = 2\sqrt{3}
-%      \end{array}
-%    \end{cases}
-%  \end{array}
-%\]
-%
-%\noindent
-%i) Cuadrado del gradiente en coordenadas oblicuas.\\
-%
-%Realizamos el cálculo por partes
-%{\small
-%\begin{align*}
-%    \nabla\phi^1\nabla\phi_1
-%  &=
-%    \left[%
-%    -x^1\cot\alpha
-%    + x^2\,\dfrac{1-2\cos^2\alpha}{\sin\alpha}
-%    + 2
-%    \right]
-%    \left(%
-%    x^2\sin\alpha + 2
-%    \right)\\
-%  &=
-%    - 2x^1\cot\alpha
-%    + \left(x^2\right)^2\left(1-\cos^2\alpha\right)
-%    + 2x^2\left(2\sin\alpha - \dfrac{\cos^2\alpha}{\sin\alpha}\right)
-%    -x^1x^2\cos\alpha
-%    + 4
-%\end{align*}
-%}
-%{\small
-%\begin{align*}
-%    \nabla\phi^2\nabla\phi_2
-%  &=
-%    \left(x^1\csc\alpha + x^2 \cot\alpha\right)
-%    \left(x^1\sin\alpha + x^2 2\sin\alpha\cos\alpha + 2 \cos\alpha\right)\\
-%  &=
-%    \left(x^1\right)^2
-%    + 2x^1\cot\alpha
-%    + 2\left(x^2\right)^2\cos^2\alpha
-%    + 2x^2\dfrac{\cos^2\alpha}{\sin\alpha}
-%    + 3x^1x^2\cos\alpha
-%\end{align*}
-%}
-%
-%\begin{align*}
-%  |\vvv{\nabla}\phi|^2
-%  &=
-%    \nabla\phi^1\nabla\phi_1 + \nabla\phi^2\nabla\phi_2\\
-%  &=
-%    \left(x^1\right)^2
-%    + \left(x^2\right)^2 (1+\cos^2\alpha)
-%    + 4x^2\cos\alpha
-%    + 2x^1x^2\cos\alpha
-%    + 4
-%\end{align*}
-%
-%Para nuestro sistema oblicuo
+\begin{align*}
+  (\nabla\phi)_2
+  &=
+    g_{21}(\nabla\phi)^1 + g_{22}(\nabla\phi)^2
+    = \cos\alpha (\nabla\phi)^1 + (\nabla\phi)^2\\
+  &=
+    \cos\alpha
+    \left(%
+    \dfrac{\partial\phi}{\partial x}-\cot\alpha\dfrac{\partial\phi}{\partial y}
+    \right)
+    + \csc\alpha\,\dfrac{\partial\phi}{\partial y}\\
+  &= \cos\alpha\,\dfrac{\partial\phi}{\partial x}
+    - \dfrac{\cos^2\alpha}{\sin\alpha}\,\dfrac{\partial\phi}{\partial y}
+    + \dfrac{1}{\sin\alpha}\,\dfrac{\partial\phi}{\partial y}
+    = \cos\alpha\,\dfrac{\partial\phi}{\partial x}
+    + \sin\alpha\,\dfrac{\partial\phi}{\partial y}
+\end{align*}
 
+Así
+\begin{align*}
+  (\nabla\phi)_1
+  &=
+    \dfrac{\partial\phi}{\partial x_1}
+    = \dfrac{\partial\phi}{\partial x}\\
+  (\nabla\phi)_2
+  &=
+    \dfrac{\partial\phi}{\partial x_2}
+    = \cos\alpha\,\dfrac{\partial\phi}{\partial x}
+    + \sin\alpha\,\dfrac{\partial\phi}{\partial y}
+\end{align*}
 
 
 %%% Local Variables:
