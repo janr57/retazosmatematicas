@@ -14,16 +14,17 @@ por
 Nos interesa utilizar un sistema de coordenadas cartesianas oblicuas, cuyos ejes forman
 \qty{60}{\degree} entre sí, donde el eje de abcisas de ambos sistemas coinciden.\\
 Calcula lo que se pide, primero en general para cualquier sistema oblicuo, y después
-para nuestro sistema oblicuo concreto. Por último, realiza el cálculo particularizando para el vector $\vvv{v} = (x,y) = (3,2)$, en los casos en los que sea pertinente.\\
+para nuestro sistema oblicuo concreto. Por último, realiza el cálculo particularizando para el punto $P(x,y) = (3,2)$, en los casos en los que sea pertinente.\\
 a) El gradiente en cartesianas ortogonales y su cuadrado.\\
 b) La matriz de cambio de base $\mmm{M}$ y su inversa.\\
 c) Las componentes contravariantes en función de las ortogonales.\\
 d) Las componentes ortogonales en función de las contravariantes.\\
-e) Halla la base covariante en función de la base ortogonal y viceversa.\\
-f) Obtén la métrica en coordenadas oblicuas y su inversa.\\
-g) Calcula las componentes covariantes del gradiente.\\
-h) Halla las componentes contravariantes del gradiente.\\
-i) Calcula el cuadrado del gradiente en coordenadas oblicuas.\\
+e) La base covariante en función de la base ortogonal y viceversa.\\
+f) La métrica en coordenadas oblicuas y su inversa.\\
+g) Las componentes covariantes del gradiente.\\
+h) Las componentes contravariantes del gradiente.\\
+i) El cuadrado del gradiente en coordenadas oblicuas.\\
+j) El campo escalar en función de las componentes contravariantes.\\
 
 \noindent
 \textbf{Solución}
@@ -174,7 +175,7 @@ Resumen:
 \noindent
 c) Componentes contravariantes en función de las ortogonales.
 
-Valores de $x^1$ y $x^2$ para el vector $\vvv{v} = (x,y)$
+Valores de $x^1$ y $x^2$ para el punto genérico $P(x,y)$ en coordenadas ortogonales
 \[
   \begin{pmatrix}
     x^1\\
@@ -199,14 +200,14 @@ Valores de $x^1$ y $x^2$ para el vector $\vvv{v} = (x,y)$
 \]
 \[
   \begin{array}{ll}
-  \text{Para nuestro sistema oblicuo y } \vvv{v} = (x,y)&
+  \text{Para nuestro sistema oblicuo y } P(x,y)&
   \begin{cases}
     \begin{array}{l}
       x^1 = x-\dfrac{\sqrt{3}}{3}\,y\\
       x^2 = \dfrac{2\sqrt{3}}{3}\,y
     \end{array}
   \end{cases}\\
-  \text{Para nuestro sistema oblicuo y } \vvv{v} = (3,2)&
+  \text{Para nuestro sistema oblicuo y } P(3,2)&
   \begin{cases}
     \begin{array}{l}
       x^1 = 3-\dfrac{2\sqrt{3}}{3}\\
@@ -461,7 +462,7 @@ En nuestro sistema oblicuo \qty{60}{\degree}
     = \dfrac{\sqrt{3}}{2}x^1 + \dfrac{\sqrt{3}}{2} x^2 + 1
 \end{align*}
 
-Para el sistema oblicuo y el vector $\vvv{v} = (3,2)$
+Para el sistema oblicuo y el punto $P$
 \begin{align*}
   \hspace{-7em}
   \nabla\phi_1
@@ -501,7 +502,7 @@ Resumen:
         \nabla\phi_2 =\dfrac{\sqrt{3}}{2} x^1 + \dfrac{\sqrt{3}}{2} x^2 + 1
       \end{array}
     \end{cases}\\[2ex]
-    \text{Sistema oblicuo y vector } \vvv{v} = (3,2) &
+    \text{Sistema oblicuo y punto } P(3,2) &
     \begin{cases}
       \begin{array}{l}
         \nabla\phi_1 = 4\\
@@ -574,7 +575,7 @@ Para el sistema oblicuo con $\alpha= \qty{60}{\degree}$
     = \dfrac{2\sqrt{3}}{3} x^1 + \dfrac{\sqrt{3}}{3} x^2
 \end{align*}
 
-Aplicado al vector $\vvv{v}=(3,2)$
+Aplicado al punto $P(3,2)$
 \begin{align*}
   \nabla\phi^1
   &=
@@ -620,7 +621,7 @@ Resumen:
         \nabla\phi^2 =\dfrac{2\sqrt{3}}{3} x^1 + \dfrac{\sqrt{3}}{3} x^2
       \end{array}
     \end{cases}\\[2ex]
-    \text{Sistema oblicuo y vector } \vvv{v} = (3,2) &
+    \text{Sistema oblicuo y punto } P &
     \begin{cases}
       \begin{array}{l}
         \nabla\phi^1 = 4 - \sqrt{3}\\
@@ -700,7 +701,7 @@ Para nuestro sistema oblicuo
     + 4
 \end{align*}
 
-Cuando se aplica al vector $\vvv{v}$
+Cuando se aplica al punto $P$
 \begin{align*}
   |\vvv{\nabla}\phi|^2
   &=
@@ -738,14 +739,108 @@ Resumen:
       \left(x^1\right)^2 + \left(x^2\right)^2 + 4x^2\sin\alpha + 2x^1x^2\cos\alpha + 4\\
       \text{Sistema oblicuo \qty{60}{\degree}}:
       \left(x^1\right)^2 + \left(x^2\right)^2 + 2\sqrt{3} x^2 + x^1 x^2 + 4\\
-      \text{Sistema oblicuo \qty{60}{\degree} con } $\vvv{v} = (3,2)$ \text{ : }
+      \text{Sistema oblicuo \qty{60}{\degree} y punto } $P$ \text{ : }
       25
     \end{array}
   \end{cases}
 \]
 
+\noindent
+j) Campo escalar en función de las componentes contravariantes.
 
-    
+\begin{align*}
+  \phi
+  &=
+    xy+2x
+    = \left(x^1+x^2\cos\alpha\right) x^2\sin\alpha + 2 \left(x^1+x^2\cos\alpha\right)\\
+  &=
+    x^1x^2\sin\alpha
+    + \left(x^2\right)^2\sin\alpha\cos\alpha
+    + 2 x^1
+    + 2x^2\cos\alpha\\
+  &=
+    2 x^1
+    + \left(x^2\right)^2\sin\alpha\cos\alpha
+    + 2x^2\cos\alpha
+    + x^1x^2\sin\alpha
+\end{align*}
+
+En nuestro sistema oblicuo concreto
+\begin{align*}
+  \phi
+  &=
+    2 x^1
+    + \left(x^2\right)^2\sin\alpha\cos\alpha
+    + 2x^2\cos\alpha
+    + x^1x^2\sin\alpha\\
+  &=
+    2x^1
+    + \left(x^2\right)^2\dfrac{\sqrt{3}}{2}\,\dfrac{1}{2}
+    + 2x^2\dfrac{1}{2}
+    + x^1x^2\dfrac{\sqrt{3}}{2}\\
+  &=
+    2x^1
+    + \dfrac{\sqrt{3}}{4}\left(x^2\right)^2
+    + x^2
+    + \dfrac{\sqrt{3}}{2}x^1x^2
+\end{align*}
+
+Su valor para el campo escalar para el punto $(x,y) = (3, 2)$, en coordenadas
+ortogonales
+\begin{align*}
+  \phi
+  &=
+    2x^1
+    + \dfrac{\sqrt{3}}{4}\left(x^2\right)^2
+    + x^2
+    + \dfrac{\sqrt{3}}{2}x^1x^2\\
+  &=
+    2\left(3-\dfrac{2\sqrt{3}}{3}\right)
+    + \dfrac{\sqrt{3}}{4}\left(\dfrac{4\sqrt{3}}{3}\right)^2
+    + \dfrac{4\sqrt{3}}{3}
+    + \dfrac{\sqrt{3}}{2} \left(3-\dfrac{2\sqrt{3}}{3}\right)
+    \left(\dfrac{4\sqrt{3}}{3}\right)\\
+  &=
+    6
+    - \cancelout{\dfrac{4\sqrt{3}}{3}}
+    + \cancelout{\dfrac{4\sqrt{3}}{3}}
+    + \cancelout{\dfrac{4\sqrt{3}}{3}}
+    + 6
+    - \cancelout{\dfrac{4\sqrt{3}}{3}}
+    = 12
+\end{align*}
+
+En coordenadas ortogonales da
+\[
+  \phi
+  = xy + 2x
+  = 3\cdot 2 + 2 \cdot 3
+  = 12
+\]
+
+\noindent
+Resumen:
+\[
+  \phi =
+  \begin{cases}
+    \begin{array}{l}
+      \text{Sistema oblicuo general: }
+      2x^1 + \left(x^2\right)^2\sin\alpha\cos\alpha + 2x^2\cos\alpha + x^1x^2\sin\alpha\\
+      \text{Sistema oblicuo \qty{60}{\degree}}:
+      2x^1 + \dfrac{\sqrt{3}}{4}\left(x^2\right)^2 + x^2 + \dfrac{\sqrt{3}}{2}x^1x^2\\
+      \text{Sistema oblicuo \qty{60}{\degree} en } $P$ \text{ : }
+      12
+    \end{array}
+  \end{cases}
+\]
+
+
+
+
+
+
+
+
 
 %%% Local Variables:
 %%% mode: latex
