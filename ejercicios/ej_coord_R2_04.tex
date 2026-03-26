@@ -25,6 +25,7 @@ g) Las componentes covariantes del gradiente.\\
 h) Las componentes contravariantes del gradiente.\\
 i) El cuadrado del gradiente en coordenadas oblicuas.\\
 j) El campo escalar en función de las componentes contravariantes.\\
+k) Las componentes covariantes del gradiente a partir del apartado anterior y comprobación de que coinciden con el apartado \emph{g)}.\\
 
 \noindent
 \textbf{Solución}
@@ -833,6 +834,33 @@ Resumen:
     \end{array}
   \end{cases}
 \]
+
+\noindent
+k) Las componentes covariantes del gradiente a partir del apartado anterior y comprobación de que coinciden con el apartado \emph{g)}.
+
+El campo escalar en función del sistema oblicuo, según el apartado anterior es
+\[
+  \phi(x^1,x^2)
+  = 2x^1 + \left(x^2\right)^2\sin\alpha\cos\alpha + 2x^2\cos\alpha + x^1x^2\sin\alpha
+\]
+
+La derivada covariante del campo escalar $\phi$ es
+\[
+  \partial_i\phi = \dfrac{\partial\phi}{\partial x^i}
+\]
+
+Así
+\begin{align*}
+  \partial_1\phi
+  &=
+    \dfrac{\partial\phi}{\partial x^1}
+    = x^2 \sin\alpha + 2\\
+  \partial_2\phi
+  &=
+    \dfrac{\partial\phi}{\partial x^2}
+    = x^1\sin\alpha + 2x^2 \sin\alpha\cos\alpha + 2\cos\alpha
+\end{align*}
+que coincide con el apartado \emph{g)}.
 
 
 
