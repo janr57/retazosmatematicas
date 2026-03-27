@@ -427,11 +427,7 @@ El elemento diferencial de área en cartesianas es
     eje/.style={->},
     proyeccion/.style={black!20, line width=0.4},
     area/.style={fill=green!40, draw=black!20},
-    %vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt,\colorV},
-    %versor/.style={-{Latex[round, width=4pt, length=8pt]}, line width=1pt, \colorVred},
     textooriginal/.style={\colorTorig},
-    %pcirculo/.style={fill=\colorPorig, draw=black},
-    %angulogirado/.style={fill=\colorAngGreen, draw=\colorGirodos},
     background/.style={%
       line width=\bgborderwidth,
       draw=\bgbordercolor,
@@ -532,15 +528,14 @@ como subíndice. Más adelante se aclararán estos términos.
 
 \subsection{Características fundamentales del sistema}
 \begin{itemize}
-
-  
 \item Ejes y su notación:
   Tendremos dos ejes. Uno de ellos, el horizontal, lo haremos coincidir con el eje $x$
   del sistema de coordenadas ortogonales, mientras que el otro formará un ángulo $\alpha$
-  con el primero.
+  con el primero; es como si el eje $y$ del sistema ortogonal hubiera girado en sentido
+  horario un ángulo $\beta = \qty{90}-\alpha$.
   
   En $\symbb{R}^2$ utilizaremos indistintamente, dependiendo del contexto, dos
-  notaciones diferentes para los ejes:
+  notaciones diferentes para los ejes, ver figura \ref{fig:R2-oblic_ejes}:
   \begin{itemize}
   \item Notación en álgebra lineal y física clásica:
     El eje horizontal se suele representar como $\tilde{x}$ o $x'$ y el inclinado como
@@ -556,9 +551,21 @@ como subíndice. Más adelante se aclararán estos términos.
     diferenciar entre componentes contravariantes (superíndices) y covariantes
     (subíndices)
   \end{itemize}
+\item Base natural:
+  La base más utilizada en el sistema oblicuo es la base covariante, formada por vectores
+  que se representan mediante subíndices
+  \[
+    B = \set{\xhat{e}_1, \xhat{e}_2}
+  \]
+  Los vectores se han representado con acento circunflejo porque en este sistema son
+  vectores unitarios, aunque esto no es cierto en general.
+
+  Muy importante: estos vectores covariantes se utilizan para medir las componentes
+  contravariantes de los vectores. Así, las componentes contravariantes medidas por
+  estos vectores se representan mediante $x^1$ y $x^2$. Ver figura
+  \ref{fig:R2-oblic_contrav}
 \end{itemize}
 \begin{figure}[ht]
-  \begin{minipage}{0.45\linewidth}
   % Escala
   \def\scl{1.00}
   %  Longitud de los ejes
@@ -577,7 +584,7 @@ como subíndice. Más adelante se aclararán estos términos.
   \pgfmathsetmacro{\YTILDEANG}{70}
   \pgfmathsetmacro{\YTILDELONG}{0.5*(\EJECARTLONG+\EJEOBLICLONG)}
   % Fondo
-  \pgfmathsetmacro{\HORZ}{0.86}
+  \pgfmathsetmacro{\HORZ}{0.90}
   \pgfmathsetmacro{\VERT}{0.25}
   % 
   \centering
@@ -589,6 +596,7 @@ como subíndice. Más adelante se aclararán estos términos.
     textooblicuo/.style={black},
     textocartesiano/.style={\colorTorig},
     angulo/.style={fill=green!15, draw=\colorGirodos},
+    angulogiro/.style={draw=black!50},
     background/.style={%
       line width=\bgborderwidth,
       draw=\bgbordercolor,
@@ -610,10 +618,17 @@ como subíndice. Más adelante se aclararán estos términos.
     coordinate (ytildefin);
 
     % DIBUJOS
-    % Ángulo alpha
+    % Ángulos
+    % Ángulo alfa
     \path (xfin) -- (O) -- (ytildefin) pic
     [angulo, "\footnotesize $\alpha$",angle radius=14pt, angle eccentricity=0.64]
     {angle = xfin--O--ytildefin};
+    % Ángulo beta
+    \path (yfin) -- (O) -- (ytildefin) pic
+    [angulogiro, {Latex[round,width=3pt,length=4pt]}-,
+    "\color{black!60}{\footnotesize $\beta$}", angle radius=50pt,
+    angle eccentricity=0.80]
+    {angle = ytildefin--O--yfin};
     
     % Ejes
     % Eje x
@@ -641,14 +656,6 @@ como subíndice. Más adelante se aclararán estos términos.
       \draw[background] (SW) rectangle (NE);
     \end{scope}
   \end{tikzpicture}
-  \caption{Ejes oblicuos marcados como $\tilde{x}$ e $\tilde{y}$.
-  Estos forman un ángulo $\alpha$ entre sí. Los ortogonales estándar $x$ e $y$ se
-  representan por comparación. Nótese que se hace coincidir el eje $\tilde{x}$ con el
-  $x$.}
-  \label{fig:R2-oblic_ejes_xytilde}
-\end{minipage}
-\hspace{1em}
-\begin{minipage}{0.45\linewidth}
   % Escala
   \def\scl{1.00}
   %  Longitud de los ejes
@@ -667,7 +674,7 @@ como subíndice. Más adelante se aclararán estos términos.
   \pgfmathsetmacro{\YTILDEANG}{70}
   \pgfmathsetmacro{\YTILDELONG}{0.5*(\EJECARTLONG+\EJEOBLICLONG)}
   % Fondo
-  \pgfmathsetmacro{\HORZ}{0.86}
+  \pgfmathsetmacro{\HORZ}{0.90}
   \pgfmathsetmacro{\VERT}{0.25}
   % 
   \centering
@@ -679,6 +686,7 @@ como subíndice. Más adelante se aclararán estos términos.
     textooblicuo/.style={black},
     textocartesiano/.style={\colorTorig},
     angulo/.style={fill=green!15, draw=\colorGirodos},
+    angulogiro/.style={draw=black!50},
     background/.style={%
       line width=\bgborderwidth,
       draw=\bgbordercolor,
@@ -704,6 +712,12 @@ como subíndice. Más adelante se aclararán estos términos.
     \path (xfin) -- (O) -- (ytildefin) pic
     [angulo, "\footnotesize $\alpha$",angle radius=14pt, angle eccentricity=0.64]
     {angle = xfin--O--ytildefin};
+    % Ángulo beta
+    \path (yfin) -- (O) -- (ytildefin) pic
+    [angulogiro, {Latex[round,width=3pt,length=4pt]}-,
+    "\color{black!60}{\footnotesize $\beta$}", angle radius=50pt,
+    angle eccentricity=0.80]
+    {angle = ytildefin--O--yfin};
     
     % Ejes
     % Eje x
@@ -730,20 +744,19 @@ como subíndice. Más adelante se aclararán estos términos.
       \draw[background] (SW) rectangle (NE);
     \end{scope}
   \end{tikzpicture}
-  \caption{Ejes oblicuos marcados como $x^1$ y $x^2$.
-  Estos forman un ángulo $\alpha$ entre sí. Los ortogonales estándar $x$ e $y$ se
-  representan por comparación. Nótese que se hace coincidir el eje $x^1$ con el
-  $x$.}
-  \label{fig:R2-oblic_ejes_x1x2}  
-\end{minipage}
+  \caption{A la izquierda los ejes oblicuos se marcan como $\tilde{x}$ y $\tilde{y}$,
+    mientras que a la derecha se encuentran como $x^1$ y $x^2$.
+  Estos forman un ángulo $\alpha$ entre sí. Los ejes ortogonales estándar $x$ e $y$ se
+  representan para comparar. Nótese que se hace coincidir el eje $x^1$ con el $x$.
+  Por último, se puede considerar que el eje $y$ se ha inclinado un ángulo en sentido
+  horario $\beta = \pi/2 - \alpha$.}
+  \label{fig:R2-oblic_ejes}
 \end{figure}
 
 
 \subsection{Base natural}
-En coordenadas oblicuas es importante el ángulo $\alpha$ que forman los dos ejes.
-Los ejes oblicuos los representamos por $\tilde{x}$ e $\tilde{y}$.
-La base natural $B'$ en este sistema oblicuo está formada por los dos vectores
-covariantes (nótese el superíndice)
+La base natural $B'$ en el sistema oblicuo está formada por los dos vectores covariantes
+(nótese el subíndice en los vectores)
 \begin{equation}\label{eq:R2-oblic_base}
   B' = \set{\xhat{e}_1, \xhat{e}_2}
 \end{equation}
@@ -1108,7 +1121,7 @@ segmento orientado $\vvv{v}$. Esta es la forma natural con la que sumamos vector
   \pgfmathsetmacro{\VERT}{0.25}
   % 
   \centering
-  \begin{tikzpicture}[%
+ \begin{tikzpicture}[%
     scale=\scl,
     every node/.style={black,font=\small},
     %ejecart/.style={->, black!30},
@@ -1134,8 +1147,7 @@ segmento orientado $\vvv{v}$. Esta es la forma natural con la que sumamos vector
     % Eje xtilde
     \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
     coordinate (xtildefin);
-    \node[texto, below] at (xtildefin) {\footnotesize $\tilde{x}^1$};
-    %\node[texto, below] at (xtildefin) {\footnotesize $\tilde{x}$};
+    \node[texto, below] at (xtildefin) {\footnotesize $x^1$};
     % Eje ytilde
     \path[save path=\ejeytilde, name path=O--ytilde] (O) -- ++(\YTILDEANG:\YTILDELONG cm)
     coordinate (ytildefin);
@@ -1165,7 +1177,7 @@ segmento orientado $\vvv{v}$. Esta es la forma natural con la que sumamos vector
     \draw[ejeoblic, use path=\ejextilde];
     % ytilde
     \draw[ejeoblic, use path=\ejeytilde];
-    \node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{x}^2$};
+    \node[above right=0pt and -4pt, texto] at (ytildefin) {$x^2$};
     %\node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{y}$};
     % Vector v
     \draw[vector, use path=\r];
@@ -1175,10 +1187,9 @@ segmento orientado $\vvv{v}$. Esta es la forma natural con la que sumamos vector
 
     % Marcar en color la componentes contravariantes
     \draw[contravariante]
-    (O) -- node[contravtxt,pos=0.5, below]
-    {$\tilde{x}^1\xhat{e}_1$} (CTV1);
+    (O) -- node[contravtxt,pos=0.5, below] {$x^1\xhat{e}_1$} (CTV1);
     \draw[contravariante] (O) -- node[contravtxt,pos=0.5,above left=-2pt and -2pt]
-    {$\tilde{x}^2\xhat{e}_2$} (CTV2);
+    {$x^2\xhat{e}_2$} (CTV2);
     
     % Origen
     \fill[orange!80!black] (O) circle [radius=0.8pt];
@@ -1190,20 +1201,23 @@ segmento orientado $\vvv{v}$. Esta es la forma natural con la que sumamos vector
       \draw[background] (SW) rectangle (NE);
     \end{scope}
   \end{tikzpicture}
-  \caption{Componentes contravariantes $\tilde{x}^i$, en coordenadas oblicuas. El vector
+  \caption{Componentes contravariantes $x^i$, en coordenadas oblicuas. El vector
     $\vvv{v}$ se representa como
-    $\vvv{v}=\tilde{x}^1\,\xhat{e}_1+\tilde{x}^2\,\xhat{e}_2$. La componente
+    $\vvv{v}=x^1\,\xhat{e}_1+x^2\,\xhat{e}_2$. La componente
     contravariante en un cierto eje nos indica el desplazamiento que se ha producido en
     ese eje.}
   \label{fig:R2-oblic_contrav}
 \end{figure}
 
 Para centrar ideas, supongamos que el vector $\vvv{v}$ de la figura representa un
-desplazamiento en $\symbb{R}^2$. La componente $\tilde{x}^1$ nos indica el desplazamiento
-en el eje $\tilde{x}^1 = \tilde{x}$, y $\xtilde{x}^2$ nos lo da en el eje
-$\tilde{x}^2=\tilde{y}$.
-La suma de las componentes contravariantes $\tilde{x}^i$ multiplicadas por sus
-respectivos vectores unidad, nos da el desplazamiento indicado por el vector.
+desplazamiento en $\symbb{R}^2$. La componente $x^1$ nos indica el desplazamiento
+en el eje $x^1$, medido por el vector $\xhat{e}_1$ de la base, y $x^2$ nos lo da en el
+eje $x^2$, medido por $\xhat{e}_2$.
+La suma de las componentes contravariantes $x^i$ multiplicadas por sus
+respectivos vectores covariantes de la base $\xhat{e}_i$, nos da el desplazamiento
+indicado por el vector. Nótese que en la suma se utiliza la regla del paralelogramo.
+Esto es característico de las componentes contravariantes que, en cierto modo
+\emph{funcionan} como las componentes $x$ e $y$ en un sistema cartesiano ortogonal.
 
 
 \subsection{Forma matricial de la base y de las componentes}
