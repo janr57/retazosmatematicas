@@ -522,17 +522,238 @@ Este elemento se relaciona trivialmente con el jacobiano de la
   = dxdy
 \]
 
-\section{Coordenadas cartesianas oblicuas}
+\section{Sistema de coordenadas cartesianas oblicuas}
 Aquí introduciremos los conceptos de \emph{componentes contravariantes y covariantes},
-algo que no hicimos en el sistema cartesiano rectangular porque en este último ambas componentes son idénticas, pero aquí sí hay diferencia.
+algo que no hicimos en el sistema cartesiano rectangular porque en este último ambas
+componentes son idénticas, pero aquí sí hay diferencia.
+Solo adelantaremos que las componentes contravariantes de expresan situando el índice
+de la coordenada como superíndice (y no es un exponente), y la covariantes poniéndolo
+como subíndice. Más adelante se aclararán estos términos.
+
+\subsection{Características fundamentales del sistema}
+\begin{itemize}
+
+  
+\item Ejes y su notación:
+  Tendremos dos ejes. Uno de ellos, el horizontal, lo haremos coincidir con el eje $x$
+  del sistema de coordenadas ortogonales, mientras que el otro formará un ángulo $\alpha$
+  con el primero.
+  
+  En $\symbb{R}^2$ utilizaremos indistintamente, dependiendo del contexto, dos
+  notaciones diferentes para los ejes:
+  \begin{itemize}
+  \item Notación en álgebra lineal y física clásica:
+    El eje horizontal se suele representar como $\tilde{x}$ o $x'$ y el inclinado como
+    $\tilde{y}$ o $y'$.
+    Esta notación se suele usar para diferenciar visualmente dos sistemas cartesianos,
+    como el ortogonal estándar y el oblicuo, o entre dos oblicuos.
+    En este texto, cuando utilicemos esta notación, siempre reservaremos $x$ e $y$ para
+    el sistema cartesiano ortogonal, aunque el sistema oblicuo no lo comparemos con él.
+  \item Notación en cálculo tensorial y geometría diferencial:
+    Se usan preferentemente superíndices $x^1$ y $x^2$
+    (que no representan exponentes, ni componentes de vectores, que también se pueden
+    representar igual pero se distinguen por el contexto). Esto nos permitirá
+    diferenciar entre componentes contravariantes (superíndices) y covariantes
+    (subíndices)
+  \end{itemize}
+\end{itemize}
+\begin{figure}[ht]
+  \begin{minipage}{0.45\linewidth}
+  % Escala
+  \def\scl{1.00}
+  %  Longitud de los ejes
+  \pgfmathsetmacro{\EJECARTLONG}{3.0}
+  \pgfmathsetmacro{\EJEOBLICLONG}{2.5}
+  % Eje x
+  \pgfmathsetmacro{\XANG}{0}
+  \pgfmathsetmacro{\XLONG}{\EJECARTLONG}
+  % Eje y
+  \pgfmathsetmacro{\YANG}{90}
+  \pgfmathsetmacro{\YLONG}{\EJECARTLONG}
+  % Eje xtilde
+  \pgfmathsetmacro{\XTILDEANG}{0}
+  \pgfmathsetmacro{\XTILDELONG}{\EJEOBLICLONG}    
+  % Eje ytilde
+  \pgfmathsetmacro{\YTILDEANG}{70}
+  \pgfmathsetmacro{\YTILDELONG}{0.5*(\EJECARTLONG+\EJEOBLICLONG)}
+  % Fondo
+  \pgfmathsetmacro{\HORZ}{0.86}
+  \pgfmathsetmacro{\VERT}{0.25}
+  % 
+  \centering
+  \begin{tikzpicture}[%
+    scale=\scl,
+    every node/.style={black,font=\small},
+    ejecartesiano/.style={->, black!30},
+    ejeoblicuo/.style={->, black},
+    textooblicuo/.style={black},
+    textocartesiano/.style={\colorTorig},
+    angulo/.style={fill=green!15, draw=\colorGirodos},
+    background/.style={%
+      line width=\bgborderwidth,
+      draw=\bgbordercolor,
+      fill=\bgcolor,
+    },
+    ]
+    % COORDENADAS
+    % Origen
+    \coordinate (O) at (0,0);
+    % Eje x
+    \path[save path=\ejex] (O) -- ++(\XANG:\XLONG cm) coordinate (xfin);
+    % Eje y
+    \path[save path=\ejey] (O) -- ++(\YANG:\YLONG cm) coordinate (yfin);
+    % Eje xtilde
+    \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
+    coordinate (xtildefin);
+    % Eje ytilde
+    \path[save path=\ejeytilde, name path=O--ytilde] (O) -- ++(\YTILDEANG:\YTILDELONG cm)
+    coordinate (ytildefin);
+
+    % DIBUJOS
+    % Ángulo alpha
+    \path (xfin) -- (O) -- (ytildefin) pic
+    [angulo, "\footnotesize $\alpha$",angle radius=14pt, angle eccentricity=0.64]
+    {angle = xfin--O--ytildefin};
+    
+    % Ejes
+    % Eje x
+    \draw[ejecartesiano, use path=\ejex];
+    \node[textocartesiano, below] at (xfin) {$x$};
+    % Eje y
+    \draw[ejecartesiano, use path=\ejey];
+    \node[textocartesiano, left] at (yfin) {$y$};
+    
+    % Eje xtilde
+    \draw[ejeoblicuo, use path=\ejextilde];
+    \node[below, textooblicuo] at (xtildefin) {$\tilde{x}$};
+    % Eje ytilde
+    \draw[ejeoblicuo, use path=\ejeytilde];
+    %\node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{x}$};
+    \node[above right=0pt and -4pt, textooblicuo] at (ytildefin) {$\tilde{y}$};
+
+    % Origen
+    \fill[black] (O) circle [radius=0.8pt];
+    
+    % Fondo amarillo
+    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
+    \begin{scope}[on background layer]
+      \draw[background] (SW) rectangle (NE);
+    \end{scope}
+  \end{tikzpicture}
+  \caption{Ejes oblicuos marcados como $\tilde{x}$ e $\tilde{y}$.
+  Estos forman un ángulo $\alpha$ entre sí. Los ortogonales estándar $x$ e $y$ se
+  representan por comparación. Nótese que se hace coincidir el eje $\tilde{x}$ con el
+  $x$.}
+  \label{fig:R2-oblic_ejes_xytilde}
+\end{minipage}
+\hspace{1em}
+\begin{minipage}{0.45\linewidth}
+  % Escala
+  \def\scl{1.00}
+  %  Longitud de los ejes
+  \pgfmathsetmacro{\EJECARTLONG}{3.0}
+  \pgfmathsetmacro{\EJEOBLICLONG}{2.5}
+  % Eje x
+  \pgfmathsetmacro{\XANG}{0}
+  \pgfmathsetmacro{\XLONG}{\EJECARTLONG}
+  % Eje y
+  \pgfmathsetmacro{\YANG}{90}
+  \pgfmathsetmacro{\YLONG}{\EJECARTLONG}
+  % Eje xtilde
+  \pgfmathsetmacro{\XTILDEANG}{0}
+  \pgfmathsetmacro{\XTILDELONG}{\EJEOBLICLONG}    
+  % Eje ytilde
+  \pgfmathsetmacro{\YTILDEANG}{70}
+  \pgfmathsetmacro{\YTILDELONG}{0.5*(\EJECARTLONG+\EJEOBLICLONG)}
+  % Fondo
+  \pgfmathsetmacro{\HORZ}{0.86}
+  \pgfmathsetmacro{\VERT}{0.25}
+  % 
+  \centering
+  \begin{tikzpicture}[%
+    scale=\scl,
+    every node/.style={black,font=\small},
+    ejecartesiano/.style={->, black!30},
+    ejeoblicuo/.style={->, black},
+    textooblicuo/.style={black},
+    textocartesiano/.style={\colorTorig},
+    angulo/.style={fill=green!15, draw=\colorGirodos},
+    background/.style={%
+      line width=\bgborderwidth,
+      draw=\bgbordercolor,
+      fill=\bgcolor,
+    },
+    ]
+    % COORDENADAS
+    % Origen
+    \coordinate (O) at (0,0);
+    % Eje x
+    \path[save path=\ejex] (O) -- ++(\XANG:\XLONG cm) coordinate (xfin);
+    % Eje y
+    \path[save path=\ejey] (O) -- ++(\YANG:\YLONG cm) coordinate (yfin);
+    % Eje x^1
+    \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
+    coordinate (xtildefin);
+    % Eje x^2
+    \path[save path=\ejeytilde, name path=O--ytilde] (O) -- ++(\YTILDEANG:\YTILDELONG cm)
+    coordinate (ytildefin);
+    
+    % DIBUJOS
+    % Ángulo alpha
+    \path (xfin) -- (O) -- (ytildefin) pic
+    [angulo, "\footnotesize $\alpha$",angle radius=14pt, angle eccentricity=0.64]
+    {angle = xfin--O--ytildefin};
+    
+    % Ejes
+    % Eje x
+    \draw[ejecartesiano, use path=\ejex];
+    \node[textocartesiano, below] at (xfin) {$x$};
+    % Eje y
+    \draw[ejecartesiano, use path=\ejey];
+    \node[textocartesiano, left] at (yfin) {$y$};
+    
+    % Eje x^1
+    \draw[ejeoblicuo, use path=\ejextilde];
+    \node[below, textooblicuo] at (xtildefin) {$x^1$};
+    % Eje x^2
+    \draw[ejeoblicuo, use path=\ejeytilde];
+    \node[above right=0pt and -4pt, textooblicuo] at (ytildefin) {$x^2$};
+
+    % Origen
+    \fill[black] (O) circle [radius=0.8pt];
+    
+    % Fondo amarillo
+    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
+    \begin{scope}[on background layer]
+      \draw[background] (SW) rectangle (NE);
+    \end{scope}
+  \end{tikzpicture}
+  \caption{Ejes oblicuos marcados como $x^1$ y $x^2$.
+  Estos forman un ángulo $\alpha$ entre sí. Los ortogonales estándar $x$ e $y$ se
+  representan por comparación. Nótese que se hace coincidir el eje $x^1$ con el
+  $x$.}
+  \label{fig:R2-oblic_ejes_x1x2}  
+\end{minipage}
+\end{figure}
+
 
 \subsection{Base natural}
 En coordenadas oblicuas es importante el ángulo $\alpha$ que forman los dos ejes.
-Los ejes oblicuos los representamos por $\tilde{x}$ e $\tilde{y}$. La base natural está
-formada por los vectores unitarios $\xhat{e}_1$ y $\xhat{e}_2$
+Los ejes oblicuos los representamos por $\tilde{x}$ e $\tilde{y}$.
+La base natural $B'$ en este sistema oblicuo está formada por los dos vectores
+covariantes (nótese el superíndice)
 \begin{equation}\label{eq:R2-oblic_base}
   B' = \set{\xhat{e}_1, \xhat{e}_2}
 \end{equation}
+La base natural se calcula expresando el vector $\vvv{r}=x\,\uvec{\i}+y\,\uvec{\j}$ en
+función de las coordenadas en el nuevo sistema, en nuestro caso $x^1$ y $x^2$, y
+calculando las derivadas parciales $\vvv{e}_i = \partial\vvv{r}/\partial x^i$.
+En principio estos vectores no tienen por qué ser unitarios, aunque en este caso sí lo
+serán; por esta razón les ponemos el acento circunflejo o \emph{gorrito}.
+
+Un detalle más, hacemos coincidir los ejes $x$ y $\tilde{x}$.
 
 \subsection{Cambio de base}
 Para relacionar esta base $B'$ con la estándar de las rectilíneas
@@ -618,7 +839,7 @@ esto es, el eje $\tilde{x}$ coincide con el eje $x$ de las cartesianas. Véase l
     \path (O) -- coordinate[pos=0.5] (eytxt) (e2y);
     
     % DIBUJOS
-    % Ángulo theta
+    % Ángulo alpha
     \path (xfin) -- (O) -- (ytildefin) pic
     [angulo, "\footnotesize $\alpha$",angle radius=12pt, angle eccentricity=0.68]
     {angle = xfin--O--ytildefin};
