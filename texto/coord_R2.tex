@@ -520,19 +520,20 @@ Este elemento se relaciona trivialmente con el jacobiano de la
 
 \section{Sistema de coordenadas cartesianas oblicuas}
 Aquí introduciremos los conceptos de \emph{componentes contravariantes y covariantes},
-algo que no hicimos en el sistema cartesiano rectangular porque en este último ambas
-componentes son idénticas, pero aquí sí hay diferencia.
-Solo adelantaremos que las componentes contravariantes de expresan situando el índice
-de la coordenada como superíndice (y no es un exponente), y la covariantes poniéndolo
+algo que no hicimos en el sistema cartesiano rectangular, porque en este último ambas
+componentes son idénticas, pero en este otro sí hay diferencia.
+Solo adelantaremos que las componentes contravariantes se representan situando el índice
+de la coordenada como superíndice (no es un exponente), y la covariantes poniéndolo
 como subíndice. Más adelante se aclararán estos términos.
 
 \subsection{Características fundamentales del sistema}
 \begin{itemize}
 \item Ejes y su notación:
-  Tendremos dos ejes. Uno de ellos, el horizontal, lo haremos coincidir con el eje $x$
+  Tendremos dos ejes; uno de ellos, horizontal, lo haremos coincidir con el eje $x$
   del sistema de coordenadas ortogonales, mientras que el otro formará un ángulo $\alpha$
-  con el primero; es como si el eje $y$ del sistema ortogonal hubiera girado en sentido
-  horario un ángulo $\beta = \qty{90}-\alpha$.
+  con el primero. Es como si el eje $y$ del sistema ortogonal hubiera girado en sentido
+  horario un ángulo $\beta = \qty{90}-\alpha$ si $\alpha$ es menor de \qty{90}{\degree}, o
+  $\beta = \alpha - \qty{90}{\degree}$ en caso contrario.
   
   En $\symbb{R}^2$ utilizaremos indistintamente, dependiendo del contexto, dos
   notaciones diferentes para los ejes, ver figura \ref{fig:R2-oblic_ejes}:
@@ -546,10 +547,8 @@ como subíndice. Más adelante se aclararán estos términos.
     el sistema cartesiano ortogonal, aunque el sistema oblicuo no lo comparemos con él.
   \item Notación en cálculo tensorial y geometría diferencial:
     Se usan preferentemente superíndices $x^1$ y $x^2$
-    (que no representan exponentes, ni componentes de vectores, que también se pueden
-    representar igual pero se distinguen por el contexto). Esto nos permitirá
-    diferenciar entre componentes contravariantes (superíndices) y covariantes
-    (subíndices)
+    (que no representan exponentes, ni componentes contravariantes de vectores, que
+    también se pueden representar igual, aunque se distinguen por el contexto).
   \end{itemize}
 \item Base natural:
   La base más utilizada en el sistema oblicuo es la base covariante, formada por vectores
@@ -561,9 +560,10 @@ como subíndice. Más adelante se aclararán estos términos.
   vectores unitarios, aunque esto no es cierto en general.
 
   Muy importante: estos vectores covariantes se utilizan para medir las componentes
-  contravariantes de los vectores. Así, las componentes contravariantes medidas por
-  estos vectores se representan mediante $x^1$ y $x^2$. Ver figura
-  \ref{fig:R2-oblic_contrav}
+  contravariantes $x^i$ de los vectores. Ver figura \ref{fig:R2-oblic_contrav}.
+
+  La base natural se utilizará más adelante para obtener la métrica de estos sistemas
+  oblicuos.
 \end{itemize}
 \begin{figure}[ht]
   % Escala
@@ -760,13 +760,12 @@ La base natural $B'$ en el sistema oblicuo está formada por los dos vectores co
 \begin{equation}\label{eq:R2-oblic_base}
   B' = \set{\xhat{e}_1, \xhat{e}_2}
 \end{equation}
+
 La base natural se calcula expresando el vector $\vvv{r}=x\,\uvec{\i}+y\,\uvec{\j}$ en
 función de las coordenadas en el nuevo sistema, en nuestro caso $x^1$ y $x^2$, y
 calculando las derivadas parciales $\vvv{e}_i = \partial\vvv{r}/\partial x^i$.
 En principio estos vectores no tienen por qué ser unitarios, aunque en este caso sí lo
 serán; por esta razón les ponemos el acento circunflejo o \emph{gorrito}.
-
-Un detalle más, hacemos coincidir los ejes $x$ y $\tilde{x}$.
 
 \subsection{Cambio de base}
 Para relacionar esta base $B'$ con la estándar de las rectilíneas
