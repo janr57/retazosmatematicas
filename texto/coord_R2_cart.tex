@@ -1,0 +1,499 @@
+% coord_R2_cart.tex
+%
+% Copyright (C) 2022--2026 José A. Navarro Ramón <janr.devel@gmail.com>
+% Licencia del código GPLv2
+% Licencia Creative Commons Recognition Non-Commercial Share-alike.
+% (CC-BY-NC-SA)
+
+\chapter{Sistema de coordenadas cartesianas ortogonales en
+  \mathinhead{\symbb{R}^2}{espr2}}
+Vector de posición de cualquier punto del espacio $\symbb{R}^2$ en coordenadas cartesianas
+\begin{equation}\label{eq:R2-r_rect}
+  \vvv{r}
+  = x\,\uvec{\i} + y\,\uvec{\j}
+\end{equation}
+\begin{figure}[ht]
+  % Escala
+  \def\scl{1}
+  %
+  \pgfmathsetmacro{\EJESEXTRA}{-0.2}
+  \pgfmathsetmacro{\EJESLONG}{2.3}
+  % Eje x
+  \pgfmathsetmacro{\XMLONG}{\EJESEXTRA}
+  \pgfmathsetmacro{\XPLONG}{\EJESLONG}
+  % Eje y
+  \pgfmathsetmacro{\YMLONG}{\EJESEXTRA}
+  \pgfmathsetmacro{\YPLONG}{\EJESLONG}
+  % Versores
+  \pgfmathsetmacro{\VMOD}{0.6}
+  % Vector P
+  \pgfmathsetmacro{\PMOD}{2.5}
+  \pgfmathsetmacro{\PANG}{40}
+  % Fondo
+  \pgfmathsetmacro{\HORZ}{0.25}
+  \pgfmathsetmacro{\VERT}{0.25}
+  % 
+  \centering
+  \begin{tikzpicture}[%
+    scale=\scl,
+    every node/.style={black,font=\small},
+    eje/.style={->},
+    proyeccion/.style={black!20, line width=0.4},
+    vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt,\colorV},
+    versor/.style={-{Latex[round, width=4pt, length=6pt]}, line width=1pt, \colorVred},
+    textooriginal/.style={\colorTorig},
+    pcirculo/.style={fill=\colorPorig, draw=black},
+    angulogirado/.style={fill=\colorAngGreen, draw=\colorGirodos},
+    background/.style={%
+      line width=\bgborderwidth,
+      draw=\bgbordercolor,
+      fill=\bgcolor,
+    },
+    ]
+    % COORDENADAS
+    % Origen
+    \coordinate (O) at (0,0);
+    % Extremo izdo del eje x e inferior del eje y
+    \coordinate (xini) at (\XMLONG cm,0);
+    \coordinate (yini) at (0,\YMLONG cm);
+    \coordinate (ifin) at (\VMOD cm, 0);
+    \coordinate (jfin) at (0, \VMOD cm);
+    % Eje x
+    \path[save path=\ejex] (xini) -- coordinate[pos=0.55] (xtexto) (\XPLONG cm, 0)
+    coordinate (xfin);
+    % Eje y
+    \path[save path=\ejey] (yini) -- coordinate[pos=0.55] (ytexto) (0, \YPLONG cm)
+    coordinate (yfin);
+    % Versores i y j
+    \path[save path=\i] (O) -- coordinate[pos=0.5] (itexto) (ifin);
+    \path[save path=\j] (O) -- coordinate[pos=0.45] (jtexto) (jfin);    
+    % Vector
+    \path[save path=\vector] (O) -- coordinate[pos=0.5] (pmid) (\PANG:\PMOD cm)
+    coordinate (P);
+    % Proyección de P en los ejes
+    \path[save path=\proyx] (P) |- (xfin);
+    \path[save path=\proyy] (P) -| (yfin);
+
+    % DIBUJOS
+    % Proyección de P en los ejes
+    \draw[proyeccion, use path=\proyx];
+    \draw[proyeccion, use path=\proyy];
+    % Ejes
+    % x
+    \draw[eje, use path=\ejex];
+    \node[right] at (xfin) {$x$};
+    \node[below] at (xtexto) {$x$};
+    % y
+    \draw[eje, use path=\ejey];
+    \node[above] at (yfin) {$y$};
+    \node[left] at (ytexto) {$y$};
+    % Versores
+    \draw[versor, use path=\i];
+    \node[below, \colorTred] at (itexto) {\scriptsize $\uvec{\i}$};
+    \draw[versor, use path=\j];
+    \node[left, \colorTred] at (jtexto) {\scriptsize $\uvec{\j}$};
+    % Vector y punto  P
+    \draw[vector, use path=\vector];
+    \node[above left=-3pt and -1pt] at (pmid) {$\vvv{r}$};
+    \filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
+    \node[above right=0pt and -5pt] at (P) {$P(x,y)$};
+    
+    % Origen
+    \filldraw (O) circle [radius=.2pt];
+    % Fondo amarillo
+    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);    
+    \begin{scope}[on background layer]
+      \draw[background] (SW) rectangle (NE);
+    \end{scope}
+  \end{tikzpicture}
+  \caption{Coordenadas cartesianas de un punto $P$ del plano (en verde) y vectores
+    unitarios (en rojo). Se puede comprobar que el vector de posición del punto es
+    $\vvv{r} = x\uvec{i} + y\uvec{j}$.}
+  \label{fig:R2-coord_rect-ij}
+\end{figure}
+
+
+\subsection{Base natural, vectores unitarios y su producto escalar}
+\subsubsection{Base natural y vectores unitarios}
+Si derivamos el vector de posición anterior \eqref{eq:R2-r_rect}, con respecto a
+cada una de las coordenadas, obtenemos los vectores de una  posible base en estas
+coordenadas. Estos vectores llevan información concreta acerca de cómo varia la posición
+en el espacio cuando variamos cada una de las coordenadas ---tal y como sugieren las
+derivadas---, lo que será importante para obtener la métrica en estas coordenadas.
+
+Como
+\begin{equation}
+  \vvv{r} = x\uvec{\i} + y\uvec{\j}
+\end{equation}
+
+Entonces, derivando se obtiene
+\begin{subequations}
+  \begin{align}\label{eq:R2-cart-ex}
+    \xhat{e}_x
+    &=
+      \dfrac{\partial\vvv{r}}{\partial x}
+      = \uvec{\i}\\
+    \label{eq:R2-cart-ey}
+    \xhat{e}_y
+    &= \dfrac{\partial\vvv{r}}{\partial y}
+      = \uvec{\j}
+  \end{align}
+\end{subequations}
+Estos vectores forman la denominada \emph{base natural} en cartesianas que, en este
+sistema coincide con los vectores unitarios tradicionales $\uvec{\i}$ y $\uvec{\j}$,
+aunque en otros sistemas de coordenadas no tienen por qué ser unitarios
+\begin{equation}\label{eq:R2-cart-base}
+  B=\set{\xhat{e}_x, \xhat{e}_y} = \set{\uvec{\i},\, \uvec{\j}}
+\end{equation}
+
+La métrica en cada sistema de coordenadas define la estructura del espacio, en
+particular, sin ella no se pueden medir ni distancias ni ángulos. Es como si
+proporcionara un sistema de reglas y goniómetros con los cuales medir.
+
+De la equivalencia de la base natural con la unitaria, se puede inferir que la métrica en
+coordenadas cartesianas rectangulares en $\symbb{R}^2$ se representará como una matriz
+unidad (en el apartado \ref{ssect:R2-cart-metrica-factores_escala} se calculará con detalle).
+
+\subsection{Métrica y factores de escala}
+\label{ssect:R2-cart-metrica-factores_escala}
+
+\subsubsection{Producto escalar de los vectores de la base natural}
+Los vectores de la base fundamental son vectores unitarios.
+La base normalizada en coordenadas cartesianas en este espacio está formada por los vectores $\uvec{\i}$ y $\uvec{\j}$, en los ejes $x$ e $y$, respectivamente.
+A continuación resumimos el valor de los productos escalares entre ellos, tal y como
+aprendimos en cálculo vectorial fundamental en coordenadas cartesianas o en física
+elemental
+\begin{subequations}
+  \begin{align}
+    \label{eq:R2-cart-ii_prod_escalar}
+    \xhat{e}_x\cdot\xhat{e}_x = \uvec{\i}\cdot\uvec{\i}
+    &= |\uvec{\i}|\,|\uvec{\i}|\cos 0 = 1\\
+    \label{eq:R2-cart-ij_prod_escalar}    
+    \xhat{e}_x\cdot\xhat{e}_y = \uvec{\i}\cdot\uvec{\j}
+    &= |\uvec{\i}|\,|\uvec{\j}|\cos\pi/2 = 0\\
+    \label{eq:R2-cart-ji_prod_escalar} 
+    \xhat{e}_y\cdot\xhat{e}_x = \uvec{\j}\cdot\uvec{\i}
+    &= |\uvec{\j}|\,|\uvec{\i}|\cos\pi/2 = 0\\
+    \label{eq:R2-cart-jj_prod_escalar}
+    \xhat{e}_y\cdot\xhat{e}_y = \uvec{\j}\cdot\uvec{\j}
+    &= |\uvec{\j}|\,|\uvec{\j}|\cos 0 = 1
+  \end{align}
+\end{subequations}
+
+\subsubsection{Métrica y factores de escala}
+La métrica en cartesianas se calcula utilizando los vectores de la base natural,
+calculada en \eqref{eq:R2-cart-ex} y \eqref{eq:R2-cart-ey}.
+Los productos escalares se calcularon en \eqref{eq:R2-cart-ii_prod_escalar},
+\eqref{eq:R2-cart-ij_prod_escalar}, \eqref{eq:R2-cart-ji_prod_escalar} y
+\eqref{eq:R2-cart-jj_prod_escalar}
+\begin{equation}\label{eq:R2-cart-metrica}
+  \mmm{g}_{ij}
+  = \begin{pmatrix}
+    g_{11} & g_{12}\\
+    g_{21} & g_{22}
+    \end{pmatrix}
+  = \begin{pmatrix}
+      \xhat{e}_x\cdot\xhat{e}_x & \xhat{e}_x\cdot\xhat{e}_y\\
+      \xhat{e}_y\cdot\xhat{e}_x & \xhat{e}_y\cdot\xhat{e}_y
+  \end{pmatrix}
+  = \begin{pmatrix}
+    1 & 0\\
+    0 & 1
+  \end{pmatrix}
+\end{equation}
+
+La raíz cuadrada de los elementos diagonales de la métrica en un sistema de coordenadas ortogonales, como el que nos ocupa, se llaman \emph{factores de escala} o \emph{coeficientes métricos}. En coordenadas cartesianas rectangulares serían
+\begin{align*}
+  h_x &= \sqrt{g_{11}} = \sqrt{1} = 1\\
+  h_y &= \sqrt{g_{22}} = \sqrt{1} = 1  
+\end{align*}
+
+Fijémonos en la métrica \eqref{eq:R2-cart-metrica}:
+\begin{itemize}
+\item Los elementos no diagonales son nulos. Esto se interpreta como que los vectores
+  $\xhat{e}_x$ y $\xhat{e}_y$ son independientes, esto es, son ortogonales.
+  Esto implica que un cambio en una coordenada no afecta a la otra. Así, si nos
+  desplazamos una distancia cualquiera en el eje $x$, no habremos recorrido ninguna
+  distancia en el eje $y$, y viceversa, por lo que $h_{xy}=h_{yx}=0$.
+\item Los elementos diagonales valen la unidad. Cada elemento diagonal de la métrica que
+  vale la unidad implica que un cambio en la coordenada respectiva implica una distancia
+  recorrida de una unidad en el espacio. En realidad, el espacio recorrido es el factor
+  de escala correspondiente (la raíz cuadrada del elemento diagonal correspondiente),
+  pero en este caso da lo mismo
+  \begin{subequations}
+    \begin{align}
+      \Delta s &= h_x \Delta x = \sqrt{1}\, \Delta x = \Delta x\\
+      \Delta s &= h_y \Delta y = \sqrt{1}\, \Delta y = \Delta y
+    \end{align}
+  \end{subequations}
+  Para adquirir algo de intuición, imaginemos que nos desplazamos cualquier distancia en
+  el eje $x$, digamos un metro; es fácil entender que en el espacio nos habremos
+  desplazado esa misma distancia. Por tanto es lógico razonar que el factor de escala
+  $h_x$ vale 1. Lo mismo podemos decir para el factor de escala en el eje $y$, $h_y=1$.
+\end{itemize}
+
+\subsubsection{Revisión del producto escalar}
+Dijimos que la métrica nos permite calcular distancias. En concreto, el cuadrado del
+módulo de un vector $\vvv{A}$ se mide realizando el producto escalar del vector por sí
+mismo.
+El producto escalar se encarga de esto, y se puede ampliar mediante el cálculo
+matricial, utilizando la métrica (en otros sistemas de coordenadas veremos que es más
+importante, mientras que en cartesianas se puede obviar)
+\[
+  \vvv{v}\cdot\vvv{w}
+  =
+  \vvv{v}^\transp \mmm{g}_{ij} \vvv{w}
+  =
+  \begin{pmatrix}
+    v_x &  v_y
+  \end{pmatrix}
+  \begin{pmatrix}
+    1 & 0\\
+    0 & 1
+  \end{pmatrix}
+  \begin{pmatrix}
+    w_x\\
+    w_y
+  \end{pmatrix}
+  =
+  v_xw_x + v_y w_y
+\]
+  
+Así, el cuadrado del módulo de un vector en cartesianas es
+\[
+  v^2
+  =
+  \|\vvv{v}\|^2
+  =
+  \vvv{v}\cdot\vvv{v}
+  =
+  \vvv{v}^\transp \mmm{g}_{ij} \vvv{v}
+  =
+  \begin{pmatrix}
+  v_x &  v_y
+\end{pmatrix}
+\begin{pmatrix}
+  1 & 0\\
+  0 & 1
+\end{pmatrix}
+\begin{pmatrix}
+  v_x\\
+  v_y
+\end{pmatrix}
+=
+v_x^2 + v_y^2
+\]
+que coincide con el valor que obteníamos en el cálculo vectorial básico.
+
+\subsection{Gradiente, divergencia y laplaciana}
+Presentamos un resumen de estas operaciones, tal y como se presentan en un curso básico
+de cálculo
+\begin{itemize}
+\item El gradiente de un campo escalar $\phi(x,y)$ es un vector
+\begin{equation}
+  \vvv{\nabla}\phi
+  = \dfrac{\partial \phi}{\partial x}\,\uvec{\i}
+  + \dfrac{\partial \phi}{\partial y}\,\uvec{\j}
+  = \begin{pmatrix}
+    \partial \phi/\partial x\\
+    \partial \phi/\partial y
+    \end{pmatrix}
+\end{equation}
+El vector gradiente de $\phi$ evaluado en un punto genérico $(x,y)$ del dominio de $\phi$
+indica la dirección en la cual el campo $\phi$ varía más rápidamente y su módulo
+representa el ritmo de variación de $\phi$ en la dirección de dicho vector gradiente.
+
+El operador gradiente se comporta como un vector bajo rotaciones, decimos esto porque
+cuando opera frente a un campo escalar, se obtiene otro formado por vectores
+\begin{equation}
+  \vvv{\nabla}
+  = \dfrac{\partial}{\partial x}\,\uvec{\i}
+  + \dfrac{\partial}{\partial y}\,\uvec{\j}
+  = \begin{pmatrix}
+    \partial/\partial x\\
+    \partial/\partial y
+    \end{pmatrix}
+\end{equation}
+
+\item La divergencia de un campo vectorial $\vvv{A}=(A_x, A_y)$ es un escalar
+  \begin{equation}\label{eq:R2-divergencia-cartesianas}
+    \vvv{\nabla}\cdot\vvv{A}
+    = \begin{pmatrix}
+      \partial/\partial x & \partial/\partial y      
+    \end{pmatrix}
+    \begin{pmatrix}
+      1 & 0\\
+      0 & 1
+    \end{pmatrix}
+    \begin{pmatrix}
+      A_x\\
+      A_y
+    \end{pmatrix}
+    = \dfrac{\partial A_x}{\partial x}
+    + \dfrac{\partial A_y}{\partial y}
+  \end{equation}
+  La divergencia mide la diferencia entre el flujo saliente y el flujo entrante de un
+  campo vectorial sobre la superficie que rodea a un volumen de control, por tanto, si el
+  campo tiene ''fuentes'' la divergencia será positiva, y si tiene "sumideros", la
+  divergencia será negativa. La divergencia mide la rapidez neta con la que se conduce la
+  materia al exterior de cada punto, y en el caso de ser la divergencia idénticamente
+  igual a cero, describe al flujo incompresible del fluido, llamado también campo
+  solenoidal.  
+\item La laplaciana de un campo escalar $f(x,y)$ es la divergencia del gradiente y es un
+  escalar
+  \begin{equation}\label{eq:R2-gradiente-cartesianas}
+    \Delta \phi
+    =
+    \nabla^2 \phi
+    = \vvv{\nabla}\cdot\vvv{\nabla}\phi
+    = \dfrac{\partial^2 \phi}{\partial x^2}
+    + \dfrac{\partial^2 \phi}{\partial y^2}
+  \end{equation}
+Mide la concentración de un campo en un punto. Si es negativo, indica una tendencia a la
+concentración (fuente); si es positivo, indica dispersión.
+
+El operador laplaciano es
+\begin{equation}
+  \nabla^2
+  = \dfrac{\partial^2}{\partial x^2}
+  + \dfrac{\partial^2}{\partial y^2}
+\end{equation}
+\end{itemize}
+
+\subsection{Elemento de área}
+El elemento diferencial de área en cartesianas es
+\begin{equation}
+  d^2a = dx\,dy
+\end{equation}
+\begin{figure}[ht]
+  % Escala
+  \def\scl{1}
+  %
+  \pgfmathsetmacro{\EJESEXTRA}{-0.4}
+  \pgfmathsetmacro{\EJESLONG}{2.3}
+  % Eje x
+  \pgfmathsetmacro{\XMLONG}{\EJESEXTRA}
+  \pgfmathsetmacro{\XPLONG}{\EJESLONG}
+  % Eje y
+  \pgfmathsetmacro{\YMLONG}{\EJESEXTRA}
+  \pgfmathsetmacro{\YPLONG}{\EJESLONG}
+  % dx, dy
+  \pgfmathsetmacro{\LONG}{0.9}
+  \pgfmathsetmacro{\DX}{\LONG}
+  \pgfmathsetmacro{\DY}{\LONG}
+  % Posición del elemento de área
+  \pgfmathsetmacro{\PX}{0.5}
+  \pgfmathsetmacro{\PY}{1.0}
+  % Fondo
+  \pgfmathsetmacro{\HORZ}{0.25}
+  \pgfmathsetmacro{\VERT}{0.25}
+  % 
+  \centering
+  \begin{tikzpicture}[%
+    scale=\scl,
+    every node/.style={black,font=\small},
+    eje/.style={->},
+    proyeccion/.style={black!20, line width=0.4},
+    area/.style={fill=green!40, draw=black!20},
+    textooriginal/.style={\colorTorig},
+    background/.style={%
+      line width=\bgborderwidth,
+      draw=\bgbordercolor,
+      fill=\bgcolor,
+    },
+    ]
+    % COORDENADAS
+    % Origen
+    \coordinate (O) at (0,0);
+    % Extremo izdo del eje x e inferior del eje y
+    \coordinate (xini) at (\XMLONG cm,0);
+    \coordinate (yini) at (0,\YMLONG cm);
+    % Eje x
+    \path[save path=\ejex] (xini) -- (\XPLONG cm, 0) coordinate (xfin);
+    % Eje y
+    \path[save path=\ejey] (yini) -- (0, \YPLONG cm) coordinate (yfin);
+    % Punto P
+    \coordinate (P) at (\PX, \PY);
+    %
+    \path (P) -- coordinate[pos=0.5] (dxtext) ++(\DX, 0) coordinate (PDX);
+    \path (P) -- coordinate[pos=0.5] (dytext) ++(0, \DY) coordinate (PDY);
+%    % Vector
+%    \path[save path=\vector] (O) -- coordinate[pos=0.5] (pmid) (\PANG:\PMOD cm)
+%    coordinate (P);
+%    % Proyección de elemento de área en los ejes
+    \path[save path=\proyPx] (P) |- coordinate (Px) (xfin);
+    \path[save path=\proyPy] (P) -| coordinate (Py) (yfin);
+    \path[save path=\proyPhorx] (PDX) |- coordinate (Phorx) (xfin);
+    \path[save path=\proyPverty] (PDY) -| coordinate (Pverty) (yfin);
+    % Texto de las proyecciones en los ejes
+    \path (Px) -- coordinate[pos=0.5] (dxtexto) (Phorx);
+    \path (Py) -- coordinate[pos=0.5] (dytexto) (Pverty);
+    
+    % DIBUJOS
+    % Proyección de elemento de área en los ejes
+    \draw[proyeccion, use path=\proyPx];
+    \draw[proyeccion, use path=\proyPy];
+    \draw[proyeccion, use path=\proyPhorx];
+    \draw[proyeccion, use path=\proyPverty];
+    % Texto dx y dy en los ejes
+    \node[below] at (dxtexto) {$dx$};
+    \node[left] at (dytexto) {$dy$};
+    
+    % Ejes
+    % x
+    \draw[eje, use path=\ejex];
+    \node[right] at (xfin) {$x$};
+    %\node[below] at (xtexto) {$x$};
+    % y
+    \draw[eje, use path=\ejey];
+    \node[above] at (yfin) {$y$};
+    % \node[left] at (ytexto) {$y$};
+    % Punto P
+    % \fill (P) circle[radius=1.2pt];
+    % Elemento de área
+    \filldraw[area] (P) rectangle coordinate (centro) ++(\DX, \DY);
+    \node at (centro) {\footnotesize $d^2a$};
+
+    % Origen
+    \filldraw (O) circle [radius=.2pt];
+
+    % Fondo amarillo
+    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);    
+    \begin{scope}[on background layer]
+      \draw[background] (SW) rectangle (NE);
+    \end{scope}
+  \end{tikzpicture}
+  \caption{Elemento de área en coordenadas cartesianas, $d^2a = dx dy$.}
+  \label{fig:R2-rect-elemento_area}
+\end{figure}
+
+Este elemento se relaciona trivialmente con el jacobiano de la
+\emph{transformación identidad} $f(x,y) \longrightarrow f(x,y)$
+\[
+  d^2a = \dfrac{\partial(x,y)}{\partial(x,y)} dx dy
+  = \begin{vmatrix}
+    \partial x/\partial x & \partial x/\partial y\\
+    \partial y/\partial x & \partial y/\partial y
+  \end{vmatrix}
+  dx dy
+  = \begin{vmatrix}
+    1 & 0\\
+    0 & 1
+  \end{vmatrix}
+  dx dy
+  = 1\,dx dy
+  = dxdy
+\]
+
+
+
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: luatex
+%%% TeX-master: "../retazosmatematicas.tex"
+%%% End:
