@@ -7,46 +7,29 @@
 
 \chapter{Sistema de coordenadas cartesianas oblicuas en
   \mathinhead{\symbb{R}^2}{espr2}}
-
-Este capítulo tiene dos objetivos:
+Este capítulo tiene los siguientes objetivos:
 \begin{enumerate}
-\item Analizar el sistema de coordenadas oblicuas en el plano $\symbb{R}^2$ y la
-  expresión del resultado de distintas operaciones en este sistema.
-\item Introducir elementos básicos de geometría diferencial necesarios para la
-  realización del objetivo anterior.
+\item Analizar el sistema de coordenadas oblicuas en el plano euclídeo $\symbb{R}^2$ y
+  determinadas operaciones, utilizando unos conceptos básicos de geometría diferencial.
+\item Realizar algunas operaciones diferenciales, como gradiente, divergencia y
+  laplaciano en este sistema.
 \end{enumerate}
 
-En el capítulo se analizan brevemente unos pocos sistemas de coordenadas en el plano,
-seguido de la acción del operador nabla sobre campos escalares y vectoriales
-
-El capítulo comienza recordando conceptos básicos del sistema de coordenadas cartesianas
-rectangulares. Cuando digamos coordenadas \emph{cartesianas} sin más, nos referimos a
-estas.
-
-Se sigue con una descripción de sistemas de coordenadas cartesianas oblicuas, en adelante, coordenadas \emph{oblicuas}, en contraposición con las \emph{rectangulares},
-cuando convenga compararlas, pues ambas son \emph{cartesianas}.
-
-Después nos adentramos en la descripción de las coordenadas polares planas.
-
-Se introducen determinados conceptos de geometría diferencial, como \emph{base natural},
-\emph{base unitaria}, \emph{métrica}, \emph{factores de escala},
-\emph{vectores y coordenadas contravariantes y covariantes}, \emph{tensores},
+Se utilizarán determinados conceptos de la geometría diferencial, como \emph{base natural}, \emph{métrica}, \emph{factores de escala},
+\emph{vectores y componentes contravariantes y covariantes},
 \emph{espacio dual}, etc., conforme se van necesitando, unos con más detalle que otros,
 de manera que, al final del capítulo, se termina con una idea básica de esta rama de las
-matemáticas. Lo nos interesa ahora es que, con estos conocimientos, se podrán seguir los
-siguientes capítulos que versen sobre otros sistemas de coordenadas. Por descontado, la
-geometría diferencial es mucho más que lo que aquí se presenta, pues solo se ha arañado
-parte de la superficie.
+matemáticas. Por descontado, la geometría diferencial es mucho más que lo que aquí se
+presenta, pues solo se ha arañado una pequeña parte de la superficie.
 
+%Aquí introduciremos los conceptos de \emph{componentes contravariantes y covariantes},
+%algo que no hicimos en el sistema cartesiano rectangular, porque en este último ambas
+%componentes son idénticas, pero en este otro sí hay diferencia.
+%Solo adelantaremos que las componentes contravariantes se representan situando el índice
+%de la coordenada como superíndice (no es un exponente), y la covariantes poniéndolo
+%como subíndice. Más adelante se aclararán estos términos.
 
-Aquí introduciremos los conceptos de \emph{componentes contravariantes y covariantes},
-algo que no hicimos en el sistema cartesiano rectangular, porque en este último ambas
-componentes son idénticas, pero en este otro sí hay diferencia.
-Solo adelantaremos que las componentes contravariantes se representan situando el índice
-de la coordenada como superíndice (no es un exponente), y la covariantes poniéndolo
-como subíndice. Más adelante se aclararán estos términos.
-
-\section{Características fundamentales del sistema}
+\section{Visión general. Características fundamentales del sistema}
 \begin{itemize}
 \item Ejes y su notación:
   Tendremos dos ejes; uno de ellos, horizontal, lo haremos coincidir con el eje $x$
@@ -63,29 +46,26 @@ como subíndice. Más adelante se aclararán estos términos.
     $\tilde{y}$ o $y'$.
     Esta notación se suele usar para diferenciar visualmente dos sistemas cartesianos,
     como el ortogonal estándar y el oblicuo, o entre dos oblicuos.
-    En este texto, cuando utilicemos esta notación, siempre reservaremos $x$ e $y$ para
-    el sistema cartesiano ortogonal, aunque el sistema oblicuo no lo comparemos con él.
+    En este texto, a menos que se diga lo contrario, cuando utilicemos esta notación,
+    reservaremos $x$ e $y$ para el sistema cartesiano ortogonal, aunque el sistema
+    oblicuo no lo comparemos con aquél.
   \item Notación en cálculo tensorial y geometría diferencial:
     Se usan preferentemente superíndices $x^1$ y $x^2$
     (que no representan exponentes, ni componentes contravariantes de vectores, que
     también se pueden representar igual, aunque se distinguen por el contexto).
   \end{itemize}
-\item Base:
-  La base más utilizada comúnmente en física es la formada por los vectores unitarios
-  radial $\xhat{u}_r = \xhat{r}$ y angular $\xhat{u}_\theta = \xhat{\theta}$.
+\item Base natural:
   La más utilizada en geometría diferencial es la base covariante, formada por vectores
   que se representan mediante subíndices
   \[
     B = \set{\xhat{e}_1, \xhat{e}_2}
   \]
   Los vectores se han representado con acento circunflejo porque en este sistema son
-  vectores unitarios, aunque esto no es cierto en general.
+  vectores unitarios, aunque esto no es cierto en otros sistemas de coordenadas.
 
-  Muy importante: estos vectores covariantes se utilizan para medir las componentes
-  contravariantes $x^i$ de los vectores, como se aprecia en la figura
-  \ref{fig:R2-oblic_contrav}.
-
-  La base natural servirá para obtener la métrica de estos sistemas oblicuos.
+  Avanzamos un detalle importante: los vectores covariantes $\xhat{e}_i$ (con subíndice)
+  de la base son los que sirven para medir las componentes contravariantes $x^i$ (con
+  superíndice) de los vectores, como se aprecia en la figura \ref{fig:R2-oblic_contrav}.
 \end{itemize}
 \begin{figure}[ht]
   % Escala
@@ -275,20 +255,242 @@ como subíndice. Más adelante se aclararán estos términos.
   \label{fig:R2-oblic_ejes}
 \end{figure}
 
-
-
-\section{Base natural}
-Como se comentó en el apartado anterior, la base natural $B'$ en el sistema oblicuo está
-formada por los dos vectores covariantes (nótese el subíndice en los vectores)
+\subsection{Base natural}
+Como se comentó en el apartado anterior, la base natural, ahora $B'$ en el sistema
+oblicuo (con prima, para distinguirla temporalmente de la base ortogonal
+$B=\set{\uvec{\i},\,\uvec{\j}}$ con la que la compararemos más adelante), está formada
+por los vectores covariantes (nótese el subíndice) siguientes
 \begin{equation}\label{eq:R2-oblic_base}
   B' = \set{\xhat{e}_1, \xhat{e}_2}
 \end{equation}
+Esta base es muy importante, pues servirá para obtener la métrica de estos sistemas
+oblicuos que, a su vez, nos permitirá relacionar de alguna manera las componentes
+covariantes y las contravariantes, entre sí.
 
-\subsubsection{Cálculo}
-Tomaremos la figura \ref{fig:R2-coord_rect-ij} como referencia.
-La base natural se calcula expresando el vector $\vvv{r}=x\,\uvec{\i}+y\,\uvec{\j}$ en
-función de las coordenadas en el nuevo sistema, en nuestro caso $x^1$ y $x^2$, y
-calculando las derivadas parciales $\vvv{e}_i = \partial\vvv{r}/\partial x^i$.
+\subsubsection{Cálculo geométrico}
+Hasta que no obtengamos la matriz de cambio de base más adelante, para obtener la base
+natural que necesitamos, vamos a recurrir a un procedimiento geométrico. Para ello,
+empezamos fijándonos en la figura \ref{fig:R2-coord_rect-ij}.
+De ella deducimos que, en coordenadas ortogonales, la posición de cualquier punto del
+plano euclídeo se expresa como
+\begin{equation}
+  \vvv{r} = x\,\uvec{\i} + y\,\uvec{\j}
+\end{equation}
+
+La base natural se calcula expresando el vector de posición, expresado en función de las
+componentes contravariantes en el nuevo sistema $x^1$ y $x^2$, y calculando las
+derivadas parciales $\vvv{e}_i = \partial\vvv{r}/\partial x^i$.
+Hasta que no se explique con algo de detalle el significado de estas componentes
+contravariantes, es suficiente con fijarnos en la figura \ref{fig:R2-coord_rect-ij}.
+De acuerdo con ella, el vector de posición de un punto cualquiera del plano se expresa
+como
+\[
+  \vvv{r} = x\,\uvec{\i} + y\,\uvec{\j}
+\]
+
+Nuestro objetivo es obtener $x$ e $y$ en función de las $x^1$ y $x^2$
+\begin{align}
+  x &= x(x^1, x^2)\\
+  y &= y(x^1, x^2)
+\end{align}
+y sustituir en la expresión anterior, para poder derivar parcialmente el vector de
+posición respecto de las $x^i$.
+
+Fijémonos en el triángulo sombreado en verde de la figura \ref{fig:R2-oblic_proced_geom}.
+Sabemos que el ángulo $\beta$ es el complementario de $\alpha$, que es el que forman los
+dos ejes oblicuos, de manera que $\sin\beta = \cos\alpha$ y $\cos\beta = \sin\alpha$.
+
+Así
+\begin{equation}
+  \begin{cases}
+    \begin{array}{lll}
+    \sin\beta = \cos\alpha = \dfrac{x-x^1}{x^2}
+      &\longrightarrow
+      &x = x^1 + x^2\cos\alpha\\
+      \cos\beta = \sin\alpha = \dfrac{y}{x^2}
+      &\longrightarrow
+      &y = x^2\sin\alpha
+    \end{array}
+  \end{cases}
+\end{equation}
+
+\begin{figure}[ht]
+  % Escala
+  \def\scl{1.00}
+  % 
+  \pgfmathsetmacro{\EJECARTLONG}{3.5}
+  \pgfmathsetmacro{\EJEOBLICLONG}{3.0}
+  % Eje x
+  \pgfmathsetmacro{\XANG}{0.0}
+  \pgfmathsetmacro{\XLONG}{\EJECARTLONG}
+  % Eje y
+  \pgfmathsetmacro{\YANG}{90}
+  \pgfmathsetmacro{\YLONG}{\EJECARTLONG}
+  % Eje xtilde
+  \pgfmathsetmacro{\XTILDEANG}{0}
+  \pgfmathsetmacro{\XTILDELONG}{\EJEOBLICLONG}    
+  % Eje ytilde
+  \pgfmathsetmacro{\YTILDEANG}{55}
+  \pgfmathsetmacro{\YTILDELONG}{0.56*(\EJECARTLONG + \EJEOBLICLONG)}
+  % Vector P
+  \pgfmathsetmacro{\PMOD}{3.0}
+  \pgfmathsetmacro{\PANG}{30}
+  % Fondo
+  \pgfmathsetmacro{\HORZ}{0.25}
+  \pgfmathsetmacro{\VERT}{0.25}
+  % 
+  \centering
+ \begin{tikzpicture}[%
+    scale=\scl,
+    every node/.style={black,font=\footnotesize},
+    ejecart/.style={->, black!30},
+    ejeoblic/.style={->, black},
+    proyeccionoblic/.style={black!20, line width=0.5},
+    proyeccioncart/.style={black!20, line width=0.5, dashed},
+    % longitud/.style={line width=.5pt,\colorV},
+    texto/.style={black},
+    textoapagado/.style={\colorTorig},
+    vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt,\colorV},
+    contravariante/.style={line width=1.4pt, red},
+    cartesiana/.style={gray, line width=1.5pt},
+    contravtxt/.style={red!70!black},
+    pcirculo/.style={fill=\colorPorig, draw=black},
+    angulo/.style={fill=green!15, draw=\colorGirodos},
+    angulogiro/.style={draw=black!50},
+    background/.style={%
+      line width=\bgborderwidth,
+      draw=\bgbordercolor,
+      fill=\bgcolor,
+    },
+    ]
+    % COORDENADAS
+    % Origen
+    \coordinate (O) at (0,0);
+    % Eje x
+    \path[save path=\ejex] (O) -- ++(\XANG:\XLONG cm) coordinate (xfin);
+    % Eje x
+    \path[save path=\ejey] (O) -- ++(\YANG:\YLONG cm) coordinate (yfin);
+    % Eje xtilde
+    \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
+    coordinate (xtildefin);
+    % Eje ytilde
+    \path[save path=\ejeytilde, name path=O--ytilde] (O) -- ++(\YTILDEANG:\YTILDELONG cm)
+    coordinate (ytildefin);
+    % Vector
+    \path[save path=\r] (O) -- (\PANG:\PMOD cm) coordinate (P);
+    % Proyección de P en los ejes
+    % Con eje x
+    \path[save path=\proyx] (P) |- (xfin) coordinate[pos=0.5] (px);
+    % Con eje y
+    \path[save path=\proyy] (P) -| (yfin) coordinate[pos=0.5] (py);
+    % Componentes contravariantes
+    % Intersección de horizontal desde P hasta ytilde
+    % -> Componente contravariante eje ytilde (CTV2) 
+    \path[name path=P--y] (P) -| (yfin);
+    \path[name intersections={of=P--y and O--ytilde, by=CTV2}];
+    % Paralela (CTV2) -- (O) que pase por (P)
+    % -> Componente contravariante eje xtilde (CTV1)
+    \path (P) -- ($(P) - (CTV2) - (O)$) coordinate (CTV1);
+    % Componente delta x = x-x^1
+    \path[save path=\deltaxsegmento] (CTV1) -- coordinate[pos=0.5] (deltaxtxt) (px);
+    % Componente y
+    \path (P) -- coordinate[pos=0.5] (ytxt) (px);
+
+    % DIBUJOS    
+    % Área
+    \fill[green!15] (P) -- (px) -- (CTV1) -- cycle;
+
+    % Ángulo beta
+    \path (yfin) -- (O) -- (ytildefin) pic
+    [angulogiro, {Latex[round,width=3pt,length=4pt]}-,
+    "\color{black!60}{\footnotesize $\beta$}", angle radius=75pt,
+    angle eccentricity=1.1]
+    {angle = ytildefin--O--yfin};
+    % Otro ángulo beta
+    \path (px) -- (P) -- (CTV1) pic
+    [angulo, "\color{black}{\scriptsize $\beta$}", angle radius=16pt,
+    angle eccentricity=0.70]
+    {angle = CTV1--P--px};
+    
+    % Proyecciones de componentes
+    % Con el eje x
+    \draw[proyeccioncart, use path=\proyx];
+    % Con el eje y
+    \draw[proyeccioncart, use path=\proyy];
+    % Contravariantes
+    \draw[proyeccionoblic] (P) -- (CTV1);
+    %\node[below] at (CTV1) {\footnotesize $\hat{x}^1$};
+    \draw[proyeccionoblic] (P) -- (CTV2);
+    % \node[left] at (CTV2) {\footnotesize $\hat{x}^2$};
+    % Eje x
+    \draw[ejecart, use path=\ejex];
+    \node[textoapagado, below=3pt] at (xfin) {$x$};
+    % Eje y
+    \draw[ejecart, use path=\ejey];
+    \node[textoapagado, left] at (yfin) {$y$};
+    % Eje xtilde
+    \draw[ejeoblic, use path=\ejextilde];
+    \node[texto, below] at (xtildefin) {$x^1$};
+    % Eje ytilde
+    \draw[ejeoblic, use path=\ejeytilde];
+    \node[above right=-1pt and -3pt, texto] at (ytildefin) {$x^2$};
+    % Vector v
+    \draw[vector, use path=\r];
+    \node[above right=-2pt and -2pt] at (P) {\footnotesize $\vvv{r}$};
+    \filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
+    %\node[above right=0pt and -5pt] at (P) {\footnotesize $P$};
+
+    % Marcar en color la componentes contravariantes
+    \draw[contravariante] (O) -- node[contravtxt, pos=0.5, below] {$x^1$} (CTV1);
+    \draw[contravariante] (O) -- node[contravtxt, pos=0.6, left] {$x^2$} (CTV2);
+
+    % delta x
+    \draw[cartesiana, use path=\deltaxsegmento];
+    \node[below] at (deltaxtxt) {$x-x^1$};
+    % y
+    %\draw[cartesiana, use path=\ysegmento];
+    %\node[right] at (ytxt) {$y$};
+    \path (px) -- node[pos=0.41, right] {$y$} (P);
+    % x^2
+    \path (CTV1) -- node[pos=0.43, left] {$x^2$} (P);
+
+    % Origen
+    \fill[orange!80!black] (O) circle [radius=0.8pt];
+    
+    % Fondo amarillo
+    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
+    \begin{scope}[on background layer]
+      \draw[background] (SW) rectangle (NE);
+    \end{scope}
+  \end{tikzpicture}
+  \caption{El triángulo rectángulo sombreado en verde nos permite relacionar las
+    coordenadas ortogonales $x$ e $y$ con las contravariantes $x^1$ y $x^2$, a través
+    del ángulo $\beta$ que forma el eje $x^2$ con el eje $y$.}
+  \label{fig:R2-oblic_proced_geom}
+\end{figure}
+
+El vector de posición de un punto en función de las componentes contravariantes es
+\begin{equation}
+  \vvv{r} = \left(x^1+x^2\cos\alpha\right)\,\uvec{\i} + x^2\sin\alpha\,\uvec{j}
+\end{equation}
+
+Los vectores de la base natural serán
+\begin{align}
+  \xhat{e}_1
+  &=
+    \dfrac{\partial\vvv{r}}{x^1}
+    = \uvec{\i}
+    \longrightarrow
+  |\xhat{e}_1| = |\uvec{\i}| = \sqrt{1} = 1\\
+  \xhat{e}_2
+  &=
+    \dfrac{\partial\vvv{r}}{x^2}
+    = \cos\alpha\,\uvec{\i} + \sin\alpha\,\uvec{\j}
+    \longrightarrow
+    |\xhat{e}_2| = \sqrt{\cos^2\alpha + \sin^2\alpha} = 1
+\end{align}
+y sus módulos valen la unidad.
 
 \section{Cambio de base}
 Para relacionar esta base $B'$ con la estándar de las rectilíneas
