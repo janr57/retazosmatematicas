@@ -7,6 +7,18 @@
 
 \chapter{Sistema de coordenadas cartesianas ortogonales en
   \mathinhead{\symbb{R}^2}{espr2}}
+
+Este capítulo tiene los siguientes objetivos:
+\begin{enumerate}
+\item Presentar el sistema de coordenadas ortogonales o rectantulares en el plano
+  euclídeo $\symbb{R}^2$, como fundamento para el resto de sistemas de coordenadas que
+  se estudiarán posteriormente.
+\item Introducir los conceptos de base natural y de métrica en este sistema.
+\item Recordar la expresión del resultado de distintas operaciones de cálculo en este
+  sistema.  
+\end{enumerate}
+
+\section{Ideas básicas}
 Vector de posición de cualquier punto del espacio $\symbb{R}^2$ en coordenadas cartesianas
 \begin{equation}\label{eq:R2-r_rect}
   \vvv{r}
@@ -114,13 +126,14 @@ Vector de posición de cualquier punto del espacio $\symbb{R}^2$ en coordenadas 
 \end{figure}
 
 
-\subsection{Base natural, vectores unitarios y su producto escalar}
+\subsection{Base natural}
 \subsubsection{Base natural y vectores unitarios}
 Si derivamos el vector de posición anterior \eqref{eq:R2-r_rect}, con respecto a
-cada una de las coordenadas, obtenemos los vectores de una  posible base en estas
-coordenadas. Estos vectores llevan información concreta acerca de cómo varia la posición
-en el espacio cuando variamos cada una de las coordenadas ---tal y como sugieren las
-derivadas---, lo que será importante para obtener la métrica en estas coordenadas.
+cada una de las coordenadas, obtenemos los vectores de una base, llamada \emph{natural},
+en estas coordenadas. Estos vectores llevan información concreta acerca de cómo varia la
+posición en el espacio cuando variamos cada una de las coordenadas ---tal y como
+sugieren las derivadas---, lo que será importante para obtener la métrica en estas
+coordenadas.
 
 Como
 \begin{equation}
@@ -133,15 +146,23 @@ Entonces, derivando se obtiene
     \xhat{e}_x
     &=
       \dfrac{\partial\vvv{r}}{\partial x}
-      = \uvec{\i}\\
+      = \uvec{\i}
+      \longrightarrow
+    |\xhat{e}_x| = |\uvec{\i}| = 1\\
     \label{eq:R2-cart-ey}
     \xhat{e}_y
     &= \dfrac{\partial\vvv{r}}{\partial y}
       = \uvec{\j}
+      \longrightarrow
+    |\xhat{e}_y| = |\uvec{\j}| = 1
   \end{align}
 \end{subequations}
-Estos vectores forman la denominada \emph{base natural} en cartesianas que, en este
-sistema coincide con los vectores unitarios tradicionales $\uvec{\i}$ y $\uvec{\j}$,
+estos vectores son unitarios aunque, en general, no tiene por qué ser así en otros
+sistemas.
+
+Como hemos dicho, estos vectores forman la denominada \emph{base natural} en cartesianas
+que, en este sistema coincide con los vectores unitarios tradicionales $\uvec{\i}$ y
+$\uvec{\j}$,
 aunque en otros sistemas de coordenadas no tienen por qué ser unitarios
 \begin{equation}\label{eq:R2-cart-base}
   B=\set{\xhat{e}_x, \xhat{e}_y} = \set{\uvec{\i},\, \uvec{\j}}
@@ -153,7 +174,8 @@ proporcionara un sistema de reglas y goniómetros con los cuales medir.
 
 De la equivalencia de la base natural con la unitaria, se puede inferir que la métrica en
 coordenadas cartesianas rectangulares en $\symbb{R}^2$ se representará como una matriz
-unidad (en el apartado \ref{ssect:R2-cart-metrica-factores_escala} se calculará con detalle).
+unidad (en el apartado siguiente,\ref{ssect:R2-cart-metrica-factores_escala}, se
+calculará con detalle).
 
 \subsection{Métrica y factores de escala}
 \label{ssect:R2-cart-metrica-factores_escala}
