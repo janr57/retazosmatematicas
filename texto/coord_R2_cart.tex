@@ -113,7 +113,7 @@ Vector de posición de cualquier punto del espacio $\symbb{R}^2$ en coordenadas 
     
     % Origen
     \filldraw (O) circle [radius=.2pt];
-    % Fondo amarillo
+    % Fondo amarilloo
     \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
     \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);    
     \begin{scope}[on background layer]
@@ -127,7 +127,7 @@ Vector de posición de cualquier punto del espacio $\symbb{R}^2$ en coordenadas 
 \end{figure}
 
 
-\subsection{Base natural}
+\section{Base natural}
 \subsubsection{Base natural y vectores unitarios}
 Si derivamos el vector de posición anterior \eqref{eq:R2-r_rect}, con respecto a
 cada una de las coordenadas, obtenemos los vectores de una base, llamada \emph{natural},
@@ -138,7 +138,7 @@ coordenadas.
 
 Como
 \begin{equation}
-  \vvv{r} = x\uvec{\i} + y\uvec{\j}
+  \vvv{r} = x\,\uvec{\i} + y\,\uvec{\j}
 \end{equation}
 
 Entonces, derivando se obtiene
@@ -178,7 +178,7 @@ coordenadas cartesianas rectangulares en $\symbb{R}^2$ se representará como una
 unidad (en el apartado siguiente,\ref{ssect:R2-cart-metrica-factores_escala}, se
 calculará con detalle).
 
-\subsection{Métrica y factores de escala}
+\section{Métrica y factores de escala}
 \label{ssect:R2-cart-metrica-factores_escala}
 
 \subsubsection{Producto escalar de los vectores de la base natural}
@@ -309,7 +309,7 @@ v_x^2 + v_y^2
 \]
 que coincide con el valor que obteníamos en el cálculo vectorial básico.
 
-\subsection{Gradiente, divergencia y laplaciana}
+\section{Gradiente, divergencia y laplaciana}
 Presentamos un resumen de estas operaciones, tal y como se presentan en un curso básico
 de cálculo
 \begin{itemize}
@@ -384,7 +384,7 @@ El operador laplaciano es
 \end{equation}
 \end{itemize}
 
-\subsection{Elemento de área}
+\section{Elemento de área}
 El elemento diferencial de área en cartesianas es
 \begin{equation}
   d^2a = dx\,dy

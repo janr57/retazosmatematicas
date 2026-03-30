@@ -7,6 +7,7 @@
 
 \chapter{Sistema de coordenadas cartesianas oblicuas en
   \mathinhead{\symbb{R}^2}{espr2}}
+
 Este capítulo tiene dos objetivos:
 \begin{enumerate}
 \item Analizar el sistema de coordenadas oblicuas en el plano $\symbb{R}^2$ y la
@@ -45,7 +46,7 @@ Solo adelantaremos que las componentes contravariantes se representan situando e
 de la coordenada como superíndice (no es un exponente), y la covariantes poniéndolo
 como subíndice. Más adelante se aclararán estos términos.
 
-\subsection{Características fundamentales del sistema}
+\section{Características fundamentales del sistema}
 \begin{itemize}
 \item Ejes y su notación:
   Tendremos dos ejes; uno de ellos, horizontal, lo haremos coincidir con el eje $x$
@@ -276,7 +277,7 @@ como subíndice. Más adelante se aclararán estos términos.
 
 
 
-\subsection{Base natural}
+\section{Base natural}
 Como se comentó en el apartado anterior, la base natural $B'$ en el sistema oblicuo está
 formada por los dos vectores covariantes (nótese el subíndice en los vectores)
 \begin{equation}\label{eq:R2-oblic_base}
@@ -289,7 +290,7 @@ La base natural se calcula expresando el vector $\vvv{r}=x\,\uvec{\i}+y\,\uvec{\
 función de las coordenadas en el nuevo sistema, en nuestro caso $x^1$ y $x^2$, y
 calculando las derivadas parciales $\vvv{e}_i = \partial\vvv{r}/\partial x^i$.
 
-\subsection{Cambio de base}
+\section{Cambio de base}
 Para relacionar esta base $B'$ con la estándar de las rectilíneas
 $B=\set{\uvec{\i},\uvec{\j}}$, haremos coincidir el versor $\xhat{e}_1$ con $\uvec{\i}$,
 esto es, el eje $\tilde{x}$ coincide con el eje $x$ de las cartesianas. Véase la figura
@@ -536,7 +537,7 @@ filas
 \end{subequations}
 
 
-\subsection{Componentes de los vectores}
+\section{Componentes de los vectores}
 Cuando un vector se expresa en una determinada base, se obtiene su representación en
 función de unas determinadas componentes. Por ejemplo, en dos dimensiones y tomando una
 base genérica $\set{\vvv{e}_1,\vvv{e}_2}$, escribiríamos
@@ -569,7 +570,7 @@ la base $\set{\vvv{x}'_1, \vvv{x}'_2}$, las nuevas componentes serían $x'_i$ y 
 Cambian las componentes, pero el vector tiene que ser el mismo, el vector no cambia, lo
 hace su representación dependiendo de la base utilizada.
 
-\subsection{Componentes contravariantes}
+\section{Componentes contravariantes}
 \label{ssect:R2-contravariantes}
 Para introducir este tipo de componentes, vamos a poner un ejemplo concreto. Supongamos
 que medimos un cierto vector y para ello, por sencillez, utilizamos la base estándar en coordenadas cartesianas rectangulares en metros $B=\set{\uvec{\i},\,\uvec{\j}}$, y
@@ -741,7 +742,7 @@ Esto es característico de las componentes contravariantes que, en cierto modo
 \emph{funcionan} como las componentes $x$ e $y$ en un sistema cartesiano ortogonal.
 
 
-\subsection{Forma matricial de la base y de las componentes}
+\section{Forma matricial de la base y de las componentes}
 Recordemos que los vectores de una base se representan matricialmente situando los
 vectores en fila
 \[
@@ -768,7 +769,7 @@ cierta base. Lo único que tienen en común es que ambas son representaciones ma
 aunque de cosas diferentes.
 
 
-\subsection{Transformación de componentes}
+\section{Transformación de componentes}
 Un cambio de base, por ejemplo de $B$ a $B'$, se produce mediante una matriz de
 transformación $\mmm{M}$
 \begin{equation}
@@ -919,7 +920,7 @@ y quisiéramos obtener las coordenadas rectangulares, deberíamos obtener $(2,-4
 \end{align*}
 
 
-\subsection{Métrica}
+\section{Métrica}
 Con los conocimientos que hemos adquirido, la forma más rápida para obtener el tensor
 métrico en coordenadas oblicuas es utilizar el método seguido en la expresión
 \eqref{eq:R2-cart-metrica}. Para ello debemos calcular el producto escalar de los
@@ -1031,7 +1032,7 @@ Resultando
 \end{equation}
 }
 
-\subsection{Espacio tangente y espacio dual}
+\section{Espacio tangente y espacio dual}
 Si se quiere profundizar algo más en las componentes covariantes y contravariantes, aquí
 se presentan algunas ideas útiles.
 
@@ -1094,7 +1095,7 @@ un vector en un covector y viceversa.
 
 Para terminar, el álgebra lineal proporciona la estructura algebraica, mientras que la geometría diferencial proporciona el marco geométrico y físico.
 
-\subsection{Base contravariante}
+\section{Base contravariante}
 Como dijimos en el apartado anterior, la métrica nos permite conectar la base covariante
 $\set{\vvv{e}_1,\vvv{e}_2}$ con su dual, base contravariante, \emph{subiendo} índices.E
 Utilizando la métrica inversa \eqref{eq:R2-oblic_metrica_inv}, y en notación de Einstein
@@ -1133,7 +1134,7 @@ sistema cartesiano rectangular $\alpha=\qty{90}{\degree}$
     = \dfrac{\sqrt{1+\cos^2\alpha}}{\sin^4\alpha}
 \end{align}
 
-\subsection{Producto escalar de los vectores de las dos bases}
+\section{Producto escalar de los vectores de las dos bases}
 Empezamos demostrando que el producto de vectores de los distintos espacios con el mismo
 índice da la unidad
 \begin{equation}
@@ -1364,7 +1365,7 @@ ejes---, ver figura \ref{fig:R2-oblic_ejes_ctv_cov}.
 \end{figure}
 
 
-\subsection{Componentes covariantes}
+\section{Componentes covariantes}
 En la sección \ref{ssect:R2-contravariantes}, proyectamos un vector trazando líneas
 paralelas a los ejes; así es como sumamos vectores gráficamente ---mediante la regla del
 paralelogramo---. Los resultados de esas proyecciones paralelas eran sus componentes
@@ -1906,7 +1907,7 @@ componentes no varían inversamente con la escala de medida, sino que lo hace en
 sentido. Estas son las \emph{componentes covariantes}.
 
 
-\subsection{Producto escalar}
+\section{Producto escalar}
 Ahora que se han introducido las componentes covariantes y contravariantes, y el tensor
 métrico, estamos en disposición de ver el producto escalar de dos vectores
 contravariantes.
@@ -1978,7 +1979,7 @@ $U_i = g_{ij}v^j$
 \end{equation}
 
 
-\subsection{Gradiente}
+\section{Gradiente}
 Supongamos un campo escalar $\phi$, definido en $\symbb{R^2}$ y expresado en coordenadas
 oblicuas según sus componentes contravariantes ---utilizando, para la posición en el
 espacio, la base unitaria $B= (\xhat{e}_1,\xhat{e}_2)$---
