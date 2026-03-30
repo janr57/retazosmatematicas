@@ -12,7 +12,10 @@ FILES =	retazosmatematicas.pkg.sty\
 	portada/portada.tex\
 	tablacontenidos/tablacontenidos.tex\
 	prefacio/prefacio.tex\
-	texto/coord_R2.tex\
+	texto/coord_R2_cart.tex\
+	texto/coord_R2_oblic.tex\
+	texto/coord_R2_polares.tex\
+	texto/jacobiano.tex\
 	$(IMGSTATICDIR)/Cc-by-nc-sa_icon.pdf
 
 retazosmatematicas.pdf: retazosmatematicas.tex $(FILES)
