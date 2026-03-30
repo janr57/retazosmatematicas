@@ -129,12 +129,22 @@ Vector de posición de cualquier punto del espacio $\symbb{R}^2$ en coordenadas 
 
 \section{Base natural}
 \subsubsection{Base natural y vectores unitarios}
-Si derivamos el vector de posición anterior \eqref{eq:R2-r_rect}, con respecto a
-cada una de las coordenadas, obtenemos los vectores de una base, llamada \emph{natural},
-en estas coordenadas. Estos vectores llevan información concreta acerca de cómo varia la
-posición en el espacio cuando variamos cada una de las coordenadas ---tal y como
-sugieren las derivadas---, lo que será importante para obtener la métrica en estas
-coordenadas.
+En física general y matemáticas elementales se suele preferir una base formada por vectores unitarios para representar cualquier otro vector. Como sabemos, en estas
+coordenadas se utiliza la base $B = \set{\uvec{\i},\,\uvec{\j}}$.
+
+Por otro lado, en geometría diferencial es importante la llamada \emph{base natural}
+\begin{equation}
+  B = \set{\vvv{e}_x, \vvv{e}_y}
+\end{equation}
+Estos vectores no tienen por qué ser unitarios, por esta razón no le ponemos el acento
+circunflejo. Aunque, como veremos, en este caso sí lo son.
+
+Los vectores de esta base se obtienen derivando parcialmente el vector de posición
+expresado en función de las componentes del sistema, en este caso $x$ e $y$, ver
+\eqref{eq:R2-r_rect}, respecto de cada una de ellas. Estos vectores llevan información
+concreta acerca de cómo varia la posición en el espacio cuando variamos cada una de las
+coordenadas ---tal y como sugieren las derivadas---, lo que será importante para obtener
+la métrica.
 
 Como
 \begin{equation}
@@ -144,21 +154,23 @@ Como
 Entonces, derivando se obtiene
 \begin{subequations}
   \begin{align}\label{eq:R2-cart-ex}
-    \xhat{e}_x
+    \vvv{e}_x
     &=
       \dfrac{\partial\vvv{r}}{\partial x}
       = \uvec{\i}
+      = \xhat{u}_x
       \longrightarrow
-    |\xhat{e}_x| = |\uvec{\i}| = 1\\
+    |\vvv{e}_x| = |\uvec{\i}| = 1\\
     \label{eq:R2-cart-ey}
-    \xhat{e}_y
+    \vvv{e}_y
     &= \dfrac{\partial\vvv{r}}{\partial y}
       = \uvec{\j}
+      = \xhat{u}_y
       \longrightarrow
-    |\xhat{e}_y| = |\uvec{\j}| = 1
+    |\vvv{e}_y| = |\uvec{\j}| = 1
   \end{align}
 \end{subequations}
-estos vectores son unitarios aunque, en general, no tiene por qué ser así en otros
+estos vectores son unitarios aunque, como se dijo antes, no tiene por qué ser así en otros
 sistemas.
 
 Como hemos dicho, estos vectores forman la denominada \emph{base natural} en cartesianas
@@ -166,45 +178,46 @@ que, en este sistema coincide con los vectores unitarios tradicionales $\uvec{\i
 $\uvec{\j}$,
 aunque en otros sistemas de coordenadas no tienen por qué ser unitarios
 \begin{equation}\label{eq:R2-cart-base}
-  B=\set{\xhat{e}_x, \xhat{e}_y} = \set{\uvec{\i},\, \uvec{\j}}
+  B
+  =\set{\vvv{e}_x, \vvv{e}_y}
+  = \set{\xhat{u}_x, \xhat{u}_y}
+  = \set{\uvec{\i},\, \uvec{\j}}
 \end{equation}
 
+
+\section{Métrica y factores de escala}
+\label{ssect:R2-cart-metrica-factores_escala}
 La métrica en cada sistema de coordenadas define la estructura del espacio, en
 particular, sin ella no se pueden medir ni distancias ni ángulos. Es como si
 proporcionara un sistema de reglas y goniómetros con los cuales medir.
 
 De la equivalencia de la base natural con la unitaria, se puede inferir que la métrica en
-coordenadas cartesianas rectangulares en $\symbb{R}^2$ se representará como una matriz
-unidad (en el apartado siguiente,\ref{ssect:R2-cart-metrica-factores_escala}, se
-calculará con detalle).
+coordenadas cartesianas rectangulares se representará como una matriz unidad (en el
+apartado siguiente,\ref{ssect:R2-cart-metrica-factores_escala}, se calculará con detalle).
 
-\section{Métrica y factores de escala}
-\label{ssect:R2-cart-metrica-factores_escala}
-
-\subsubsection{Producto escalar de los vectores de la base natural}
-Los vectores de la base fundamental son vectores unitarios.
-La base normalizada en coordenadas cartesianas en este espacio está formada por los vectores $\uvec{\i}$ y $\uvec{\j}$, en los ejes $x$ e $y$, respectivamente.
+\subsection{Producto escalar de los vectores de la base natural}
+La base natural en coordenadas cartesianas en este espacio está formada por los vectores $\uvec{\i}$ y $\uvec{\j}$, en los ejes $x$ e $y$, respectivamente.
 A continuación resumimos el valor de los productos escalares entre ellos, tal y como
 aprendimos en cálculo vectorial fundamental en coordenadas cartesianas o en física
 elemental
 \begin{subequations}
   \begin{align}
     \label{eq:R2-cart-ii_prod_escalar}
-    \xhat{e}_x\cdot\xhat{e}_x = \uvec{\i}\cdot\uvec{\i}
+    \vvv{e}_x\cdot\vvv{e}_x = \uvec{\i}\cdot\uvec{\i}
     &= |\uvec{\i}|\,|\uvec{\i}|\cos 0 = 1\\
     \label{eq:R2-cart-ij_prod_escalar}    
-    \xhat{e}_x\cdot\xhat{e}_y = \uvec{\i}\cdot\uvec{\j}
+    \vvv{e}_x\cdot\vvv{e}_y = \uvec{\i}\cdot\uvec{\j}
     &= |\uvec{\i}|\,|\uvec{\j}|\cos\pi/2 = 0\\
     \label{eq:R2-cart-ji_prod_escalar} 
-    \xhat{e}_y\cdot\xhat{e}_x = \uvec{\j}\cdot\uvec{\i}
+    \vvv{e}_y\cdot\vvv{e}_x = \uvec{\j}\cdot\uvec{\i}
     &= |\uvec{\j}|\,|\uvec{\i}|\cos\pi/2 = 0\\
     \label{eq:R2-cart-jj_prod_escalar}
-    \xhat{e}_y\cdot\xhat{e}_y = \uvec{\j}\cdot\uvec{\j}
+    \vvv{e}_y\cdot\vvv{e}_y = \uvec{\j}\cdot\uvec{\j}
     &= |\uvec{\j}|\,|\uvec{\j}|\cos 0 = 1
   \end{align}
 \end{subequations}
 
-\subsubsection{Métrica y factores de escala}
+\subsection{Métrica y factores de escala}
 La métrica en cartesianas se calcula utilizando los vectores de la base natural,
 calculada en \eqref{eq:R2-cart-ex} y \eqref{eq:R2-cart-ey}.
 Los productos escalares se calcularon en \eqref{eq:R2-cart-ii_prod_escalar},
@@ -217,8 +230,8 @@ Los productos escalares se calcularon en \eqref{eq:R2-cart-ii_prod_escalar},
     g_{21} & g_{22}
     \end{pmatrix}
   = \begin{pmatrix}
-      \xhat{e}_x\cdot\xhat{e}_x & \xhat{e}_x\cdot\xhat{e}_y\\
-      \xhat{e}_y\cdot\xhat{e}_x & \xhat{e}_y\cdot\xhat{e}_y
+      \vvv{e}_x\cdot\vvv{e}_x & \vvv{e}_x\cdot\vvv{e}_y\\
+      \vvv{e}_y\cdot\vvv{e}_x & \vvv{e}_y\cdot\vvv{e}_y
   \end{pmatrix}
   = \begin{pmatrix}
     1 & 0\\
@@ -235,7 +248,7 @@ La raíz cuadrada de los elementos diagonales de la métrica en un sistema de co
 Fijémonos en la métrica \eqref{eq:R2-cart-metrica}:
 \begin{itemize}
 \item Los elementos no diagonales son nulos. Esto se interpreta como que los vectores
-  $\xhat{e}_x$ y $\xhat{e}_y$ son independientes, esto es, son ortogonales.
+  $\xhat{u}_x$ y $\xhat{u}_y$ son independientes, esto es, son ortogonales.
   Esto implica que un cambio en una coordenada no afecta a la otra. Así, si nos
   desplazamos una distancia cualquiera en el eje $x$, no habremos recorrido ninguna
   distancia en el eje $y$, y viceversa, por lo que $h_{xy}=h_{yx}=0$.
@@ -256,7 +269,7 @@ Fijémonos en la métrica \eqref{eq:R2-cart-metrica}:
   $h_x$ vale 1. Lo mismo podemos decir para el factor de escala en el eje $y$, $h_y=1$.
 \end{itemize}
 
-\subsubsection{Revisión del producto escalar}
+\subsection{Revisión del producto escalar}
 Dijimos que la métrica nos permite calcular distancias. En concreto, el cuadrado del
 módulo de un vector $\vvv{A}$ se mide realizando el producto escalar del vector por sí
 mismo.
@@ -265,10 +278,9 @@ matricial, utilizando la métrica (en otros sistemas de coordenadas veremos que 
 importante, mientras que en cartesianas se puede obviar)
 \[
   \vvv{v}\cdot\vvv{w}
-  =
-  \vvv{v}^\transp \mmm{g}_{ij} \vvv{w}
-  =
-  \begin{pmatrix}
+  = \vvv{v}^\transp \mmm{g}_{ij} \vvv{w}
+  = \vvv{v}^\transp \mmm{I} \vvv{w}
+  = \begin{pmatrix}
     v_x &  v_y
   \end{pmatrix}
   \begin{pmatrix}
@@ -282,7 +294,6 @@ importante, mientras que en cartesianas se puede obviar)
   =
   v_xw_x + v_y w_y
 \]
-  
 Así, el cuadrado del módulo de un vector en cartesianas es
 \[
   v^2
@@ -308,6 +319,7 @@ Así, el cuadrado del módulo de un vector en cartesianas es
 v_x^2 + v_y^2
 \]
 que coincide con el valor que obteníamos en el cálculo vectorial básico.
+
 
 \section{Gradiente, divergencia y laplaciana}
 Presentamos un resumen de estas operaciones, tal y como se presentan en un curso básico
