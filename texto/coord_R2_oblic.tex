@@ -58,14 +58,16 @@ presenta, pues solo se ha arañado una pequeña parte de la superficie.
   La más utilizada en geometría diferencial es la base covariante, formada por vectores
   que se representan mediante subíndices
   \[
-    B = \set{\xhat{e}_1, \xhat{e}_2}
+    B = \set{\vvv{e}_1, \vvv{e}_2}
   \]
-  Los vectores se han representado con acento circunflejo porque en este sistema son
-  vectores unitarios, aunque esto no es cierto en otros sistemas de coordenadas.
+  Los vectores se han representado sin acento circunflejo porque aunque en este sistema
+  son vectores unitarios, como veremos más tarde,  esto no es cierto en otros sistemas
+  de coordenadas.
 
-  Avanzamos un detalle importante: los vectores covariantes $\xhat{e}_i$ (con subíndice)
-  de la base son los que sirven para medir las componentes contravariantes $x^i$ (con
-  superíndice) de los vectores, como se aprecia en la figura \ref{fig:R2-oblic_contrav}.
+  Avanzamos un detalle importante: los vectores de la base covariante $\vvv{e}_i$
+  (con subíndice) son los que sirven para medir las componentes contravariantes $x^i$
+  (con superíndice) de cualquier otro vector, como se aprecia en la figura
+  \ref{fig:R2-oblic_contrav}.
 \end{itemize}
 \begin{figure}[ht]
   % Escala
@@ -255,28 +257,185 @@ presenta, pues solo se ha arañado una pequeña parte de la superficie.
   \label{fig:R2-oblic_ejes}
 \end{figure}
 
-\subsection{Base natural}
+\section{Base natural}
+
+\subsection{Base unitaria}
+En física general se suelen utilizar bases formadas por vectores unitarios.
+Para tener una base basta con que los vectores que la forman sean linealmente
+independientes. Así, cualquier vector del espacio se podrá representar como una
+combinación lineal de vectores de la base.
+
+Vamos obtener la base unitaria $B'_u=\set{\xhat{u}_1, \xhat{u}_2}$ en el sistema de
+coordenadas oblicuas. Si nos fijamos en la figura \ref{fig:R2-oblic_u1u2} podemos
+expresar estos vectores en función de los $\uvec{\i}$ y $\uvec{\j}$ de las cartesianas
+rectangulares
+\begin{align}
+  \label{eq:R2-oblic_u1_ij}
+  \xhat{u}_1
+  &=
+    |\xhat{u}_1|\,\uvec{\i} + 0\,\uvec{\j} = \uvec{\i}\\
+  \label{eq:R2-oblic_u2_ij}
+  \xhat{u}_2
+  &=
+    |\xhat{u}_2|\cos{\alpha}\, \uvec{\i} + |\xhat{u}_2|\sin{\alpha}\, \uvec{\j}
+    = \cos\alpha\,\uvec{\i} + \sin\alpha\,\uvec{\j}
+\end{align}
+
+%Ahora vamos a obtener una base $B'=\set{\xhat{e}'_1, \xhat{e}'_2}$ para el sistema
+%oblicuo, obligando de antemano a que sus vectores sean unitarios, $|\vvv{e}'_i| = 1$.
+%Estos vectores unitarios se suelen utilizar en las bases de los sistemas de coordenadas
+%en física general. Pero, cuando se utiliza esta restricción, no siempre se obtiene la
+%base natural del sistema.
+%
+%Para relacionar esta base con la estándar de las rectilíneas
+%$B=\set{\uvec{\i},\uvec{\j}}$ haremos coincidir el versor $\{e}'_1$ con $\uvec{\i}$,
+%esto es, el eje $\tilde{x}$ coincidirá con el eje $x$ de las cartesianas. Véase la figura
+%\ref{fig:R2-oblic_u1u2}.
+\begin{figure}[ht]
+  \centering
+  % Escala
+  \def\scl{1.00}
+  % 
+  % \pgfmathsetmacro{\EJESCARTLONG}{3.0}
+  % \pgfmathsetmacro{\EJEOBLICLONG}{2.7}
+  \pgfmathsetmacro{\EJESCARTLONG}{2.5}
+  \pgfmathsetmacro{\EJEOBLICLONG}{2.1}
+  % Eje x
+  \pgfmathsetmacro{\XLONG}{\EJESCARTLONG}
+  % Eje y
+  \pgfmathsetmacro{\YLONG}{\EJESCARTLONG}
+  % Eje xtilde
+  \pgfmathsetmacro{\XTILDEANG}{0}
+  \pgfmathsetmacro{\XTILDELONG}{\EJEOBLICLONG}    
+  % Eje ytilde
+  \pgfmathsetmacro{\YTILDEANG}{70}
+  \pgfmathsetmacro{\YTILDELONG}{\EJESCARTLONG}
+  % Versores
+  \pgfmathsetmacro{\VTILDEMOD}{1.4}
+  \pgfmathsetmacro{\VXTILDEANG}{0}
+  \pgfmathsetmacro{\VYTILDEANG}{\YTILDEANG}
+  % Vector P
+  \pgfmathsetmacro{\PMOD}{2.3}
+  \pgfmathsetmacro{\PANG}{40}
+  % Fondo
+  \pgfmathsetmacro{\HORZ}{0.25}
+  \pgfmathsetmacro{\VERT}{0.25}
+  % 
+  \centering
+  \begin{tikzpicture}[%
+    scale=\scl,
+    every node/.style={black,font=\small},
+    ejecart/.style={->, black!30},
+    ejeoblic/.style={->, black},
+    proyeccion/.style={black!20, line width=0.4},
+    % longitud/.style={line width=.5pt,\colorV},
+    texto/.style={black,font=\footnotesize},
+    textoapagado/.style={\colorTorig},
+    vtilde/.style={%
+      -{Latex[round,width=4pt,length=6pt]}, line width=1pt, \colorVred},
+    pcirculo/.style={fill=\colorPorig, draw=black},
+    angulo/.style={fill=green!15, draw=\colorGirodos},
+    background/.style={%
+      line width=\bgborderwidth,
+      draw=\bgbordercolor,
+      fill=\bgcolor,
+    },
+    ]
+    % COORDENADAS
+    % Origen
+    \coordinate (O) at (0,0);
+    % Eje x
+    \path[save path=\ejex] (O) -- (\XLONG cm, 0) coordinate (xfin);
+    % Eje y
+    \path[save path=\ejey] (O) -- (0, \YLONG cm) coordinate (yfin);
+    % Eje xtilde
+    \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
+    coordinate (xtildefin);
+    % Eje ytilde
+    \path[save path=\ejeytilde] (O) -- ++(\YTILDEANG:\YTILDELONG cm)
+    coordinate (ytildefin);
+    % Versores tilde
+    \path[save path=\vxtilde] (O) -- coordinate[pos=1.0] (vxtildetxt)
+    ++(\VXTILDEANG:\VTILDEMOD cm);
+    \path[save path=\vytilde] (O) -- coordinate[pos=1.1] (vytildetxt)
+    ++(\VYTILDEANG:\VTILDEMOD cm) coordinate (u2fin);
+    % Proyección de P en los ejes
+    % Con eje x
+    \path[save path=\proyx] (u2fin) |- (xfin) coordinate[pos=0.5] (u2x) (xfin);
+    % Posición de texto en eje x
+    \path (O) -- coordinate[pos=0.5] (uxtxt) (u2x);
+    % Con eje y
+    \path[save path=\proyy] (u2fin) -| coordinate[pos=0.5] (u2y) (yfin);
+    % Posición de texto en eje y
+    \path (O) -- coordinate[pos=0.5] (uytxt) (u2y);
+    
+    % DIBUJOS
+    % Ángulo alpha
+    \path (xfin) -- (O) -- (ytildefin) pic
+    [angulo, "\footnotesize $\alpha$",angle radius=12pt, angle eccentricity=0.68]
+    {angle = xfin--O--ytildefin};
+    
+    % Proyección de etilde2 en los ejes y texto correspondiente en ejes x e y
+    \draw[proyeccion, use path=\proyx];
+    \node[below] at (uxtxt) {\footnotesize $\cos\alpha$};
+    \draw[proyeccion, use path=\proyy];
+    \node[rotate=90, below left=4pt and 11pt] at (u2y) {\footnotesize $\sin\alpha$};
+    
+    % Ejes
+    % x
+    \draw[ejecart, use path=\ejex];
+    \node[textoapagado, below=1.2pt] at (xfin) {\small $x$};
+    % \node[below] at (xtexto) {$r\cos\theta$};
+    % y
+    \draw[ejecart, use path=\ejey];
+    \node[above, textoapagado] at (yfin) {$y$};
+    % xtilde
+    \draw[ejeoblic, use path=\ejextilde];
+    %\node[texto, below] at (xtildefin) {\footnotesize $\tilde{x}^1$};
+    \node[texto, below] at (xtildefin) {\footnotesize $\tilde{x}$};
+    % ytilde
+    \draw[ejeoblic, use path=\ejeytilde];
+    %\node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{x}^2$};
+    \node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{y}$};
+    % \node[rotate=90, left=8pt] at (ytexto) {$r\sin\theta$};
+    % Versores
+    \draw[vtilde, use path=\vxtilde];
+    \node[\colorTred, below] at (vxtildetxt) {\footnotesize $\xhat{u}_1$};
+    \draw[vtilde, use path=\vytilde];
+    \node[\colorTred,above left=-4pt and -1.5pt] at (vytildetxt)
+    {\footnotesize $\xhat{u}_2$};
+    % Origen
+    \filldraw (O) circle [radius=.2pt];
+    
+    % Fondo amarillo
+    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
+    \begin{scope}[on background layer]
+      \draw[background] (SW) rectangle (NE);
+    \end{scope}
+  \end{tikzpicture}
+  \caption{Sistema de coordenadas cartesianas oblicuas $\tilde{x}$ e $\tilde{y}$, que
+    forman un ángulo $\alpha$ entre sí. También se representan los ejes cartesianos $x$ e
+    $y$ tradicionales, como referencia en tono algo apagado. Por último se aprecian en
+    rojo los vectores unitarios $\xhat{u}_1$ y $\xhat{u}_2$ del sistema oblicuo y sus
+    proyecciones en los ejex $x$ e $y$.}
+  \label{fig:R2-oblic_u1u2}
+\end{figure}
+
 Como se comentó en el apartado anterior, la base natural, ahora $B'$ en el sistema
 oblicuo (con prima, para distinguirla temporalmente de la base ortogonal
-$B=\set{\uvec{\i},\,\uvec{\j}}$ con la que la compararemos más adelante), está formada
-por los vectores covariantes (nótese el subíndice) siguientes
-\begin{equation}\label{eq:R2-oblic_base}
-  B' = \set{\xhat{e}_1, \xhat{e}_2}
+$B=\set{\uvec{\i},\,\uvec{\j}}$), está formada por los vectores covariantes
+(con subíndice) siguientes
+\begin{equation}\label{eq:R2-oblic_base_natural}
+  B' = \set{\vvv{e}_1, \vvv{e}_2}
 \end{equation}
-Esta base es muy importante, pues servirá para obtener la métrica de estos sistemas
-oblicuos que, a su vez, nos permitirá relacionar de alguna manera las componentes
-covariantes y las contravariantes, entre sí.
+Esta base nos podrá servir para obtener la métrica de estos sistemas oblicuos que, a su
+vez, nos permitirá relacionar las componentes covariantes y las contravariantes, entre
+sí.
 
-\subsubsection{Cálculo geométrico}
-Hasta que no obtengamos la matriz de cambio de base más adelante, para obtener la base
-natural que necesitamos, vamos a recurrir a un procedimiento geométrico. Para ello,
-empezamos fijándonos en la figura \ref{fig:R2-coord_rect-ij}.
-De ella deducimos que, en coordenadas ortogonales, la posición de cualquier punto del
-plano euclídeo se expresa como
-\begin{equation}
-  \vvv{r} = x\,\uvec{\i} + y\,\uvec{\j}
-\end{equation}
-
+\subsection{Cálculo geométrico}
+Hasta que no obtengamos la matriz de cambio de base, para obtener la base natural vamos
+a recurrir a un procedimiento geométrico.
 La base natural se calcula expresando el vector de posición, expresado en función de las
 componentes contravariantes en el nuevo sistema $x^1$ y $x^2$, y calculando las
 derivadas parciales $\vvv{e}_i = \partial\vvv{r}/\partial x^i$.
@@ -284,9 +443,9 @@ Hasta que no se explique con algo de detalle el significado de estas componentes
 contravariantes, es suficiente con fijarnos en la figura \ref{fig:R2-coord_rect-ij}.
 De acuerdo con ella, el vector de posición de un punto cualquiera del plano se expresa
 como
-\[
+\begin{equation}
   \vvv{r} = x\,\uvec{\i} + y\,\uvec{\j}
-\]
+\end{equation}
 
 Nuestro objetivo es obtener $x$ e $y$ en función de las $x^1$ y $x^2$
 \begin{align}
@@ -304,7 +463,7 @@ Así
 \begin{equation}
   \begin{cases}
     \begin{array}{lll}
-    \sin\beta = \cos\alpha = \dfrac{x-x^1}{x^2}
+      \sin\beta = \cos\alpha = \dfrac{x-x^1}{x^2}
       &\longrightarrow
       &x = x^1 + x^2\cos\alpha\\
       \cos\beta = \sin\alpha = \dfrac{y}{x^2}
@@ -368,7 +527,7 @@ Así
     \coordinate (O) at (0,0);
     % Eje x
     \path[save path=\ejex] (O) -- ++(\XANG:\XLONG cm) coordinate (xfin);
-    % Eje x
+    % Eje y
     \path[save path=\ejey] (O) -- ++(\YANG:\YLONG cm) coordinate (yfin);
     % Eje xtilde
     \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
@@ -477,194 +636,45 @@ El vector de posición de un punto en función de las componentes contravariante
 
 Los vectores de la base natural serán
 \begin{align}
-  \xhat{e}_1
+  \vvv{e}_1
   &=
     \dfrac{\partial\vvv{r}}{x^1}
     = \uvec{\i}
     \longrightarrow
-  |\xhat{e}_1| = |\uvec{\i}| = \sqrt{1} = 1\\
-  \xhat{e}_2
+    |\vvv{e}_1| = |\uvec{\i}| = \sqrt{1} = 1\\
+  \vvv{e}_2
   &=
     \dfrac{\partial\vvv{r}}{x^2}
     = \cos\alpha\,\uvec{\i} + \sin\alpha\,\uvec{\j}
     \longrightarrow
-    |\xhat{e}_2| = \sqrt{\cos^2\alpha + \sin^2\alpha} = 1
+    |\vvv{e}_2| = \sqrt{\cos^2\alpha + \sin^2\alpha} = 1
 \end{align}
 y sus módulos valen la unidad.
 
+Además podemos comprobar que coinciden con los vectores unitarios $\xhat{u}_i$ que
+obtuvimos gráficamente en \eqref{eq:R2-oblic_u1_ij} y \eqref{eq:R2-oblic_u2_ij}
+\begin{align}
+  \label{eq:R2-oblic_e1_ij}
+  \vvv{e}_1
+  &=
+    \xhat{u}_1
+    = \uvec{\i}
+    = (1, 0)\\
+  \label{eq:R2-oblic_e2_ij}
+  \vvv{e}_2
+  &=
+    \xhat{u}_2
+    = \cos\alpha\,\uvec{\i} + \sin\alpha\,\uvec{\j}
+    = (\cos\alpha, \sin\alpha)
+\end{align}
+
+
 \section{Cambio de base}
-Para relacionar esta base $B'$ con la estándar de las rectilíneas
-$B=\set{\uvec{\i},\uvec{\j}}$, haremos coincidir el versor $\xhat{e}_1$ con $\uvec{\i}$,
-esto es, el eje $\tilde{x}$ coincide con el eje $x$ de las cartesianas. Véase la figura
-\ref{fig:R2-coord_oblicuas_e1e2}.
-\begin{figure}[ht]
-  \centering
-  % Escala
-  \def\scl{1.00}
-  % 
-  % \pgfmathsetmacro{\EJESCARTLONG}{3.0}
-  % \pgfmathsetmacro{\EJEOBLICLONG}{2.7}
-  \pgfmathsetmacro{\EJESCARTLONG}{2.5}
-  \pgfmathsetmacro{\EJEOBLICLONG}{2.1}
-  % Eje x
-  \pgfmathsetmacro{\XLONG}{\EJESCARTLONG}
-  % Eje y
-  \pgfmathsetmacro{\YLONG}{\EJESCARTLONG}
-  % Eje xtilde
-  \pgfmathsetmacro{\XTILDEANG}{0}
-  \pgfmathsetmacro{\XTILDELONG}{\EJEOBLICLONG}    
-  % Eje ytilde
-  \pgfmathsetmacro{\YTILDEANG}{70}
-  \pgfmathsetmacro{\YTILDELONG}{\EJESCARTLONG}
-  % Versores
-  \pgfmathsetmacro{\VTILDEMOD}{1.4}
-  \pgfmathsetmacro{\VXTILDEANG}{0}
-  \pgfmathsetmacro{\VYTILDEANG}{\YTILDEANG}
-  % Vector P
-  \pgfmathsetmacro{\PMOD}{2.3}
-  \pgfmathsetmacro{\PANG}{40}
-  % Fondo
-  \pgfmathsetmacro{\HORZ}{0.25}
-  \pgfmathsetmacro{\VERT}{0.25}
-  % 
-  \centering
-  \begin{tikzpicture}[%
-    scale=\scl,
-    every node/.style={black,font=\small},
-    ejecart/.style={->, black!30},
-    ejeoblic/.style={->, black},
-    proyeccion/.style={black!20, line width=0.4},
-    % longitud/.style={line width=.5pt,\colorV},
-    texto/.style={black,font=\footnotesize},
-    textoapagado/.style={\colorTorig},
-    vtilde/.style={%
-      -{Latex[round,width=4pt,length=6pt]}, line width=1pt, \colorVred},
-    pcirculo/.style={fill=\colorPorig, draw=black},
-    angulo/.style={fill=green!15, draw=\colorGirodos},
-    background/.style={%
-      line width=\bgborderwidth,
-      draw=\bgbordercolor,
-      fill=\bgcolor,
-    },
-    ]
-    % COORDENADAS
-    % Origen
-    \coordinate (O) at (0,0);
-    % Eje x
-    \path[save path=\ejex] (O) -- (\XLONG cm, 0) coordinate (xfin);
-    % Eje y
-    \path[save path=\ejey] (O) -- (0, \YLONG cm) coordinate (yfin);
-    % Eje xtilde
-    \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
-    coordinate (xtildefin);
-    % Eje ytilde
-    \path[save path=\ejeytilde] (O) -- ++(\YTILDEANG:\YTILDELONG cm)
-    coordinate (ytildefin);
-    % Versores tilde
-    \path[save path=\vxtilde] (O) -- coordinate[pos=1.0] (vxtildetxt)
-    ++(\VXTILDEANG:\VTILDEMOD cm);
-    \path[save path=\vytilde] (O) -- coordinate[pos=1.1] (vytildetxt)
-    ++(\VYTILDEANG:\VTILDEMOD cm) coordinate (e2fin);
-    % Proyección de P en los ejes
-    % Con eje x
-    \path[save path=\proyx] (e2fin) |- (xfin) coordinate[pos=0.5] (e2x) (xfin);
-    % Posición de texto en eje x
-    \path (O) -- coordinate[pos=0.5] (extxt) (e2x);
-    % Con eje y
-    \path[save path=\proyy] (e2fin) -| coordinate[pos=0.5] (e2y) (yfin);
-    % Posición de texto en eje y
-    \path (O) -- coordinate[pos=0.5] (eytxt) (e2y);
-    
-    % DIBUJOS
-    % Ángulo alpha
-    \path (xfin) -- (O) -- (ytildefin) pic
-    [angulo, "\footnotesize $\alpha$",angle radius=12pt, angle eccentricity=0.68]
-    {angle = xfin--O--ytildefin};
-    
-    % Proyección de etilde2 en los ejes y texto correspondiente en ejes x e y
-    \draw[proyeccion, use path=\proyx];
-    \node[below] at (extxt) {\footnotesize $\cos\alpha$};
-    \draw[proyeccion, use path=\proyy];
-    \node[rotate=90, below left=4pt and 11pt] at (e2y) {\footnotesize $\sin\alpha$};
-    
-    % Ejes
-    % x
-    \draw[ejecart, use path=\ejex];
-    \node[textoapagado, below=1.2pt] at (xfin) {\small $x$};
-    % \node[below] at (xtexto) {$r\cos\theta$};
-    % y
-    \draw[ejecart, use path=\ejey];
-    \node[above, textoapagado] at (yfin) {$y$};
-    % xtilde
-    \draw[ejeoblic, use path=\ejextilde];
-    %\node[texto, below] at (xtildefin) {\footnotesize $\tilde{x}^1$};
-    \node[texto, below] at (xtildefin) {\footnotesize $\tilde{x}$};
-    % ytilde
-    \draw[ejeoblic, use path=\ejeytilde];
-    %\node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{x}^2$};
-    \node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{y}$};
-    % \node[rotate=90, left=8pt] at (ytexto) {$r\sin\theta$};
-    % Versores
-    \draw[vtilde, use path=\vxtilde];
-    \node[\colorTred, below] at (vxtildetxt) {\footnotesize $\xhat{e}_1$};
-    \draw[vtilde, use path=\vytilde];
-    \node[\colorTred,above left=-4pt and -1.5pt] at (vytildetxt)
-    {\footnotesize $\xhat{e}_2$};
-    % Origen
-    \filldraw (O) circle [radius=.2pt];
-    
-    % Fondo amarillo
-    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
-    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
-    \begin{scope}[on background layer]
-      \draw[background] (SW) rectangle (NE);
-    \end{scope}
-  \end{tikzpicture}
-  \caption{Sistema de coordenadas cartesianas oblicuas $\tilde{x}$ e $\tilde{y}$, que
-    forman un ángulo $\alpha$ entre sí. También se representan los ejes cartesianos $x$ e
-    $y$ tradicionales, como referencia en tono algo apagado. Por último se aprecian en
-    rojo los vectores unitarios $\xhat{e}_1$ y $\xhat{e}_2$ del sistema oblicuo y sus
-    proyecciones en los ejex $x$ e $y$.}
-  \label{fig:R2-coord_oblicuas_e1e2}
-\end{figure}
-
-Vamos a expresar estos vectores en función de los $\uvec{\i}$ y $\uvec{\j}$ de las
-cartesianas rectangulares
-\begin{align}
-  \label{eq:R2-e1-ij}
-  \xhat{e}_1 &= 1\,\uvec{\i} + 0\,\uvec{\j} = \uvec{\i}\\
-  \label{eq:R2-e2-ij}
-  \xhat{e}_2 &= \cos{\alpha}\, \uvec{\i} + \sin{\alpha}\, \uvec{\j}
-\end{align}
-Nótese que los vectores de la base son unitarios, por esta razón los habíamos
-representado, ya desde el principio, con el acento circunflejo
-\begin{align}
-  |\xhat{e}_1|
-  &=
-    |\uvec{\i}| = 1\\
-  |\xhat{e}_2|
-  &=
-    (\cos\theta\,\uvec{\i}+\sin\theta\,\uvec{\j})^2
-    = \cos^2\theta + \sin^2\theta = 1
-\end{align}
-
-La matriz que permite obtener la nueva base $B'$ a partir de la antigua $B$, está formada
-por las componentes de los vectores $(1,0)$ y $(\cos\alpha,\sin\alpha)$ obtenidos en las
-expresiones \eqref{eq:R2-e1-ij} y \eqref{eq:R2-e2-ij}, dispuestas en columnas
-\[
-  \mmm{M}
-  =
+Las expresiones \eqref{eq:R2-oblic_e1_ij} y \eqref{eq:R2-oblic_e2_ij} se pueden
+se pueden representar matricialmente
+\begin{equation}
   \begin{pmatrix}
-    1 & \cos\alpha\\
-    0 & \sin\alpha
-  \end{pmatrix}
-\]
-
-Utilizamos esta matriz para obtener los vectores de la base oblícua a partir de la
-rectangular. Es importante darse cuenta que los vectores se representan en filas
-\[
-  \begin{pmatrix}
-    \xhat{e}_1 &  \xhat{e}_2
+    \vvv{e}_1 &  \vvv{e}_2
   \end{pmatrix}
   =
   \begin{pmatrix}
@@ -675,7 +685,21 @@ rectangular. Es importante darse cuenta que los vectores se representan en filas
     1 & \cos\alpha\\
     0 & \sin\alpha
   \end{pmatrix}
-\]
+\end{equation}
+Obsérvese que los vectores de la base se representan en filas.
+
+Así, la matriz que permite obtener la nueva base $B'$ a partir de la antigua $B$, está
+formada por las componentes de los vectores $(1,0)$ y $(\cos\alpha,\sin\alpha)$
+obtenidos en las expresiones \eqref{eq:R2-oblic_e1_ij} y \eqref{eq:R2-oblic_e2_ij},
+dispuestas en columnas
+\begin{equation}
+  \mmm{M}
+  =
+  \begin{pmatrix}
+    1 & \cos\alpha\\
+    0 & \sin\alpha
+  \end{pmatrix}
+\end{equation}
 
 \subsubsection{Resumiendo el cambio de base}
 Como dijimo, la matriz de cambio de base de $B$ a $B'$ está formada por las componentes
@@ -695,7 +719,7 @@ de los vectores de la expresión dispuestos en columnas. A continuación se repr
       \dfrac{1}{\sin\alpha}
       \begin{pmatrix}
         \sin\alpha & -\cos\alpha\\
-        0 & 1        
+        0 & 1
       \end{pmatrix}
       =
       \begin{pmatrix}
@@ -711,7 +735,7 @@ filas
 \begin{subequations}
 \begin{align}
   &\begin{pmatrix}
-    \xhat{e}_1 &  \xhat{e}_2
+    \vvv{e}_1 &  \vvv{e}_2
   \end{pmatrix}
   =
     \begin{pmatrix}
@@ -727,7 +751,7 @@ filas
   \end{pmatrix}
   =
     \begin{pmatrix}
-      \xhat{e}_1 & \xhat{e}_2
+      \vvv{e}_1 & \vvv{e}_2
     \end{pmatrix}
     \,
     \begin{pmatrix}
@@ -880,7 +904,7 @@ segmento orientado $\vvv{v}$. Esta es la forma natural con la que sumamos vector
     coordinate (P);
     % Proyección de P en los ejes
     % Con eje x
-    \path[save path=\proyx] (e2fin) |- (xfin) coordinate[pos=0.5] (e2x) (xfin);
+    \path[save path=\proyx] (u2fin) |- (xfin) coordinate[pos=0.5] (e2x) (xfin);
     % Componentes contravariantes
     % Intersección de horizontal desde P hasta ytilde
     % -> Componente contravariante eje ytilde (CTV2) 
@@ -911,9 +935,9 @@ segmento orientado $\vvv{v}$. Esta es la forma natural con la que sumamos vector
 
     % Marcar en color la componentes contravariantes
     \draw[contravariante]
-    (O) -- node[contravtxt,pos=0.5, below] {$x^1\xhat{e}_1$} (CTV1);
+    (O) -- node[contravtxt,pos=0.5, below] {$x^1\vvv{e}_1$} (CTV1);
     \draw[contravariante] (O) -- node[contravtxt,pos=0.5,above left=-2pt and -2pt]
-    {$x^2\xhat{e}_2$} (CTV2);
+    {$x^2\vvv{e}_2$} (CTV2);
     
     % Origen
     \fill[orange!80!black] (O) circle [radius=0.8pt];
@@ -927,7 +951,7 @@ segmento orientado $\vvv{v}$. Esta es la forma natural con la que sumamos vector
   \end{tikzpicture}
   \caption{Componentes contravariantes $x^i$, en coordenadas oblicuas. El vector
     $\vvv{v}$ se representa como
-    $\vvv{v}=x^1\,\xhat{e}_1+x^2\,\xhat{e}_2$. La componente
+    $\vvv{v}=x^1\,\vvv{e}_1+x^2\,\vvv{e}_2$. La componente
     contravariante en un cierto eje nos indica el desplazamiento que se ha producido en
     ese eje.}
   \label{fig:R2-oblic_contrav}
@@ -935,10 +959,10 @@ segmento orientado $\vvv{v}$. Esta es la forma natural con la que sumamos vector
 
 Para centrar ideas, supongamos que el vector $\vvv{v}$ de la figura representa un
 desplazamiento en $\symbb{R}^2$. La componente $x^1$ nos indica el desplazamiento
-en el eje $x^1$, medido por el vector $\xhat{e}_1$ de la base, y $x^2$ nos lo da en el
-eje $x^2$, medido por $\xhat{e}_2$.
+en el eje $x^1$, medido por el vector $\vvv{e}_1$ de la base, y $x^2$ nos lo da en el
+eje $x^2$, medido por $\vvv{e}_2$.
 La suma de las componentes contravariantes $x^i$ multiplicadas por sus
-respectivos vectores covariantes de la base $\xhat{e}_i$, nos da el desplazamiento
+respectivos vectores covariantes de la base $\vvv{e}_i$, nos da el desplazamiento
 indicado por el vector. Nótese que en la suma se utiliza la regla del paralelogramo.
 Esto es característico de las componentes contravariantes que, en cierto modo
 \emph{funcionan} como las componentes $x$ e $y$ en un sistema cartesiano ortogonal.
@@ -1075,8 +1099,8 @@ transformación de base de $B$ a $B'$
 Así
 \[
   \vvv{v}
-  = \tilde{x}^1\,\xhat{e}_1 + \tilde{x}^2\,\xhat{e}_2 = \tilde{x}^i\,\xhat{e}_i
-  = \left(2+\dfrac{4}{\sqrt{3}}\right)\,\xhat{e}_1 - \dfrac{8}{\sqrt{3}}\,\xhat{e}_2
+  = \tilde{x}^1\,\vvv{e}_1 + \tilde{x}^2\,\vvv{e}_2 = \tilde{x}^i\,\vvv{e}_i
+  = \left(2+\dfrac{4}{\sqrt{3}}\right)\,\vvv{e}_1 - \dfrac{8}{\sqrt{3}}\,\vvv{e}_2
 \]
 
 Si nos dieran las componentes en coordenadas oblicuas
@@ -1123,28 +1147,32 @@ y quisiéramos obtener las coordenadas rectangulares, deberíamos obtener $(2,-4
 
 
 \section{Métrica}
+\subsection{A partir de consideraciones geométricas}
+
+
+\subsection{A partir de la base natural}
 Con los conocimientos que hemos adquirido, la forma más rápida para obtener el tensor
 métrico en coordenadas oblicuas es utilizar el método seguido en la expresión
 \eqref{eq:R2-cart-metrica}. Para ello debemos calcular el producto escalar de los
-vectores de la base \eqref{eq:R2-oblic_base}.
+vectores de la base \eqref{eq:R2-oblic_base_natural}.
 
 Multiplicamos escalarmente estos vectores
 \begin{subequations}
   \begin{align}
     \label{eq:R2-oblic-e1e1_prod_escalar}
-    \xhat{e}_1\cdot\xhat{e}_1
+    \vvv{e}_1\cdot\vvv{e}_1
     &=
       \uvec{\i}\cdot\uvec{\i} = 1\\
     \label{eq:R2-oblic-e1e2_prod_escalar}    
-    \xhat{e}_1\cdot\xhat{e}_2
+    \vvv{e}_1\cdot\vvv{e}_2
     &=
       \uvec{\i}\cdot (\cos\theta\,\uvec{i} + \sin\theta\,\uvec{\j}) = \cos\theta\\
     \label{eq:R2-oblic-e2e1_prod_escalar}
-    \xhat{e}_2\cdot\xhat{e}_1
+    \vvv{e}_2\cdot\vvv{e}_1
     &=
-      \xhat{e}_1\cdot\xhat{e}_2 = \cos\theta\\
+      \vvv{e}_1\cdot\vvv{e}_2 = \cos\theta\\
     \label{eq:R2-oblic-e2e2_prod_escalar}
-    \xhat{e}_2\cdot\xhat{e}_2
+    \vvv{e}_2\cdot\vvv{e}_2
     &=
       (\cos\theta\,\uvec{\i}+\sin\theta\,\uvec{j})
       \cdot (\cos\theta\,\uvec{\i}+\sin\theta\,\uvec{j})
@@ -1160,8 +1188,8 @@ El tensor métrico en coordenadas oblicuas resulta
     g_{21} & g_{22}
     \end{pmatrix}
   = \begin{pmatrix}
-      \xhat{e}_1\cdot\xhat{e}_1 & \xhat{e}_1\cdot\xhat{e}_2\\
-      \xhat{e}_2\cdot\xhat{e}_1 & \xhat{e}_2\cdot\xhat{e}_2
+      \vvv{e}_1\cdot\vvv{e}_1 & \vvv{e}_1\cdot\vvv{e}_2\\
+      \vvv{e}_2\cdot\vvv{e}_1 & \vvv{e}_2\cdot\vvv{e}_2
   \end{pmatrix}
   = \begin{pmatrix}
     1 & \cos\alpha\\
@@ -1187,7 +1215,7 @@ Analizamos la métrica obtenida
   \item El otro caso extremo, que no produciría ningún sistema de referencia en
     $\symbb{R}^2$, se daría cuando $\alpha = 0$. En este caso $\cos\alpha = \cos 0 = 1$
     y los dos ejes $\tilde{x}$ y $\tilde{y}$, coincidirían. Además, los vectores
-    unitarios respectivos, serían iguales $\xhat{e}_1 = \xhat{e}_2 = \uvec{\i}$ y ya no
+    unitarios respectivos, serían iguales $\vvv{e}_1 = \vvv{e}_2 = \uvec{\i}$ y ya no
     formarían una base del plano, ni tendríamos un sistema de coordenadas válido (el
     determinante de la métrica sería nulo, la matriz sería singular y no tendría
     inversa) y el sistema colapsaría. En todo caso tendríamos un subespacio vectorial de
@@ -1580,7 +1608,7 @@ Estas \emph{componentes covariantes} las representaremos mediante subíndices $x
   \vvv{v} = x_1\vvv{e}^1 + x_2\vvv{e}^2 = x_i \vvv{e}^i
 \end{equation}
 La base utilizada aquí $\vvv{e}^i$, no es la natural de coordenadas oblicuas,
-\eqref{eq:R2-oblic_base}, pues contiene un superíndice (de nuevo, no es un exponente).
+\eqref{eq:R2-oblic_base_natural}, pues contiene un superíndice (de nuevo, no es un exponente).
 
 Mientras las componentes contravariantes te dicen cuánto \emph{avanzas} a lo largo
 de cada eje, las covariantes miden la \emph{sombra} o proyección sobre ese eje.
@@ -1640,7 +1668,7 @@ componentes.
       % Componentes covariantes
       % Proyección de P en los ejes
       % Con eje x
-      \path[save path=\proyx] (e2fin) |- (xfin) coordinate[pos=0.5] (e2x) (xfin);
+      \path[save path=\proyx] (P) |- (xfin) coordinate[pos=0.5] (e2x) (xfin);
       % Componente covariante con eje xtilde (COV1)
       \path (P) |- coordinate[pos=0.5] (COV1) (xtildefin);
       % Perpendicular a O--ytilde que pasa por P
@@ -1752,11 +1780,11 @@ componentes.
       coordinate (P);
       % Proyección de P en los ejes
       % Con eje x
-      \path[save path=\proyx] (e2fin) |- (xfin) coordinate[pos=0.5] (e2x) (xfin);
+      \path[save path=\proyx] (P) |- (xfin) coordinate[pos=0.5] (e2x) (xfin);
       % Posición de texto en eje x
       % \path (O) -- coordinate[pos=0.5] (extxt) (e2x);
       % Con eje y
-      \path[save path=\proyy] (e2fin) -| coordinate[pos=0.5] (e2y) (yfin);
+      \path[save path=\proyy] (P) -| coordinate[pos=0.5] (e2y) (yfin);
       % Posición de texto en eje y
       % \path (O) -- coordinate[pos=0.5] (eytxt) (e2y);
       % Componentes covariantes y contravariantes
@@ -1899,7 +1927,8 @@ Ver figuras \ref{fig:R2-oblic_cov1} y \ref{fig:R2-oblic_cov2} (comparar con figu
       % Componentes covariantes
       % Proyección de P en los ejes
       % Con eje x
-      \path[save path=\proyx] (e2fin) |- (xfin) coordinate[pos=0.5] (e2x) (xfin);
+      
+      \path[save path=\proyx] (P) |- (xfin) coordinate[pos=0.5] (e2x) (xfin);
       % Componente covariante con eje xtilde (COV1)
       \path (P) |- coordinate[pos=0.5] (COV1) (xtildefin);
       % Perpendicular a O--ytilde que pasa por P
@@ -2027,7 +2056,7 @@ Ver figuras \ref{fig:R2-oblic_cov1} y \ref{fig:R2-oblic_cov2} (comparar con figu
       % Componentes covariantes
       % Proyección de P en los ejes
       % Con eje x
-      \path[save path=\proyx] (e2fin) |- (xfin) coordinate[pos=0.5] (e2x) (xfin);
+      \path[save path=\proyx] (P) |- (xfin) coordinate[pos=0.5] (e2x) (xfin);
       % Componente covariante con eje xtilde (COV1)
       %\path (P) |- coordinate[pos=0.5] (COV1) (xtildefin);
       % Perpendicular a O--ytilde que pasa por P
@@ -2184,7 +2213,7 @@ $U_i = g_{ij}v^j$
 \section{Gradiente}
 Supongamos un campo escalar $\phi$, definido en $\symbb{R^2}$ y expresado en coordenadas
 oblicuas según sus componentes contravariantes ---utilizando, para la posición en el
-espacio, la base unitaria $B= (\xhat{e}_1,\xhat{e}_2)$---
+espacio, la base unitaria $B= (\vvv{e}_1,\vvv{e}_2)$---
 \begin{equation}
   \phi = \phi(x^1, x^2)
 \end{equation}
@@ -2217,24 +2246,24 @@ Para obtener $\nabla\phi^1$ y $\nabla\phi^2$, tenemos que subir índices
 $\nabla\phi_i=\partial\phi/\partial x^i$, multiplicando por la inversa de la métrica
 \begin{equation}
   \vvv{\nabla}\phi
-  = g^{ij}(\nabla\phi)_i\,\xhat{e}_j
-  = g^{ij} \dfrac{\partial\phi}{\partial x^i}\,\xhat{e}_j
-  = (\nabla\phi)^j\,\xhat{e}_j
+  = g^{ij}(\nabla\phi)_i\,\vvv{e}_j
+  = g^{ij} \dfrac{\partial\phi}{\partial x^i}\,\vvv{e}_j
+  = (\nabla\phi)^j\,\vvv{e}_j
 \end{equation}
 
 Desarrollando la expresión anterior
 \begin{align*}
   \vvv{\nabla}\phi
   &=
-    \mmm{g}^{11}\dfrac{\partial\phi}{\partial x^1}\,\xhat{e}_1
-    + \mmm{g}^{12}\dfrac{\partial\phi}{\partial x^1}\,\xhat{e}_2
-    + \mmm{g}^{21}\dfrac{\partial\phi}{\partial x^2}\,\xhat{e}_1
-    + \mmm{g}^{22}\dfrac{\partial\phi}{\partial x^2}\,\xhat{e}_2\\
+    \mmm{g}^{11}\dfrac{\partial\phi}{\partial x^1}\,\vvv{e}_1
+    + \mmm{g}^{12}\dfrac{\partial\phi}{\partial x^1}\,\vvv{e}_2
+    + \mmm{g}^{21}\dfrac{\partial\phi}{\partial x^2}\,\vvv{e}_1
+    + \mmm{g}^{22}\dfrac{\partial\phi}{\partial x^2}\,\vvv{e}_2\\
   &=
-    \dfrac{1}{\sin^2\alpha}\,\dfrac{\partial\phi}{\partial x^1}\,\xhat{e}_1
-    - \dfrac{\cos\alpha}{\sin^2\alpha}\,\dfrac{\partial\phi}{\partial x^1}\,\xhat{e}_2
-    - \dfrac{\cos\alpha}{\sin^2\alpha}\,\dfrac{\partial\phi}{\partial x^2}\,\xhat{e}_1
-    + \dfrac{1}{\sin^2\alpha}\,\dfrac{\partial\phi}{\partial x^2}\,\xhat{e}_2
+    \dfrac{1}{\sin^2\alpha}\,\dfrac{\partial\phi}{\partial x^1}\,\vvv{e}_1
+    - \dfrac{\cos\alpha}{\sin^2\alpha}\,\dfrac{\partial\phi}{\partial x^1}\,\vvv{e}_2
+    - \dfrac{\cos\alpha}{\sin^2\alpha}\,\dfrac{\partial\phi}{\partial x^2}\,\vvv{e}_1
+    + \dfrac{1}{\sin^2\alpha}\,\dfrac{\partial\phi}{\partial x^2}\,\vvv{e}_2
 \end{align*}
 
 Simplificando, obtendríamos
@@ -2244,10 +2273,10 @@ Simplificando, obtendríamos
   \left[%
     \left(%
       \dfrac{\partial\phi}{\partial x^1}-\cos\alpha\dfrac{\partial\phi}{\partial x^2}
-    \right) \xhat{e}_1
+    \right) \vvv{e}_1
     +\left(%
       \dfrac{\partial\phi}{\partial x^2}-\cos\alpha\dfrac{\partial\phi}{\partial x^1}
-    \right) \xhat{e}_2
+    \right) \vvv{e}_2
   \right]
 \end{equation}
 
@@ -2291,7 +2320,7 @@ Simplificando, obtendríamos
 {\small
 Y luego sustituir lo anterior en
 \begin{equation}
-  \vvv{\nabla\phi} = (\nabla\phi)^1\,\xhat{e}_1 + (\nabla\phi)^2\,\xhat{e}_2
+  \vvv{\nabla\phi} = (\nabla\phi)^1\,\vvv{e}_1 + (\nabla\phi)^2\,\vvv{e}_2
 \end{equation}
 dando el mismo resultado que en \eqref{eq:R2-oblic_gradiente_contrav}.
 }

@@ -34,7 +34,9 @@ all: retazosmatematicas.pdf
 
 clean:
 	rm -rf *.pdf *.ps *.dvi *.aux *.log *.toc *~ *.dat *.script
+	rm -rf auto
 	rm -rf texto/*.aux texto/*~
+	rm -rf ejercicios/*.aux texto/*~
 	rm -rf portada/*.aux portada/*~
 	rm -rf tablacontenidos/*.aux tablacontenidos/*~
 	rm -rf prefacio/*.aux prefacio/*~
