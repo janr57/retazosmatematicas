@@ -322,11 +322,11 @@ v_x^2 + v_y^2
 que coincide con el valor que obteníamos en el cálculo vectorial básico.
 
 
-\section{Gradiente, divergencia y laplaciana}
-Presentamos un resumen de estas operaciones, tal y como se presentan en un curso básico
-de cálculo
-\begin{itemize}
-\item El gradiente de un campo escalar $\phi(x,y)$ es un vector
+\section{Gradiente}
+Presentamos un resumen del gradiente, tal y como se presentan en un curso básico de
+cálculo.
+
+El gradiente de un campo escalar $\phi(x,y)$ es un vector
 \begin{equation}
   \vvv{\nabla}\phi
   = \dfrac{\partial \phi}{\partial x}\,\uvec{\i}
@@ -352,40 +352,89 @@ cuando opera frente a un campo escalar, se obtiene otro formado por vectores
     \end{pmatrix}
 \end{equation}
 
-\item La divergencia de un campo vectorial $\vvv{A}=(A_x, A_y)$ es un escalar
-  \begin{equation}\label{eq:R2-divergencia-cartesianas}
-    \vvv{\nabla}\cdot\vvv{A}
-    = \begin{pmatrix}
-      \partial/\partial x & \partial/\partial y      
-    \end{pmatrix}
-    \begin{pmatrix}
-      1 & 0\\
-      0 & 1
-    \end{pmatrix}
-    \begin{pmatrix}
-      A_x\\
-      A_y
-    \end{pmatrix}
-    = \dfrac{\partial A_x}{\partial x}
-    + \dfrac{\partial A_y}{\partial y}
-  \end{equation}
-  La divergencia mide la diferencia entre el flujo saliente y el flujo entrante de un
-  campo vectorial sobre la superficie que rodea a un volumen de control, por tanto, si el
-  campo tiene ''fuentes'' la divergencia será positiva, y si tiene "sumideros", la
-  divergencia será negativa. La divergencia mide la rapidez neta con la que se conduce la
-  materia al exterior de cada punto, y en el caso de ser la divergencia idénticamente
-  igual a cero, describe al flujo incompresible del fluido, llamado también campo
-  solenoidal.  
-\item La laplaciana de un campo escalar $f(x,y)$ es la divergencia del gradiente y es un
-  escalar
-  \begin{equation}\label{eq:R2-gradiente-cartesianas}
-    \Delta \phi
-    =
-    \nabla^2 \phi
-    = \vvv{\nabla}\cdot\vvv{\nabla}\phi
-    = \dfrac{\partial^2 \phi}{\partial x^2}
-    + \dfrac{\partial^2 \phi}{\partial y^2}
-  \end{equation}
+\section{Divergencia}
+La divergencia de un campo vectorial $\vvv{A}=(A_x, A_y)$ es un escalar
+\begin{equation}\label{eq:R2-divergencia-cartesianas}
+  \vvv{\nabla}\cdot\vvv{A}
+  = \begin{pmatrix}
+    \partial/\partial x & \partial/\partial y      
+  \end{pmatrix}
+  \begin{pmatrix}
+    1 & 0\\
+    0 & 1
+  \end{pmatrix}
+  \begin{pmatrix}
+    A_x\\
+    A_y
+  \end{pmatrix}
+  = \dfrac{\partial A_x}{\partial x}
+  + \dfrac{\partial A_y}{\partial y}
+\end{equation}
+La divergencia mide la diferencia entre el flujo saliente y el flujo entrante de un
+campo vectorial sobre la superficie que rodea a un volumen de control, por tanto, si el
+campo tiene ''fuentes'' la divergencia será positiva, y si tiene "sumideros", la
+divergencia será negativa. La divergencia mide la rapidez neta con la que se conduce la
+materia al exterior de cada punto, y en el caso de ser la divergencia idénticamente
+igual a cero, describe al flujo incompresible del fluido, llamado también campo
+solenoidal.
+
+\subsection{Demostración}
+Supongamos un campo vectorial $\vvv{F} = F_x\,\uvec{\i} + F_y\,\uvec{\j}$, que
+podemos escribir también, de una manera más matemática como
+\[
+  \vvv{F} = M(x,y)\,\uvec{\i} + N(x,y)\,\uvec{\j}
+\]
+
+\[
+  \begin{cases}
+    \begin{array}{lll}
+      \text{\emph{Caudal} horizontal saliente }
+      &\longrightarrow
+      &M(x_d0+h, y_0+b) h^2 - M(x_0, y_0+b)\,h^2\\[1ex]
+      \text{\emph{Caudal} vertical saliente }
+      &\longrightarrow
+      &N(x_0+da, y_0+b) h^2 - N(x_0+a, y_0+h)\,h^2
+    \end{array}
+  \end{cases}
+\]
+
+Multiplicamos y dividimos entre $h$ y sacamos factor común $h^3$
+\[
+  \begin{cases}
+    \begin{array}{lll}
+      \text{\emph{Caudal} horizontal saliente }
+      &\longrightarrow
+      &Q_x = \dfrac{M(x_0+h, b) - M(x_0, b)}{h}\,h^3\\[1ex]
+      \text{\emph{Caudal} vertical saliente }
+      &\longrightarrow
+      &Q_y = \dfrac{N(a, b) - N(a, y_0+h)}{h}\,h^3
+    \end{array}
+  \end{cases}
+\]
+Sumamos los caudales incrementales y pasamos $V=h^3$ al otro miembro.
+Supongamos que $M(x,y)$ y $N(x,y)$ son continuas y tienen derivada.
+Tomamos el límite $h\to 0$. En estas condiciones $a\to x_0$ y $b\to y_0$
+\begin{align*}
+  \vvv{\nabla}\cdot\vvv{F}
+  &= \lim_{h\to 0}\dfrac{Q}{V}
+  = \lim_{h\to 0}\dfrac{Q_x + Q_y}{V}\\
+  &= \lim_{h\to 0}\dfrac{M(x_0+h, b) - M(x_0, b)}{h}
+  + \lim_{h\to 0}\dfrac{N(a, b) - N(a, y_0+h)}{h} \\
+  &= \dfrac{\partial M(x,y)}{\partial x}\Big|_{(x_0,y_0)}
+    + \dfrac{\partial N(x,y)}{\partial y}\Big|_{(x_0,y_0)}
+    = \dfrac{\partial F_x}{\partial x} + \dfrac{\partial F_y}{\partial y}
+\end{align*}
+
+\section{Laplaciano}
+La laplaciana de un campo escalar $f(x,y)$ es la divergencia del gradiente y es un
+escalar
+\begin{equation}\label{eq:R2-gradiente-cartesianas}
+  \Delta \phi
+  = \nabla^2 \phi
+  = \vvv{\nabla}\cdot\vvv{\nabla}\phi
+  = \dfrac{\partial^2 \phi}{\partial x^2}
+  + \dfrac{\partial^2 \phi}{\partial y^2}
+\end{equation}
 Mide la concentración de un campo en un punto. Si es negativo, indica una tendencia a la
 concentración (fuente); si es positivo, indica dispersión.
 
@@ -395,7 +444,6 @@ El operador laplaciano es
   = \dfrac{\partial^2}{\partial x^2}
   + \dfrac{\partial^2}{\partial y^2}
 \end{equation}
-\end{itemize}
 
 \section{Elemento de área}
 El elemento diferencial de área en cartesianas es
