@@ -415,7 +415,7 @@ en la figura
   \pgfmathsetmacro{\HY}{\LONG}
   % Vector A inferior
   \pgfmathsetmacro{\VAINFMOD}{1.0}
-  \pgfmathsetmacro{\VAINFANG}{110}
+  \pgfmathsetmacro{\VAINFANG}{120}
   % Vector A superior
   \pgfmathsetmacro{\VASUPMOD}{0.9}
   \pgfmathsetmacro{\VASUPANG}{60}
@@ -567,6 +567,7 @@ en la figura
     area/.style={fill=green!40, draw=black!20},
     textooriginal/.style={\colorTorig},
     vector/.style={-{Latex[round]}, line width=0.4pt},
+    faintvectorcomponent/.style={-{Latex[round,width=3pt,length=3pt]}, black!50},
     background/.style={%
       line width=\bgborderwidth,
       draw=\bgbordercolor,
@@ -605,7 +606,7 @@ en la figura
     % Cuadrado
     \path[save path=\cuadrado]
     (P) rectangle coordinate (centro) ++(\HX, \HY) coordinate (Pdiag);
-    
+
     % Puntos inferior y superior
     \path (\PX, \PY) -- coordinate[pos=0.5] (Ainf) (PHX);
     \path (PHY) -- coordinate[pos=0.5] (Asup) (Pdiag);
@@ -614,11 +615,20 @@ en la figura
     \path (PHX) -- coordinate[pos=0.5] (Bdcho) (Pdiag);
 
     % Vectores
-    \path[save path=\vectorAinf] (Ainf) -- ++(\VAINFANG:\VAINFMOD);
-    \path[save path=\vectorAsup] (Asup) -- ++(\VASUPANG:\VASUPMOD);
-    \path[save path=\vectorBizdo] (Bizdo) -- ++(\VBIZDOANG:\VBIZDOMOD);
-    \path[save path=\vectorBdcho] (Bdcho) -- ++(\VBDCHOANG:\VBDCHOMOD);
-    
+    \path[save path=\vectorAinf] (Ainf) -- ++(\VAINFANG:\VAINFMOD) coordinate (VAinf);
+    \path[save path=\vectorAsup] (Asup) -- ++(\VASUPANG:\VASUPMOD) coordinate (VAsup);
+    \path[save path=\vectorBizdo] (Bizdo) -- ++(\VBIZDOANG:\VBIZDOMOD) coordinate
+    (VBizdo);
+    \path[save path=\vectorBdcho] (Bdcho) -- ++(\VBDCHOANG:\VBDCHOMOD) coordinate
+    (VBdcho);
+ 
+    % Componentes de los vectores
+    % Vector VAinf
+    \path (VAinf) -- ($(P)!(VAinf)!(PHX)$) coordinate (vainfx);
+    \path[save path=\vainfx] (Ainf) -- (vainfx);
+
+    %\fill (PHX) circle[radius=1pt];
+   
     % DIBUJOS
     % Proyección del punto (x0,y0) en el eje x
     \draw[proyeccion, use path=\proyPx];
@@ -672,6 +682,10 @@ en la figura
     \draw[vector, use path=\vectorBizdo];
     % Vector B derecho
     \draw[vector, use path=\vectorBdcho];
+
+    % Componentes de vectores
+    % Vector A inferior
+    \draw[faintvectorcomponent, use path=\vainfx];
     
     % Puntos inferior A y superior A'
     \fill (Ainf) circle[radius=0.8pt];
@@ -684,9 +698,12 @@ en la figura
     \fill (Bdcho) circle[radius=0.8pt];
     %\node[right] at (Bdcho) {$B'$};
     
-    
     % Origen
     \filldraw (O) circle [radius=.2pt];
+
+    % \draw[red] (VAinf) -- (vainfx);
+
+    %\fill[red] (VAinf) circle[radius=2pt];
     
     % Fondo amarillo
     \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
