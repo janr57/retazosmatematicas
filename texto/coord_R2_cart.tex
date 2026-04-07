@@ -372,11 +372,10 @@ La divergencia de un campo vectorial $\vvv{A}=(A_x, A_y)$ es un escalar
 \end{equation}
 La divergencia mide la diferencia entre el flujo saliente y el flujo entrante de un
 campo vectorial sobre la superficie que rodea a un volumen de control, por tanto, si el
-campo tiene ''fuentes'' la divergencia será positiva, y si tiene "sumideros", la
-divergencia será negativa. La divergencia mide la rapidez neta con la que se conduce la
-materia al exterior de cada punto, y en el caso de ser la divergencia idénticamente
-igual a cero, describe al flujo incompresible del fluido, llamado también campo
-solenoidal.
+campo tiene \emph{fuentes} la divergencia será positiva, y si tiene \emph{sumideros}
+será negativa. La divergencia mide la rapidez neta con la que se conduce la materia al
+exterior de cada punto, y en el caso de ser la divergencia idénticamente igual a cero,
+describe al flujo incompresible del fluido, llamado también campo solenoidal.
 
 \subsection{Demostración}
 Supongamos un campo vectorial $\vvv{A} = A_x\,\uvec{\i} + A_y\,\uvec{\j}$, que
@@ -403,25 +402,38 @@ en la figura
   \def\scl{1}
   %
   \pgfmathsetmacro{\EJESEXTRA}{-0.4}
-  \pgfmathsetmacro{\EJESLONG}{2.3}
+  \pgfmathsetmacro{\EJESLONG}{4.2}
   % Eje x
   \pgfmathsetmacro{\XMLONG}{\EJESEXTRA}
   \pgfmathsetmacro{\XPLONG}{\EJESLONG}
   % Eje y
   \pgfmathsetmacro{\YMLONG}{\EJESEXTRA}
   \pgfmathsetmacro{\YPLONG}{\EJESLONG}
-  % dx, dy
-  \pgfmathsetmacro{\LONG}{0.9}
-  \pgfmathsetmacro{\DX}{\LONG}
-  \pgfmathsetmacro{\DY}{\LONG}
+  % hx, hy
+  \pgfmathsetmacro{\LONG}{2.0}
+  \pgfmathsetmacro{\HX}{\LONG}
+  \pgfmathsetmacro{\HY}{\LONG}
+  % Vector A inferior
+  \pgfmathsetmacro{\VAINFMOD}{1.0}
+  \pgfmathsetmacro{\VAINFANG}{110}
+  % Vector A superior
+  \pgfmathsetmacro{\VASUPMOD}{0.9}
+  \pgfmathsetmacro{\VASUPANG}{60}
+  % Vector B
+  \pgfmathsetmacro{\VBIZDOMOD}{0.6}
+  \pgfmathsetmacro{\VBIZDOANG}{45}
+  % Vector B'
+  \pgfmathsetmacro{\VBDCHOMOD}{0.8}
+  \pgfmathsetmacro{\VBDCHOANG}{-40}  
   % Posición del elemento de área
-  \pgfmathsetmacro{\PX}{0.5}
-  \pgfmathsetmacro{\PY}{1.0}
+  \pgfmathsetmacro{\PX}{0.9}
+  \pgfmathsetmacro{\PY}{0.9}
   % Fondo
   \pgfmathsetmacro{\HORZ}{0.25}
   \pgfmathsetmacro{\VERT}{0.25}
   % 
   \centering
+  % PRIMERA IMAGEN
   \begin{tikzpicture}[%
     scale=\scl,
     every node/.style={black,font=\small},
@@ -448,48 +460,93 @@ en la figura
     % Punto P
     \coordinate (P) at (\PX, \PY);
     %
-    \path (P) -- coordinate[pos=0.5] (dxtext) ++(\DX, 0) coordinate (PDX);
-    \path (P) -- coordinate[pos=0.5] (dytext) ++(0, \DY) coordinate (PDY);
+    \path (P) -- coordinate[pos=0.5] (hxtext) ++(\HX, 0) coordinate (PHX);
+    \path (P) -- coordinate[pos=0.5] (hytext) ++(0, \HY) coordinate (PHY);
+    %
 %    % Vector
 %    \path[save path=\vector] (O) -- coordinate[pos=0.5] (pmid) (\PANG:\PMOD cm)
 %    coordinate (P);
 %    % Proyección de elemento de área en los ejes
     \path[save path=\proyPx] (P) |- coordinate (Px) (xfin);
     \path[save path=\proyPy] (P) -| coordinate (Py) (yfin);
-    \path[save path=\proyPhorx] (PDX) |- coordinate (Phorx) (xfin);
-    \path[save path=\proyPverty] (PDY) -| coordinate (Pverty) (yfin);
+    \path[save path=\proyPhorx] (PHX) |- coordinate (Phorx) (xfin);
+    \path[save path=\proyPverty] (PHY) -| coordinate (Pverty) (yfin);
+    
     % Texto de las proyecciones en los ejes
-    \path (Px) -- coordinate[pos=0.5] (dxtexto) (Phorx);
-    \path (Py) -- coordinate[pos=0.5] (dytexto) (Pverty);
+    \path (Px) -- coordinate[pos=0.5] (hxtexto) (Phorx);
+    \path (Py) -- coordinate[pos=0.5] (hytexto) (Pverty);
+
+    % Cuadrado
+    \path[save path=\cuadrado]
+    (P) rectangle coordinate (centro) ++(\HX, \HY) coordinate (Pdiag);
+    
+    % Puntos inferior y superior
+    \path (\PX, \PY) -- coordinate[pos=0.5] (Ainf) (PHX);
+    \path (PHY) -- coordinate[pos=0.5] (Asup) (Pdiag);
+    
+    % Puntos izquierdo y derecho
+    \path (\PX, \PY) -- coordinate[pos=0.5] (Bizdo) (PHY);
+    \path (PHX) -- coordinate[pos=0.5] (Bdcho) (Pdiag);
     
     % DIBUJOS
-    % Proyección de elemento de área en los ejes
+    % Proyección del punto (x0,y0) en el eje x
     \draw[proyeccion, use path=\proyPx];
+    % Punto x0
+    \fill (Px) circle[radius=0.8pt];
+    % Texto x0
+    \node[below] at (Px) {$x_0$};
+    
+    % Proyección del punto (x0,y0) en el eje y
     \draw[proyeccion, use path=\proyPy];
+    % Punto y0
+    \fill (Py) circle[radius=0.8pt];
+    % Texto y0
+    \node[left] at (Py) {$y_0$};
+    
     \draw[proyeccion, use path=\proyPhorx];
     \draw[proyeccion, use path=\proyPverty];
     % Texto dx y dy en los ejes
-    \node[below] at (dxtexto) {$dx$};
-    \node[left] at (dytexto) {$dy$};
+    \node[below] at (hxtexto) {\color{green!60!black}{$h$}};
+    \node[left] at (hytexto) {\color{green!60!black}{$h$}};
+
+    % Elemento de área
+    \filldraw[area, use path=\cuadrado];
+    %\filldraw[area] (P) rectangle coordinate (centro) ++(\HX, \HY) coordinate (Pdiag);
+    % \node at (centro) {\footnotesize $d^2a$};
     
     % Ejes
-    % x
+    % Eje x
     \draw[eje, use path=\ejex];
     \node[right] at (xfin) {$x$};
     %\node[below] at (xtexto) {$x$};
-    % y
+    % Eje y
     \draw[eje, use path=\ejey];
     \node[above] at (yfin) {$y$};
     % \node[left] at (ytexto) {$y$};
-    % Punto P
-    % \fill (P) circle[radius=1.2pt];
-    % Elemento de área
-    \filldraw[area] (P) rectangle coordinate (centro) ++(\DX, \DY);
-    \node at (centro) {\footnotesize $d^2a$};
+    
+    % Punto P (x0,y0)
+    \filldraw (P) circle[radius=0.8pt];
 
+    % Longitud h en el eje x
+    \draw[line width=1.5pt, green!90!black, opacity=0.6] (Px) -- (Phorx);
+    % Longitud h en el eje y
+    \draw[line width=1.5pt, green!90!black, opacity=0.6] (Py) -- (Pverty);
+
+    % Puntos inferior A y superior A'
+    \fill (Ainf) circle[radius=0.8pt];
+    \node[below] at (Ainf) {$A$};
+    \fill (Asup) circle[radius=0.8pt];
+    \node[above] at (Asup) {$A'$};
+    % Puntos iquierdo B y derecho B'
+    \fill (Bizdo) circle[radius=0.8pt];
+    \node[left] at (Bizdo) {$B$};
+    \fill (Bdcho) circle[radius=0.8pt];
+    \node[right] at (Bdcho) {$B'$};
+    
+    
     % Origen
     \filldraw (O) circle [radius=.2pt];
-
+    
     % Fondo amarillo
     \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
     \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);    
@@ -497,8 +554,150 @@ en la figura
       \draw[background] (SW) rectangle (NE);
     \end{scope}
   \end{tikzpicture}
-  \caption{Pequeño cuadrado de lado $h$ en el punto $P(x_0,y_0)$. En el que se han
-  elegido dos puntos arbitrarios en los lados verticales del cuadrado.}
+  %
+  \hspace{1em}
+  %
+  % SEGUNDA IMAGEN
+  \centering
+  \begin{tikzpicture}[%
+    scale=\scl,
+    every node/.style={black,font=\small},
+    eje/.style={->},
+    proyeccion/.style={black!20, line width=0.4},
+    area/.style={fill=green!40, draw=black!20},
+    textooriginal/.style={\colorTorig},
+    vector/.style={-{Latex[round]}, line width=0.4pt},
+    background/.style={%
+      line width=\bgborderwidth,
+      draw=\bgbordercolor,
+      fill=\bgcolor,
+    },
+    ]
+    % COORDENADAS
+    % Origen
+    \coordinate (O) at (0,0);
+    % Extremo izdo del eje x e inferior del eje y
+    \coordinate (xini) at (\XMLONG cm,0);
+    \coordinate (yini) at (0,\YMLONG cm);
+    % Eje x
+    \path[save path=\ejex] (xini) -- (\XPLONG cm, 0) coordinate (xfin);
+    % Eje y
+    \path[save path=\ejey] (yini) -- (0, \YPLONG cm) coordinate (yfin);
+    % Punto P
+    \coordinate (P) at (\PX, \PY);
+    %
+    \path (P) -- coordinate[pos=0.5] (hxtext) ++(\HX, 0) coordinate (PHX);
+    \path (P) -- coordinate[pos=0.5] (hytext) ++(0, \HY) coordinate (PHY);
+    %
+%    % Vector
+%    \path[save path=\vector] (O) -- coordinate[pos=0.5] (pmid) (\PANG:\PMOD cm)
+%    coordinate (P);
+%    % Proyección de elemento de área en los ejes
+    \path[save path=\proyPx] (P) |- coordinate (Px) (xfin);
+    \path[save path=\proyPy] (P) -| coordinate (Py) (yfin);
+    \path[save path=\proyPhorx] (PHX) |- coordinate (Phorx) (xfin);
+    \path[save path=\proyPverty] (PHY) -| coordinate (Pverty) (yfin);
+
+    % Texto de las proyecciones en los ejes
+    \path (Px) -- coordinate[pos=0.5] (hxtexto) (Phorx);
+    \path (Py) -- coordinate[pos=0.5] (hytexto) (Pverty);
+
+    % Cuadrado
+    \path[save path=\cuadrado]
+    (P) rectangle coordinate (centro) ++(\HX, \HY) coordinate (Pdiag);
+    
+    % Puntos inferior y superior
+    \path (\PX, \PY) -- coordinate[pos=0.5] (Ainf) (PHX);
+    \path (PHY) -- coordinate[pos=0.5] (Asup) (Pdiag);
+    % Puntos izquierdo y derecho
+    \path (\PX, \PY) -- coordinate[pos=0.5] (Bizdo) (PHY);
+    \path (PHX) -- coordinate[pos=0.5] (Bdcho) (Pdiag);
+
+    % Vectores
+    \path[save path=\vectorAinf] (Ainf) -- ++(\VAINFANG:\VAINFMOD);
+    \path[save path=\vectorAsup] (Asup) -- ++(\VASUPANG:\VASUPMOD);
+    \path[save path=\vectorBizdo] (Bizdo) -- ++(\VBIZDOANG:\VBIZDOMOD);
+    \path[save path=\vectorBdcho] (Bdcho) -- ++(\VBDCHOANG:\VBDCHOMOD);
+    
+    % DIBUJOS
+    % Proyección del punto (x0,y0) en el eje x
+    \draw[proyeccion, use path=\proyPx];
+    % Punto x0
+    \fill (Px) circle[radius=0.8pt];
+    % Texto x0
+    \node[below] at (Px) {$x_0$};
+    
+    % Proyección del punto (x0,y0) en el eje y
+    \draw[proyeccion, use path=\proyPy];
+    % Punto y0
+    \fill (Py) circle[radius=0.8pt];
+    % Texto y0
+    \node[left] at (Py) {$y_0$};
+    
+    \draw[proyeccion, use path=\proyPhorx];
+    \draw[proyeccion, use path=\proyPverty];
+    % Texto dx y dy en los ejes
+    \node[below] at (hxtexto) {\color{green!60!black}{$h$}};
+    \node[left] at (hytexto) {\color{green!60!black}{$h$}};
+
+    % Elemento de área
+    \filldraw[area, use path=\cuadrado];
+    %\filldraw[area] (P) rectangle coordinate (centro) ++(\HX, \HY) coordinate (Pdiag);
+    % \node at (centro) {\footnotesize $d^2a$};
+    
+    % Ejes
+    % Eje x
+    \draw[eje, use path=\ejex];
+    \node[right] at (xfin) {$x$};
+    %\node[below] at (xtexto) {$x$};
+    % Eje y
+    \draw[eje, use path=\ejey];
+    \node[above] at (yfin) {$y$};
+    % \node[left] at (ytexto) {$y$};
+    
+    % Punto P (x0,y0)
+    \filldraw (P) circle[radius=0.8pt];
+
+    % Longitud h en el eje x
+    \draw[line width=1.5pt, green!90!black, opacity=0.6] (Px) -- (Phorx);
+    % Longitud h en el eje y
+    \draw[line width=1.5pt, green!90!black, opacity=0.6] (Py) -- (Pverty);
+
+    % Vectores
+    % Vector A inferior
+    \draw[vector, use path=\vectorAinf];
+    % Vector A superior
+    \draw[vector, use path=\vectorAsup];
+    % Vector B izquierdo
+    \draw[vector, use path=\vectorBizdo];
+    % Vector B derecho
+    \draw[vector, use path=\vectorBdcho];
+    
+    % Puntos inferior A y superior A'
+    \fill (Ainf) circle[radius=0.8pt];
+    %\node[below] at (Ainf) {$A$};
+    \fill (Asup) circle[radius=0.8pt];
+    %\node[above] at (Asup) {$A'$};
+    % Puntos iquierdo B y derecho B'
+    \fill (Bizdo) circle[radius=0.8pt];
+    %\node[left] at (Bizdo) {$B$};
+    \fill (Bdcho) circle[radius=0.8pt];
+    %\node[right] at (Bdcho) {$B'$};
+    
+    
+    % Origen
+    \filldraw (O) circle [radius=.2pt];
+    
+    % Fondo amarillo
+    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);    
+    \begin{scope}[on background layer]
+      \draw[background] (SW) rectangle (NE);
+    \end{scope}
+  \end{tikzpicture}
+  \caption{A la izquierda, pequeño cuadrado de lado $h$ en el punto $P(x_0,y_0)$, en el
+    que se han elegido dos puntos arbitrarios en los lados verticales del cuadrado y
+    otros dos en los horizontales.}
   %\label{fig:R2-rect-elemento_area}
 \end{figure}
 
