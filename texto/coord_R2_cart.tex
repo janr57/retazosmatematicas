@@ -421,10 +421,10 @@ en la figura
   \pgfmathsetmacro{\VASUPANG}{60}
   % Vector B
   \pgfmathsetmacro{\VBIZDOMOD}{0.6}
-  \pgfmathsetmacro{\VBIZDOANG}{45}
+  \pgfmathsetmacro{\VBIZDOANG}{-30}
   % Vector B'
   \pgfmathsetmacro{\VBDCHOMOD}{0.8}
-  \pgfmathsetmacro{\VBDCHOANG}{-40}  
+  \pgfmathsetmacro{\VBDCHOANG}{45}  
   % Posición inferior izquierda del elemento de área
   \pgfmathsetmacro{\PX}{0.9}
   \pgfmathsetmacro{\PY}{0.9}
@@ -566,7 +566,7 @@ en la figura
     area/.style={fill=green!40, draw=black!20},
     textooriginal/.style={\colorTorig},
     vector/.style={-{Latex[round,width=4pt,length=6pt]}, line width=1pt},
-    vectorcomponent/.style={-{Latex[round,width=4pt,length=6pt]}, line width=0.8pt},
+    vectorcomponent/.style={-{Latex[round,width=3pt,length=5pt]}, line width=0.6pt},
     faintvectorcomponent/.style={vectorcomponent, black!50},
     redvectorcomponent/.style={vectorcomponent, red},
     background/.style={%
@@ -575,93 +575,103 @@ en la figura
       fill=\bgcolor,
     },
     ]
+    % ------------------------------------------------------------------------------
     % COORDENADAS
-    % Origen
+    % ------------------------------------------------------------------------------    
+    % ORIGEN
     \coordinate (O) at (0,0);
-    % Extremo izdo del eje x e inferior del eje y
+    % EXTREMO IZQUIERDO DEL EJE X E INFERIOR DEL EJE Y
     \coordinate (xini) at (\XMLONG cm,0);
     \coordinate (yini) at (0,\YMLONG cm);
-    % Eje x
+    % EJES X E Y
     \path[save path=\ejex] (xini) -- (\XPLONG cm, 0) coordinate (xfin);
-    % Eje y
     \path[save path=\ejey] (yini) -- (0, \YPLONG cm) coordinate (yfin);
-    % Punto P
+    % PUNTO P DEL CUADRADO (punto inferior izquierdo)
     \coordinate (P) at (\PX, \PY);
-    % 
+    % PUNTOS SUPERIOR IZQUIERDA Y SUPERIOR DERECHA DEL CUADRADO
     \path (P) -- coordinate[pos=0.5] (hxtext) ++(\HX, 0) coordinate (Pinfdcha);
     \path (P) -- coordinate[pos=0.5] (hytext) ++(0, \HY) coordinate (Psupizda);
-    %
-%    % Vector
-%    % Proyección de elemento de área en los ejes
+    % PROYECCIÓN DE ELEMENTO DE ÁREA EN LOS EJES
     \path[save path=\proyPx] (P) |- coordinate (Px) (xfin);
     \path[save path=\proyPy] (P) -| coordinate (Py) (yfin);
     \path[save path=\proyPhorx] (Pinfdcha) |- coordinate (Phorx) (xfin);
     \path[save path=\proyPverty] (Psupizda) -| coordinate (Pverty) (yfin);
-
-    % Texto de las proyecciones en los ejes
+    % TEXTO DE LAS PROYECCIONES EN LOS EJES
     \path (Px) -- coordinate[pos=0.5] (hxtexto) (Phorx);
     \path (Py) -- coordinate[pos=0.5] (hytexto) (Pverty);
-
-    % Cuadrado
+    % CUADRADO
     \path[save path=\cuadrado]
     (P) rectangle coordinate (centro) ++(\HX, \HY) coordinate (Psupdcha);
-
-    % Puntos inferior y superior
+    % PUNTOS INTERMEDIOS A Y A' INFERIOR Y SUPERIOR
     \path (\PX, \PY) -- coordinate[pos=0.5] (Ainf) (Pinfdcha);
     \path (Psupizda) -- coordinate[pos=0.5] (Asup) (Psupdcha);
-    % Puntos izquierdo y derecho
+    % PUNTOS B Y B' IZQUIERDO Y DERECHO
     \path (\PX, \PY) -- coordinate[pos=0.5] (Bizdo) (Psupizda);
     \path (Pinfdcha) -- coordinate[pos=0.5] (Bdcho) (Psupdcha);
-
-    % Vectores
+    % VECTORES
     \path[save path=\VAinf] (Ainf) -- ++(\VAINFANG:\VAINFMOD) coordinate (VAinf);
     \path[save path=\VAsup] (Asup) -- ++(\VASUPANG:\VASUPMOD) coordinate (VAsup);
     \path[save path=\VBizdo] (Bizdo) -- ++(\VBIZDOANG:\VBIZDOMOD) coordinate
     (VBizdo);
     \path[save path=\VBdcho] (Bdcho) -- ++(\VBDCHOANG:\VBDCHOMOD) coordinate
     (VBdcho);
- 
-    % Componentes de los vectores
-    % --- Vector VAinf
-    % Componente x
-    \path [save path=\VAinfx] (Ainf) -- (VAinf|-Ainf) coordinate (VAinfx);
-    % Componente y
-    \path[save path=\VAinfy] (Ainf) -- (Ainf|-VAinf) coordinate (VAinfy);
-    % Rectángulo
+    % COMPONENTES DE LOS VECTORES
+    % --- VECTOR VAINF
+    % RECTÁNGULO
     \path[save path=\VAinfrectangulo] (VAinf|-Ainf) -- (VAinf) -- (Ainf|-VAinf);
-    % --- Vector VAsup
-    % Componente x
+    % COMPONENTE X
+    \path [save path=\VAinfx] (Ainf) -- (VAinf|-Ainf) coordinate (VAinfx);
+    % COMPONENTE Y
+    \path[save path=\VAinfy] (Ainf) -- (Ainf|-VAinf) coordinate (VAinfy);
+    % --- VECTOR VASUP
+    % RECTÁNGULO
+    \path[save path=\VAsuprectangulo] (VAsup|-Asup) -- (VAsup) -- (Asup|-VAsup);    
+    % COMPONENTE X
     \path [save path=\VAsupx] (Asup) -- (VAsup|-Asup) coordinate (VAsupx);
-    % Componente y
+    % COMPONENTE Y
     \path[save path=\VAsupy] (Asup) -- (Asup|-VAsup) coordinate (VAsupy);
-    % Rectángulo
-    \path[save path=\VAsuprectangulo] (VAsup|-Asup) -- (VAsup) -- (Asup|-VAsup);
-   
+    % --- VECTOR VBIZDO
+    % RECTÁNGULO
+    \path[save path=\VBizdorectangulo] (VBizdo|-Bizdo) -- (VBizdo) -- (Bizdo|-VBizdo);
+    % COMPONENTE X
+    \path [save path=\VBizdox] (Bizdo) -- (VBizdo|-Bizdo) coordinate (VBizdox);
+    % COMPONENTE Y
+    \path[save path=\VBizdoy] (Bizdo) -- (Bizdo|-VBizdo) coordinate (VBizdoy);
+    % --- VECTOR VBDCHO
+    % RECTÁNGULO
+    \path[save path=\VBdchorectangulo]
+    (VBdcho|-Bdcho) -- (VBdcho) -- (Bdcho|-VBdcho);    
+    % COMPONENTE X
+    \path [save path=\VBdchox] (Bdcho) -- (VBdcho|-Bdcho) coordinate (VBdchox);
+    % COMPONENTE Y
+    \path[save path=\VBdchoy] (Bdcho) -- (Bdcho|-VBdcho) coordinate (VBdchoy);
+
+    % ------------------------------------------------------------------------------
     % DIBUJOS
-    % Proyección del punto (x0,y0) en el eje x
+    % ------------------------------------------------------------------------------    
+    % PROYECCIÓN DEL PUNTO P(X0,Y0) EN EL EJE X
     \draw[proyeccion, use path=\proyPx];
     % Punto x0
     \fill (Px) circle[radius=0.8pt];
     % Texto x0
     \node[below] at (Px) {$x_0$};
     
-    % Proyección del punto (x0,y0) en el eje y
+    % PROYECCIÓN DEL PUNTO P(X0,Y0) EN EL EJE Y
     \draw[proyeccion, use path=\proyPy];
-    % Punto y0
+    % PUNTO Y0
     \fill (Py) circle[radius=0.8pt];
-    % Texto y0
+    % TEXTO Y0
     \node[left] at (Py) {$y_0$};
-    
+    % 
     \draw[proyeccion, use path=\proyPhorx];
     \draw[proyeccion, use path=\proyPverty];
+    
     % Texto dx y dy en los ejes
     \node[below] at (hxtexto) {\color{green!60!black}{$h$}};
     \node[left] at (hytexto) {\color{green!60!black}{$h$}};
 
     % Elemento de área
     \filldraw[area, use path=\cuadrado];
-    %\filldraw[area] (P) rectangle coordinate (centro) ++(\HX, \HY) coordinate (Psupdcha);
-    % \node at (centro) {\footnotesize $d^2a$};
     
     % Ejes
     % Eje x
@@ -700,7 +710,14 @@ en la figura
     \draw[proyeccion, use path=\VAsuprectangulo];
     \draw[faintvectorcomponent, use path=\VAsupx];
     \draw[redvectorcomponent, use path=\VAsupy];
-
+    % Vector B izquierdo
+    \draw[proyeccion, use path=\VBizdorectangulo];
+    \draw[redvectorcomponent, use path=\VBizdox];
+    \draw[faintvectorcomponent, use path=\VBizdoy];
+    % Vector B derecho
+    \draw[proyeccion, use path=\VBdchorectangulo];
+    \draw[redvectorcomponent, use path=\VBdchox];
+    \draw[faintvectorcomponent, use path=\VBdchoy];
     
     % Puntos inferior A y superior A'
     \fill (Ainf) circle[radius=0.8pt];
