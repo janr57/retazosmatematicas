@@ -410,24 +410,24 @@ en la figura
   \pgfmathsetmacro{\YMLONG}{\EJESEXTRA}
   \pgfmathsetmacro{\YPLONG}{\EJESLONG}
   % hx, hy
-  \pgfmathsetmacro{\LONG}{2.6}
+  \pgfmathsetmacro{\LONG}{2.5}
   \pgfmathsetmacro{\HX}{\LONG}
   \pgfmathsetmacro{\HY}{\LONG}
   % Vector A
-  \pgfmathsetmacro{\VAMOD}{0.9}
-  \pgfmathsetmacro{\VAANG}{30}
+  \pgfmathsetmacro{\FAMOD}{0.9}
+  \pgfmathsetmacro{\FAANG}{30}
   % Vector B
-  \pgfmathsetmacro{\VBMOD}{0.9}
-  \pgfmathsetmacro{\VBANG}{60}
+  \pgfmathsetmacro{\FBMOD}{0.9}
+  \pgfmathsetmacro{\FBANG}{60}
   % Vector C
-  \pgfmathsetmacro{\VCMOD}{0.8}
-  \pgfmathsetmacro{\VCANG}{-30}
+  \pgfmathsetmacro{\FCMOD}{1.3}
+  \pgfmathsetmacro{\FCANG}{-30}
   % Vector D
-  \pgfmathsetmacro{\VDMOD}{1.0}
-  \pgfmathsetmacro{\VDANG}{45}  
+  \pgfmathsetmacro{\FDMOD}{1.0}
+  \pgfmathsetmacro{\FDANG}{45}  
   % Posición inferior izquierda del elemento de área
-  \pgfmathsetmacro{\PX}{0.6}
-  \pgfmathsetmacro{\PY}{0.6}
+  \pgfmathsetmacro{\PX}{0.7}
+  \pgfmathsetmacro{\PY}{0.7}
   % Fondo
   \pgfmathsetmacro{\HORZ}{0.25}
   \pgfmathsetmacro{\VERT}{0.25}
@@ -438,134 +438,14 @@ en la figura
     scale=\scl,
     every node/.style={black,font=\small},
     eje/.style={->},
-    proyeccion/.style={black!20, line width=0.4},
-    area/.style={fill=green!30, draw=black!20},
-    textooriginal/.style={\colorTorig},
-    background/.style={%
-      line width=\bgborderwidth,
-      draw=\bgbordercolor,
-      fill=\bgcolor,
-    },
-    ]
-    % COORDENADAS
-    % Origen
-    \coordinate (O) at (0,0);
-    % Extremo izdo del eje x e inferior del eje y
-    \coordinate (xini) at (\XMLONG cm,0);
-    \coordinate (yini) at (0,\YMLONG cm);
-    % Eje x
-    \path[save path=\ejex] (xini) -- (\XPLONG cm, 0) coordinate (xfin);
-    % Eje y
-    \path[save path=\ejey] (yini) -- (0, \YPLONG cm) coordinate (yfin);
-    % Punto P
-    \coordinate (P) at (\PX, \PY);
-    %
-    \path (P) -- coordinate[pos=0.5] (hxtext) ++(\HX, 0) coordinate (Pinfdcha);
-    \path (P) -- coordinate[pos=0.5] (hytext) ++(0, \HY) coordinate (Psupizda);
-    %
-%    % Vector
-%    \path[save path=\vector] (O) -- coordinate[pos=0.5] (pmid) (\PANG:\PMOD cm)
-%    coordinate (P);
-%    % Proyección de elemento de área en los ejes
-    \path[save path=\proyPx] (P) |- coordinate (Px) (xfin);
-    \path[save path=\proyPy] (P) -| coordinate (Py) (yfin);
-    \path[save path=\proyPhorx] (Pinfdcha) |- coordinate (Phorx) (xfin);
-    \path[save path=\proyPverty] (Psupizda) -| coordinate (Pverty) (yfin);
-    
-    % Texto de las proyecciones en los ejes
-    \path (Px) -- coordinate[pos=0.5] (hxtexto) (Phorx);
-    \path (Py) -- coordinate[pos=0.5] (hytexto) (Pverty);
-
-    % Cuadrado
-    \path[save path=\cuadrado]
-    (P) rectangle coordinate (centro) ++(\HX, \HY) coordinate (Psupdcha);
-    
-    % Puntos A (inferior) y B (superior)
-    \path (\PX, \PY) -- coordinate[pos=0.5] (A) (Pinfdcha);
-    \path (Psupizda) -- coordinate[pos=0.5] (B) (Psupdcha);
-    
-    % Puntos C (izquierdo) y D (derecho)
-    \path (\PX, \PY) -- coordinate[pos=0.5] (C) (Psupizda);
-    \path (Pinfdcha) -- coordinate[pos=0.5] (D) (Psupdcha);
-
-    % DIBUJOS
-    % Proyección del punto (x0,y0) en el eje x
-    \draw[proyeccion, use path=\proyPx];
-    % Punto x0
-    \fill (Px) circle[radius=0.8pt];
-    % Texto x0
-    \node[below] at (Px) {$x_0$};
-    
-    % Proyección del punto (x0,y0) en el eje y
-    \draw[proyeccion, use path=\proyPy];
-    % Punto y0
-    \fill (Py) circle[radius=0.8pt];
-    % Texto y0
-    \node[left] at (Py) {$y_0$};
-    
-    \draw[proyeccion, use path=\proyPhorx];
-    \draw[proyeccion, use path=\proyPverty];
-    % Texto dx y dy en los ejes
-    \node[below] at (hxtexto) {\color{green!60!black}{$h$}};
-    \node[left] at (hytexto) {\color{green!60!black}{$h$}};
-
-    % Elemento de área
-    \filldraw[area, use path=\cuadrado];
-    
-    % Ejes
-    % Eje x
-    \draw[eje, use path=\ejex];
-    \node[right] at (xfin) {$x$};
-    %\node[below] at (xtexto) {$x$};
-    % Eje y
-    \draw[eje, use path=\ejey];
-    \node[above] at (yfin) {$y$};
-    % \node[left] at (ytexto) {$y$};
-    
-    % Punto P (x0,y0)
-    \filldraw (P) circle[radius=0.8pt];
-
-    % Longitud h en el eje x
-    \draw[line width=1.5pt, green!90!black, opacity=0.6] (Px) -- (Phorx);
-    % Longitud h en el eje y
-    \draw[line width=1.5pt, green!90!black, opacity=0.6] (Py) -- (Pverty);
-
-    % Puntos A y B
-    \fill (A) circle[radius=0.8pt];
-    \node[below] at (A) {$A$};
-    \fill (B) circle[radius=0.8pt];
-    \node[above] at (B) {$B$};
-    % Puntos C y D
-    \fill (C) circle[radius=0.8pt];
-    \node[left] at (C) {$C$};
-    \fill (D) circle[radius=0.8pt];
-    \node[right] at (D) {$D$};
-    
-    % Origen
-    \filldraw (O) circle [radius=.2pt];
-    
-    % Fondo amarillo
-    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
-    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);    
-    \begin{scope}[on background layer]
-      \draw[background] (SW) rectangle (NE);
-    \end{scope}
-  \end{tikzpicture}
-  %
-  \hspace{1em}
-  %
-  % SEGUNDA IMAGEN
-  \centering
-  \begin{tikzpicture}[%
-    scale=\scl,
-    every node/.style={black,font=\small},
-    eje/.style={->},
     proyeccion/.style={black!30, line width=0.3pt},
-    area/.style={fill=green!30, draw=black!20},
-    textooriginal/.style={\colorTorig},
+    area/.style={fill=green!25, draw=black!20},
+    textovector/.style={black},
+    textored/.style={red!90!black},
+    textofaint/.style={black!70},
     vector/.style={-{Latex[round,width=4pt,length=6pt]}, line width=1pt},
     vectorcomponent/.style={-{Latex[round,width=3pt,length=5pt]}, line width=0.6pt},
-    faintvectorcomponent/.style={vectorcomponent, black!50},
+    faintvectorcomponent/.style={vectorcomponent, black!60},
     redvectorcomponent/.style={vectorcomponent, red},
     background/.style={%
       line width=\bgborderwidth,
@@ -603,44 +483,24 @@ en la figura
     % PUNTOS INTERMEDIOS A (INFERIOR) Y B (SUPERIOR)
     \path (\PX, \PY) -- coordinate[pos=0.5] (A) (Pinfdcha);
     \path (Psupizda) -- coordinate[pos=0.5] (B) (Psupdcha);
-    % PUNTOS C (IZQUIERDO) Y D (DERECHO)
-    \path (\PX, \PY) -- coordinate[pos=0.5] (C) (Psupizda);
-    \path (Pinfdcha) -- coordinate[pos=0.5] (D) (Psupdcha);
     % VECTORES
-    \path[save path=\VA] (A) -- ++(\VAANG:\VAMOD) coordinate (VA);
-    \path[save path=\VB] (B) -- ++(\VBANG:\VBMOD) coordinate (VB);
-    \path[save path=\VC] (C) -- ++(\VCANG:\VCMOD) coordinate (VC);
-    \path[save path=\VD] (D) -- ++(\VDANG:\VDMOD) coordinate (VD);
+    \path[save path=\FA] (A) -- ++(\FAANG:\FAMOD) coordinate (FA);
+    \path[save path=\FB] (B) -- ++(\FBANG:\FBMOD) coordinate (FB);
     % COMPONENTES DE LOS VECTORES
-    % --- VECTOR VA
+    % --- VECTOR FA
     % RECTÁNGULO
-    \path[save path=\VArectangulo] (VA|-A) -- (VA) -- (A|-VA);
+    \path[save path=\FArectangulo] (FA|-A) -- (FA) -- (A|-FA);
     % COMPONENTE X
-    \path [save path=\VAx] (A) -- (VA|-A) coordinate (VAx);
+    \path [save path=\FAx] (A) -- (FA|-A) coordinate (FAx);
     % COMPONENTE Y
-    \path[save path=\VAy] (A) -- (A|-VA) coordinate (VAy);
-    % --- VECTOR VB
+    \path[save path=\FAy] (A) -- (A|-FA) coordinate (FAy);
+    % --- VECTOR FB
     % RECTÁNGULO
-    \path[save path=\VBrectangulo] (VB|-B) -- (VB) -- (B|-VB);    
+    \path[save path=\FBrectangulo] (FB|-B) -- (FB) -- (B|-FB);    
     % COMPONENTE X
-    \path [save path=\VBx] (B) -- (VB|-B) coordinate (VBx);
+    \path [save path=\FBx] (B) -- (FB|-B) coordinate (FBx);
     % COMPONENTE Y
-    \path[save path=\VBy] (B) -- (B|-VB) coordinate (VBy);
-    % --- VECTOR VC
-    % RECTÁNGULO
-    \path[save path=\VCrectangulo] (VC|-C) -- (VC) -- (C|-VC);
-    % COMPONENTE X
-    \path [save path=\VCx] (C) -- (VC|-C) coordinate (VCx);
-    % COMPONENTE Y
-    \path[save path=\VCy] (C) -- (C|-VC) coordinate (VCy);
-    % --- VECTOR VD
-    % RECTÁNGULO
-    \path[save path=\VDrectangulo]
-    (VD|-D) -- (VD) -- (D|-VD);    
-    % COMPONENTE X
-    \path [save path=\VDx] (D) -- (VD|-D) coordinate (VDx);
-    % COMPONENTE Y
-    \path[save path=\VDy] (D) -- (D|-VD) coordinate (VDy);
+    \path[save path=\FBy] (B) -- (B|-FB) coordinate (FBy);
 
     % ------------------------------------------------------------------------------
     % DIBUJOS
@@ -689,46 +549,29 @@ en la figura
 
     % Vectores
     % Vector A
-    \draw[vector, use path=\VA];
-    \node[above left=-1pt and -8pt] at (VA) {$\vvv{v}_a$};
+    \draw[vector, use path=\FA];
+    \node[textovector, above right=-4pt and -4pt] at (FA) {$\vvv{F}_a$};
     % Vector B
-    \draw[vector, use path=\VB];
-    \node[above left=-1pt and -8pt] at (VB) {$\vvv{v}_{b}$};
-    % Vector C
-    \draw[vector, use path=\VC];
-    \node[below left=-1pt and -8pt] at (VC) {$\vvv{v}_{c}$};
-    % Vector D
-    \draw[vector, use path=\VD];
-    \node[above left=-1pt and -8pt] at (VD) {$\vvv{v}_{d}$};
-
+    \draw[vector, use path=\FB];
+    \node[textovector, above right=-4pt and -4pt] at (FB) {$\vvv{F}_{b}$};
     % Componentes de vectores
     % Vector A
-    \draw[proyeccion, use path=\VArectangulo];
-    \draw[faintvectorcomponent, use path=\VAx];
-    \draw[redvectorcomponent, use path=\VAy];
-    \node[above=-1pt] at (VAy) {$\color{red!80!black}{\vvv{v}_{ay}}$};
+    \draw[proyeccion, use path=\FArectangulo];
+    \draw[faintvectorcomponent, use path=\FAx];
+    \node[textofaint, below] at (FAx) {$F_{ax}$};
+    \draw[redvectorcomponent, use path=\FAy];
+    \node[textored, left] at (FAy) {$F_{ay}$};
     % Vector B
-    \draw[proyeccion, use path=\VBrectangulo];
-    \draw[faintvectorcomponent, use path=\VBx];
-    \draw[redvectorcomponent, use path=\VBy];
-    \node[above=-1pt] at (VBy) {$\color{red!80!black}{\vvv{v}_{by}}$};
-    % Vector C
-    \draw[proyeccion, use path=\VCrectangulo];
-    \draw[redvectorcomponent, use path=\VCx];
-    \node[right=-2pt] at (VCx) {$\color{red!80!black}{\vvv{v}_{cx}}$};
-    \draw[faintvectorcomponent, use path=\VCy];
-    % Vector D
-    \draw[proyeccion, use path=\VDrectangulo];
-    \draw[redvectorcomponent, use path=\VDx];
-    \node[right=-2pt] at (VDx) {$\color{red!80!black}{\vvv{v}_{dx}}$};
-    \draw[faintvectorcomponent, use path=\VDy];
-    
+    \draw[proyeccion, use path=\FBrectangulo];
+    \draw[faintvectorcomponent, use path=\FBx];
+    \node[textofaint, below] at (FBx) {$F_{bx}$};
+    \draw[redvectorcomponent, use path=\FBy];
+    \node[textored, left] at (FBy) {$F_{by}$};
     % Puntos A y B
     \fill (A) circle[radius=0.8pt];
+    \node[below left=-1pt and -3pt] at (A) {$A$};
     \fill (B) circle[radius=0.8pt];
-    % Puntos C y D
-    \fill (C) circle[radius=0.8pt];
-    \fill (D) circle[radius=0.8pt];
+    \node[below left=-1pt and -3pt] at (B) {$B$};
 
     % Origen
     \filldraw (O) circle [radius=.2pt];
@@ -740,9 +583,172 @@ en la figura
       \draw[background] (SW) rectangle (NE);
     \end{scope}
   \end{tikzpicture}
-  \caption{A la izquierda, pequeño cuadrado de lado $h$ en el punto $P(x_0,y_0)$, en el
-    que se han elegido dos puntos arbitrarios en los lados verticales del cuadrado y
-    otros dos en los horizontales.}
+  %
+  \hspace{1em}
+  %
+  % SEGUNDA IMAGEN
+  \centering
+  \begin{tikzpicture}[%
+    scale=\scl,
+    every node/.style={black,font=\small},
+    eje/.style={->},
+    proyeccion/.style={black!30, line width=0.3pt},
+    area/.style={fill=green!25, draw=black!20},
+    textovector/.style={black},
+    textored/.style={red!90!black},
+    textofaint/.style={black!70},
+    vector/.style={-{Latex[round,width=4pt,length=6pt]}, line width=1pt},
+    vectorcomponent/.style={-{Latex[round,width=3pt,length=5pt]}, line width=0.6pt},
+    faintvectorcomponent/.style={vectorcomponent, black!60},
+    redvectorcomponent/.style={vectorcomponent, red},
+    background/.style={%
+      line width=\bgborderwidth,
+      draw=\bgbordercolor,
+      fill=\bgcolor,
+    },
+    ]
+    % ------------------------------------------------------------------------------
+    % COORDENADAS
+    % ------------------------------------------------------------------------------    
+    % ORIGEN
+    \coordinate (O) at (0,0);
+    % EXTREMO IZQUIERDO DEL EJE X E INFERIOR DEL EJE Y
+    \coordinate (xini) at (\XMLONG cm,0);
+    \coordinate (yini) at (0,\YMLONG cm);
+    % EJES X E Y
+    \path[save path=\ejex] (xini) -- (\XPLONG cm, 0) coordinate (xfin);
+    \path[save path=\ejey] (yini) -- (0, \YPLONG cm) coordinate (yfin);
+    % PUNTO P DEL CUADRADO (punto inferior izquierdo)
+    \coordinate (P) at (\PX, \PY);
+    % PUNTOS SUPERIOR IZQUIERDA Y SUPERIOR DERECHA DEL CUADRADO
+    \path (P) -- coordinate[pos=0.5] (hxtext) ++(\HX, 0) coordinate (Pinfdcha);
+    \path (P) -- coordinate[pos=0.5] (hytext) ++(0, \HY) coordinate (Psupizda);
+    % PROYECCIÓN DE ELEMENTO DE ÁREA EN LOS EJES
+    \path[save path=\proyPx] (P) |- coordinate (Px) (xfin);
+    \path[save path=\proyPy] (P) -| coordinate (Py) (yfin);
+    \path[save path=\proyPhorx] (Pinfdcha) |- coordinate (Phorx) (xfin);
+    \path[save path=\proyPverty] (Psupizda) -| coordinate (Pverty) (yfin);
+    % TEXTO DE LAS PROYECCIONES EN LOS EJES
+    \path (Px) -- coordinate[pos=0.5] (hxtexto) (Phorx);
+    \path (Py) -- coordinate[pos=0.5] (hytexto) (Pverty);
+    % CUADRADO
+    \path[save path=\cuadrado]
+    (P) rectangle coordinate (centro) ++(\HX, \HY) coordinate (Psupdcha);
+    % PUNTOS C (IZQUIERDO) Y D (DERECHO)
+    \path (\PX, \PY) -- coordinate[pos=0.5] (C) (Psupizda);
+    \path (Pinfdcha) -- coordinate[pos=0.5] (D) (Psupdcha);
+    % VECTORES
+    \path[save path=\FC] (C) -- ++(\FCANG:\FCMOD) coordinate (FC);
+    \path[save path=\FD] (D) -- ++(\FDANG:\FDMOD) coordinate (FD);
+    % COMPONENTES DE LOS VECTORES
+    % --- VECTOR FC
+    % RECTÁNGULO
+    \path[save path=\FCrectangulo] (FC|-C) -- (FC) -- (C|-FC);
+    % COMPONENTE X
+    \path [save path=\FCx] (C) -- (FC|-C) coordinate (FCx);
+    % COMPONENTE Y
+    \path[save path=\FCy] (C) -- (C|-FC) coordinate (FCy);
+    % --- VECTOR FD
+    % RECTÁNGULO
+    \path[save path=\FDrectangulo]
+    (FD|-D) -- (FD) -- (D|-FD);    
+    % COMPONENTE X
+    \path [save path=\FDx] (D) -- (FD|-D) coordinate (FDx);
+    % COMPONENTE Y
+    \path[save path=\FDy] (D) -- (D|-FD) coordinate (FDy);
+
+    % ------------------------------------------------------------------------------
+    % DIBUJOS
+    % ------------------------------------------------------------------------------    
+    % PROYECCIÓN DEL PUNTO P(X0,Y0) EN EL EJE X
+    \draw[proyeccion, use path=\proyPx];
+    % Punto x0
+    \fill (Px) circle[radius=0.8pt];
+    % Texto x0
+    \node[below] at (Px) {$x_0$};
+    
+    % PROYECCIÓN DEL PUNTO P(X0,Y0) EN EL EJE Y
+    \draw[proyeccion, use path=\proyPy];
+    % PUNTO Y0
+    \fill (Py) circle[radius=0.8pt];
+    % TEXTO Y0
+    \node[left] at (Py) {$y_0$};
+    % 
+    \draw[proyeccion, use path=\proyPhorx];
+    \draw[proyeccion, use path=\proyPverty];
+    
+    % Texto dx y dy en los ejes
+    \node[below] at (hxtexto) {\color{green!60!black}{$h$}};
+    \node[left] at (hytexto) {\color{green!60!black}{$h$}};
+
+    % Elemento de área
+    \filldraw[area, use path=\cuadrado];
+    
+    % Ejes
+    % Eje x
+    \draw[eje, use path=\ejex];
+    \node[right] at (xfin) {$x$};
+    %\node[below] at (xtexto) {$x$};
+    % Eje y
+    \draw[eje, use path=\ejey];
+    \node[above] at (yfin) {$y$};
+    % \node[left] at (ytexto) {$y$};
+    
+    % Punto P (x0,y0)
+    \filldraw (P) circle[radius=0.8pt];
+
+    % Longitud h en el eje x
+    \draw[line width=1.5pt, green!90!black, opacity=0.6] (Px) -- (Phorx);
+    % Longitud h en el eje y
+    \draw[line width=1.5pt, green!90!black, opacity=0.6] (Py) -- (Pverty);
+
+    % Vectores
+    % Vector C
+    \draw[vector, use path=\FC];
+    \node[textovector, below right=-2pt and -3pt] at (FC) {$\vvv{F}_{c}$};
+    % Vector D
+    \draw[vector, use path=\FD];
+    \node[texovector, above right=-3pt and -4pt] at (FD) {$\vvv{F}_{d}$};
+    
+    % Componentes de vectores
+    % Vector C
+    \draw[proyeccion, use path=\FCrectangulo];
+    \draw[redvectorcomponent, use path=\FCx];
+    \node[textored, above] at (FCx) {$F_{cx}$};
+    \draw[faintvectorcomponent, use path=\FCy];
+    \node[textofaint, left] at (FCy) {$F_{cy}$};
+    % Vector D
+    \draw[proyeccion, use path=\FDrectangulo];
+    \draw[redvectorcomponent, use path=\FDx];
+    \node[textored, below] at (FDx) {$F_{dx}$};
+    \draw[faintvectorcomponent, use path=\FDy];
+    \node[textofaint, left] at (FDy) {$F_{dy}$};
+    
+    % Puntos C y D
+    \fill (C) circle[radius=0.8pt];
+    \node[above left=-3pt and -1pt] at (C) {$C$};    
+    \fill (D) circle[radius=0.8pt];
+    \node[below left=-3pt and -1pt] at (D) {$D$};
+
+    % Origen
+    \filldraw (O) circle [radius=.2pt];
+
+    % Fondo amarillo
+    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);    
+    \begin{scope}[on background layer]
+      \draw[background] (SW) rectangle (NE);
+    \end{scope}
+  \end{tikzpicture}
+  \caption{En las figuras se representa un pequeño cuadrado de lado $h$ en el punto
+    $P(x_0,y_0)$.
+    A la izquierda se representa el flujo a través de las caras superior e inferior,
+    representadas por las componentes verticales, en rojo, del valor del campo en cada
+    punto arbitrario $A$ y $B$ de esas caras.
+    A la derecha se representa el flujo a través de las caras izquierda y derecha,
+    en los puntos $C$ y $D$, representado por las componentes horizontales, también en
+    rojo.}
+
   %\label{fig:R2-rect-elemento_area}
 \end{figure}
 
