@@ -397,7 +397,7 @@ figura \ref{fig:R2-rect-divergencia}.
   \def\scl{1}
   %
   \pgfmathsetmacro{\EJESEXTRA}{-0.4}
-  \pgfmathsetmacro{\EJESLONG}{4.2}
+  \pgfmathsetmacro{\EJESLONG}{4.0}
   % Eje x
   \pgfmathsetmacro{\XMLONG}{\EJESEXTRA}
   \pgfmathsetmacro{\XPLONG}{\EJESLONG}
@@ -746,10 +746,18 @@ figura \ref{fig:R2-rect-divergencia}.
 \end{figure}
 
 A la izquierda de la figura, nos fijaremos en dos puntos arbitrarios $A$ y $B$ del
-cuadrado, el primero, situado en el intervalo abierto $(x_0, x_0+h)$ del lado inferior,
-y el segundo, en el mismo intervalo $(x_0, x_0+h)$ del lado superior.
+cuadrado, el primero $m$, situado en el intervalo abierto $m\in (x_0, x_0+h)$ del lado
+inferior, y el segundo en el mismo intervalo $m\in(x_0, x_0+h)$ del lado superior.
 De manera similar, representaremos los puntos $C$ y $D$, en puntos de los lados
-izquierdo y derecho, respectivamente, situados en el intervalo vertical $(y_0, y_0+h)$.
+izquierdo y derecho, respectivamente, situados en el intervalo vertical
+$n\in(y_0, y_0+h)$.
+Así quedan las coordenadas de los cuatro puntos
+\begin{align*}
+  &A\equiv(m, y_0)\\
+  &B\equiv(m, y_0+h)\\
+  &C\equiv(x_0,n)\\
+  &D\equiv(x_0+h,n)
+\end{align*}
 
 En algún momento oportuno de la demostración obligaremos a que $h$ tienda a cero, y los
 cocientes de las diferencias pasarán a ser derivadas parciales; por esa razón los
@@ -757,9 +765,8 @@ puntos $A$, $B$, $C$ y $D$ son arbitrarios, pues todos tenderán al final a $(x_
 y las derivadas parciales estarán calculadas en ese punto.
 
 Para facilitar la comprensión, en lo que sigue imaginaremos temporalmente que el campo
-vectorial $\vvv{F}$ es el campo de velocidades de un fluido imaginario,
-$\vvv{F}(x,y) = \vvv{v}(x,y)$, que se mueve en un plano (con un valor de $z$
-constante\footnotemark{}).
+vectorial $\vvv{F}$ es el campo de velocidades de un fluido imaginario que se mueve en un
+plano, con un valor de $z$ constante\footnotemark{} $\vvv{F}(x,y) = \vvv{v}(x,y)$
 \footnotetext{En realidad, la divergencia depende del volumen. En el caso del campo
   de velocidades del fluido, nos aparecerá su volumen (en dos dimensiones no hay
   volumen). Por tanto supondremos que el espesor de la capa de fluido es infinitesimal,
@@ -768,52 +775,64 @@ De esta manera, podremos hablar del caudal del fluido imaginario que entra o sal
 cuadrado.
 
 En la figura hemos supuesto el caso general en el que  el caudal entra por los puntos
-$A$ y $C$, y sale por $B$ y $D$ ---en caso de que no fuera así, aparecería
-automáticamente un signo negativo en la parte correspondiente de las ecuaciones, por lo
-que no nos preocuparemos de ello---.
-
+$A$ y $C$, y sale por $B$ y $D$.
 Obsérvese que el flujo vertical depende de las componentes $F_y$ (en rojo) del campo en
 los puntos $A$ y $B$; la componente horizontal no afecta a este. Por la misma razón, el
 flujo horizontal depende de las componentes $F_x$ en los puntos $C$ y $D$
+
+El caudal vertical que sale es $F_{by} h^2 - F_{ay} h^2$, el signo negativo se debe a que
+el caudal en el punto $A$ entra. de la misma forma, el caudal horizontal es
+$F_{cx} h^2 - F_{bx} h^2$
 \[
   \begin{cases}
     \begin{array}{lll}
       \text{\emph{Caudal} vertical saliente }
       &\longrightarrow
-      &F_y(x_0+a, y_0+b) h^2 - F_y(x_0+a, y_0+h)\,h^2\\[1ex]
+      &F_y(m, y_0+h) h^2 - F_y(m, y_0)\,h^2\\[1ex]
       \text{\emph{Caudal} horizontal saliente }
       &\longrightarrow
-      &F_x(x_d0+h, y_0+b) h^2 - F_x(x_0, y_0+b)\,h^2
+      &F_x(x_0+h, n) h^2 - F_x(x_0, n)\,h^2
     \end{array}
   \end{cases}
 \]
 
-Multiplicamos y dividimos entre $h$ y sacamos factor común $h^3$
+Multiplicamos y dividimos entre $h$ y sacamos factor común $h^3$ en el denominador
 \[
   \begin{cases}
     \begin{array}{lll}
-      \text{\emph{Caudal} horizontal saliente }
-      &\longrightarrow
-      &Q_x = \dfrac{M(x_0+h, b) - M(x_0, b)}{h}\,h^3\\[1ex]
       \text{\emph{Caudal} vertical saliente }
       &\longrightarrow
-      &Q_y = \dfrac{N(a, b) - N(a, y_0+h)}{h}\,h^3
+      &Q_y = \dfrac{F_y(m, y_0+h) - F_y(m, y_0)}{h}\,h^3\\[1ex]
+      \text{\emph{Caudal} horizontal saliente }
+      &\longrightarrow
+      &Q_x = \dfrac{F_x(x_0+h, n) - F_x(x_0, n)}{h}\,h^3
     \end{array}
   \end{cases}
 \]
-Sumamos los caudales incrementales y pasamos $V=h^3$ al otro miembro.
-Supongamos que $M(x,y)$ y $N(x,y)$ son continuas y tienen derivada.
-Tomamos el límite $h\to 0$. En estas condiciones $a\to x_0$ y $b\to y_0$
+Sumamos los caudales incrementales $Q=Q_x + Q_y$ y pasamos $V=h^3$ al otro miembro
+\[
+  \dfrac{Q}{V}
+  = \dfrac{F_y(m, y_0+h) - F_y(m, y_0)}{h}
+  + \dfrac{F_x(x_0+h, n) - F_x(x_0, n)}{h}
+\]
+
+Supongamos que $F_x(x,y)$ y $F_y(x,y)$ son continuas y tienen derivada.
+Tomamos el límite $h\to 0$. En estas condiciones, $m\to x_0$ y $n\to y_0$
 \begin{align*}
   \vvv{\nabla}\cdot\vvv{F}
   &= \lim_{h\to 0}\dfrac{Q}{V}
   = \lim_{h\to 0}\dfrac{Q_x + Q_y}{V}\\
-  &= \lim_{h\to 0}\dfrac{M(x_0+h, b) - M(x_0, b)}{h}
-  + \lim_{h\to 0}\dfrac{N(a, b) - N(a, y_0+h)}{h} \\
-  &= \dfrac{\partial M(x,y)}{\partial x}\Big|_{(x_0,y_0)}
-    + \dfrac{\partial N(x,y)}{\partial y}\Big|_{(x_0,y_0)}
-    = \dfrac{\partial F_x}{\partial x} + \dfrac{\partial F_y}{\partial y}
+  &= \lim_{h\to 0}\dfrac{F_x(x_0+h, m) - F_x(x_0, n)}{h}
+  + \lim_{h\to 0}\dfrac{F_y(m, y_0+h) - F_y(m, y_0)}{h} \\
+  &= \dfrac{\partial F_x(x,y)}{\partial x}\Big|_{(x_0,y_0)}
+    + \dfrac{\partial F_y(x,y)}{\partial y}\Big|_{(x_0,y_0)}
 \end{align*}
+
+En general, para cualquier punto del plano $(x,y)$
+\[
+  \vvv{\nabla}\cdot\vvv{F}
+  = \dfrac{\partial F_x}{\partial x} + \dfrac{\partial F_y}{\partial y}
+\]
 
 \section{Laplaciano}
 La laplaciana de un campo escalar $f(x,y)$ es la divergencia del gradiente y es un
