@@ -9,8 +9,8 @@
   \mathinhead{\symbb{R}^2}{espr2}}
 Este capítulo tiene los siguientes objetivos:
 \begin{enumerate}
-\item Analizar el sistema de coordenadas oblicuas en el plano euclídeo $\symbb{R}^2$ y
-  determinadas operaciones, utilizando unos conceptos básicos de geometría diferencial.
+\item Analizar el sistema de coordenadas oblicuas en el plano euclídeo $\symbb{R}^2$,
+  utilizando unos conceptos básicos de geometría diferencial.
 \item Realizar algunas operaciones diferenciales, como gradiente, divergencia y
   laplaciano en este sistema.
 \end{enumerate}
@@ -19,8 +19,8 @@ Se utilizarán determinados conceptos de la geometría diferencial, como \emph{b
 \emph{vectores y componentes contravariantes y covariantes},
 \emph{espacio dual}, etc., conforme se van necesitando, unos con más detalle que otros,
 de manera que, al final del capítulo, se termina con una idea básica de esta rama de las
-matemáticas. Por descontado, la geometría diferencial es mucho más que lo que aquí se
-presenta, pues solo se ha arañado una pequeña parte de la superficie.
+matemáticas. Por descontado, la geometría diferencial es mucho más, pues solo se ha
+arañado una pequeña parte de la superficie.
 
 %Aquí introduciremos los conceptos de \emph{componentes contravariantes y covariantes},
 %algo que no hicimos en el sistema cartesiano rectangular, porque en este último ambas
@@ -42,17 +42,24 @@ presenta, pues solo se ha arañado una pequeña parte de la superficie.
   notaciones diferentes para los ejes, ver figura \ref{fig:R2-oblic_ejes}:
   \begin{itemize}
   \item Notación en álgebra lineal y física clásica:
-    El eje horizontal se suele representar como $\tilde{x}$ o $x'$ y el inclinado como
-    $\tilde{y}$ o $y'$.
-    Esta notación se suele usar para diferenciar visualmente dos sistemas cartesianos,
-    como el ortogonal estándar y el oblicuo, o entre dos oblicuos.
-    En este texto, a menos que se diga lo contrario, cuando utilicemos esta notación,
-    reservaremos $x$ e $y$ para el sistema cartesiano ortogonal, aunque el sistema
-    oblicuo no lo comparemos con aquél.
+    El eje horizontal se suele representar como $x$, $\tilde{x}$, $x'$ o $\mu$, y el
+    inclinado como $y$, $\tilde{y}$, $y'$ o $\nu$.
+    La notación con tilde o prima se suele usar para diferenciar visualmente dos
+    sistemas cartesianos, como el ortogonal estándar y el oblicuo, o entre dos oblicuos.
+    
+    En este texto, a menos que se diga lo contrario, cuando utilicemos esta notación con
+    tilde o prima, reservaremos $x$ e $y$ para el sistema cartesiano ortogonal, aunque
+    el sistema oblicuo no lo comparemos con aquél.
   \item Notación en cálculo tensorial y geometría diferencial:
-    Se usan preferentemente superíndices $x^1$ y $x^2$
-    (que no representan exponentes, ni componentes contravariantes de vectores, que
-    también se pueden representar igual, aunque se distinguen por el contexto).
+    Para los ejes, se usan preferentemente superíndices $x^1$ y $x^2$, o $x^\mu$ y $x^\nu$
+    (en el caso de superíndices numéricos, estos no representan exponentes).
+    
+    Se debe aclarar que también se representarán con superíndice las componentes
+    contravariantes en este sistema; en todo caso, si son ejes o componentes se
+    distinguirán por el contexto\footnotemark{}).
+    \footnotetext{En el sistema cartesiano ortogonal se hace algo parecido, los ejes se
+      suelen representar como $x$ e $y$, y las componentes de los vectores también se
+      pueden representar igual, distinguiéndose por el contexto.}
   \end{itemize}
 \item Base natural:
   La más utilizada en geometría diferencial es la base covariante, formada por vectores
@@ -252,21 +259,22 @@ presenta, pues solo se ha arañado una pequeña parte de la superficie.
     mientras que a la derecha se encuentran como $x^1$ y $x^2$.
   Estos forman un ángulo $\alpha$ entre sí. Los ejes ortogonales estándar $x$ e $y$ se
   representan para comparar. Nótese que se hace coincidir el eje $x^1$ con el $x$.
-  Por último, se puede considerar que el eje $y$ se ha inclinado un ángulo en sentido
-  horario $\beta = \pi/2 - \alpha$.}
+  Por último, en esta figura se considera que el eje $\tilde{y}$ se ha formado
+  inclinando el eje $y$ un  ángulo en sentido horario $\beta = \pi/2 - \alpha$, aunque
+  podría hacerlo en sentido horario, formando un ángulo obtuso con el eje de abcisas.}
   \label{fig:R2-oblic_ejes}
 \end{figure}
 
-\section{Base natural}
+\section{Bases unitaria y natural}
 
 \subsection{Base unitaria}
-En física general se suelen utilizar bases formadas por vectores unitarios.
-Para tener una base basta con que los vectores que la forman sean linealmente
-independientes. Así, cualquier vector del espacio se podrá representar como una
-combinación lineal de vectores de la base.
+En física general se suelen utilizar bases formadas por vectores unitarios, aunque
+formar una base no es necesario que sean unitarios, basta con que conste del máximo
+número de vectores linealmente independientes. Así, como sabemos, cualquier vector del
+espacio se podrá representar como una combinación lineal de vectores de la base.
 
 Vamos obtener la base unitaria $B'_u=\set{\xhat{u}_1, \xhat{u}_2}$ en el sistema de
-coordenadas oblicuas. Si nos fijamos en la figura \ref{fig:R2-oblic_u1u2} podemos
+coordenadas oblicuas. Si nos fijamos en la figura \ref{fig:R2-oblic_u1u2}, podemos
 expresar estos vectores en función de los $\uvec{\i}$ y $\uvec{\j}$ de las cartesianas
 rectangulares
 \begin{align}
@@ -416,31 +424,37 @@ rectangulares
   \end{tikzpicture}
   \caption{Sistema de coordenadas cartesianas oblicuas $\tilde{x}$ e $\tilde{y}$, que
     forman un ángulo $\alpha$ entre sí. También se representan los ejes cartesianos $x$ e
-    $y$ tradicionales, como referencia en tono algo apagado. Por último se aprecian en
+    $y$ tradicionales como referencia, en tono algo apagado. Por último se aprecian en
     rojo los vectores unitarios $\xhat{u}_1$ y $\xhat{u}_2$ del sistema oblicuo y sus
     proyecciones en los ejex $x$ e $y$.}
   \label{fig:R2-oblic_u1u2}
 \end{figure}
 
-Como se comentó en el apartado anterior, la base natural, ahora $B'$ en el sistema
+\subsection{Base natural}
+Como se comentó en el apartado anterior, la base natural $B'$ en el sistema
 oblicuo (con prima, para distinguirla temporalmente de la base ortogonal
 $B=\set{\uvec{\i},\,\uvec{\j}}$), está formada por los vectores covariantes
 (con subíndice) siguientes
 \begin{equation}\label{eq:R2-oblic_base_natural}
   B' = \set{\vvv{e}_1, \vvv{e}_2}
 \end{equation}
-Esta base nos podrá servir para obtener la métrica de estos sistemas oblicuos que, a su
-vez, nos permitirá relacionar las componentes covariantes y las contravariantes, entre
-sí.
+que nos podrá servir para obtener la métrica de estos sistemas oblicuos que, a su vez,
+nos permitirá relacionar las componentes covariantes y las contravariantes, entre sí.
 
-\subsection{Cálculo geométrico}
-Hasta que no obtengamos la matriz de cambio de base, para obtener la base natural vamos
-a recurrir a un procedimiento geométrico.
-La base natural se calcula expresando el vector de posición, expresado en función de las
-componentes contravariantes en el nuevo sistema $x^1$ y $x^2$, y calculando las
-derivadas parciales $\vvv{e}_i = \partial\vvv{r}/\partial x^i$.
+\subsubsection{Cálculo geométrico}
+Hasta que no obtengamos la llamada \emph{matriz de cambio de base}, para obtener la base
+natural vamos recurrir a un procedimiento geométrico.
+
+Los vectores de la  base natural se calculan derivadando parcialmente el vector de
+posición de un punto genérico del plano en función de las componentes contravariantes
+$x^1$ y $x^2$ en el sistema oblicuo.
+\begin{equation}
+  \vvv{e}_i = \dfrac{\partial\vvv{r}}{\partial x^i}
+  \,\text{;}\hspace{0.8em}
+  \text{con } i = 1, 2.
+\end{equation}
 Hasta que no se explique con algo de detalle el significado de estas componentes
-contravariantes, es suficiente con fijarnos en la figura \ref{fig:R2-coord_rect-ij}.
+contravariantes, basta con fijarnos en la figura \ref{fig:R2-coord_rect-ij}.
 De acuerdo con ella, el vector de posición de un punto cualquiera del plano se expresa
 como
 \begin{equation}
@@ -455,12 +469,15 @@ Nuestro objetivo es obtener $x$ e $y$ en función de las $x^1$ y $x^2$
 y sustituir en la expresión anterior, para poder derivar parcialmente el vector de
 posición respecto de las $x^i$.
 
-Fijémonos en el triángulo sombreado en verde de la figura \ref{fig:R2-oblic_proced_geom}.
+Fijémonos en el triángulo sombreado en verde de la figura
+\ref{fig:R2-oblic_proc_geom_agudo}, donde hemos supuesto que los ejes forman un ángulo
+agudo.
 Sabemos que el ángulo $\beta$ es el complementario de $\alpha$, que es el que forman los
 dos ejes oblicuos, de manera que $\sin\beta = \cos\alpha$ y $\cos\beta = \sin\alpha$.
 
 Así
 \begin{equation}
+  \label{eq:R2-oblic_transf_agudo}
   \begin{cases}
     \begin{array}{lll}
       \sin\beta = \cos\alpha = \dfrac{x-x^1}{x^2}
@@ -497,9 +514,10 @@ Así
   % Fondo
   \pgfmathsetmacro{\HORZ}{0.25}
   \pgfmathsetmacro{\VERT}{0.25}
-  % 
+  %
   \centering
- \begin{tikzpicture}[%
+  \begin{tikzpicture}[%
+    %name prefix = fig1-,
     scale=\scl,
     every node/.style={black,font=\footnotesize},
     ejecart/.style={->, black!30},
@@ -565,6 +583,11 @@ Así
     "\color{black!60}{\footnotesize $\beta$}", angle radius=75pt,
     angle eccentricity=1.1]
     {angle = ytildefin--O--yfin};
+    % Ángulo alfa
+    \path (xfin) -- (O) -- (ytildefin) pic
+    [angulo, "\color{black}{\scriptsize $\alpha$}", angle radius=16pt,
+    angle eccentricity=0.70]
+    {angle = xfin--O--ytildefin};
     % Otro ángulo beta
     \path (px) -- (P) -- (CTV1) pic
     [angulo, "\color{black}{\scriptsize $\beta$}", angle radius=16pt,
@@ -626,7 +649,7 @@ Así
   \caption{El triángulo rectángulo sombreado en verde nos permite relacionar las
     coordenadas ortogonales $x$ e $y$ con las contravariantes $x^1$ y $x^2$, a través
     del ángulo $\beta$ que forma el eje $x^2$ con el eje $y$.}
-  \label{fig:R2-oblic_proced_geom}
+  \label{fig:R2-oblic_proc_geom_agudo}
 \end{figure}
 
 El vector de posición de un punto en función de las componentes contravariantes es
@@ -668,6 +691,210 @@ obtuvimos gráficamente en \eqref{eq:R2-oblic_u1_ij} y \eqref{eq:R2-oblic_u2_ij}
     = (\cos\alpha, \sin\alpha)
 \end{align}
 
+\subsubsection{¿Hubiera dado lo mismo si el ángulo $\alpha$ entre los ejes
+  hubiera sido mayor de \qty{90}{\degree}?}
+Demostraremos que la base natural sería la misma que la que hemos calculado suponiendo
+que los ejes oblicuos formaban un ángulo agudo. Fijémonos en la figura
+\ref{fig:R2-oblic_proc_geom_obtuso}, que representa esta situación.
+\begin{figure}[ht]
+  % Escala
+  \def\scl{1.00}
+  % 
+  \pgfmathsetmacro{\EJECARTLONG}{4.5}
+  \pgfmathsetmacro{\EJEOBLICLONG}{4.0}
+  % Eje x
+  \pgfmathsetmacro{\XANG}{0.0}
+  \pgfmathsetmacro{\XLONG}{\EJECARTLONG}
+  % Eje y
+  \pgfmathsetmacro{\YANG}{90}
+  \pgfmathsetmacro{\YLONG}{0.85*\EJECARTLONG}
+  % Eje xtilde
+  \pgfmathsetmacro{\XTILDEANG}{0}
+  \pgfmathsetmacro{\XTILDELONG}{\EJEOBLICLONG}    
+  % Eje ytilde
+  \pgfmathsetmacro{\YTILDEANG}{90+30}
+  \pgfmathsetmacro{\YTILDELONG}{0.45*(\EJECARTLONG + \EJEOBLICLONG)}
+  % Vector P
+  \pgfmathsetmacro{\PMOD}{3.0}
+  \pgfmathsetmacro{\PANG}{30}
+  % Distancia horizontal entre P e ytilde
+  \pgfmathsetmacro{\Px}{\PMOD * cos(\PANG)}
+  \pgfmathsetmacro{\Py}{\PMOD * sin(\PANG)}
+  \pgfmathsetmacro{\YTILDEx}{\YTILDELONG * cos(\YTILDEANG)}
+  % Fondo
+  \pgfmathsetmacro{\HORZ}{0.25}
+  \pgfmathsetmacro{\VERT}{0.25}
+  %
+  \centering
+ \begin{tikzpicture}[%
+    scale=\scl,
+    every node/.style={black,font=\footnotesize},
+    ejecart/.style={->, black!30},
+    ejeoblic/.style={->, black},
+    proyeccionoblic/.style={black!20, line width=0.5},
+    proyeccioncart/.style={black!20, line width=0.5, dashed},
+    % longitud/.style={line width=.5pt,\colorV},
+    texto/.style={black},
+    textoapagado/.style={\colorTorig},
+    vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt,\colorV},
+    contravariante/.style={line width=2.0pt, red},
+    cartesiana/.style={gray, line width=1.5pt},
+    contravtxt/.style={red!70!black},
+    pcirculo/.style={fill=\colorPorig, draw=black},
+    angulo/.style={fill=green!15, draw=\colorGirodos},
+    angulogiro/.style={draw=black!50},
+    background/.style={%
+      line width=\bgborderwidth,
+      draw=\bgbordercolor,
+      fill=\bgcolor,
+    },
+    ]
+    % COORDENADAS
+    % Origen
+    \coordinate (O) at (0,0);
+    % Eje x
+    \path[save path=\ejex] (O) -- ++(\XANG:\XLONG cm) coordinate (xfin);
+    % Eje y
+    \path[save path=\ejey] (O) -- ++(\YANG:\YLONG cm) coordinate (yfin);
+    % Eje xtilde
+    \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
+    coordinate (xtildefin);
+    % Eje ytilde
+    \path[save path=\ejeytilde, name path=O--ytilde] (O) -- ++(\YTILDEANG:\YTILDELONG cm)
+    coordinate (ytildefin);
+    % Vector
+    \path[save path=\r] (O) -- (\PANG:\PMOD cm) coordinate (P);
+    % Proyección de P en los ejes
+    % Con eje x
+    \path[save path=\proyx] (P) |- (xfin) coordinate[pos=0.5] (px);
+    % Con eje y
+    \path[save path=\proyy] (P) -| (yfin) coordinate[pos=0.5] (py);
+    % Componentes contravariantes
+    % Intersección de la horizontal desde P hasta ytilde
+    % -> Componente contravariante eje ytilde (CTV2) 
+    \path[name path=horizontal] (\YTILDEx, \Py) -- (P);
+    \path [name intersections={of=O--ytilde and horizontal, by=CTV2}];
+    
+    % Paralela (CTV2) -- (O) que pase por (P)
+    % -> Componente contravariante eje xtilde (CTV1)
+    \path (P) -- ($(P) - (CTV2) - (O)$) coordinate (CTV1);
+    % Componente delta x = x-x^1
+    \path[save path=\deltaxsegmento] (CTV1) -- coordinate[pos=0.5] (deltaxtxt) (px);
+    % Componente y
+    \path (P) -- coordinate[pos=0.5] (ytxt) (px);
+
+    % DIBUJOS
+    % Área
+    \fill[green!15] (P) -- (px) -- (CTV1) -- cycle;
+
+    % Ángulo beta
+    \path (yfin) -- (O) -- (ytildefin) pic
+    [angulogiro, -{Latex[round,width=3pt,length=4pt]},
+    "\color{black!60}{\footnotesize $\beta$}", angle radius=75pt,
+    angle eccentricity=1.1]
+    {angle = yfin--O--ytildefin};
+    
+    % Ángulo alfa
+    \path (xfin) -- (O) -- (ytildefin) pic
+    [angulo, "\color{black}{\scriptsize $\alpha$}", angle radius=16pt,
+    angle eccentricity=0.70]
+    {angle = xfin--O--ytildefin};
+
+    % Otro ángulo beta
+    \path (px) -- (P) -- (CTV1) pic
+    [angulo, "\color{black}{\scriptsize $\beta$}", angle radius=16pt,
+    angle eccentricity=0.70]
+    {angle = px--P--CTV1};
+    
+    % Proyecciones de componentes
+    % Con el eje x
+    \draw[proyeccioncart, use path=\proyx];
+    % Con el eje y
+    \draw[proyeccioncart, use path=\proyy];
+    % Contravariantes
+    \draw[proyeccionoblic] (P) -- (CTV1);
+    %\node[below] at (CTV1) {\footnotesize $\hat{x}^1$};
+    \draw[proyeccionoblic] (P) -- (CTV2);
+    % \node[left] at (CTV2) {\footnotesize $\hat{x}^2$};
+    % Eje x
+    \draw[ejecart, use path=\ejex];
+    \node[textoapagado, below=3pt] at (xfin) {$x$};
+    % Eje y
+    \draw[ejecart, use path=\ejey];
+    \node[textoapagado, left] at (yfin) {$y$};
+    % Eje xtilde
+    \draw[ejeoblic, use path=\ejextilde];
+    \node[texto, below] at (xtildefin) {$x^1$};
+    % Eje ytilde
+    \draw[ejeoblic, use path=\ejeytilde];
+    \node[above right=-1pt and -3pt, texto] at (ytildefin) {$x^2$};
+    % Vector v
+    \draw[vector, use path=\r];
+    \node[above right=-2pt and -2pt] at (P) {\footnotesize $\vvv{r}$};
+    \filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
+    %\node[above right=0pt and -5pt] at (P) {\footnotesize $P$};
+
+    % Marcar en color la componentes contravariantes
+    \draw[contravariante] (O) -- node[contravtxt, pos=0.5, below] {$x^1$} (CTV1);
+    \draw[contravariante] (O) -- node[contravtxt, pos=0.6, left] {$x^2$} (CTV2);
+
+    % delta x
+    \draw[red!50!black, line width=0.3pt, use path=\deltaxsegmento];
+    \node[below] at (deltaxtxt) {$x^1-x$};
+    % y
+    %\draw[cartesiana, use path=\ysegmento];
+    %\node[right] at (ytxt) {$y$};
+    \path (px) -- node[pos=0.41, left] {$y$} (P);
+    % x^2
+    \path (CTV1) -- node[pos=0.43, right] {$x^2$} (P);
+
+    % Origen
+    \fill[orange!80!black] (O) circle [radius=0.8pt];
+    
+    % Fondo amarillo
+    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
+    \begin{scope}[on background layer]
+      \draw[background] (SW) rectangle (NE);
+    \end{scope}
+  \end{tikzpicture}
+  \caption{El triángulo rectángulo sombreado en verde nos permite relacionar las
+    coordenadas ortogonales $x$ e $y$ con las contravariantes $x^1$ y $x^2$, a través
+    del ángulo $\beta$ que forma el eje $x^2$ con el eje $y$.}
+  \label{fig:R2-oblic_proc_geom_obtuso}
+\end{figure}
+
+Utilizamos de nuevo el vector de posición de un punto arbitrario del plano en
+función de las componentes cartesianas
+\[
+  \vvv{r} = x\,\uvec{\i} + y\,\uvec{\j}
+\]
+
+Sabemos que $\alpha = \pi/2 + \beta$ y por tanto,
+\begin{align*}
+  \sin\alpha &= \sin(\pi/2 + \beta) = \cos\beta\\
+  \cos\alpha &= \cos(\pi/2 + \beta) = -\sin\beta
+\end{align*}
+
+Ahora calculamos las coordenadas $x$ e $y$ en función de las contravariantes $x^1$ y
+$x^2$, fijándonos en el triángulo sombreado en verde
+\begin{equation}
+  \begin{cases}
+    \begin{array}{lll}
+      \sin\beta = -\cos\alpha = \dfrac{x^1-x}{x^2}
+      &\longrightarrow
+      &x = x^1 + x^2\cos\alpha\\
+      \cos\beta = \sin\alpha = \dfrac{y}{x^2}
+      &\longrightarrow
+      &y = x^2\sin\alpha
+    \end{array}
+  \end{cases}
+\end{equation}
+
+Como vemos, la transformación entre $(x,y)$ y $(x^1,x^2)$ es idéntica a la que se obtuvo
+en \ref{eq:R2-oblic_transf_agudo}, por tanto, dicha transformación es independiente del
+ángulo $0<\alpha<\pi$.
+Podemos concluir que la matriz de cambio de base será única.
 
 \section{Cambio de base}
 Las expresiones \eqref{eq:R2-oblic_e1_ij} y \eqref{eq:R2-oblic_e2_ij} se pueden
