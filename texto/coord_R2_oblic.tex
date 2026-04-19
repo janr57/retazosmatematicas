@@ -31,6 +31,7 @@ arañado una pequeña parte de la superficie.
 %como subíndice. Más adelante se aclararán estos términos.
 
 \section{Visión general. Características fundamentales del sistema}
+\label{sect:R2-oblic_vision_general}
 \begin{itemize}
 \item Ejes y su notación:
   Tendremos dos ejes; uno de ellos, horizontal, lo haremos coincidir con el eje $x$
@@ -269,10 +270,10 @@ arañado una pequeña parte de la superficie.
 \section{Bases unitaria y natural}
 
 \subsection{Base unitaria}
-En física general se suelen utilizar bases formadas por vectores unitarios, aunque
+En física general se suelen utilizar bases formadas por vectores unitarios, aunque para
 formar una base no es necesario que sean unitarios, basta con que conste del máximo
-número de vectores linealmente independientes. Así, como sabemos, cualquier vector del
-espacio se podrá representar como una combinación lineal de vectores de la base.
+número de vectores linealmente independientes. Así, cualquier vector del espacio se podrá
+representar como una combinación lineal de vectores de la base.
 
 Vamos obtener la base unitaria $B'_u=\set{\xhat{u}_1, \xhat{u}_2}$ en el sistema de
 coordenadas oblicuas. Si nos fijamos en la figura \ref{fig:R2-oblic_u1u2}, podemos
@@ -432,10 +433,9 @@ rectangulares
 \end{figure}
 
 \subsection{Base natural}
-Como se comentó en el apartado anterior, la base natural $B'$ en el sistema
-oblicuo (con prima, para distinguirla temporalmente de la base ortogonal
-$B=\set{\uvec{\i},\,\uvec{\j}}$), está formada por los vectores covariantes
-(con subíndice) siguientes
+Como se comentó en \ref{sect:R2-oblic_vision_general}, la base natural $B'$ en el sistema
+oblicuo (con prima, para distinguirla temporalmente de la base del sistema de coordenadas cartesianas ortogonal $B=\set{\uvec{\i},\,\uvec{\j}}$), está formada por los vectores
+covariantes (con subíndice) siguientes
 \begin{equation}\label{eq:R2-oblic_base_natural}
   B' = \set{\vvv{e}_1, \vvv{e}_2}
 \end{equation}
@@ -446,7 +446,7 @@ nos permitirá relacionar las componentes covariantes y las contravariantes, ent
 Hasta que no obtengamos la llamada \emph{matriz de cambio de base}, para obtener la base
 natural vamos recurrir a un procedimiento geométrico.
 
-Los vectores de la  base natural se calculan derivadando parcialmente el vector de
+Los vectores de la  base natural se calculan derivando parcialmente el vector de
 posición de un punto genérico del plano en función de las componentes contravariantes
 $x^1$ y $x^2$ en el sistema oblicuo.
 \begin{equation}
@@ -455,26 +455,28 @@ $x^1$ y $x^2$ en el sistema oblicuo.
   \text{con } i = 1, 2.
 \end{equation}
 Hasta que no se explique con algo de detalle el significado de estas componentes
-contravariantes, basta con fijarnos en la figura \ref{fig:R2-coord_rect-ij}.
+contravariantes, basta con fijarnos en coordenadas cartesianas ortogonales en la figura \ref{fig:R2-coord_rect-ij}.
 De acuerdo con ella, el vector de posición de un punto cualquiera del plano se expresa
 como
 \begin{equation}
+  \label{eq:R2-oblic_vector_posicion_cartesianas}
   \vvv{r} = x\,\uvec{\i} + y\,\uvec{\j}
 \end{equation}
 
-Nuestro objetivo es obtener $x$ e $y$ en función de las $x^1$ y $x^2$
+Nuestro objetivo es obtener $x$ e $y$ en función de las componentes contravariantes en oblicuas, $x^1$ y $x^2$
 \begin{align}
   x &= x(x^1, x^2)\\
   y &= y(x^1, x^2)
 \end{align}
-y sustituir en la expresión anterior, para poder derivar parcialmente el vector de
-posición respecto de las $x^i$.
+y sustituir en la expresión \eqref{eq:R2-oblic_vector_posicion_cartesianas}, para obtener
+el vector de posición en función de las componentes contravariantes $x^i$.
 
 Fijémonos en el triángulo sombreado en verde de la figura
 \ref{fig:R2-oblic_proc_geom_agudo}, donde hemos supuesto que los ejes forman un ángulo
 agudo.
 Sabemos que el ángulo $\beta$ es el complementario de $\alpha$, que es el que forman los
-dos ejes oblicuos, de manera que $\sin\beta = \cos\alpha$ y $\cos\beta = \sin\alpha$.
+dos ejes del sistema oblicuo, de manera que $\sin\beta = \cos\alpha$ y
+$\cos\beta = \sin\alpha$.
 
 Así
 \begin{equation}
@@ -649,7 +651,7 @@ Así
   \end{tikzpicture}
   \caption{El triángulo rectángulo sombreado en verde nos permite relacionar las
     coordenadas ortogonales $x$ e $y$ con las contravariantes $x^1$ y $x^2$, a través
-    del ángulo $\beta$ que forma el eje $x^2$ con el eje $y$.}
+    del ángulo $\beta$ que forma el eje oblicuo $x^2$ con el eje ortogonal $y$.}
   \label{fig:R2-oblic_proc_geom_agudo}
 \end{figure}
 
@@ -658,7 +660,7 @@ El vector de posición de un punto en función de las componentes contravariante
   \vvv{r} = \left(x^1+x^2\cos\alpha\right)\,\uvec{\i} + x^2\sin\alpha\,\uvec{j}
 \end{equation}
 
-Los vectores de la base natural serán
+Derivando parcialmente, los vectores de la base natural serán
 \begin{align}
   \vvv{e}_1
   &=
@@ -673,9 +675,9 @@ Los vectores de la base natural serán
     \longrightarrow
     |\vvv{e}_2| = \sqrt{\cos^2\alpha + \sin^2\alpha} = 1
 \end{align}
-y sus módulos valen la unidad.
+y deducimos que sus módulos valen la unidad.
 
-Además podemos comprobar que coinciden con los vectores unitarios $\xhat{u}_i$ que
+Además, podemos comprobar que coinciden con los vectores unitarios $\xhat{u}_i$ que
 obtuvimos gráficamente en \eqref{eq:R2-oblic_u1_ij} y \eqref{eq:R2-oblic_u2_ij}
 \begin{align}
   \label{eq:R2-oblic_e1_ij}
@@ -893,7 +895,7 @@ $x^2$, fijándonos en el triángulo sombreado en verde
 \end{equation}
 
 Como vemos, la transformación entre $(x,y)$ y $(x^1,x^2)$ es idéntica a la que se obtuvo
-en \ref{eq:R2-oblic_transf_agudo}, por tanto, dicha transformación es independiente del
+en \eqref{eq:R2-oblic_transf_agudo}, por tanto, dicha transformación es independiente del
 ángulo $0<\alpha<\pi$.
 Podemos concluir que la matriz de cambio de base será única.
 
@@ -914,7 +916,7 @@ se pueden representar matricialmente
     0 & \sin\alpha
   \end{pmatrix}
 \end{equation}
-Obsérvese que los vectores de la base se representan en filas.
+Obsérvese que los vectores de las bases se representan en filas.
 
 Así, la matriz que permite obtener la nueva base $B'$ a partir de la antigua $B$, está
 formada por las componentes de los vectores $(1,0)$ y $(\cos\alpha,\sin\alpha)$
@@ -930,7 +932,7 @@ dispuestas en columnas
 \end{equation}
 
 \subsubsection{Resumiendo el cambio de base}
-Como dijimo, la matriz de cambio de base de $B$ a $B'$ está formada por las componentes
+Como dijimos, la matriz de cambio de base de $B$ a $B'$ está formada por las componentes
 de los vectores de la expresión dispuestos en columnas. A continuación se representan, esta matriz de cambio de base y su inversa
 \begin{subequations}
   \begin{align}
@@ -958,8 +960,7 @@ de los vectores de la expresión dispuestos en columnas. A continuación se repr
 \end{subequations}
 Utilizaremos la matriz directa $M$ para transformar la base rectangular $B$ en la nueva
 base oblicua $B'$. Al contrario, para obtener la base rectangular a partir de la oblicua,
-utilizaríamos la matriz inversa $\mmm{M}^{-1}$. Nótese que los vectores se representan en
-filas
+utilizaríamos la matriz inversa $\mmm{M}^{-1}$
 \begin{subequations}
 \begin{align}
   &\begin{pmatrix}
@@ -990,14 +991,49 @@ filas
 \end{align}
 \end{subequations}
 
+\begin{subequations}
+\begin{align}
+  &B' = B \mmm{M}
+    \hspace{1em}\longrightarrow
+    \begin{pmatrix}
+    \vvv{e}_1 &  \vvv{e}_2
+  \end{pmatrix}
+  =
+    \begin{pmatrix}
+      \uvec{\i} & \uvec{\j}
+    \end{pmatrix}
+    \,
+    \begin{pmatrix}
+      1 & \cos\alpha\\
+      0 & \sin\alpha
+    \end{pmatrix}\\
+  &B = B'\mmm{M}^{-1}
+    \longrightarrow
+    \begin{pmatrix}
+    \uvec{\i} & \uvec{\j}
+  \end{pmatrix}
+  =
+    \begin{pmatrix}
+      \vvv{e}_1 & \vvv{e}_2
+    \end{pmatrix}
+    \,
+    \begin{pmatrix}
+      1 & -\cot\alpha\\
+      0 & \phantom{-}\csc\alpha
+    \end{pmatrix}
+    \,
+\end{align}
+\end{subequations}
+
 
 \section{Componentes de los vectores}
 Cuando un vector se expresa en una determinada base, se obtiene su representación en
 función de unas determinadas componentes. Por ejemplo, en dos dimensiones y tomando una
 base genérica $\set{\vvv{e}_1,\vvv{e}_2}$, escribiríamos
-\[
+\begin{equation}
+  \label{eq:R2-oblic_componentes}
   \vvv{v} = x_1\vvv{e}_1 + x_2\vvv{e}_2
-\]
+\end{equation}
 que, como sabemos, significa que el vector $\vvv{v}$ se obtiene sumando los productos de
 cada cada componente por el vector correspondiente de la base.
 
@@ -1037,14 +1073,15 @@ esto es, las componentes serían $(1, 2)\,\unit{\metre}$.
 
 Supongamos también que deseamos cambiar la base elegida, a otra
 $B' = \set{\uvec{\i}',\, \uvec{\j}'}$ que mide en centímetros. La nueva base
-\emph{es más pequeña} que la antigua (centímetros en lugar de metros). Pero, para que el vector $\vvv{v}$ no cambie, los valores medidos en centímetros deben
-\emph{aumentar} con respecto a las componentes en metros ($A'_i > A_i$)
+\emph{es más pequeña} que la antigua (centímetros en lugar de metros); pero para que el
+vector $\vvv{v}$ no cambie, los valores medidos en centímetros deben \emph{aumentar} con
+respecto a las componentes en metros ($A'_i > A_i$)
 \[
   \vvv{v} = 100\,\uvec{\i} + 200\,\uvec{\j}\,\unit{\centi\metre}
 \]
 las nuevas componentes serían $(100, 200)\,\unit{\centi\metre}$.
 En otras palabras, la base ``se ha hecho 100 veces menor'', pero las componentes
-``se han hecho 100 veces mayor''.
+``se han hecho 100 veces más grandes''.
 
 \subsubsection{Concepto}
 Estas componentes han variado de forma contraria a como lo hizo la base elegida.
@@ -1053,8 +1090,8 @@ es necesario en la mayor parte de las situaciones, se suele utilizar el índice 
 acompaña como \emph{superíndice} (que no representa un exponente).
 Además, para facilitar la notación de Einstein, escribiremos las componentes
 contravariantes como $x^i$ (y también los ejes correspondientes), en lugar de $x$ e $y$.
-Así, un vector como el que hemos puesto de ejemplo, se podría representar en forma
-genérica como
+Así, un vector como el que hemos puesto de ejemplo en \eqref{eq:R2-oblic_componentes}, se
+podría representar genéricamente como
 \[
   \vvv{v} = x^1\vvv{e}_1 + x^2\vvv{e}_2
 \]
@@ -1066,11 +1103,11 @@ En notación de Einstein sería
 Los vectores de la base  $B'=\set{\vvv{e}_1, \vvv{e}_2}$, con el índice abajo, los
 llamamos \emph{vectores covariantes} y decimos que forman una \emph{base covariante}.
 
-
 \subsubsection{Representación gráfica de las componentes contravariantes}
 La componentes contravariantes en el sistema de coordenadas oblicuas se pueden
-representar gráficamente, trazando líneas paralelas a los ejes a partir del extremo del
-segmento orientado $\vvv{v}$. Esta es la forma natural con la que sumamos vectores mediante la regla del paralelogramo, ver figura \ref{fig:R2-oblic_contrav}.
+representar gráficamente trazando líneas paralelas a los ejes a partir del extremo del
+segmento orientado $\vvv{v}$. Esta es la forma natural con la que sumamos vectores
+mediante la regla del paralelogramo, ver figura \ref{fig:R2-oblic_contrav}.
 \begin{figure}[ht]
   % Escala
   \def\scl{1.00}
@@ -1181,7 +1218,8 @@ segmento orientado $\vvv{v}$. Esta es la forma natural con la que sumamos vector
     $\vvv{v}$ se representa como
     $\vvv{v}=x^1\,\vvv{e}_1+x^2\,\vvv{e}_2$. La componente
     contravariante en un cierto eje nos indica el desplazamiento que se ha producido en
-    ese eje.}
+    ese eje, en las unidades en las que se mide el vector $\vvv{v}$, según la base
+    covariante elegida.}
   \label{fig:R2-oblic_contrav}
 \end{figure}
 
@@ -1220,7 +1258,23 @@ Es importante distinguir entre estas dos notaciones y darse cuenta de que no son
 comparables. La primera, es la forma en la que se representa un conjunto de vectores que
 forman una base, mientras que la segunda representa las componentes de un vector en una
 cierta base. Lo único que tienen en común es que ambas son representaciones matriciales,
-aunque de cosas diferentes.
+aunque de cosas diferentes
+\[
+  \vvv{v}
+  = \begin{pmatrix}
+    \vvv{e}_1 & \vvv{e}_2
+  \end{pmatrix}
+  \,\begin{pmatrix}
+    x^1\\
+    x^1
+  \end{pmatrix}
+  = \vvv{e}_1 x^1 + \vvv{e}_2 x^2
+  = x^1 \vvv{e}_1 + x^2 \vvv{e}_2
+  = \vvv{e}_i x^i
+  = x^i \vvv{e}_i
+\]
+
+
 
 
 \section{Transformación de componentes}
@@ -1377,11 +1431,12 @@ y quisiéramos obtener las coordenadas rectangulares, deberíamos obtener $(2,-4
 \section{Métrica}
 Con los conocimientos que hemos adquirido, la forma más directa y rápida para obtener el
 tensor métrico en coordenadas oblicuas es utilizar el método seguido en la expresión
-\eqref{eq:R2-cart-metrica}. Para ello debemos calcular el producto escalar de los
-vectores de la base \eqref{eq:R2-oblic_base_natural}. Cualquier otro método es un rodeo
-para no utilizar esto.
+\eqref{eq:R2-cart-metrica}, para el sistema cartesiano rectangular. Para ello debemos
+calcular el producto escalar de los vectores de la base \eqref{eq:R2-oblic_base_natural}.
+Cualquier otro método es un rodeo para no utilizar esto.
 
-Multiplicamos escalarmente estos vectores
+Multiplicamos escalarmente los vectores \eqref{eq:R2-oblic_e1_ij} y
+\eqref{eq:R2-oblic_e2_ij} de la base natural entre sí
 \begin{subequations}
   \begin{align}
     \label{eq:R2-oblic-e1e1_prod_escalar}
