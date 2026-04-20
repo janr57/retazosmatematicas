@@ -1558,17 +1558,58 @@ distintos.
   elementos se transforman de manera inversa a los cambios de base, para que el vector
   físico permanezca igual.
 \item Covectores o formas lineales (covariantes): Son elementos del espacio dual $V^*$
-  asociado a $V$. Son funciones $\omega$ que actúan sobre los vectores y producen un
-  escalar. Sus componentes se transforman de la misma forma que los cambios de base.
+  asociado a $V$. Son funciones $\omega$ que actúan sobre los vectores $\vvv{v}\in V$ y
+  producen un escalar $\mathbb{F}$. Sus componentes se transforman de la misma forma que
+  los cambios de base (matriz de cambio de base $\mmm{M}$.
+  
+  A este nivel, las componentes covariantes son simplemente los coeficientes de una
+  \emph{1-forma} o un funcional lineal ---las funciones que operan sobre un solo
+  vector--- y producen un escalar $\mathbb{F}$, asociado al espacio vectorial.
+  Sus componentes en nuestro sistema oblicuo en $\symbb{R}^2$ se representan
+  matricialmente como
+  \[
+    \omega
+    = \begin{pmatrix}
+      x_1 & x_2
+      \end{pmatrix}
+  \]
+  Estos covectores \emph{viven} en un espacio dual $V^*$ asociado al espacio vectorial
+  $V$ original, $\omega\in V^*$
+  \[
+    \begin{array}{llcl}
+      \omega: & V & \longrightarrow & \symbb{F}\\[-0.5ex]
+      & \scriptstyle\vvv{v} & \mapsto & \scriptstyle\omega(\vvv{v})
+    \end{array}
+  \]
+  En los casos que nos ocupan en este texto, el campo escalar es el de los números reales $\mathbb{F} = \mathbb{R}$ y el escalar que se obtiene en nuestro caso es el cuadrado del módulo del vector
+  \[
+    \omega(\vvv{v}) = |\vvv{v}|^2 = v^2
+  \]
+
+  \[
+    \omega(\vvv{v})
+    =
+    \vvv{w}
+    \vvv{v}
+    =
+    \begin{pmatrix}
+      x_1 & x_2
+    \end{pmatrix}
+    \,\begin{pmatrix}
+      x^1\\
+      x^2
+    \end{pmatrix}
+    = x_1x^1 + x_2x^2
+    = x_ix^i
+    = v^2
+  \]
+  
 \end{itemize}
-A este nivel, las componentes covariantes son simplemente los coeficientes de una
-\emph{1-forma} o un funcional lineal ---las funciones que operan sobre un solo vector---.
-Estos coeficientes \emph{viven} en un espacio dual $V^*$ asociado al espacio vectorial
-$V$ original. En principio, esta es la relación entre los vectores y los covectores,
-pero viven en espacios distintos. Ahora bien, si disponemos de una métrica (un producto
-escalar definido en $V$, también lo tendremos en $V^*$) y ambos espacios se pueden
-conectar y el álgebra lineal te permite \emph{bajar} o \emph{subir} índices convirtiendo
-un vector en un covector y viceversa.
+ En principio, esta es la relación entre los vectores y los covectores,
+ pues \emph{viven} en espacios distintos. Ahora bien, si disponemos de una métrica (un
+ producto escalar definido en $V$, también lo tendremos en $V^*$), ambos espacios se
+ pueden conectar y el álgebra lineal nos permite \emph{bajar} o \emph{subir} índices
+ convirtiendo un vector en un covector y viceversa.
 
 \item Por su parte, la geometría diferencial toma estos conceptos del álgebra lineal y
   los aplica a cada punto de una variedad ---una superficie curva, por ejemplo; una
