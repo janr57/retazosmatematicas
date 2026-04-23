@@ -184,7 +184,7 @@ vectores unitarios tradicionales $\uvec{\i}$ y $\uvec{\j}$
 \end{equation}
 
 
-\section{Métrica y factores de escala}
+\section{Métrica}
 \label{ssect:R2-cart-metrica-factores_escala}
 La métrica en cada sistema de coordenadas define la estructura del espacio, y en
 particular, sin ella no se pueden medir ni distancias ni ángulos. Es como si
@@ -322,6 +322,84 @@ v_x^2 + v_y^2
 que coincide con el valor que obteníamos en el cálculo vectorial básico.
 
 
+\section{Vectores contravariantes y covariantes}
+Esta sección se encuentra aquí de una manera un tanto forzada, pues los dos tipos de
+vectores del título son el mismo en coordenadas rectangulares y, como consecuencia, aquí
+no es necesario hacer referencia a ellos.
+
+En todo caso, adelantaremos algo de información sobre ellos para captar su significado y
+entender por qué en otros sistemas de coordenadas estos vectores son diferentes, al
+contrario de lo que ocurre en este sistema de coordenadas.
+
+\subsection{Vectores contravariantes}
+Los vectores \emph{viven} en un espacio plano $V$\, llamado \emph{espacio tangente}.
+Pensemos, por ejemplo, en un espacio curvo como puede ser el de una superficie esférica.
+No se pueden representar vectores en una superficie curva, sino en un plano.
+
+Cada punto  del espacio curvo tiene asociado un plano tangente diferente al del resto
+de puntos. Nosotros sabemos realizar operaciones con vectores que
+\emph{viven en el mismo espacio tangente}. Como consecuencia, en principio no podríamos
+realizar operaciones entre vectores de diferentes espacios tangente\footnotemark{}.
+Véase la figura \ref{fig:R2-cart_planos_tangentes}.
+\footnotetext{Para poder realizar este tipo de operaciones entre dos vectores que se
+  encuentren en dos espacios tangente diferentes, la geometría diferencial define el
+  transporte paralelo, pero esto es algo que no nos debe preocupar por ahora.}
+\begin{figure}[ht]
+  % Escala
+  \def\scl{1.9}
+  %
+  \centering
+  \begin{tikzpicture}[%
+    scale=\scl,
+    line join=round,
+    line cap=round,
+    every node/.style={black,font=\scriptsize},
+    ]
+    % 1. ESFERA
+    \shade[ball color=black!20!white, opacity=0.9] (0,0) circle (1);
+    \draw[gray!10] (0,0) circle (1);
+
+    % 2. PLANO SUPERIOR
+    \coordinate (P1) at (0,1,0); 
+    \filldraw[blue!60!black, fill=blue!20, fill opacity=0.6] 
+      ([shift={(-0.55, 0,  0.55)}]P1) -- 
+      ([shift={( 0.55, 0,  0.55)}]P1) -- 
+      ([shift={( 0.55, 0, -0.55)}]P1) -- 
+      ([shift={(-0.55, 0, -0.55)}]P1) -- cycle;
+      
+    \fill[black] (P1) circle (0.5pt);
+    \node[left] at (P1) {$P_1$};
+
+    % 3. PLANO FRONTAL DERECHA
+    \coordinate (P2) at (0.85, 0.3, 0.43); 
+
+    % Vectores SIMÉTRICOS respecto a P2 para que quede centrado
+    % Se usan desplazamientos opuestos: (a,b,c) y (-a,-b,-c)
+    \filldraw[red!60!black, fill=red!20, fill opacity=0.6] 
+      ([shift={(-0.25, -0.4,  0.5)}]P2) -- 
+      ([shift={( 0.25, -0.4, -0.5)}]P2) -- 
+      ([shift={( 0.25,  0.4, -0.5)}]P2) -- 
+      ([shift={(-0.25,  0.4,  0.6)}]P2) -- cycle;
+
+    \fill[black] (P2) circle (0.5pt);
+    \node[below left=-1pt and -2pt] at (P2) {$P_2$};
+  
+    % Vectores en P1
+    \draw[-{Latex[round,width=3pt,length=4pt]}] (P1) -- ++(0.3, 0, 0);
+    \draw[-{Latex[round,width=3pt,length=4pt]}] (P1) -- ++(0, 0, -0.3);
+
+    % Vectores en P2 (ajustados para nacer exactamente de P2)
+    \draw[-{Latex[round,width=3pt,length=4pt]}] (P2) -- ++(0.05, 0.35, -0.1);
+    % \draw[-{Latex[round,width=3pt,length=4pt]}] (P2) -- ++(0.1, -0.1, -0.4);
+    \draw[-{Latex[round,width=3pt,length=4pt]}] (P2) -- ++(0.22, -0.05, -0.45);
+  \end{tikzpicture}
+  \caption{Espacio esférico donde se representan dos planos tangentes en dos puntos
+    arbitrarios de la esfera. En el plano situado en el polo norte (azul), se representa
+    un vector que \emph{vive} en ese plano. Por otro lado en el otro punto se aprecia
+    un plano tangente (rosa) con dos vectores.}
+  \label{fig:R2-cart_planos_tangentes}
+  \end{figure}
+  
 \section{Gradiente}
 Presentamos un resumen del gradiente, tal y como se presentan en un curso básico de
 cálculo.
