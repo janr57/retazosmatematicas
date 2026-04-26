@@ -12,7 +12,7 @@ FILES =	retazosmatematicas.pkg.sty\
 	portada/portada.tex\
 	tablacontenidos/tablacontenidos.tex\
 	prefacio/prefacio.tex\
-	texto/coord_R2_cart.tex\
+	texto/coord_R2_rect.tex\
 	texto/coord_R2_oblic.tex\
 	texto/coord_R2_polares.tex\
 	texto/coord_xt.tex\
@@ -33,7 +33,7 @@ all: retazosmatematicas.pdf
 .PHONY: clean
 
 clean:
-	rm -rf *.pdf *.ps *.dvi *.aux *.log *.toc *~ *.dat *.script
+	rm -rf *.pdf *.ps *.dvi *.aux *.log *.toc *.out dat*~ *.dat *.script
 	rm -rf auto
 	rm -rf texto/*.aux texto/*~
 	rm -rf ejercicios/*.aux texto/*~

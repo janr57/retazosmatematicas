@@ -4,173 +4,245 @@
 % Licencia del código GPLv2
 % Licencia Creative Commons Recognition Non-Commercial Share-alike.
 % (CC-BY-NC-SA)
-%% ----------------------------------------------------------------------------
 
 
-% ----------------------------------------------------------------------------
-% COLORES
+% ---------------------------------------------------------------------------------
+% FONDO DE IMAGEN AMARILLO
 
-\pgfplotsset{
-  colormap={greenyellow}{rgb255(0cm)=(0,128,0); rgb255(1cm)=(255,255,0)}
-}
-
-\pgfplotsset{
-  colormap={janrGRAYWHITE}{rgb255(0cm)=(180,180,180); rgb255(1cm)=(255,255,255)}
-}
-
-\pgfplotsset{
-  colormap = {GY}{%
-    color=(green!40!black)
-    color=(green!70!black)
-    color=(green!15!yellow)
-  },
-  colormap = {G}{%
-    color=(green!70!black)
-    color=(green!70!black)
-  },
-}
-
-% Color rojo en texto y en fórmula con el objetivo de destacar un error
-\newcommand{\errcolor}{red!80!black}
-% Color verde en texto y en fórmula con el objetivo de destacar un texto
-\newcommand{\infocolor}{green!55!black}
 % Color amarillo de los fondos de imágenes
-\newcommand{\bgcolor}{yellow!15}
+\newcommand{\backgroundcolor}{yellow!15}
+
 % Borde gris de los marcos de fondos de imágenes
-\newcommand{\bgbordercolor}{black!10}
-% Marcas de agua
-\newcommand{\marcaagua}{black!9}
+\newcommand{\backgroundbordercolor}{black!10}
 
-% Colores de vectores
-\newcommand{\colorV}{black}
-\newcommand{\colorVgreen}{green!50!black}
-\newcommand{\colorVred}{red!80!black}
-% Colores de texto
-\newcommand{\colorT}{black}
-\newcommand{\colorTgreen}{green!50!black}
-\newcommand{\colorTred}{red!80!black}
-\newcommand{\colorTorig}{black!50}
-\newcommand{\colorTchg}{red!80!black}
-% Color giro
-\newcommand{\colorGiro}{black!30}
-\newcommand{\colorGirouno}{black!50}
-\newcommand{\colorGirodos}{black!70}
-\newcommand{\colorGiroRed}{red}
-% Color ángulo
-\newcommand{\colorAng}{black!10}
-\newcommand{\colorAnguno}{black!20}
-\newcommand{\colorAngdos}{black!30}
-\newcommand{\colorAngGreen}{green!20}
-\newcommand{\colorAngPink}{red!8}
+% Grosor de línea de contorno
+\newcommand{\backgroundborderwidth}{1pt}
 
-% ----------------------------------------------------------------------------
-% GROSOR DE LÍNEA DE BORDE DE FONDO DE IMAGEN
-\newcommand{\bgborderwidth}{1pt}
+% ---------------------------------------------------------------------------------
+% MACROS MATEMÁTICAS
 
-% ----------------------------------------------------------------------------
-% CANCELACIÓN TÉRMINOS EN FÓRMULAS
-\newcommand{\cancelout}[1]{%
-  \tikz[baseline=(tocancel.base)]{%
-    \node[inner sep=1pt,outer sep=0pt] (tocancel) {$#1$}; \draw[red]
-    (tocancel.south west) -- (tocancel.north east); } }
-
-% ----------------------------------------------------------------------------
-% MARCAS DE AGUA
-\SetWatermarkText{\textsf{BORRADOR}}
-\SetWatermarkScale{0.60}
-\SetWatermarkColor{\marcaagua}
-\SetWatermarkAngle{55}
-% stamp/nostamp: activa/desactiva borrador
-\DraftwatermarkOptions{nostamp}
-
-% ----------------------------------------------------------------------------
-% Longitudes
-% Para desplazamiento de subíndice en elementos de matrices en relatividad
-\newcommand{\ksub}{\kern4pt}
-
-% ----------------------------------------------------------------------------
-% Paquete 'tensind'
-\tensordelimiter{€}
-
-%% ----------- MACROS --------------------------------------------------------
 % Vectores
 \newcommand*{\vvv}[1]{%
-  % Actívese sólo una de las dos opciones
+  % Actívese sólo una de las opciones
   %\ensuremath{\vec{#1}}
-  %\ensuremath{\kern1.2pt\mathbf{#1}}
   \ensuremath{\kern1.2pt\symbf{#1}}
 }
 
-% Matrices
-\newcommand*{\mmm}[1]{%
-  % Actívese sólo una de las dos opciones
-  %\ensuremath{\operatorname{#1}}
-  %\ensuremath{\kern1.2pt\mathbf{#1}}
-  \ensuremath{\kern1.2pt\symbf{#1}}
-}
-
-% Matrices representadas por letras griegas
-\newcommand*{\mmmg}[1]{%
-  % Actívese sólo una de las dos opciones
-  %\ensuremath{#1}
-  %\ensuremath{{\kern1.2pt\boldsymbol{#1}}}
-  \ensuremath{{\kern1.2pt\symbf{#1}}}
-}
-
-% Producto vectorial
-\newcommand{\prodvec}{%
-  % Actívese sólo una de las dos opciones
-  \ensuremath{\times}
-}
-
-\newcommand{\transp}{%
-  \ensuremath{{\top}}
-}
-
-\newcommand{\trasp}{%
-  \ensuremath{{\top}}
-}
-
-% Tensores
-\newcommand*{\ttt}[1]{%
-  % Actívese sólo una de las dos opciones
-  %\ensuremath{#1}
-  %\ensuremath{{\kern1.2pt\boldsymbol{#1}}}
-  \ensuremath{{\kern1.2pt\overbar{\symbf{#1}}}}
-}
-
-\newcommand{\xhat}[1]{%
-  % Actívese sólo una de las dos opciones
-  %\ensuremath{\kern5.2pt\pmb{{\kern-0.5em\hat{\mathrm{#1}}}}}
-  %\ensuremath{\kern1.2pt\pmb{\hat{#1}}}
+% Vectores unitarios
+\newcommand*{\xhat}[1]{%
   \ensuremath{\kern1.2pt\symbf{\hat{#1}}}
 }
 
-\newcommand{\xtilde}[1]{%
-  % Actívese sólo una de las dos opciones
-  %\ensuremath{\kern5.2pt\pmb{{\kern-0.5em\hat{\mathrm{#1}}}}}
-  %\ensuremath{\kern1.2pt\pmb{\hat{#1}}}
-  \ensuremath{\kern1.2pt\symbf{\tilde{#1}}}
-}
-
-\newcommand{\xdottilde}[1]{%
-    \ensuremath{\vvv{\dot{\tilde{r}}}}
-}
-
+% Vectores unitarios i y j
 % \uvec{\i} y \uvec{\j} producen i y j sin punto y con acento circunflejo en negrita
 \newcommand{\uvec}[1]{\textbf{\^{#1}}}
 
-% \xhat{\pmb{\mathrm{n}}}
+% ---------------------------------------------------------------------------------
+% MACROS LUA
+% Cargamos el archivo lua externo
+\directlua{dofile("lua/rotaciones3D.lua")}
 
-\DeclareMathOperator{\arccot}{arccot}
+% DEFINICIÓN DEL COMANDO PERSONALIZADO
+% #1 = radio, #2 = ángulo (en radianes, según el script lua anterior)
+\newcommand{\puntoPolar}[2]{%
+    \directlua{polar_to_cartesian(#1, #2)}%
+}
 
-%% --------------------------------------------------------------------
 
-%% --------------------------------------------------------------------
-% Permite símbolos matemáticos en \chapter, \section, \subsection, etc.
+%% ----------------------------------------------------------------------------
+%% COLORES
+%
+%\pgfplotsset{
+%  colormap={greenyellow}{rgb255(0cm)=(0,128,0); rgb255(1cm)=(255,255,0)}
+%}
+%
+%\pgfplotsset{
+%  colormap={janrGRAYWHITE}{rgb255(0cm)=(180,180,180); rgb255(1cm)=(255,255,255)}
+%}
+%
+%\pgfplotsset{
+%  colormap = {GY}{%
+%    color=(green!40!black)
+%    color=(green!70!black)
+%    color=(green!15!yellow)
+%  },
+%  colormap = {G}{%
+%    color=(green!70!black)
+%    color=(green!70!black)
+%  },
+%}
+%
+%% Color rojo en texto y en fórmula con el objetivo de destacar un error
+%\newcommand{\errcolor}{red!80!black}
+%% Color verde en texto y en fórmula con el objetivo de destacar un texto
+%\newcommand{\infocolor}{green!55!black}
+%% Marcas de agua
+%\newcommand{\marcaagua}{black!9}
+%
+%% Colores de vectores
+%\newcommand{\colorV}{black}
+%\newcommand{\colorVgreen}{green!50!black}
+%\newcommand{\colorVred}{red!80!black}
+%% Colores de texto
+%\newcommand{\colorT}{black}
+%\newcommand{\colorTgreen}{green!50!black}
+%\newcommand{\colorTred}{red!80!black}
+%\newcommand{\colorTorig}{black!50}
+%\newcommand{\colorTchg}{red!80!black}
+%% Color giro
+%\newcommand{\colorGiro}{black!30}
+%\newcommand{\colorGirouno}{black!50}
+%\newcommand{\colorGirodos}{black!70}
+%\newcommand{\colorGiroRed}{red}
+%% Color ángulo
+%\newcommand{\colorAng}{black!10}
+%\newcommand{\colorAnguno}{black!20}
+%\newcommand{\colorAngdos}{black!30}
+%\newcommand{\colorAngGreen}{green!20}
+%\newcommand{\colorAngPink}{red!8}
+%
+%% ----------------------------------------------------------------------------
+%% CANCELACIÓN TÉRMINOS EN FÓRMULAS
+%\newcommand{\cancelout}[1]{%
+%  \tikz[baseline=(tocancel.base)]{%
+%    \node[inner sep=1pt,outer sep=0pt] (tocancel) {$#1$}; \draw[red]
+%    (tocancel.south west) -- (tocancel.north east); } }
+%
+%% ----------------------------------------------------------------------------
+%% MARCAS DE AGUA
+%\SetWatermarkText{\textsf{BORRADOR}}
+%\SetWatermarkScale{0.60}
+%\SetWatermarkColor{\marcaagua}
+%\SetWatermarkAngle{55}
+%% stamp/nostamp: activa/desactiva borrador
+%\DraftwatermarkOptions{nostamp}
+%
+%% ----------------------------------------------------------------------------
+%% Longitudes
+%% Para desplazamiento de subíndice en elementos de matrices en relatividad
+%\newcommand{\ksub}{\kern4pt}
+%
+%% ----------------------------------------------------------------------------
+%% Paquete 'tensind'
+%\tensordelimiter{€}
+%
+%%% ----------- MACROS --------------------------------------------------------
+%% Vectores
+%\newcommand*{\vvv}[1]{%
+%  % Actívese sólo una de las dos opciones
+%  %\ensuremath{\vec{#1}}
+%  %\ensuremath{\kern1.2pt\mathbf{#1}}
+%  \ensuremath{\kern1.2pt\symbf{#1}}
+%}
+%
+%% Matrices
+%\newcommand*{\mmm}[1]{%
+%  % Actívese sólo una de las dos opciones
+%  %\ensuremath{\operatorname{#1}}
+%  %\ensuremath{\kern1.2pt\mathbf{#1}}
+%  \ensuremath{\kern1.2pt\symbf{#1}}
+%}
+%
+%% Matrices representadas por letras griegas
+%\newcommand*{\mmmg}[1]{%
+%  % Actívese sólo una de las dos opciones
+%  %\ensuremath{#1}
+%  %\ensuremath{{\kern1.2pt\boldsymbol{#1}}}
+%  \ensuremath{{\kern1.2pt\symbf{#1}}}
+%}
+%
+%% Producto vectorial
+%\newcommand{\prodvec}{%
+%  % Actívese sólo una de las dos opciones
+%  \ensuremath{\times}
+%}
+%
+%\newcommand{\transp}{%
+%  \ensuremath{{\top}}
+%}
+%
+%\newcommand{\trasp}{%
+%  \ensuremath{{\top}}
+%}
+%
+%% Tensores
+%\newcommand*{\ttt}[1]{%
+%  % Actívese sólo una de las dos opciones
+%  %\ensuremath{#1}
+%  %\ensuremath{{\kern1.2pt\boldsymbol{#1}}}
+%  \ensuremath{{\kern1.2pt\overbar{\symbf{#1}}}}
+%}
+%
+%
+%\newcommand{\xtilde}[1]{%
+%  % Actívese sólo una de las dos opciones
+%  %\ensuremath{\kern5.2pt\pmb{{\kern-0.5em\hat{\mathrm{#1}}}}}
+%  %\ensuremath{\kern1.2pt\pmb{\hat{#1}}}
+%  \ensuremath{\kern1.2pt\symbf{\tilde{#1}}}
+%}
+%
+%\newcommand{\xdottilde}[1]{%
+%    \ensuremath{\vvv{\dot{\tilde{r}}}}
+%}
+%
+%% \uvec{\i} y \uvec{\j} producen i y j sin punto y con acento circunflejo en negrita
+%\newcommand{\uvec}[1]{\textbf{\^{#1}}}
+%
+%% \xhat{\pmb{\mathrm{n}}}
+%
+%\DeclareMathOperator{\arccot}{arccot}
+%
+%%% --------------------------------------------------------------------
+%
+%%% --------------------------------------------------------------------
+%% Permite símbolos matemáticos en \chapter, \section, \subsection, etc.
 %\newcommand*\mathinhead[2]{\texorpdfstring{$\boldsymbol{#1}$}{#2}}
 \newcommand*\mathinhead[2]{\texorpdfstring{$\symbf{#1}$}{#2}}
-%% --------------------------------------------------------------------
+%%% --------------------------------------------------------------------
+%
+%% *****************************************************************************
+%\directlua{dofile "./lua/rotaciones3D.lua"}
+%%\directlua{rot3D = require("lua/rotaciones3D")}
+%
+%% FUNCIÓN DE PRUEBA
+%% Retorna el texto "¡ÉXITO!"
+%% Se ejecuta la macro \pruebaTexto en LuaLaTeX
+%\newcommand*{\pruebaTexto}{%
+%  \directlua{tex.write(
+%    pruebaTexto())}
+%}
+%% \directlua{my_great_function("\luatexluaescapestring{#1}", #2)}}
+%
+%
+% DEFINICIÓN DEL COMANDO PERSONALIZADO
+% #1 = radio, #2 = ángulo (en radianes, según el script lua anterior)
+%\newcommand{\puntoPolar}[2]{%
+%    \directlua{polar_to_cartesian(#1, #2)}%
+%}
+
+%\newcommand*{\proyEjeZtxt}[2]{%
+%  \directlua{tex.write(
+%    proyEjeZtxt(#1,#2))}
+%}
+%
+%
+%% CALCULA PLANO TANGENTE A PARTIR DE COORDENADAS ESFÉRICAS DEL PTO DE TANGENCIA
+%% lua (01b): function sphereTangPlaneSph(r, theta, phi, alpha, s1, s2)
+%% Parámetros
+%% #1: Punto de tangencia, coord esférica -> r
+%% #2: Punto de tangencia, coord esférica -> theta
+%% #3: Punto de tangencia, coord esférica -> phi
+%% #4: Ángulo de giro de la base de vectores del plano tangente original
+%% #5: factor de escala del vector 1 de la base
+%% #6: factor de escala del vector 2 de la base
+%%
+%%\newcommand*{\tanPlaneSph}[6]{%
+%%  \directlua{tex.write(
+%%    sphereTanPlaneSph(#1, #2, #3, #4, #5, #6))}
+%%}
+%
+%
+%% *****************************************************************************
 
 
 

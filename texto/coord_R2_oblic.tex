@@ -78,2577 +78,2577 @@ arañado una pequeña parte de la superficie.
   (con superíndice) de cualquier otro vector, como se aprecia en la figura
   \ref{fig:R2-oblic_contrav}.
 \end{itemize}
-\begin{figure}[ht]
-  % Escala
-  \def\scl{1.00}
-  %  Longitud de los ejes
-  \pgfmathsetmacro{\EJECARTLONG}{3.0}
-  \pgfmathsetmacro{\EJEOBLICLONG}{2.5}
-  % Eje x
-  \pgfmathsetmacro{\XANG}{0}
-  \pgfmathsetmacro{\XLONG}{\EJECARTLONG}
-  % Eje y
-  \pgfmathsetmacro{\YANG}{90}
-  \pgfmathsetmacro{\YLONG}{\EJECARTLONG}
-  % Eje xtilde
-  \pgfmathsetmacro{\XTILDEANG}{0}
-  \pgfmathsetmacro{\XTILDELONG}{\EJEOBLICLONG}    
-  % Eje ytilde
-  \pgfmathsetmacro{\YTILDEANG}{70}
-  \pgfmathsetmacro{\YTILDELONG}{0.5*(\EJECARTLONG+\EJEOBLICLONG)}
-  % Fondo
-  \pgfmathsetmacro{\HORZ}{0.90}
-  \pgfmathsetmacro{\VERT}{0.25}
-  % 
-  \centering
-  \begin{tikzpicture}[%
-    scale=\scl,
-    every node/.style={black,font=\small},
-    ejecartesiano/.style={->, black!30},
-    ejeoblicuo/.style={->, black},
-    textooblicuo/.style={black},
-    textocartesiano/.style={\colorTorig},
-    angulo/.style={fill=green!15, draw=\colorGirodos},
-    angulogiro/.style={draw=black!50},
-    background/.style={%
-      line width=\bgborderwidth,
-      draw=\bgbordercolor,
-      fill=\bgcolor,
-    },
-    ]
-    % COORDENADAS
-    % Origen
-    \coordinate (O) at (0,0);
-    % Eje x
-    \path[save path=\ejex] (O) -- ++(\XANG:\XLONG cm) coordinate (xfin);
-    % Eje y
-    \path[save path=\ejey] (O) -- ++(\YANG:\YLONG cm) coordinate (yfin);
-    % Eje xtilde
-    \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
-    coordinate (xtildefin);
-    % Eje ytilde
-    \path[save path=\ejeytilde, name path=O--ytilde] (O) -- ++(\YTILDEANG:\YTILDELONG cm)
-    coordinate (ytildefin);
-
-    % DIBUJOS
-    % Ángulos
-    % Ángulo alfa
-    \path (xfin) -- (O) -- (ytildefin) pic
-    [angulo, "\footnotesize $\alpha$",angle radius=14pt, angle eccentricity=0.64]
-    {angle = xfin--O--ytildefin};
-    % Ángulo beta
-    \path (yfin) -- (O) -- (ytildefin) pic
-    [angulogiro, {Latex[round,width=3pt,length=4pt]}-,
-    "\color{black!60}{\footnotesize $\beta$}", angle radius=50pt,
-    angle eccentricity=0.80]
-    {angle = ytildefin--O--yfin};
-    
-    % Ejes
-    % Eje x
-    \draw[ejecartesiano, use path=\ejex];
-    \node[textocartesiano, below] at (xfin) {$x$};
-    % Eje y
-    \draw[ejecartesiano, use path=\ejey];
-    \node[textocartesiano, left] at (yfin) {$y$};
-    
-    % Eje xtilde
-    \draw[ejeoblicuo, use path=\ejextilde];
-    \node[below, textooblicuo] at (xtildefin) {$\tilde{x}$};
-    % Eje ytilde
-    \draw[ejeoblicuo, use path=\ejeytilde];
-    %\node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{x}$};
-    \node[above right=0pt and -4pt, textooblicuo] at (ytildefin) {$\tilde{y}$};
-
-    % Origen
-    \fill[black] (O) circle [radius=0.8pt];
-    
-    % Fondo amarillo
-    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
-    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
-    \begin{scope}[on background layer]
-      \draw[background] (SW) rectangle (NE);
-    \end{scope}
-  \end{tikzpicture}
-  % Escala
-  \def\scl{1.00}
-  %  Longitud de los ejes
-  \pgfmathsetmacro{\EJECARTLONG}{3.0}
-  \pgfmathsetmacro{\EJEOBLICLONG}{2.5}
-  % Eje x
-  \pgfmathsetmacro{\XANG}{0}
-  \pgfmathsetmacro{\XLONG}{\EJECARTLONG}
-  % Eje y
-  \pgfmathsetmacro{\YANG}{90}
-  \pgfmathsetmacro{\YLONG}{\EJECARTLONG}
-  % Eje xtilde
-  \pgfmathsetmacro{\XTILDEANG}{0}
-  \pgfmathsetmacro{\XTILDELONG}{\EJEOBLICLONG}    
-  % Eje ytilde
-  \pgfmathsetmacro{\YTILDEANG}{70}
-  \pgfmathsetmacro{\YTILDELONG}{0.5*(\EJECARTLONG+\EJEOBLICLONG)}
-  % Fondo
-  \pgfmathsetmacro{\HORZ}{0.90}
-  \pgfmathsetmacro{\VERT}{0.25}
-  % 
-  \centering
-  \begin{tikzpicture}[%
-    scale=\scl,
-    every node/.style={black,font=\small},
-    ejecartesiano/.style={->, black!30},
-    ejeoblicuo/.style={->, black},
-    textooblicuo/.style={black},
-    textocartesiano/.style={\colorTorig},
-    angulo/.style={fill=green!15, draw=\colorGirodos},
-    angulogiro/.style={draw=black!50},
-    background/.style={%
-      line width=\bgborderwidth,
-      draw=\bgbordercolor,
-      fill=\bgcolor,
-    },
-    ]
-    % COORDENADAS
-    % Origen
-    \coordinate (O) at (0,0);
-    % Eje x
-    \path[save path=\ejex] (O) -- ++(\XANG:\XLONG cm) coordinate (xfin);
-    % Eje y
-    \path[save path=\ejey] (O) -- ++(\YANG:\YLONG cm) coordinate (yfin);
-    % Eje x^1
-    \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
-    coordinate (xtildefin);
-    % Eje x^2
-    \path[save path=\ejeytilde, name path=O--ytilde] (O) -- ++(\YTILDEANG:\YTILDELONG cm)
-    coordinate (ytildefin);
-    
-    % DIBUJOS
-    % Ángulo alpha
-    \path (xfin) -- (O) -- (ytildefin) pic
-    [angulo, "\footnotesize $\alpha$",angle radius=14pt, angle eccentricity=0.64]
-    {angle = xfin--O--ytildefin};
-    % Ángulo beta
-    \path (yfin) -- (O) -- (ytildefin) pic
-    [angulogiro, {Latex[round,width=3pt,length=4pt]}-,
-    "\color{black!60}{\footnotesize $\beta$}", angle radius=50pt,
-    angle eccentricity=0.80]
-    {angle = ytildefin--O--yfin};
-    
-    % Ejes
-    % Eje x
-    \draw[ejecartesiano, use path=\ejex];
-    \node[textocartesiano, below] at (xfin) {$x$};
-    % Eje y
-    \draw[ejecartesiano, use path=\ejey];
-    \node[textocartesiano, left] at (yfin) {$y$};
-    
-    % Eje x^1
-    \draw[ejeoblicuo, use path=\ejextilde];
-    \node[below, textooblicuo] at (xtildefin) {$x^1$};
-    % Eje x^2
-    \draw[ejeoblicuo, use path=\ejeytilde];
-    \node[above right=0pt and -4pt, textooblicuo] at (ytildefin) {$x^2$};
-
-    % Origen
-    \fill[black] (O) circle [radius=0.8pt];
-    
-    % Fondo amarillo
-    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
-    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
-    \begin{scope}[on background layer]
-      \draw[background] (SW) rectangle (NE);
-    \end{scope}
-  \end{tikzpicture}
-  \caption{A la izquierda los ejes oblicuos se marcan como $\tilde{x}$ y $\tilde{y}$,
-    mientras que a la derecha se encuentran como $x^1$ y $x^2$.
-  Estos forman un ángulo $\alpha$ entre sí. Los ejes ortogonales estándar $x$ e $y$ se
-  representan para comparar. Nótese que se hace coincidir el eje $x^1$ con el $x$.
-  Por último, en esta figura se considera que el eje $\tilde{y}$ se ha formado
-  inclinando el eje $y$ un  ángulo en sentido horario $\beta = \pi/2 - \alpha$, aunque
-  podría hacerlo en sentido horario, formando un ángulo obtuso con el eje de abcisas.}
-  \label{fig:R2-oblic_ejes}
-\end{figure}
-
-\section{Bases unitaria y natural}
-
-\subsection{Base unitaria}
-En física general se suelen utilizar bases formadas por vectores unitarios, aunque para
-formar una base no es necesario que sean unitarios, basta con que conste del máximo
-número de vectores linealmente independientes. Así, cualquier vector del espacio se podrá
-representar como una combinación lineal de vectores de la base.
-
-Vamos obtener la base unitaria $B'_u=\set{\xhat{u}_1, \xhat{u}_2}$ en el sistema de
-coordenadas oblicuas. Si nos fijamos en la figura \ref{fig:R2-oblic_u1u2}, podemos
-expresar estos vectores en función de los $\uvec{\i}$ y $\uvec{\j}$ de las cartesianas
-rectangulares
-\begin{align}
-  \label{eq:R2-oblic_u1_ij}
-  \xhat{u}_1
-  &=
-    |\xhat{u}_1|\,\uvec{\i} + 0\,\uvec{\j} = \uvec{\i}\\
-  \label{eq:R2-oblic_u2_ij}
-  \xhat{u}_2
-  &=
-    |\xhat{u}_2|\cos{\alpha}\, \uvec{\i} + |\xhat{u}_2|\sin{\alpha}\, \uvec{\j}
-    = \cos\alpha\,\uvec{\i} + \sin\alpha\,\uvec{\j}
-\end{align}
-
-%Ahora vamos a obtener una base $B'=\set{\xhat{e}'_1, \xhat{e}'_2}$ para el sistema
-%oblicuo, obligando de antemano a que sus vectores sean unitarios, $|\vvv{e}'_i| = 1$.
-%Estos vectores unitarios se suelen utilizar en las bases de los sistemas de coordenadas
-%en física general. Pero, cuando se utiliza esta restricción, no siempre se obtiene la
-%base natural del sistema.
+%\begin{figure}[ht]
+%  % Escala
+%  \def\scl{1.00}
+%  %  Longitud de los ejes
+%  \pgfmathsetmacro{\EJECARTLONG}{3.0}
+%  \pgfmathsetmacro{\EJEOBLICLONG}{2.5}
+%  % Eje x
+%  \pgfmathsetmacro{\XANG}{0}
+%  \pgfmathsetmacro{\XLONG}{\EJECARTLONG}
+%  % Eje y
+%  \pgfmathsetmacro{\YANG}{90}
+%  \pgfmathsetmacro{\YLONG}{\EJECARTLONG}
+%  % Eje xtilde
+%  \pgfmathsetmacro{\XTILDEANG}{0}
+%  \pgfmathsetmacro{\XTILDELONG}{\EJEOBLICLONG}    
+%  % Eje ytilde
+%  \pgfmathsetmacro{\YTILDEANG}{70}
+%  \pgfmathsetmacro{\YTILDELONG}{0.5*(\EJECARTLONG+\EJEOBLICLONG)}
+%  % Fondo
+%  \pgfmathsetmacro{\HORZ}{0.90}
+%  \pgfmathsetmacro{\VERT}{0.25}
+%  % 
+%  \centering
+%  \begin{tikzpicture}[%
+%    scale=\scl,
+%    every node/.style={black,font=\small},
+%    ejecartesiano/.style={->, black!30},
+%    ejeoblicuo/.style={->, black},
+%    textooblicuo/.style={black},
+%    textocartesiano/.style={\colorTorig},
+%    angulo/.style={fill=green!15, draw=\colorGirodos},
+%    angulogiro/.style={draw=black!50},
+%    background/.style={%
+%      line width=\bgborderwidth,
+%      draw=\bgbordercolor,
+%      fill=\bgcolor,
+%    },
+%    ]
+%    % COORDENADAS
+%    % Origen
+%    \coordinate (O) at (0,0);
+%    % Eje x
+%    \path[save path=\ejex] (O) -- ++(\XANG:\XLONG cm) coordinate (xfin);
+%    % Eje y
+%    \path[save path=\ejey] (O) -- ++(\YANG:\YLONG cm) coordinate (yfin);
+%    % Eje xtilde
+%    \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
+%    coordinate (xtildefin);
+%    % Eje ytilde
+%    \path[save path=\ejeytilde, name path=O--ytilde] (O) -- ++(\YTILDEANG:\YTILDELONG cm)
+%    coordinate (ytildefin);
 %
-%Para relacionar esta base con la estándar de las rectilíneas
-%$B=\set{\uvec{\i},\uvec{\j}}$ haremos coincidir el versor $\{e}'_1$ con $\uvec{\i}$,
-%esto es, el eje $\tilde{x}$ coincidirá con el eje $x$ de las cartesianas. Véase la figura
-%\ref{fig:R2-oblic_u1u2}.
-\begin{figure}[ht]
-  \centering
-  % Escala
-  \def\scl{1.00}
-  % 
-  % \pgfmathsetmacro{\EJESCARTLONG}{3.0}
-  % \pgfmathsetmacro{\EJEOBLICLONG}{2.7}
-  \pgfmathsetmacro{\EJESCARTLONG}{2.5}
-  \pgfmathsetmacro{\EJEOBLICLONG}{2.1}
-  % Eje x
-  \pgfmathsetmacro{\XLONG}{\EJESCARTLONG}
-  % Eje y
-  \pgfmathsetmacro{\YLONG}{\EJESCARTLONG}
-  % Eje xtilde
-  \pgfmathsetmacro{\XTILDEANG}{0}
-  \pgfmathsetmacro{\XTILDELONG}{\EJEOBLICLONG}    
-  % Eje ytilde
-  \pgfmathsetmacro{\YTILDEANG}{70}
-  \pgfmathsetmacro{\YTILDELONG}{\EJESCARTLONG}
-  % Versores
-  \pgfmathsetmacro{\VTILDEMOD}{1.4}
-  \pgfmathsetmacro{\VXTILDEANG}{0}
-  \pgfmathsetmacro{\VYTILDEANG}{\YTILDEANG}
-  % Vector P
-  \pgfmathsetmacro{\PMOD}{2.3}
-  \pgfmathsetmacro{\PANG}{40}
-  % Fondo
-  \pgfmathsetmacro{\HORZ}{0.25}
-  \pgfmathsetmacro{\VERT}{0.25}
-  % 
-  \centering
-  \begin{tikzpicture}[%
-    scale=\scl,
-    every node/.style={black,font=\small},
-    ejecart/.style={->, black!30},
-    ejeoblic/.style={->, black},
-    proyeccion/.style={black!20, line width=0.4},
-    % longitud/.style={line width=.5pt,\colorV},
-    texto/.style={black,font=\footnotesize},
-    textoapagado/.style={\colorTorig},
-    vtilde/.style={%
-      -{Latex[round,width=4pt,length=6pt]}, line width=1pt, \colorVred},
-    pcirculo/.style={fill=\colorPorig, draw=black},
-    angulo/.style={fill=green!15, draw=\colorGirodos},
-    background/.style={%
-      line width=\bgborderwidth,
-      draw=\bgbordercolor,
-      fill=\bgcolor,
-    },
-    ]
-    % COORDENADAS
-    % Origen
-    \coordinate (O) at (0,0);
-    % Eje x
-    \path[save path=\ejex] (O) -- (\XLONG cm, 0) coordinate (xfin);
-    % Eje y
-    \path[save path=\ejey] (O) -- (0, \YLONG cm) coordinate (yfin);
-    % Eje xtilde
-    \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
-    coordinate (xtildefin);
-    % Eje ytilde
-    \path[save path=\ejeytilde] (O) -- ++(\YTILDEANG:\YTILDELONG cm)
-    coordinate (ytildefin);
-    % Versores tilde
-    \path[save path=\vxtilde] (O) -- coordinate[pos=1.0] (vxtildetxt)
-    ++(\VXTILDEANG:\VTILDEMOD cm);
-    \path[save path=\vytilde] (O) -- coordinate[pos=1.1] (vytildetxt)
-    ++(\VYTILDEANG:\VTILDEMOD cm) coordinate (u2fin);
-    % Proyección de P en los ejes
-    % Con eje x
-    \path[save path=\proyx] (u2fin) |- (xfin) coordinate[pos=0.5] (u2x) (xfin);
-    % Posición de texto en eje x
-    \path (O) -- coordinate[pos=0.5] (uxtxt) (u2x);
-    % Con eje y
-    \path[save path=\proyy] (u2fin) -| coordinate[pos=0.5] (u2y) (yfin);
-    % Posición de texto en eje y
-    \path (O) -- coordinate[pos=0.5] (uytxt) (u2y);
-    
-    % DIBUJOS
-    % Ángulo alpha
-    \path (xfin) -- (O) -- (ytildefin) pic
-    [angulo, "\footnotesize $\alpha$",angle radius=12pt, angle eccentricity=0.68]
-    {angle = xfin--O--ytildefin};
-    
-    % Proyección de etilde2 en los ejes y texto correspondiente en ejes x e y
-    \draw[proyeccion, use path=\proyx];
-    \node[below] at (uxtxt) {\footnotesize $\cos\alpha$};
-    \draw[proyeccion, use path=\proyy];
-    \node[rotate=90, below left=4pt and 11pt] at (u2y) {\footnotesize $\sin\alpha$};
-    
-    % Ejes
-    % x
-    \draw[ejecart, use path=\ejex];
-    \node[textoapagado, below=1.2pt] at (xfin) {\small $x$};
-    % \node[below] at (xtexto) {$r\cos\theta$};
-    % y
-    \draw[ejecart, use path=\ejey];
-    \node[above, textoapagado] at (yfin) {$y$};
-    % xtilde
-    \draw[ejeoblic, use path=\ejextilde];
-    %\node[texto, below] at (xtildefin) {\footnotesize $\tilde{x}^1$};
-    \node[texto, below] at (xtildefin) {\footnotesize $\tilde{x}$};
-    % ytilde
-    \draw[ejeoblic, use path=\ejeytilde];
-    %\node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{x}^2$};
-    \node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{y}$};
-    % \node[rotate=90, left=8pt] at (ytexto) {$r\sin\theta$};
-    % Versores
-    \draw[vtilde, use path=\vxtilde];
-    \node[\colorTred, below] at (vxtildetxt) {\footnotesize $\xhat{u}_1$};
-    \draw[vtilde, use path=\vytilde];
-    \node[\colorTred,above left=-4pt and -1.5pt] at (vytildetxt)
-    {\footnotesize $\xhat{u}_2$};
-    % Origen
-    \filldraw (O) circle [radius=.2pt];
-    
-    % Fondo amarillo
-    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
-    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
-    \begin{scope}[on background layer]
-      \draw[background] (SW) rectangle (NE);
-    \end{scope}
-  \end{tikzpicture}
-  \caption{Sistema de coordenadas cartesianas oblicuas $\tilde{x}$ e $\tilde{y}$, que
-    forman un ángulo $\alpha$ entre sí. También se representan los ejes cartesianos $x$ e
-    $y$ tradicionales como referencia, en tono algo apagado. Por último se aprecian en
-    rojo los vectores unitarios $\xhat{u}_1$ y $\xhat{u}_2$ del sistema oblicuo y sus
-    proyecciones en los ejex $x$ e $y$.}
-  \label{fig:R2-oblic_u1u2}
-\end{figure}
-
-\subsection{Base natural}
-Como se comentó en \ref{sect:R2-oblic_vision_general}, la base natural $B'$ en el sistema
-oblicuo (con prima, para distinguirla temporalmente de la base del sistema de coordenadas cartesianas ortogonal $B=\set{\uvec{\i},\,\uvec{\j}}$), está formada por los vectores
-covariantes (con subíndice) siguientes
-\begin{equation}\label{eq:R2-oblic_base_natural}
-  B' = \set{\vvv{e}_1, \vvv{e}_2}
-\end{equation}
-que nos podrá servir para obtener la métrica de estos sistemas oblicuos que, a su vez,
-nos permitirá relacionar las componentes covariantes y las contravariantes, entre sí.
-
-\subsubsection{Cálculo geométrico}
-Hasta que no obtengamos la llamada \emph{matriz de cambio de base}, para obtener la base
-natural vamos recurrir a un procedimiento geométrico.
-
-Los vectores de la  base natural se calculan derivando parcialmente el vector de
-posición de un punto genérico del plano en función de las componentes contravariantes
-$x^1$ y $x^2$ en el sistema oblicuo.
-\begin{equation}
-  \vvv{e}_i = \dfrac{\partial\vvv{r}}{\partial x^i}
-  \,\text{;}\hspace{0.8em}
-  \text{con } i = 1, 2.
-\end{equation}
-Hasta que no se explique con algo de detalle el significado de estas componentes
-contravariantes, basta con fijarnos en coordenadas cartesianas ortogonales en la figura \ref{fig:R2-coord_rect-ij}.
-De acuerdo con ella, el vector de posición de un punto cualquiera del plano se expresa
-como
-\begin{equation}
-  \label{eq:R2-oblic_vector_posicion_cartesianas}
-  \vvv{r} = x\,\uvec{\i} + y\,\uvec{\j}
-\end{equation}
-
-Nuestro objetivo es obtener $x$ e $y$ en función de las componentes contravariantes en oblicuas, $x^1$ y $x^2$
-\begin{align}
-  x &= x(x^1, x^2)\\
-  y &= y(x^1, x^2)
-\end{align}
-y sustituir en la expresión \eqref{eq:R2-oblic_vector_posicion_cartesianas}, para obtener
-el vector de posición en función de las componentes contravariantes $x^i$.
-
-Fijémonos en el triángulo sombreado en verde de la figura
-\ref{fig:R2-oblic_proc_geom_agudo}, donde hemos supuesto que los ejes forman un ángulo
-agudo.
-Sabemos que el ángulo $\beta$ es el complementario de $\alpha$, que es el que forman los
-dos ejes del sistema oblicuo, de manera que $\sin\beta = \cos\alpha$ y
-$\cos\beta = \sin\alpha$.
-
-Así
-\begin{equation}
-  \label{eq:R2-oblic_transf_agudo}
-  \begin{cases}
-    \begin{array}{lll}
-      \sin\beta = \cos\alpha = \dfrac{x-x^1}{x^2}
-      &\longrightarrow
-      &x = x^1 + x^2\cos\alpha\\
-      \cos\beta = \sin\alpha = \dfrac{y}{x^2}
-      &\longrightarrow
-      &y = x^2\sin\alpha
-    \end{array}
-  \end{cases}
-\end{equation}
-
-\begin{figure}[ht]
-  % Escala
-  \def\scl{1.00}
-  % 
-  \pgfmathsetmacro{\EJECARTLONG}{3.5}
-  \pgfmathsetmacro{\EJEOBLICLONG}{3.0}
-  % Eje x
-  \pgfmathsetmacro{\XANG}{0.0}
-  \pgfmathsetmacro{\XLONG}{\EJECARTLONG}
-  % Eje y
-  \pgfmathsetmacro{\YANG}{90}
-  \pgfmathsetmacro{\YLONG}{\EJECARTLONG}
-  % Eje xtilde
-  \pgfmathsetmacro{\XTILDEANG}{0}
-  \pgfmathsetmacro{\XTILDELONG}{\EJEOBLICLONG}    
-  % Eje ytilde
-  \pgfmathsetmacro{\YTILDEANG}{55}
-  \pgfmathsetmacro{\YTILDELONG}{0.56*(\EJECARTLONG + \EJEOBLICLONG)}
-  % Vector P
-  \pgfmathsetmacro{\PMOD}{3.0}
-  \pgfmathsetmacro{\PANG}{30}
-  % Fondo
-  \pgfmathsetmacro{\HORZ}{0.25}
-  \pgfmathsetmacro{\VERT}{0.25}
-  %
-  \centering
-  \begin{tikzpicture}[%
-    %name prefix = fig1-,
-    scale=\scl,
-    every node/.style={black,font=\footnotesize},
-    ejecart/.style={->, black!30},
-    ejeoblic/.style={->, black},
-    proyeccionoblic/.style={black!20, line width=0.5},
-    proyeccioncart/.style={black!20, line width=0.5, dashed},
-    % longitud/.style={line width=.5pt,\colorV},
-    texto/.style={black},
-    textoapagado/.style={\colorTorig},
-    vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt,\colorV},
-    contravariante/.style={line width=1.4pt, red},
-    cartesiana/.style={gray, line width=1.5pt},
-    contravtxt/.style={red!70!black},
-    pcirculo/.style={fill=\colorPorig, draw=black},
-    angulo/.style={fill=green!15, draw=\colorGirodos},
-    angulogiro/.style={draw=black!50},
-    background/.style={%
-      line width=\bgborderwidth,
-      draw=\bgbordercolor,
-      fill=\bgcolor,
-    },
-    ]
-    % COORDENADAS
-    % Origen
-    \coordinate (O) at (0,0);
-    % Eje x
-    \path[save path=\ejex] (O) -- ++(\XANG:\XLONG cm) coordinate (xfin);
-    % Eje y
-    \path[save path=\ejey] (O) -- ++(\YANG:\YLONG cm) coordinate (yfin);
-    % Eje xtilde
-    \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
-    coordinate (xtildefin);
-    % Eje ytilde
-    \path[save path=\ejeytilde, name path=O--ytilde] (O) -- ++(\YTILDEANG:\YTILDELONG cm)
-    coordinate (ytildefin);
-    % Vector
-    \path[save path=\r] (O) -- (\PANG:\PMOD cm) coordinate (P);
-    % Proyección de P en los ejes
-    % Con eje x
-    \path[save path=\proyx] (P) |- (xfin) coordinate[pos=0.5] (px);
-    % Con eje y
-    \path[save path=\proyy] (P) -| (yfin) coordinate[pos=0.5] (py);
-    % Componentes contravariantes
-    % Intersección de horizontal desde P hasta ytilde
-    % -> Componente contravariante eje ytilde (CTV2) 
-    \path[name path=P--y] (P) -| (yfin);
-    \path[name intersections={of=P--y and O--ytilde, by=CTV2}];
-    % Paralela (CTV2) -- (O) que pase por (P)
-    % -> Componente contravariante eje xtilde (CTV1)
-    \path (P) -- ($(P) - (CTV2) - (O)$) coordinate (CTV1);
-    % Componente delta x = x-x^1
-    \path[save path=\deltaxsegmento] (CTV1) -- coordinate[pos=0.5] (deltaxtxt) (px);
-    % Componente y
-    \path (P) -- coordinate[pos=0.5] (ytxt) (px);
-
-    % DIBUJOS    
-    % Área
-    \fill[green!15] (P) -- (px) -- (CTV1) -- cycle;
-
-    % Ángulo beta
-    \path (yfin) -- (O) -- (ytildefin) pic
-    [angulogiro, {Latex[round,width=3pt,length=4pt]}-,
-    "\color{black!60}{\footnotesize $\beta$}", angle radius=75pt,
-    angle eccentricity=1.1]
-    {angle = ytildefin--O--yfin};
-    % Ángulo alfa
-    \path (xfin) -- (O) -- (ytildefin) pic
-    [angulo, "\color{black}{\scriptsize $\alpha$}", angle radius=16pt,
-    angle eccentricity=0.70]
-    {angle = xfin--O--ytildefin};
-    % Otro ángulo beta
-    \path (px) -- (P) -- (CTV1) pic
-    [angulo, "\color{black}{\scriptsize $\beta$}", angle radius=16pt,
-    angle eccentricity=0.70]
-    {angle = CTV1--P--px};
-    
-    % Proyecciones de componentes
-    % Con el eje x
-    \draw[proyeccioncart, use path=\proyx];
-    % Con el eje y
-    \draw[proyeccioncart, use path=\proyy];
-    % Contravariantes
-    \draw[proyeccionoblic] (P) -- (CTV1);
-    %\node[below] at (CTV1) {\footnotesize $\hat{x}^1$};
-    \draw[proyeccionoblic] (P) -- (CTV2);
-    % \node[left] at (CTV2) {\footnotesize $\hat{x}^2$};
-    % Eje x
-    \draw[ejecart, use path=\ejex];
-    \node[textoapagado, below=3pt] at (xfin) {$x$};
-    % Eje y
-    \draw[ejecart, use path=\ejey];
-    \node[textoapagado, left] at (yfin) {$y$};
-    % Eje xtilde
-    \draw[ejeoblic, use path=\ejextilde];
-    \node[texto, below] at (xtildefin) {$x^1$};
-    % Eje ytilde
-    \draw[ejeoblic, use path=\ejeytilde];
-    \node[above right=-1pt and -3pt, texto] at (ytildefin) {$x^2$};
-    % Vector v
-    \draw[vector, use path=\r];
-    \node[above right=-2pt and -2pt] at (P) {\footnotesize $\vvv{r}$};
-    \filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
-    %\node[above right=0pt and -5pt] at (P) {\footnotesize $P$};
-
-    % Marcar en color la componentes contravariantes
-    \draw[contravariante] (O) -- node[contravtxt, pos=0.5, below] {$x^1$} (CTV1);
-    \draw[contravariante] (O) -- node[contravtxt, pos=0.6, left] {$x^2$} (CTV2);
-
-    % delta x
-    \draw[cartesiana, use path=\deltaxsegmento];
-    \node[below] at (deltaxtxt) {$x-x^1$};
-    % y
-    %\draw[cartesiana, use path=\ysegmento];
-    %\node[right] at (ytxt) {$y$};
-    \path (px) -- node[pos=0.41, right] {$y$} (P);
-    % x^2
-    \path (CTV1) -- node[pos=0.43, left] {$x^2$} (P);
-
-    % Origen
-    \fill[orange!80!black] (O) circle [radius=0.8pt];
-    
-    % Fondo amarillo
-    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
-    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
-    \begin{scope}[on background layer]
-      \draw[background] (SW) rectangle (NE);
-    \end{scope}
-  \end{tikzpicture}
-  \caption{El triángulo rectángulo sombreado en verde nos permite relacionar las
-    coordenadas ortogonales $x$ e $y$ con las contravariantes $x^1$ y $x^2$, a través
-    del ángulo $\beta$ que forma el eje oblicuo $x^2$ con el eje ortogonal $y$.}
-  \label{fig:R2-oblic_proc_geom_agudo}
-\end{figure}
-
-El vector de posición de un punto en función de las componentes contravariantes es
-\begin{equation}
-  \vvv{r} = \left(x^1+x^2\cos\alpha\right)\,\uvec{\i} + x^2\sin\alpha\,\uvec{j}
-\end{equation}
-
-Derivando parcialmente, los vectores de la base natural serán
-\begin{align}
-  \vvv{e}_1
-  &=
-    \dfrac{\partial\vvv{r}}{x^1}
-    = \uvec{\i}
-    \longrightarrow
-    |\vvv{e}_1| = |\uvec{\i}| = \sqrt{1} = 1\\
-  \vvv{e}_2
-  &=
-    \dfrac{\partial\vvv{r}}{x^2}
-    = \cos\alpha\,\uvec{\i} + \sin\alpha\,\uvec{\j}
-    \longrightarrow
-    |\vvv{e}_2| = \sqrt{\cos^2\alpha + \sin^2\alpha} = 1
-\end{align}
-y deducimos que sus módulos valen la unidad.
-
-Además, podemos comprobar que coinciden con los vectores unitarios $\xhat{u}_i$ que
-obtuvimos gráficamente en \eqref{eq:R2-oblic_u1_ij} y \eqref{eq:R2-oblic_u2_ij}
-\begin{align}
-  \label{eq:R2-oblic_e1_ij}
-  \vvv{e}_1
-  &=
-    \xhat{u}_1
-    = \uvec{\i}
-    = (1, 0)\\
-  \label{eq:R2-oblic_e2_ij}
-  \vvv{e}_2
-  &=
-    \xhat{u}_2
-    = \cos\alpha\,\uvec{\i} + \sin\alpha\,\uvec{\j}
-    = (\cos\alpha, \sin\alpha)
-\end{align}
-
-\subsubsection{¿Hubiera dado lo mismo si el ángulo $\alpha$ entre los ejes
-  hubiera sido mayor de \qty{90}{\degree}?}
-Demostraremos que la base natural sería la misma que la que hemos calculado suponiendo
-que los ejes oblicuos formaban un ángulo agudo. Fijémonos en la figura
-\ref{fig:R2-oblic_proc_geom_obtuso}, que representa esta situación.
-\begin{figure}[ht]
-  % Escala
-  \def\scl{1.00}
-  % 
-  \pgfmathsetmacro{\EJECARTLONG}{4.5}
-  \pgfmathsetmacro{\EJEOBLICLONG}{4.0}
-  % Eje x
-  \pgfmathsetmacro{\XANG}{0.0}
-  \pgfmathsetmacro{\XLONG}{\EJECARTLONG}
-  % Eje y
-  \pgfmathsetmacro{\YANG}{90}
-  \pgfmathsetmacro{\YLONG}{0.85*\EJECARTLONG}
-  % Eje xtilde
-  \pgfmathsetmacro{\XTILDEANG}{0}
-  \pgfmathsetmacro{\XTILDELONG}{\EJEOBLICLONG}    
-  % Eje ytilde
-  \pgfmathsetmacro{\YTILDEANG}{90+30}
-  \pgfmathsetmacro{\YTILDELONG}{0.45*(\EJECARTLONG + \EJEOBLICLONG)}
-  % Vector P
-  \pgfmathsetmacro{\PMOD}{3.0}
-  \pgfmathsetmacro{\PANG}{30}
-  % Distancia horizontal entre P e ytilde
-  \pgfmathsetmacro{\Px}{\PMOD * cos(\PANG)}
-  \pgfmathsetmacro{\Py}{\PMOD * sin(\PANG)}
-  \pgfmathsetmacro{\YTILDEx}{\YTILDELONG * cos(\YTILDEANG)}
-  % Fondo
-  \pgfmathsetmacro{\HORZ}{0.25}
-  \pgfmathsetmacro{\VERT}{0.25}
-  %
-  \centering
- \begin{tikzpicture}[%
-    scale=\scl,
-    every node/.style={black,font=\footnotesize},
-    ejecart/.style={->, black!30},
-    ejeoblic/.style={->, black},
-    proyeccionoblic/.style={black!20, line width=0.5},
-    proyeccioncart/.style={black!20, line width=0.5, dashed},
-    % longitud/.style={line width=.5pt,\colorV},
-    texto/.style={black},
-    textoapagado/.style={\colorTorig},
-    vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt,\colorV},
-    contravariante/.style={line width=2.0pt, red},
-    cartesiana/.style={gray, line width=1.5pt},
-    contravtxt/.style={red!70!black},
-    pcirculo/.style={fill=\colorPorig, draw=black},
-    angulo/.style={fill=green!15, draw=\colorGirodos},
-    angulogiro/.style={draw=black!50},
-    background/.style={%
-      line width=\bgborderwidth,
-      draw=\bgbordercolor,
-      fill=\bgcolor,
-    },
-    ]
-    % COORDENADAS
-    % Origen
-    \coordinate (O) at (0,0);
-    % Eje x
-    \path[save path=\ejex] (O) -- ++(\XANG:\XLONG cm) coordinate (xfin);
-    % Eje y
-    \path[save path=\ejey] (O) -- ++(\YANG:\YLONG cm) coordinate (yfin);
-    % Eje xtilde
-    \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
-    coordinate (xtildefin);
-    % Eje ytilde
-    \path[save path=\ejeytilde, name path=O--ytilde] (O) -- ++(\YTILDEANG:\YTILDELONG cm)
-    coordinate (ytildefin);
-    % Vector
-    \path[save path=\r] (O) -- (\PANG:\PMOD cm) coordinate (P);
-    % Proyección de P en los ejes
-    % Con eje x
-    \path[save path=\proyx] (P) |- (xfin) coordinate[pos=0.5] (px);
-    % Con eje y
-    \path[save path=\proyy] (P) -| (yfin) coordinate[pos=0.5] (py);
-    % Componentes contravariantes
-    % Intersección de la horizontal desde P hasta ytilde
-    % -> Componente contravariante eje ytilde (CTV2) 
-    \path[name path=horizontal] (\YTILDEx, \Py) -- (P);
-    \path [name intersections={of=O--ytilde and horizontal, by=CTV2}];
-    
-    % Paralela (CTV2) -- (O) que pase por (P)
-    % -> Componente contravariante eje xtilde (CTV1)
-    \path (P) -- ($(P) - (CTV2) - (O)$) coordinate (CTV1);
-    % Componente delta x = x-x^1
-    \path[save path=\deltaxsegmento] (CTV1) -- coordinate[pos=0.5] (deltaxtxt) (px);
-    % Componente y
-    \path (P) -- coordinate[pos=0.5] (ytxt) (px);
-
-    % DIBUJOS
-    % Área
-    \fill[green!15] (P) -- (px) -- (CTV1) -- cycle;
-
-    % Ángulo beta
-    \path (yfin) -- (O) -- (ytildefin) pic
-    [angulogiro, -{Latex[round,width=3pt,length=4pt]},
-    "\color{black!60}{\footnotesize $\beta$}", angle radius=75pt,
-    angle eccentricity=1.1]
-    {angle = yfin--O--ytildefin};
-    
-    % Ángulo alfa
-    \path (xfin) -- (O) -- (ytildefin) pic
-    [angulo, "\color{black}{\scriptsize $\alpha$}", angle radius=16pt,
-    angle eccentricity=0.70]
-    {angle = xfin--O--ytildefin};
-
-    % Otro ángulo beta
-    \path (px) -- (P) -- (CTV1) pic
-    [angulo, "\color{black}{\scriptsize $\beta$}", angle radius=16pt,
-    angle eccentricity=0.70]
-    {angle = px--P--CTV1};
-    
-    % Proyecciones de componentes
-    % Con el eje x
-    \draw[proyeccioncart, use path=\proyx];
-    % Con el eje y
-    \draw[proyeccioncart, use path=\proyy];
-    % Contravariantes
-    \draw[proyeccionoblic] (P) -- (CTV1);
-    %\node[below] at (CTV1) {\footnotesize $\hat{x}^1$};
-    \draw[proyeccionoblic] (P) -- (CTV2);
-    % \node[left] at (CTV2) {\footnotesize $\hat{x}^2$};
-    % Eje x
-    \draw[ejecart, use path=\ejex];
-    \node[textoapagado, below=3pt] at (xfin) {$x$};
-    % Eje y
-    \draw[ejecart, use path=\ejey];
-    \node[textoapagado, left] at (yfin) {$y$};
-    % Eje xtilde
-    \draw[ejeoblic, use path=\ejextilde];
-    \node[texto, below] at (xtildefin) {$x^1$};
-    % Eje ytilde
-    \draw[ejeoblic, use path=\ejeytilde];
-    \node[above right=-1pt and -3pt, texto] at (ytildefin) {$x^2$};
-    % Vector v
-    \draw[vector, use path=\r];
-    \node[above right=-2pt and -2pt] at (P) {\footnotesize $\vvv{r}$};
-    \filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
-    %\node[above right=0pt and -5pt] at (P) {\footnotesize $P$};
-
-    % Marcar en color la componentes contravariantes
-    \draw[contravariante] (O) -- node[contravtxt, pos=0.5, below] {$x^1$} (CTV1);
-    \draw[contravariante] (O) -- node[contravtxt, pos=0.6, left] {$x^2$} (CTV2);
-
-    % delta x
-    \draw[red!50!black, line width=0.3pt, use path=\deltaxsegmento];
-    \node[below] at (deltaxtxt) {$x^1-x$};
-    % y
-    %\draw[cartesiana, use path=\ysegmento];
-    %\node[right] at (ytxt) {$y$};
-    \path (px) -- node[pos=0.41, left] {$y$} (P);
-    % x^2
-    \path (CTV1) -- node[pos=0.43, right] {$x^2$} (P);
-
-    % Origen
-    \fill[orange!80!black] (O) circle [radius=0.8pt];
-    
-    % Fondo amarillo
-    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
-    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
-    \begin{scope}[on background layer]
-      \draw[background] (SW) rectangle (NE);
-    \end{scope}
-  \end{tikzpicture}
-  \caption{El triángulo rectángulo sombreado en verde nos permite relacionar las
-    coordenadas ortogonales $x$ e $y$ con las contravariantes $x^1$ y $x^2$, a través
-    del ángulo $\beta$ que forma el eje $x^2$ con el eje $y$.}
-  \label{fig:R2-oblic_proc_geom_obtuso}
-\end{figure}
-
-Utilizamos de nuevo el vector de posición de un punto arbitrario del plano en
-función de las componentes cartesianas
-\[
-  \vvv{r} = x\,\uvec{\i} + y\,\uvec{\j}
-\]
-
-Sabemos que $\alpha = \pi/2 + \beta$ y por tanto,
-\begin{align*}
-  \sin\alpha &= \sin(\pi/2 + \beta) = \cos\beta\\
-  \cos\alpha &= \cos(\pi/2 + \beta) = -\sin\beta
-\end{align*}
-
-Ahora calculamos las coordenadas $x$ e $y$ en función de las contravariantes $x^1$ y
-$x^2$, fijándonos en el triángulo sombreado en verde
-\begin{equation}
-  \begin{cases}
-    \begin{array}{lll}
-      \sin\beta = -\cos\alpha = \dfrac{x^1-x}{x^2}
-      &\longrightarrow
-      &x = x^1 + x^2\cos\alpha\\
-      \cos\beta = \sin\alpha = \dfrac{y}{x^2}
-      &\longrightarrow
-      &y = x^2\sin\alpha
-    \end{array}
-  \end{cases}
-\end{equation}
-
-Como vemos, la transformación entre $(x,y)$ y $(x^1,x^2)$ es idéntica a la que se obtuvo
-en \eqref{eq:R2-oblic_transf_agudo}, por tanto, dicha transformación es independiente del
-ángulo $0<\alpha<\pi$.
-Podemos concluir que la matriz de cambio de base será única.
-
-\section{Cambio de base}
-Las expresiones \eqref{eq:R2-oblic_e1_ij} y \eqref{eq:R2-oblic_e2_ij} se pueden
-se pueden representar matricialmente
-\begin{equation}
-  \begin{pmatrix}
-    \vvv{e}_1 &  \vvv{e}_2
-  \end{pmatrix}
-  =
-  \begin{pmatrix}
-    \uvec{\i} & \uvec{\j}
-  \end{pmatrix}
-  \,
-  \begin{pmatrix}
-    1 & \cos\alpha\\
-    0 & \sin\alpha
-  \end{pmatrix}
-\end{equation}
-Obsérvese que los vectores de las bases se representan en filas.
-
-Así, la matriz que permite obtener la nueva base $B'$ a partir de la antigua $B$, está
-formada por las componentes de los vectores $(1,0)$ y $(\cos\alpha,\sin\alpha)$
-obtenidos en las expresiones \eqref{eq:R2-oblic_e1_ij} y \eqref{eq:R2-oblic_e2_ij},
-dispuestas en columnas
-\begin{equation}
-  \mmm{M}
-  =
-  \begin{pmatrix}
-    1 & \cos\alpha\\
-    0 & \sin\alpha
-  \end{pmatrix}
-\end{equation}
-
-\subsubsection{Resumiendo el cambio de base}
-Como dijimos, la matriz de cambio de base de $B$ a $B'$ está formada por las componentes
-de los vectores de la expresión dispuestos en columnas. A continuación se representan, esta matriz de cambio de base y su inversa
-\begin{subequations}
-  \begin{align}
-    \label{eq:R2-oblic_M}
-    &\mmm{M}
-      =
-      \begin{pmatrix}
-        1 & \cos\alpha\\
-        0 & \sin\alpha
-      \end{pmatrix}\\
-    \label{eq:R2-oblic_Minv}
-    &\mmm{M}^{-1}
-      =
-      \dfrac{1}{\sin\alpha}
-      \begin{pmatrix}
-        \sin\alpha & -\cos\alpha\\
-        0 & 1
-      \end{pmatrix}
-      =
-      \begin{pmatrix}
-        1 & -\cot\alpha\\
-        0 & \phantom{-}\csc\alpha
-      \end{pmatrix}
-  \end{align}
-\end{subequations}
-Utilizaremos la matriz directa $M$ para transformar la base rectangular $B$ en la nueva
-base oblicua $B'$. Al contrario, para obtener la base rectangular a partir de la oblicua,
-utilizaríamos la matriz inversa $\mmm{M}^{-1}$
-\begin{subequations}
-\begin{align}
-  &\begin{pmatrix}
-    \vvv{e}_1 &  \vvv{e}_2
-  \end{pmatrix}
-  =
-    \begin{pmatrix}
-      \uvec{\i} & \uvec{\j}
-    \end{pmatrix}
-    \,
-    \begin{pmatrix}
-      1 & \cos\alpha\\
-      0 & \sin\alpha
-    \end{pmatrix}\\
-  &\begin{pmatrix}
-    \uvec{\i} & \uvec{\j}
-  \end{pmatrix}
-  =
-    \begin{pmatrix}
-      \vvv{e}_1 & \vvv{e}_2
-    \end{pmatrix}
-    \,
-    \begin{pmatrix}
-      1 & -\cot\alpha\\
-      0 & \phantom{-}\csc\alpha
-    \end{pmatrix}
-    \,
-\end{align}
-\end{subequations}
-
-\begin{subequations}
-\begin{align}
-  &B' = B \mmm{M}
-    \hspace{1em}\longrightarrow
-    \begin{pmatrix}
-    \vvv{e}_1 &  \vvv{e}_2
-  \end{pmatrix}
-  =
-    \begin{pmatrix}
-      \uvec{\i} & \uvec{\j}
-    \end{pmatrix}
-    \,
-    \begin{pmatrix}
-      1 & \cos\alpha\\
-      0 & \sin\alpha
-    \end{pmatrix}\\
-  &B = B'\mmm{M}^{-1}
-    \longrightarrow
-    \begin{pmatrix}
-    \uvec{\i} & \uvec{\j}
-  \end{pmatrix}
-  =
-    \begin{pmatrix}
-      \vvv{e}_1 & \vvv{e}_2
-    \end{pmatrix}
-    \,
-    \begin{pmatrix}
-      1 & -\cot\alpha\\
-      0 & \phantom{-}\csc\alpha
-    \end{pmatrix}
-    \,
-\end{align}
-\end{subequations}
-
-
-\section{Componentes de los vectores}
-Cuando un vector se expresa en una determinada base, se obtiene su representación en
-función de unas determinadas componentes. Por ejemplo, en dos dimensiones y tomando una
-base genérica $\set{\vvv{e}_1,\vvv{e}_2}$, escribiríamos
-\begin{equation}
-  \label{eq:R2-oblic_componentes}
-  \vvv{v} = x_1\vvv{e}_1 + x_2\vvv{e}_2
-\end{equation}
-que, como sabemos, significa que el vector $\vvv{v}$ se obtiene sumando los productos de
-cada cada componente por el vector correspondiente de la base.
-
-Si la base estuviera formada por muchos vectores, o este número no estuviera definido,
-entonces sería conveniente utilizar un sumatorio, como
-\[
-  \vvv{v} = \sum_{i=1}^n x_i\vvv{e}_i
-\]
-
-Cuando se opera con expresiones un tanto largas, se suele utilizar la notación de
-Einstein, donde se prescinde del sumatorio y se tiene en cuenta que cuando en un
-monomio se encuentra el mismo índice, por ejemplo $i$, se debe sumar para todos los
-valores de ese índice
-\[
-  \vvv{v} = \sum_i x_i\vvv{e}_i = x_i \vvv{e}_i
-\]
-
-Otro aspecto importante es notar que las componentes de un vector dependen de la base
-elegida. Si se cambia de base, las componentes varían. Por ejemplo, si utilizáramos
-la base $\set{\vvv{x}'_1, \vvv{x}'_2}$, las nuevas componentes serían $x'_i$ y $x'_2$
-\[ 
-  \vvv{v} = x'_1\vvv{e}'_1 + x'_2\vvv{e}'_2
-\]
-Cambian las componentes, pero el vector tiene que ser el mismo, el vector no cambia, lo
-hace su representación dependiendo de la base utilizada.
-
-\subsection{Componentes contravariantes}
-\label{ssect:R2-contravariantes}
-Para introducir este tipo de componentes, vamos a poner un ejemplo concreto. Supongamos
-que medimos un cierto vector y para ello, por sencillez, utilizamos la base estándar en coordenadas cartesianas rectangulares en metros $B=\set{\uvec{\i},\,\uvec{\j}}$, y
-obtenemos que mide \qty{1}{\metre} en el eje $x$ y \qty{2}{\metre} en el eje $y$.
-El vector se podrá representar como
-\[
-  \vvv{v} = 1\,\uvec{\i} + 2\,\uvec{\j}\,\unit{\metre}
-\]
-esto es, las componentes serían $(1, 2)\,\unit{\metre}$.
-
-Supongamos también que deseamos cambiar la base elegida, a otra
-$B' = \set{\uvec{\i}',\, \uvec{\j}'}$ que mide en centímetros. La nueva base
-\emph{es más pequeña} que la antigua (centímetros en lugar de metros); pero para que el
-vector $\vvv{v}$ no cambie, los valores medidos en centímetros deben \emph{aumentar} con
-respecto a las componentes en metros ($A'_i > A_i$)
-\[
-  \vvv{v} = 100\,\uvec{\i} + 200\,\uvec{\j}\,\unit{\centi\metre}
-\]
-las nuevas componentes serían $(100, 200)\,\unit{\centi\metre}$.
-En otras palabras, la base ``se ha hecho 100 veces menor'', pero las componentes
-``se han hecho 100 veces más grandes''.
-
-\subsubsection{Concepto}
-Estas componentes han variado de forma contraria a como lo hizo la base elegida.
-A las que se comportan de esta manera se les llama \emph{contravariantes} y, aunque no
-es necesario en la mayor parte de las situaciones, se suele utilizar el índice que las
-acompaña como \emph{superíndice} (que no representa un exponente).
-Además, para facilitar la notación de Einstein, escribiremos las componentes
-contravariantes como $x^i$ (y también los ejes correspondientes), en lugar de $x$ e $y$.
-Así, un vector como el que hemos puesto de ejemplo en \eqref{eq:R2-oblic_componentes}, se
-podría representar genéricamente como
-\[
-  \vvv{v} = x^1\vvv{e}_1 + x^2\vvv{e}_2
-\]
-En notación de Einstein sería
-\[
-  \vvv{v} = x^i\vvv{e}_i
-  \hspace{1em}\text{con } i=1,2\text{.}
-\]
-Los vectores de la base  $B'=\set{\vvv{e}_1, \vvv{e}_2}$, con el índice abajo, los
-llamamos \emph{vectores covariantes} y decimos que forman una \emph{base covariante}.
-
-\subsubsection{Representación gráfica de las componentes contravariantes}
-La componentes contravariantes en el sistema de coordenadas oblicuas se pueden
-representar gráficamente trazando líneas paralelas a los ejes a partir del extremo del
-segmento orientado $\vvv{v}$. Esta es la forma natural con la que sumamos vectores
-mediante la regla del paralelogramo, ver figura \ref{fig:R2-oblic_contrav}.
-\begin{figure}[ht]
-  % Escala
-  \def\scl{1.00}
-  % 
-  %\pgfmathsetmacro{\EJESCARTLONG}{3.0}
-  %\pgfmathsetmacro{\EJEOBLICLONG}{2.7}
-  \pgfmathsetmacro{\EJESCARTLONG}{2.8}
-  \pgfmathsetmacro{\EJEOBLICLONG}{2.5}
-  % Eje x
-  %\pgfmathsetmacro{\XLONG}{\EJESCARTLONG}
-  % Eje y
-  %\pgfmathsetmacro{\YLONG}{\EJESCARTLONG}
-  % Eje xtilde
-  \pgfmathsetmacro{\XTILDEANG}{0}
-  \pgfmathsetmacro{\XTILDELONG}{\EJEOBLICLONG}    
-  % Eje ytilde
-  \pgfmathsetmacro{\YTILDEANG}{70}
-  \pgfmathsetmacro{\YTILDELONG}{\EJESCARTLONG}
-  % Vector P
-  \pgfmathsetmacro{\PMOD}{2.3}
-  \pgfmathsetmacro{\PANG}{40}
-  % Fondo
-  \pgfmathsetmacro{\HORZ}{0.25}
-  \pgfmathsetmacro{\VERT}{0.25}
-  % 
-  \centering
- \begin{tikzpicture}[%
-    scale=\scl,
-    every node/.style={black,font=\small},
-    %ejecart/.style={->, black!30},
-    ejeoblic/.style={->, black},
-    proyeccion/.style={black!20, line width=0.4},
-    % longitud/.style={line width=.5pt,\colorV},
-    texto/.style={black},
-    %textoapagado/.style={\colorTorig},
-    vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt,\colorV},
-    contravariante/.style={%
-      -{Latex[round,width=5pt,length=8pt]},line width=1.2pt, orange!80!black},
-    contravtxt/.style={orange!60!black},
-    pcirculo/.style={fill=\colorPorig, draw=black},
-    background/.style={%
-      line width=\bgborderwidth,
-      draw=\bgbordercolor,
-      fill=\bgcolor,
-    },
-    ]
-    % COORDENADAS
-    % Origen
-    \coordinate (O) at (0,0);
-    % Eje xtilde
-    \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
-    coordinate (xtildefin);
-    \node[texto, below] at (xtildefin) {\footnotesize $x^1$};
-    % Eje ytilde
-    \path[save path=\ejeytilde, name path=O--ytilde] (O) -- ++(\YTILDEANG:\YTILDELONG cm)
-    coordinate (ytildefin);
-    % Vector
-    \path[save path=\r] (O) -- coordinate[pos=0.6] (posvecttxt) (\PANG:\PMOD cm)
-    coordinate (P);
-    % Proyección de P en los ejes
-    % Con eje x
-    \path[save path=\proyx] (u2fin) |- (xfin) coordinate[pos=0.5] (e2x) (xfin);
-    % Componentes contravariantes
-    % Intersección de horizontal desde P hasta ytilde
-    % -> Componente contravariante eje ytilde (CTV2) 
-    \path[name path=P--y] (P) -| (yfin);
-    \path[name intersections={of=P--y and O--ytilde,by=CTV2}];
-    % Paralela (CTV2) -- (O) que pase por (P)
-    % -> Componente contravariante eje xtilde (CTV1)
-    \path (P) -- ($(P) - (CTV2) - (O)$) coordinate (CTV1);
-    
-    % DIBUJOS
-    % Proyecciones de componentes
-    % Contravariantes
-    \draw[proyeccion] (P) -- (CTV1);
-    %\node[below] at (CTV1) {\footnotesize $\hat{x}^1$};
-    \draw[proyeccion] (P) -- (CTV2);
-    %\node[left] at (CTV2) {\footnotesize $\hat{x}^2$};
-    % xtilde
-    \draw[ejeoblic, use path=\ejextilde];
-    % ytilde
-    \draw[ejeoblic, use path=\ejeytilde];
-    \node[above right=0pt and -4pt, texto] at (ytildefin) {$x^2$};
-    %\node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{y}$};
-    % Vector v
-    \draw[vector, use path=\r];
-    \node[above left=-3pt and -1pt] at (posvecttxt) {\footnotesize $\vvv{v}$};
-    %\filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
-    %\node[above right=0pt and -5pt] at (P) {\footnotesize $P$};
-
-    % Marcar en color la componentes contravariantes
-    \draw[contravariante]
-    (O) -- node[contravtxt,pos=0.5, below] {$x^1\vvv{e}_1$} (CTV1);
-    \draw[contravariante] (O) -- node[contravtxt,pos=0.5,above left=-2pt and -2pt]
-    {$x^2\vvv{e}_2$} (CTV2);
-    
-    % Origen
-    \fill[orange!80!black] (O) circle [radius=0.8pt];
-    
-    % Fondo amarillo
-    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
-    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
-    \begin{scope}[on background layer]
-      \draw[background] (SW) rectangle (NE);
-    \end{scope}
-  \end{tikzpicture}
-  \caption{Componentes contravariantes $x^i$, en coordenadas oblicuas. El vector
-    $\vvv{v}$ se representa como
-    $\vvv{v}=x^1\,\vvv{e}_1+x^2\,\vvv{e}_2$. La componente
-    contravariante en un cierto eje nos indica el desplazamiento que se ha producido en
-    ese eje, en las unidades en las que se mide el vector $\vvv{v}$, según la base
-    covariante elegida.}
-  \label{fig:R2-oblic_contrav}
-\end{figure}
-
-Para centrar ideas, supongamos que el vector $\vvv{v}$ de la figura representa un
-desplazamiento en $\symbb{R}^2$. La componente $x^1$ nos indica el desplazamiento
-en el eje $x^1$, medido por el vector $\vvv{e}_1$ de la base, y $x^2$ nos lo da en el
-eje $x^2$, medido por $\vvv{e}_2$.
-La suma de las componentes contravariantes $x^i$ multiplicadas por sus
-respectivos vectores covariantes de la base $\vvv{e}_i$, nos da el desplazamiento
-indicado por el vector. Nótese que en la suma se utiliza la regla del paralelogramo.
-Esto es característico de las componentes contravariantes que, en cierto modo
-\emph{funcionan} como las componentes $x$ e $y$ en un sistema cartesiano ortogonal.
-
-
-\section{Forma matricial de la base y de las componentes}
-Recordemos que los vectores de una base se representan matricialmente situando los
-vectores en fila
-\[
-  B =
-  \begin{pmatrix}
-    \vvv{e}_1 & \vvv{e}_2
-  \end{pmatrix}
-\]
-
-En forma matricial, las componentes contravariantes del vector $\vvv{v}$, en una cierta
-base, se representan en columna. Así, el vector anterior se puede expresar en la base
-elegida como
-\[
-  \vvv{v} =
-  \begin{pmatrix}
-    x^1\\
-    x^2
-  \end{pmatrix}
-\]
-Es importante distinguir entre estas dos notaciones y darse cuenta de que no son
-comparables. La primera, es la forma en la que se representa un conjunto de vectores que
-forman una base, mientras que la segunda representa las componentes de un vector en una
-cierta base. Lo único que tienen en común es que ambas son representaciones matriciales,
-aunque de cosas diferentes
-\[
-  \vvv{v}
-  = \begin{pmatrix}
-    \vvv{e}_1 & \vvv{e}_2
-  \end{pmatrix}
-  \,\begin{pmatrix}
-    x^1\\
-    x^1
-  \end{pmatrix}
-  = \vvv{e}_1 x^1 + \vvv{e}_2 x^2
-  = x^1 \vvv{e}_1 + x^2 \vvv{e}_2
-  = \vvv{e}_i x^i
-  = x^i \vvv{e}_i
-\]
-
-
-
-
-\section{Transformación de componentes}
-Un cambio de base, por ejemplo de $B$ a $B'$, se produce mediante una matriz de
-transformación $\mmm{M}$
-\begin{equation}
-  B' = \mmm{M} B
-\end{equation}
-Entonces, las componentes de cualquier vector también se modifican.
-
-Las componentes contravariantes de un vector se representan en columna y en la expresión
-matemática de la transformación interviene la matriz inversa del cambio de base (porque
-las componentes  contravariantes se transforman de forma inversa a como lo hacían los
-vectores de la base). Así, las nuevas componentes se obtienen a partir de las antiguas
-mediante $\mmm{M}^{-1}$, mientras que las antiguas se transforman a partir de las nuevas
-mediante $\mmm{M}$
-\begin{subequations}
-  \begin{align}
-    &\left[\tilde{x}^i\right]_{B'} = \mmm{M}^{-1} \left[x^i\right]_{B}\\
-    &\left[x^i\right]_{B}\hspace{0.4em} = \mmm{M} \left[\tilde{x}^i\right]_{B'}
-  \end{align}
-\end{subequations}
-
-En coordenadas oblicuas en $\symbb{R}^2$ utilizamos las matrices inversa
-\eqref{eq:R2-oblic_Minv} y directa \eqref{eq:R2-oblic_M}, respectivamente
-\begin{subequations}
-  \begin{align}
-    \begin{pmatrix}
-      \tilde{x}^1\\
-      \tilde{x}^2
-    \end{pmatrix}
-    &=
-      \begin{pmatrix}
-        1 & -\cot\alpha\\
-        0 & \phantom{-}\csc\alpha
-      \end{pmatrix}
-      \,
-    \begin{pmatrix}
-      x^1\\
-      x^2
-    \end{pmatrix}\\
-    \begin{pmatrix}
-      x^1\\
-      x^2
-    \end{pmatrix}
-    &=
-      \begin{pmatrix}
-        1 & \cos\alpha\\
-        0 & \sin\alpha
-      \end{pmatrix}
-      \,
-    \begin{pmatrix}
-      \tilde{x}^1\\
-      \tilde{x}^2
-    \end{pmatrix}
-  \end{align}
-\end{subequations}
-
-
-\subsubsection{Ejemplo}
-Supongamos que tenemos un vector en coordenadas cartesianas rectangulares
-\[
-  \vvv{v}
-  = x^1\,\xhat{u}_1 + x^2\,\xhat{u}_2 = x^i\,\xhat{u}_i
-  = 2\,\uvec{\i} - 4\,\uvec{\j}
-\]
-donde $\xhat{u}_1 = \uvec{\i}$ y $\xhat{u}_2 = \uvec{\j}$.
-Estamos interesados en obtener las componentes $\tilde{A}^i$ en un sistema de
-coordenadas oblicuas, donde el ángulo que forman sus ejes vale
-$\alpha = \pi/3\,\unit{\radian}$. Tendremos que aplicar la inversa de la matriz de
-transformación de base de $B$ a $B'$
-\begin{align*}
-  \begin{pmatrix}
-    \tilde{x}^1\\
-    \tilde{x}^2
-  \end{pmatrix}
-  &=
-  \begin{pmatrix}
-    1 & -\cot{\pi/3}\\
-    0 & \phantom{-}\csc{\pi/3}
-  \end{pmatrix}
-  \,
-  \begin{pmatrix}
-    x^1\\
-    x^2
-  \end{pmatrix}
-    =
-    \begin{pmatrix}
-      1 & -1/\sqrt{3}\\
-      0 & \phantom{-}2/\sqrt{3}
-    \end{pmatrix}
-    \,
-    \begin{pmatrix}
-      \phantom{-}2\\
-      -4
-    \end{pmatrix}
-    =
-    \begin{pmatrix}
-      2+\dfrac{4}{\sqrt{3}}\\[3ex]
-      -\dfrac{8}{\sqrt{3}}
-    \end{pmatrix}
-\end{align*}
-
-Así
-\[
-  \vvv{v}
-  = \tilde{x}^1\,\vvv{e}_1 + \tilde{x}^2\,\vvv{e}_2 = \tilde{x}^i\,\vvv{e}_i
-  = \left(2+\dfrac{4}{\sqrt{3}}\right)\,\vvv{e}_1 - \dfrac{8}{\sqrt{3}}\,\vvv{e}_2
-\]
-
-Si nos dieran las componentes en coordenadas oblicuas
-\[
-  \left(\tilde{x}^1, \tilde{x}^2\right) = \left(2+4/\sqrt{3}, -8/\sqrt{3}\right)
-\]
-y quisiéramos obtener las coordenadas rectangulares, deberíamos obtener $(2,-4)$
-\begin{align*}
-  \begin{pmatrix}
-    x^1\\
-    x^2
-  \end{pmatrix}
-  &=
-  \begin{pmatrix}
-    1 & \cos{\pi/3}\\
-    0 & \sin{\pi/3}
-  \end{pmatrix}
-  \,
-  \begin{pmatrix}
-    \tilde{x}^1\\
-    \tilde{x}^2
-  \end{pmatrix}
-    =
-  \begin{pmatrix}
-    1 & 1/2\\
-    0 & \sqrt{3}/2
-  \end{pmatrix}
-  \,
-  \begin{pmatrix}
-    2+4/\sqrt{3}\\
-    -8/\sqrt{3}
-  \end{pmatrix}\\
-  &=
-    \begin{pmatrix}
-      2+4/\sqrt{3}-4/\sqrt{3}\\
-      -\sqrt{3}/2\, \left(-8/\sqrt{3}\right)
-    \end{pmatrix}
-    =
-    \begin{pmatrix}
-      \phantom{-}2\\
-      -4
-    \end{pmatrix}  
-\end{align*}
-
-
-\section{Métrica}
-Con los conocimientos que hemos adquirido, la forma más directa y rápida para obtener el
-tensor métrico en coordenadas oblicuas es utilizar el método seguido en la expresión
-\eqref{eq:R2-cart-metrica}, para el sistema cartesiano rectangular. Para ello debemos
-calcular el producto escalar de los vectores de la base \eqref{eq:R2-oblic_base_natural}.
-Cualquier otro método es un rodeo para no utilizar esto.
-
-Multiplicamos escalarmente los vectores \eqref{eq:R2-oblic_e1_ij} y
-\eqref{eq:R2-oblic_e2_ij} de la base natural entre sí
-\begin{subequations}
-  \begin{align}
-    \label{eq:R2-oblic-e1e1_prod_escalar}
-    \vvv{e}_1\cdot\vvv{e}_1
-    &=
-      \uvec{\i}\cdot\uvec{\i} = 1\\
-    \label{eq:R2-oblic-e1e2_prod_escalar}    
-    \vvv{e}_1\cdot\vvv{e}_2
-    &=
-      \uvec{\i}\cdot (\cos\theta\,\uvec{i} + \sin\theta\,\uvec{\j}) = \cos\theta\\
-    \label{eq:R2-oblic-e2e1_prod_escalar}
-    \vvv{e}_2\cdot\vvv{e}_1
-    &=
-      \vvv{e}_1\cdot\vvv{e}_2 = \cos\theta\\
-    \label{eq:R2-oblic-e2e2_prod_escalar}
-    \vvv{e}_2\cdot\vvv{e}_2
-    &=
-      (\cos\theta\,\uvec{\i}+\sin\theta\,\uvec{j})
-      \cdot (\cos\theta\,\uvec{\i}+\sin\theta\,\uvec{j})
-      = (\cos^2\theta + \sin^2\theta) = 1
-  \end{align}
-\end{subequations}
-
-El tensor métrico en coordenadas oblicuas resulta
-\begin{equation}\label{eq:R2-oblic_metrica}
-  \mmm{g}_{ij}
-  = \begin{pmatrix}
-    g_{11} & g_{12}\\
-    g_{21} & g_{22}
-    \end{pmatrix}
-  = \begin{pmatrix}
-      \vvv{e}_1\cdot\vvv{e}_1 & \vvv{e}_1\cdot\vvv{e}_2\\
-      \vvv{e}_2\cdot\vvv{e}_1 & \vvv{e}_2\cdot\vvv{e}_2
-  \end{pmatrix}
-  = \begin{pmatrix}
-    1 & \cos\alpha\\
-    \cos\alpha & 1
-  \end{pmatrix}
-\end{equation}
-
-Analizamos la métrica obtenida
-\begin{itemize}
-\item Los elementos diagonales valen la unidad. Esto significa que un cambio en
-  cualquiera  de los ejes $\tilde{x}$ o $\tilde{y}$ o componentes $A^i$, representan ese
-  mismo valor de desplazamiento en el espacio.
-\item Los elementos no diagonales no son cero, lo que indica que un cambio cualquiera en
-  las coordenadas implica un cambio en la otra, y viceversa (los ejes no son
-  ortogonales).
-  \begin{itemize}
-  \item Un caso extremo posible se produciría cuando
-    $\alpha = \pi/2\,\unit{\radian} = \qty{90}{\degree}$. En este caso
-    $\cos\alpha = \cos\pi/2 = 0$ y el tensor métrico se representaría mediante la matriz
-    unidad. En esta situación, los ejes serían ortogonales y no tendríamos un sistema de
-    coordenadas oblicuo, sino un sistema de coordenadas cartesianas rectangulares, como
-    al inicio del capítulo.
-  \item El otro caso extremo, que no produciría ningún sistema de referencia en
-    $\symbb{R}^2$, se daría cuando $\alpha = 0$. En este caso $\cos\alpha = \cos 0 = 1$
-    y los dos ejes $\tilde{x}$ y $\tilde{y}$, coincidirían. Además, los vectores
-    unitarios respectivos, serían iguales $\vvv{e}_1 = \vvv{e}_2 = \uvec{\i}$ y ya no
-    formarían una base del plano, ni tendríamos un sistema de coordenadas válido (el
-    determinante de la métrica sería nulo, la matriz sería singular y no tendría
-    inversa) y el sistema colapsaría. En todo caso tendríamos un subespacio vectorial de
-    $\symbb{R}^2$, con una dimensión, definiendo el espacio de los reales $\symbb{R}$,
-    pero no un sistema de coordenadas válido para el plano.
-  \end{itemize}
-\end{itemize}
-
-Calculamos la métrica inversa
-{\small
-  \begin{align*}
-    \mmm{g}^{ij}
-    &=
-      \dfrac{1}{\det(g_{ij})}
-      \text{adj}\left(g_{ij}^\transp\right)
-      = \dfrac{1}{\sin^2\alpha}
-      \begin{pmatrix}
-        1 & -\cos\alpha\\
-        -\cos\alpha & 1
-      \end{pmatrix}
-      = \begin{pmatrix}
-        \csc^2\alpha & -\csc\alpha\cot\alpha\\
-        -\csc\alpha\cot\alpha & 1
-      \end{pmatrix}
-  \end{align*}
-}
-Resultando
-{\small
-\begin{equation}\label{eq:R2-oblic_metrica_inv}
-  \mmm{g}^{ij}
-  = \begin{pmatrix}
-    g^{11} & g^{12}\\
-    g^{21} & g^{22}
-  \end{pmatrix}
-  = \dfrac{1}{\sin^2\alpha}
-  \begin{pmatrix}
-    1 & -\cos\alpha\\
-    -\cos\alpha & 1
-  \end{pmatrix}
-  = \begin{pmatrix}
-    \csc^2\alpha & -\csc\alpha\cot\alpha\\
-    -\csc\alpha\cot\alpha & 1
-  \end{pmatrix}
-\end{equation}
-}
-
-\section{Espacio tangente y espacio dual}
-Si se quiere profundizar algo más en las componentes covariantes y contravariantes, aquí
-se presentan algunas ideas útiles.
-
-Hay una definición más formal de estas componentes, que procede del álgebra lineal y de
-la geometría diferencial; de ambas, pero con propósitos y niveles de abstracción
-distintos.
-\begin{itemize}
-\item Por parte del álgebra lineal, la distinción entre vectores y/o componentes
-  covariantes y contravariantes nace de la relación entre un espacio vectorial $V$, y su
-  espacio dual $V^*$:
-\begin{itemize}
-\item Vectores (contravariantes): Son los elementos del espacio original $V$. Sus
-  elementos se transforman de manera inversa a los cambios de base, para que el vector
-  físico permanezca igual.
-\item Covectores o formas lineales (covariantes): Son elementos del espacio dual $V^*$
-  asociado a $V$. Son funciones $\omega$ que actúan sobre los vectores $\vvv{v}\in V$ y
-  producen un escalar $\mathbb{F}$. Sus componentes se transforman de la misma forma que
-  los cambios de base (matriz de cambio de base $\mmm{M}$.
-  
-  A este nivel, las componentes covariantes son simplemente los coeficientes de una
-  \emph{1-forma} o un funcional lineal ---las funciones que operan sobre un solo
-  vector--- y producen un escalar $\mathbb{F}$, asociado al espacio vectorial.
-  Sus componentes en nuestro sistema oblicuo en $\symbb{R}^2$ se representan
-  matricialmente como
-  \[
-    \omega
-    = \begin{pmatrix}
-      x_1 & x_2
-      \end{pmatrix}
-  \]
-  Estos covectores \emph{viven} en un espacio dual $V^*$ asociado al espacio vectorial
-  $V$ original, $\omega\in V^*$
-  \[
-    \begin{array}{llcl}
-      \omega: & V & \longrightarrow & \symbb{F}\\[-0.5ex]
-      & \scriptstyle\vvv{v} & \mapsto & \scriptstyle\omega(\vvv{v})
-    \end{array}
-  \]
-  En los casos que nos ocupan en este texto, el campo escalar es el de los números reales $\mathbb{F} = \mathbb{R}$ y el escalar que se obtiene en nuestro caso es el cuadrado del módulo del vector
-  \[
-    \omega(\vvv{v}) = |\vvv{v}|^2 = v^2
-  \]
-
-  \[
-    \omega(\vvv{v})
-    =
-    \vvv{w}
-    \vvv{v}
-    =
-    \begin{pmatrix}
-      x_1 & x_2
-    \end{pmatrix}
-    \,\begin{pmatrix}
-      x^1\\
-      x^2
-    \end{pmatrix}
-    = x_1x^1 + x_2x^2
-    = x_ix^i
-    = v^2
-  \]
-  
-\end{itemize}
- En principio, esta es la relación entre los vectores y los covectores,
- pues \emph{viven} en espacios distintos. Ahora bien, si disponemos de una métrica (un
- producto escalar definido en $V$, también lo tendremos en $V^*$), ambos espacios se
- pueden conectar y el álgebra lineal nos permite \emph{bajar} o \emph{subir} índices
- convirtiendo un vector en un covector y viceversa.
-
-\item Por su parte, la geometría diferencial toma estos conceptos del álgebra lineal y
-  los aplica a cada punto de una variedad ---una superficie curva, por ejemplo; una
-  superficie esférica o tórica en un espacio $\symbb{R}^3$---.
-  \begin{itemize}
-  \item Espacio tangente: En cada punto $P$\, de una curva o superficie, existe una
-    línea o un plano tangente al punto que es un espacio vectorial $V$, o
-    $T_p\symbb{R}^2$. Aquí es donde viven los vectores y tiene sentido el álgebra
-    lineal. En cada punto de la variedad hay definido un plano o espacio vectorial
-    diferente. En principio, no podríamos operar o comparar vectores de diferentes
-    espacios tangente (asociados a diferentes puntos de la variedad). Para ello, hay que
-    definir los conceptos de \emph{transporte paralelo} y \emph{derivada covariante},
-    para poder \emph{transportar} un vector desde su espacio en un punto a otro espacio
-    asociado a otro punto, y con ello poder realizar las operaciones comunes, suma,
-    resta, derivada, etc., en un mismo espacio.
-
-    En nuestro caso, como $\symbb{R}^2$ es plano, pues no tiene más dimensiones, todo él
-    es un mismo espacio vectorial, independientemente del punto de referencia y, por
-    tanto, tienen sentido todas las operaciones de suma, resta, comparación, derivada,
-    etc., sin necesidad del transporte paralelo y derivada covariante.
-  \item Campos tensoriales: La geometría diferencial estudia cómo estas componentes
-    (covariantes y contravariantes) cambian, no solo cuando cambias de base, sino cuando
-    te mueves de un punto a otro en un sistema de coordenadas curvilíneo ---cuando se
-    cambia de un punto a otro, los espacios tangentes cambian y, en principio, no se
-    pueden relacionar fácilmente, pero la geometría diferencial nos permite comparar y
-    operar con vectores de diferentes espacios tangente.
-
-    En geometría diferencial, las componentes covariantes suelen estar asociadas a los
-    gradientes de las funciones escalares (de ahí lo de las líneas o superficies de
-    nivel, mientras que las contravariantes se asocian a velocidades o desplazamientos
-    infinitesimales.
-  \end{itemize}
-\end{itemize}
-
-Para terminar, el álgebra lineal proporciona la estructura algebraica, mientras que la geometría diferencial proporciona el marco geométrico y físico.
-
-\section{Base contravariante}
-Como dijimos en el apartado anterior, la métrica nos permite conectar la base covariante
-$\set{\vvv{e}_1,\vvv{e}_2}$ con su dual, base contravariante, \emph{subiendo} índices.E
-Utilizando la métrica inversa \eqref{eq:R2-oblic_metrica_inv}, y en notación de Einstein
-\begin{equation}
-  \vvv{e}^i = g^{ij} \vvv{e}_j
-\end{equation}
-Así
-\begin{align}
-  \vvv{e}^1
-  &=
-    g^{11}\vvv{e}_1 + g^{12}\vvv{e}_2
-    = \dfrac{1}{\sin^2\alpha}
-    \left(%
-    \vvv{e}_1 - \cos\alpha\,\vvv{e}_2
-    \right)\\
-  \vvv{e}^2
-  &=
-    g^{21}\vvv{e}_1 + g^{22}\vvv{e}_2
-    = \dfrac{1}{\sin^2\alpha}
-    \left(%
-    -\cos\alpha\,\vvv{e}_1 + \vvv{e}_2
-    \right)
-\end{align}
-
-\subsubsection{Módulo de los elementos de la base dual}
-Comprobamos el módulo de estos vectores y deduciremos que solo serían unitarios en un
-sistema cartesiano rectangular $\alpha=\qty{90}{\degree}$
-\begin{align}
-  \left|\vvv{e}_1\right|
-  &= \left(\dfrac{1}{\sin^2\alpha}\right)^2
-    \sqrt{1^2 + (-\cos\alpha)^2}
-    = \dfrac{\sqrt{1+\cos^2\alpha}}{\sin^4\alpha}\\
-  \left|\vvv{e}_2\right|
-  &= \left(\dfrac{1}{\sin^2\alpha}\right)^2
-    \sqrt{(-\cos\alpha)^2 + 1}
-    = \dfrac{\sqrt{1+\cos^2\alpha}}{\sin^4\alpha}
-\end{align}
-
-\section{Producto escalar de los vectores de las dos bases}
-Empezamos demostrando que el producto de vectores de los distintos espacios con el mismo
-índice da la unidad
-\begin{equation}
-  \vvv{e}^i \cdot \vvv{e}_i = 1
-\end{equation}
-\begin{align*}
-  \vvv{e}^1\cdot\vvv{e}_1
-  &=
-    \dfrac{1}{\sin^2\alpha}
-    \left(\vvv{e}_1-\cos\alpha\,\vvv{e}_2\right)\cdot\vvv{e}_1
-    = \dfrac{1}{\sin^2\alpha}
-    (\vvv{e}_1\cdot\vvv{e}_1 - \cos\alpha\,\vvv{e}_2\cdot\vvv{e}_1)\\
-  &=
-    \dfrac{1}{\sin^2\alpha}
-    (g_{11}-\cos\alpha\,g_{21})
-    = \dfrac{1}{\sin^2\alpha}(1-\cos^2\alpha)
-    = \dfrac{1}{\sin^2\alpha}\sin^2\alpha
-    = 1
-\end{align*}
-\begin{align*}
-  \vvv{e}^2\cdot\vvv{e}_2
-  &=
-    \dfrac{1}{\sin^2\alpha}
-    \left(-\cos\alpha\,\vvv{e}_1+\vvv{e}_2\right)\cdot\vvv{e}_2
-    = \dfrac{1}{\sin^2\alpha}
-    (-\cos\alpha\,\vvv{e}_1\cdot\vvv{e}_2+\vvv{e}_2\cdot\vvv{e}_2)
-  = \\
-  &= \dfrac{1}{\sin^2\alpha}
-    (-\cos\alpha\,g_{12} + g_{22})
-    = \dfrac{1}{\sin^2\alpha}(-\cos^2\alpha+1)
-    = \dfrac{1}{\sin^2\alpha}\sin^2\alpha
-    = 1
-\end{align*}
-Por otro lado, demostramos que los productos \emph{cruzados} son nulos
-\begin{equation}
-  \vvv{e}^i\cdot\vvv{e}_j = 0
-  \hspace{1em}\text{con } i\neq j
-\end{equation}
-\begin{align*}
-  \vvv{e}^1\cdot\vvv{e}_2
-  &=
-    \dfrac{1}{\sin^2\alpha}
-    (\vvv{e}_1-\cos\alpha\,\vvv{e}_2)\cdot\vvv{e}_2
-    = \dfrac{1}{\sin^2\alpha}
-    (\vvv{e}_1\cdot\vvv{e}_2 - \cos\alpha\,\vvv{e}_2\cdot\vvv{e}_2)\\
-  &=
-    \dfrac{1}{\sin^2\alpha} (g_{12} - \cos\alpha\,g_{22})    
-    = \dfrac{1}{\sin^2\alpha} (\cos\alpha - \cos\alpha)    
-    = 0
-\end{align*}
-\begin{align*}
-  \vvv{e}^2\cdot\vvv{e}_1
-  &=
-    \dfrac{1}{\sin^2\alpha}
-    (-\cos\alpha\,\vvv{e}_1+\vvv{e}_2)\cdot\vvv{e}_1
-    = \dfrac{1}{\sin^2\alpha}
-    (-\cos\alpha\,\vvv{e}_1\cdot\vvv{e}_1 + \vvv{e}_2\cdot\vvv{e}_1)\\
-  &=
-    \dfrac{1}{\sin^2\alpha} (-\cos\alpha\,g_{11} + g_{21})
-    = \dfrac{1}{\sin^2\alpha} (-\cos\alpha + \cos\alpha)    
-    = 0
-\end{align*}
-
-Podemos resumir escribiendo
-\begin{equation}
-  \vvv{e}^i\cdot\vvv{e}_i
-  = \vvv{e}_i\cdot\vvv{e}^i
-  = \delta_{ij}
-\end{equation}
-
-Nótese que $e^2$ es ortogonal a $e_1$ y que $e^1$ lo es a $e_2$.
-Esto significa que el eje $x^2$ es perpendicular a $x^1$ y que $x^1$ es perpendicular
-a $x^2$ ---estamos hablando de los ejes de coordenadas, no de las componentes en esos
-ejes---, ver figura \ref{fig:R2-oblic_ejes_ctv_cov}.
-
-\begin{figure}[ht]
-  % Escala
-  \def\scl{1.00}
-  % 
-  \pgfmathsetmacro{\EJELONG}{3.3}
-  % Eje x^1
-  \pgfmathsetmacro{\XCTVANG}{0}
-  % Eje x^2
-  \pgfmathsetmacro{\YCTVANG}{60}
-  %  Eje x_1
-  \pgfmathsetmacro{\XCOVANG}{90}
-  % Eje x_2
-  \pgfmathsetmacro{\YCOVANG}{\YCTVANG-90}
-  % Módulo unidad
-  \pgfmathsetmacro{\MODULOUNO}{1.4}
-  % Vector e_1
-  \pgfmathsetmacro{\EXCOV}{\MODULOUNO}
-  % Vector e_2
-  \pgfmathsetmacro{\EYCOV}{\MODULOUNO}
-  % Vector e^1
-  \pgfmathsetmacro{\EXCTV}{\MODULOUNO/cos{\YCTVANG}}
-  % Vector e^2
-  \pgfmathsetmacro{\EYCTV}{\MODULOUNO/cos{\YCTVANG}}
-  
-%  % Lineas de nivel y
-%  \pgfmathsetmacro{\YANGULOROT}{\YTILDEANG - 90}
-%  \pgfmathsetmacro{\INICIOLONGITUD}{-0}
-%  \pgfmathsetmacro{\YNUMLINEASMASUNA}{20}
-%  \pgfmathsetmacro{\YNUMLINEAS}{\YNUMLINEASMASUNA - 1}
-%  \pgfmathsetmacro{\YUNIT}{\XTILDELONG / \YNUMLINEAS}
-%  \pgfmathsetmacro{\LONGITUDLINEAS}{\XTILDELONG - \INICIOLONGITUD - 0.25}
-%  \pgfmathsetmacro{\THETAANG}{\YTILDEANG - \PANG}
-%  \pgfmathsetmacro{\YPOSLINEACOV}{\PMOD*cos(\THETAANG)/(\YUNIT*cos(90-\YTILDEANG)}
-  % Fondo
-  \pgfmathsetmacro{\HORZ}{0.70}
-  \pgfmathsetmacro{\VERT}{0.25}
-  % 
-  \centering
-  \begin{tikzpicture}[%
-    scale=\scl,
-    every node/.style={black,font=\small},
-    lineanivel/.style={black!20},
-    ejectv/.style={->, black},
-    ejecov/.style={->, red},
-    proyeccion/.style={black!20, line width=0.4},
-    textoctv/.style={black},
-    textocov/.style={\colorTred},
-    vectorcov/.style={-{Latex[round]}, shorten >=1.2pt, line width=1.5pt, black},
-    vectorctv/.style={-{Latex[round]}, shorten >=1.2pt, line width=1.5pt, red!80!black},
-    % covariante/.style={%
-    % -{Latex[round,width=5pt,length=8pt]},line width=1.2pt, cyan!70!black},
-    covariante/.style={line width=1.8pt, cyan!70!black},
-    covtxt/.style={cyan!40!black},
-    pcirculo/.style={fill=\colorPorig, draw=black},
-    background/.style={%
-      line width=\bgborderwidth,
-      draw=\bgbordercolor,
-      fill=\bgcolor,
-    },
-    ]
-    % COORDENADAS
-    % Origen
-    \coordinate (O) at (0,0);
-    % Eje x^1
-    \path[save path=\ejexctv] (O) -- ++(\XCTVANG:\EJELONG cm) coordinate (xctvfin);
-    % Eje x^2
-    \path[save path=\ejeyctv] (O) -- ++(\YCTVANG:\EJELONG cm) coordinate (yctvfin);
-    % Eje x_1
-    \path[save path=\ejexcov] (O) -- ++(\XCOVANG:\EJELONG cm) coordinate (xcovfin);
-    % Eje x_2
-    \path[save path=\ejeycov] (O) -- ++(\YCOVANG:\EJELONG cm) coordinate (ycovfin);
-    % Vectores
-    % Vector e_1
-    \path[save path=\excov] (O) -- ++(\XCTVANG:\EXCOV cm) coordinate (excovfin);
-    % Vector e_2
-    \path[save path=\eycov] (O) -- ++(\YCTVANG:\EYCOV cm) coordinate (eycovfin);
-    % Vector e^1
-    \path[save path=\exctv] (O) -- ++(\XCOVANG:\EXCTV cm) coordinate (exctvfin);
-    % Vector e^2
-    \path[save path=\eyctv] (O) -- ++(\YCOVANG:\EYCTV cm) coordinate (eyctvfin);
-    %\path[save path=\ejeyctv, name path=O--ytilde] (O) -- ++(\YTILDEANG:\YTILDELONG cm)
+%    % DIBUJOS
+%    % Ángulos
+%    % Ángulo alfa
+%    \path (xfin) -- (O) -- (ytildefin) pic
+%    [angulo, "\footnotesize $\alpha$",angle radius=14pt, angle eccentricity=0.64]
+%    {angle = xfin--O--ytildefin};
+%    % Ángulo beta
+%    \path (yfin) -- (O) -- (ytildefin) pic
+%    [angulogiro, {Latex[round,width=3pt,length=4pt]}-,
+%    "\color{black!60}{\footnotesize $\beta$}", angle radius=50pt,
+%    angle eccentricity=0.80]
+%    {angle = ytildefin--O--yfin};
+%    
+%    % Ejes
+%    % Eje x
+%    \draw[ejecartesiano, use path=\ejex];
+%    \node[textocartesiano, below] at (xfin) {$x$};
+%    % Eje y
+%    \draw[ejecartesiano, use path=\ejey];
+%    \node[textocartesiano, left] at (yfin) {$y$};
+%    
+%    % Eje xtilde
+%    \draw[ejeoblicuo, use path=\ejextilde];
+%    \node[below, textooblicuo] at (xtildefin) {$\tilde{x}$};
+%    % Eje ytilde
+%    \draw[ejeoblicuo, use path=\ejeytilde];
+%    %\node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{x}$};
+%    \node[above right=0pt and -4pt, textooblicuo] at (ytildefin) {$\tilde{y}$};
+%
+%    % Origen
+%    \fill[black] (O) circle [radius=0.8pt];
+%    
+%    % Fondo amarillo
+%    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+%    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
+%    \begin{scope}[on background layer]
+%      \draw[background] (SW) rectangle (NE);
+%    \end{scope}
+%  \end{tikzpicture}
+%  % Escala
+%  \def\scl{1.00}
+%  %  Longitud de los ejes
+%  \pgfmathsetmacro{\EJECARTLONG}{3.0}
+%  \pgfmathsetmacro{\EJEOBLICLONG}{2.5}
+%  % Eje x
+%  \pgfmathsetmacro{\XANG}{0}
+%  \pgfmathsetmacro{\XLONG}{\EJECARTLONG}
+%  % Eje y
+%  \pgfmathsetmacro{\YANG}{90}
+%  \pgfmathsetmacro{\YLONG}{\EJECARTLONG}
+%  % Eje xtilde
+%  \pgfmathsetmacro{\XTILDEANG}{0}
+%  \pgfmathsetmacro{\XTILDELONG}{\EJEOBLICLONG}    
+%  % Eje ytilde
+%  \pgfmathsetmacro{\YTILDEANG}{70}
+%  \pgfmathsetmacro{\YTILDELONG}{0.5*(\EJECARTLONG+\EJEOBLICLONG)}
+%  % Fondo
+%  \pgfmathsetmacro{\HORZ}{0.90}
+%  \pgfmathsetmacro{\VERT}{0.25}
+%  % 
+%  \centering
+%  \begin{tikzpicture}[%
+%    scale=\scl,
+%    every node/.style={black,font=\small},
+%    ejecartesiano/.style={->, black!30},
+%    ejeoblicuo/.style={->, black},
+%    textooblicuo/.style={black},
+%    textocartesiano/.style={\colorTorig},
+%    angulo/.style={fill=green!15, draw=\colorGirodos},
+%    angulogiro/.style={draw=black!50},
+%    background/.style={%
+%      line width=\bgborderwidth,
+%      draw=\bgbordercolor,
+%      fill=\bgcolor,
+%    },
+%    ]
+%    % COORDENADAS
+%    % Origen
+%    \coordinate (O) at (0,0);
+%    % Eje x
+%    \path[save path=\ejex] (O) -- ++(\XANG:\XLONG cm) coordinate (xfin);
+%    % Eje y
+%    \path[save path=\ejey] (O) -- ++(\YANG:\YLONG cm) coordinate (yfin);
+%    % Eje x^1
+%    \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
+%    coordinate (xtildefin);
+%    % Eje x^2
+%    \path[save path=\ejeytilde, name path=O--ytilde] (O) -- ++(\YTILDEANG:\YTILDELONG cm)
+%    coordinate (ytildefin);
+%    
+%    % DIBUJOS
+%    % Ángulo alpha
+%    \path (xfin) -- (O) -- (ytildefin) pic
+%    [angulo, "\footnotesize $\alpha$",angle radius=14pt, angle eccentricity=0.64]
+%    {angle = xfin--O--ytildefin};
+%    % Ángulo beta
+%    \path (yfin) -- (O) -- (ytildefin) pic
+%    [angulogiro, {Latex[round,width=3pt,length=4pt]}-,
+%    "\color{black!60}{\footnotesize $\beta$}", angle radius=50pt,
+%    angle eccentricity=0.80]
+%    {angle = ytildefin--O--yfin};
+%    
+%    % Ejes
+%    % Eje x
+%    \draw[ejecartesiano, use path=\ejex];
+%    \node[textocartesiano, below] at (xfin) {$x$};
+%    % Eje y
+%    \draw[ejecartesiano, use path=\ejey];
+%    \node[textocartesiano, left] at (yfin) {$y$};
+%    
+%    % Eje x^1
+%    \draw[ejeoblicuo, use path=\ejextilde];
+%    \node[below, textooblicuo] at (xtildefin) {$x^1$};
+%    % Eje x^2
+%    \draw[ejeoblicuo, use path=\ejeytilde];
+%    \node[above right=0pt and -4pt, textooblicuo] at (ytildefin) {$x^2$};
+%
+%    % Origen
+%    \fill[black] (O) circle [radius=0.8pt];
+%    
+%    % Fondo amarillo
+%    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+%    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
+%    \begin{scope}[on background layer]
+%      \draw[background] (SW) rectangle (NE);
+%    \end{scope}
+%  \end{tikzpicture}
+%  \caption{A la izquierda los ejes oblicuos se marcan como $\tilde{x}$ y $\tilde{y}$,
+%    mientras que a la derecha se encuentran como $x^1$ y $x^2$.
+%  Estos forman un ángulo $\alpha$ entre sí. Los ejes ortogonales estándar $x$ e $y$ se
+%  representan para comparar. Nótese que se hace coincidir el eje $x^1$ con el $x$.
+%  Por último, en esta figura se considera que el eje $\tilde{y}$ se ha formado
+%  inclinando el eje $y$ un  ángulo en sentido horario $\beta = \pi/2 - \alpha$, aunque
+%  podría hacerlo en sentido horario, formando un ángulo obtuso con el eje de abcisas.}
+%  \label{fig:R2-oblic_ejes}
+%\end{figure}
+%
+%\section{Bases unitaria y natural}
+%
+%\subsection{Base unitaria}
+%En física general se suelen utilizar bases formadas por vectores unitarios, aunque para
+%formar una base no es necesario que sean unitarios, basta con que conste del máximo
+%número de vectores linealmente independientes. Así, cualquier vector del espacio se podrá
+%representar como una combinación lineal de vectores de la base.
+%
+%Vamos obtener la base unitaria $B'_u=\set{\xhat{u}_1, \xhat{u}_2}$ en el sistema de
+%coordenadas oblicuas. Si nos fijamos en la figura \ref{fig:R2-oblic_u1u2}, podemos
+%expresar estos vectores en función de los $\uvec{\i}$ y $\uvec{\j}$ de las cartesianas
+%rectangulares
+%\begin{align}
+%  \label{eq:R2-oblic_u1_ij}
+%  \xhat{u}_1
+%  &=
+%    |\xhat{u}_1|\,\uvec{\i} + 0\,\uvec{\j} = \uvec{\i}\\
+%  \label{eq:R2-oblic_u2_ij}
+%  \xhat{u}_2
+%  &=
+%    |\xhat{u}_2|\cos{\alpha}\, \uvec{\i} + |\xhat{u}_2|\sin{\alpha}\, \uvec{\j}
+%    = \cos\alpha\,\uvec{\i} + \sin\alpha\,\uvec{\j}
+%\end{align}
+%
+%%Ahora vamos a obtener una base $B'=\set{\xhat{e}'_1, \xhat{e}'_2}$ para el sistema
+%%oblicuo, obligando de antemano a que sus vectores sean unitarios, $|\vvv{e}'_i| = 1$.
+%%Estos vectores unitarios se suelen utilizar en las bases de los sistemas de coordenadas
+%%en física general. Pero, cuando se utiliza esta restricción, no siempre se obtiene la
+%%base natural del sistema.
+%%
+%%Para relacionar esta base con la estándar de las rectilíneas
+%%$B=\set{\uvec{\i},\uvec{\j}}$ haremos coincidir el versor $\{e}'_1$ con $\uvec{\i}$,
+%%esto es, el eje $\tilde{x}$ coincidirá con el eje $x$ de las cartesianas. Véase la figura
+%%\ref{fig:R2-oblic_u1u2}.
+%\begin{figure}[ht]
+%  \centering
+%  % Escala
+%  \def\scl{1.00}
+%  % 
+%  % \pgfmathsetmacro{\EJESCARTLONG}{3.0}
+%  % \pgfmathsetmacro{\EJEOBLICLONG}{2.7}
+%  \pgfmathsetmacro{\EJESCARTLONG}{2.5}
+%  \pgfmathsetmacro{\EJEOBLICLONG}{2.1}
+%  % Eje x
+%  \pgfmathsetmacro{\XLONG}{\EJESCARTLONG}
+%  % Eje y
+%  \pgfmathsetmacro{\YLONG}{\EJESCARTLONG}
+%  % Eje xtilde
+%  \pgfmathsetmacro{\XTILDEANG}{0}
+%  \pgfmathsetmacro{\XTILDELONG}{\EJEOBLICLONG}    
+%  % Eje ytilde
+%  \pgfmathsetmacro{\YTILDEANG}{70}
+%  \pgfmathsetmacro{\YTILDELONG}{\EJESCARTLONG}
+%  % Versores
+%  \pgfmathsetmacro{\VTILDEMOD}{1.4}
+%  \pgfmathsetmacro{\VXTILDEANG}{0}
+%  \pgfmathsetmacro{\VYTILDEANG}{\YTILDEANG}
+%  % Vector P
+%  \pgfmathsetmacro{\PMOD}{2.3}
+%  \pgfmathsetmacro{\PANG}{40}
+%  % Fondo
+%  \pgfmathsetmacro{\HORZ}{0.25}
+%  \pgfmathsetmacro{\VERT}{0.25}
+%  % 
+%  \centering
+%  \begin{tikzpicture}[%
+%    scale=\scl,
+%    every node/.style={black,font=\small},
+%    ejecart/.style={->, black!30},
+%    ejeoblic/.style={->, black},
+%    proyeccion/.style={black!20, line width=0.4},
+%    % longitud/.style={line width=.5pt,\colorV},
+%    texto/.style={black,font=\footnotesize},
+%    textoapagado/.style={\colorTorig},
+%    vtilde/.style={%
+%      -{Latex[round,width=4pt,length=6pt]}, line width=1pt, \colorVred},
+%    pcirculo/.style={fill=\colorPorig, draw=black},
+%    angulo/.style={fill=green!15, draw=\colorGirodos},
+%    background/.style={%
+%      line width=\bgborderwidth,
+%      draw=\bgbordercolor,
+%      fill=\bgcolor,
+%    },
+%    ]
+%    % COORDENADAS
+%    % Origen
+%    \coordinate (O) at (0,0);
+%    % Eje x
+%    \path[save path=\ejex] (O) -- (\XLONG cm, 0) coordinate (xfin);
+%    % Eje y
+%    \path[save path=\ejey] (O) -- (0, \YLONG cm) coordinate (yfin);
+%    % Eje xtilde
+%    \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
+%    coordinate (xtildefin);
+%    % Eje ytilde
+%    \path[save path=\ejeytilde] (O) -- ++(\YTILDEANG:\YTILDELONG cm)
+%    coordinate (ytildefin);
+%    % Versores tilde
+%    \path[save path=\vxtilde] (O) -- coordinate[pos=1.0] (vxtildetxt)
+%    ++(\VXTILDEANG:\VTILDEMOD cm);
+%    \path[save path=\vytilde] (O) -- coordinate[pos=1.1] (vytildetxt)
+%    ++(\VYTILDEANG:\VTILDEMOD cm) coordinate (u2fin);
+%    % Proyección de P en los ejes
+%    % Con eje x
+%    \path[save path=\proyx] (u2fin) |- (xfin) coordinate[pos=0.5] (u2x) (xfin);
+%    % Posición de texto en eje x
+%    \path (O) -- coordinate[pos=0.5] (uxtxt) (u2x);
+%    % Con eje y
+%    \path[save path=\proyy] (u2fin) -| coordinate[pos=0.5] (u2y) (yfin);
+%    % Posición de texto en eje y
+%    \path (O) -- coordinate[pos=0.5] (uytxt) (u2y);
+%    
+%    % DIBUJOS
+%    % Ángulo alpha
+%    \path (xfin) -- (O) -- (ytildefin) pic
+%    [angulo, "\footnotesize $\alpha$",angle radius=12pt, angle eccentricity=0.68]
+%    {angle = xfin--O--ytildefin};
+%    
+%    % Proyección de etilde2 en los ejes y texto correspondiente en ejes x e y
+%    \draw[proyeccion, use path=\proyx];
+%    \node[below] at (uxtxt) {\footnotesize $\cos\alpha$};
+%    \draw[proyeccion, use path=\proyy];
+%    \node[rotate=90, below left=4pt and 11pt] at (u2y) {\footnotesize $\sin\alpha$};
+%    
+%    % Ejes
+%    % x
+%    \draw[ejecart, use path=\ejex];
+%    \node[textoapagado, below=1.2pt] at (xfin) {\small $x$};
+%    % \node[below] at (xtexto) {$r\cos\theta$};
+%    % y
+%    \draw[ejecart, use path=\ejey];
+%    \node[above, textoapagado] at (yfin) {$y$};
+%    % xtilde
+%    \draw[ejeoblic, use path=\ejextilde];
+%    %\node[texto, below] at (xtildefin) {\footnotesize $\tilde{x}^1$};
+%    \node[texto, below] at (xtildefin) {\footnotesize $\tilde{x}$};
+%    % ytilde
+%    \draw[ejeoblic, use path=\ejeytilde];
+%    %\node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{x}^2$};
+%    \node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{y}$};
+%    % \node[rotate=90, left=8pt] at (ytexto) {$r\sin\theta$};
+%    % Versores
+%    \draw[vtilde, use path=\vxtilde];
+%    \node[\colorTred, below] at (vxtildetxt) {\footnotesize $\xhat{u}_1$};
+%    \draw[vtilde, use path=\vytilde];
+%    \node[\colorTred,above left=-4pt and -1.5pt] at (vytildetxt)
+%    {\footnotesize $\xhat{u}_2$};
+%    % Origen
+%    \filldraw (O) circle [radius=.2pt];
+%    
+%    % Fondo amarillo
+%    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+%    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
+%    \begin{scope}[on background layer]
+%      \draw[background] (SW) rectangle (NE);
+%    \end{scope}
+%  \end{tikzpicture}
+%  \caption{Sistema de coordenadas cartesianas oblicuas $\tilde{x}$ e $\tilde{y}$, que
+%    forman un ángulo $\alpha$ entre sí. También se representan los ejes cartesianos $x$ e
+%    $y$ tradicionales como referencia, en tono algo apagado. Por último se aprecian en
+%    rojo los vectores unitarios $\xhat{u}_1$ y $\xhat{u}_2$ del sistema oblicuo y sus
+%    proyecciones en los ejex $x$ e $y$.}
+%  \label{fig:R2-oblic_u1u2}
+%\end{figure}
+%
+%\subsection{Base natural}
+%Como se comentó en \ref{sect:R2-oblic_vision_general}, la base natural $B'$ en el sistema
+%oblicuo (con prima, para distinguirla temporalmente de la base del sistema de coordenadas cartesianas ortogonal $B=\set{\uvec{\i},\,\uvec{\j}}$), está formada por los vectores
+%covariantes (con subíndice) siguientes
+%\begin{equation}\label{eq:R2-oblic_base_natural}
+%  B' = \set{\vvv{e}_1, \vvv{e}_2}
+%\end{equation}
+%que nos podrá servir para obtener la métrica de estos sistemas oblicuos que, a su vez,
+%nos permitirá relacionar las componentes covariantes y las contravariantes, entre sí.
+%
+%\subsubsection{Cálculo geométrico}
+%Hasta que no obtengamos la llamada \emph{matriz de cambio de base}, para obtener la base
+%natural vamos recurrir a un procedimiento geométrico.
+%
+%Los vectores de la  base natural se calculan derivando parcialmente el vector de
+%posición de un punto genérico del plano en función de las componentes contravariantes
+%$x^1$ y $x^2$ en el sistema oblicuo.
+%\begin{equation}
+%  \vvv{e}_i = \dfrac{\partial\vvv{r}}{\partial x^i}
+%  \,\text{;}\hspace{0.8em}
+%  \text{con } i = 1, 2.
+%\end{equation}
+%Hasta que no se explique con algo de detalle el significado de estas componentes
+%contravariantes, basta con fijarnos en coordenadas cartesianas ortogonales en la figura \ref{fig:R2-coord_rect-ij}.
+%De acuerdo con ella, el vector de posición de un punto cualquiera del plano se expresa
+%como
+%\begin{equation}
+%  \label{eq:R2-oblic_vector_posicion_cartesianas}
+%  \vvv{r} = x\,\uvec{\i} + y\,\uvec{\j}
+%\end{equation}
+%
+%Nuestro objetivo es obtener $x$ e $y$ en función de las componentes contravariantes en oblicuas, $x^1$ y $x^2$
+%\begin{align}
+%  x &= x(x^1, x^2)\\
+%  y &= y(x^1, x^2)
+%\end{align}
+%y sustituir en la expresión \eqref{eq:R2-oblic_vector_posicion_cartesianas}, para obtener
+%el vector de posición en función de las componentes contravariantes $x^i$.
+%
+%Fijémonos en el triángulo sombreado en verde de la figura
+%\ref{fig:R2-oblic_proc_geom_agudo}, donde hemos supuesto que los ejes forman un ángulo
+%agudo.
+%Sabemos que el ángulo $\beta$ es el complementario de $\alpha$, que es el que forman los
+%dos ejes del sistema oblicuo, de manera que $\sin\beta = \cos\alpha$ y
+%$\cos\beta = \sin\alpha$.
+%
+%Así
+%\begin{equation}
+%  \label{eq:R2-oblic_transf_agudo}
+%  \begin{cases}
+%    \begin{array}{lll}
+%      \sin\beta = \cos\alpha = \dfrac{x-x^1}{x^2}
+%      &\longrightarrow
+%      &x = x^1 + x^2\cos\alpha\\
+%      \cos\beta = \sin\alpha = \dfrac{y}{x^2}
+%      &\longrightarrow
+%      &y = x^2\sin\alpha
+%    \end{array}
+%  \end{cases}
+%\end{equation}
+%
+%\begin{figure}[ht]
+%  % Escala
+%  \def\scl{1.00}
+%  % 
+%  \pgfmathsetmacro{\EJECARTLONG}{3.5}
+%  \pgfmathsetmacro{\EJEOBLICLONG}{3.0}
+%  % Eje x
+%  \pgfmathsetmacro{\XANG}{0.0}
+%  \pgfmathsetmacro{\XLONG}{\EJECARTLONG}
+%  % Eje y
+%  \pgfmathsetmacro{\YANG}{90}
+%  \pgfmathsetmacro{\YLONG}{\EJECARTLONG}
+%  % Eje xtilde
+%  \pgfmathsetmacro{\XTILDEANG}{0}
+%  \pgfmathsetmacro{\XTILDELONG}{\EJEOBLICLONG}    
+%  % Eje ytilde
+%  \pgfmathsetmacro{\YTILDEANG}{55}
+%  \pgfmathsetmacro{\YTILDELONG}{0.56*(\EJECARTLONG + \EJEOBLICLONG)}
+%  % Vector P
+%  \pgfmathsetmacro{\PMOD}{3.0}
+%  \pgfmathsetmacro{\PANG}{30}
+%  % Fondo
+%  \pgfmathsetmacro{\HORZ}{0.25}
+%  \pgfmathsetmacro{\VERT}{0.25}
+%  %
+%  \centering
+%  \begin{tikzpicture}[%
+%    %name prefix = fig1-,
+%    scale=\scl,
+%    every node/.style={black,font=\footnotesize},
+%    ejecart/.style={->, black!30},
+%    ejeoblic/.style={->, black},
+%    proyeccionoblic/.style={black!20, line width=0.5},
+%    proyeccioncart/.style={black!20, line width=0.5, dashed},
+%    % longitud/.style={line width=.5pt,\colorV},
+%    texto/.style={black},
+%    textoapagado/.style={\colorTorig},
+%    vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt,\colorV},
+%    contravariante/.style={line width=1.4pt, red},
+%    cartesiana/.style={gray, line width=1.5pt},
+%    contravtxt/.style={red!70!black},
+%    pcirculo/.style={fill=\colorPorig, draw=black},
+%    angulo/.style={fill=green!15, draw=\colorGirodos},
+%    angulogiro/.style={draw=black!50},
+%    background/.style={%
+%      line width=\bgborderwidth,
+%      draw=\bgbordercolor,
+%      fill=\bgcolor,
+%    },
+%    ]
+%    % COORDENADAS
+%    % Origen
+%    \coordinate (O) at (0,0);
+%    % Eje x
+%    \path[save path=\ejex] (O) -- ++(\XANG:\XLONG cm) coordinate (xfin);
+%    % Eje y
+%    \path[save path=\ejey] (O) -- ++(\YANG:\YLONG cm) coordinate (yfin);
+%    % Eje xtilde
+%    \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
+%    coordinate (xtildefin);
+%    % Eje ytilde
+%    \path[save path=\ejeytilde, name path=O--ytilde] (O) -- ++(\YTILDEANG:\YTILDELONG cm)
+%    coordinate (ytildefin);
+%    % Vector
+%    \path[save path=\r] (O) -- (\PANG:\PMOD cm) coordinate (P);
+%    % Proyección de P en los ejes
+%    % Con eje x
+%    \path[save path=\proyx] (P) |- (xfin) coordinate[pos=0.5] (px);
+%    % Con eje y
+%    \path[save path=\proyy] (P) -| (yfin) coordinate[pos=0.5] (py);
+%    % Componentes contravariantes
+%    % Intersección de horizontal desde P hasta ytilde
+%    % -> Componente contravariante eje ytilde (CTV2) 
+%    \path[name path=P--y] (P) -| (yfin);
+%    \path[name intersections={of=P--y and O--ytilde, by=CTV2}];
+%    % Paralela (CTV2) -- (O) que pase por (P)
+%    % -> Componente contravariante eje xtilde (CTV1)
+%    \path (P) -- ($(P) - (CTV2) - (O)$) coordinate (CTV1);
+%    % Componente delta x = x-x^1
+%    \path[save path=\deltaxsegmento] (CTV1) -- coordinate[pos=0.5] (deltaxtxt) (px);
+%    % Componente y
+%    \path (P) -- coordinate[pos=0.5] (ytxt) (px);
+%
+%    % DIBUJOS    
+%    % Área
+%    \fill[green!15] (P) -- (px) -- (CTV1) -- cycle;
+%
+%    % Ángulo beta
+%    \path (yfin) -- (O) -- (ytildefin) pic
+%    [angulogiro, {Latex[round,width=3pt,length=4pt]}-,
+%    "\color{black!60}{\footnotesize $\beta$}", angle radius=75pt,
+%    angle eccentricity=1.1]
+%    {angle = ytildefin--O--yfin};
+%    % Ángulo alfa
+%    \path (xfin) -- (O) -- (ytildefin) pic
+%    [angulo, "\color{black}{\scriptsize $\alpha$}", angle radius=16pt,
+%    angle eccentricity=0.70]
+%    {angle = xfin--O--ytildefin};
+%    % Otro ángulo beta
+%    \path (px) -- (P) -- (CTV1) pic
+%    [angulo, "\color{black}{\scriptsize $\beta$}", angle radius=16pt,
+%    angle eccentricity=0.70]
+%    {angle = CTV1--P--px};
+%    
+%    % Proyecciones de componentes
+%    % Con el eje x
+%    \draw[proyeccioncart, use path=\proyx];
+%    % Con el eje y
+%    \draw[proyeccioncart, use path=\proyy];
+%    % Contravariantes
+%    \draw[proyeccionoblic] (P) -- (CTV1);
+%    %\node[below] at (CTV1) {\footnotesize $\hat{x}^1$};
+%    \draw[proyeccionoblic] (P) -- (CTV2);
+%    % \node[left] at (CTV2) {\footnotesize $\hat{x}^2$};
+%    % Eje x
+%    \draw[ejecart, use path=\ejex];
+%    \node[textoapagado, below=3pt] at (xfin) {$x$};
+%    % Eje y
+%    \draw[ejecart, use path=\ejey];
+%    \node[textoapagado, left] at (yfin) {$y$};
+%    % Eje xtilde
+%    \draw[ejeoblic, use path=\ejextilde];
+%    \node[texto, below] at (xtildefin) {$x^1$};
+%    % Eje ytilde
+%    \draw[ejeoblic, use path=\ejeytilde];
+%    \node[above right=-1pt and -3pt, texto] at (ytildefin) {$x^2$};
+%    % Vector v
+%    \draw[vector, use path=\r];
+%    \node[above right=-2pt and -2pt] at (P) {\footnotesize $\vvv{r}$};
+%    \filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
+%    %\node[above right=0pt and -5pt] at (P) {\footnotesize $P$};
+%
+%    % Marcar en color la componentes contravariantes
+%    \draw[contravariante] (O) -- node[contravtxt, pos=0.5, below] {$x^1$} (CTV1);
+%    \draw[contravariante] (O) -- node[contravtxt, pos=0.6, left] {$x^2$} (CTV2);
+%
+%    % delta x
+%    \draw[cartesiana, use path=\deltaxsegmento];
+%    \node[below] at (deltaxtxt) {$x-x^1$};
+%    % y
+%    %\draw[cartesiana, use path=\ysegmento];
+%    %\node[right] at (ytxt) {$y$};
+%    \path (px) -- node[pos=0.41, right] {$y$} (P);
+%    % x^2
+%    \path (CTV1) -- node[pos=0.43, left] {$x^2$} (P);
+%
+%    % Origen
+%    \fill[orange!80!black] (O) circle [radius=0.8pt];
+%    
+%    % Fondo amarillo
+%    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+%    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
+%    \begin{scope}[on background layer]
+%      \draw[background] (SW) rectangle (NE);
+%    \end{scope}
+%  \end{tikzpicture}
+%  \caption{El triángulo rectángulo sombreado en verde nos permite relacionar las
+%    coordenadas ortogonales $x$ e $y$ con las contravariantes $x^1$ y $x^2$, a través
+%    del ángulo $\beta$ que forma el eje oblicuo $x^2$ con el eje ortogonal $y$.}
+%  \label{fig:R2-oblic_proc_geom_agudo}
+%\end{figure}
+%
+%El vector de posición de un punto en función de las componentes contravariantes es
+%\begin{equation}
+%  \vvv{r} = \left(x^1+x^2\cos\alpha\right)\,\uvec{\i} + x^2\sin\alpha\,\uvec{j}
+%\end{equation}
+%
+%Derivando parcialmente, los vectores de la base natural serán
+%\begin{align}
+%  \vvv{e}_1
+%  &=
+%    \dfrac{\partial\vvv{r}}{x^1}
+%    = \uvec{\i}
+%    \longrightarrow
+%    |\vvv{e}_1| = |\uvec{\i}| = \sqrt{1} = 1\\
+%  \vvv{e}_2
+%  &=
+%    \dfrac{\partial\vvv{r}}{x^2}
+%    = \cos\alpha\,\uvec{\i} + \sin\alpha\,\uvec{\j}
+%    \longrightarrow
+%    |\vvv{e}_2| = \sqrt{\cos^2\alpha + \sin^2\alpha} = 1
+%\end{align}
+%y deducimos que sus módulos valen la unidad.
+%
+%Además, podemos comprobar que coinciden con los vectores unitarios $\xhat{u}_i$ que
+%obtuvimos gráficamente en \eqref{eq:R2-oblic_u1_ij} y \eqref{eq:R2-oblic_u2_ij}
+%\begin{align}
+%  \label{eq:R2-oblic_e1_ij}
+%  \vvv{e}_1
+%  &=
+%    \xhat{u}_1
+%    = \uvec{\i}
+%    = (1, 0)\\
+%  \label{eq:R2-oblic_e2_ij}
+%  \vvv{e}_2
+%  &=
+%    \xhat{u}_2
+%    = \cos\alpha\,\uvec{\i} + \sin\alpha\,\uvec{\j}
+%    = (\cos\alpha, \sin\alpha)
+%\end{align}
+%
+%\subsubsection{¿Hubiera dado lo mismo si el ángulo $\alpha$ entre los ejes
+%  hubiera sido mayor de \qty{90}{\degree}?}
+%Demostraremos que la base natural sería la misma que la que hemos calculado suponiendo
+%que los ejes oblicuos formaban un ángulo agudo. Fijémonos en la figura
+%\ref{fig:R2-oblic_proc_geom_obtuso}, que representa esta situación.
+%\begin{figure}[ht]
+%  % Escala
+%  \def\scl{1.00}
+%  % 
+%  \pgfmathsetmacro{\EJECARTLONG}{4.5}
+%  \pgfmathsetmacro{\EJEOBLICLONG}{4.0}
+%  % Eje x
+%  \pgfmathsetmacro{\XANG}{0.0}
+%  \pgfmathsetmacro{\XLONG}{\EJECARTLONG}
+%  % Eje y
+%  \pgfmathsetmacro{\YANG}{90}
+%  \pgfmathsetmacro{\YLONG}{0.85*\EJECARTLONG}
+%  % Eje xtilde
+%  \pgfmathsetmacro{\XTILDEANG}{0}
+%  \pgfmathsetmacro{\XTILDELONG}{\EJEOBLICLONG}    
+%  % Eje ytilde
+%  \pgfmathsetmacro{\YTILDEANG}{90+30}
+%  \pgfmathsetmacro{\YTILDELONG}{0.45*(\EJECARTLONG + \EJEOBLICLONG)}
+%  % Vector P
+%  \pgfmathsetmacro{\PMOD}{3.0}
+%  \pgfmathsetmacro{\PANG}{30}
+%  % Distancia horizontal entre P e ytilde
+%  \pgfmathsetmacro{\Px}{\PMOD * cos(\PANG)}
+%  \pgfmathsetmacro{\Py}{\PMOD * sin(\PANG)}
+%  \pgfmathsetmacro{\YTILDEx}{\YTILDELONG * cos(\YTILDEANG)}
+%  % Fondo
+%  \pgfmathsetmacro{\HORZ}{0.25}
+%  \pgfmathsetmacro{\VERT}{0.25}
+%  %
+%  \centering
+% \begin{tikzpicture}[%
+%    scale=\scl,
+%    every node/.style={black,font=\footnotesize},
+%    ejecart/.style={->, black!30},
+%    ejeoblic/.style={->, black},
+%    proyeccionoblic/.style={black!20, line width=0.5},
+%    proyeccioncart/.style={black!20, line width=0.5, dashed},
+%    % longitud/.style={line width=.5pt,\colorV},
+%    texto/.style={black},
+%    textoapagado/.style={\colorTorig},
+%    vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt,\colorV},
+%    contravariante/.style={line width=2.0pt, red},
+%    cartesiana/.style={gray, line width=1.5pt},
+%    contravtxt/.style={red!70!black},
+%    pcirculo/.style={fill=\colorPorig, draw=black},
+%    angulo/.style={fill=green!15, draw=\colorGirodos},
+%    angulogiro/.style={draw=black!50},
+%    background/.style={%
+%      line width=\bgborderwidth,
+%      draw=\bgbordercolor,
+%      fill=\bgcolor,
+%    },
+%    ]
+%    % COORDENADAS
+%    % Origen
+%    \coordinate (O) at (0,0);
+%    % Eje x
+%    \path[save path=\ejex] (O) -- ++(\XANG:\XLONG cm) coordinate (xfin);
+%    % Eje y
+%    \path[save path=\ejey] (O) -- ++(\YANG:\YLONG cm) coordinate (yfin);
+%    % Eje xtilde
+%    \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
+%    coordinate (xtildefin);
+%    % Eje ytilde
+%    \path[save path=\ejeytilde, name path=O--ytilde] (O) -- ++(\YTILDEANG:\YTILDELONG cm)
+%    coordinate (ytildefin);
+%    % Vector
+%    \path[save path=\r] (O) -- (\PANG:\PMOD cm) coordinate (P);
+%    % Proyección de P en los ejes
+%    % Con eje x
+%    \path[save path=\proyx] (P) |- (xfin) coordinate[pos=0.5] (px);
+%    % Con eje y
+%    \path[save path=\proyy] (P) -| (yfin) coordinate[pos=0.5] (py);
+%    % Componentes contravariantes
+%    % Intersección de la horizontal desde P hasta ytilde
+%    % -> Componente contravariante eje ytilde (CTV2) 
+%    \path[name path=horizontal] (\YTILDEx, \Py) -- (P);
+%    \path [name intersections={of=O--ytilde and horizontal, by=CTV2}];
+%    
+%    % Paralela (CTV2) -- (O) que pase por (P)
+%    % -> Componente contravariante eje xtilde (CTV1)
+%    \path (P) -- ($(P) - (CTV2) - (O)$) coordinate (CTV1);
+%    % Componente delta x = x-x^1
+%    \path[save path=\deltaxsegmento] (CTV1) -- coordinate[pos=0.5] (deltaxtxt) (px);
+%    % Componente y
+%    \path (P) -- coordinate[pos=0.5] (ytxt) (px);
+%
+%    % DIBUJOS
+%    % Área
+%    \fill[green!15] (P) -- (px) -- (CTV1) -- cycle;
+%
+%    % Ángulo beta
+%    \path (yfin) -- (O) -- (ytildefin) pic
+%    [angulogiro, -{Latex[round,width=3pt,length=4pt]},
+%    "\color{black!60}{\footnotesize $\beta$}", angle radius=75pt,
+%    angle eccentricity=1.1]
+%    {angle = yfin--O--ytildefin};
+%    
+%    % Ángulo alfa
+%    \path (xfin) -- (O) -- (ytildefin) pic
+%    [angulo, "\color{black}{\scriptsize $\alpha$}", angle radius=16pt,
+%    angle eccentricity=0.70]
+%    {angle = xfin--O--ytildefin};
+%
+%    % Otro ángulo beta
+%    \path (px) -- (P) -- (CTV1) pic
+%    [angulo, "\color{black}{\scriptsize $\beta$}", angle radius=16pt,
+%    angle eccentricity=0.70]
+%    {angle = px--P--CTV1};
+%    
+%    % Proyecciones de componentes
+%    % Con el eje x
+%    \draw[proyeccioncart, use path=\proyx];
+%    % Con el eje y
+%    \draw[proyeccioncart, use path=\proyy];
+%    % Contravariantes
+%    \draw[proyeccionoblic] (P) -- (CTV1);
+%    %\node[below] at (CTV1) {\footnotesize $\hat{x}^1$};
+%    \draw[proyeccionoblic] (P) -- (CTV2);
+%    % \node[left] at (CTV2) {\footnotesize $\hat{x}^2$};
+%    % Eje x
+%    \draw[ejecart, use path=\ejex];
+%    \node[textoapagado, below=3pt] at (xfin) {$x$};
+%    % Eje y
+%    \draw[ejecart, use path=\ejey];
+%    \node[textoapagado, left] at (yfin) {$y$};
+%    % Eje xtilde
+%    \draw[ejeoblic, use path=\ejextilde];
+%    \node[texto, below] at (xtildefin) {$x^1$};
+%    % Eje ytilde
+%    \draw[ejeoblic, use path=\ejeytilde];
+%    \node[above right=-1pt and -3pt, texto] at (ytildefin) {$x^2$};
+%    % Vector v
+%    \draw[vector, use path=\r];
+%    \node[above right=-2pt and -2pt] at (P) {\footnotesize $\vvv{r}$};
+%    \filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
+%    %\node[above right=0pt and -5pt] at (P) {\footnotesize $P$};
+%
+%    % Marcar en color la componentes contravariantes
+%    \draw[contravariante] (O) -- node[contravtxt, pos=0.5, below] {$x^1$} (CTV1);
+%    \draw[contravariante] (O) -- node[contravtxt, pos=0.6, left] {$x^2$} (CTV2);
+%
+%    % delta x
+%    \draw[red!50!black, line width=0.3pt, use path=\deltaxsegmento];
+%    \node[below] at (deltaxtxt) {$x^1-x$};
+%    % y
+%    %\draw[cartesiana, use path=\ysegmento];
+%    %\node[right] at (ytxt) {$y$};
+%    \path (px) -- node[pos=0.41, left] {$y$} (P);
+%    % x^2
+%    \path (CTV1) -- node[pos=0.43, right] {$x^2$} (P);
+%
+%    % Origen
+%    \fill[orange!80!black] (O) circle [radius=0.8pt];
+%    
+%    % Fondo amarillo
+%    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+%    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
+%    \begin{scope}[on background layer]
+%      \draw[background] (SW) rectangle (NE);
+%    \end{scope}
+%  \end{tikzpicture}
+%  \caption{El triángulo rectángulo sombreado en verde nos permite relacionar las
+%    coordenadas ortogonales $x$ e $y$ con las contravariantes $x^1$ y $x^2$, a través
+%    del ángulo $\beta$ que forma el eje $x^2$ con el eje $y$.}
+%  \label{fig:R2-oblic_proc_geom_obtuso}
+%\end{figure}
+%
+%Utilizamos de nuevo el vector de posición de un punto arbitrario del plano en
+%función de las componentes cartesianas
+%\[
+%  \vvv{r} = x\,\uvec{\i} + y\,\uvec{\j}
+%\]
+%
+%Sabemos que $\alpha = \pi/2 + \beta$ y por tanto,
+%\begin{align*}
+%  \sin\alpha &= \sin(\pi/2 + \beta) = \cos\beta\\
+%  \cos\alpha &= \cos(\pi/2 + \beta) = -\sin\beta
+%\end{align*}
+%
+%Ahora calculamos las coordenadas $x$ e $y$ en función de las contravariantes $x^1$ y
+%$x^2$, fijándonos en el triángulo sombreado en verde
+%\begin{equation}
+%  \begin{cases}
+%    \begin{array}{lll}
+%      \sin\beta = -\cos\alpha = \dfrac{x^1-x}{x^2}
+%      &\longrightarrow
+%      &x = x^1 + x^2\cos\alpha\\
+%      \cos\beta = \sin\alpha = \dfrac{y}{x^2}
+%      &\longrightarrow
+%      &y = x^2\sin\alpha
+%    \end{array}
+%  \end{cases}
+%\end{equation}
+%
+%Como vemos, la transformación entre $(x,y)$ y $(x^1,x^2)$ es idéntica a la que se obtuvo
+%en \eqref{eq:R2-oblic_transf_agudo}, por tanto, dicha transformación es independiente del
+%ángulo $0<\alpha<\pi$.
+%Podemos concluir que la matriz de cambio de base será única.
+%
+%\section{Cambio de base}
+%Las expresiones \eqref{eq:R2-oblic_e1_ij} y \eqref{eq:R2-oblic_e2_ij} se pueden
+%se pueden representar matricialmente
+%\begin{equation}
+%  \begin{pmatrix}
+%    \vvv{e}_1 &  \vvv{e}_2
+%  \end{pmatrix}
+%  =
+%  \begin{pmatrix}
+%    \uvec{\i} & \uvec{\j}
+%  \end{pmatrix}
+%  \,
+%  \begin{pmatrix}
+%    1 & \cos\alpha\\
+%    0 & \sin\alpha
+%  \end{pmatrix}
+%\end{equation}
+%Obsérvese que los vectores de las bases se representan en filas.
+%
+%Así, la matriz que permite obtener la nueva base $B'$ a partir de la antigua $B$, está
+%formada por las componentes de los vectores $(1,0)$ y $(\cos\alpha,\sin\alpha)$
+%obtenidos en las expresiones \eqref{eq:R2-oblic_e1_ij} y \eqref{eq:R2-oblic_e2_ij},
+%dispuestas en columnas
+%\begin{equation}
+%  \mmm{M}
+%  =
+%  \begin{pmatrix}
+%    1 & \cos\alpha\\
+%    0 & \sin\alpha
+%  \end{pmatrix}
+%\end{equation}
+%
+%\subsubsection{Resumiendo el cambio de base}
+%Como dijimos, la matriz de cambio de base de $B$ a $B'$ está formada por las componentes
+%de los vectores de la expresión dispuestos en columnas. A continuación se representan, esta matriz de cambio de base y su inversa
+%\begin{subequations}
+%  \begin{align}
+%    \label{eq:R2-oblic_M}
+%    &\mmm{M}
+%      =
+%      \begin{pmatrix}
+%        1 & \cos\alpha\\
+%        0 & \sin\alpha
+%      \end{pmatrix}\\
+%    \label{eq:R2-oblic_Minv}
+%    &\mmm{M}^{-1}
+%      =
+%      \dfrac{1}{\sin\alpha}
+%      \begin{pmatrix}
+%        \sin\alpha & -\cos\alpha\\
+%        0 & 1
+%      \end{pmatrix}
+%      =
+%      \begin{pmatrix}
+%        1 & -\cot\alpha\\
+%        0 & \phantom{-}\csc\alpha
+%      \end{pmatrix}
+%  \end{align}
+%\end{subequations}
+%Utilizaremos la matriz directa $M$ para transformar la base rectangular $B$ en la nueva
+%base oblicua $B'$. Al contrario, para obtener la base rectangular a partir de la oblicua,
+%utilizaríamos la matriz inversa $\mmm{M}^{-1}$
+%\begin{subequations}
+%\begin{align}
+%  &\begin{pmatrix}
+%    \vvv{e}_1 &  \vvv{e}_2
+%  \end{pmatrix}
+%  =
+%    \begin{pmatrix}
+%      \uvec{\i} & \uvec{\j}
+%    \end{pmatrix}
+%    \,
+%    \begin{pmatrix}
+%      1 & \cos\alpha\\
+%      0 & \sin\alpha
+%    \end{pmatrix}\\
+%  &\begin{pmatrix}
+%    \uvec{\i} & \uvec{\j}
+%  \end{pmatrix}
+%  =
+%    \begin{pmatrix}
+%      \vvv{e}_1 & \vvv{e}_2
+%    \end{pmatrix}
+%    \,
+%    \begin{pmatrix}
+%      1 & -\cot\alpha\\
+%      0 & \phantom{-}\csc\alpha
+%    \end{pmatrix}
+%    \,
+%\end{align}
+%\end{subequations}
+%
+%\begin{subequations}
+%\begin{align}
+%  &B' = B \mmm{M}
+%    \hspace{1em}\longrightarrow
+%    \begin{pmatrix}
+%    \vvv{e}_1 &  \vvv{e}_2
+%  \end{pmatrix}
+%  =
+%    \begin{pmatrix}
+%      \uvec{\i} & \uvec{\j}
+%    \end{pmatrix}
+%    \,
+%    \begin{pmatrix}
+%      1 & \cos\alpha\\
+%      0 & \sin\alpha
+%    \end{pmatrix}\\
+%  &B = B'\mmm{M}^{-1}
+%    \longrightarrow
+%    \begin{pmatrix}
+%    \uvec{\i} & \uvec{\j}
+%  \end{pmatrix}
+%  =
+%    \begin{pmatrix}
+%      \vvv{e}_1 & \vvv{e}_2
+%    \end{pmatrix}
+%    \,
+%    \begin{pmatrix}
+%      1 & -\cot\alpha\\
+%      0 & \phantom{-}\csc\alpha
+%    \end{pmatrix}
+%    \,
+%\end{align}
+%\end{subequations}
+%
+%
+%\section{Componentes de los vectores}
+%Cuando un vector se expresa en una determinada base, se obtiene su representación en
+%función de unas determinadas componentes. Por ejemplo, en dos dimensiones y tomando una
+%base genérica $\set{\vvv{e}_1,\vvv{e}_2}$, escribiríamos
+%\begin{equation}
+%  \label{eq:R2-oblic_componentes}
+%  \vvv{v} = x_1\vvv{e}_1 + x_2\vvv{e}_2
+%\end{equation}
+%que, como sabemos, significa que el vector $\vvv{v}$ se obtiene sumando los productos de
+%cada cada componente por el vector correspondiente de la base.
+%
+%Si la base estuviera formada por muchos vectores, o este número no estuviera definido,
+%entonces sería conveniente utilizar un sumatorio, como
+%\[
+%  \vvv{v} = \sum_{i=1}^n x_i\vvv{e}_i
+%\]
+%
+%Cuando se opera con expresiones un tanto largas, se suele utilizar la notación de
+%Einstein, donde se prescinde del sumatorio y se tiene en cuenta que cuando en un
+%monomio se encuentra el mismo índice, por ejemplo $i$, se debe sumar para todos los
+%valores de ese índice
+%\[
+%  \vvv{v} = \sum_i x_i\vvv{e}_i = x_i \vvv{e}_i
+%\]
+%
+%Otro aspecto importante es notar que las componentes de un vector dependen de la base
+%elegida. Si se cambia de base, las componentes varían. Por ejemplo, si utilizáramos
+%la base $\set{\vvv{x}'_1, \vvv{x}'_2}$, las nuevas componentes serían $x'_i$ y $x'_2$
+%\[ 
+%  \vvv{v} = x'_1\vvv{e}'_1 + x'_2\vvv{e}'_2
+%\]
+%Cambian las componentes, pero el vector tiene que ser el mismo, el vector no cambia, lo
+%hace su representación dependiendo de la base utilizada.
+%
+%\subsection{Componentes contravariantes}
+%\label{ssect:R2-contravariantes}
+%Para introducir este tipo de componentes, vamos a poner un ejemplo concreto. Supongamos
+%que medimos un cierto vector y para ello, por sencillez, utilizamos la base estándar en coordenadas cartesianas rectangulares en metros $B=\set{\uvec{\i},\,\uvec{\j}}$, y
+%obtenemos que mide \qty{1}{\metre} en el eje $x$ y \qty{2}{\metre} en el eje $y$.
+%El vector se podrá representar como
+%\[
+%  \vvv{v} = 1\,\uvec{\i} + 2\,\uvec{\j}\,\unit{\metre}
+%\]
+%esto es, las componentes serían $(1, 2)\,\unit{\metre}$.
+%
+%Supongamos también que deseamos cambiar la base elegida, a otra
+%$B' = \set{\uvec{\i}',\, \uvec{\j}'}$ que mide en centímetros. La nueva base
+%\emph{es más pequeña} que la antigua (centímetros en lugar de metros); pero para que el
+%vector $\vvv{v}$ no cambie, los valores medidos en centímetros deben \emph{aumentar} con
+%respecto a las componentes en metros ($A'_i > A_i$)
+%\[
+%  \vvv{v} = 100\,\uvec{\i} + 200\,\uvec{\j}\,\unit{\centi\metre}
+%\]
+%las nuevas componentes serían $(100, 200)\,\unit{\centi\metre}$.
+%En otras palabras, la base ``se ha hecho 100 veces menor'', pero las componentes
+%``se han hecho 100 veces más grandes''.
+%
+%\subsubsection{Concepto}
+%Estas componentes han variado de forma contraria a como lo hizo la base elegida.
+%A las que se comportan de esta manera se les llama \emph{contravariantes} y, aunque no
+%es necesario en la mayor parte de las situaciones, se suele utilizar el índice que las
+%acompaña como \emph{superíndice} (que no representa un exponente).
+%Además, para facilitar la notación de Einstein, escribiremos las componentes
+%contravariantes como $x^i$ (y también los ejes correspondientes), en lugar de $x$ e $y$.
+%Así, un vector como el que hemos puesto de ejemplo en \eqref{eq:R2-oblic_componentes}, se
+%podría representar genéricamente como
+%\[
+%  \vvv{v} = x^1\vvv{e}_1 + x^2\vvv{e}_2
+%\]
+%En notación de Einstein sería
+%\[
+%  \vvv{v} = x^i\vvv{e}_i
+%  \hspace{1em}\text{con } i=1,2\text{.}
+%\]
+%Los vectores de la base  $B'=\set{\vvv{e}_1, \vvv{e}_2}$, con el índice abajo, los
+%llamamos \emph{vectores covariantes} y decimos que forman una \emph{base covariante}.
+%
+%\subsubsection{Representación gráfica de las componentes contravariantes}
+%La componentes contravariantes en el sistema de coordenadas oblicuas se pueden
+%representar gráficamente trazando líneas paralelas a los ejes a partir del extremo del
+%segmento orientado $\vvv{v}$. Esta es la forma natural con la que sumamos vectores
+%mediante la regla del paralelogramo, ver figura \ref{fig:R2-oblic_contrav}.
+%\begin{figure}[ht]
+%  % Escala
+%  \def\scl{1.00}
+%  % 
+%  %\pgfmathsetmacro{\EJESCARTLONG}{3.0}
+%  %\pgfmathsetmacro{\EJEOBLICLONG}{2.7}
+%  \pgfmathsetmacro{\EJESCARTLONG}{2.8}
+%  \pgfmathsetmacro{\EJEOBLICLONG}{2.5}
+%  % Eje x
+%  %\pgfmathsetmacro{\XLONG}{\EJESCARTLONG}
+%  % Eje y
+%  %\pgfmathsetmacro{\YLONG}{\EJESCARTLONG}
+%  % Eje xtilde
+%  \pgfmathsetmacro{\XTILDEANG}{0}
+%  \pgfmathsetmacro{\XTILDELONG}{\EJEOBLICLONG}    
+%  % Eje ytilde
+%  \pgfmathsetmacro{\YTILDEANG}{70}
+%  \pgfmathsetmacro{\YTILDELONG}{\EJESCARTLONG}
+%  % Vector P
+%  \pgfmathsetmacro{\PMOD}{2.3}
+%  \pgfmathsetmacro{\PANG}{40}
+%  % Fondo
+%  \pgfmathsetmacro{\HORZ}{0.25}
+%  \pgfmathsetmacro{\VERT}{0.25}
+%  % 
+%  \centering
+% \begin{tikzpicture}[%
+%    scale=\scl,
+%    every node/.style={black,font=\small},
+%    %ejecart/.style={->, black!30},
+%    ejeoblic/.style={->, black},
+%    proyeccion/.style={black!20, line width=0.4},
+%    % longitud/.style={line width=.5pt,\colorV},
+%    texto/.style={black},
+%    %textoapagado/.style={\colorTorig},
+%    vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt,\colorV},
+%    contravariante/.style={%
+%      -{Latex[round,width=5pt,length=8pt]},line width=1.2pt, orange!80!black},
+%    contravtxt/.style={orange!60!black},
+%    pcirculo/.style={fill=\colorPorig, draw=black},
+%    background/.style={%
+%      line width=\bgborderwidth,
+%      draw=\bgbordercolor,
+%      fill=\bgcolor,
+%    },
+%    ]
+%    % COORDENADAS
+%    % Origen
+%    \coordinate (O) at (0,0);
+%    % Eje xtilde
+%    \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
+%    coordinate (xtildefin);
+%    \node[texto, below] at (xtildefin) {\footnotesize $x^1$};
+%    % Eje ytilde
+%    \path[save path=\ejeytilde, name path=O--ytilde] (O) -- ++(\YTILDEANG:\YTILDELONG cm)
 %    coordinate (ytildefin);
 %    % Vector
 %    \path[save path=\r] (O) -- coordinate[pos=0.6] (posvecttxt) (\PANG:\PMOD cm)
 %    coordinate (P);
-%    % Componentes covariantes
 %    % Proyección de P en los ejes
 %    % Con eje x
-%    \path[save path=\proyx] (e2fin) |- (xfin) coordinate[pos=0.5] (e2x) (xfin);
-%    % Componente covariante con eje xtilde (COV1)
-%    % \path (P) |- coordinate[pos=0.5] (COV1) (xtildefin);
-%    % Perpendicular a O--ytilde que pasa por P
-%    % -> Componente covariante con eje ytilde (COV2)
-%    \path (P) -- ($(O)!(P)!(ytildefin)$) coordinate (COV2);
+%    \path[save path=\proyx] (u2fin) |- (xfin) coordinate[pos=0.5] (e2x) (xfin);
+%    % Componentes contravariantes
+%    % Intersección de horizontal desde P hasta ytilde
+%    % -> Componente contravariante eje ytilde (CTV2) 
+%    \path[name path=P--y] (P) -| (yfin);
+%    \path[name intersections={of=P--y and O--ytilde,by=CTV2}];
+%    % Paralela (CTV2) -- (O) que pase por (P)
+%    % -> Componente contravariante eje xtilde (CTV1)
+%    \path (P) -- ($(P) - (CTV2) - (O)$) coordinate (CTV1);
 %    
-    % DIBUJOS
-%    % Covariantes
-%    % \draw[proyeccion] (P) -- (COV1);
-%    % \draw[proyeccion] (P) -- (COV2);
-    
-%    \foreach \num in {0,...,\YNUMLINEASMASUNA}
-%    \draw[lineanivel,rotate=\YANGULOROT]
-%    (\INICIOLONGITUD, \YUNIT * \num) -- ++(\LONGITUDLINEAS, 0);
+%    % DIBUJOS
+%    % Proyecciones de componentes
+%    % Contravariantes
+%    \draw[proyeccion] (P) -- (CTV1);
+%    %\node[below] at (CTV1) {\footnotesize $\hat{x}^1$};
+%    \draw[proyeccion] (P) -- (CTV2);
+%    %\node[left] at (CTV2) {\footnotesize $\hat{x}^2$};
+%    % xtilde
+%    \draw[ejeoblic, use path=\ejextilde];
+%    % ytilde
+%    \draw[ejeoblic, use path=\ejeytilde];
+%    \node[above right=0pt and -4pt, texto] at (ytildefin) {$x^2$};
+%    %\node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{y}$};
+%    % Vector v
+%    \draw[vector, use path=\r];
+%    \node[above left=-3pt and -1pt] at (posvecttxt) {\footnotesize $\vvv{v}$};
+%    %\filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
+%    %\node[above right=0pt and -5pt] at (P) {\footnotesize $P$};
+%
+%    % Marcar en color la componentes contravariantes
+%    \draw[contravariante]
+%    (O) -- node[contravtxt,pos=0.5, below] {$x^1\vvv{e}_1$} (CTV1);
+%    \draw[contravariante] (O) -- node[contravtxt,pos=0.5,above left=-2pt and -2pt]
+%    {$x^2\vvv{e}_2$} (CTV2);
 %    
-%    \foreach \num in {0,...,\YPOSLINEACOV}
-%    \draw[lineanivel,rotate=\YANGULOROT,red!50]
-%    (\INICIOLONGITUD, \YUNIT * \num) -- ++(\LONGITUDLINEAS, 0);      
+%    % Origen
+%    \fill[orange!80!black] (O) circle [radius=0.8pt];
 %    
-    % Ejes
-    % x^1 = xctv
-    \draw[ejectv, use path=\ejexctv];
-    \node[textoctv, right] at (xctvfin) {\footnotesize $x^1$};
-    % x^2 = yctv
-    \draw[ejectv, use path=\ejeyctv];
-    \node[textoctv, above right=0pt and -4pt] at (yctvfin) {$x^2$};
-%    % \node[rotate=90, left=8pt] at (ytexto) {$r\sin\theta$};
-    % x_1 = xcov
-    \draw[ejecov, use path=\ejexcov];
-    \node[textocov, above] at (xcovfin) {\footnotesize $x_1$};
-    % x_2 = ycov
-    \draw[ejecov, use path=\ejeycov];
-    \node[textocov, below right=-3pt and -1pt] at (ycovfin) {\footnotesize $x_2$};
-    % Vectores de la base
-    % e_1 = excov
-    \draw[vectorcov, use path=\excov];
-    \node[textoctv, below=2pt] at (excovfin) {$\vvv{e}_1$};
-    % e_2 = eycov
-    \draw[vectorcov, use path=\eycov];
-    \node[textoctv, above left=-2pt and 0pt] at (eycovfin) {$\vvv{e}_2$};
-    % e^1 = exctv
-    \draw[vectorctv, use path=\exctv];
-    \node[textocov, left] at (exctvfin) {$\vvv{e}^1$};
-    % e^2 = eyctv
-    \draw[vectorctv, use path=\eyctv];
-    \node[textocov, below left=0pt and 0pt] at (eyctvfin) {$\vvv{e}^2$};
-    
-    % Origen
-    \fill (O) circle [radius=0.8pt];
-    
-    % Fondo amarillo
-    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
-    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
-    \begin{scope}[on background layer]
-      \draw[background] (SW) rectangle (NE);
-    \end{scope}
-  \end{tikzpicture}
-  \caption{En negro, los ejes contravariantes $x^1$ y $x^2$, estos ejes son los que se
-    utilizan para calcular las componentes contravariantes $x^1$ y $x^2$ de cualquier
-    vector (el contexto ayuda a diferenciar ejes de componentes).
-    En rojo, los ejes contravariantes. Nótese que cada $x_i$ es perpendicular a su
-    homólogo $x^i$. Además se representan los vectores de las bases normal y dual.}
-  \label{fig:R2-oblic_ejes_ctv_cov}
-\end{figure}
-
-
-\section{Componentes covariantes}
-En la sección \ref{ssect:R2-contravariantes}, proyectamos un vector trazando líneas
-paralelas a los ejes; así es como sumamos vectores gráficamente ---mediante la regla del
-paralelogramo---. Los resultados de esas proyecciones paralelas eran sus componentes
-contravariantes.
-
-En cambio, hay otra forma de proyectar un vector, y es trazando líneas perpendiculares a
-los ejes, figura \ref{fig:R2-oblic_cov}.
-Estas \emph{componentes covariantes} las representaremos mediante subíndices $x_i$
-\begin{equation}
-  \vvv{v} = x_1\vvv{e}^1 + x_2\vvv{e}^2 = x_i \vvv{e}^i
-\end{equation}
-La base utilizada aquí $\vvv{e}^i$, no es la natural de coordenadas oblicuas,
-\eqref{eq:R2-oblic_base_natural}, pues contiene un superíndice (de nuevo, no es un exponente).
-
-Mientras las componentes contravariantes te dicen cuánto \emph{avanzas} a lo largo
-de cada eje, las covariantes miden la \emph{sombra} o proyección sobre ese eje.
-En coordenadas cartesianas rectangulares ambas coinciden, pero en este sistema no.
-En la figura \ref{fig:R2-oblic_contrav_cov} se pueden comparar visualmente ambas
-componentes.
-\begin{figure}[ht]
-  \begin{minipage}{0.45\linewidth}  
-    % Escala
-    \def\scl{1.00}
-    % 
-    \pgfmathsetmacro{\EJESCARTLONG}{3.0}
-    \pgfmathsetmacro{\EJEOBLICLONG}{2.7}
-    % Eje xtilde
-    \pgfmathsetmacro{\XTILDEANG}{0}
-    \pgfmathsetmacro{\XTILDELONG}{\EJEOBLICLONG}    
-    % Eje ytilde
-    \pgfmathsetmacro{\YTILDEANG}{70}
-    \pgfmathsetmacro{\YTILDELONG}{\EJESCARTLONG}
-    % Vector P
-    \pgfmathsetmacro{\PMOD}{2.3}
-    \pgfmathsetmacro{\PANG}{40}
-    % Fondo
-    \pgfmathsetmacro{\HORZ}{0.90}
-    \pgfmathsetmacro{\VERT}{0.25}
-    % 
-    \centering
-    \begin{tikzpicture}[%
-      scale=\scl,
-      every node/.style={black,font=\small},
-      ejeoblic/.style={->, black},
-      proyeccion/.style={black!20, line width=0.4},
-      texto/.style={black},
-      vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt,\colorV},
-      covariante/.style={%
-        -{Latex[round,width=5pt,length=8pt]},line width=1.2pt, cyan!70!black},
-      covtxt/.style={cyan!40!black},
-      pcirculo/.style={fill=\colorPorig, draw=black},
-      background/.style={%
-        line width=\bgborderwidth,
-        draw=\bgbordercolor,
-        fill=\bgcolor,
-      },
-      ]
-      % COORDENADAS
-      % Origen
-      \coordinate (O) at (0,0);
-      % Eje xtilde
-      \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
-      coordinate (xtildefin);
-      % Eje ytilde
-      \path[save path=\ejeytilde,name path=O--ytilde](O) -- ++(\YTILDEANG:\YTILDELONG cm)
-      coordinate (ytildefin);
-      % Vector
-      \path[save path=\r] (O) -- coordinate[pos=0.6] (posvecttxt) (\PANG:\PMOD cm)
-      coordinate (P);
-      % Componentes covariantes
-      % Proyección de P en los ejes
-      % Con eje x
-      \path[save path=\proyx] (P) |- (xfin) coordinate[pos=0.5] (e2x) (xfin);
-      % Componente covariante con eje xtilde (COV1)
-      \path (P) |- coordinate[pos=0.5] (COV1) (xtildefin);
-      % Perpendicular a O--ytilde que pasa por P
-      % -> Componente covariante con eje ytilde (COV2)
-      \path (P) -- ($(O)!(P)!(ytildefin)$) coordinate (COV2);
-      
-      % DIBUJOS
-      % Covariantes
-      \draw[proyeccion] (P) -- (COV1);
-      \draw[proyeccion] (P) -- (COV2);
-      
-      % Ejes
-      % xtilde
-      \draw[ejeoblic, use path=\ejextilde];
-      % \node[texto, right] at (xtildefin) {\footnotesize $\tilde{x}^1$};
-      \node[texto, right] at (xtildefin) {\footnotesize $\tilde{x}$};
-      % ytilde
-      \draw[ejeoblic, use path=\ejeytilde];
-      % \node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{x}^2$};
-      \node[texto, above right=0pt and -4pt] at (ytildefin) {$\tilde{y}$};
-      % \node[rotate=90, left=8pt] at (ytexto) {$r\sin\theta$};
-      % Vector P
-      \draw[vector, use path=\r];
-      \node[above left=-3pt and -1pt] at (posvecttxt) {\footnotesize $\vvv{v}$};
-      % \filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
-      % \node[above right=0pt and -5pt] at (P) {\footnotesize $P$};
-      
-      % Marcar en azul la componentes covariantes
-      \draw[covariante] (O) -- node[covtxt,pos=0.5, below] {$x_1\vvv{e}^1$} (COV1);
-      \draw[covariante] (O) -- node[covtxt,pos=0.5,above left=-2pt and -2pt]
-      {$x_2\vvv{e}^2$} (COV2);
-      
-      % Origen
-      \fill[cyan!80!black] (O) circle [radius=0.8pt];
-      
-      % Fondo amarillo
-      \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
-      \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
-      \begin{scope}[on background layer]
-        \draw[background] (SW) rectangle (NE);
-      \end{scope}
-    \end{tikzpicture}
-    \caption{Componentes covariantes $x_i$ en coordenadas oblicuas. El vector $\vvv{v}$
-      se representa como $\vvv{v}=x_1\,\vvv{e}^1 + x_2\,\vvv{e}^2$. Las componentes
-      contravariantes nos indican el desplazamiento en el espacio.}
-    \label{fig:R2-oblic_cov}
-  \end{minipage}
-  \hspace{1em}
-  \begin{minipage}{0.45\linewidth}
-    % Escala
-    \def\scl{1.00}
-    % 
-    \pgfmathsetmacro{\EJESCARTLONG}{3.0}
-    \pgfmathsetmacro{\EJEOBLICLONG}{2.7}
-    % Eje x
-    \pgfmathsetmacro{\XLONG}{\EJESCARTLONG}
-    % Eje y
-    \pgfmathsetmacro{\YLONG}{\EJESCARTLONG}
-    % Eje xtilde
-    \pgfmathsetmacro{\XTILDEANG}{0}
-    \pgfmathsetmacro{\XTILDELONG}{\EJEOBLICLONG}    
-    % Eje ytilde
-    \pgfmathsetmacro{\YTILDEANG}{70}
-    \pgfmathsetmacro{\YTILDELONG}{\EJESCARTLONG}
-    % Vector P
-    \pgfmathsetmacro{\PMOD}{2.3}
-    \pgfmathsetmacro{\PANG}{40}
-    % Fondo
-    \pgfmathsetmacro{\HORZ}{0.90}
-    \pgfmathsetmacro{\VERT}{0.25}
-    % 
-    \centering
-    \begin{tikzpicture}[%
-      scale=\scl,
-      every node/.style={black,font=\small},
-      ejecart/.style={->, black!30},
-      ejeoblic/.style={->, black},
-      proyeccion/.style={black!20, line width=0.4},
-      % longitud/.style={line width=.5pt,\colorV},
-      texto/.style={black},
-      textoapagado/.style={\colorTorig},
-      vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt,\colorV},
-      % vtilde/.style={%
-      % -{Latex[round,width=4pt,length=6pt]}, line width=1pt, \colorVred},
-      pcirculo/.style={fill=\colorPorig, draw=black},
-      angulo/.style={fill=green!15, draw=\colorGirodos},
-      background/.style={%
-        line width=\bgborderwidth,
-        draw=\bgbordercolor,
-        fill=\bgcolor,
-      },
-      ]
-      % COORDENADAS
-      % Origen
-      \coordinate (O) at (0,0);
-      % Eje x
-      \path[save path=\ejex] (O) -- (\XLONG cm, 0) coordinate (xfin);
-      % Eje y
-      \path[save path=\ejey] (O) -- (0, \YLONG cm) coordinate (yfin);
-      % Eje xtilde
-      \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
-      coordinate (xtildefin);
-      \node[texto, below] at (xtildefin) {\footnotesize $\tilde{x}$};
-      % Eje ytilde
-      \path[save path=\ejeytilde,name path=O--ytilde](O) -- ++(\YTILDEANG:\YTILDELONG cm)
-      coordinate (ytildefin);
-      % Vector
-      \path[save path=\r] (O) -- coordinate[pos=0.5] (pmid) (\PANG:\PMOD cm)
-      coordinate (P);
-      % Proyección de P en los ejes
-      % Con eje x
-      \path[save path=\proyx] (P) |- (xfin) coordinate[pos=0.5] (e2x) (xfin);
-      % Posición de texto en eje x
-      % \path (O) -- coordinate[pos=0.5] (extxt) (e2x);
-      % Con eje y
-      \path[save path=\proyy] (P) -| coordinate[pos=0.5] (e2y) (yfin);
-      % Posición de texto en eje y
-      % \path (O) -- coordinate[pos=0.5] (eytxt) (e2y);
-      % Componentes covariantes y contravariantes
-      % Intersección de horizontal desde P hasta ytilde
-      % -> Componente contravariante eje ytilde (CTV2) 
-      \path[name path=P--y] (P) -| (yfin);
-      \path[name intersections={of=P--y and O--ytilde,by=CTV2}];
-      % Paralela (CTV2) -- (O) que pase por (P)
-      % -> Componente contravariante eje xtilde (CTV1)
-      \path (P) -- ($(P) - (CTV2) - (O)$) coordinate (CTV1);
-      % Componente covariante con eje xtilde (COV1)
-      \path (P) |- coordinate[pos=0.5] (COV1) (xtildefin);
-      % Perpendicular a O--ytilde que pasa por P
-      % -> Componente covariante con eje ytilde (COV2)
-      \path (P) -- ($(O)!(P)!(ytildefin)$) coordinate (COV2);
-      % Proyecciones de las componentes
-      
-      % DIBUJOS
-      % Ángulo theta
-      \path (xfin) -- (O) -- (ytildefin) pic
-      [angulo, angle radius=15pt]
-      {angle = xfin--O--ytildefin};
-      % \node[above right=-2pt and 4pt] at (O) {\scriptsize $\alpha$};
-      % 
-      % Proyecciones de componentes
-      % Contravariantes
-      \draw[proyeccion] (P) -- (CTV1);
-      \node[orange!70!black, below=-1pt] at (CTV1) {\footnotesize $x^1$};
-      \draw[proyeccion] (P) -- (CTV2);
-      \node[orange!70!black, left=-1.5pt] at (CTV2) {\footnotesize $x^2$};
-      % Covariantes
-      \draw[proyeccion] (P) -- (COV1);
-      \node[cyan!50!black, below=1pt] at (COV1) {\footnotesize $x_1$};
-      \draw[proyeccion] (P) -- (COV2);
-      \node[cyan!50!black, above left=-2pt and -2pt] at (COV2) {\footnotesize $x_2$};
-      
-      % Ejes
-      % x
-      \draw[ejecart, use path=\ejex];
-      \node[textoapagado, below=1.2pt] at (xfin) {\small $x$};
-      % y
-      \draw[ejecart, use path=\ejey];
-      \node[above, textoapagado] at (yfin) {$y$};
-      % xtilde
-      \draw[ejeoblic, use path=\ejextilde];
-      % \node[below, texto] at (xtildefin) {$\tilde{x}^1$};
-      % ytilde
-      \draw[ejeoblic, use path=\ejeytilde];
-      \node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{y}$};
-      % \node[rotate=90, left=8pt] at (ytexto) {$r\sin\theta$};
-      % Vector P
-      \draw[vector, use path=\r];
-      \node[above left=-3pt and -1pt] at (pmid) {\footnotesize $\vvv{r}$};
-      \filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
-      \node[above right=0pt and -5pt] at (P) {\footnotesize $P$};
-      
-      % Origen
-      \filldraw (O) circle [radius=.2pt];
-      
-      % Fondo amarillo
-      \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
-      \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
-      \begin{scope}[on background layer]
-        \draw[background] (SW) rectangle (NE);
-      \end{scope}
-    \end{tikzpicture}
-    \caption{Componentes contravariantes, en naranja y covariantes, en azul. El ángulo
-      entre los ejes está marcado en verde. El sistema de coordenadas rectangular se
-      muestra, algo apagado, como referencia.}
-    \label{fig:R2-oblic_contrav_cov}
-  \end{minipage}
-\end{figure}
-Piensa en la base $\vvv{e}^i$ como una serie de líneas o superficies de nivel perpendiculares a cada uno de los ejes, que nos indican el valor de un cierto escalar o \emph{altura}. La componente covariante en ese eje nos indica de forma visual el
-\emph{número de líneas o superficies de nivel} que el vector \emph{atraviesa}.
-Ver figuras \ref{fig:R2-oblic_cov1} y \ref{fig:R2-oblic_cov2} (comparar con figura
-\ref{fig:R2-oblic_ejes_ctv_cov}).
-\begin{figure}[ht]
-  \begin{minipage}{0.45\linewidth}
-    % Escala
-    \def\scl{1.00}
-    % 
-    % \pgfmathsetmacro{\EJESCARTLONG}{3.0}
-    % \pgfmathsetmacro{\EJEOBLICLONG}{2.7}
-     \pgfmathsetmacro{\EJESCARTLONG}{3.3}
-    \pgfmathsetmacro{\EJEOBLICLONG}{3.0}
-    %Eje xtilde
-    \pgfmathsetmacro{\XTILDEANG}{0}
-    \pgfmathsetmacro{\XTILDELONG}{\EJEOBLICLONG}
-    % Eje ytilde
-    \pgfmathsetmacro{\YTILDEANG}{70}
-    \pgfmathsetmacro{\YTILDELONG}{\EJESCARTLONG}
-    % Vector P
-    \pgfmathsetmacro{\PMOD}{2.2}
-    \pgfmathsetmacro{\PANG}{40}
-    \pgfmathsetmacro{\XVECTOR}{\PMOD * cos(\PANG)}
-    % Líneas de nivel x
-    \pgfmathsetmacro{\INICIOALTURA}{-0}
-    \pgfmathsetmacro{\XNUMLINEASMASUNA}{20}
-    \pgfmathsetmacro{\XNUMLINEAS}{\XNUMLINEASMASUNA - 1}
-    \pgfmathsetmacro{\XUNIT}{\XTILDELONG / \XNUMLINEASMASUNA}
-    \pgfmathsetmacro{\ALTURALINEAS}{\YTILDELONG*cos(90-\YTILDEANG)-\INICIOALTURA - 0.1}
-    \pgfmathsetmacro{\XPOSLINEACOV}{\XVECTOR / \XUNIT}
-    % Fondo
-    \pgfmathsetmacro{\HORZ}{0.93}
-    \pgfmathsetmacro{\VERT}{0.44}
-    % 
-    \centering
-    \begin{tikzpicture}[%
-      scale=\scl,
-      every node/.style={black,font=\small},
-      lineanivel/.style={black!20},
-      ejeoblic/.style={->, black},
-      proyeccion/.style={black!20, line width=0.4},
-      texto/.style={black},
-      vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt, black!40},
-     % covariante/.style={%
-     % -{Latex[round,width=5pt,length=8pt]},line width=1.2pt, cyan!70!black},
-     covariante/.style={line width=1.8pt, cyan!70!black},
-      covtxt/.style={cyan!40!black},
-      pcirculo/.style={fill=\colorPorig, draw=black},
-      background/.style={%
-        line width=\bgborderwidth,
-        draw=\bgbordercolor,
-        fill=\bgcolor,
-      },
-      ]
-      % COORDENADAS
-      % Origen
-      \coordinate (O) at (0,0);
-      % Eje xtilde
-      \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
-      coordinate (xtildefin);
-      % Eje ytilde
-      \path[save path=\ejeytilde, name path=O--ytilde]
-      (O) -- ++(\YTILDEANG:\YTILDELONG cm)
-      coordinate (ytildefin);
-      % Vector
-      \path[save path=\r] (O) -- coordinate[pos=0.6] (posvecttxt) (\PANG:\PMOD cm)
-      coordinate (P);
-      % Componentes covariantes
-      % Proyección de P en los ejes
-      % Con eje x
-      
-      \path[save path=\proyx] (P) |- (xfin) coordinate[pos=0.5] (e2x) (xfin);
-      % Componente covariante con eje xtilde (COV1)
-      \path (P) |- coordinate[pos=0.5] (COV1) (xtildefin);
-      % Perpendicular a O--ytilde que pasa por P
-      % -> Componente covariante con eje ytilde (COV2)
-      \path (P) -- ($(O)!(P)!(ytildefin)$) coordinate (COV2);
-    
-      % DIBUJOS
-      % Covariantes
-      %\draw[proyeccion] (P) -- (COV1);
-      %\draw[proyeccion] (P) -- (COV2);
-
-      \foreach \num in {0,...,\XNUMLINEAS}
-      \draw[lineanivel] (\XUNIT * \num, \INICIOALTURA) -- ++(0, \ALTURALINEAS);
-
-      \foreach \num in {0,...,\XPOSLINEACOV}
-      \draw[lineanivel,red!50] (\XUNIT * \num, \INICIOALTURA) -- ++(0, \ALTURALINEAS);
-      
-      % Ejes
-      % xtilde
-      \draw[ejeoblic, use path=\ejextilde];
-      %\node[texto, right] at (xtildefin) {\footnotesize $\tilde{x}^1$};
-      \node[texto, right] at (xtildefin) {\footnotesize $\tilde{x}$};
-      % ytilde
-      \draw[ejeoblic, use path=\ejeytilde];
-      %\node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{x}^2$};
-      \node[texto, above right=0pt and -4pt] at (ytildefin) {$\tilde{y}$};
-      % \node[rotate=90, left=8pt] at (ytexto) {$r\sin\theta$};
-      % Vector P
-      \draw[vector, use path=\r];
-      \node[above left=-3pt and -1pt,gray] at (posvecttxt) {\footnotesize $\vvv{v}$};
-      %\filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
-      %\node[above right=0pt and -5pt] at (P) {\footnotesize $P$};
-
-      % Marcar en azul la componentes covariantes
-      %\draw[covariante]
-      %(O) -- node[covtxt,pos=0.5, below]
-      %{$A_1\vvv{e}^1$} (COV1);
-      \draw[covariante] (O) --node[covtxt,pos=0.5,below] {$x_1$} (COV1);
-      %\draw[covariante] (O) -- node[covtxt,pos=0.5,above left=-2pt and -2pt]
-      %{$\hat{x}_2\vvv{e}^2$} (COV2);
-      
-      % Origen
-      \fill[cyan!80!black] (O) circle [radius=0.8pt];
-    
-      % Fondo amarillo
-      \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
-      \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
-      \begin{scope}[on background layer]
-        \draw[background] (SW) rectangle (NE);
-      \end{scope}
-    \end{tikzpicture}
-    \caption{En azul, la componente covariante $x_1$ de un vector $\vvv{v}$ en
-      coordenadas oblicuas, interpretada geométricamente como la proyección del vector o
-      su \emph{sombra} en el eje $\tilde{x}$. En rojo aparecen las líneas de nivel
-      perpendiculares al eje que son \emph{atravesadas} por $\vvv{v}$.
-      En gris, las líneas que no son \emph{atravesadas}.}
-    \label{fig:R2-oblic_cov1}
-  \end{minipage}
-  \hspace{1em}
-  \begin{minipage}{0.45\linewidth}
-    % Escala
-    \def\scl{1.00}
-    % 
-    %\pgfmathsetmacro{\EJESCARTLONG}{3.0}
-    %\pgfmathsetmacro{\EJEOBLICLONG}{2.7}
-    \pgfmathsetmacro{\EJESCARTLONG}{3.3}
-    \pgfmathsetmacro{\EJEOBLICLONG}{3.0}
-    % Eje xtilde
-    \pgfmathsetmacro{\XTILDEANG}{0}
-    \pgfmathsetmacro{\XTILDELONG}{\EJEOBLICLONG}
-    % Eje ytilde
-    \pgfmathsetmacro{\YTILDEANG}{70}
-    \pgfmathsetmacro{\YTILDELONG}{\EJESCARTLONG}
-    % Vector P
-    \pgfmathsetmacro{\PMOD}{2.22}
-    \pgfmathsetmacro{\PANG}{40}
-    \pgfmathsetmacro{\YVECTOR}{\PMOD * sin(\PANG)}
-    % Lineas de nivel y
-    \pgfmathsetmacro{\YANGULOROT}{\YTILDEANG - 90}
-    \pgfmathsetmacro{\INICIOLONGITUD}{-0}
-    \pgfmathsetmacro{\YNUMLINEASMASUNA}{20}
-    \pgfmathsetmacro{\YNUMLINEAS}{\YNUMLINEASMASUNA - 1}
-    \pgfmathsetmacro{\YUNIT}{\XTILDELONG / \YNUMLINEAS}
-    \pgfmathsetmacro{\LONGITUDLINEAS}{\XTILDELONG - \INICIOLONGITUD - 0.25}
-    \pgfmathsetmacro{\THETAANG}{\YTILDEANG - \PANG}
-    \pgfmathsetmacro{\YPOSLINEACOV}{\PMOD*cos(\THETAANG)/(\YUNIT*cos(90-\YTILDEANG)}
-    % Fondo
-    \pgfmathsetmacro{\HORZ}{0.70}
-    \pgfmathsetmacro{\VERT}{0.25}
-    % 
-    \centering
-    \begin{tikzpicture}[%
-      scale=\scl,
-      every node/.style={black,font=\small},
-      lineanivel/.style={black!20},
-      ejeoblic/.style={->, black},
-      proyeccion/.style={black!20, line width=0.4},
-      texto/.style={black},
-      vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt, black!40},
-      %covariante/.style={%
-      %  -{Latex[round,width=5pt,length=8pt]},line width=1.2pt, cyan!70!black},
-      covariante/.style={line width=1.8pt, cyan!70!black},
-      covtxt/.style={cyan!40!black},
-      pcirculo/.style={fill=\colorPorig, draw=black},
-      background/.style={%
-        line width=\bgborderwidth,
-        draw=\bgbordercolor,
-        fill=\bgcolor,
-      },
-      ]
-      % COORDENADAS
-      % Origen
-      \coordinate (O) at (0,0);
-      % Eje xtilde
-      \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
-      coordinate (xtildefin);
-      
-      % Eje ytilde
-      \path[save path=\ejeytilde, name path=O--ytilde]
-      (O) -- ++(\YTILDEANG:\YTILDELONG cm)
-      coordinate (ytildefin);
-      % Vector
-      \path[save path=\r] (O) -- coordinate[pos=0.6] (posvecttxt) (\PANG:\PMOD cm)
-      coordinate (P);
-      % Componentes covariantes
-      % Proyección de P en los ejes
-      % Con eje x
-      \path[save path=\proyx] (P) |- (xfin) coordinate[pos=0.5] (e2x) (xfin);
-      % Componente covariante con eje xtilde (COV1)
-      %\path (P) |- coordinate[pos=0.5] (COV1) (xtildefin);
-      % Perpendicular a O--ytilde que pasa por P
-      % -> Componente covariante con eje ytilde (COV2)
-      \path (P) -- ($(O)!(P)!(ytildefin)$) coordinate (COV2);
-    
-      % DIBUJOS
-      % Covariantes
-      %\draw[proyeccion] (P) -- (COV1);
-      %\draw[proyeccion] (P) -- (COV2);
-      
-      \foreach \num in {0,...,\YNUMLINEASMASUNA}
-      \draw[lineanivel,rotate=\YANGULOROT]
-      (\INICIOLONGITUD, \YUNIT * \num) -- ++(\LONGITUDLINEAS, 0);
-
-      \foreach \num in {0,...,\YPOSLINEACOV}
-      \draw[lineanivel,rotate=\YANGULOROT,red!50]
-      (\INICIOLONGITUD, \YUNIT * \num) -- ++(\LONGITUDLINEAS, 0);      
-      
-      % Ejes
-      % xtilde
-      \draw[ejeoblic, use path=\ejextilde];
-      %\node[texto, right] at (xtildefin) {\footnotesize $\tilde{x}^1$};
-      \node[texto, right] at (xtildefin) {\footnotesize $\tilde{x}$};
-      % ytilde
-      \draw[ejeoblic, use path=\ejeytilde];
-      %\node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{x}^2$};
-      \node[texto, above right=0pt and -4pt] at (ytildefin) {$\tilde{y}$};
-      % \node[rotate=90, left=8pt] at (ytexto) {$r\sin\theta$};
-      % Vector P
-      \draw[vector, use path=\r];
-      \node[above left=-3pt and -1pt,gray] at (posvecttxt) {\footnotesize $\vvv{v}$};
-      %\filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
-      %\node[above right=0pt and -5pt] at (P) {\footnotesize $P$};
-
-      % Marcar en azul la componentes covariantes
-      %\draw[covariante]
-      %(O) -- node[covtxt,pos=0.5, below]
-      %{$\hat{A}_1\xhat{e}^1$} (COV1);
-      \draw[covariante] (O)--node[covtxt,pos=0.5,above left=-2pt and -2pt]{$x_2$} (COV2);
-      
-      % Origen
-      \fill[cyan!80!black] (O) circle [radius=0.8pt];
-    
-      % Fondo amarillo
-      \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
-      \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
-      \begin{scope}[on background layer]
-        \draw[background] (SW) rectangle (NE);
-      \end{scope}
-    \end{tikzpicture}
-    \caption{En azul, la componente covariante $x_2$ de un vector $\vvv{v}$ en
-      coordenadas oblicuas, interpretada geométricamente como la proyección del vector o
-      su \emph{sombra} en el eje $\tilde{y}$. En rojo aparecen las líneas de nivel
-      perpendiculares al eje que son \emph{atravesadas} por $\vvv{v}$.
-      En gris, las líneas que no son \emph{atravesadas}.}
-    \label{fig:R2-oblic_cov2}
-  \end{minipage}
-\end{figure}
-
-Una forma de asimilar este tipo de componentes es suponer que un vector $\vvv{v}$
-representa el gradiente de un cierto campo escalar $\vvv{\nabla}\phi$.
-Este gradiente se puede representar gráficamente como una serie de líneas de contorno o
-superficies de nivel, que indica cuánto cambia un determinado escalar cuando nos
-desplazamos en el espacio (en nuestro caso concreto en $\symbb{R}^2$).
-
-Si aumentáramaos la escala de medida (utilizando una base \emph{mayor}, por ejemplo, en
-el caso de distancias, usar metros en lugar de centímetros), las superficies de nivel
-(gradiente) se comprimirían y, aunque el vector se vería más pequeño proporcionalmente
-(componentes contravariantes), la densidad de líneas de nivel aumentaría, también
-proporcionalmente.
-
-En otras palabras, cuando un vector se visualiza mediante un cierto tipo de
-recorrido en el espacio, como desplazamiento, velocidad, aceleración, etc.
----mediante sus componentes contravariantes---, al aumentar la escala de medida, las
-líneas de nivel se comprimen, aumenta su densidad y el cambio en la ``altura'' debido al
-gradiente es mayor, las componentes covariantes aumentan en consecuencia. Estas
-componentes no varían inversamente con la escala de medida, sino que lo hace en el mismo
-sentido. Estas son las \emph{componentes covariantes}.
-
-
-\section{Producto escalar}
-Ahora que se han introducido las componentes covariantes y contravariantes, y el tensor
-métrico, estamos en disposición de ver el producto escalar de dos vectores
-contravariantes.
-
-Definiremos el producto escalar de dos vectores $\vvv{u}$ y $\vvv{v}$ matricialmente en
-$\symbb{R}^2$ como
-\begin{equation}
-  \vvv{u}\cdot\vvv{v}
-  = \vvv{u}^\transp  \mmm{g}_{ij} \vvv{v}
-  = \begin{pmatrix}
-    u^1 & u^2
-  \end{pmatrix}
-  \,\begin{pmatrix}
-    g_{11} & g_{12}\\
-    g_{21} & g_{22}
-  \end{pmatrix}
-  \,
-  \begin{pmatrix}
-    v^1\\
-    v^2
-  \end{pmatrix}
-\end{equation}
-
-Desarrollando la expresión
-{\small
-  \begin{align*}
-    \vvv{u}\cdot\vvv{v}
-    &=
-      \begin{pmatrix}
-        u^1 g_{11}+ u^2g_{21} & u^1g_{12}+ u^2g_{22}
-      \end{pmatrix}
-      \,
-      \begin{pmatrix}
-        v^1\\
-        v^2
-      \end{pmatrix}\\
-    &=
-      \left(u^1\,g_{11}+ u^2\,g_{21}\right) v^1+\left(u^1\,g_{12}+u^2\,g_{22}\right) v^2\\
-    &=
-      u^1g_{11}\,v^1 + u^2g_{21}\,v^1 + u^1g_{12}\,v^2 + u^2g_{22}\,v^2\\
-    &=
-      u^1\left(g_{11}\,v^1+g_{12}\,u^2\right) + v^2\left(g_{21}\,v^1+g_{22}\,v^2\right)\\
-    &=
-      u^1\left(\sum_{j=1}^2g_{1j}\,v^j\right) + u^2\left(\sum_{j=1}^2g_{2j}\,v^j\right)\\
-    &=
-      \sum_{i=1}^2 u^i \left(\sum_{j=1}^2g_{ij}\,v^j\right)\\
-    &=
-      \sum_{i=1}^2\sum_{j=1}^2g_{ij}\,u^i\,v^j
-  \end{align*}
-}
-
-En notación de Einstein
-\begin{equation}
-  \vvv{u}\cdot\vvv{v}
-  = g_{ij}\,u^i\,v^j
-\end{equation}
-
-Regorganizando términos ---que son escalares y se cumple la propiedad conmutativa
-\[
-  \vvv{u}\cdot\vvv{v}
-  = \,u^ig_{ij}\,v^j
-\]
-
-Ahora, utilizamos la métrica para bajar el índice $j$, porque
-$U_i = g_{ij}v^j$
-\begin{equation}
-  \vvv{u}\cdot\vvv{v}
-  = u^i\,v_i = u_i\,v^i
-\end{equation}
-
-
-\section{Gradiente}
-Supongamos un campo escalar $\phi$, definido en $\symbb{R^2}$ y expresado en coordenadas
-oblicuas según sus componentes contravariantes ---utilizando, para la posición en el
-espacio, la base unitaria $B= (\vvv{e}_1,\vvv{e}_2)$---
-\begin{equation}
-  \phi = \phi(x^1, x^2)
-\end{equation}
-Los vectores de esta base $B$ no cambian con la posición en el espacio.
-
-\subsubsection{Componentes covariantes}
-El gradiente es un vector covariante (1-forma). Sus componentes se obtienen derivando
-parcialmente el campo escalar con respecto de las componentes contravariantes
-$(\nabla\phi)_i = \partial\phi/\partial x^i$. Desarrollando la expresión anterior,
-obtenemos
-\begin{align}
-  (\nabla\phi)_1 &= \dfrac{\partial\phi}{\partial x^1}\\
-  (\nabla\phi)_2 &= \dfrac{\partial\phi}{\partial x^2}
-\end{align}
-
-El vector gradiente será
-\begin{equation}
-  \vvv{\nabla}\phi
-  = (\nabla\phi)_i\vvv{e}^i
-  = \dfrac{\partial\phi}{\partial x^i}\vvv{e}^i
-  = \dfrac{\partial\phi}{\partial x^1}\vvv{e}^1
-  + \dfrac{\partial\phi}{\partial x^2}\vvv{e}^2
-\end{equation}
-
-\subsubsection{Componentes contravariantes}
-Para que el gradiente nos indique la dirección y sentido (segmento orientado) que indica
-el máximo aumento del escalar tenemos que obtener sus componentes contravariantes.
-
-Para obtener $\nabla\phi^1$ y $\nabla\phi^2$, tenemos que subir índices
-$\nabla\phi_i=\partial\phi/\partial x^i$, multiplicando por la inversa de la métrica
-\begin{equation}
-  \vvv{\nabla}\phi
-  = g^{ij}(\nabla\phi)_i\,\vvv{e}_j
-  = g^{ij} \dfrac{\partial\phi}{\partial x^i}\,\vvv{e}_j
-  = (\nabla\phi)^j\,\vvv{e}_j
-\end{equation}
-
-Desarrollando la expresión anterior
-\begin{align*}
-  \vvv{\nabla}\phi
-  &=
-    \mmm{g}^{11}\dfrac{\partial\phi}{\partial x^1}\,\vvv{e}_1
-    + \mmm{g}^{12}\dfrac{\partial\phi}{\partial x^1}\,\vvv{e}_2
-    + \mmm{g}^{21}\dfrac{\partial\phi}{\partial x^2}\,\vvv{e}_1
-    + \mmm{g}^{22}\dfrac{\partial\phi}{\partial x^2}\,\vvv{e}_2\\
-  &=
-    \dfrac{1}{\sin^2\alpha}\,\dfrac{\partial\phi}{\partial x^1}\,\vvv{e}_1
-    - \dfrac{\cos\alpha}{\sin^2\alpha}\,\dfrac{\partial\phi}{\partial x^1}\,\vvv{e}_2
-    - \dfrac{\cos\alpha}{\sin^2\alpha}\,\dfrac{\partial\phi}{\partial x^2}\,\vvv{e}_1
-    + \dfrac{1}{\sin^2\alpha}\,\dfrac{\partial\phi}{\partial x^2}\,\vvv{e}_2
-\end{align*}
-
-Simplificando, obtendríamos
-\begin{equation}\label{eq:R2-oblic_gradiente_contrav}
-  \vvv{\nabla}\phi
-  = \dfrac{1}{\sin^2\alpha}
-  \left[%
-    \left(%
-      \dfrac{\partial\phi}{\partial x^1}-\cos\alpha\dfrac{\partial\phi}{\partial x^2}
-    \right) \vvv{e}_1
-    +\left(%
-      \dfrac{\partial\phi}{\partial x^2}-\cos\alpha\dfrac{\partial\phi}{\partial x^1}
-    \right) \vvv{e}_2
-  \right]
-\end{equation}
-
-{\small
-  También se podrían haber calculado subiendo el índice de las componentes por separado
-\begin{equation}
-  (\nabla\phi)^i
-  = g^{ij} (\nabla\phi)_j = g^{ij}\dfrac{\partial\phi}{\partial x^j}
-\end{equation}
-}
-
-{\small
-\begin{align*}
-  (\nabla\phi)^1
-  &=
-    g^{11} \dfrac{\partial\phi}{\partial x^1}
-    + g^{12} \dfrac{\partial\phi}{\partial x^2}
-    =
-    \dfrac{1}{\sin^2\alpha}\dfrac{\partial\phi}{\partial x^1}
-    - \dfrac{\cos\alpha}{\sin^2\alpha}\dfrac{\partial\phi}{\partial x^2}
-    =
-    \dfrac{1}{\sin^2\alpha}
-    \left(%
-    \dfrac{\partial\phi}{\partial x^1}-\cos\alpha\dfrac{\partial\phi}{\partial x^2}
-    \right)\\
-  (\nabla\phi)^2
-  &=
-    g^{21} \dfrac{\partial\phi}{\partial x^1}
-    + g^{22} \dfrac{\partial\phi}{\partial x^2}
-    =
-    - \dfrac{\cos\alpha}{\sin^2\alpha}\dfrac{\partial\phi}{\partial x^1}    
-    \dfrac{1}{\sin^2\alpha}\dfrac{\partial\phi}{\partial x^2}
-    =
-    \dfrac{1}{\sin^2\alpha}
-    \left(%
-    \dfrac{\partial\phi}{\partial x^2}-\cos\alpha\dfrac{\partial\phi}{\partial x^1}
-    \right)  
-\end{align*}
-}
-
-{\small
-Y luego sustituir lo anterior en
-\begin{equation}
-  \vvv{\nabla\phi} = (\nabla\phi)^1\,\vvv{e}_1 + (\nabla\phi)^2\,\vvv{e}_2
-\end{equation}
-dando el mismo resultado que en \eqref{eq:R2-oblic_gradiente_contrav}.
-}
-
-\section{Divergencia}
-
-
+%    % Fondo amarillo
+%    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+%    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
+%    \begin{scope}[on background layer]
+%      \draw[background] (SW) rectangle (NE);
+%    \end{scope}
+%  \end{tikzpicture}
+%  \caption{Componentes contravariantes $x^i$, en coordenadas oblicuas. El vector
+%    $\vvv{v}$ se representa como
+%    $\vvv{v}=x^1\,\vvv{e}_1+x^2\,\vvv{e}_2$. La componente
+%    contravariante en un cierto eje nos indica el desplazamiento que se ha producido en
+%    ese eje, en las unidades en las que se mide el vector $\vvv{v}$, según la base
+%    covariante elegida.}
+%  \label{fig:R2-oblic_contrav}
+%\end{figure}
+%
+%Para centrar ideas, supongamos que el vector $\vvv{v}$ de la figura representa un
+%desplazamiento en $\symbb{R}^2$. La componente $x^1$ nos indica el desplazamiento
+%en el eje $x^1$, medido por el vector $\vvv{e}_1$ de la base, y $x^2$ nos lo da en el
+%eje $x^2$, medido por $\vvv{e}_2$.
+%La suma de las componentes contravariantes $x^i$ multiplicadas por sus
+%respectivos vectores covariantes de la base $\vvv{e}_i$, nos da el desplazamiento
+%indicado por el vector. Nótese que en la suma se utiliza la regla del paralelogramo.
+%Esto es característico de las componentes contravariantes que, en cierto modo
+%\emph{funcionan} como las componentes $x$ e $y$ en un sistema cartesiano ortogonal.
+%
+%
+%\section{Forma matricial de la base y de las componentes}
+%Recordemos que los vectores de una base se representan matricialmente situando los
+%vectores en fila
+%\[
+%  B =
+%  \begin{pmatrix}
+%    \vvv{e}_1 & \vvv{e}_2
+%  \end{pmatrix}
+%\]
+%
+%En forma matricial, las componentes contravariantes del vector $\vvv{v}$, en una cierta
+%base, se representan en columna. Así, el vector anterior se puede expresar en la base
+%elegida como
+%\[
+%  \vvv{v} =
+%  \begin{pmatrix}
+%    x^1\\
+%    x^2
+%  \end{pmatrix}
+%\]
+%Es importante distinguir entre estas dos notaciones y darse cuenta de que no son
+%comparables. La primera, es la forma en la que se representa un conjunto de vectores que
+%forman una base, mientras que la segunda representa las componentes de un vector en una
+%cierta base. Lo único que tienen en común es que ambas son representaciones matriciales,
+%aunque de cosas diferentes
+%\[
+%  \vvv{v}
+%  = \begin{pmatrix}
+%    \vvv{e}_1 & \vvv{e}_2
+%  \end{pmatrix}
+%  \,\begin{pmatrix}
+%    x^1\\
+%    x^1
+%  \end{pmatrix}
+%  = \vvv{e}_1 x^1 + \vvv{e}_2 x^2
+%  = x^1 \vvv{e}_1 + x^2 \vvv{e}_2
+%  = \vvv{e}_i x^i
+%  = x^i \vvv{e}_i
+%\]
+%
+%
+%
+%
+%\section{Transformación de componentes}
+%Un cambio de base, por ejemplo de $B$ a $B'$, se produce mediante una matriz de
+%transformación $\mmm{M}$
+%\begin{equation}
+%  B' = \mmm{M} B
+%\end{equation}
+%Entonces, las componentes de cualquier vector también se modifican.
+%
+%Las componentes contravariantes de un vector se representan en columna y en la expresión
+%matemática de la transformación interviene la matriz inversa del cambio de base (porque
+%las componentes  contravariantes se transforman de forma inversa a como lo hacían los
+%vectores de la base). Así, las nuevas componentes se obtienen a partir de las antiguas
+%mediante $\mmm{M}^{-1}$, mientras que las antiguas se transforman a partir de las nuevas
+%mediante $\mmm{M}$
+%\begin{subequations}
+%  \begin{align}
+%    &\left[\tilde{x}^i\right]_{B'} = \mmm{M}^{-1} \left[x^i\right]_{B}\\
+%    &\left[x^i\right]_{B}\hspace{0.4em} = \mmm{M} \left[\tilde{x}^i\right]_{B'}
+%  \end{align}
+%\end{subequations}
+%
+%En coordenadas oblicuas en $\symbb{R}^2$ utilizamos las matrices inversa
+%\eqref{eq:R2-oblic_Minv} y directa \eqref{eq:R2-oblic_M}, respectivamente
+%\begin{subequations}
+%  \begin{align}
+%    \begin{pmatrix}
+%      \tilde{x}^1\\
+%      \tilde{x}^2
+%    \end{pmatrix}
+%    &=
+%      \begin{pmatrix}
+%        1 & -\cot\alpha\\
+%        0 & \phantom{-}\csc\alpha
+%      \end{pmatrix}
+%      \,
+%    \begin{pmatrix}
+%      x^1\\
+%      x^2
+%    \end{pmatrix}\\
+%    \begin{pmatrix}
+%      x^1\\
+%      x^2
+%    \end{pmatrix}
+%    &=
+%      \begin{pmatrix}
+%        1 & \cos\alpha\\
+%        0 & \sin\alpha
+%      \end{pmatrix}
+%      \,
+%    \begin{pmatrix}
+%      \tilde{x}^1\\
+%      \tilde{x}^2
+%    \end{pmatrix}
+%  \end{align}
+%\end{subequations}
+%
+%
+%\subsubsection{Ejemplo}
+%Supongamos que tenemos un vector en coordenadas cartesianas rectangulares
+%\[
+%  \vvv{v}
+%  = x^1\,\xhat{u}_1 + x^2\,\xhat{u}_2 = x^i\,\xhat{u}_i
+%  = 2\,\uvec{\i} - 4\,\uvec{\j}
+%\]
+%donde $\xhat{u}_1 = \uvec{\i}$ y $\xhat{u}_2 = \uvec{\j}$.
+%Estamos interesados en obtener las componentes $\tilde{A}^i$ en un sistema de
+%coordenadas oblicuas, donde el ángulo que forman sus ejes vale
+%$\alpha = \pi/3\,\unit{\radian}$. Tendremos que aplicar la inversa de la matriz de
+%transformación de base de $B$ a $B'$
+%\begin{align*}
+%  \begin{pmatrix}
+%    \tilde{x}^1\\
+%    \tilde{x}^2
+%  \end{pmatrix}
+%  &=
+%  \begin{pmatrix}
+%    1 & -\cot{\pi/3}\\
+%    0 & \phantom{-}\csc{\pi/3}
+%  \end{pmatrix}
+%  \,
+%  \begin{pmatrix}
+%    x^1\\
+%    x^2
+%  \end{pmatrix}
+%    =
+%    \begin{pmatrix}
+%      1 & -1/\sqrt{3}\\
+%      0 & \phantom{-}2/\sqrt{3}
+%    \end{pmatrix}
+%    \,
+%    \begin{pmatrix}
+%      \phantom{-}2\\
+%      -4
+%    \end{pmatrix}
+%    =
+%    \begin{pmatrix}
+%      2+\dfrac{4}{\sqrt{3}}\\[3ex]
+%      -\dfrac{8}{\sqrt{3}}
+%    \end{pmatrix}
+%\end{align*}
+%
+%Así
+%\[
+%  \vvv{v}
+%  = \tilde{x}^1\,\vvv{e}_1 + \tilde{x}^2\,\vvv{e}_2 = \tilde{x}^i\,\vvv{e}_i
+%  = \left(2+\dfrac{4}{\sqrt{3}}\right)\,\vvv{e}_1 - \dfrac{8}{\sqrt{3}}\,\vvv{e}_2
+%\]
+%
+%Si nos dieran las componentes en coordenadas oblicuas
+%\[
+%  \left(\tilde{x}^1, \tilde{x}^2\right) = \left(2+4/\sqrt{3}, -8/\sqrt{3}\right)
+%\]
+%y quisiéramos obtener las coordenadas rectangulares, deberíamos obtener $(2,-4)$
+%\begin{align*}
+%  \begin{pmatrix}
+%    x^1\\
+%    x^2
+%  \end{pmatrix}
+%  &=
+%  \begin{pmatrix}
+%    1 & \cos{\pi/3}\\
+%    0 & \sin{\pi/3}
+%  \end{pmatrix}
+%  \,
+%  \begin{pmatrix}
+%    \tilde{x}^1\\
+%    \tilde{x}^2
+%  \end{pmatrix}
+%    =
+%  \begin{pmatrix}
+%    1 & 1/2\\
+%    0 & \sqrt{3}/2
+%  \end{pmatrix}
+%  \,
+%  \begin{pmatrix}
+%    2+4/\sqrt{3}\\
+%    -8/\sqrt{3}
+%  \end{pmatrix}\\
+%  &=
+%    \begin{pmatrix}
+%      2+4/\sqrt{3}-4/\sqrt{3}\\
+%      -\sqrt{3}/2\, \left(-8/\sqrt{3}\right)
+%    \end{pmatrix}
+%    =
+%    \begin{pmatrix}
+%      \phantom{-}2\\
+%      -4
+%    \end{pmatrix}  
+%\end{align*}
+%
+%
+%\section{Métrica}
+%Con los conocimientos que hemos adquirido, la forma más directa y rápida para obtener el
+%tensor métrico en coordenadas oblicuas es utilizar el método seguido en la expresión
+%\eqref{eq:R2-cart-metrica}, para el sistema cartesiano rectangular. Para ello debemos
+%calcular el producto escalar de los vectores de la base \eqref{eq:R2-oblic_base_natural}.
+%Cualquier otro método es un rodeo para no utilizar esto.
+%
+%Multiplicamos escalarmente los vectores \eqref{eq:R2-oblic_e1_ij} y
+%\eqref{eq:R2-oblic_e2_ij} de la base natural entre sí
+%\begin{subequations}
+%  \begin{align}
+%    \label{eq:R2-oblic-e1e1_prod_escalar}
+%    \vvv{e}_1\cdot\vvv{e}_1
+%    &=
+%      \uvec{\i}\cdot\uvec{\i} = 1\\
+%    \label{eq:R2-oblic-e1e2_prod_escalar}    
+%    \vvv{e}_1\cdot\vvv{e}_2
+%    &=
+%      \uvec{\i}\cdot (\cos\theta\,\uvec{i} + \sin\theta\,\uvec{\j}) = \cos\theta\\
+%    \label{eq:R2-oblic-e2e1_prod_escalar}
+%    \vvv{e}_2\cdot\vvv{e}_1
+%    &=
+%      \vvv{e}_1\cdot\vvv{e}_2 = \cos\theta\\
+%    \label{eq:R2-oblic-e2e2_prod_escalar}
+%    \vvv{e}_2\cdot\vvv{e}_2
+%    &=
+%      (\cos\theta\,\uvec{\i}+\sin\theta\,\uvec{j})
+%      \cdot (\cos\theta\,\uvec{\i}+\sin\theta\,\uvec{j})
+%      = (\cos^2\theta + \sin^2\theta) = 1
+%  \end{align}
+%\end{subequations}
+%
+%El tensor métrico en coordenadas oblicuas resulta
+%\begin{equation}\label{eq:R2-oblic_metrica}
+%  \mmm{g}_{ij}
+%  = \begin{pmatrix}
+%    g_{11} & g_{12}\\
+%    g_{21} & g_{22}
+%    \end{pmatrix}
+%  = \begin{pmatrix}
+%      \vvv{e}_1\cdot\vvv{e}_1 & \vvv{e}_1\cdot\vvv{e}_2\\
+%      \vvv{e}_2\cdot\vvv{e}_1 & \vvv{e}_2\cdot\vvv{e}_2
+%  \end{pmatrix}
+%  = \begin{pmatrix}
+%    1 & \cos\alpha\\
+%    \cos\alpha & 1
+%  \end{pmatrix}
+%\end{equation}
+%
+%Analizamos la métrica obtenida
+%\begin{itemize}
+%\item Los elementos diagonales valen la unidad. Esto significa que un cambio en
+%  cualquiera  de los ejes $\tilde{x}$ o $\tilde{y}$ o componentes $A^i$, representan ese
+%  mismo valor de desplazamiento en el espacio.
+%\item Los elementos no diagonales no son cero, lo que indica que un cambio cualquiera en
+%  las coordenadas implica un cambio en la otra, y viceversa (los ejes no son
+%  ortogonales).
+%  \begin{itemize}
+%  \item Un caso extremo posible se produciría cuando
+%    $\alpha = \pi/2\,\unit{\radian} = \qty{90}{\degree}$. En este caso
+%    $\cos\alpha = \cos\pi/2 = 0$ y el tensor métrico se representaría mediante la matriz
+%    unidad. En esta situación, los ejes serían ortogonales y no tendríamos un sistema de
+%    coordenadas oblicuo, sino un sistema de coordenadas cartesianas rectangulares, como
+%    al inicio del capítulo.
+%  \item El otro caso extremo, que no produciría ningún sistema de referencia en
+%    $\symbb{R}^2$, se daría cuando $\alpha = 0$. En este caso $\cos\alpha = \cos 0 = 1$
+%    y los dos ejes $\tilde{x}$ y $\tilde{y}$, coincidirían. Además, los vectores
+%    unitarios respectivos, serían iguales $\vvv{e}_1 = \vvv{e}_2 = \uvec{\i}$ y ya no
+%    formarían una base del plano, ni tendríamos un sistema de coordenadas válido (el
+%    determinante de la métrica sería nulo, la matriz sería singular y no tendría
+%    inversa) y el sistema colapsaría. En todo caso tendríamos un subespacio vectorial de
+%    $\symbb{R}^2$, con una dimensión, definiendo el espacio de los reales $\symbb{R}$,
+%    pero no un sistema de coordenadas válido para el plano.
+%  \end{itemize}
+%\end{itemize}
+%
+%Calculamos la métrica inversa
+%{\small
+%  \begin{align*}
+%    \mmm{g}^{ij}
+%    &=
+%      \dfrac{1}{\det(g_{ij})}
+%      \text{adj}\left(g_{ij}^\transp\right)
+%      = \dfrac{1}{\sin^2\alpha}
+%      \begin{pmatrix}
+%        1 & -\cos\alpha\\
+%        -\cos\alpha & 1
+%      \end{pmatrix}
+%      = \begin{pmatrix}
+%        \csc^2\alpha & -\csc\alpha\cot\alpha\\
+%        -\csc\alpha\cot\alpha & 1
+%      \end{pmatrix}
+%  \end{align*}
+%}
+%Resultando
+%{\small
+%\begin{equation}\label{eq:R2-oblic_metrica_inv}
+%  \mmm{g}^{ij}
+%  = \begin{pmatrix}
+%    g^{11} & g^{12}\\
+%    g^{21} & g^{22}
+%  \end{pmatrix}
+%  = \dfrac{1}{\sin^2\alpha}
+%  \begin{pmatrix}
+%    1 & -\cos\alpha\\
+%    -\cos\alpha & 1
+%  \end{pmatrix}
+%  = \begin{pmatrix}
+%    \csc^2\alpha & -\csc\alpha\cot\alpha\\
+%    -\csc\alpha\cot\alpha & 1
+%  \end{pmatrix}
+%\end{equation}
+%}
+%
+%\section{Espacio tangente y espacio dual}
+%Si se quiere profundizar algo más en las componentes covariantes y contravariantes, aquí
+%se presentan algunas ideas útiles.
+%
+%Hay una definición más formal de estas componentes, que procede del álgebra lineal y de
+%la geometría diferencial; de ambas, pero con propósitos y niveles de abstracción
+%distintos.
+%\begin{itemize}
+%\item Por parte del álgebra lineal, la distinción entre vectores y/o componentes
+%  covariantes y contravariantes nace de la relación entre un espacio vectorial $V$, y su
+%  espacio dual $V^*$:
+%\begin{itemize}
+%\item Vectores (contravariantes): Son los elementos del espacio original $V$. Sus
+%  elementos se transforman de manera inversa a los cambios de base, para que el vector
+%  físico permanezca igual.
+%\item Covectores o formas lineales (covariantes): Son elementos del espacio dual $V^*$
+%  asociado a $V$. Son funciones $\omega$ que actúan sobre los vectores $\vvv{v}\in V$ y
+%  producen un escalar $\mathbb{F}$. Sus componentes se transforman de la misma forma que
+%  los cambios de base (matriz de cambio de base $\mmm{M}$.
+%  
+%  A este nivel, las componentes covariantes son simplemente los coeficientes de una
+%  \emph{1-forma} o un funcional lineal ---las funciones que operan sobre un solo
+%  vector--- y producen un escalar $\mathbb{F}$, asociado al espacio vectorial.
+%  Sus componentes en nuestro sistema oblicuo en $\symbb{R}^2$ se representan
+%  matricialmente como
+%  \[
+%    \omega
+%    = \begin{pmatrix}
+%      x_1 & x_2
+%      \end{pmatrix}
+%  \]
+%  Estos covectores \emph{viven} en un espacio dual $V^*$ asociado al espacio vectorial
+%  $V$ original, $\omega\in V^*$
+%  \[
+%    \begin{array}{llcl}
+%      \omega: & V & \longrightarrow & \symbb{F}\\[-0.5ex]
+%      & \scriptstyle\vvv{v} & \mapsto & \scriptstyle\omega(\vvv{v})
+%    \end{array}
+%  \]
+%  En los casos que nos ocupan en este texto, el campo escalar es el de los números reales $\mathbb{F} = \mathbb{R}$ y el escalar que se obtiene en nuestro caso es el cuadrado del módulo del vector
+%  \[
+%    \omega(\vvv{v}) = |\vvv{v}|^2 = v^2
+%  \]
+%
+%  \[
+%    \omega(\vvv{v})
+%    =
+%    \vvv{w}
+%    \vvv{v}
+%    =
+%    \begin{pmatrix}
+%      x_1 & x_2
+%    \end{pmatrix}
+%    \,\begin{pmatrix}
+%      x^1\\
+%      x^2
+%    \end{pmatrix}
+%    = x_1x^1 + x_2x^2
+%    = x_ix^i
+%    = v^2
+%  \]
+%  
+%\end{itemize}
+% En principio, esta es la relación entre los vectores y los covectores,
+% pues \emph{viven} en espacios distintos. Ahora bien, si disponemos de una métrica (un
+% producto escalar definido en $V$, también lo tendremos en $V^*$), ambos espacios se
+% pueden conectar y el álgebra lineal nos permite \emph{bajar} o \emph{subir} índices
+% convirtiendo un vector en un covector y viceversa.
+%
+%\item Por su parte, la geometría diferencial toma estos conceptos del álgebra lineal y
+%  los aplica a cada punto de una variedad ---una superficie curva, por ejemplo; una
+%  superficie esférica o tórica en un espacio $\symbb{R}^3$---.
+%  \begin{itemize}
+%  \item Espacio tangente: En cada punto $P$\, de una curva o superficie, existe una
+%    línea o un plano tangente al punto que es un espacio vectorial $V$, o
+%    $T_p\symbb{R}^2$. Aquí es donde viven los vectores y tiene sentido el álgebra
+%    lineal. En cada punto de la variedad hay definido un plano o espacio vectorial
+%    diferente. En principio, no podríamos operar o comparar vectores de diferentes
+%    espacios tangente (asociados a diferentes puntos de la variedad). Para ello, hay que
+%    definir los conceptos de \emph{transporte paralelo} y \emph{derivada covariante},
+%    para poder \emph{transportar} un vector desde su espacio en un punto a otro espacio
+%    asociado a otro punto, y con ello poder realizar las operaciones comunes, suma,
+%    resta, derivada, etc., en un mismo espacio.
+%
+%    En nuestro caso, como $\symbb{R}^2$ es plano, pues no tiene más dimensiones, todo él
+%    es un mismo espacio vectorial, independientemente del punto de referencia y, por
+%    tanto, tienen sentido todas las operaciones de suma, resta, comparación, derivada,
+%    etc., sin necesidad del transporte paralelo y derivada covariante.
+%  \item Campos tensoriales: La geometría diferencial estudia cómo estas componentes
+%    (covariantes y contravariantes) cambian, no solo cuando cambias de base, sino cuando
+%    te mueves de un punto a otro en un sistema de coordenadas curvilíneo ---cuando se
+%    cambia de un punto a otro, los espacios tangentes cambian y, en principio, no se
+%    pueden relacionar fácilmente, pero la geometría diferencial nos permite comparar y
+%    operar con vectores de diferentes espacios tangente.
+%
+%    En geometría diferencial, las componentes covariantes suelen estar asociadas a los
+%    gradientes de las funciones escalares (de ahí lo de las líneas o superficies de
+%    nivel, mientras que las contravariantes se asocian a velocidades o desplazamientos
+%    infinitesimales.
+%  \end{itemize}
+%\end{itemize}
+%
+%Para terminar, el álgebra lineal proporciona la estructura algebraica, mientras que la geometría diferencial proporciona el marco geométrico y físico.
+%
+%\section{Base contravariante}
+%Como dijimos en el apartado anterior, la métrica nos permite conectar la base covariante
+%$\set{\vvv{e}_1,\vvv{e}_2}$ con su dual, base contravariante, \emph{subiendo} índices.E
+%Utilizando la métrica inversa \eqref{eq:R2-oblic_metrica_inv}, y en notación de Einstein
+%\begin{equation}
+%  \vvv{e}^i = g^{ij} \vvv{e}_j
+%\end{equation}
+%Así
+%\begin{align}
+%  \vvv{e}^1
+%  &=
+%    g^{11}\vvv{e}_1 + g^{12}\vvv{e}_2
+%    = \dfrac{1}{\sin^2\alpha}
+%    \left(%
+%    \vvv{e}_1 - \cos\alpha\,\vvv{e}_2
+%    \right)\\
+%  \vvv{e}^2
+%  &=
+%    g^{21}\vvv{e}_1 + g^{22}\vvv{e}_2
+%    = \dfrac{1}{\sin^2\alpha}
+%    \left(%
+%    -\cos\alpha\,\vvv{e}_1 + \vvv{e}_2
+%    \right)
+%\end{align}
+%
+%\subsubsection{Módulo de los elementos de la base dual}
+%Comprobamos el módulo de estos vectores y deduciremos que solo serían unitarios en un
+%sistema cartesiano rectangular $\alpha=\qty{90}{\degree}$
+%\begin{align}
+%  \left|\vvv{e}_1\right|
+%  &= \left(\dfrac{1}{\sin^2\alpha}\right)^2
+%    \sqrt{1^2 + (-\cos\alpha)^2}
+%    = \dfrac{\sqrt{1+\cos^2\alpha}}{\sin^4\alpha}\\
+%  \left|\vvv{e}_2\right|
+%  &= \left(\dfrac{1}{\sin^2\alpha}\right)^2
+%    \sqrt{(-\cos\alpha)^2 + 1}
+%    = \dfrac{\sqrt{1+\cos^2\alpha}}{\sin^4\alpha}
+%\end{align}
+%
+%\section{Producto escalar de los vectores de las dos bases}
+%Empezamos demostrando que el producto de vectores de los distintos espacios con el mismo
+%índice da la unidad
+%\begin{equation}
+%  \vvv{e}^i \cdot \vvv{e}_i = 1
+%\end{equation}
+%\begin{align*}
+%  \vvv{e}^1\cdot\vvv{e}_1
+%  &=
+%    \dfrac{1}{\sin^2\alpha}
+%    \left(\vvv{e}_1-\cos\alpha\,\vvv{e}_2\right)\cdot\vvv{e}_1
+%    = \dfrac{1}{\sin^2\alpha}
+%    (\vvv{e}_1\cdot\vvv{e}_1 - \cos\alpha\,\vvv{e}_2\cdot\vvv{e}_1)\\
+%  &=
+%    \dfrac{1}{\sin^2\alpha}
+%    (g_{11}-\cos\alpha\,g_{21})
+%    = \dfrac{1}{\sin^2\alpha}(1-\cos^2\alpha)
+%    = \dfrac{1}{\sin^2\alpha}\sin^2\alpha
+%    = 1
+%\end{align*}
+%\begin{align*}
+%  \vvv{e}^2\cdot\vvv{e}_2
+%  &=
+%    \dfrac{1}{\sin^2\alpha}
+%    \left(-\cos\alpha\,\vvv{e}_1+\vvv{e}_2\right)\cdot\vvv{e}_2
+%    = \dfrac{1}{\sin^2\alpha}
+%    (-\cos\alpha\,\vvv{e}_1\cdot\vvv{e}_2+\vvv{e}_2\cdot\vvv{e}_2)
+%  = \\
+%  &= \dfrac{1}{\sin^2\alpha}
+%    (-\cos\alpha\,g_{12} + g_{22})
+%    = \dfrac{1}{\sin^2\alpha}(-\cos^2\alpha+1)
+%    = \dfrac{1}{\sin^2\alpha}\sin^2\alpha
+%    = 1
+%\end{align*}
+%Por otro lado, demostramos que los productos \emph{cruzados} son nulos
+%\begin{equation}
+%  \vvv{e}^i\cdot\vvv{e}_j = 0
+%  \hspace{1em}\text{con } i\neq j
+%\end{equation}
+%\begin{align*}
+%  \vvv{e}^1\cdot\vvv{e}_2
+%  &=
+%    \dfrac{1}{\sin^2\alpha}
+%    (\vvv{e}_1-\cos\alpha\,\vvv{e}_2)\cdot\vvv{e}_2
+%    = \dfrac{1}{\sin^2\alpha}
+%    (\vvv{e}_1\cdot\vvv{e}_2 - \cos\alpha\,\vvv{e}_2\cdot\vvv{e}_2)\\
+%  &=
+%    \dfrac{1}{\sin^2\alpha} (g_{12} - \cos\alpha\,g_{22})    
+%    = \dfrac{1}{\sin^2\alpha} (\cos\alpha - \cos\alpha)    
+%    = 0
+%\end{align*}
+%\begin{align*}
+%  \vvv{e}^2\cdot\vvv{e}_1
+%  &=
+%    \dfrac{1}{\sin^2\alpha}
+%    (-\cos\alpha\,\vvv{e}_1+\vvv{e}_2)\cdot\vvv{e}_1
+%    = \dfrac{1}{\sin^2\alpha}
+%    (-\cos\alpha\,\vvv{e}_1\cdot\vvv{e}_1 + \vvv{e}_2\cdot\vvv{e}_1)\\
+%  &=
+%    \dfrac{1}{\sin^2\alpha} (-\cos\alpha\,g_{11} + g_{21})
+%    = \dfrac{1}{\sin^2\alpha} (-\cos\alpha + \cos\alpha)    
+%    = 0
+%\end{align*}
+%
+%Podemos resumir escribiendo
+%\begin{equation}
+%  \vvv{e}^i\cdot\vvv{e}_i
+%  = \vvv{e}_i\cdot\vvv{e}^i
+%  = \delta_{ij}
+%\end{equation}
+%
+%Nótese que $e^2$ es ortogonal a $e_1$ y que $e^1$ lo es a $e_2$.
+%Esto significa que el eje $x^2$ es perpendicular a $x^1$ y que $x^1$ es perpendicular
+%a $x^2$ ---estamos hablando de los ejes de coordenadas, no de las componentes en esos
+%ejes---, ver figura \ref{fig:R2-oblic_ejes_ctv_cov}.
+%
+%\begin{figure}[ht]
+%  % Escala
+%  \def\scl{1.00}
+%  % 
+%  \pgfmathsetmacro{\EJELONG}{3.3}
+%  % Eje x^1
+%  \pgfmathsetmacro{\XCTVANG}{0}
+%  % Eje x^2
+%  \pgfmathsetmacro{\YCTVANG}{60}
+%  %  Eje x_1
+%  \pgfmathsetmacro{\XCOVANG}{90}
+%  % Eje x_2
+%  \pgfmathsetmacro{\YCOVANG}{\YCTVANG-90}
+%  % Módulo unidad
+%  \pgfmathsetmacro{\MODULOUNO}{1.4}
+%  % Vector e_1
+%  \pgfmathsetmacro{\EXCOV}{\MODULOUNO}
+%  % Vector e_2
+%  \pgfmathsetmacro{\EYCOV}{\MODULOUNO}
+%  % Vector e^1
+%  \pgfmathsetmacro{\EXCTV}{\MODULOUNO/cos{\YCTVANG}}
+%  % Vector e^2
+%  \pgfmathsetmacro{\EYCTV}{\MODULOUNO/cos{\YCTVANG}}
+%  
+%%  % Lineas de nivel y
+%%  \pgfmathsetmacro{\YANGULOROT}{\YTILDEANG - 90}
+%%  \pgfmathsetmacro{\INICIOLONGITUD}{-0}
+%%  \pgfmathsetmacro{\YNUMLINEASMASUNA}{20}
+%%  \pgfmathsetmacro{\YNUMLINEAS}{\YNUMLINEASMASUNA - 1}
+%%  \pgfmathsetmacro{\YUNIT}{\XTILDELONG / \YNUMLINEAS}
+%%  \pgfmathsetmacro{\LONGITUDLINEAS}{\XTILDELONG - \INICIOLONGITUD - 0.25}
+%%  \pgfmathsetmacro{\THETAANG}{\YTILDEANG - \PANG}
+%%  \pgfmathsetmacro{\YPOSLINEACOV}{\PMOD*cos(\THETAANG)/(\YUNIT*cos(90-\YTILDEANG)}
+%  % Fondo
+%  \pgfmathsetmacro{\HORZ}{0.70}
+%  \pgfmathsetmacro{\VERT}{0.25}
+%  % 
+%  \centering
+%  \begin{tikzpicture}[%
+%    scale=\scl,
+%    every node/.style={black,font=\small},
+%    lineanivel/.style={black!20},
+%    ejectv/.style={->, black},
+%    ejecov/.style={->, red},
+%    proyeccion/.style={black!20, line width=0.4},
+%    textoctv/.style={black},
+%    textocov/.style={\colorTred},
+%    vectorcov/.style={-{Latex[round]}, shorten >=1.2pt, line width=1.5pt, black},
+%    vectorctv/.style={-{Latex[round]}, shorten >=1.2pt, line width=1.5pt, red!80!black},
+%    % covariante/.style={%
+%    % -{Latex[round,width=5pt,length=8pt]},line width=1.2pt, cyan!70!black},
+%    covariante/.style={line width=1.8pt, cyan!70!black},
+%    covtxt/.style={cyan!40!black},
+%    pcirculo/.style={fill=\colorPorig, draw=black},
+%    background/.style={%
+%      line width=\bgborderwidth,
+%      draw=\bgbordercolor,
+%      fill=\bgcolor,
+%    },
+%    ]
+%    % COORDENADAS
+%    % Origen
+%    \coordinate (O) at (0,0);
+%    % Eje x^1
+%    \path[save path=\ejexctv] (O) -- ++(\XCTVANG:\EJELONG cm) coordinate (xctvfin);
+%    % Eje x^2
+%    \path[save path=\ejeyctv] (O) -- ++(\YCTVANG:\EJELONG cm) coordinate (yctvfin);
+%    % Eje x_1
+%    \path[save path=\ejexcov] (O) -- ++(\XCOVANG:\EJELONG cm) coordinate (xcovfin);
+%    % Eje x_2
+%    \path[save path=\ejeycov] (O) -- ++(\YCOVANG:\EJELONG cm) coordinate (ycovfin);
+%    % Vectores
+%    % Vector e_1
+%    \path[save path=\excov] (O) -- ++(\XCTVANG:\EXCOV cm) coordinate (excovfin);
+%    % Vector e_2
+%    \path[save path=\eycov] (O) -- ++(\YCTVANG:\EYCOV cm) coordinate (eycovfin);
+%    % Vector e^1
+%    \path[save path=\exctv] (O) -- ++(\XCOVANG:\EXCTV cm) coordinate (exctvfin);
+%    % Vector e^2
+%    \path[save path=\eyctv] (O) -- ++(\YCOVANG:\EYCTV cm) coordinate (eyctvfin);
+%    %\path[save path=\ejeyctv, name path=O--ytilde] (O) -- ++(\YTILDEANG:\YTILDELONG cm)
+%%    coordinate (ytildefin);
+%%    % Vector
+%%    \path[save path=\r] (O) -- coordinate[pos=0.6] (posvecttxt) (\PANG:\PMOD cm)
+%%    coordinate (P);
+%%    % Componentes covariantes
+%%    % Proyección de P en los ejes
+%%    % Con eje x
+%%    \path[save path=\proyx] (e2fin) |- (xfin) coordinate[pos=0.5] (e2x) (xfin);
+%%    % Componente covariante con eje xtilde (COV1)
+%%    % \path (P) |- coordinate[pos=0.5] (COV1) (xtildefin);
+%%    % Perpendicular a O--ytilde que pasa por P
+%%    % -> Componente covariante con eje ytilde (COV2)
+%%    \path (P) -- ($(O)!(P)!(ytildefin)$) coordinate (COV2);
+%%    
+%    % DIBUJOS
+%%    % Covariantes
+%%    % \draw[proyeccion] (P) -- (COV1);
+%%    % \draw[proyeccion] (P) -- (COV2);
+%    
+%%    \foreach \num in {0,...,\YNUMLINEASMASUNA}
+%%    \draw[lineanivel,rotate=\YANGULOROT]
+%%    (\INICIOLONGITUD, \YUNIT * \num) -- ++(\LONGITUDLINEAS, 0);
+%%    
+%%    \foreach \num in {0,...,\YPOSLINEACOV}
+%%    \draw[lineanivel,rotate=\YANGULOROT,red!50]
+%%    (\INICIOLONGITUD, \YUNIT * \num) -- ++(\LONGITUDLINEAS, 0);      
+%%    
+%    % Ejes
+%    % x^1 = xctv
+%    \draw[ejectv, use path=\ejexctv];
+%    \node[textoctv, right] at (xctvfin) {\footnotesize $x^1$};
+%    % x^2 = yctv
+%    \draw[ejectv, use path=\ejeyctv];
+%    \node[textoctv, above right=0pt and -4pt] at (yctvfin) {$x^2$};
+%%    % \node[rotate=90, left=8pt] at (ytexto) {$r\sin\theta$};
+%    % x_1 = xcov
+%    \draw[ejecov, use path=\ejexcov];
+%    \node[textocov, above] at (xcovfin) {\footnotesize $x_1$};
+%    % x_2 = ycov
+%    \draw[ejecov, use path=\ejeycov];
+%    \node[textocov, below right=-3pt and -1pt] at (ycovfin) {\footnotesize $x_2$};
+%    % Vectores de la base
+%    % e_1 = excov
+%    \draw[vectorcov, use path=\excov];
+%    \node[textoctv, below=2pt] at (excovfin) {$\vvv{e}_1$};
+%    % e_2 = eycov
+%    \draw[vectorcov, use path=\eycov];
+%    \node[textoctv, above left=-2pt and 0pt] at (eycovfin) {$\vvv{e}_2$};
+%    % e^1 = exctv
+%    \draw[vectorctv, use path=\exctv];
+%    \node[textocov, left] at (exctvfin) {$\vvv{e}^1$};
+%    % e^2 = eyctv
+%    \draw[vectorctv, use path=\eyctv];
+%    \node[textocov, below left=0pt and 0pt] at (eyctvfin) {$\vvv{e}^2$};
+%    
+%    % Origen
+%    \fill (O) circle [radius=0.8pt];
+%    
+%    % Fondo amarillo
+%    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+%    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
+%    \begin{scope}[on background layer]
+%      \draw[background] (SW) rectangle (NE);
+%    \end{scope}
+%  \end{tikzpicture}
+%  \caption{En negro, los ejes contravariantes $x^1$ y $x^2$, estos ejes son los que se
+%    utilizan para calcular las componentes contravariantes $x^1$ y $x^2$ de cualquier
+%    vector (el contexto ayuda a diferenciar ejes de componentes).
+%    En rojo, los ejes contravariantes. Nótese que cada $x_i$ es perpendicular a su
+%    homólogo $x^i$. Además se representan los vectores de las bases normal y dual.}
+%  \label{fig:R2-oblic_ejes_ctv_cov}
+%\end{figure}
+%
+%
+%\section{Componentes covariantes}
+%En la sección \ref{ssect:R2-contravariantes}, proyectamos un vector trazando líneas
+%paralelas a los ejes; así es como sumamos vectores gráficamente ---mediante la regla del
+%paralelogramo---. Los resultados de esas proyecciones paralelas eran sus componentes
+%contravariantes.
+%
+%En cambio, hay otra forma de proyectar un vector, y es trazando líneas perpendiculares a
+%los ejes, figura \ref{fig:R2-oblic_cov}.
+%Estas \emph{componentes covariantes} las representaremos mediante subíndices $x_i$
+%\begin{equation}
+%  \vvv{v} = x_1\vvv{e}^1 + x_2\vvv{e}^2 = x_i \vvv{e}^i
+%\end{equation}
+%La base utilizada aquí $\vvv{e}^i$, no es la natural de coordenadas oblicuas,
+%\eqref{eq:R2-oblic_base_natural}, pues contiene un superíndice (de nuevo, no es un exponente).
+%
+%Mientras las componentes contravariantes te dicen cuánto \emph{avanzas} a lo largo
+%de cada eje, las covariantes miden la \emph{sombra} o proyección sobre ese eje.
+%En coordenadas cartesianas rectangulares ambas coinciden, pero en este sistema no.
+%En la figura \ref{fig:R2-oblic_contrav_cov} se pueden comparar visualmente ambas
+%componentes.
+%\begin{figure}[ht]
+%  \begin{minipage}{0.45\linewidth}  
+%    % Escala
+%    \def\scl{1.00}
+%    % 
+%    \pgfmathsetmacro{\EJESCARTLONG}{3.0}
+%    \pgfmathsetmacro{\EJEOBLICLONG}{2.7}
+%    % Eje xtilde
+%    \pgfmathsetmacro{\XTILDEANG}{0}
+%    \pgfmathsetmacro{\XTILDELONG}{\EJEOBLICLONG}    
+%    % Eje ytilde
+%    \pgfmathsetmacro{\YTILDEANG}{70}
+%    \pgfmathsetmacro{\YTILDELONG}{\EJESCARTLONG}
+%    % Vector P
+%    \pgfmathsetmacro{\PMOD}{2.3}
+%    \pgfmathsetmacro{\PANG}{40}
+%    % Fondo
+%    \pgfmathsetmacro{\HORZ}{0.90}
+%    \pgfmathsetmacro{\VERT}{0.25}
+%    % 
+%    \centering
+%    \begin{tikzpicture}[%
+%      scale=\scl,
+%      every node/.style={black,font=\small},
+%      ejeoblic/.style={->, black},
+%      proyeccion/.style={black!20, line width=0.4},
+%      texto/.style={black},
+%      vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt,\colorV},
+%      covariante/.style={%
+%        -{Latex[round,width=5pt,length=8pt]},line width=1.2pt, cyan!70!black},
+%      covtxt/.style={cyan!40!black},
+%      pcirculo/.style={fill=\colorPorig, draw=black},
+%      background/.style={%
+%        line width=\bgborderwidth,
+%        draw=\bgbordercolor,
+%        fill=\bgcolor,
+%      },
+%      ]
+%      % COORDENADAS
+%      % Origen
+%      \coordinate (O) at (0,0);
+%      % Eje xtilde
+%      \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
+%      coordinate (xtildefin);
+%      % Eje ytilde
+%      \path[save path=\ejeytilde,name path=O--ytilde](O) -- ++(\YTILDEANG:\YTILDELONG cm)
+%      coordinate (ytildefin);
+%      % Vector
+%      \path[save path=\r] (O) -- coordinate[pos=0.6] (posvecttxt) (\PANG:\PMOD cm)
+%      coordinate (P);
+%      % Componentes covariantes
+%      % Proyección de P en los ejes
+%      % Con eje x
+%      \path[save path=\proyx] (P) |- (xfin) coordinate[pos=0.5] (e2x) (xfin);
+%      % Componente covariante con eje xtilde (COV1)
+%      \path (P) |- coordinate[pos=0.5] (COV1) (xtildefin);
+%      % Perpendicular a O--ytilde que pasa por P
+%      % -> Componente covariante con eje ytilde (COV2)
+%      \path (P) -- ($(O)!(P)!(ytildefin)$) coordinate (COV2);
+%      
+%      % DIBUJOS
+%      % Covariantes
+%      \draw[proyeccion] (P) -- (COV1);
+%      \draw[proyeccion] (P) -- (COV2);
+%      
+%      % Ejes
+%      % xtilde
+%      \draw[ejeoblic, use path=\ejextilde];
+%      % \node[texto, right] at (xtildefin) {\footnotesize $\tilde{x}^1$};
+%      \node[texto, right] at (xtildefin) {\footnotesize $\tilde{x}$};
+%      % ytilde
+%      \draw[ejeoblic, use path=\ejeytilde];
+%      % \node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{x}^2$};
+%      \node[texto, above right=0pt and -4pt] at (ytildefin) {$\tilde{y}$};
+%      % \node[rotate=90, left=8pt] at (ytexto) {$r\sin\theta$};
+%      % Vector P
+%      \draw[vector, use path=\r];
+%      \node[above left=-3pt and -1pt] at (posvecttxt) {\footnotesize $\vvv{v}$};
+%      % \filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
+%      % \node[above right=0pt and -5pt] at (P) {\footnotesize $P$};
+%      
+%      % Marcar en azul la componentes covariantes
+%      \draw[covariante] (O) -- node[covtxt,pos=0.5, below] {$x_1\vvv{e}^1$} (COV1);
+%      \draw[covariante] (O) -- node[covtxt,pos=0.5,above left=-2pt and -2pt]
+%      {$x_2\vvv{e}^2$} (COV2);
+%      
+%      % Origen
+%      \fill[cyan!80!black] (O) circle [radius=0.8pt];
+%      
+%      % Fondo amarillo
+%      \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+%      \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
+%      \begin{scope}[on background layer]
+%        \draw[background] (SW) rectangle (NE);
+%      \end{scope}
+%    \end{tikzpicture}
+%    \caption{Componentes covariantes $x_i$ en coordenadas oblicuas. El vector $\vvv{v}$
+%      se representa como $\vvv{v}=x_1\,\vvv{e}^1 + x_2\,\vvv{e}^2$. Las componentes
+%      contravariantes nos indican el desplazamiento en el espacio.}
+%    \label{fig:R2-oblic_cov}
+%  \end{minipage}
+%  \hspace{1em}
+%  \begin{minipage}{0.45\linewidth}
+%    % Escala
+%    \def\scl{1.00}
+%    % 
+%    \pgfmathsetmacro{\EJESCARTLONG}{3.0}
+%    \pgfmathsetmacro{\EJEOBLICLONG}{2.7}
+%    % Eje x
+%    \pgfmathsetmacro{\XLONG}{\EJESCARTLONG}
+%    % Eje y
+%    \pgfmathsetmacro{\YLONG}{\EJESCARTLONG}
+%    % Eje xtilde
+%    \pgfmathsetmacro{\XTILDEANG}{0}
+%    \pgfmathsetmacro{\XTILDELONG}{\EJEOBLICLONG}    
+%    % Eje ytilde
+%    \pgfmathsetmacro{\YTILDEANG}{70}
+%    \pgfmathsetmacro{\YTILDELONG}{\EJESCARTLONG}
+%    % Vector P
+%    \pgfmathsetmacro{\PMOD}{2.3}
+%    \pgfmathsetmacro{\PANG}{40}
+%    % Fondo
+%    \pgfmathsetmacro{\HORZ}{0.90}
+%    \pgfmathsetmacro{\VERT}{0.25}
+%    % 
+%    \centering
+%    \begin{tikzpicture}[%
+%      scale=\scl,
+%      every node/.style={black,font=\small},
+%      ejecart/.style={->, black!30},
+%      ejeoblic/.style={->, black},
+%      proyeccion/.style={black!20, line width=0.4},
+%      % longitud/.style={line width=.5pt,\colorV},
+%      texto/.style={black},
+%      textoapagado/.style={\colorTorig},
+%      vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt,\colorV},
+%      % vtilde/.style={%
+%      % -{Latex[round,width=4pt,length=6pt]}, line width=1pt, \colorVred},
+%      pcirculo/.style={fill=\colorPorig, draw=black},
+%      angulo/.style={fill=green!15, draw=\colorGirodos},
+%      background/.style={%
+%        line width=\bgborderwidth,
+%        draw=\bgbordercolor,
+%        fill=\bgcolor,
+%      },
+%      ]
+%      % COORDENADAS
+%      % Origen
+%      \coordinate (O) at (0,0);
+%      % Eje x
+%      \path[save path=\ejex] (O) -- (\XLONG cm, 0) coordinate (xfin);
+%      % Eje y
+%      \path[save path=\ejey] (O) -- (0, \YLONG cm) coordinate (yfin);
+%      % Eje xtilde
+%      \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
+%      coordinate (xtildefin);
+%      \node[texto, below] at (xtildefin) {\footnotesize $\tilde{x}$};
+%      % Eje ytilde
+%      \path[save path=\ejeytilde,name path=O--ytilde](O) -- ++(\YTILDEANG:\YTILDELONG cm)
+%      coordinate (ytildefin);
+%      % Vector
+%      \path[save path=\r] (O) -- coordinate[pos=0.5] (pmid) (\PANG:\PMOD cm)
+%      coordinate (P);
+%      % Proyección de P en los ejes
+%      % Con eje x
+%      \path[save path=\proyx] (P) |- (xfin) coordinate[pos=0.5] (e2x) (xfin);
+%      % Posición de texto en eje x
+%      % \path (O) -- coordinate[pos=0.5] (extxt) (e2x);
+%      % Con eje y
+%      \path[save path=\proyy] (P) -| coordinate[pos=0.5] (e2y) (yfin);
+%      % Posición de texto en eje y
+%      % \path (O) -- coordinate[pos=0.5] (eytxt) (e2y);
+%      % Componentes covariantes y contravariantes
+%      % Intersección de horizontal desde P hasta ytilde
+%      % -> Componente contravariante eje ytilde (CTV2) 
+%      \path[name path=P--y] (P) -| (yfin);
+%      \path[name intersections={of=P--y and O--ytilde,by=CTV2}];
+%      % Paralela (CTV2) -- (O) que pase por (P)
+%      % -> Componente contravariante eje xtilde (CTV1)
+%      \path (P) -- ($(P) - (CTV2) - (O)$) coordinate (CTV1);
+%      % Componente covariante con eje xtilde (COV1)
+%      \path (P) |- coordinate[pos=0.5] (COV1) (xtildefin);
+%      % Perpendicular a O--ytilde que pasa por P
+%      % -> Componente covariante con eje ytilde (COV2)
+%      \path (P) -- ($(O)!(P)!(ytildefin)$) coordinate (COV2);
+%      % Proyecciones de las componentes
+%      
+%      % DIBUJOS
+%      % Ángulo theta
+%      \path (xfin) -- (O) -- (ytildefin) pic
+%      [angulo, angle radius=15pt]
+%      {angle = xfin--O--ytildefin};
+%      % \node[above right=-2pt and 4pt] at (O) {\scriptsize $\alpha$};
+%      % 
+%      % Proyecciones de componentes
+%      % Contravariantes
+%      \draw[proyeccion] (P) -- (CTV1);
+%      \node[orange!70!black, below=-1pt] at (CTV1) {\footnotesize $x^1$};
+%      \draw[proyeccion] (P) -- (CTV2);
+%      \node[orange!70!black, left=-1.5pt] at (CTV2) {\footnotesize $x^2$};
+%      % Covariantes
+%      \draw[proyeccion] (P) -- (COV1);
+%      \node[cyan!50!black, below=1pt] at (COV1) {\footnotesize $x_1$};
+%      \draw[proyeccion] (P) -- (COV2);
+%      \node[cyan!50!black, above left=-2pt and -2pt] at (COV2) {\footnotesize $x_2$};
+%      
+%      % Ejes
+%      % x
+%      \draw[ejecart, use path=\ejex];
+%      \node[textoapagado, below=1.2pt] at (xfin) {\small $x$};
+%      % y
+%      \draw[ejecart, use path=\ejey];
+%      \node[above, textoapagado] at (yfin) {$y$};
+%      % xtilde
+%      \draw[ejeoblic, use path=\ejextilde];
+%      % \node[below, texto] at (xtildefin) {$\tilde{x}^1$};
+%      % ytilde
+%      \draw[ejeoblic, use path=\ejeytilde];
+%      \node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{y}$};
+%      % \node[rotate=90, left=8pt] at (ytexto) {$r\sin\theta$};
+%      % Vector P
+%      \draw[vector, use path=\r];
+%      \node[above left=-3pt and -1pt] at (pmid) {\footnotesize $\vvv{r}$};
+%      \filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
+%      \node[above right=0pt and -5pt] at (P) {\footnotesize $P$};
+%      
+%      % Origen
+%      \filldraw (O) circle [radius=.2pt];
+%      
+%      % Fondo amarillo
+%      \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+%      \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
+%      \begin{scope}[on background layer]
+%        \draw[background] (SW) rectangle (NE);
+%      \end{scope}
+%    \end{tikzpicture}
+%    \caption{Componentes contravariantes, en naranja y covariantes, en azul. El ángulo
+%      entre los ejes está marcado en verde. El sistema de coordenadas rectangular se
+%      muestra, algo apagado, como referencia.}
+%    \label{fig:R2-oblic_contrav_cov}
+%  \end{minipage}
+%\end{figure}
+%Piensa en la base $\vvv{e}^i$ como una serie de líneas o superficies de nivel perpendiculares a cada uno de los ejes, que nos indican el valor de un cierto escalar o \emph{altura}. La componente covariante en ese eje nos indica de forma visual el
+%\emph{número de líneas o superficies de nivel} que el vector \emph{atraviesa}.
+%Ver figuras \ref{fig:R2-oblic_cov1} y \ref{fig:R2-oblic_cov2} (comparar con figura
+%\ref{fig:R2-oblic_ejes_ctv_cov}).
+%\begin{figure}[ht]
+%  \begin{minipage}{0.45\linewidth}
+%    % Escala
+%    \def\scl{1.00}
+%    % 
+%    % \pgfmathsetmacro{\EJESCARTLONG}{3.0}
+%    % \pgfmathsetmacro{\EJEOBLICLONG}{2.7}
+%     \pgfmathsetmacro{\EJESCARTLONG}{3.3}
+%    \pgfmathsetmacro{\EJEOBLICLONG}{3.0}
+%    %Eje xtilde
+%    \pgfmathsetmacro{\XTILDEANG}{0}
+%    \pgfmathsetmacro{\XTILDELONG}{\EJEOBLICLONG}
+%    % Eje ytilde
+%    \pgfmathsetmacro{\YTILDEANG}{70}
+%    \pgfmathsetmacro{\YTILDELONG}{\EJESCARTLONG}
+%    % Vector P
+%    \pgfmathsetmacro{\PMOD}{2.2}
+%    \pgfmathsetmacro{\PANG}{40}
+%    \pgfmathsetmacro{\XVECTOR}{\PMOD * cos(\PANG)}
+%    % Líneas de nivel x
+%    \pgfmathsetmacro{\INICIOALTURA}{-0}
+%    \pgfmathsetmacro{\XNUMLINEASMASUNA}{20}
+%    \pgfmathsetmacro{\XNUMLINEAS}{\XNUMLINEASMASUNA - 1}
+%    \pgfmathsetmacro{\XUNIT}{\XTILDELONG / \XNUMLINEASMASUNA}
+%    \pgfmathsetmacro{\ALTURALINEAS}{\YTILDELONG*cos(90-\YTILDEANG)-\INICIOALTURA - 0.1}
+%    \pgfmathsetmacro{\XPOSLINEACOV}{\XVECTOR / \XUNIT}
+%    % Fondo
+%    \pgfmathsetmacro{\HORZ}{0.93}
+%    \pgfmathsetmacro{\VERT}{0.44}
+%    % 
+%    \centering
+%    \begin{tikzpicture}[%
+%      scale=\scl,
+%      every node/.style={black,font=\small},
+%      lineanivel/.style={black!20},
+%      ejeoblic/.style={->, black},
+%      proyeccion/.style={black!20, line width=0.4},
+%      texto/.style={black},
+%      vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt, black!40},
+%     % covariante/.style={%
+%     % -{Latex[round,width=5pt,length=8pt]},line width=1.2pt, cyan!70!black},
+%     covariante/.style={line width=1.8pt, cyan!70!black},
+%      covtxt/.style={cyan!40!black},
+%      pcirculo/.style={fill=\colorPorig, draw=black},
+%      background/.style={%
+%        line width=\bgborderwidth,
+%        draw=\bgbordercolor,
+%        fill=\bgcolor,
+%      },
+%      ]
+%      % COORDENADAS
+%      % Origen
+%      \coordinate (O) at (0,0);
+%      % Eje xtilde
+%      \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
+%      coordinate (xtildefin);
+%      % Eje ytilde
+%      \path[save path=\ejeytilde, name path=O--ytilde]
+%      (O) -- ++(\YTILDEANG:\YTILDELONG cm)
+%      coordinate (ytildefin);
+%      % Vector
+%      \path[save path=\r] (O) -- coordinate[pos=0.6] (posvecttxt) (\PANG:\PMOD cm)
+%      coordinate (P);
+%      % Componentes covariantes
+%      % Proyección de P en los ejes
+%      % Con eje x
+%      
+%      \path[save path=\proyx] (P) |- (xfin) coordinate[pos=0.5] (e2x) (xfin);
+%      % Componente covariante con eje xtilde (COV1)
+%      \path (P) |- coordinate[pos=0.5] (COV1) (xtildefin);
+%      % Perpendicular a O--ytilde que pasa por P
+%      % -> Componente covariante con eje ytilde (COV2)
+%      \path (P) -- ($(O)!(P)!(ytildefin)$) coordinate (COV2);
+%    
+%      % DIBUJOS
+%      % Covariantes
+%      %\draw[proyeccion] (P) -- (COV1);
+%      %\draw[proyeccion] (P) -- (COV2);
+%
+%      \foreach \num in {0,...,\XNUMLINEAS}
+%      \draw[lineanivel] (\XUNIT * \num, \INICIOALTURA) -- ++(0, \ALTURALINEAS);
+%
+%      \foreach \num in {0,...,\XPOSLINEACOV}
+%      \draw[lineanivel,red!50] (\XUNIT * \num, \INICIOALTURA) -- ++(0, \ALTURALINEAS);
+%      
+%      % Ejes
+%      % xtilde
+%      \draw[ejeoblic, use path=\ejextilde];
+%      %\node[texto, right] at (xtildefin) {\footnotesize $\tilde{x}^1$};
+%      \node[texto, right] at (xtildefin) {\footnotesize $\tilde{x}$};
+%      % ytilde
+%      \draw[ejeoblic, use path=\ejeytilde];
+%      %\node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{x}^2$};
+%      \node[texto, above right=0pt and -4pt] at (ytildefin) {$\tilde{y}$};
+%      % \node[rotate=90, left=8pt] at (ytexto) {$r\sin\theta$};
+%      % Vector P
+%      \draw[vector, use path=\r];
+%      \node[above left=-3pt and -1pt,gray] at (posvecttxt) {\footnotesize $\vvv{v}$};
+%      %\filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
+%      %\node[above right=0pt and -5pt] at (P) {\footnotesize $P$};
+%
+%      % Marcar en azul la componentes covariantes
+%      %\draw[covariante]
+%      %(O) -- node[covtxt,pos=0.5, below]
+%      %{$A_1\vvv{e}^1$} (COV1);
+%      \draw[covariante] (O) --node[covtxt,pos=0.5,below] {$x_1$} (COV1);
+%      %\draw[covariante] (O) -- node[covtxt,pos=0.5,above left=-2pt and -2pt]
+%      %{$\hat{x}_2\vvv{e}^2$} (COV2);
+%      
+%      % Origen
+%      \fill[cyan!80!black] (O) circle [radius=0.8pt];
+%    
+%      % Fondo amarillo
+%      \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+%      \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
+%      \begin{scope}[on background layer]
+%        \draw[background] (SW) rectangle (NE);
+%      \end{scope}
+%    \end{tikzpicture}
+%    \caption{En azul, la componente covariante $x_1$ de un vector $\vvv{v}$ en
+%      coordenadas oblicuas, interpretada geométricamente como la proyección del vector o
+%      su \emph{sombra} en el eje $\tilde{x}$. En rojo aparecen las líneas de nivel
+%      perpendiculares al eje que son \emph{atravesadas} por $\vvv{v}$.
+%      En gris, las líneas que no son \emph{atravesadas}.}
+%    \label{fig:R2-oblic_cov1}
+%  \end{minipage}
+%  \hspace{1em}
+%  \begin{minipage}{0.45\linewidth}
+%    % Escala
+%    \def\scl{1.00}
+%    % 
+%    %\pgfmathsetmacro{\EJESCARTLONG}{3.0}
+%    %\pgfmathsetmacro{\EJEOBLICLONG}{2.7}
+%    \pgfmathsetmacro{\EJESCARTLONG}{3.3}
+%    \pgfmathsetmacro{\EJEOBLICLONG}{3.0}
+%    % Eje xtilde
+%    \pgfmathsetmacro{\XTILDEANG}{0}
+%    \pgfmathsetmacro{\XTILDELONG}{\EJEOBLICLONG}
+%    % Eje ytilde
+%    \pgfmathsetmacro{\YTILDEANG}{70}
+%    \pgfmathsetmacro{\YTILDELONG}{\EJESCARTLONG}
+%    % Vector P
+%    \pgfmathsetmacro{\PMOD}{2.22}
+%    \pgfmathsetmacro{\PANG}{40}
+%    \pgfmathsetmacro{\YVECTOR}{\PMOD * sin(\PANG)}
+%    % Lineas de nivel y
+%    \pgfmathsetmacro{\YANGULOROT}{\YTILDEANG - 90}
+%    \pgfmathsetmacro{\INICIOLONGITUD}{-0}
+%    \pgfmathsetmacro{\YNUMLINEASMASUNA}{20}
+%    \pgfmathsetmacro{\YNUMLINEAS}{\YNUMLINEASMASUNA - 1}
+%    \pgfmathsetmacro{\YUNIT}{\XTILDELONG / \YNUMLINEAS}
+%    \pgfmathsetmacro{\LONGITUDLINEAS}{\XTILDELONG - \INICIOLONGITUD - 0.25}
+%    \pgfmathsetmacro{\THETAANG}{\YTILDEANG - \PANG}
+%    \pgfmathsetmacro{\YPOSLINEACOV}{\PMOD*cos(\THETAANG)/(\YUNIT*cos(90-\YTILDEANG)}
+%    % Fondo
+%    \pgfmathsetmacro{\HORZ}{0.70}
+%    \pgfmathsetmacro{\VERT}{0.25}
+%    % 
+%    \centering
+%    \begin{tikzpicture}[%
+%      scale=\scl,
+%      every node/.style={black,font=\small},
+%      lineanivel/.style={black!20},
+%      ejeoblic/.style={->, black},
+%      proyeccion/.style={black!20, line width=0.4},
+%      texto/.style={black},
+%      vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt, black!40},
+%      %covariante/.style={%
+%      %  -{Latex[round,width=5pt,length=8pt]},line width=1.2pt, cyan!70!black},
+%      covariante/.style={line width=1.8pt, cyan!70!black},
+%      covtxt/.style={cyan!40!black},
+%      pcirculo/.style={fill=\colorPorig, draw=black},
+%      background/.style={%
+%        line width=\bgborderwidth,
+%        draw=\bgbordercolor,
+%        fill=\bgcolor,
+%      },
+%      ]
+%      % COORDENADAS
+%      % Origen
+%      \coordinate (O) at (0,0);
+%      % Eje xtilde
+%      \path[save path=\ejextilde] (O) -- ++(\XTILDEANG:\XTILDELONG cm)
+%      coordinate (xtildefin);
+%      
+%      % Eje ytilde
+%      \path[save path=\ejeytilde, name path=O--ytilde]
+%      (O) -- ++(\YTILDEANG:\YTILDELONG cm)
+%      coordinate (ytildefin);
+%      % Vector
+%      \path[save path=\r] (O) -- coordinate[pos=0.6] (posvecttxt) (\PANG:\PMOD cm)
+%      coordinate (P);
+%      % Componentes covariantes
+%      % Proyección de P en los ejes
+%      % Con eje x
+%      \path[save path=\proyx] (P) |- (xfin) coordinate[pos=0.5] (e2x) (xfin);
+%      % Componente covariante con eje xtilde (COV1)
+%      %\path (P) |- coordinate[pos=0.5] (COV1) (xtildefin);
+%      % Perpendicular a O--ytilde que pasa por P
+%      % -> Componente covariante con eje ytilde (COV2)
+%      \path (P) -- ($(O)!(P)!(ytildefin)$) coordinate (COV2);
+%    
+%      % DIBUJOS
+%      % Covariantes
+%      %\draw[proyeccion] (P) -- (COV1);
+%      %\draw[proyeccion] (P) -- (COV2);
+%      
+%      \foreach \num in {0,...,\YNUMLINEASMASUNA}
+%      \draw[lineanivel,rotate=\YANGULOROT]
+%      (\INICIOLONGITUD, \YUNIT * \num) -- ++(\LONGITUDLINEAS, 0);
+%
+%      \foreach \num in {0,...,\YPOSLINEACOV}
+%      \draw[lineanivel,rotate=\YANGULOROT,red!50]
+%      (\INICIOLONGITUD, \YUNIT * \num) -- ++(\LONGITUDLINEAS, 0);      
+%      
+%      % Ejes
+%      % xtilde
+%      \draw[ejeoblic, use path=\ejextilde];
+%      %\node[texto, right] at (xtildefin) {\footnotesize $\tilde{x}^1$};
+%      \node[texto, right] at (xtildefin) {\footnotesize $\tilde{x}$};
+%      % ytilde
+%      \draw[ejeoblic, use path=\ejeytilde];
+%      %\node[above right=0pt and -4pt, texto] at (ytildefin) {$\tilde{x}^2$};
+%      \node[texto, above right=0pt and -4pt] at (ytildefin) {$\tilde{y}$};
+%      % \node[rotate=90, left=8pt] at (ytexto) {$r\sin\theta$};
+%      % Vector P
+%      \draw[vector, use path=\r];
+%      \node[above left=-3pt and -1pt,gray] at (posvecttxt) {\footnotesize $\vvv{v}$};
+%      %\filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
+%      %\node[above right=0pt and -5pt] at (P) {\footnotesize $P$};
+%
+%      % Marcar en azul la componentes covariantes
+%      %\draw[covariante]
+%      %(O) -- node[covtxt,pos=0.5, below]
+%      %{$\hat{A}_1\xhat{e}^1$} (COV1);
+%      \draw[covariante] (O)--node[covtxt,pos=0.5,above left=-2pt and -2pt]{$x_2$} (COV2);
+%      
+%      % Origen
+%      \fill[cyan!80!black] (O) circle [radius=0.8pt];
+%    
+%      % Fondo amarillo
+%      \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+%      \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);
+%      \begin{scope}[on background layer]
+%        \draw[background] (SW) rectangle (NE);
+%      \end{scope}
+%    \end{tikzpicture}
+%    \caption{En azul, la componente covariante $x_2$ de un vector $\vvv{v}$ en
+%      coordenadas oblicuas, interpretada geométricamente como la proyección del vector o
+%      su \emph{sombra} en el eje $\tilde{y}$. En rojo aparecen las líneas de nivel
+%      perpendiculares al eje que son \emph{atravesadas} por $\vvv{v}$.
+%      En gris, las líneas que no son \emph{atravesadas}.}
+%    \label{fig:R2-oblic_cov2}
+%  \end{minipage}
+%\end{figure}
+%
+%Una forma de asimilar este tipo de componentes es suponer que un vector $\vvv{v}$
+%representa el gradiente de un cierto campo escalar $\vvv{\nabla}\phi$.
+%Este gradiente se puede representar gráficamente como una serie de líneas de contorno o
+%superficies de nivel, que indica cuánto cambia un determinado escalar cuando nos
+%desplazamos en el espacio (en nuestro caso concreto en $\symbb{R}^2$).
+%
+%Si aumentáramaos la escala de medida (utilizando una base \emph{mayor}, por ejemplo, en
+%el caso de distancias, usar metros en lugar de centímetros), las superficies de nivel
+%(gradiente) se comprimirían y, aunque el vector se vería más pequeño proporcionalmente
+%(componentes contravariantes), la densidad de líneas de nivel aumentaría, también
+%proporcionalmente.
+%
+%En otras palabras, cuando un vector se visualiza mediante un cierto tipo de
+%recorrido en el espacio, como desplazamiento, velocidad, aceleración, etc.
+%---mediante sus componentes contravariantes---, al aumentar la escala de medida, las
+%líneas de nivel se comprimen, aumenta su densidad y el cambio en la ``altura'' debido al
+%gradiente es mayor, las componentes covariantes aumentan en consecuencia. Estas
+%componentes no varían inversamente con la escala de medida, sino que lo hace en el mismo
+%sentido. Estas son las \emph{componentes covariantes}.
+%
+%
+%\section{Producto escalar}
+%Ahora que se han introducido las componentes covariantes y contravariantes, y el tensor
+%métrico, estamos en disposición de ver el producto escalar de dos vectores
+%contravariantes.
+%
+%Definiremos el producto escalar de dos vectores $\vvv{u}$ y $\vvv{v}$ matricialmente en
+%$\symbb{R}^2$ como
+%\begin{equation}
+%  \vvv{u}\cdot\vvv{v}
+%  = \vvv{u}^\transp  \mmm{g}_{ij} \vvv{v}
+%  = \begin{pmatrix}
+%    u^1 & u^2
+%  \end{pmatrix}
+%  \,\begin{pmatrix}
+%    g_{11} & g_{12}\\
+%    g_{21} & g_{22}
+%  \end{pmatrix}
+%  \,
+%  \begin{pmatrix}
+%    v^1\\
+%    v^2
+%  \end{pmatrix}
+%\end{equation}
+%
+%Desarrollando la expresión
+%{\small
+%  \begin{align*}
+%    \vvv{u}\cdot\vvv{v}
+%    &=
+%      \begin{pmatrix}
+%        u^1 g_{11}+ u^2g_{21} & u^1g_{12}+ u^2g_{22}
+%      \end{pmatrix}
+%      \,
+%      \begin{pmatrix}
+%        v^1\\
+%        v^2
+%      \end{pmatrix}\\
+%    &=
+%      \left(u^1\,g_{11}+ u^2\,g_{21}\right) v^1+\left(u^1\,g_{12}+u^2\,g_{22}\right) v^2\\
+%    &=
+%      u^1g_{11}\,v^1 + u^2g_{21}\,v^1 + u^1g_{12}\,v^2 + u^2g_{22}\,v^2\\
+%    &=
+%      u^1\left(g_{11}\,v^1+g_{12}\,u^2\right) + v^2\left(g_{21}\,v^1+g_{22}\,v^2\right)\\
+%    &=
+%      u^1\left(\sum_{j=1}^2g_{1j}\,v^j\right) + u^2\left(\sum_{j=1}^2g_{2j}\,v^j\right)\\
+%    &=
+%      \sum_{i=1}^2 u^i \left(\sum_{j=1}^2g_{ij}\,v^j\right)\\
+%    &=
+%      \sum_{i=1}^2\sum_{j=1}^2g_{ij}\,u^i\,v^j
+%  \end{align*}
+%}
+%
+%En notación de Einstein
+%\begin{equation}
+%  \vvv{u}\cdot\vvv{v}
+%  = g_{ij}\,u^i\,v^j
+%\end{equation}
+%
+%Regorganizando términos ---que son escalares y se cumple la propiedad conmutativa
+%\[
+%  \vvv{u}\cdot\vvv{v}
+%  = \,u^ig_{ij}\,v^j
+%\]
+%
+%Ahora, utilizamos la métrica para bajar el índice $j$, porque
+%$U_i = g_{ij}v^j$
+%\begin{equation}
+%  \vvv{u}\cdot\vvv{v}
+%  = u^i\,v_i = u_i\,v^i
+%\end{equation}
+%
+%
+%\section{Gradiente}
+%Supongamos un campo escalar $\phi$, definido en $\symbb{R^2}$ y expresado en coordenadas
+%oblicuas según sus componentes contravariantes ---utilizando, para la posición en el
+%espacio, la base unitaria $B= (\vvv{e}_1,\vvv{e}_2)$---
+%\begin{equation}
+%  \phi = \phi(x^1, x^2)
+%\end{equation}
+%Los vectores de esta base $B$ no cambian con la posición en el espacio.
+%
+%\subsubsection{Componentes covariantes}
+%El gradiente es un vector covariante (1-forma). Sus componentes se obtienen derivando
+%parcialmente el campo escalar con respecto de las componentes contravariantes
+%$(\nabla\phi)_i = \partial\phi/\partial x^i$. Desarrollando la expresión anterior,
+%obtenemos
+%\begin{align}
+%  (\nabla\phi)_1 &= \dfrac{\partial\phi}{\partial x^1}\\
+%  (\nabla\phi)_2 &= \dfrac{\partial\phi}{\partial x^2}
+%\end{align}
+%
+%El vector gradiente será
+%\begin{equation}
+%  \vvv{\nabla}\phi
+%  = (\nabla\phi)_i\vvv{e}^i
+%  = \dfrac{\partial\phi}{\partial x^i}\vvv{e}^i
+%  = \dfrac{\partial\phi}{\partial x^1}\vvv{e}^1
+%  + \dfrac{\partial\phi}{\partial x^2}\vvv{e}^2
+%\end{equation}
+%
+%\subsubsection{Componentes contravariantes}
+%Para que el gradiente nos indique la dirección y sentido (segmento orientado) que indica
+%el máximo aumento del escalar tenemos que obtener sus componentes contravariantes.
+%
+%Para obtener $\nabla\phi^1$ y $\nabla\phi^2$, tenemos que subir índices
+%$\nabla\phi_i=\partial\phi/\partial x^i$, multiplicando por la inversa de la métrica
+%\begin{equation}
+%  \vvv{\nabla}\phi
+%  = g^{ij}(\nabla\phi)_i\,\vvv{e}_j
+%  = g^{ij} \dfrac{\partial\phi}{\partial x^i}\,\vvv{e}_j
+%  = (\nabla\phi)^j\,\vvv{e}_j
+%\end{equation}
+%
+%Desarrollando la expresión anterior
+%\begin{align*}
+%  \vvv{\nabla}\phi
+%  &=
+%    \mmm{g}^{11}\dfrac{\partial\phi}{\partial x^1}\,\vvv{e}_1
+%    + \mmm{g}^{12}\dfrac{\partial\phi}{\partial x^1}\,\vvv{e}_2
+%    + \mmm{g}^{21}\dfrac{\partial\phi}{\partial x^2}\,\vvv{e}_1
+%    + \mmm{g}^{22}\dfrac{\partial\phi}{\partial x^2}\,\vvv{e}_2\\
+%  &=
+%    \dfrac{1}{\sin^2\alpha}\,\dfrac{\partial\phi}{\partial x^1}\,\vvv{e}_1
+%    - \dfrac{\cos\alpha}{\sin^2\alpha}\,\dfrac{\partial\phi}{\partial x^1}\,\vvv{e}_2
+%    - \dfrac{\cos\alpha}{\sin^2\alpha}\,\dfrac{\partial\phi}{\partial x^2}\,\vvv{e}_1
+%    + \dfrac{1}{\sin^2\alpha}\,\dfrac{\partial\phi}{\partial x^2}\,\vvv{e}_2
+%\end{align*}
+%
+%Simplificando, obtendríamos
+%\begin{equation}\label{eq:R2-oblic_gradiente_contrav}
+%  \vvv{\nabla}\phi
+%  = \dfrac{1}{\sin^2\alpha}
+%  \left[%
+%    \left(%
+%      \dfrac{\partial\phi}{\partial x^1}-\cos\alpha\dfrac{\partial\phi}{\partial x^2}
+%    \right) \vvv{e}_1
+%    +\left(%
+%      \dfrac{\partial\phi}{\partial x^2}-\cos\alpha\dfrac{\partial\phi}{\partial x^1}
+%    \right) \vvv{e}_2
+%  \right]
+%\end{equation}
+%
+%{\small
+%  También se podrían haber calculado subiendo el índice de las componentes por separado
+%\begin{equation}
+%  (\nabla\phi)^i
+%  = g^{ij} (\nabla\phi)_j = g^{ij}\dfrac{\partial\phi}{\partial x^j}
+%\end{equation}
+%}
+%
+%{\small
+%\begin{align*}
+%  (\nabla\phi)^1
+%  &=
+%    g^{11} \dfrac{\partial\phi}{\partial x^1}
+%    + g^{12} \dfrac{\partial\phi}{\partial x^2}
+%    =
+%    \dfrac{1}{\sin^2\alpha}\dfrac{\partial\phi}{\partial x^1}
+%    - \dfrac{\cos\alpha}{\sin^2\alpha}\dfrac{\partial\phi}{\partial x^2}
+%    =
+%    \dfrac{1}{\sin^2\alpha}
+%    \left(%
+%    \dfrac{\partial\phi}{\partial x^1}-\cos\alpha\dfrac{\partial\phi}{\partial x^2}
+%    \right)\\
+%  (\nabla\phi)^2
+%  &=
+%    g^{21} \dfrac{\partial\phi}{\partial x^1}
+%    + g^{22} \dfrac{\partial\phi}{\partial x^2}
+%    =
+%    - \dfrac{\cos\alpha}{\sin^2\alpha}\dfrac{\partial\phi}{\partial x^1}    
+%    \dfrac{1}{\sin^2\alpha}\dfrac{\partial\phi}{\partial x^2}
+%    =
+%    \dfrac{1}{\sin^2\alpha}
+%    \left(%
+%    \dfrac{\partial\phi}{\partial x^2}-\cos\alpha\dfrac{\partial\phi}{\partial x^1}
+%    \right)  
+%\end{align*}
+%}
+%
+%{\small
+%Y luego sustituir lo anterior en
+%\begin{equation}
+%  \vvv{\nabla\phi} = (\nabla\phi)^1\,\vvv{e}_1 + (\nabla\phi)^2\,\vvv{e}_2
+%\end{equation}
+%dando el mismo resultado que en \eqref{eq:R2-oblic_gradiente_contrav}.
+%}
+%
+%\section{Divergencia}
+%
+%
 
 
 
