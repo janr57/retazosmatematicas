@@ -51,7 +51,7 @@ Vector de posición de cualquier punto del espacio $\symbb{R}^2$ en coordenadas 
     proyeccion/.style={black!20, line width=0.4},
     vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt, black},
     versor/.style={-{Latex[round, width=4pt, length=6pt]}, line width=1pt, red!80!black},
-    textooriginal/.style={black},
+    texto/.style={black},
     pcirculo/.style={fill=green, draw=black},
     background/.style={%
       line width=\backgrounborderwidth,
@@ -110,7 +110,7 @@ Vector de posición de cualquier punto del espacio $\symbb{R}^2$ en coordenadas 
     
     % Origen
     \filldraw (O) circle [radius=.25pt];
-    % -------------------------------------------------------------------------------    
+%    % -------------------------------------------------------------------------------    
 %    % Fondo amarillo
 %    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
 %    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);    
@@ -125,63 +125,64 @@ Vector de posición de cualquier punto del espacio $\symbb{R}^2$ en coordenadas 
 \end{figure}
 
 
-%\section{Base natural}
-%En física general y matemáticas elementales se suele preferir una base formada por
-%vectores unitarios para representar cualquier otro vector. Como sabemos, en estas
-%coordenadas se utiliza la base $B = \set{\uvec{\i},\,\uvec{\j}}$.
-%
-%Por otro lado, en geometría diferencial es importante la llamada \emph{base natural}
-%\begin{equation}
-%  B = \set{\vvv{e}_x, \vvv{e}_y}
-%\end{equation}
-%Estos vectores no tienen por qué ser unitarios, y por ello no les pongo el acento
-%circunflejo. Aunque, como veremos, en este caso sí que lo son.
-%
-%Los vectores de esta base se obtienen derivando parcialmente el vector de posición que
-%representa a cada punto del espacio, expresado en función de las componentes del
-%sistema, en este caso las coordenadas $x$ e $y$, ver la ecuación \eqref{eq:R2-r_rect} y
-%la figura \ref{fig:R2-rect_ij}, respecto de cada una de ellas. Estos vectores
-%llevan información concreta acerca de cómo varia la posición en el espacio cuando
-%variamos cada una de las coordenadas ---tal y como sugieren las derivadas---, lo que
-%será importante para obtener la métrica.
-%
-%Escribimos de nuevo aquí la expresión que hay que derivar
-%\[
-%  \vvv{r} = x\,\uvec{\i} + y\,\uvec{\j}
-%\]
-%
-%Así, se obtiene
-%\begin{subequations}
-%  \begin{align}\label{eq:R2-cart-ex}
-%    \vvv{e}_x
-%    &=
-%      \dfrac{\partial\vvv{r}}{\partial x}
-%      = \uvec{\i}
-%      = \xhat{u}_x
-%      \longrightarrow
-%    |\vvv{e}_x| = |\uvec{\i}| = 1\\
-%    \label{eq:R2-cart-ey}
-%    \vvv{e}_y
-%    &= \dfrac{\partial\vvv{r}}{\partial y}
-%      = \uvec{\j}
-%      = \xhat{u}_y
-%      \longrightarrow
-%    |\vvv{e}_y| = |\uvec{\j}| = 1
-%  \end{align}
-%\end{subequations}
-%estos vectores son unitarios, aunque como se señaló antes, no tiene por qué ser así en
-%otros sistemas.
-%
-%Escribimos la \emph{base natural} en cartesianas rectangulares, que coincide con los
-%vectores unitarios tradicionales $\uvec{\i}$ y $\uvec{\j}$
-%\begin{equation}\label{eq:R2-cart-base}
-%  B
-%  =\set{\vvv{e}_x, \vvv{e}_y}
-%  = \set{\xhat{u}_x, \xhat{u}_y}
-%  = \set{\uvec{\i},\, \uvec{\j}}
-%\end{equation}
-%
-%
+\section{Base natural}
+En física general y matemáticas elementales se suele preferir una base formada por
+vectores unitarios para representar cualquier otro vector. Como sabemos, en estas
+coordenadas se utiliza la base $B = \set{\uvec{\i},\,\uvec{\j}}$.
+
+Por otro lado, en geometría diferencial es importante la llamada \emph{base natural},
+que representaremos en este texto como
+\begin{equation}
+  B = \set{\vvv{e}_x, \vvv{e}_y}
+\end{equation}
+Estos vectores no tienen por qué ser unitarios, y por ello no aparecen con el acento
+circunflejo. Aunque como veremos, en este caso sí que lo son.
+
+Los vectores de esta base se obtienen derivando parcialmente el vector de posición que
+representa a cada punto del espacio, expresado en función de las componentes del
+sistema, en este caso las coordenadas $x$ e $y$, ver la ecuación \eqref{eq:R2-r_rect} y
+la figura \ref{fig:R2-rect_ij}, respecto de cada una de ellas. Estos vectores
+llevan información concreta acerca de cómo varia la posición en el espacio cuando
+variamos cada una de las coordenadas ---tal y como sugieren las derivadas---, lo que
+será importante para obtener la métrica.
+
+Escribimos de nuevo aquí la expresión que hay que derivar
+\[
+  \vvv{r} = x\,\uvec{\i} + y\,\uvec{\j}
+\]
+
+Así, se obtiene
+\begin{subequations}
+  \begin{align}\label{eq:R2-cart-ex}
+    \vvv{e}_x
+    &=
+      \dfrac{\partial\vvv{r}}{\partial x}
+      = \uvec{\i}
+      = \xhat{u}_x
+      \longrightarrow
+    |\vvv{e}_x| = |\uvec{\i}| = 1\\
+    \label{eq:R2-cart-ey}
+    \vvv{e}_y
+    &= \dfrac{\partial\vvv{r}}{\partial y}
+      = \uvec{\j}
+      = \xhat{u}_y
+      \longrightarrow
+    |\vvv{e}_y| = |\uvec{\j}| = 1
+  \end{align}
+\end{subequations}
+estos vectores son unitarios, aunque como se señaló antes, no tiene por qué ser así en
+otros sistemas.
+
+Escribimos la \emph{base natural} en cartesianas rectangulares, que coincide con los
+vectores unitarios tradicionales $\uvec{\i}$ y $\uvec{\j}$
+\begin{equation}\label{eq:R2-cart-base}
+  B
+  =\set{\vvv{e}_x, \vvv{e}_y}
+  = \set{\xhat{u}_x, \xhat{u}_y}
+  = \set{\uvec{\i},\, \uvec{\j}}
+\end{equation}
+
+
 %\section{Métrica}
 %La métrica en cada sistema de coordenadas define la estructura del espacio, y en
 %particular, sin ella no se pueden medir ni distancias ni ángulos. Es como si
