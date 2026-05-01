@@ -11,16 +11,18 @@
 Este capítulo tiene los siguientes objetivos:
 \begin{enumerate}
 \item Recordar el sistema de coordenadas ortogonales o rectangulares en el
-  plano euclídeo $\symbb{R}^2$, como fundamento para el resto de sistemas de coordenadas
-  que se estudiarán posteriormente.
-\item Introducir algunas ideas de la geometría diferencial, como \emph{base natural},
-  \emph{métrica}, etc., que serán más importantes en otros sistemas de coordenadas.
-\item Recordar la expresión del resultado de distintas operaciones de cálculo en este
-  sistema.
+  plano euclídeo $\symbb{R}^2$, como fundamento para el resto de sistemas de
+  coordenadas que se estudiarán posteriormente.
+\item Introducir algunas ideas de la geometría diferencial, como
+  \emph{base natural}, \emph{métrica}, etc., que serán más importantes en otros
+  sistemas de coordenadas.
+\item Recordar la expresión del resultado de distintas operaciones de cálculo en
+  este sistema.
 \end{enumerate}
 
 \section{Ideas básicas}
-Vector de posición de cualquier punto del espacio $\symbb{R}^2$ en coordenadas cartesianas
+El vector de posición de cualquier punto del espacio $\symbb{R}^2$ en coordenadas
+cartesianas es
 \begin{equation}\label{eq:R2-r_rect}
   \vvv{r}
   = x\,\uvec{\i} + y\,\uvec{\j}
@@ -118,39 +120,38 @@ Vector de posición de cualquier punto del espacio $\symbb{R}^2$ en coordenadas 
 %      \draw[background] (SW) rectangle (NE);
 %    \end{scope}
   \end{tikzpicture}
-  \caption{Coordenadas cartesianas rectangulares de un punto $P$ del plano (en verde) y
-    vectores unitarios (en rojo). Se puede comprobar que el vector de posición del punto
+  \caption{Coordenadas cartesianas rectangulares de un punto $P$ del plano
+    (en verde) y vectores unitarios (en rojo). El vector de posición del punto
     es $\vvv{r} = x\,\uvec{i} + y\,\uvec{j}$.}
   \label{fig:R2-rect_ij}
 \end{figure}
 
 
 \section{Base natural}
-En física general y matemáticas elementales se suele preferir una base formada por
-vectores unitarios para representar cualquier otro vector. Como sabemos, en estas
-coordenadas se utiliza la base $B = \set{\uvec{\i},\,\uvec{\j}}$.
+En física general y en matemáticas elementales se suele preferir una base
+formada por vectores unitarios para representar cualquier otro vector.
+Como sabemos, en estas coordenadas se utiliza la base
+$B = \set{\uvec{\i},\,\uvec{\j}}$.
 
-Por otro lado, en geometría diferencial es importante la llamada \emph{base natural},
+Por otro lado, en geometría diferencial es importante la \emph{base natural},
 que representaremos en este texto como
 \begin{equation}
   B = \set{\vvv{e}_x, \vvv{e}_y}
 \end{equation}
-Estos vectores no tienen por qué ser unitarios, y por ello no aparecen con el acento
-circunflejo. Aunque como veremos, en este caso sí que lo son.
+Estos vectores no tienen por qué ser unitarios, y por ello no aparecen con el
+acento circunflejo, aunque como veremos, en este caso sí que lo son.
 
-Los vectores de esta base se obtienen derivando parcialmente el vector de posición que
-representa a cada punto del espacio, expresado en función de las componentes del
-sistema, en este caso las coordenadas $x$ e $y$, ver la ecuación \eqref{eq:R2-r_rect} y
-la figura \ref{fig:R2-rect_ij}, respecto de cada una de ellas. Estos vectores
-llevan información concreta acerca de cómo varia la posición en el espacio cuando
-variamos cada una de las coordenadas ---tal y como sugieren las derivadas---, lo que
-será importante para obtener la métrica.
+Los vectores de esta base se obtienen derivando parcialmente el vector de
+posición que representa a cada punto del espacio, expresado en función de las
+componentes del sistema, en este caso las coordenadas $x$ e $y$, respecto de
+cada una de ellas.
+Véase la ecuación \eqref{eq:R2-r_rect} y la figura \ref{fig:R2-rect_ij},
+respecto de cada una de ellas.
+Estos vectores llevan información concreta acerca de cómo varia la posición en
+el espacio cuando variamos cada una de las coordenadas ---tal y como sugieren
+las derivadas---, lo que será importante para obtener la \emph{métrica}.
 
-Escribimos de nuevo aquí la expresión que hay que derivar
-\[
-  \vvv{r} = x\,\uvec{\i} + y\,\uvec{\j}
-\]
-
+Los vectores de la base natural son
 Así, se obtiene
 \begin{subequations}
   \begin{align}\label{eq:R2-cart-ex}
