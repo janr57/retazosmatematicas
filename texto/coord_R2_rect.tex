@@ -142,17 +142,15 @@ Estos vectores no tienen por qué ser unitarios, y por ello no aparecen con el
 acento circunflejo, aunque como veremos, en este caso sí que lo son.
 
 Los vectores de esta base se obtienen derivando parcialmente el vector de
-posición que representa a cada punto del espacio, expresado en función de las
+posición de un punto genérico del espacio, expresado en función de las
 componentes del sistema, en este caso las coordenadas $x$ e $y$, respecto de
-cada una de ellas.
-Véase la ecuación \eqref{eq:R2-r_rect} y la figura \ref{fig:R2-rect_ij},
-respecto de cada una de ellas.
+cada una de ellas; véase la ecuación \eqref{eq:R2-r_rect} y la figura
+\ref{fig:R2-rect_ij}.
 Estos vectores llevan información concreta acerca de cómo varia la posición en
 el espacio cuando variamos cada una de las coordenadas ---tal y como sugieren
 las derivadas---, lo que será importante para obtener la \emph{métrica}.
 
-Los vectores de la base natural son
-Así, se obtiene
+Los vectores de la base natural y sus módulos son
 \begin{subequations}
   \begin{align}\label{eq:R2-cart-ex}
     \vvv{e}_x
@@ -171,11 +169,11 @@ Así, se obtiene
     |\vvv{e}_y| = |\uvec{\j}| = 1
   \end{align}
 \end{subequations}
-estos vectores son unitarios, aunque como se señaló antes, no tiene por qué ser así en
-otros sistemas.
+Vemos que son vectores unitarios, aunque como se señaló antes, no tiene por qué
+ser así en otros sistemas de coordenadas.
 
-Escribimos la \emph{base natural} en cartesianas rectangulares, que coincide con los
-vectores unitarios tradicionales $\uvec{\i}$ y $\uvec{\j}$
+Escribimos la \emph{base natural} en cartesianas rectangulares, que coincide
+con los vectores unitarios tradicionales $\uvec{\i}$ y $\uvec{\j}$
 \begin{equation}\label{eq:R2-cart-base}
   B
   =\set{\vvv{e}_x, \vvv{e}_y}
@@ -184,359 +182,253 @@ vectores unitarios tradicionales $\uvec{\i}$ y $\uvec{\j}$
 \end{equation}
 
 
-%\section{Métrica}
-%La métrica en cada sistema de coordenadas define la estructura del espacio, y en
-%particular, sin ella no se pueden medir ni distancias ni ángulos. Es como si
-%proporcionara un sistema de reglas y goniómetros con los cuales medir.
-%
-%De la equivalencia de la base natural con la unitaria, y del hecho de que los vectores de
-%la base son ortogonales entre sí, se podrá inferir que la métrica en coordenadas
-%cartesianas rectangulares se representará como una matriz unidad.
-%
-%\subsection{Producto escalar de los vectores de la base natural}
-%La base natural en coordenadas cartesianas en este espacio está formada por los vectores
-%$\uvec{\i}$ y $\uvec{\j}$, en los ejes $x$ e $y$, respectivamente, ver figura
-%\ref{fig:R2-rect_ij}.
-%A continuación resumimos el valor de los productos escalares entre ellos, tal y como
-%aprendimos en cálculo vectorial fundamental en coordenadas cartesianas o en física
-%elemental
-%\begin{subequations}
-%  \begin{align}
-%    \label{eq:R2-cart-ii_prod_escalar}
-%    \vvv{e}_x\cdot\vvv{e}_x = \uvec{\i}\cdot\uvec{\i}
-%    &= |\uvec{\i}|\,|\uvec{\i}|\cos 0 = 1\\
-%    \label{eq:R2-cart-ij_prod_escalar}    
-%    \vvv{e}_x\cdot\vvv{e}_y = \uvec{\i}\cdot\uvec{\j}
-%    &= |\uvec{\i}|\,|\uvec{\j}|\cos\pi/2 = 0\\
-%    \label{eq:R2-cart-ji_prod_escalar} 
-%    \vvv{e}_y\cdot\vvv{e}_x = \uvec{\j}\cdot\uvec{\i}
-%    &= |\uvec{\j}|\,|\uvec{\i}|\cos\pi/2 = 0\\
-%    \label{eq:R2-cart-jj_prod_escalar}
-%    \vvv{e}_y\cdot\vvv{e}_y = \uvec{\j}\cdot\uvec{\j}
-%    &= |\uvec{\j}|\,|\uvec{\j}|\cos 0 = 1
-%  \end{align}
-%\end{subequations}
-%
-%\subsection{Métrica y factores de escala}
-%La métrica en cualquier sistema de coordenadas se calcula utilizando los vectores de la
-%base natural y el producto escalar entre estos vectores. El resultado es la matriz
-%unidad $\mmm{I}$
-%\begin{equation}\label{eq:R2-cart-metrica}
-%  \mmm{g}_{ij}
-%  = \begin{pmatrix}
-%    g_{11} & g_{12}\\
-%    g_{21} & g_{22}
-%    \end{pmatrix}
-%  = \begin{pmatrix}
-%      \vvv{e}_x\cdot\vvv{e}_x & \vvv{e}_x\cdot\vvv{e}_y\\
-%      \vvv{e}_y\cdot\vvv{e}_x & \vvv{e}_y\cdot\vvv{e}_y
-%  \end{pmatrix}
-%  = \begin{pmatrix}
-%    1 & 0\\
-%    0 & 1
-%  \end{pmatrix}
-%  = \mmm{I}
-%\end{equation}
-%
-%La raíz cuadrada de los elementos diagonales de la métrica se llaman
-%\emph{factores de escala} o \emph{coeficientes métricos}.
-%En coordenadas cartesianas rectangulares serían
-%\begin{align*}
-%  h_x &= \sqrt{g_{11}} = \sqrt{1} = 1\\
-%  h_y &= \sqrt{g_{22}} = \sqrt{1} = 1  
-%\end{align*}
-%
-%Fijémonos en la métrica \eqref{eq:R2-cart-metrica}:
-%\begin{itemize}
-%\item Los elementos no diagonales son nulos. Esto se interpreta como que los vectores
-%  $\vvv{e}_x$ y $\vvv{e}_y$ son independientes, esto es, ortogonales.
-%  Esto implica que un cambio en una coordenada no afectará a la otra. Así, si nos
-%  desplazamos una distancia cualquiera en el eje $x$, no habremos recorrido ninguna
-%  distancia en el eje $y$, y viceversa, por lo que $h_{xy}=h_{yx}=0$.
-%\item Los elementos diagonales valen la unidad. Cada elemento diagonal de la métrica que
-%  vale la unidad implica que un cambio en la coordenada respectiva implica una distancia
-%  recorrida de una unidad en el espacio. En realidad, el espacio recorrido es el factor
-%  de escala correspondiente (la raíz cuadrada del elemento diagonal correspondiente),
-%  pero en este caso da lo mismo
-%  \begin{subequations}
-%    \begin{align}
-%      \Delta s &= h_x \Delta x = \sqrt{1}\, \Delta x = \Delta x\\
-%      \Delta s &= h_y \Delta y = \sqrt{1}\, \Delta y = \Delta y
-%    \end{align}
-%  \end{subequations}
-%  Para adquirir algo de intuición, imaginemos que nos desplazamos cualquier distancia en
-%  el eje $x$, digamos un metro; es fácil entender que en el espacio nos habremos
-%  desplazado esa misma distancia. Por tanto es lógico razonar que el factor de escala
-%  $h_x$ vale 1. Lo mismo podemos decir para el factor de escala en el eje $y$, $h_y=1$.
-%\end{itemize}
-%
-%\subsection{Revisión del producto escalar}
-%La métrica nos permite calcular distancias. En concreto, el cuadrado del módulo de un
-%vector $\vvv{A}$ se mide realizando el producto escalar del vector por sí mismo.
-%El producto escalar se encarga de esto, y se puede ampliar mediante el cálculo
-%matricial, utilizando la métrica (en otros sistemas de coordenadas veremos que es más
-%importante que aquí, mientras que en cartesianas se puede y se suele obviar)
-%\[
-%  \vvv{v}\cdot\vvv{w}
-%  = \vvv{v}^\transp \mmm{g}_{ij} \vvv{w}
-%  = \vvv{v}^\transp \mmm{I} \vvv{w}
-%  = \begin{pmatrix}
-%    v_x &  v_y
-%  \end{pmatrix}
-%  \begin{pmatrix}
-%    1 & 0\\
-%    0 & 1
-%  \end{pmatrix}
-%  \begin{pmatrix}
-%    w_x\\
-%    w_y
-%  \end{pmatrix}
-%  =
-%  v_xw_x + v_y w_y
-%\]
-%Así, el cuadrado del módulo de un vector en cartesianas es
-%\[
-%  v^2
-%  =
-%  |\vvv{v}|^2
-%  =
-%  \vvv{v}\cdot\vvv{v}
-%  =
-%  \vvv{v}^\transp \mmm{g}_{ij} \vvv{v}
-%  =
-%  \begin{pmatrix}
-%  v_x &  v_y
-%\end{pmatrix}
-%\begin{pmatrix}
-%  1 & 0\\
-%  0 & 1
-%\end{pmatrix}
-%\begin{pmatrix}
-%  v_x\\
-%  v_y
-%\end{pmatrix}
-%=
-%v_x^2 + v_y^2
-%\]
-%que coincide con el valor que obteníamos en el cálculo vectorial básico.
-%
-%
-%\section{Vectores contravariantes y covariantes}
-%Esta sección se encuentra aquí de una manera un tanto forzada, pues los dos tipos de
-%vectores del título son el mismo en coordenadas rectangulares y, como consecuencia, aquí
-%no es necesario hacer referencia a ellos.
-%
-%En todo caso, adelantaremos algo de información sobre ellos para captar su significado y
-%entender por qué en otros sistemas de coordenadas estos vectores son diferentes, al
-%contrario de lo que ocurre en este sistema de coordenadas.
-%
-%\subsection{Vectores contravariantes}
-%Los vectores \emph{viven} en un espacio vectorial $V$\, llamado \emph{espacio tangente}.
-%Pensemos, por ejemplo, en un espacio curvo como puede ser el de una superficie esférica.
-%No se pueden representar vectores en una superficie curva, sino en un plano. Ese plano
-%es en este caso el espacio tangente o espacio vectorial donde \emph{viven} los vectores.
-%
-%Cada punto  del espacio curvo tiene asociado un plano tangente diferente al del resto
-%de puntos. Nosotros sabemos realizar operaciones con vectores que
-%\emph{viven en el mismo espacio tangente}. Como consecuencia, en principio no podríamos
-%realizar operaciones entre vectores de diferentes espacios tangente\footnotemark{}.
-%Véase la figura \ref{fig:R2-cart_planos_tangentes}.
-%\footnotetext{Para poder realizar este tipo de operaciones entre dos vectores que se
-%  encuentren en dos espacios tangente diferentes, la geometría diferencial define el
-%  transporte paralelo, pero esto es algo que no nos debe preocupar por ahora.}
-%\begin{figure}[ht]
-%  % Escala
-%  \def\scl{1.9}
-%  % Origen de coordenadas
-%  \pgfmathsetmacro{\Ox}{0.0}
-%  \pgfmathsetmacro{\Oy}{0.0}
-%  \pgfmathsetmacro{\Oz}{0.0}
-%  % Centro de la esfera
-%  \pgfmathsetmacro{\Cx}{\Ox}
-%  \pgfmathsetmacro{\Cy}{\Oy}
-%  \pgfmathsetmacro{\Cz}{\Oz}
-%  % Radio de la esfera en cm
-%  \pgfmathsetmacro{\R}{1.0}
-%  % Opacidad de la esfera y los planos
-%  \pgfmathsetmacro{\OPACIDADESFERA}{0.9}
-%  \pgfmathsetmacro{\OPACIDADPLANO}{0.8}
-%  %
-%  \centering
-%  \begin{tikzpicture}[%
-%    scale=\scl,
-%    z= {(0cm,1cm)},
-%    y={(1cm,0cm)},
-%    x={(-0.38cm,-0.38cm)},
-%    line join=round,
-%    line cap=round,
-%    every node/.style={black,font=\scriptsize},
-%    planoP1/.style={blue!60!black, fill=blue!20, opacity=\OPACIDADPLANO},
-%    planoP2/.style={red!60!black, fill=red!20, opacity=\OPACIDADPLANO},
-%    vector/.style={-{Latex[round,width=3pt,length=4pt]}},
-%    ]
-%    % COORDENADAS
-%    % Origen
-%    \coordinate (O) at (\Ox,\Oy,\Oz);
-%    % Centro de la esfera
-%    \coordinate (C) at (\Cx,\Cy,\Cz);
-%    
-%    % 1. ESFERA
-%    \shade[ball color=black!20!white, opacity=\OPACIDADESFERA] (C) circle[radius=\R cm];
-%    \draw[gray!10] (C) circle[radius=\R cm];
-%
-%%    % 2. PLANO SUPERIOR
-%    \coordinate (P1) at (xyz spherical cs:radius=1,latitude=90);
-%    \begin{scope}[canvas is xy plane at z=1]
-%      % Plano en P1
-%      \filldraw[planoP1] (-0.5,-0.5) rectangle (0.5,0.5);
-%      \draw[vector] (0,0) -- (-0.3,0.3);
-%    \end{scope}
-%    % Punto P1 y texto
-%    \fill[black] (P1) circle (0.5pt);
-%    \node[below left=-2pt and -2pt] at (P1) {$P_1$};
-%
-%    % 3. PLANO FRONTAL DERECHA
-%    \coordinate (P2) at (xyz spherical cs:radius=1,longitude=30,latitude=25);
-%    \begin{scope}[%
-%      plane origin=(P2), plane x={(0.8,1.0)}, plane y={(0.2,0)}, canvas is plane
-%      ]
-%      % Plano en P2
-%      \filldraw[planoP2] (-0.5,-0.5) rectangle (0.5,0.5);
-%      \draw[vector] (0,0) -- (0.4,-0.4);
-%      \draw[vector] (0,0) -- (0.25,0.4);
-%    \end{scope}
-%    
-%    \fill[black] (P2) circle (0.5pt);
-%    \node[above left=-1pt and -2pt] at (P2) {$P_2$};
-%  
-%    % Vectores en P1
-%    %\draw[-{Latex[round,width=3pt,length=4pt]}] (P1) -- ++(0.3, 0, 0);
-%    %\draw[-{Latex[round,width=3pt,length=4pt]}] (P1) -- ++(0, 0, -0.3);
-%
-%%    % Vectores en P2 (ajustados para nacer exactamente de P2)
-%%    \draw[-{Latex[round,width=3pt,length=4pt]}] (P2) -- ++(0.05, 0.35, -0.1);
-%%    % \draw[-{Latex[round,width=3pt,length=4pt]}] (P2) -- ++(0.1, -0.1, -0.4);
-%%    \draw[-{Latex[round,width=3pt,length=4pt]}] (P2) -- ++(0.22, -0.05, -0.45);
-%  \end{tikzpicture}
-%  \caption{Espacio esférico donde se representan dos planos tangentes en dos puntos
-%    arbitrarios de la esfera. En el plano situado en el polo norte (azul), se representa
-%    un vector que \emph{vive} en ese plano. Por otro lado en el otro punto se aprecia
-%    un plano tangente (rosa) con dos vectores.}
-%  \label{fig:R2-cart_planos_tangentes}
-%\end{figure}
-%
-%%\begin{figure}[ht]
-%%  % Escala
-%%  \def\scl{1.9}
-%%  % Origen de coordenadas
-%%  \pgfmathsetmacro{\Ou}{0.0}
-%%  \pgfmathsetmacro{\Ov}{0.0}
-%%  % Centro de la esfera
-%%  \pgfmathsetmacro{\Cu}{\Ou}
-%%  \pgfmathsetmacro{\Cv}{\Ov}
-%%  % Radio de la esfera en cm
-%%  \pgfmathsetmacro{\R}{1.0}
-%%  % Opacidad de la esfera y los planos
-%%  \pgfmathsetmacro{\OPACIDADESFERA}{0.9}
-%%  \pgfmathsetmacro{\OPACIDADPLANO}{0.8}
-%%  % Punto de vista
-%%  \pgfmathsetmacro{\THETA}{90-30}
-%%  \pgfmathsetmacro{\PHI}{40}
-%%  % Eje x
-%%  \pgfmathsetmacro{\EJEXu}{-sin(\PHI)}
-%%  \pgfmathsetmacro{\EJEXv}{-cos(\THETA)*cos(\PHI)}
-%%  % Eje y
-%%  \pgfmathsetmacro{\EJEYu}{cos(\PHI)}
-%%  \pgfmathsetmacro{\EJEYv}{-cos(\THETA)*sin(\PHI)}
-%%  % Eje z (punto P1 (Pa))
-%%  \pgfmathsetmacro{\EJEZu}{0}
-%%  \pgfmathsetmacro{\EJEZv}{sin(\THETA)}
-%%  % Punto P2 (Pb)
-%%  \pgfmathsetmacro{\Pbtheta}{45}
-%%  \pgfmathsetmacro{\Pbphi}{50}
-%%  \pgfmathsetmacro{\Pbx}{sin(\Pbphi)*cos(\Pbphi)}
-%%  \pgfmathsetmacro{\Pby}{sin(\Pbphi)*sin(\Pbphi)}
-%%  \pgfmathsetmacro{\Pbz}{cos(\Pbphi)}
-%%  \pgfmathsetmacro{\Pbu}{-\Pbx*sin(\PHI)+\Pby*cos(\PHI)}
-%%  \pgfmathsetmacro{\Pbv}
-%%  {-\Pbx*cos(\THETA)*cos(\PHI)-\Pby*cos(\THETA)*sin(\PHI)+\Pbz*sin(\THETA)}
-%%  %
-%%  \centering
-%%  \begin{tikzpicture}[%
-%%    scale=\scl,
-%%    %z= {(0cm,1cm)},
-%%    %y={(1cm,0cm)},
-%%    %x={(-0.38cm,-0.38cm)},
-%%    line join=round,
-%%    line cap=round,
-%%    every node/.style={black,font=\scriptsize},
-%%    planoP1/.style={blue!60!black, fill=blue!20, opacity=\OPACIDADPLANO},
-%%    planoP2/.style={red!60!black, fill=red!20, opacity=\OPACIDADPLANO},
-%%    vector/.style={-{Latex[round,width=3pt,length=4pt]}},
-%%    ]
-%%    % COORDENADAS
-%%    % Origen
-%%    \coordinate (O) at (\Ou,\Ov);
-%%    % Centro de la esfera
-%%    \coordinate (C) at (\Cu,\Cv);
-%%    % Eje x
-%%    \path[save path=\ejex] (C) -- (\EJEXu, \EJEXv);
-%%    % Eje y
-%%    \path[save path=\ejey] (C) -- (\EJEYu, \EJEYv);
-%%    % Eje z y P1
-%%    \path[save path=\ejez] (C) -- (\EJEZu, \EJEZv) coordinate (P1);
-%%    % P2
-%%    coordinate (P2) at (\Pbu, \Pbv);
-%%    
-%%    % 1. ESFERA
-%%    \shade[ball color=black!20!white, opacity=\OPACIDADESFERA] (C) circle[radius=\R cm];
-%%    \draw[gray!10] (C) circle[radius=\R cm];
-%%
-%%%    % PRUEBA. EJES DE COORDENADAS
-%%%    \draw[->, use path=\ejex];
-%%%    \draw[->, use path=\ejey];
-%%%    \draw[->, use path=\ejez];
-%%    
-%%%   % 2. PLANO SUPERIOR
-%%
-%%    % 3. PUNTO SUPERIOR Y PLANO
-%%    \fill[black] (P1) circle[radius=0.5pt];
-%%
-%%    % 4. PUNTO P2
-%%    \fill[black] (P2) circle[radius=0.5pt];
-%%    
-%%    %    % 2. PLANO SUPERIOR
-%%%    \coordinate (P1) at (xyz spherical cs:radius=1,latitude=90);
-%%%    \begin{scope}[canvas is xy plane at z=1]
-%%%      % Plano en P1
-%%%      \filldraw[planoP1] (-0.5,-0.5) rectangle (0.5,0.5);
-%%%      \draw[vector] (0,0) -- (-0.3,0.3);
-%%%    \end{scope}
-%%%    % Punto P1 y texto
-%%%    \fill[black] (P1) circle (0.5pt);
-%%%    \node[below left=-2pt and -2pt] at (P1) {$P_1$};
-%%
-%%%    % 3. PLANO FRONTAL DERECHA
-%%%    \coordinate (P2) at (xyz spherical cs:radius=1,longitude=30,latitude=25);
-%%%    \begin{scope}[%
-%%%      plane origin=(P2), plane x={(0.8,1.0)}, plane y={(0.2,0)}, canvas is plane
-%%%      ]
-%%%      % Plano en P2
-%%%      \filldraw[planoP2] (-0.5,-0.5) rectangle (0.5,0.5);
-%%%      \draw[vector] (0,0) -- (0.4,-0.4);
-%%%      \draw[vector] (0,0) -- (0.25,0.4);
-%%%    \end{scope}
-%%%    
-%%%    \fill[black] (P2) circle (0.5pt);
-%%%    \node[above left=-1pt and -2pt] at (P2) {$P_2$};
-%%  \end{tikzpicture}
-%%  %\caption{Espacio esférico donde se representan dos planos tangentes en dos puntos
-%%  %  arbitrarios de la esfera. En el plano situado en el polo norte (azul), se representa
-%%  %  un vector que \emph{vive} en ese plano. Por otro lado en el otro punto se aprecia
-%%  %  un plano tangente (rosa) con dos vectores.}
-%%  %\label{fig:R2-cart_planos_tangentes}
-%%\end{figure}
-%
+\section{Métrica}
+La métrica en cada sistema de coordenadas define la estructura del espacio, y
+en particular, sin ella no se pueden medir ni distancias ni ángulos. Es como si
+proporcionara un sistema de reglas y goniómetros con los cuales medir
+distancias y ángulos.
+
+De la equivalencia de la base natural con la unitaria, y del hecho de que los
+vectores de la base son ortogonales entre sí, se podrá inferir que la métrica
+en coordenadas cartesianas rectangulares se representará como una matriz unidad.
+
+\subsection{Producto escalar de los vectores de la base natural}
+La base natural en coordenadas cartesianas en este espacio está formada por los vectores
+$\uvec{\i}$ y $\uvec{\j}$, en los ejes $x$ e $y$, respectivamente, ver figura
+\ref{fig:R2-rect_ij}.
+A continuación resumimos el valor de los productos escalares entre ellos, tal y como
+aprendimos en cálculo vectorial fundamental en coordenadas cartesianas o en física
+elemental
+\begin{subequations}
+  \begin{align}
+    \label{eq:R2-cart-ii_prod_escalar}
+    \vvv{e}_x\cdot\vvv{e}_x = \uvec{\i}\cdot\uvec{\i}
+    &= |\uvec{\i}|\,|\uvec{\i}|\cos 0 = 1\\
+    \label{eq:R2-cart-ij_prod_escalar}    
+    \vvv{e}_x\cdot\vvv{e}_y = \uvec{\i}\cdot\uvec{\j}
+    &= |\uvec{\i}|\,|\uvec{\j}|\cos\pi/2 = 0\\
+    \label{eq:R2-cart-ji_prod_escalar} 
+    \vvv{e}_y\cdot\vvv{e}_x = \uvec{\j}\cdot\uvec{\i}
+    &= |\uvec{\j}|\,|\uvec{\i}|\cos\pi/2 = 0\\
+    \label{eq:R2-cart-jj_prod_escalar}
+    \vvv{e}_y\cdot\vvv{e}_y = \uvec{\j}\cdot\uvec{\j}
+    &= |\uvec{\j}|\,|\uvec{\j}|\cos 0 = 1
+  \end{align}
+\end{subequations}
+
+\subsection{Métrica y factores de escala}
+La métrica en cualquier sistema de coordenadas se calcula utilizando los vectores de la
+base natural y el producto escalar entre estos vectores. El resultado es la matriz
+unidad $\mmm{I}$
+\begin{equation}\label{eq:R2-cart-metrica}
+  \mmm{g}_{ij}
+  = \begin{pmatrix}
+    g_{11} & g_{12}\\
+    g_{21} & g_{22}
+    \end{pmatrix}
+  = \begin{pmatrix}
+      \vvv{e}_x\cdot\vvv{e}_x & \vvv{e}_x\cdot\vvv{e}_y\\
+      \vvv{e}_y\cdot\vvv{e}_x & \vvv{e}_y\cdot\vvv{e}_y
+  \end{pmatrix}
+  = \begin{pmatrix}
+    1 & 0\\
+    0 & 1
+  \end{pmatrix}
+  = \mmm{I}
+\end{equation}
+
+La raíz cuadrada de los elementos diagonales de la métrica se llaman
+\emph{factores de escala} o \emph{coeficientes métricos}.
+En coordenadas cartesianas rectangulares serían
+\begin{align*}
+  h_x &= \sqrt{g_{11}} = \sqrt{1} = 1\\
+  h_y &= \sqrt{g_{22}} = \sqrt{1} = 1  
+\end{align*}
+
+Fijémonos en la métrica \eqref{eq:R2-cart-metrica}:
+\begin{itemize}
+\item Los elementos no diagonales son nulos. Esto se interpreta como que los
+  vectores $\vvv{e}_x$ y $\vvv{e}_y$ son independientes, esto es, ortogonales,
+  lo que implica que un cambio en una coordenada no afectará a la otra.
+  Así, si nos desplazamos una distancia cualquiera en el eje $x$, no habremos
+  recorrido ninguna distancia en el eje $y$, y viceversa, por lo que
+  $h_{xy}= h_{yx}= 0$.
+\item Los elementos diagonales valen la unidad. ESto implica que un cambio en
+  la coordenada respectiva implica una distancia recorrida de una unidad en el
+  espacio.
+  En realidad, el espacio recorrido es el factor de escala correspondiente
+  (la raíz cuadrada del elemento diagonal correspondiente), pero en este caso
+  da lo mismo
+  \begin{subequations}
+    \begin{align}
+      \Delta s &= h_x\, \Delta x = \sqrt{1}\, \Delta x = \Delta x\\
+      \Delta s &= h_y\, \Delta y = \sqrt{1}\, \Delta y = \Delta y
+    \end{align}
+  \end{subequations}
+  Para adquirir algo de intuición, imaginemos que nos desplazamos cualquier distancia en
+  el eje $x$, digamos un metro; es fácil entender que en el espacio nos habremos
+  desplazado esa misma distancia. Por tanto es lógico razonar que el factor de escala
+  $h_x$ vale 1. Lo mismo podemos decir para el factor de escala en el eje $y$, $h_y=1$.
+\end{itemize}
+
+\subsection{Revisión del producto escalar}
+La métrica nos permite calcular distancias. En concreto, el cuadrado del módulo de un
+vector $\vvv{A}$ se mide realizando el producto escalar del vector por sí mismo.
+El producto escalar se encarga de esto, y se puede ampliar mediante el cálculo
+matricial, utilizando la métrica (en otros sistemas de coordenadas veremos que es más
+importante que aquí, mientras que en cartesianas se puede y se suele obviar)
+\[
+  \vvv{v}\cdot\vvv{w}
+  = \vvv{v}^\transp \mmm{g}_{ij}\, \vvv{w}
+  = \vvv{v}^\transp \mmm{I}\, \vvv{w}
+  = \begin{pmatrix}
+    v_x &  v_y
+  \end{pmatrix}
+  \begin{pmatrix}
+    1 & 0\\
+    0 & 1
+  \end{pmatrix}
+  \begin{pmatrix}
+    w_x\\
+    w_y
+  \end{pmatrix}
+  =
+  v_x\,w_x + v_y\, w_y
+\]
+Así, el cuadrado del módulo de un vector en cartesianas rectangulares es
+\[
+  v^2
+  =
+  |\vvv{v}|^2
+  =
+  \vvv{v}\cdot\vvv{v}
+  =
+  \vvv{v}^\transp \mmm{g}_{ij}\, \vvv{v}
+  =
+  \begin{pmatrix}
+  v_x &  v_y
+\end{pmatrix}
+\begin{pmatrix}
+  1 & 0\\
+  0 & 1
+\end{pmatrix}
+\begin{pmatrix}
+  v_x\\
+  v_y
+\end{pmatrix}
+=
+v_x^2 + v_y^2
+\]
+que coincide con el valor que obteníamos en el cálculo vectorial elemental.
+
+
+\section{Vectores contravariantes y covariantes}
+Esta sección se encuentra aquí de una manera un tanto forzada, pues los dos
+tipos de vectores del título son el mismo en coordenadas rectangulares y, como
+consecuencia, no es necesario hacer referencia a ellos.
+
+Pero, adelantaremos algo de información sobre estos conceptos, para captar su
+significado y entender por qué en otros sistemas de coordenadas estos vectores
+son diferentes, al contrario de lo que ocurre en este sistema de coordenadas.
+
+\subsection{Vectores contravariantes}
+Los vectores \emph{viven} en un espacio vectorial $V$\, llamado
+\emph{espacio tangente}.
+Pensemos, por ejemplo, en un espacio curvo como puede ser el de una superficie
+esférica.
+No se pueden representar vectores en una superficie curva, sino en un plano.
+Ese plano es en este caso el espacio tangente o espacio vectorial asociado al
+punto donde \emph{viven} los vectores.
+
+Cada punto  del espacio curvo tiene asociado un plano tangente diferente al del resto
+de puntos. Nosotros sabemos realizar operaciones con vectores que
+\emph{viven en el mismo espacio tangente}. Como consecuencia, en principio no podríamos
+realizar operaciones entre vectores de diferentes espacios tangente\footnotemark{}.
+Véase la figura \ref{fig:R2-cart_planos_tangentes}.
+\footnotetext{Para poder realizar este tipo de operaciones entre dos vectores que se
+  encuentren en dos espacios tangente diferentes, la geometría diferencial define el
+  transporte paralelo, pero esto es algo que no nos debe preocupar por ahora.}
+\begin{figure}[ht]
+  % Escala
+  \def\scl{1.9}
+  % Origen de coordenadas
+  \pgfmathsetmacro{\Ox}{0.0}
+  \pgfmathsetmacro{\Oy}{0.0}
+  \pgfmathsetmacro{\Oz}{0.0}
+  % Centro de la esfera
+  \pgfmathsetmacro{\Cx}{\Ox}
+  \pgfmathsetmacro{\Cy}{\Oy}
+  \pgfmathsetmacro{\Cz}{\Oz}
+  % Radio de la esfera en cm
+  \pgfmathsetmacro{\R}{1.0}
+  % Opacidad de la esfera y los planos
+  \pgfmathsetmacro{\OPACIDADESFERA}{0.9}
+  \pgfmathsetmacro{\OPACIDADPLANO}{0.8}
+  %
+  \centering
+  \begin{tikzpicture}[%
+    scale=\scl,
+    z= {(0cm,1cm)},
+    y={(1cm,0cm)},
+    x={(-0.38cm,-0.38cm)},
+    line join=round,
+    line cap=round,
+    every node/.style={black,font=\scriptsize},
+    planoP1/.style={blue!60!black, fill=blue!20, opacity=\OPACIDADPLANO},
+    planoP2/.style={red!60!black, fill=red!20, opacity=\OPACIDADPLANO},
+    vector/.style={-{Latex[round,width=3pt,length=4pt]}},
+    ]
+    % COORDENADAS
+    % Origen
+    \coordinate (O) at (\Ox,\Oy,\Oz);
+    % Centro de la esfera
+    \coordinate (C) at (\Cx,\Cy,\Cz);
+    
+    % 1. ESFERA
+    \shade[ball color=black!20!white, opacity=\OPACIDADESFERA] (C) circle[radius=\R cm];
+    \draw[gray!10] (C) circle[radius=\R cm];
+
+%    % 2. PLANO SUPERIOR
+    \coordinate (P1) at (xyz spherical cs:radius=1,latitude=90);
+    \begin{scope}[canvas is xy plane at z=1]
+      % Plano en P1
+      \filldraw[planoP1] (-0.5,-0.5) rectangle (0.5,0.5);
+      \draw[vector] (0,0) -- (-0.3,0.3);
+    \end{scope}
+    % Punto P1 y texto
+    \fill[black] (P1) circle (0.5pt);
+    \node[below left=-2pt and -2pt] at (P1) {$P_1$};
+
+    % 3. PLANO FRONTAL DERECHA
+    \coordinate (P2) at (xyz spherical cs:radius=1,longitude=30,latitude=25);
+    \begin{scope}[%
+      plane origin=(P2), plane x={(0.8,1.0)}, plane y={(0.2,0)}, canvas is plane
+      ]
+      % Plano en P2
+      \filldraw[planoP2] (-0.5,-0.5) rectangle (0.5,0.5);
+      \draw[vector] (0,0) -- (0.4,-0.4);
+      \draw[vector] (0,0) -- (0.25,0.4);
+    \end{scope}
+    
+    \fill[black] (P2) circle (0.5pt);
+    \node[above left=-1pt and -2pt] at (P2) {$P_2$};
+  
+    % Vectores en P1
+    %\draw[-{Latex[round,width=3pt,length=4pt]}] (P1) -- ++(0.3, 0, 0);
+    %\draw[-{Latex[round,width=3pt,length=4pt]}] (P1) -- ++(0, 0, -0.3);
+
+%    % Vectores en P2 (ajustados para nacer exactamente de P2)
+%    \draw[-{Latex[round,width=3pt,length=4pt]}] (P2) -- ++(0.05, 0.35, -0.1);
+%    % \draw[-{Latex[round,width=3pt,length=4pt]}] (P2) -- ++(0.1, -0.1, -0.4);
+%    \draw[-{Latex[round,width=3pt,length=4pt]}] (P2) -- ++(0.22, -0.05, -0.45);
+  \end{tikzpicture}
+  \caption{Espacio esférico donde se representan dos planos tangentes en dos puntos
+    arbitrarios de la esfera. En el plano situado en el polo norte (azul), se representa
+    un vector que \emph{vive} en ese plano. Por otro lado en el otro punto se aprecia
+    un plano tangente (rosa) con dos vectores.}
+  \label{fig:R2-cart_planos_tangentes}
+\end{figure}
+
 %\begin{figure}[ht]
 %  % Escala
 %  \def\scl{1.9}
@@ -552,23 +444,31 @@ vectores unitarios tradicionales $\uvec{\i}$ y $\uvec{\j}$
 %  \pgfmathsetmacro{\OPACIDADESFERA}{0.9}
 %  \pgfmathsetmacro{\OPACIDADPLANO}{0.8}
 %  % Punto de vista
-%  \pgfmathsetmacro{\THETA}{90.0-30.0}
-%  \pgfmathsetmacro{\PHI}{40.0}
+%  \pgfmathsetmacro{\THETA}{90-30}
+%  \pgfmathsetmacro{\PHI}{40}
 %  % Eje x
-%  
+%  \pgfmathsetmacro{\EJEXu}{-sin(\PHI)}
+%  \pgfmathsetmacro{\EJEXv}{-cos(\THETA)*cos(\PHI)}
 %  % Eje y
-%  
+%  \pgfmathsetmacro{\EJEYu}{cos(\PHI)}
+%  \pgfmathsetmacro{\EJEYv}{-cos(\THETA)*sin(\PHI)}
 %  % Eje z (punto P1 (Pa))
-%  %\pgfmathsetmacro{\EJEZu}{\proyEjeZu{\THETA}{\PHI}}
-%  %\pgfmathsetmacro{\EJEZv}{\proyEjeZv{\THETA}{\PHI}}
+%  \pgfmathsetmacro{\EJEZu}{0}
+%  \pgfmathsetmacro{\EJEZv}{sin(\THETA)}
 %  % Punto P2 (Pb)
 %  \pgfmathsetmacro{\Pbtheta}{45}
 %  \pgfmathsetmacro{\Pbphi}{50}
-%  % 
+%  \pgfmathsetmacro{\Pbx}{sin(\Pbphi)*cos(\Pbphi)}
+%  \pgfmathsetmacro{\Pby}{sin(\Pbphi)*sin(\Pbphi)}
+%  \pgfmathsetmacro{\Pbz}{cos(\Pbphi)}
+%  \pgfmathsetmacro{\Pbu}{-\Pbx*sin(\PHI)+\Pby*cos(\PHI)}
+%  \pgfmathsetmacro{\Pbv}
+%  {-\Pbx*cos(\THETA)*cos(\PHI)-\Pby*cos(\THETA)*sin(\PHI)+\Pbz*sin(\THETA)}
+%  %
 %  \centering
 %  \begin{tikzpicture}[%
 %    scale=\scl,
-%    %z={(0cm,1cm)},
+%    %z= {(0cm,1cm)},
 %    %y={(1cm,0cm)},
 %    %x={(-0.38cm,-0.38cm)},
 %    line join=round,
@@ -584,45 +484,32 @@ vectores unitarios tradicionales $\uvec{\i}$ y $\uvec{\j}$
 %    % Centro de la esfera
 %    \coordinate (C) at (\Cu,\Cv);
 %    % Eje x
-%    %\path[save path=\ejex] (C) -- (\EJEXu, \EJEXv);
+%    \path[save path=\ejex] (C) -- (\EJEXu, \EJEXv);
 %    % Eje y
-%    %\path[save path=\ejey] (C) -- (\EJEYu, \EJEYv);
+%    \path[save path=\ejey] (C) -- (\EJEYu, \EJEYv);
 %    % Eje z y P1
-%    %\coordinate (ejez) at \ejeZmac;
-%    %\path[save path=\ejez] (C) -- (ejez);
+%    \path[save path=\ejez] (C) -- (\EJEZu, \EJEZv) coordinate (P1);
 %    % P2
-%    %\coordinate (P2) at (\Pbu, \Pbv);
-%
+%    coordinate (P2) at (\Pbu, \Pbv);
+%    
 %    % 1. ESFERA
 %    \shade[ball color=black!20!white, opacity=\OPACIDADESFERA] (C) circle[radius=\R cm];
 %    \draw[gray!10] (C) circle[radius=\R cm];
 %
-%    %\draw[red] (0,0,0) -- (0,0,1);
-%
-%    \fill[red] \puntoPolar{5}{math.pi/4} circle (1pt);
-%    %\draw[blue, thick] (0,0) -- \puntoPolar{3}{math.pi/6} node[right] {Extremo};
-%    % PRUEB. EJES DE COORDENADAS
+%%    % PRUEBA. EJES DE COORDENADAS
 %%    \draw[->, use path=\ejex];
 %%    \draw[->, use path=\ejey];
-%    %\draw[->, use path=\ejez];
-%    %\node at (O) {$\proyEjeZu{\THETA}{\PHI}$};
-%    %\fill[red] (ejez) circle[radius=1pt];
+%%    \draw[->, use path=\ejez];
 %    
-%    %\node at (O) {\ejeZmac};
-%    %\def\novale{\proyEjeZu{\THETA}{\PHI}};
-%    %\node at (O) {$\novale$};
-%    %\fill[red] (ejez) circle[radius=2pt];
-%    %\draw[->,red] (0,0,0) -- (0,0,1);
 %%   % 2. PLANO SUPERIOR
 %
-%%    % 3. PUNTO SUPERIOR Y PLANO
-%%    \fill[black] (P1) circle[radius=0.5pt];
-%%    \node at (O) {\pruebaTexto};
+%    % 3. PUNTO SUPERIOR Y PLANO
+%    \fill[black] (P1) circle[radius=0.5pt];
 %
-%%    % 4. PUNTO P2
-%%    \fill[black] (P2) circle[radius=0.5pt];
+%    % 4. PUNTO P2
+%    \fill[black] (P2) circle[radius=0.5pt];
 %    
-%%    %    % 2. PLANO SUPERIOR
+%    %    % 2. PLANO SUPERIOR
 %%    \coordinate (P1) at (xyz spherical cs:radius=1,latitude=90);
 %%    \begin{scope}[canvas is xy plane at z=1]
 %%      % Plano en P1
@@ -653,7 +540,124 @@ vectores unitarios tradicionales $\uvec{\i}$ y $\uvec{\j}$
 %  %  un plano tangente (rosa) con dos vectores.}
 %  %\label{fig:R2-cart_planos_tangentes}
 %\end{figure}
-%
+
+\begin{figure}[ht]
+  % Escala
+  \def\scl{1.9}
+  % Origen de coordenadas
+  \pgfmathsetmacro{\Ou}{0.0}
+  \pgfmathsetmacro{\Ov}{0.0}
+  % Centro de la esfera
+  \pgfmathsetmacro{\Cu}{\Ou}
+  \pgfmathsetmacro{\Cv}{\Ov}
+  % Radio de la esfera en cm
+  \pgfmathsetmacro{\R}{1.0}
+  % Opacidad de la esfera y los planos
+  \pgfmathsetmacro{\OPACIDADESFERA}{0.9}
+  \pgfmathsetmacro{\OPACIDADPLANO}{0.8}
+  % Punto de vista
+  \pgfmathsetmacro{\THETA}{60.0}
+  \pgfmathsetmacro{\PHI}{40.0}
+  % Eje x
+  
+  % Eje y
+  
+  % Eje z (punto P1 (Pa))
+  %\pgfmathsetmacro{\EJEZu}{\proyEjeZu{\THETA}{\PHI}}
+  %\pgfmathsetmacro{\EJEZv}{\proyEjeZv{\THETA}{\PHI}}
+  % Punto P2 (Pb)
+  \pgfmathsetmacro{\Pbtheta}{45}
+  \pgfmathsetmacro{\Pbphi}{50}
+  % 
+  \centering
+  \begin{tikzpicture}[%
+    scale=\scl,
+    %z={(0cm,1cm)},
+    %y={(1cm,0cm)},
+    %x={(-0.38cm,-0.38cm)},
+    line join=round,
+    line cap=round,
+    every node/.style={black,font=\scriptsize},
+    planoP1/.style={blue!60!black, fill=blue!20, opacity=\OPACIDADPLANO},
+    planoP2/.style={red!60!black, fill=red!20, opacity=\OPACIDADPLANO},
+    vector/.style={-{Latex[round,width=3pt,length=4pt]}},
+    ]
+    % COORDENADAS
+    % Origen
+    \coordinate (O) at (\Ou,\Ov);
+    % Centro de la esfera
+    \coordinate (C) at (\Cu,\Cv);
+    % Eje x
+    %\path[save path=\ejex] (C) -- (\EJEXu, \EJEXv);
+    % Eje y
+    %\path[save path=\ejey] (C) -- (\EJEYu, \EJEYv);
+    % Eje z y P1
+    %\coordinate (ejez) at \ejeZmac;
+    %\path[save path=\ejez] (C) -- (ejez);
+    % P2
+    %\coordinate (P2) at (\Pbu, \Pbv);
+
+    % 1. ESFERA
+    \shade[ball color=black!20!white, opacity=\OPACIDADESFERA] (C) circle[radius=\R cm];
+    \draw[gray!10] (C) circle[radius=\R cm];
+
+    %\draw[red] (0,0,0) -- (0,0,1);
+
+    \fill[red] \puntoPolar{5}{math.pi/4} circle (1pt);
+    %\draw[blue, thick] (0,0) -- \puntoPolar{3}{math.pi/6} node[right] {Extremo};
+    % PRUEB. EJES DE COORDENADAS
+%    \draw[->, use path=\ejex];
+%    \draw[->, use path=\ejey];
+    %\draw[->, use path=\ejez];
+    %\node at (O) {$\proyEjeZu{\THETA}{\PHI}$};
+    %\fill[red] (ejez) circle[radius=1pt];
+    
+    %\node at (O) {\ejeZmac};
+    %\def\novale{\proyEjeZu{\THETA}{\PHI}};
+    %\node at (O) {$\novale$};
+    %\fill[red] (ejez) circle[radius=2pt];
+    %\draw[->,red] (0,0,0) -- (0,0,1);
+%   % 2. PLANO SUPERIOR
+
+%    % 3. PUNTO SUPERIOR Y PLANO
+%    \fill[black] (P1) circle[radius=0.5pt];
+%    \node at (O) {\pruebaTexto};
+
+%    % 4. PUNTO P2
+%    \fill[black] (P2) circle[radius=0.5pt];
+    
+%    %    % 2. PLANO SUPERIOR
+%    \coordinate (P1) at (xyz spherical cs:radius=1,latitude=90);
+%    \begin{scope}[canvas is xy plane at z=1]
+%      % Plano en P1
+%      \filldraw[planoP1] (-0.5,-0.5) rectangle (0.5,0.5);
+%      \draw[vector] (0,0) -- (-0.3,0.3);
+%    \end{scope}
+%    % Punto P1 y texto
+%    \fill[black] (P1) circle (0.5pt);
+%    \node[below left=-2pt and -2pt] at (P1) {$P_1$};
+
+%    % 3. PLANO FRONTAL DERECHA
+%    \coordinate (P2) at (xyz spherical cs:radius=1,longitude=30,latitude=25);
+%    \begin{scope}[%
+%      plane origin=(P2), plane x={(0.8,1.0)}, plane y={(0.2,0)}, canvas is plane
+%      ]
+%      % Plano en P2
+%      \filldraw[planoP2] (-0.5,-0.5) rectangle (0.5,0.5);
+%      \draw[vector] (0,0) -- (0.4,-0.4);
+%      \draw[vector] (0,0) -- (0.25,0.4);
+%    \end{scope}
+%    
+%    \fill[black] (P2) circle (0.5pt);
+%    \node[above left=-1pt and -2pt] at (P2) {$P_2$};
+  \end{tikzpicture}
+  %\caption{Espacio esférico donde se representan dos planos tangentes en dos puntos
+  %  arbitrarios de la esfera. En el plano situado en el polo norte (azul), se representa
+  %  un vector que \emph{vive} en ese plano. Por otro lado en el otro punto se aprecia
+  %  un plano tangente (rosa) con dos vectores.}
+  %\label{fig:R2-cart_planos_tangentes}
+\end{figure}
+
 
 %\section{Gradiente}
 %Presentamos un resumen del gradiente, tal y como se presentan en un curso básico de

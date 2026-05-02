@@ -37,6 +37,23 @@
 % \uvec{\i} y \uvec{\j} producen i y j sin punto y con acento circunflejo en negrita
 \newcommand{\uvec}[1]{\textbf{\^{#1}}}
 
+% Matrices
+\newcommand*{\mmm}[1]{%
+  % Actívese sólo una de las dos opciones
+  %\ensuremath{\operatorname{#1}}
+  %\ensuremath{\kern1.2pt\mathbf{#1}}
+  \ensuremath{\kern1.2pt\symbf{#1}}
+}
+
+% Matriz transpuesta
+\newcommand{\transp}{%
+  \ensuremath{{\top}}
+}
+
+\newcommand{\trasp}{%
+  \ensuremath{{\top}}
+}
+
 % ---------------------------------------------------------------------------------
 % MACROS LUA
 % Cargamos el archivo lua externo
