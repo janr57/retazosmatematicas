@@ -57,7 +57,8 @@
 % ---------------------------------------------------------------------------------
 % MACROS LUA
 % Cargamos el archivo lua externo
-\directlua{dofile("lua/rot3Dtex.lua")}
+%\directlua{dofile("lua/rot3Dtex.lua")}
+\directlua{dofile("lua/pruebatex.lua")}
 
 % DEFINICIÓN DEL COMANDO PERSONALIZADO
 % #1 = radio, #2 = ángulo (en radianes, según el script lua anterior)
@@ -65,6 +66,12 @@
     \directlua{polar_to_cartesian(#1, #2)}%
 }
 
+\directlua{dofile("lua/vect3Dtex.lua")}
+
+% DEFINICIÓN DE COMANDOS
+\newcommand{\proyPRect}[5]{%
+  \directlua{proy_PRect(#1, #2, #3, #4, #5)}%
+}
 
 %% ----------------------------------------------------------------------------
 %% COLORES

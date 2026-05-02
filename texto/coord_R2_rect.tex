@@ -556,59 +556,74 @@ Véase la figura \ref{fig:R2-cart_planos_tangentes}.
   \pgfmathsetmacro{\OPACIDADESFERA}{0.9}
   \pgfmathsetmacro{\OPACIDADPLANO}{0.8}
   % Punto de vista
-  \pgfmathsetmacro{\THETA}{60.0}
+  \pgfmathsetmacro{\THETA}{56.0}
   \pgfmathsetmacro{\PHI}{40.0}
-  % Eje x
-  
-  % Eje y
-  
-  % Eje z (punto P1 (Pa))
-  %\pgfmathsetmacro{\EJEZu}{\proyEjeZu{\THETA}{\PHI}}
-  %\pgfmathsetmacro{\EJEZv}{\proyEjeZv{\THETA}{\PHI}}
+  % Punto P1 (Pa)
+  \pgfmathsetmacro{\Patheta}{0}
+  \pgfmathsetmacro{\Paphi}{0}
   % Punto P2 (Pb)
   \pgfmathsetmacro{\Pbtheta}{45}
   \pgfmathsetmacro{\Pbphi}{50}
+  % Eje x
+  \pgfmathsetmacro{\UX}{-sin(\PHI)}
+  \pgfmathsetmacro{\VX}{-cos(\THETA) * cos(\PHI)}
+  % Eje y
+  \pgfmathsetmacro{\UY}{cos(\PHI)}
+  \pgfmathsetmacro{\VY}{-cos(\THETA) * sin(\PHI)}
+  % Eje z
+  \pgfmathsetmacro{\UZ}{0}
+  \pgfmathsetmacro{\VZ}{sin(\THETA)}
   % 
   \centering
   \begin{tikzpicture}[%
     scale=\scl,
-    %z={(0cm,1cm)},
-    %y={(1cm,0cm)},
-    %x={(-0.38cm,-0.38cm)},
     line join=round,
     line cap=round,
     every node/.style={black,font=\scriptsize},
+    punto/.style={black, radius=1pt},
     planoP1/.style={blue!60!black, fill=blue!20, opacity=\OPACIDADPLANO},
     planoP2/.style={red!60!black, fill=red!20, opacity=\OPACIDADPLANO},
     vector/.style={-{Latex[round,width=3pt,length=4pt]}},
     ]
+    % -------------------------------------------------------------------------
     % COORDENADAS
     % Origen
     \coordinate (O) at (\Ou,\Ov);
     % Centro de la esfera
     \coordinate (C) at (\Cu,\Cv);
     % Eje x
-    %\path[save path=\ejex] (C) -- (\EJEXu, \EJEXv);
+    %\path[save path=\ejex] (O) -- \proyPRect{1}{0}{0}{\THETA}{\PHI};
     % Eje y
-    %\path[save path=\ejey] (C) -- (\EJEYu, \EJEYv);
-    % Eje z y P1
-    %\coordinate (ejez) at \ejeZmac;
-    %\path[save path=\ejez] (C) -- (ejez);
+    %\path[save path=\ejey] (O) -- \proyPRect{0}{1}{0}{\THETA}{\PHI};
+    % Eje z
+    %\path[save path=\ejez] (O) -- \proyPRect{0}{0}{1}{\THETA}{\PHI};
+    % Punto P1
+    \coordinate (P1) at (\proyPRect{0}{0}{1}{\THETA}{\PHI});
+    %\coordinate (P1) at \proyPRect{0}{0}{1}{\THETA}{\PHI};
     % P2
     %\coordinate (P2) at (\Pbu, \Pbv);
-
+    % -------------------------------------------------------------------------
+    % DIBUJOS
     % 1. ESFERA
     \shade[ball color=black!20!white, opacity=\OPACIDADESFERA] (C) circle[radius=\R cm];
     \draw[gray!10] (C) circle[radius=\R cm];
 
-    %\draw[red] (0,0,0) -- (0,0,1);
-
-    \fill[red] \puntoPolar{5}{math.pi/4} circle (1pt);
-    %\draw[blue, thick] (0,0) -- \puntoPolar{3}{math.pi/6} node[right] {Extremo};
-    % PRUEB. EJES DE COORDENADAS
-%    \draw[->, use path=\ejex];
-%    \draw[->, use path=\ejey];
+    % PRUEBA EJES DE COORDENADAS
+    %\draw[->, use path=\ejex];
+    %\draw[->, use path=\ejey];
     %\draw[->, use path=\ejez];
+
+    % Punto P1
+    \coordinate (P1) at (\proyPRect{0}{0}{1}{\THETA}{\PHI});
+    % \fill[punto] (P1) circle;
+    %\fill[punto,red] \proyPRect{1}{0}{0}{\THETA}{\PHI} circle[] coordinate (P1);
+    %\fill[punto,green] \proyPRect{0}{1}{0}{\THETA}{\PHI} circle[] coordinate (P2);
+    %\fill[punto,blue] \proyPRect{0}{0}{1}{\THETA}{\PHI} circle[] coordinate (P1);
+    %\coordinate (P1) at \proyPRect{0}{0}{1}{\THETA}{\PHI};
+
+    \fill[white] (P1) circle[radius=0.25pt];
+    % Punto P2
+    
     %\node at (O) {$\proyEjeZu{\THETA}{\PHI}$};
     %\fill[red] (ejez) circle[radius=1pt];
     
@@ -650,6 +665,7 @@ Véase la figura \ref{fig:R2-cart_planos_tangentes}.
 %    
 %    \fill[black] (P2) circle (0.5pt);
 %    \node[above left=-1pt and -2pt] at (P2) {$P_2$};
+    % -------------------------------------------------------------------------
   \end{tikzpicture}
   %\caption{Espacio esférico donde se representan dos planos tangentes en dos puntos
   %  arbitrarios de la esfera. En el plano situado en el polo norte (azul), se representa
