@@ -70,8 +70,30 @@
 
 % DEFINICIÓN DE COMANDOS
 \newcommand{\proyPRect}[5]{%
-  \directlua{proy_PRect(#1, #2, #3, #4, #5)}%
+  \directlua{TEXproy_PRect(#1, #2, #3, #4, #5)}
 }
+
+\newcommand{\proyPSph}[5]{%
+  \directlua{TEXproy_PSph(#1, #2, #3, #4, #5)}
+}
+
+\begin{luacode*}
+  -- Añado mi directorio al path
+  package.path = "./?.lua;" .. package.path
+  -- Cargo miproyecto
+  ProyEsfera = require("lua/funciones")
+\end{luacode*}
+
+% Creamos la macro de LaTeX, donde:
+% #1 es la esfera; #2 es la vista; #3 son los puntos.
+\newcommand{\proyEsferatxt}[3]{%
+  \directlua{ProyEsfera.puntostxt(#1, #2, #3)}
+}
+
+\newcommand{\proyEsfera}[3]{%
+  \directlua{ProyEsfera.puntos(#1, #2, #3)}
+}
+
 
 %% ----------------------------------------------------------------------------
 %% COLORES
