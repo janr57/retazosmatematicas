@@ -385,7 +385,7 @@ Véase la figura \ref{fig:R2-cart_planos_tangentes}.
     \coordinate (C) at (\Cx,\Cy,\Cz);
     
     % 1. ESFERA
-    \shade[ball color=black!20!white, opacity=\OPACIDADESFERA] (C) circle[radius=\R cm];
+    \shade[ball color=black!20, opacity=\OPACIDADESFERA] (C) circle[radius=\R cm];
     \draw[gray!10] (C) circle[radius=\R cm];
 
     % 2. PLANO SUPERIOR
@@ -433,7 +433,10 @@ Véase la figura \ref{fig:R2-cart_planos_tangentes}.
 
 \begin{luacode*}
   -- Datos de la esfera
-  esfera = {radio = 1, opacidad = 0.4}
+  esfera = {
+    radio = 1, color = "gray!10", opacidad = 0.4,
+    sombracolor = "black!20", sombraopacidad=0.9
+  }
   -- Datos de la vista
   vista = {theta = 20, phi = 45}
   -- 3. Matriz de puntos (tabla de tablas)
@@ -445,7 +448,6 @@ Véase la figura \ref{fig:R2-cart_planos_tangentes}.
 
 \proyEsferatxt{esfera}{vista}{puntos}
 \proyEsfera{esfera}{vista}{puntos}
-
 
 
 %\begin{figure}[ht]

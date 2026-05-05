@@ -2,22 +2,33 @@
 
 local M = {} -- módulo definido para mantener el orden
 
-function M.puntos(esfera, vista, puntos)
-   tex.print("\\begin{tikzpicture}[scale=0.5]")
+function M.puntos(esf, obs, ptos)
+   tex.print("\\begin{tikzpicture}[scale=1.9]")
 
 --    1. ESFERA
-   tex.print("\\draw (0,0) circle[radius=1cm];")
+   tex.print(string.format(
+		"\\shade[ball color = %s, opacity = %4f] (0,0) circle[radius=%4f];",
+		esf.sombracolor, esf.sombraopacidad, esf.radio
+   ))
+   tex.print(string.format(
+		"\\draw[%s] (0,0) circle[radius=%4f];", esf.color, esf.radio
+   ))
+   
 
    tex.print("\\end{tikzpicture}")   
    
 end
+
+
 
 function M.puntostxt(esfera, vista, puntos)
 
    -- Decodificar primer parámetro
    tex.print("\\noindent\\textbf{Esfera:}\\\\")
    tex.print("Radio: " .. tostring(esfera.radio) .. ", ")
-   tex.print("Opacidad: " .. tostring(esfera.opacidad))
+   tex.print("Color: " .. tostring(esfera.color) .. ", ")
+   tex.print("Color sombra: " .. tostring(esfera.sombracolor) .. ", ")
+   tex.print("Opacidad sombra: " .. tostring(esfera.sombraopacidad))
 
    -- Decodificar segundo parámetro
    tex.print("\\\\\\textbf{Vista:}\\\\")   
@@ -40,6 +51,5 @@ function M.puntostxt(esfera, vista, puntos)
 end
 
 return M
-
 
 
