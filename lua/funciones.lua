@@ -4,19 +4,24 @@ local M = {} -- módulo definido para mantener el orden
 
 
 function M.puntos(esf, obs, ptos)
-   --local visibles =  {}
-   --local invisibles = {}
+   local visibles
+   local invisibles
 
-   --visibles, invisibles = M.Visibilidad(obs, ptos)
+   visibles, invisibles = M.Visibilidad(obs, ptos)
    
    tex.print("\\begin{tikzpicture}[scale=1.9]")
 
---    1. ESFERA
+   -- 1. PUNTOS INVISIBLES
+   
+   -- 2. ESFERA
    tex.print(string.format(
 		"\\shade[ball color = %s, opacity = %4f] (0,0) circle[radius=%4f];",
 		esf.sombracolor, esf.sombraopacidad, esf.radio))
    tex.print(string.format(
 		"\\draw[%s] (0,0) circle[radius=%4f];", esf.color, esf.radio))
+
+   -- 3. PUNTOS VISIBLES
+   
 
    tex.print("\\end{tikzpicture}")   
    
@@ -26,8 +31,8 @@ end
 -- Imprime un resumen de los datos enviados por LuaLaTeX
 -- Esfera, Observador y puntos visibles e invisibles
 function M.puntostxt(esf, obs, ptos)
-   local visibles = {}
-   local invisibles = {}
+   local visibles
+   local invisibles
 
     visibles, invisibles = M.Visibilidad(obs, ptos)
 
@@ -80,7 +85,6 @@ function M.Visibilidad(obs, ptos)
 
    for i, pto in ipairs(ptos) do
       if M.esVisible(obs, pto) then
-      --if i % 2 == 0 then
 	 table.insert(visibles, pto)
       else
 	 table.insert(invisibles, pto)
@@ -113,7 +117,57 @@ function M.esVisible(obs, pto)
    end
 end
 
-
 return M
+
+---- Còdigo de depuración en lua
+---- Imprime un resumen de los datos enviados por lua
+---- Esfera, Observador y puntos visibles e invisibles
+--function M.luapuntostxt(esf, obs, ptos)
+--   local visibles
+--   local invisibles
+--
+--    visibles, invisibles = M.Visibilidad(obs, ptos)
+--
+--   -- Decodificar primer parámetro
+--   print("Esfera:}")
+--   print("Radio: " .. tostring(esf.radio) .. ", ")
+--   print("Color: " .. tostring(esf.color) .. ", ")
+--   print("Color sombra: " .. tostring(esf.sombracolor) .. ", ")
+--   print("Opacidad sombra: " .. tostring(esf.sombraopacidad))
+--
+--   -- Decodificar segundo parámetro
+--   print("Observador:")
+--   print("Theta: " .. tostring(obs.theta) .. ", ")
+--   print("Phi: " .. tostring(obs.phi))
+--   
+--
+--   -- Decodificar matriz de puntos
+--   print("Listado de puntos y planos:")
+--   
+--   -- Iterar sobre la matriz de puntos
+--   -- i es el índice, p es la tabla de cada punto
+--   for i, p in ipairs(ptos) do
+--      print(string.format(
+--	"Punto %d: theta=%s, phi=%s | Plano %sx%s | Color: %s",
+--          i, p.theta, p.phi, p.a, p.b, p.color
+--      ))
+--
+--   end
+--   print("Listado de puntos y planos visibles:")      
+--   for i, v in ipairs(visibles) do
+--      print(string.format(
+--	"Puntos %d: theta$=%s, phi=%s | Plano %sx%s | Color: %s",
+--          i, v.theta, v.phi, v.a, v.b, v.color
+--      ))      
+--   end
+--
+--   print("Listado de puntos y planos invisibles:")      
+--   for i, v in ipairs(invisibles) do
+--      print(string.format(
+--	"Puntos %d: theta=%s, phi=%s | Plano %sx%s | Color: %s",
+--          i, v.theta, v.phi, v.a, v.b, v.color
+--      ))      
+--   end
+--end
 
 
