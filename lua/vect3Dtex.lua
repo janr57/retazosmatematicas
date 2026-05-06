@@ -65,43 +65,6 @@ end
 
 
 
-function M.Visibilidad(obs, ptos)
-   local visibles = {}
-   local invisibles = {}
-
-   for i, pto in ipairs(ptos) do
-      if M.esVisible(obs, pto) then
-	 table.insert(visibles, pto)
-      else
-	 table.insert(invisibles, pto)
-      end
-   end
-
-   return visibles, invisibles
-end
-
-function M.esVisible(obs, pto)
-   local theta = math.rad(pto.theta)
-   local phi = math.rad(pto.phi)
-   local otheta = math.rad(obs.theta)
-   local ophi = math.rad(obs.phi)
-   
-   local sintheta = math.sin(theta)
-   local costheta = math.cos(theta)
-   local sinphi = math.sin(phi)
-   local cosphi = math.cos(phi)
-   
-   local osintheta = math.sin(otheta)
-   local ocostheta = math.cos(otheta)
-   local osinphi = math.sin(ophi)
-   local ocosphi = math.cos(ophi)
-
-   if sintheta * osintheta * math.cos(phi-ophi) + costheta * ocostheta >= 0 then
-      return true
-   else
-      return false
-   end
-end
 
 -- (00a) **********************************************************************
 -- FUNCIÓN DE USUARIO
@@ -176,6 +139,43 @@ end
 -- ****************************************************************************
 -- FUNCIONES AUXILIARES
 -- ****************************************************************************
+function M.Visibilidad(obs, ptos)
+   local visibles = {}
+   local invisibles = {}
+
+   for i, pto in ipairs(ptos) do
+      if M.esVisible(obs, pto) then
+	 table.insert(visibles, pto)
+      else
+	 table.insert(invisibles, pto)
+      end
+   end
+
+   return visibles, invisibles
+end
+
+function M.esVisible(obs, pto)
+   local theta = math.rad(pto.theta)
+   local phi = math.rad(pto.phi)
+   local otheta = math.rad(obs.theta)
+   local ophi = math.rad(obs.phi)
+   
+   local sintheta = math.sin(theta)
+   local costheta = math.cos(theta)
+   local sinphi = math.sin(phi)
+   local cosphi = math.cos(phi)
+   
+   local osintheta = math.sin(otheta)
+   local ocostheta = math.cos(otheta)
+   local osinphi = math.sin(ophi)
+   local ocosphi = math.cos(ophi)
+
+   if sintheta * osintheta * math.cos(phi-ophi) + costheta * ocostheta >= 0 then
+      return true
+   else
+      return false
+   end
+end
 
 ---- (02) *********************************************************************
 ---- FUNCIÓN AUXILIAR
