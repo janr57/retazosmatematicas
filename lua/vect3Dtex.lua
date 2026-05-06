@@ -1,4 +1,107 @@
 -- vect3Dtex.lua
+-- Funciones para calcular y crear figuras, relacionadas con vectores 3D
+
+-- CONTENIDO -----------------------------------------------------------------
+-- Módulo M con las funciones de usuario, auxiliares y de depuración.
+
+-- FUNCIONES DE USUARIO
+--[[
+   (00a)
+   M.puntos: Crea figura tikz con esfera, puntos en la superficie y planos tangentes.
+]]
+
+-- FUNCIONES AUXILIARES
+--[[
+]]
+
+-- FUNCIONES DE DEPURACIÓN
+--[[
+   (02a)
+   M.DEBUGpuntosTeX: Resumen en LuaLaTeX de los datos pasados por LuaLaTeX.
+]]
+
+-- ----------------------------------------------------------------------------
+
+local M = {} 
+
+
+
+
+-- ****************************************************************************
+-- FUNCIONES DE USUARIO
+-- ****************************************************************************
+-- (00a) M.puntos
+-- Crea figura tikz con esfera, puntos en la superficie y planos tangentes.
+-- Argumentos:
+-- esf: Tabla con datos de la esfera.
+-- obs: Tabla con datos del observador, o perspectiva de visión de la esfera.
+-- ptos: Tabla con los puntos sobre la esfera y objetos relacionados con ellos.
+-- Resumen:
+-- (esf, obs, ptos) -> Imagen TikZ de esfera con puntos y planos.
+function M.puntos(esf, obs, ptos)
+   local visibles
+   local invisibles
+
+   visibles, invisibles = M.Visibilidad(obs, ptos)
+   
+   tex.print("\\begin{tikzpicture}[scale=1.9]")
+
+   -- 1. PUNTOS INVISIBLES
+   
+   -- 2. ESFERA
+   tex.print(string.format(
+		"\\shade[ball color = %s, opacity = %4f] (0,0) circle[radius=%4f];",
+		esf.sombracolor, esf.sombraopacidad, esf.radio))   tex.print(string.format(
+		"\\draw[%s] (0,0) circle[radius=%4f];", esf.color, esf.radio))
+
+   -- 3. PUNTOS VISIBLES
+   
+
+   tex.print("\\end{tikzpicture}")   
+   
+end
+-- ----------------------------------------------------------------------------
+
+
+
+
+function M.Visibilidad(obs, ptos)
+   local visibles = {}
+   local invisibles = {}
+
+   for i, pto in ipairs(ptos) do
+      if M.esVisible(obs, pto) then
+	 table.insert(visibles, pto)
+      else
+	 table.insert(invisibles, pto)
+      end
+   end
+
+   return visibles, invisibles
+end
+
+function M.esVisible(obs, pto)
+   local theta = math.rad(pto.theta)
+   local phi = math.rad(pto.phi)
+   local otheta = math.rad(obs.theta)
+   local ophi = math.rad(obs.phi)
+   
+   local sintheta = math.sin(theta)
+   local costheta = math.cos(theta)
+   local sinphi = math.sin(phi)
+   local cosphi = math.cos(phi)
+   
+   local osintheta = math.sin(otheta)
+   local ocostheta = math.cos(otheta)
+   local osinphi = math.sin(ophi)
+   local ocosphi = math.cos(ophi)
+
+   if sintheta * osintheta * math.cos(phi-ophi) + costheta * ocostheta >= 0 then
+      return true
+   else
+      return false
+   end
+end
 
 -- (00a) **********************************************************************
 -- FUNCIÓN DE USUARIO
@@ -70,10 +173,11 @@ function SD3dToRect(r,thetaDeg,phiDeg)
 end
 
 
+-- ****************************************************************************
+-- FUNCIONES AUXILIARES
+-- ****************************************************************************
 
-
----- FUNCIONES AUXILIARES *******************************************************
----- (03) *********************************************************************
+---- (02) *********************************************************************
 ---- FUNCIÓN AUXILIAR
 ---- (x,y,z) -> TABLA: P.x  P.y  P.z  P.r  P.theta  P.phi
 --function pointRectStrToRect(strRect)
@@ -322,3 +426,118 @@ function R3dNorm(x,y,z)
    
    return math.sqrt(x^2 + y^2 + z^2)
 end
+
+-- ****************************************************************************
+-- FUNCIONES DE DEPURACIÓN
+-- ****************************************************************************
+-- (02a)
+-- Código de depuración el LuaLaTeX.
+-- Resumen de los datos enviados y procesados por LuaLaTeX.
+-- Esfera, Observador y puntos visibles e invisibles.
+function M.DEBUGpuntosTeX(esf, obs, ptos)
+   local visibles
+   local invisibles
+
+    visibles, invisibles = M.Visibilidad(obs, ptos)
+
+   -- Decodificar primer parámetro
+   tex.print("\\noindent\\textbf{Esfera:}\\\\")
+   tex.print("Radio: " .. tostring(esf.radio) .. ", ")
+   tex.print("Color: " .. tostring(esf.color) .. ", ")
+   tex.print("Color sombra: " .. tostring(esf.sombracolor) .. ", ")
+   tex.print("Opacidad sombra: " .. tostring(esf.sombraopacidad))
+
+   -- Decodificar segundo parámetro
+   tex.print("\\\\\\textbf{Observador:}\\\\")
+   tex.print("theta: " .. tostring(obs.theta) .. ", ")
+   tex.print("phi: " .. tostring(obs.phi))
+   
+
+   -- Decodificar matriz de puntos
+   tex.print("\\\\\\textbf{Listado de puntos y planos:}\\\\")
+   
+   -- Iterar sobre la matriz de puntos
+   -- i es el índice, p es la tabla de cada punto
+   for i, p in ipairs(ptos) do
+      tex.print(string.format(
+	"Punto %d: $\\theta$=%s, $\\phi$=%s | Plano %sx%s | Color: %s\\\\",
+          i, p.theta, p.phi, p.a, p.b, p.color
+      ))
+
+   end
+   tex.print("\\\\\\textbf{Listado de puntos y planos visibles:}\\\\")      
+   for i, v in ipairs(visibles) do
+      tex.print(string.format(
+	"Puntos %d: $\\theta$=%s, $\\phi$=%s | Plano %sx%s | Color: %s\\\\",
+          i, v.theta, v.phi, v.a, v.b, v.color
+      ))      
+   end
+
+   tex.print("\\\\\\textbf{Listado de puntos y planos invisibles:}\\\\")      
+   for i, v in ipairs(invisibles) do
+      tex.print(string.format(
+	"Puntos %d: $\\theta$=%s, $\\phi$=%s | Plano %sx%s | Color: %s\\\\",
+          i, v.theta, v.phi, v.a, v.b, v.color
+      ))      
+   end
+end
+-- ----------------------------------------------------------------------------
+
+-- (02b)
+-- M.DEBUGpuntosLua
+-- Còdigo de depuración en lua.
+-- Imprime en Lua un resumen de los datos enviados por Lua.
+-- Esfera, Observador y puntos visibles e invisibles.
+function M.DEBUGpuntosLua(esf, obs, ptos)
+   local visibles
+   local invisibles
+
+    visibles, invisibles = M.Visibilidad(obs, ptos)
+
+   -- Decodificar primer parámetro
+   print("Esfera:}")
+   print("Radio: " .. tostring(esf.radio) .. ", ")
+   print("Color: " .. tostring(esf.color) .. ", ")
+   print("Color sombra: " .. tostring(esf.sombracolor) .. ", ")
+   print("Opacidad sombra: " .. tostring(esf.sombraopacidad))
+
+   -- Decodificar segundo parámetro
+   print("Observador:")
+   print("theta: " .. tostring(obs.theta) .. ", ")
+   print("phi: " .. tostring(obs.phi))
+   
+
+   -- Decodificar matriz de puntos
+   print("Listado de puntos y planos:")
+   
+   -- Iterar sobre la matriz de puntos
+   -- i es el índice, p es la tabla de cada punto
+   for i, p in ipairs(ptos) do
+      print(string.format(
+	"Punto %d: theta=%s, phi=%s | Plano %sx%s | Color: %s",
+          i, p.theta, p.phi, p.a, p.b, p.color
+      ))
+
+   end
+   print("Listado de puntos y planos visibles:")      
+   for i, v in ipairs(visibles) do
+      print(string.format(
+	"Puntos %d: theta$=%s, phi=%s | Plano %sx%s | Color: %s",
+          i, v.theta, v.phi, v.a, v.b, v.color
+      ))      
+   end
+
+   print("Listado de puntos y planos invisibles:")      
+   for i, v in ipairs(invisibles) do
+      print(string.format(
+	"Puntos %d: theta=%s, phi=%s | Plano %sx%s | Color: %s",
+          i, v.theta, v.phi, v.a, v.b, v.color
+      ))      
+   end
+end
+
+
+return M
+
+
+
