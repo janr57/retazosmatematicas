@@ -449,8 +449,8 @@ function M.DEBUGpuntosTeX(esf, obs, ptos)
 
    -- Decodificar segundo parámetro
    tex.print("\\\\\\textbf{Observador:}\\\\")
-   tex.print("\\theta: " .. tostring(obs.thetaD) .. ", ")
-   tex.print("\\phi: " .. tostring(obs.phiD))
+   tex.print("$\\theta$: " .. tostring(obs.thetaD) .. ", ")
+   tex.print("$\\phi$: " .. tostring(obs.phiD))
    
 
    -- Decodificar matriz de puntos
@@ -461,7 +461,7 @@ function M.DEBUGpuntosTeX(esf, obs, ptos)
    for i, p in ipairs(ptos) do
       tex.print(string.format(
 	"Punto %d: $\\theta$=%s, $\\phi$=%s | Plano %sx%s | Color: %s\\\\",
-          i, p.thetaD, p.phi, p.a, p.b, p.color
+          i, p.thetaD, p.phiD, p.a, p.b, p.color
       ))
 
    end
@@ -469,7 +469,7 @@ function M.DEBUGpuntosTeX(esf, obs, ptos)
    for i, v in ipairs(visibles) do
       tex.print(string.format(
 	"Puntos %d: $\\theta$=%s, $\\phi$=%s | Plano %sx%s | Color: %s\\\\",
-          i, v.theta, v.phi, v.a, v.b, v.color
+          i, v.thetaD, v.phiD, v.a, v.b, v.color
       ))      
    end
 
@@ -477,7 +477,7 @@ function M.DEBUGpuntosTeX(esf, obs, ptos)
    for i, v in ipairs(invisibles) do
       tex.print(string.format(
 	"Puntos %d: $\\theta$=%s, $\\phi$=%s | Plano %sx%s | Color: %s\\\\",
-          i, v.theta, v.phi, v.a, v.b, v.color
+          i, v.thetaD, v.phiD, v.a, v.b, v.color
       ))      
    end
 end
