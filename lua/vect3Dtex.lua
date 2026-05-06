@@ -62,53 +62,56 @@ function M.puntos(esf, obs, ptos)
 end
 -- ----------------------------------------------------------------------------
 
-
-
-
-
--- (00a) **********************************************************************
+-- (00b) **********************************************************************
 -- FUNCIÓN DE USUARIO
 -- proy_PRect(strRect, thetaDeg, phiDeg)
 -- Escribe una cadena con las coordenadas u, v del punto en la pantalla.
 -- Argumentos:
---     Cadena con las coordenadas rectangulares del punto: "(x,y,z)"
---     Ángulo theta de la vista o perspectiva: thetav
---     Àngulo phi de la vista o perspectiva: phiv
+--     Coordenadas rectangulares x,y,z.
+--     Tabla con datos angulares del observador (perspectiva).n
 -- Retorna:
 --     Cadena con las coordenadas (u,v) de la pantalla: "(u,v)"
-function TEXproy_PRect(x, y, z, thetaDeg, phiDeg)
-   local P = {}
-   local View = {}
-   local Proy = {}
-   
-   P = R3dToAll(x,y,z)
+function TEXproy_PRect(x, y, z, obs)
+   local PAll
+   local viewAll
 
-   View = SD3dView(thetaDeg, phiDeg)
+   -- Crea tabla con las coordenadas rect. y esféricas del punto (grados y rad)
+   -- y algunas funciones trigonométricas para ahorrar cálculos.
+   PAll = R3dToAll(x,y,z)
 
-   u, v = proyPoint(P, View)
+   -- Crea tabla con las coordenadas esféricas del observador (grados y rad)
+   -- y algunas funciones trigonométricas para ahorrar cálculos.
+   viewAll = SD3dView(obs)
+
+   -- Crea las dos coordenadas del punto en pantalla visto por el observador
+   u, v = proyPoint(PAll, viewAll)
 
    tex.sprint(string.format("%.4f, %.4f", u, v))
 end
 
 -- (00b) **********************************************************************
 -- FUNCIÓN DE USUARIO
--- proy_PSph(strRect, thetaDeg, phiDeg)
--- Escribe una cadena con las coordenadas u, v del punto en la pantalla.
+-- proy_PSph(radio, thetaD, phiD, obs)
+-- Escribe una cadena con las coordenadas u, v del punto en la pantalla
 -- Argumentos:
---     Cadena con las coordenadas rectangulares del punto: "(x,y,z)"
---     Ángulo theta de la vista o perspectiva: thetav
---     Àngulo phi de la vista o perspectiva: phiv
+--    Radio de la esfera.
+--    Coordenadas angulares de un punto de la esfera (grados).
+--    Tabla de ángulo del observador.
 -- Retorna:
---     Cadena con las coordenadas (u,v) de la pantalla: "(u,v)"
-function TEXproy_PSph(r, PthetaDeg, PphiDeg, thetaDeg, phiDeg)
-   local P = {}
-   local View = {}
-   local Proy = {}
+--    Cadena con las coordenadas (u,v) de la pantalla: "(u,v)"
+function TEXproy_PSph(Pr, PthetaD, PphiD, obs)
+   local PAll
+   local viewAll
+
+   -- Crea tabla con las coordenadas rect y esféricas del punto (grados y rad)
+   -- y algunas funciones trigonométricas para ahorrar cálculos.
+   PAll = SD3dToAll(r, PthetaD, PphiD)
+
+   -- Crea tabla con las coordenadas esféricas del observador (grados y rad)
+   -- y algunas funciones trigonométricas para ahorrar cálculos.   
+   viewAll = SD3dView(obs)
    
-   P = SD3dToAll(r, PthetaDeg, PphiDeg)
-
-   View = SD3dView(thetaDeg, phiDeg)
-
+   -- Crea las dos coordenadas del punto en pantalla visto por el observador
    u, v = proyPoint(P, View)
 
    tex.sprint(string.format("%.4f, %.4f", u, v))
@@ -279,31 +282,32 @@ function SD3dToAll(r,thetaDeg,phiDeg)
 end
 
 
--- (06a) **********************************************************************
+-- (06axx) **********************************************************************
 -- FUNCIÓN AUXILIAR
--- SD3dView(theta, phi)
--- Define vista en perspectiva mediante ángulos (r=1)
--- Argumentos: Ángulos theta y phi en grados de la vista.
--- Retorna: Una tabla View con los valores de los ángulos y func. trig.
--- View.theta, View.phi, View.thetaDeg, View.phiDeg
--- View.sintheta, View.costheta, View.tantheta,
--- View.sinphi, View.cosphi, View.tanphi
-function SD3dView(thetaDeg, phiDeg)
-   local View = {}
-   View.thetaDeg = thetaDeg
-   View.phiDeg= phiDeg
-   View.theta = math.rad(thetaDeg)
-   View.phi = math.rad(phiDeg)
-   View.sintheta = math.sin(View.theta)
-   View.costheta = math.cos(View.theta)
-   View.tantheta = math.tan(View.theta)
-   View.sinphi = math.sin(View.phi)
-   View.cosphi = math.cos(View.phi)
-   View.tanphi = math.tan(View.phi)
-   View.costhetacosphi = math.cos(View.theta) * math.cos(View.phi)
-   View.costhetasinphi = math.cos(View.theta) * math.sin(View.phi)
+-- SD3dView(obs)
+-- Calcula ángulos de vista del observador (grados y rad) y cálc. trig.
+-- Argumentos:
+-- Tabla de ángulos de vista del observador (grados).
+-- Retorna: Una tabla viewAll con los valores de los ángulos y func. trig.
+-- viewAll.theta, viewAll.phi, viewAll.thetaDeg, viewAll.phiDeg
+-- viewAll.sintheta, viewAll.costheta, viewAll.tantheta,
+-- viewAll.sinphi, viewAll.cosphi, viewAll.tanphi
+function SD3dview(obs)
+   local viewAll = {}
+   viewAll.thetaD = obs.thetaD
+   viewAll.phiD= obs.phiD
+   viewAll.theta = math.rad(obs.thetaD)
+   viewAll.phi = math.rad(obs.phiD)
+   viewAll.sintheta = math.sin(viewAll.theta)
+   viewAll.costheta = math.cos(viewAll.theta)
+   viewAll.tantheta = math.tan(viewAll.theta)
+   viewAll.sinphi = math.sin(viewAll.phi)
+   viewAll.cosphi = math.cos(viewAll.phi)
+   viewAll.tanphi = math.tan(viewAll.phi)
+   viewAll.costhetacosphi = math.cos(viewAll.theta) * math.cos(viewAll.phi)
+   viewAll.costhetasinphi = math.cos(viewAll.theta) * math.sin(viewAll.phi)
 
-   return View
+   return viewAll
 end
 
 
