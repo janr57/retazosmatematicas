@@ -7,7 +7,11 @@
 -- FUNCIONES DE USUARIO
 --[[
    (00a)
-   M.puntos: Crea figura tikz con esfera, puntos en la superficie y planos tangentes.
+   M.TEXpuntos: Crea figura tikz con esfera, puntos en la superficie y planos tang. 
+   (00b)
+   M.TEXproy_PRect: Produce "(u,v)" con las coord. del punto en la pantalla.
+   (00c)
+   M.TEXproy_PSph: Produce "(u,v)" con las coord. del punto en la pantalla.
 ]]
 
 -- FUNCIONES AUXILIARES
@@ -26,11 +30,10 @@ local M = {}
 
 
 
-
 -- ****************************************************************************
 -- FUNCIONES DE USUARIO
 -- ****************************************************************************
--- (00a) M.puntos
+-- (00a) M.TEXpuntos
 -- Crea figura tikz con esfera, puntos en la superficie y planos tangentes.
 -- Argumentos:
 -- esf: Tabla con datos de la esfera.
@@ -38,7 +41,7 @@ local M = {}
 -- ptos: Tabla con los puntos sobre la esfera y objetos relacionados con ellos.
 -- Resumen:
 -- (esf, obs, ptos) -> Imagen TikZ de esfera con puntos y planos.
-function M.puntos(esf, obs, ptos)
+function M.TEXpuntos(esf, obs, ptos)
    local visibles
    local invisibles
 
@@ -64,14 +67,14 @@ end
 
 -- (00b) **********************************************************************
 -- FUNCIÓN DE USUARIO
--- proy_PRect(strRect, thetaDeg, phiDeg)
+-- TEXproy_PRect(x, y, z, obs)
 -- Escribe una cadena con las coordenadas u, v del punto en la pantalla.
 -- Argumentos:
 --     Coordenadas rectangulares x,y,z.
 --     Tabla con datos angulares del observador (perspectiva).n
 -- Retorna:
 --     Cadena con las coordenadas (u,v) de la pantalla: "(u,v)"
-function TEXproy_PRect(x, y, z, obs)
+function M.TEXproy_PRect(x, y, z, obs)
    local PAll
    local viewAll
 
@@ -89,9 +92,9 @@ function TEXproy_PRect(x, y, z, obs)
    tex.sprint(string.format("%.4f, %.4f", u, v))
 end
 
--- (00b) **********************************************************************
+-- (00c) **********************************************************************
 -- FUNCIÓN DE USUARIO
--- proy_PSph(radio, thetaD, phiD, obs)
+-- TEXproy_PSph(radio, thetaD, phiD, obs)
 -- Escribe una cadena con las coordenadas u, v del punto en la pantalla
 -- Argumentos:
 --    Radio de la esfera.
@@ -99,7 +102,7 @@ end
 --    Tabla de ángulo del observador.
 -- Retorna:
 --    Cadena con las coordenadas (u,v) de la pantalla: "(u,v)"
-function TEXproy_PSph(Pr, PthetaD, PphiD, obs)
+function M.TEXproy_PSph(Pr, PthetaD, PphiD, obs)
    local PAll
    local viewAll
 
@@ -117,26 +120,6 @@ function TEXproy_PSph(Pr, PthetaD, PphiD, obs)
    tex.sprint(string.format("%.4f, %.4f", u, v))
 end
 
-
---(03b) SD3dToRect -> Transforma coord. esféricas (grados) a rectangulares.	    
--- (03b) **********************************************************************
--- SD3dToRect(r, thetaDeg, phiD)
--- Transforma coord. esféricas (grados) en rectangulares.
--- Argumentos: coordenadas esféricas r, thetaDeg y phiDeg.
--- Retorna: Coordenadas rectangulares
-function SD3dToRect(r,thetaDeg,phiDeg)
-   local x, y, z
-   local theta, phi
-
-   theta = math.rad(thetaDeg)
-   phi = math.rad(phiDeg)
-   
-   x = r * math.sin(theta) * math.cos(phi)
-   y = r * math.sin(theta) * math.sin(phi)
-   z = r * math.cos(theta)
-
-   return x, y, z
-end
 
 
 -- ****************************************************************************
@@ -179,47 +162,6 @@ function M.esVisible(obs, pto)
       return false
    end
 end
-
----- (02) *********************************************************************
----- FUNCIÓN AUXILIAR
----- (x,y,z) -> TABLA: P.x  P.y  P.z  P.r  P.theta  P.phi
---function pointRectStrToRect(strRect)
---   local x, y, z
---   local found, last, i
---
----- Buscamos "("
---found, last = strRect:find("%(")
---if not found then
---   return nil
---end
----- Buscamos "," para localizar la coordenada x
---i = last + 1
---found, last = strRect:find(",", i)
---if found then
---   x = tonumber(strRect:sub(i, last-1))
---else
---   return nil
---end
----- Buscamos la segunda "," para localizar la coordenada y
---i = last + 1
---found, last = strRect:find(",", i)
---if found then
---   y = tonumber(strRect:sub(i, last-1))
---else
---   return nil
---end
----- Buscamos ")" para localizar la coordenada z
---i = last + 1
---found, last = strRect:find("%)", i)
---if found then
---   z = tonumber(strRect:sub(i, last-1))
---else
---   return nil
---end
---
---return x, y, z
---end
-
 
 -- (02c) **********************************************************************
 -- FUNCIÓN AUXILIAR
@@ -309,6 +251,70 @@ function SD3dview(obs)
 
    return viewAll
 end
+
+--(03b) SD3dToRect -> Transforma coord. esféricas (grados) a rectangulares.	    
+-- (03b) **********************************************************************
+-- SD3dToRect(r, thetaDeg, phiD)
+-- Transforma coord. esféricas (grados) en rectangulares.
+-- Argumentos: coordenadas esféricas r, thetaDeg y phiDeg.
+-- Retorna: Coordenadas rectangulares
+function M.SD3dToRect(r,thetaDeg,phiDeg)
+   local x, y, z
+   local theta, phi
+
+   theta = math.rad(thetaDeg)
+   phi = math.rad(phiDeg)
+   
+   x = r * math.sin(theta) * math.cos(phi)
+   y = r * math.sin(theta) * math.sin(phi)
+   z = r * math.cos(theta)
+
+   return x, y, z
+end
+
+
+
+---- (02) *********************************************************************
+---- FUNCIÓN AUXILIAR
+---- (x,y,z) -> TABLA: P.x  P.y  P.z  P.r  P.theta  P.phi
+--function pointRectStrToRect(strRect)
+--   local x, y, z
+--   local found, last, i
+--
+---- Buscamos "("
+--found, last = strRect:find("%(")
+--if not found then
+--   return nil
+--end
+---- Buscamos "," para localizar la coordenada x
+--i = last + 1
+--found, last = strRect:find(",", i)
+--if found then
+--   x = tonumber(strRect:sub(i, last-1))
+--else
+--   return nil
+--end
+---- Buscamos la segunda "," para localizar la coordenada y
+--i = last + 1
+--found, last = strRect:find(",", i)
+--if found then
+--   y = tonumber(strRect:sub(i, last-1))
+--else
+--   return nil
+--end
+---- Buscamos ")" para localizar la coordenada z
+--i = last + 1
+--found, last = strRect:find("%)", i)
+--if found then
+--   z = tonumber(strRect:sub(i, last-1))
+--else
+--   return nil
+--end
+--
+--return x, y, z
+--end
+
+
 
 
 -- (06a) **********************************************************************
