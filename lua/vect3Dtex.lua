@@ -155,8 +155,8 @@ function M.Visibilidad(obs, ptos)
 end
 
 function M.esVisible(obs, pto)
-   local theta = math.rad(pto.theta)
-   local phi = math.rad(pto.phi)
+   local theta = math.rad(pto.thetaD)
+   local phi = math.rad(pto.phiD)
    local otheta = math.rad(obs.thetaD)
    local ophi = math.rad(obs.phiD)
    
@@ -461,7 +461,7 @@ function M.DEBUGpuntosTeX(esf, obs, ptos)
    for i, p in ipairs(ptos) do
       tex.print(string.format(
 	"Punto %d: $\\theta$=%s, $\\phi$=%s | Plano %sx%s | Color: %s\\\\",
-          i, p.theta, p.phi, p.a, p.b, p.color
+          i, p.thetaD, p.phi, p.a, p.b, p.color
       ))
 
    end
@@ -515,23 +515,23 @@ function M.DEBUGpuntosLua(esf, obs, ptos)
    for i, p in ipairs(ptos) do
       print(string.format(
 	"Punto %d: theta=%s, phi=%s | Plano %sx%s | Color: %s",
-          i, p.theta, p.phi, p.a, p.b, p.color
+          i, p.thetaD, p.phiD, p.a, p.b, p.color
       ))
 
    end
    print("Listado de puntos y planos visibles:")      
-   for i, v in ipairs(visibles) do
+   for i, vis in ipairs(visibles) do
       print(string.format(
 	"Puntos %d: theta$=%s, phi=%s | Plano %sx%s | Color: %s",
-          i, v.theta, v.phi, v.a, v.b, v.color
+          i, vis.thetaD, vis.phiD, vis.a, vis.b, vis.color
       ))      
    end
 
    print("Listado de puntos y planos invisibles:")      
-   for i, v in ipairs(invisibles) do
+   for i, inv in ipairs(invisibles) do
       print(string.format(
 	"Puntos %d: theta=%s, phi=%s | Plano %sx%s | Color: %s",
-          i, v.theta, v.phi, v.a, v.b, v.color
+          i, inv.thetaD, inv.phiD, inv.a, inv.b, inv.color
       ))      
    end
 end
