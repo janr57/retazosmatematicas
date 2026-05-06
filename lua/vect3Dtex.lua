@@ -80,14 +80,14 @@ function M.TEXproy_PRect(x, y, z, obs)
 
    -- Crea tabla con las coordenadas rect. y esféricas del punto (grados y rad)
    -- y algunas funciones trigonométricas para ahorrar cálculos.
-   PAll = R3dToAll(x,y,z)
+   PAll = M.R3dToAll(x,y,z)
 
    -- Crea tabla con las coordenadas esféricas del observador (grados y rad)
    -- y algunas funciones trigonométricas para ahorrar cálculos.
-   viewAll = SD3dView(obs)
+   viewAll = M.SD3dView(obs)
 
    -- Crea las dos coordenadas del punto en pantalla visto por el observador
-   u, v = proyPoint(PAll, viewAll)
+   u, v = M.proyPoint(PAll, viewAll)
 
    tex.sprint(string.format("%.4f, %.4f", u, v))
 end
@@ -108,14 +108,14 @@ function M.TEXproy_PSph(Pr, PthetaD, PphiD, obs)
 
    -- Crea tabla con las coordenadas rect y esféricas del punto (grados y rad)
    -- y algunas funciones trigonométricas para ahorrar cálculos.
-   PAll = SD3dToAll(r, PthetaD, PphiD)
+   PAll = M.SD3dToAll(r, PthetaD, PphiD)
 
    -- Crea tabla con las coordenadas esféricas del observador (grados y rad)
    -- y algunas funciones trigonométricas para ahorrar cálculos.   
-   viewAll = SD3dView(obs)
+   viewAll = M.SD3dView(obs)
    
    -- Crea las dos coordenadas del punto en pantalla visto por el observador
-   u, v = proyPoint(P, View)
+   u, v = M.proyPoint(P, View)
 
    tex.sprint(string.format("%.4f, %.4f", u, v))
 end
@@ -171,7 +171,7 @@ end
 -- Retorna: Una tabla P con los valores
 -- P.x, P.y, P.z, P.r, P.theta, P.phi, P.thetaDeg, P.phiDeg,
 -- P.sintheta, P.costheta, P.tantheta, P.sinphi, P.cosphi, P.tanphi
-function R3dToAll(x,y,z)
+function M.R3dToAll(x,y,z)
    local P = {}
    P.x = x
    P.y = y
@@ -202,7 +202,7 @@ end
 -- Retorna: Una tabla P con los valores
 -- P.x, P.y, P.z, P.r, P.theta, P.phi, P.thetaDeg, P.phiDeg,
 -- P.sintheta, P.costheta, P.tantheta, P.sinphi, P.cosphi, P.tanphi
-function SD3dToAll(r,thetaDeg,phiDeg)
+function M.SD3dToAll(r,thetaDeg,phiDeg)
    local P = {}
    P.r = r
    P.thetaDeg = thetaDeg
@@ -234,7 +234,7 @@ end
 -- viewAll.theta, viewAll.phi, viewAll.thetaDeg, viewAll.phiDeg
 -- viewAll.sintheta, viewAll.costheta, viewAll.tantheta,
 -- viewAll.sinphi, viewAll.cosphi, viewAll.tanphi
-function SD3dview(obs)
+function M.SD3dview(obs)
    local viewAll = {}
    viewAll.thetaD = obs.thetaD
    viewAll.phiD= obs.phiD
@@ -324,7 +324,7 @@ end
 -- Argumentos: Tabla completa con punto P y tabla completa con vista View
 -- Retorna: Tabla con las coordenadas (u,v) del punto proyectado en la pantalla
 -- PointProy.u, PointProy.v
-function proyPoint(P, View)
+function M.proyPoint(P, View)
    local u, v
    --local PointProy = {}
 
@@ -349,7 +349,7 @@ end
 -- Transforma coord. rectangulares en esféricas.
 -- Argumentos: coordenadas rectangulares x, y, z.
 -- Retorna: Coordenadas esféricas (ángulos en radianes).
-function R3dToSph(x,y,z)
+function M.R3dToSph(x,y,z)
    local rxy = math.sqrt(x^2 + y^2)
    local r = R3dNorm(x,y,z)
    local theta, phi
@@ -432,7 +432,7 @@ end
 -- Calcula el módulo de un vector expresado en coordenadas rectangulares.
 -- Argumentos: coordenadas rectangulares x, y, z.
 -- Retorna: Módulo del vector.
-function R3dNorm(x,y,z)
+function M.R3dNorm(x,y,z)
    
    return math.sqrt(x^2 + y^2 + z^2)
 end
