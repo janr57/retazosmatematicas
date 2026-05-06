@@ -157,8 +157,8 @@ end
 function M.esVisible(obs, pto)
    local theta = math.rad(pto.theta)
    local phi = math.rad(pto.phi)
-   local otheta = math.rad(obs.theta)
-   local ophi = math.rad(obs.phi)
+   local otheta = math.rad(obs.thetaD)
+   local ophi = math.rad(obs.phiD)
    
    local sintheta = math.sin(theta)
    local costheta = math.cos(theta)
@@ -449,8 +449,8 @@ function M.DEBUGpuntosTeX(esf, obs, ptos)
 
    -- Decodificar segundo parámetro
    tex.print("\\\\\\textbf{Observador:}\\\\")
-   tex.print("theta: " .. tostring(obs.theta) .. ", ")
-   tex.print("phi: " .. tostring(obs.phi))
+   tex.print("\\theta: " .. tostring(obs.thetaD) .. ", ")
+   tex.print("\\phi: " .. tostring(obs.phiD))
    
 
    -- Decodificar matriz de puntos
@@ -503,8 +503,8 @@ function M.DEBUGpuntosLua(esf, obs, ptos)
 
    -- Decodificar segundo parámetro
    print("Observador:")
-   print("theta: " .. tostring(obs.theta) .. ", ")
-   print("phi: " .. tostring(obs.phi))
+   print("theta: " .. tostring(obs.thetaD) .. ", ")
+   print("phi: " .. tostring(obs.phiD))
    
 
    -- Decodificar matriz de puntos
@@ -538,6 +538,4 @@ end
 
 
 return M
-
-
 
