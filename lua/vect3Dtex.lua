@@ -23,13 +23,19 @@ function M.proyEsfera(esf, obs, ptos)
    tex.print("\\begin{tikzpicture}[scale=1.9]")
 
    -- 1. PUNTOS INVISIBLES
+   for i, p in ipairs(invisibles) do
+      proy = M.proyPuntoSph(esf.radio, p.thetaD, p.phiD, obs)
+      tex.print(string.format("\\fill[red] (%4f,%4f) circle[radius=0.5pt];",
+			      p.u, p.v))
+   end
    
    -- 2. ESFERA
    tex.print(string.format(
+		"\\draw[%s,opacity=%2.f] (0,0) circle[radius=%.2f];",
+		esf.color, esf.opacidad, esf.radio))
+   tex.print(string.format(
 		"\\shade[ball color = %s, opacity = %4f] (0,0) circle[radius=%.2f];",
 		esf.sombracolor, esf.sombraopacidad, esf.radio))
-   tex.print(string.format(
-		"\\draw[%s] (0,0) circle[radius=%.2f];", esf.color, esf.radio))
 
    -- 3. PUNTOS VISIBLES
    for i, p in ipairs(visibles) do
