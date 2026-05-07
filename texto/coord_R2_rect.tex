@@ -433,23 +433,34 @@ Véase la figura \ref{fig:R2-cart_planos_tangentes}.
 
 \begin{luacode*}
   -- Datos de la esfera
-  esfera = {
+  esf = {
     radio = 1, color = "gray!10", opacidad = 0.4,
     sombracolor = "black!20", sombraopacidad=0.9
   }
   -- Datos del observador
-  observador = {thetaD = 60, phiD = 30}
+  obs = {thetaD = 60, phiD = 30}
   -- 3. Matriz de puntos (tabla de tablas)
-  puntos = {
-    {thetaD = 80, phiD = 190, a = 1, b = 1, opacidad = 0.5, color = "black!20"},
-    {thetaD = 0, phiD = 0, a = 2, b = 2, opacidad = 0.5, color = "red"},
-    {thetaD = 90, phiD = 180, a = 3, b = 3, opacidad = 0.7, color = "green"},
-    {thetaD = 40, phiD = 30, a = 4, b = 4, opacidad = 0.7, color = "blue"}
+  ptos = {
+    {thetaD=80, phiD=190, a=1, b=1, opacidad=0.5, color="black!20"},
+    {thetaD=0, phiD=0, a=2, b=2, opacidad=0.5, color="red"},
+    {thetaD=90, phiD=180, a=3, b=3, opacidad=0.7, color="green"},
+    {thetaD=40, phiD=30, a=4, b=4, opacidad=0.7, color="blue"}
   }
+
+  -- Cálculo de las coordenadas del punto proyectadas en la pantalla
+  for i, p in ipairs(ptos) do
+     u, v = mEsfera.proyPuntoSph(esf.radio, p.thetaD, p.phiD, obs)
+     p.u = u
+     p.v = v
+  end
+
 \end{luacode*}
 
-\DEBUGproyEsfera{esfera}{observador}{puntos}
-\proyEsfera{esfera}{observador}{puntos}
+
+%\proyEsferaInicio{esfera}{observador}{puntos}
+
+\DEBUGproyEsfera{esf}{obs}{ptos}
+\proyEsfera{esf}{obs}{ptos}
 
 
 %\begin{figure}[ht]

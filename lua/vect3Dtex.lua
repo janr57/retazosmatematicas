@@ -1,34 +1,6 @@
 -- vect3Dtex.lua
--- Funciones para calcular y crear figuras, relacionadas con vectores 3D
-
--- CONTENIDO -----------------------------------------------------------------
--- Módulo M con las funciones de usuario, auxiliares y de depuración.
-
--- FUNCIONES DE USUARIO
---[[
-   (00a)
-   M.TEXpuntos: Crea figura tikz con esfera, puntos en la superficie y planos tang. 
-   (00b)
-   M.TEXproy_PRect: Produce "(u,v)" con las coord. del punto en la pantalla.
-   (00c)
-   M.TEXproy_PSph: Produce "(u,v)" con las coord. del punto en la pantalla.
-]]
-
--- FUNCIONES AUXILIARES
---[[
-]]
-
--- FUNCIONES DE DEPURACIÓN
---[[
-   (02a)
-   M.DEBUGpuntosTeX: Resumen en LuaLaTeX de los datos pasados por LuaLaTeX.
-]]
-
--- ----------------------------------------------------------------------------
 
 local M = {} 
-
-
 
 -- ****************************************************************************
 -- FUNCIONES DE USUARIO
@@ -44,8 +16,10 @@ local M = {}
 function M.TEXpuntos(esf, obs, ptos)
    local visibles
    local invisibles
+   local proy
 
    visibles, invisibles = M.Visibilidad(obs, ptos)
+
    
    tex.print("\\begin{tikzpicture}[scale=1.9]")
 
@@ -54,13 +28,18 @@ function M.TEXpuntos(esf, obs, ptos)
    -- 2. ESFERA
    tex.print(string.format(
 		"\\shade[ball color = %s, opacity = %4f] (0,0) circle[radius=%4f];",
-		esf.sombracolor, esf.sombraopacidad, esf.radio))   tex.print(string.format(
+		esf.sombracolor, esf.sombraopacidad, esf.radio))
+   tex.print(string.format(
 		"\\draw[%s] (0,0) circle[radius=%4f];", esf.color, esf.radio))
 
    -- 3. PUNTOS VISIBLES
-   
+--   for i, p in ipairs(visibles) do
+--      proy = M.proyPuntoSph(esf.radio, p.thetaD, p.phiD, obs)
+--      tex.print(string.format("\\fill[black] (%4f,%4f) circle[radius=0.5pt];",
+--			      proy.u, proy.v))
+--   end
 
-   tex.print("\\end{tikzpicture}")   
+tex.print("\\end{tikzpicture}")
    
 end
 -- ----------------------------------------------------------------------------
@@ -75,8 +54,6 @@ end
 -- Retorna:
 --     Cadena con las coordenadas (u,v) de la pantalla: "(u,v)"
 function M.TEXproy_PRect(x, y, z, obs)
-   local PAll
-   local viewAll
 
    -- Crea tabla con las coordenadas rect. y esféricas del punto (grados y rad)
    -- y algunas funciones trigonométricas para ahorrar cálculos.
@@ -89,12 +66,12 @@ function M.TEXproy_PRect(x, y, z, obs)
    -- Crea las dos coordenadas del punto en pantalla visto por el observador
    u, v = M.proyPoint(PAll, viewAll)
 
-   tex.sprint(string.format("%.4f, %.4f", u, v))
+   return u, v
 end
 
 -- (00c) **********************************************************************
 -- FUNCIÓN DE USUARIO
--- TEXproy_PSph(radio, thetaD, phiD, obs)
+-- proyPuntoSph(radio, thetaD, phiD, obs)
 -- Escribe una cadena con las coordenadas u, v del punto en la pantalla
 -- Argumentos:
 --    Radio de la esfera.
@@ -102,22 +79,23 @@ end
 --    Tabla de ángulo del observador.
 -- Retorna:
 --    Cadena con las coordenadas (u,v) de la pantalla: "(u,v)"
-function M.TEXproy_PSph(Pr, PthetaD, PphiD, obs)
-   local PAll
-   local viewAll
+function M.proyPuntoSph(r, thetaD, phiD, obs)
+   --local PAll = {}
+   --local viewAll = {}
 
    -- Crea tabla con las coordenadas rect y esféricas del punto (grados y rad)
    -- y algunas funciones trigonométricas para ahorrar cálculos.
-   PAll = M.SD3dToAll(r, PthetaD, PphiD)
+   PAll = M.SD3dToAll(r, thetaD, phiD)
 
    -- Crea tabla con las coordenadas esféricas del observador (grados y rad)
    -- y algunas funciones trigonométricas para ahorrar cálculos.   
    viewAll = M.SD3dView(obs)
    
    -- Crea las dos coordenadas del punto en pantalla visto por el observador
-   u, v = M.proyPoint(P, View)
+   u, v = M.proyPoint(PAll, viewAll)
 
-   tex.sprint(string.format("%.4f, %.4f", u, v))
+   --tex.sprint(string.format("%.4f, %.4f", u, v))
+   return u, v
 end
 
 
@@ -125,6 +103,17 @@ end
 -- ****************************************************************************
 -- FUNCIONES AUXILIARES
 -- ****************************************************************************
+function M.completaPuntos(esf, obs, ptos)
+   local proy
+   for i, p in ipairs(ptos) do
+      u, v = M.proyPuntoSph(esf.radio, p.thetaD, p.phiD, obs)
+
+      p.u = u
+      p.v = v
+   end
+end
+
+
 function M.Visibilidad(obs, ptos)
    local visibles = {}
    local invisibles = {}
@@ -169,7 +158,7 @@ end
 -- Transforma coord. rectangulares en esféricas y cálculos preparados.
 -- Argumentos: coordenadas rectangulares x, y, z.
 -- Retorna: Una tabla P con los valores
--- P.x, P.y, P.z, P.r, P.theta, P.phi, P.thetaDeg, P.phiDeg,
+-- P.x, P.y, P.z, P.r, P.theta, P.phi, P.thetaD, P.phiD,
 -- P.sintheta, P.costheta, P.tantheta, P.sinphi, P.cosphi, P.tanphi
 function M.R3dToAll(x,y,z)
    local P = {}
@@ -179,8 +168,8 @@ function M.R3dToAll(x,y,z)
    
    P.r, P.theta, P.phi = R3dToSph(x,y,z)
    
-   P.thetaDeg = math.deg(P.theta)
-   P.phiDeg = math.deg(P.phi)
+   P.thetaD = math.deg(P.theta)
+   P.phiD = math.deg(P.phi)
 
    P.sintheta = math.sin(P.theta)
    P.costheta = math.cos(P.theta)
@@ -196,22 +185,28 @@ end
 --(03d) SD3dToAll -> Transforma coord. esféricas (grados) en rectangulares
 --      con tablas que contienen algunos cálculos trigonométricos.
 -- (03d) **********************************************************************
--- SD3dToAll(r,thetaDeg,phiDeg)
+-- SD3dToAll(r,thetaD,phiD)
 -- Transforma coord. esféricas (grados) en rectangulares y cálculos trigonom.
--- Argumentos: coordenadas esféricas (grados) r, thetaDeg y phiDeg
+-- Argumentos: coordenadas esféricas (grados) r, thetaD y phiD
 -- Retorna: Una tabla P con los valores
--- P.x, P.y, P.z, P.r, P.theta, P.phi, P.thetaDeg, P.phiDeg,
+-- P.x, P.y, P.z, P.r, P.theta, P.phi, P.thetaD, P.phiD,
 -- P.sintheta, P.costheta, P.tantheta, P.sinphi, P.cosphi, P.tanphi
-function M.SD3dToAll(r,thetaDeg,phiDeg)
+-- Ok!
+function M.SD3dToAll(r, thetaD, phiD)
    local P = {}
+   
+   x, y, z = M.SD3dToRect(r, thetaD, phiD)
+
+   P.x = x
+   P.y = y
+   P.z = z
+   
    P.r = r
-   P.thetaDeg = thetaDeg
-   P.phiDeg = phiDeg
-   
-   P.x, P.y, P.z = SD3dToRect(r,thetaDeg,phiDeg)
-   
-   P.theta = math.rad(P.thetaDeg)
-   P.phi = math.rad(P.phiDeg)
+   P.thetaD = thetaD
+   P.phiD = phiD
+
+   P.theta = math.rad(thetaD)
+   P.phi = math.rad(phiD)
 
    P.sintheta = math.sin(P.theta)
    P.costheta = math.cos(P.theta)
@@ -231,10 +226,10 @@ end
 -- Argumentos:
 -- Tabla de ángulos de vista del observador (grados).
 -- Retorna: Una tabla viewAll con los valores de los ángulos y func. trig.
--- viewAll.theta, viewAll.phi, viewAll.thetaDeg, viewAll.phiDeg
+-- viewAll.theta, viewAll.phi, viewAll.thetaD, viewAll.phiD
 -- viewAll.sintheta, viewAll.costheta, viewAll.tantheta,
 -- viewAll.sinphi, viewAll.cosphi, viewAll.tanphi
-function M.SD3dview(obs)
+function M.SD3dView(obs)
    local viewAll = {}
    viewAll.thetaD = obs.thetaD
    viewAll.phiD= obs.phiD
@@ -254,16 +249,17 @@ end
 
 --(03b) SD3dToRect -> Transforma coord. esféricas (grados) a rectangulares.	    
 -- (03b) **********************************************************************
--- SD3dToRect(r, thetaDeg, phiD)
+-- SD3dToRect(r, thetaD, phiD)
 -- Transforma coord. esféricas (grados) en rectangulares.
--- Argumentos: coordenadas esféricas r, thetaDeg y phiDeg.
+-- Argumentos: coordenadas esféricas r, thetaD y phiD.
 -- Retorna: Coordenadas rectangulares
-function M.SD3dToRect(r,thetaDeg,phiDeg)
+-- OK!
+function M.SD3dToRect(r, thetaD, phiD)
    local x, y, z
    local theta, phi
 
-   theta = math.rad(thetaDeg)
-   phi = math.rad(phiDeg)
+   theta = math.rad(thetaD)
+   phi = math.rad(phiD)
    
    x = r * math.sin(theta) * math.cos(phi)
    y = r * math.sin(theta) * math.sin(phi)
@@ -334,8 +330,8 @@ function M.proyPoint(P, View)
    --PointProy.r = P.r
    --PointProy.theta = P.theta
    --PointProy.phi = P.phi
-   --PointProy.thetaDeg = P.thetaDeg
-   --PointProy.phiDeg = P.phiDeg
+   --PointProy.thetaD = P.thetaD
+   --PointProy.phiD = P.phiD
 
    u = -P.x * View.sinphi + P.y * View.cosphi
    v = -P.x * View.costhetacosphi - P.y * View.costhetasinphi + P.z * View.sintheta
@@ -470,17 +466,15 @@ function M.DEBUGpuntosTeX(esf, obs, ptos)
    -- i es el índice, p es la tabla de cada punto
    for i, p in ipairs(ptos) do
       tex.print(string.format(
-	"Punto %d: $\\theta$=%s, $\\phi$=%s | Plano %sx%s | Color: %s\\\\",
-          i, p.thetaD, p.phiD, p.a, p.b, p.color
-      ))
+	"Punto %d: $\\theta$=%s, $\\phi$=%s | Plano %sx%s | Color: %s | %s  %s\\\\",
+          i, p.thetaD, p.phiD, p.a, p.b, p.color, p.u, p.v))
 
    end
    tex.print("\\\\\\textbf{Listado de puntos y planos visibles:}\\\\")      
    for i, v in ipairs(visibles) do
       tex.print(string.format(
-	"Puntos %d: $\\theta$=%s, $\\phi$=%s | Plano %sx%s | Color: %s\\\\",
-          i, v.thetaD, v.phiD, v.a, v.b, v.color
-      ))      
+	   "Punto %d: $\\theta$=%s, $\\phi$=%s | Plano %sx%s | Color: %s\\\\",
+          i, v.thetaD, v.phiD, v.a, v.b, v.color))
    end
 
    tex.print("\\\\\\textbf{Listado de puntos y planos invisibles:}\\\\")      
@@ -488,7 +482,7 @@ function M.DEBUGpuntosTeX(esf, obs, ptos)
       tex.print(string.format(
 	"Puntos %d: $\\theta$=%s, $\\phi$=%s | Plano %sx%s | Color: %s\\\\",
           i, v.thetaD, v.phiD, v.a, v.b, v.color
-      ))      
+      ))
    end
 end
 -- ----------------------------------------------------------------------------
@@ -548,4 +542,6 @@ end
 
 
 return M
+
+
 

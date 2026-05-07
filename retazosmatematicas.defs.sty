@@ -66,33 +66,35 @@
     \directlua{polar_to_cartesian(#1, #2)}%
 }
 
-\directlua{dofile("lua/vect3Dtex.lua")}
-
 % DEFINICIÓN DE COMANDOS
 
 \begin{luacode*}
   -- Añado mi directorio al path
   package.path = "./?.lua;" .. package.path
   -- Cargo miproyecto
-  ProyEsfera = require("lua/vect3Dtex")
+  mEsfera = require("lua/vect3Dtex")
 \end{luacode*}
 
 % Creamos la macro de LaTeX, donde:
 % #1 es la esfera; #2 es la vista; #3 son los puntos.
 \newcommand{\DEBUGproyEsfera}[3]{%
-  \directlua{ProyEsfera.DEBUGpuntosTeX(#1, #2, #3)}
+  \directlua{mEsfera.DEBUGpuntosTeX(#1, #2, #3)}
+}
+
+\newcommand{\proyEsferaInicio}[3]{%
+  \directlua{mEsfera.completaPuntos(#1, #2, #3)}
 }
 
 \newcommand{\proyEsfera}[3]{%
-  \directlua{ProyEsfera.TEXpuntos(#1, #2, #3)}
+  \directlua{mEsfera.TEXpuntos(#1, #2, #3)}
 }
 
-\newcommand{\proyPRect}[5]{%
-  \directlua{TEXproy_PRect(#1, #2, #3, #4, #5)}
-}
-
-\newcommand{\proyPSph}[5]{%
-  \directlua{TEXproy_PSph(#1, #2, #3, #4, #5)}
+%\newcommand{\proyPRect}[5]{%
+%  \directlua{TEXproy_PRect(#1, #2, #3, #4, #5)}
+%}
+%
+\newcommand{\proyPuntoSph}[5]{%
+  \directlua{mEsfera.proyPuntoSph(#1, #2, #3, #4, #5)}
 }
 
 
