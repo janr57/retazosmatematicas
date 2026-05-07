@@ -13,10 +13,9 @@ local M = {}
 -- ptos: Tabla con los puntos sobre la esfera y objetos relacionados con ellos.
 -- Resumen:
 -- (esf, obs, ptos) -> Imagen TikZ de esfera con puntos y planos.
-function M.TEXpuntos(esf, obs, ptos)
+function M.proyEsfera(esf, obs, ptos)
    local visibles
    local invisibles
-   local proy
 
    visibles, invisibles = M.Visibilidad(obs, ptos)
 
@@ -27,17 +26,17 @@ function M.TEXpuntos(esf, obs, ptos)
    
    -- 2. ESFERA
    tex.print(string.format(
-		"\\shade[ball color = %s, opacity = %4f] (0,0) circle[radius=%4f];",
+		"\\shade[ball color = %s, opacity = %4f] (0,0) circle[radius=%.2f];",
 		esf.sombracolor, esf.sombraopacidad, esf.radio))
    tex.print(string.format(
-		"\\draw[%s] (0,0) circle[radius=%4f];", esf.color, esf.radio))
+		"\\draw[%s] (0,0) circle[radius=%.2f];", esf.color, esf.radio))
 
    -- 3. PUNTOS VISIBLES
---   for i, p in ipairs(visibles) do
---      proy = M.proyPuntoSph(esf.radio, p.thetaD, p.phiD, obs)
---      tex.print(string.format("\\fill[black] (%4f,%4f) circle[radius=0.5pt];",
---			      proy.u, proy.v))
---   end
+   for i, p in ipairs(visibles) do
+      proy = M.proyPuntoSph(esf.radio, p.thetaD, p.phiD, obs)
+      tex.print(string.format("\\fill[black] (%4f,%4f) circle[radius=0.5pt];",
+			      p.u, p.v))
+   end
 
 tex.print("\\end{tikzpicture}")
    
@@ -441,7 +440,7 @@ end
 -- Resumen de los datos enviados y procesados por LuaLaTeX.
 -- Esfera, Observador y puntos visibles e invisibles.
 
-function M.DEBUGpuntosTeX(esf)
+function M.DEBUGesferaTeX(esf)
    --local visibles, invisibles
 
    --visibles, invisibles = M.Visibilidad(obs, ptos)
@@ -461,7 +460,7 @@ function M.DEBUGpuntosTeX(esf)
 
    -- TABLA OBSERVADOR
    tex.print([[\\]])
-   tex.print([[\\]])
+   --tex.print([[\\]])
    
    tex.print([[\noindent\,\textbf{OBSERVADOR}\\]])
    tex.print([[\begin{tabular}{|c|c|}]])
@@ -477,7 +476,7 @@ function M.DEBUGpuntosTeX(esf)
 
    -- TABLA PUNTOS   
    tex.print([[\\]])
-   tex.print([[\\]])
+   --tex.print([[\\]])
    
    tex.print([[\noindent\,\textbf{PUNTOS}\\]])
    tex.print([[\begin{tabular}{|c|c|c|c|c|c|c|cc|}]])
