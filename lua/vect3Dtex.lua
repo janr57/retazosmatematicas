@@ -458,6 +458,43 @@ function M.DEBUGpuntosTeX(esf)
    ))
    tex.print([[\hline]])
    tex.print([[\end{tabular}]])
+
+   -- TABLA OBSERVADOR
+   tex.print([[\\]])
+   tex.print([[\\]])
+   
+   tex.print([[\noindent\,\textbf{OBSERVADOR}\\]])
+   tex.print([[\begin{tabular}{|c|c|}]])
+   tex.print([[\hline]])
+   tex.print([[$\theta$ & $\phi$\\]])
+   tex.print([[\hline]])
+   tex.print(string.format(
+		[[ \qty{%.2f}{\degree} & \qty{%.2f}{\degree}\\ ]],
+		obs.thetaD, obs.phiD
+   ))
+   tex.print([[\hline]])
+   tex.print([[\end{tabular}]])
+
+   -- TABLA PUNTOS   
+   tex.print([[\\]])
+   tex.print([[\\]])
+   
+   tex.print([[\noindent\,\textbf{PUNTOS}\\]])
+   tex.print([[\begin{tabular}{|c|c|c|c|c|c|c|cc|}]])
+   tex.print([[\hline]])
+   tex.print([[ID & $\theta$ & $\phi$ & $a$ & $b$ & Opacidad & Color & u & v\\]])
+   tex.print([[\hline]])
+   -- 2. Iteramos para crear las filas
+   for i, p in ipairs(ptos) do
+      tex.print(string.format(
+	[[%d&\qty{%.2f}{\degree}&\qty{%.2f}{\degree}&%.2f&%.2f&%.2f&%s&%.2f&%.2f\\]],
+		   i, p.thetaD, p.phiD, p.a, p.b, p.opacidad, p.color, p.u, p.v))
+   end
+   
+   -- 3. Cerramos la tabla
+   tex.print([[\hline]])
+   tex.print([[\end{tabular}]])   
+   
 end
 
 
