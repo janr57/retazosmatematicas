@@ -447,7 +447,7 @@ Véase la figura \ref{fig:R2-cart_planos_tangentes}.
 
   -- Cálculo de las coordenadas del punto proyectadas en la pantalla
   for i, p in ipairs(ptos) do
-     u, v = mEsfera.proyPuntoSph(esf.radio, p.thetaD, p.phiD, obs)
+     u, v = mEsfera.sphD2uv(esf.radio, p.thetaD, p.phiD, obs)
      p.u = u
      p.v = v
   end

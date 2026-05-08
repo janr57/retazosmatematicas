@@ -24,7 +24,6 @@ function M.proyEsfera(esf, obs, ptos)
 
    -- 1. PUNTOS INVISIBLES
    for i, p in ipairs(invisibles) do
-      --proy = M.proyPuntoSph(esf.radio, p.thetaD, p.phiD, obs)
       tex.print(string.format("\\fill[red] (%4f,%4f) circle[radius=0.5pt];",
 			      p.u, p.v))
    end
@@ -39,7 +38,6 @@ function M.proyEsfera(esf, obs, ptos)
 
    -- 3. PUNTOS VISIBLES
    for i, p in ipairs(visibles) do
-      --proy = M.proyPuntoSph(esf.radio, p.thetaD, p.phiD, obs)
       tex.print(string.format("\\fill[black] (%4f,%4f) circle[radius=0.5pt];",
 			      p.u, p.v))
    end
@@ -74,36 +72,6 @@ function M.TEXproy_PRect(x, y, z, obs)
    return u, v
 end
 
--- (00c) **********************************************************************
--- FUNCIÓN DE USUARIO
--- proyPuntoSph(radio, thetaD, phiD, obs)
--- Escribe una cadena con las coordenadas u, v del punto en la pantalla
--- Argumentos:
---    Radio de la esfera.
---    Coordenadas angulares de un punto de la esfera (grados).
---    Tabla de ángulo del observador.
--- Retorna:
---    Cadena con las coordenadas (u,v) de la pantalla: "(u,v)"
-function M.proyPuntoSph(r, thetaD, phiD, obs)
-   --local PAll = {}
-   --local viewAll = {}
-
-   -- Crea tabla con las coordenadas rect y esféricas del punto (grados y rad)
-   -- y algunas funciones trigonométricas para ahorrar cálculos.
-   PAll = M.SD3dToAll(r, thetaD, phiD)
-
-   -- Crea tabla con las coordenadas esféricas del observador (grados y rad)
-   -- y algunas funciones trigonométricas para ahorrar cálculos.   
-   viewAll = M.SD3dView(obs)
-   
-   -- Crea las dos coordenadas del punto en pantalla visto por el observador
-   u, v = M.proyPoint(PAll, viewAll)
-
-   --tex.sprint(string.format("%.4f, %.4f", u, v))
-   return u, v
-end
-
-
 
 -- ****************************************************************************
 -- FUNCIONES AUXILIARES
@@ -111,7 +79,7 @@ end
 function M.completaPuntos(esf, obs, ptos)
    local proy
    for i, p in ipairs(ptos) do
-      u, v = M.proyPuntoSph(esf.radio, p.thetaD, p.phiD, obs)
+      u, v = M.sphD2uv(esf.radio, p.thetaD, p.phiD, obs)
 
       p.u = u
       p.v = v
@@ -155,6 +123,33 @@ function M.esVisible(obs, pto)
    else
       return false
    end
+end
+
+
+-- (00c) **********************************************************************
+-- FUNCIÓN DE USUARIO
+-- sphD2uv(radio, thetaD, phiD, obs)
+-- Escribe una cadena con las coordenadas u, v del punto en la pantalla
+-- Argumentos:
+--    Radio de la esfera.
+--    Coordenadas angulares de un punto de la esfera (grados).
+--    Tabla de ángulo del observador.
+-- Retorna:
+--    Cadena con las coordenadas (u,v) de la pantalla: "(u,v)"
+function M.sphD2uv(r, thetaD, phiD, obs)
+   -- Crea tabla con las coordenadas rect y esféricas del punto (grados y rad)
+   -- y algunas funciones trigonométricas para ahorrar cálculos.
+   PAll = M.SD3dToAll(r, thetaD, phiD)
+
+   -- Crea tabla con las coordenadas esféricas del observador (grados y rad)
+   -- y algunas funciones trigonométricas para ahorrar cálculos.   
+   viewAll = M.SD3dView(obs)
+   
+   -- Crea las dos coordenadas del punto en pantalla visto por el observador
+   u, v = M.proyPoint(PAll, viewAll)
+
+   --tex.sprint(string.format("%.4f, %.4f", u, v))
+   return u, v
 end
 
 -- (02c) **********************************************************************
