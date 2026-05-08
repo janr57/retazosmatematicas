@@ -86,7 +86,6 @@ function M.completaPuntos(esf, obs, ptos)
    end
 end
 
-
 function M.Visibilidad(obs, ptos)
    local visibles = {}
    local invisibles = {}
