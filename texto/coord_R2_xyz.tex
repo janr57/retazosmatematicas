@@ -1,0 +1,1146 @@
+% coord_R2_xyz.tex
+%
+% Copyright (C) 2022--2026 José A. Navarro Ramón <janr.devel@gmail.com>
+% Licencia del código GPLv2
+% Licencia Creative Commons Recognition Non-Commercial Share-alike.
+% (CC-BY-NC-SA)
+
+
+\chapter{Coordenadas cartesianas ortogonales en
+  \mathinhead{\symbb{R}^2}{espr2}}
+Este capítulo tiene los siguientes objetivos:
+\begin{enumerate}
+\item Recordar el sistema de coordenadas ortogonales o rectangulares en el
+  plano euclídeo $\symbb{R}^2$, como fundamento para el resto de sistemas de
+  coordenadas que se estudiarán posteriormente.
+\item Introducir algunas ideas de la geometría diferencial, como
+  \emph{base natural}, \emph{métrica}, etc., que serán más importantes en otros
+  sistemas de coordenadas.
+\item Recordar la expresión del resultado de distintas operaciones de cálculo en
+  este sistema.
+\end{enumerate}
+
+\section{Ideas básicas}
+El vector de posición de cualquier punto del espacio $\symbb{R}^2$ en coordenadas
+cartesianas es
+\begin{equation}\label{eq:R2-r_rect}
+  \vvv{r}
+  = x\,\uvec{\i} + y\,\uvec{\j}
+\end{equation}
+\begin{figure}[ht]
+  \pgfmathsetmacro{\EJESNEGLONG}{0.2}
+  \pgfmathsetmacro{\EJESPOSLONG}{2.3}
+  % Eje x
+  \pgfmathsetmacro{\XNEGLONG}{\EJESNEGLONG}
+  \pgfmathsetmacro{\XPOSLONG}{\EJESPOSLONG}
+  % Eje y
+  \pgfmathsetmacro{\YNEGLONG}{\EJESNEGLONG}
+  \pgfmathsetmacro{\YPOSLONG}{\EJESPOSLONG}
+  % Versores
+  \pgfmathsetmacro{\VERSORMOD}{0.6}
+  % Vector P
+  \pgfmathsetmacro{\VECTORMOD}{2.5}
+  \pgfmathsetmacro{\VECTORANG}{40}
+  % Fondo
+  \pgfmathsetmacro{\HORZ}{0.25}
+  \pgfmathsetmacro{\VERT}{0.25}
+  % 
+  \centering
+  \begin{tikzpicture}[%
+    scale=1,
+    every node/.style={black,font=\footnotesize},
+    eje/.style={->},
+    proyeccion/.style={black!20, line width=0.4},
+    vector/.style={-{Latex[round]}, shorten >=1.2pt, line width=.8pt, black},
+    versor/.style={-{Latex[round, width=4pt, length=6pt]}, line width=1pt, red!80!black},
+    texto/.style={black},
+    pcirculo/.style={fill=green, draw=black},
+    background/.style={%
+      line width=\backgrounborderwidth,
+      draw=\backgroundbordercolor,
+      fill=\backgroundcolor,
+    },
+    ]
+    % -------------------------------------------------------------------------------
+    % COORDENADAS
+    % Origen
+    \coordinate (O) at (0,0);
+    % Extremo izdo del eje x e inferior del eje y
+    \coordinate (xini) at (-\XNEGLONG,0);
+    \coordinate (yini) at (0,-\YNEGLONG);
+    \coordinate (ifin) at (\VERSORMOD, 0);
+    \coordinate (jfin) at (0, \VERSORMOD);
+    % Eje x
+    \path[save path=\ejex] (xini) -- coordinate[pos=0.55] (xtexto) (\XPOSLONG, 0)
+    coordinate (xfin);
+    % Eje y
+    \path[save path=\ejey] (yini) -- coordinate[pos=0.55] (ytexto) (0, \YPOSLONG)
+    coordinate (yfin);
+    % Versores i y j
+    \path[save path=\ivector] (O) -- coordinate[pos=0.5] (itexto) (ifin);
+    \path[save path=\jvector] (O) -- coordinate[pos=0.45] (jtexto) (jfin);    
+    % Vector
+    \path[save path=\vector] (O) -- coordinate[pos=0.5] (pmid) (\VECTORANG:\VECTORMOD)
+    coordinate (P);
+    % Proyección de P en los ejes
+    \path[save path=\proyx] (P) |- (xfin);
+    \path[save path=\proyy] (P) -| (yfin);
+% -------------------------------------------------------------------------------
+    % DIBUJOS
+    % Proyección de P en los ejes
+    \draw[proyeccion, use path=\proyx];
+    \draw[proyeccion, use path=\proyy];
+    % Ejes
+    % x
+    \draw[eje, use path=\ejex];
+    \node[right] at (xfin) {$x$};
+    \node[below] at (xtexto) {$x$};
+    % y
+    \draw[eje, use path=\ejey];
+    \node[above] at (yfin) {$y$};
+    \node[left] at (ytexto) {$y$};
+    % Versores
+    \draw[versor, use path=\ivector];
+    \node[below, red!80!black] at (itexto) {\scriptsize $\uvec{\i}$};
+    \draw[versor, use path=\jvector];
+    \node[left, red!80!black] at (jtexto) {\scriptsize $\uvec{\j}$};
+    % Vector y punto  P
+    \draw[vector, use path=\vector];
+    \node[above left=-3pt and -1pt] at (pmid) {$\vvv{r}$};
+    \filldraw[fill=green, draw=black] (P) circle[radius=1.2pt];
+    \node[above right=0pt and -5pt] at (P) {$P(x,y)$};
+    
+    % Origen
+    \filldraw (O) circle [radius=.25pt];
+%    % -------------------------------------------------------------------------------    
+%    % Fondo amarillo
+%    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+%    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);    
+%    \begin{scope}[on background layer]
+%      \draw[background] (SW) rectangle (NE);
+%    \end{scope}
+  \end{tikzpicture}
+  \caption{Coordenadas cartesianas rectangulares de un punto $P$ del plano
+    (en verde) y vectores unitarios (en rojo). El vector de posición del punto
+    es $\vvv{r} = x\,\uvec{i} + y\,\uvec{j}$.}
+  \label{fig:R2-rect_ij}
+\end{figure}
+
+
+\section{Base natural}
+En física general y en matemáticas elementales se suele preferir una base
+formada por vectores unitarios para representar cualquier otro vector.
+Como sabemos, en estas coordenadas se utiliza la base
+$B = \set{\uvec{\i},\,\uvec{\j}}$.
+
+Por otro lado, en geometría diferencial es importante la \emph{base natural},
+que representaremos en este texto como
+\begin{equation}
+  B = \set{\vvv{e}_x, \vvv{e}_y}
+\end{equation}
+Estos vectores no tienen por qué ser unitarios, y por ello no aparecen con el
+acento circunflejo, aunque como veremos, en este caso sí que lo son.
+
+Los vectores de esta base se obtienen derivando parcialmente el vector de
+posición de un punto genérico del espacio, expresado en función de las
+componentes del sistema, en este caso las coordenadas $x$ e $y$, respecto de
+cada una de ellas; véase la ecuación \eqref{eq:R2-r_rect} y la figura
+\ref{fig:R2-rect_ij}.
+Estos vectores llevan información concreta acerca de cómo varia la posición en
+el espacio cuando variamos cada una de las coordenadas ---tal y como sugieren
+las derivadas---, lo que será importante para obtener la \emph{métrica}.
+
+Los vectores de la base natural y sus módulos son
+\begin{subequations}
+  \begin{align}\label{eq:R2-cart-ex}
+    \vvv{e}_x
+    &=
+      \dfrac{\partial\vvv{r}}{\partial x}
+      = \uvec{\i}
+      = \xhat{u}_x
+      \longrightarrow
+    |\vvv{e}_x| = |\uvec{\i}| = 1\\
+    \label{eq:R2-cart-ey}
+    \vvv{e}_y
+    &= \dfrac{\partial\vvv{r}}{\partial y}
+      = \uvec{\j}
+      = \xhat{u}_y
+      \longrightarrow
+    |\vvv{e}_y| = |\uvec{\j}| = 1
+  \end{align}
+\end{subequations}
+Vemos que son vectores unitarios, aunque como se señaló antes, no tiene por qué
+ser así en otros sistemas de coordenadas.
+
+Escribimos la \emph{base natural} en cartesianas rectangulares, que coincide
+con los vectores unitarios tradicionales $\uvec{\i}$ y $\uvec{\j}$
+\begin{equation}\label{eq:R2-cart-base}
+  B
+  =\set{\vvv{e}_x, \vvv{e}_y}
+  = \set{\xhat{u}_x, \xhat{u}_y}
+  = \set{\uvec{\i},\, \uvec{\j}}
+\end{equation}
+
+
+\section{Métrica}
+La métrica en cada sistema de coordenadas define la estructura del espacio, y
+en particular, sin ella no se pueden medir ni distancias ni ángulos. Es como si
+proporcionara un sistema de reglas y goniómetros con los cuales medir
+distancias y ángulos.
+
+De la equivalencia de la base natural con la unitaria, y del hecho de que los
+vectores de la base son ortogonales entre sí, se podrá inferir que la métrica
+en coordenadas cartesianas rectangulares se representará como una matriz unidad.
+
+\subsection{Producto escalar de los vectores de la base natural}
+La base natural en coordenadas cartesianas en este espacio está formada por los vectores
+$\uvec{\i}$ y $\uvec{\j}$, en los ejes $x$ e $y$, respectivamente, ver figura
+\ref{fig:R2-rect_ij}.
+A continuación resumimos el valor de los productos escalares entre ellos, tal y como
+aprendimos en cálculo vectorial fundamental en coordenadas cartesianas o en física
+elemental
+\begin{subequations}
+  \begin{align}
+    \label{eq:R2-cart-ii_prod_escalar}
+    \vvv{e}_x\cdot\vvv{e}_x = \uvec{\i}\cdot\uvec{\i}
+    &= |\uvec{\i}|\,|\uvec{\i}|\cos 0 = 1\\
+    \label{eq:R2-cart-ij_prod_escalar}    
+    \vvv{e}_x\cdot\vvv{e}_y = \uvec{\i}\cdot\uvec{\j}
+    &= |\uvec{\i}|\,|\uvec{\j}|\cos\pi/2 = 0\\
+    \label{eq:R2-cart-ji_prod_escalar} 
+    \vvv{e}_y\cdot\vvv{e}_x = \uvec{\j}\cdot\uvec{\i}
+    &= |\uvec{\j}|\,|\uvec{\i}|\cos\pi/2 = 0\\
+    \label{eq:R2-cart-jj_prod_escalar}
+    \vvv{e}_y\cdot\vvv{e}_y = \uvec{\j}\cdot\uvec{\j}
+    &= |\uvec{\j}|\,|\uvec{\j}|\cos 0 = 1
+  \end{align}
+\end{subequations}
+
+\subsection{Métrica y factores de escala}
+La métrica en cualquier sistema de coordenadas se calcula utilizando los vectores de la
+base natural y el producto escalar entre estos vectores. El resultado es la matriz
+unidad $\mmm{I}$
+\begin{equation}\label{eq:R2-cart-metrica}
+  \mmm{g}_{ij}
+  = \begin{pmatrix}
+    g_{11} & g_{12}\\
+    g_{21} & g_{22}
+    \end{pmatrix}
+  = \begin{pmatrix}
+      \vvv{e}_x\cdot\vvv{e}_x & \vvv{e}_x\cdot\vvv{e}_y\\
+      \vvv{e}_y\cdot\vvv{e}_x & \vvv{e}_y\cdot\vvv{e}_y
+  \end{pmatrix}
+  = \begin{pmatrix}
+    1 & 0\\
+    0 & 1
+  \end{pmatrix}
+  = \mmm{I}
+\end{equation}
+
+La raíz cuadrada de los elementos diagonales de la métrica se llaman
+\emph{factores de escala} o \emph{coeficientes métricos}.
+En coordenadas cartesianas rectangulares serían
+\begin{align*}
+  h_x &= \sqrt{g_{11}} = \sqrt{1} = 1\\
+  h_y &= \sqrt{g_{22}} = \sqrt{1} = 1  
+\end{align*}
+
+Fijémonos en la métrica \eqref{eq:R2-cart-metrica}:
+\begin{itemize}
+\item Los elementos no diagonales son nulos. Esto se interpreta como que los
+  vectores $\vvv{e}_x$ y $\vvv{e}_y$ son independientes, esto es, ortogonales,
+  lo que implica que un cambio en una coordenada no afectará a la otra.
+  Así, si nos desplazamos una distancia cualquiera en el eje $x$, no habremos
+  recorrido ninguna distancia en el eje $y$, y viceversa, por lo que
+  $h_{xy}= h_{yx}= 0$.
+\item Los elementos diagonales valen la unidad. ESto implica que un cambio en
+  la coordenada respectiva implica una distancia recorrida de una unidad en el
+  espacio.
+  En realidad, el espacio recorrido es el factor de escala correspondiente
+  (la raíz cuadrada del elemento diagonal correspondiente), pero en este caso
+  da lo mismo
+  \begin{subequations}
+    \begin{align}
+      \Delta s &= h_x\, \Delta x = \sqrt{1}\, \Delta x = \Delta x\\
+      \Delta s &= h_y\, \Delta y = \sqrt{1}\, \Delta y = \Delta y
+    \end{align}
+  \end{subequations}
+  Para adquirir algo de intuición, imaginemos que nos desplazamos cualquier distancia en
+  el eje $x$, digamos un metro; es fácil entender que en el espacio nos habremos
+  desplazado esa misma distancia. Por tanto es lógico razonar que el factor de escala
+  $h_x$ vale 1. Lo mismo podemos decir para el factor de escala en el eje $y$, $h_y=1$.
+\end{itemize}
+
+\subsection{Revisión del producto escalar}
+La métrica nos permite calcular distancias. En concreto, el cuadrado del módulo de un
+vector $\vvv{A}$ se mide realizando el producto escalar del vector por sí mismo.
+El producto escalar se encarga de esto, y se puede ampliar mediante el cálculo
+matricial, utilizando la métrica (en otros sistemas de coordenadas veremos que es más
+importante que aquí, mientras que en cartesianas se puede y se suele obviar)
+\[
+  \vvv{v}\cdot\vvv{w}
+  = \vvv{v}^\transp \mmm{g}_{ij}\, \vvv{w}
+  = \vvv{v}^\transp \mmm{I}\, \vvv{w}
+  = \begin{pmatrix}
+    v_x &  v_y
+  \end{pmatrix}
+  \begin{pmatrix}
+    1 & 0\\
+    0 & 1
+  \end{pmatrix}
+  \begin{pmatrix}
+    w_x\\
+    w_y
+  \end{pmatrix}
+  =
+  v_x\,w_x + v_y\, w_y
+\]
+Así, el cuadrado del módulo de un vector en cartesianas rectangulares es
+\[
+  v^2
+  =
+  |\vvv{v}|^2
+  =
+  \vvv{v}\cdot\vvv{v}
+  =
+  \vvv{v}^\transp \mmm{g}_{ij}\, \vvv{v}
+  =
+  \begin{pmatrix}
+  v_x &  v_y
+\end{pmatrix}
+\begin{pmatrix}
+  1 & 0\\
+  0 & 1
+\end{pmatrix}
+\begin{pmatrix}
+  v_x\\
+  v_y
+\end{pmatrix}
+=
+v_x^2 + v_y^2
+\]
+que coincide con el valor que obteníamos en el cálculo vectorial elemental.
+
+
+\section{Vectores contravariantes y covariantes}
+Esta sección se encuentra aquí de una manera un tanto forzada, pues los dos
+tipos de vectores del título son el mismo en coordenadas rectangulares y, como
+consecuencia, no es necesario hacer referencia a ellos.
+
+Pero, adelantaremos algo de información sobre estos conceptos, para captar su
+significado y entender por qué en otros sistemas de coordenadas estos vectores
+son diferentes, al contrario de lo que ocurre en este sistema de coordenadas.
+
+\subsection{Vectores contravariantes}
+Los vectores \emph{viven} en un espacio vectorial $V$\, llamado
+\emph{espacio tangente}.
+Pensemos, por ejemplo, en un espacio curvo como puede ser el de una superficie
+esférica.
+No se pueden representar vectores en una superficie curva, sino en un plano.
+Ese plano es en este caso el espacio tangente o espacio vectorial asociado al
+punto donde \emph{viven} los vectores.
+
+Cada punto  del espacio curvo tiene asociado un plano tangente diferente al del resto
+de puntos. Nosotros sabemos realizar operaciones con vectores que
+\emph{viven en el mismo espacio tangente}. Como consecuencia, en principio no podríamos
+realizar operaciones entre vectores de diferentes espacios tangente\footnotemark{}.
+Véase la figura \ref{fig:R2-cart_planos_tangentes}.
+\footnotetext{Para poder realizar este tipo de operaciones entre dos vectores que se
+  encuentren en dos espacios tangente diferentes, la geometría diferencial define el
+  transporte paralelo, pero esto es algo que no nos debe preocupar por ahora.}
+\begin{figure}[ht]
+  % Escala
+  \def\scl{1.9}
+  % Origen de coordenadas
+  \pgfmathsetmacro{\Ox}{0.0}
+  \pgfmathsetmacro{\Oy}{0.0}
+  \pgfmathsetmacro{\Oz}{0.0}
+  % Centro de la esfera
+  \pgfmathsetmacro{\Cx}{\Ox}
+  \pgfmathsetmacro{\Cy}{\Oy}
+  \pgfmathsetmacro{\Cz}{\Oz}
+  % Radio de la esfera en cm
+  \pgfmathsetmacro{\R}{1.0}
+  % Opacidad de la esfera y los planos
+  \pgfmathsetmacro{\OPACIDADESFERA}{0.9}
+  \pgfmathsetmacro{\OPACIDADPLANO}{0.8}
+  %
+  \centering
+  \begin{tikzpicture}[%
+    scale=\scl,
+    z= {(0cm,1cm)},
+    y={(1cm,0cm)},
+    x={(-0.38cm,-0.38cm)},
+    line join=round,
+    line cap=round,
+    every node/.style={black,font=\scriptsize},
+    planoP1/.style={blue!60!black, fill=blue!20, opacity=\OPACIDADPLANO},
+    planoP2/.style={red!60!black, fill=red!20, opacity=\OPACIDADPLANO},
+    vector/.style={-{Latex[round,width=3pt,length=4pt]}},
+    ]
+    % COORDENADAS
+    % Origen
+    \coordinate (O) at (\Ox,\Oy,\Oz);
+    % Centro de la esfera
+    \coordinate (C) at (\Cx,\Cy,\Cz);
+    
+    % 1. ESFERA
+    \shade[ball color=black!20, opacity=\OPACIDADESFERA] (C) circle[radius=\R cm];
+    \draw[gray!10] (C) circle[radius=\R cm];
+
+    % 2. PLANO SUPERIOR
+    \coordinate (P1) at (xyz spherical cs:radius=1,latitude=90);
+    \begin{scope}[canvas is xy plane at z=1]
+      % Plano en P1
+      \filldraw[planoP1] (-0.5,-0.5) rectangle (0.5,0.5);
+      \draw[vector] (0,0) -- (-0.3,0.3);
+    \end{scope}
+    % Punto P1 y texto
+    \fill[black] (P1) circle (0.5pt);
+    \node[below left=-2pt and -2pt] at (P1) {$P_1$};
+
+    % 3. PLANO FRONTAL DERECHA
+    \coordinate (P2) at (xyz spherical cs:radius=1,longitude=30,latitude=25);
+    \begin{scope}[%
+      plane origin=(P2), plane x={(0.8,1.0)}, plane y={(0.2,0)}, canvas is plane
+      ]
+      % Plano en P2
+      \filldraw[planoP2] (-0.5,-0.5) rectangle (0.5,0.5);
+      \draw[vector] (0,0) -- (0.4,-0.4);
+      \draw[vector] (0,0) -- (0.25,0.4);
+    \end{scope}
+    
+    \fill[black] (P2) circle (0.5pt);
+    \node[above left=-1pt and -2pt] at (P2) {$P_2$};
+  
+    % Vectores en P1
+    %\draw[-{Latex[round,width=3pt,length=4pt]}] (P1) -- ++(0.3, 0, 0);
+    %\draw[-{Latex[round,width=3pt,length=4pt]}] (P1) -- ++(0, 0, -0.3);
+
+%    % Vectores en P2 (ajustados para nacer exactamente de P2)
+%    \draw[-{Latex[round,width=3pt,length=4pt]}] (P2) -- ++(0.05, 0.35, -0.1);
+%    % \draw[-{Latex[round,width=3pt,length=4pt]}] (P2) -- ++(0.1, -0.1, -0.4);
+%    \draw[-{Latex[round,width=3pt,length=4pt]}] (P2) -- ++(0.22, -0.05, -0.45);
+  \end{tikzpicture}
+  \caption{Espacio esférico donde se representan dos planos tangentes en dos puntos
+    arbitrarios de la esfera. En el plano situado en el polo norte (azul), se representa
+    un vector que \emph{vive} en ese plano. Por otro lado en el otro punto se aprecia
+    un plano tangente (rosa) con dos vectores.}
+  \label{fig:R2-cart_planos_tangentes}
+\end{figure}
+
+\begin{luacode*}
+  -- Datos de la esfera
+  esf = {
+    radio = 1.0, color = "gray!10", opacidad = 1,
+    sombracolor = "black!20", sombraopacidad=0.9
+  }
+  -- Datos del observador
+  obs = {thetaD = 65, phiD = 30}
+  -- 3. Matriz de puntos (tabla de tablas)
+  ptos = {
+    {thetaD=90, phiD=0, a=1, b=1, opacidad=0.5, color="black"},
+    {thetaD=0, phiD=0, a=2, b=2, opacidad=0.5, color="red"},
+    {thetaD=90, phiD=170, a=3, b=3, opacidad=0.7, color="green"},
+    {thetaD=40, phiD=30, a=4, b=4, opacidad=0.7, color="blue"}
+  }
+
+  -- Cálculo de las coordenadas del punto proyectadas en la pantalla
+  for i, p in ipairs(ptos) do
+     u, v = mEsfera.proyPuntoSph(esf.radio, p.thetaD, p.phiD, obs)
+     p.u = u
+     p.v = v
+  end
+\end{luacode*}
+
+{\scriptsize
+  \DEBUGproyEsfera{esf}
+  \DEBUGproyObservador{obs}
+  \DEBUGproyPuntos{ptos}
+}
+
+\begin{figure}[ht]
+  % Escala
+  \def\scl{1}
+  \proyEsfera{esf}{obs}{ptos}
+\end{figure}
+
+
+%\section{Gradiente}
+%Presentamos un resumen del gradiente, tal y como se presentan en un curso básico de
+%cálculo.
+%
+%El gradiente de un campo escalar $\phi(x,y)$ es un vector
+%\begin{equation}
+%  \vvv{\nabla}\phi
+%  = \dfrac{\partial \phi}{\partial x}\,\uvec{\i}
+%  + \dfrac{\partial \phi}{\partial y}\,\uvec{\j}
+%  = \begin{pmatrix}
+%    \partial \phi/\partial x\\
+%    \partial \phi/\partial y
+%    \end{pmatrix}
+%\end{equation}
+%El vector gradiente de $\phi$ evaluado en un punto genérico $(x,y)$ del dominio de $\phi$
+%indica la dirección en la cual el campo $\phi$ varía más rápidamente y su módulo
+%representa el ritmo de variación de $\phi$ en la dirección de dicho vector gradiente.
+%
+%El operador gradiente se comporta como un vector bajo rotaciones, decimos esto porque
+%cuando opera frente a un campo escalar, se obtiene otro formado por vectores
+%\begin{equation}
+%  \vvv{\nabla}
+%  = \dfrac{\partial}{\partial x}\,\uvec{\i}
+%  + \dfrac{\partial}{\partial y}\,\uvec{\j}
+%  = \begin{pmatrix}
+%    \partial/\partial x\\
+%    \partial/\partial y
+%    \end{pmatrix}
+%\end{equation}
+
+%\section{Divergencia}
+%La divergencia de un campo vectorial $\vvv{F}=(F_x, F_y)$ es un escalar
+%\begin{equation}\label{eq:R2-divergencia-cartesianas}
+%  \vvv{\nabla}\cdot\vvv{F}
+%  = \begin{pmatrix}
+%    \partial/\partial x & \partial/\partial y      
+%  \end{pmatrix}
+%  \begin{pmatrix}
+%    1 & 0\\
+%    0 & 1
+%  \end{pmatrix}
+%  \begin{pmatrix}
+%    F_x\\
+%    F_y
+%  \end{pmatrix}
+%  = \dfrac{\partial F_x}{\partial x}
+%  + \dfrac{\partial F_y}{\partial y}
+%\end{equation}
+%La divergencia mide la diferencia entre el flujo saliente y el flujo entrante de un
+%campo vectorial sobre la superficie que rodea a un volumen de control, por tanto, si el
+%campo tiene \emph{fuentes} la divergencia será positiva, y si tiene \emph{sumideros}
+%será negativa. La divergencia mide la rapidez neta con la que se conduce el campo al
+%exterior de cada punto, y en el caso de ser la divergencia idénticamente igual a cero,
+%describiría el flujo incompresible del campo, llamado también campo solenoidal.
+%
+%\subsection{Demostración}
+%Supongamos un campo vectorial $\vvv{F}$
+%\[
+%  \vvv{F} = F_x(x,y)\,\uvec{\i} + F_y(x,y)\,\uvec{\j}
+%\]
+%
+%Ahora estamos interesados en investigar una propiedad del campo $\vvv{F}$ en un punto
+%concreto $P(x_0,y_0)$ del espacio $\symbb{R}^2$. En particular, estamos interesados en
+%estudiar si ese punto es una fuente del campo (punto en el que se crean líneas de
+%campo), si es un sumidero (si desaparecen líneas), o si no ocurre ninguna de las
+%dos cosas (las líneas de campo entran y salen del punto, sin más).
+%
+%Supongamos un pequeño cuadrado imaginario, de lado $h$ en $\symbb{R}^2$, situando el
+%punto $P$ que nos interesa en el vértice inferior izquierdo, como se aprecia en la
+%figura \ref{fig:R2-rect-divergencia}.
+%\begin{figure}[ht]
+%  % Escala
+%  \def\scl{1}
+%  %
+%  \pgfmathsetmacro{\EJESEXTRA}{-0.4}
+%  \pgfmathsetmacro{\EJESLONG}{4.0}
+%  % Eje x
+%  \pgfmathsetmacro{\XMLONG}{\EJESEXTRA}
+%  \pgfmathsetmacro{\XPLONG}{\EJESLONG}
+%  % Eje y
+%  \pgfmathsetmacro{\YMLONG}{\EJESEXTRA}
+%  \pgfmathsetmacro{\YPLONG}{\EJESLONG}
+%  % hx, hy
+%  \pgfmathsetmacro{\LONG}{2.5}
+%  \pgfmathsetmacro{\HX}{\LONG}
+%  \pgfmathsetmacro{\HY}{\LONG}
+%  % Vector A
+%  \pgfmathsetmacro{\FAMOD}{0.9}
+%  \pgfmathsetmacro{\FAANG}{30}
+%  % Vector B
+%  \pgfmathsetmacro{\FBMOD}{0.9}
+%  \pgfmathsetmacro{\FBANG}{60}
+%  % Vector C
+%  \pgfmathsetmacro{\FCMOD}{1.3}
+%  \pgfmathsetmacro{\FCANG}{-30}
+%  % Vector D
+%  \pgfmathsetmacro{\FDMOD}{1.0}
+%  \pgfmathsetmacro{\FDANG}{45}  
+%  % Posición inferior izquierda del elemento de área
+%  \pgfmathsetmacro{\PX}{0.7}
+%  \pgfmathsetmacro{\PY}{0.7}
+%  % Fondo
+%  \pgfmathsetmacro{\HORZ}{0.25}
+%  \pgfmathsetmacro{\VERT}{0.25}
+%  % 
+%  \centering
+%  % PRIMERA IMAGEN
+%  \begin{tikzpicture}[%
+%    scale=\scl,
+%    every node/.style={black,font=\small},
+%    eje/.style={->},
+%    proyeccion/.style={black!30, line width=0.3pt},
+%    area/.style={fill=green!25, draw=black!20},
+%    textovector/.style={black},
+%    textored/.style={red!90!black},
+%    textofaint/.style={black!70},
+%    vector/.style={-{Latex[round,width=4pt,length=6pt]}, line width=1pt},
+%    vectorcomponent/.style={-{Latex[round,width=3pt,length=5pt]}, line width=0.6pt},
+%    faintvectorcomponent/.style={vectorcomponent, black!60},
+%    redvectorcomponent/.style={vectorcomponent, red},
+%    background/.style={%
+%      line width=\bgborderwidth,
+%      draw=\bgbordercolor,
+%      fill=\bgcolor,
+%    },
+%    ]
+%    % ------------------------------------------------------------------------------
+%    % COORDENADAS
+%    % ------------------------------------------------------------------------------    
+%    % ORIGEN
+%    \coordinate (O) at (0,0);
+%    % EXTREMO IZQUIERDO DEL EJE X E INFERIOR DEL EJE Y
+%    \coordinate (xini) at (\XMLONG cm,0);
+%    \coordinate (yini) at (0,\YMLONG cm);
+%    % EJES X E Y
+%    \path[save path=\ejex] (xini) -- (\XPLONG cm, 0) coordinate (xfin);
+%    \path[save path=\ejey] (yini) -- (0, \YPLONG cm) coordinate (yfin);
+%    % PUNTO P DEL CUADRADO (punto inferior izquierdo)
+%    \coordinate (P) at (\PX, \PY);
+%    % PUNTOS SUPERIOR IZQUIERDA Y SUPERIOR DERECHA DEL CUADRADO
+%    \path (P) -- coordinate[pos=0.5] (hxtext) ++(\HX, 0) coordinate (Pinfdcha);
+%    \path (P) -- coordinate[pos=0.5] (hytext) ++(0, \HY) coordinate (Psupizda);
+%    % PROYECCIÓN DE ELEMENTO DE ÁREA EN LOS EJES
+%    \path[save path=\proyPx] (P) |- coordinate (Px) (xfin);
+%    \path[save path=\proyPy] (P) -| coordinate (Py) (yfin);
+%    \path[save path=\proyPhorx] (Pinfdcha) |- coordinate (Phorx) (xfin);
+%    \path[save path=\proyPverty] (Psupizda) -| coordinate (Pverty) (yfin);
+%    % TEXTO DE LAS PROYECCIONES EN LOS EJES
+%    \path (Px) -- coordinate[pos=0.5] (hxtexto) (Phorx);
+%    \path (Py) -- coordinate[pos=0.5] (hytexto) (Pverty);
+%    % CUADRADO
+%    \path[save path=\cuadrado]
+%    (P) rectangle coordinate (centro) ++(\HX, \HY) coordinate (Psupdcha);
+%    % PUNTOS INTERMEDIOS A (INFERIOR) Y B (SUPERIOR)
+%    \path (\PX, \PY) -- coordinate[pos=0.5] (A) (Pinfdcha);
+%    \path (Psupizda) -- coordinate[pos=0.5] (B) (Psupdcha);
+%    % VECTORES
+%    \path[save path=\FA] (A) -- ++(\FAANG:\FAMOD) coordinate (FA);
+%    \path[save path=\FB] (B) -- ++(\FBANG:\FBMOD) coordinate (FB);
+%    % COMPONENTES DE LOS VECTORES
+%    % --- VECTOR FA
+%    % RECTÁNGULO
+%    \path[save path=\FArectangulo] (FA|-A) -- (FA) -- (A|-FA);
+%    % COMPONENTE X
+%    \path [save path=\FAx] (A) -- (FA|-A) coordinate (FAx);
+%    % COMPONENTE Y
+%    \path[save path=\FAy] (A) -- (A|-FA) coordinate (FAy);
+%    % --- VECTOR FB
+%    % RECTÁNGULO
+%    \path[save path=\FBrectangulo] (FB|-B) -- (FB) -- (B|-FB);    
+%    % COMPONENTE X
+%    \path [save path=\FBx] (B) -- (FB|-B) coordinate (FBx);
+%    % COMPONENTE Y
+%    \path[save path=\FBy] (B) -- (B|-FB) coordinate (FBy);
+%
+%    % ------------------------------------------------------------------------------
+%    % DIBUJOS
+%    % ------------------------------------------------------------------------------    
+%    % PROYECCIÓN DEL PUNTO P(X0,Y0) EN EL EJE X
+%    \draw[proyeccion, use path=\proyPx];
+%    % Punto x0
+%    \fill (Px) circle[radius=0.8pt];
+%    % Texto x0
+%    \node[below] at (Px) {$x_0$};
+%    
+%    % PROYECCIÓN DEL PUNTO P(X0,Y0) EN EL EJE Y
+%    \draw[proyeccion, use path=\proyPy];
+%    % PUNTO Y0
+%    \fill (Py) circle[radius=0.8pt];
+%    % TEXTO Y0
+%    \node[left] at (Py) {$y_0$};
+%    % 
+%    \draw[proyeccion, use path=\proyPhorx];
+%    \draw[proyeccion, use path=\proyPverty];
+%    
+%    % Texto dx y dy en los ejes
+%    \node[below] at (hxtexto) {\color{green!60!black}{$h$}};
+%    \node[left] at (hytexto) {\color{green!60!black}{$h$}};
+%
+%    % Elemento de área
+%    \filldraw[area, use path=\cuadrado];
+%    
+%    % Ejes
+%    % Eje x
+%    \draw[eje, use path=\ejex];
+%    \node[right] at (xfin) {$x$};
+%    %\node[below] at (xtexto) {$x$};
+%    % Eje y
+%    \draw[eje, use path=\ejey];
+%    \node[above] at (yfin) {$y$};
+%    % \node[left] at (ytexto) {$y$};
+%    
+%    % Punto P (x0,y0)
+%    \filldraw (P) circle[radius=0.8pt];
+%
+%    % Longitud h en el eje x
+%    \draw[line width=1.5pt, green!90!black, opacity=0.6] (Px) -- (Phorx);
+%    % Longitud h en el eje y
+%    \draw[line width=1.5pt, green!90!black, opacity=0.6] (Py) -- (Pverty);
+%
+%    % Vectores
+%    % Vector A
+%    \draw[vector, use path=\FA];
+%    \node[textovector, above right=-4pt and -4pt] at (FA) {$\vvv{F}_a$};
+%    % Vector B
+%    \draw[vector, use path=\FB];
+%    \node[textovector, above right=-4pt and -4pt] at (FB) {$\vvv{F}_{b}$};
+%    % Componentes de vectores
+%    % Vector A
+%    \draw[proyeccion, use path=\FArectangulo];
+%    \draw[faintvectorcomponent, use path=\FAx];
+%    \node[textofaint, below] at (FAx) {$F_{ax}$};
+%    \draw[redvectorcomponent, use path=\FAy];
+%    \node[textored, left] at (FAy) {$F_{ay}$};
+%    % Vector B
+%    \draw[proyeccion, use path=\FBrectangulo];
+%    \draw[faintvectorcomponent, use path=\FBx];
+%    \node[textofaint, below] at (FBx) {$F_{bx}$};
+%    \draw[redvectorcomponent, use path=\FBy];
+%    \node[textored, left] at (FBy) {$F_{by}$};
+%    % Puntos A y B
+%    \fill (A) circle[radius=0.8pt];
+%    \node[below left=-1pt and -3pt] at (A) {$A$};
+%    \fill (B) circle[radius=0.8pt];
+%    \node[below left=-1pt and -3pt] at (B) {$B$};
+%
+%    % Origen
+%    \filldraw (O) circle [radius=.2pt];
+%
+%    % Fondo amarillo
+%    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+%    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);    
+%    \begin{scope}[on background layer]
+%      \draw[background] (SW) rectangle (NE);
+%    \end{scope}
+%  \end{tikzpicture}
+%  %
+%  \hspace{1em}
+%  %
+%  % SEGUNDA IMAGEN
+%  \centering
+%  \begin{tikzpicture}[%
+%    scale=\scl,
+%    every node/.style={black,font=\small},
+%    eje/.style={->},
+%    proyeccion/.style={black!30, line width=0.3pt},
+%    area/.style={fill=green!25, draw=black!20},
+%    textovector/.style={black},
+%    textored/.style={red!90!black},
+%    textofaint/.style={black!70},
+%    vector/.style={-{Latex[round,width=4pt,length=6pt]}, line width=1pt},
+%    vectorcomponent/.style={-{Latex[round,width=3pt,length=5pt]}, line width=0.6pt},
+%    faintvectorcomponent/.style={vectorcomponent, black!60},
+%    redvectorcomponent/.style={vectorcomponent, red},
+%    background/.style={%
+%      line width=\bgborderwidth,
+%      draw=\bgbordercolor,
+%      fill=\bgcolor,
+%    },
+%    ]
+%    % ------------------------------------------------------------------------------
+%    % COORDENADAS
+%    % ------------------------------------------------------------------------------    
+%    % ORIGEN
+%    \coordinate (O) at (0,0);
+%    % EXTREMO IZQUIERDO DEL EJE X E INFERIOR DEL EJE Y
+%    \coordinate (xini) at (\XMLONG cm,0);
+%    \coordinate (yini) at (0,\YMLONG cm);
+%    % EJES X E Y
+%    \path[save path=\ejex] (xini) -- (\XPLONG cm, 0) coordinate (xfin);
+%    \path[save path=\ejey] (yini) -- (0, \YPLONG cm) coordinate (yfin);
+%    % PUNTO P DEL CUADRADO (punto inferior izquierdo)
+%    \coordinate (P) at (\PX, \PY);
+%    % PUNTOS SUPERIOR IZQUIERDA Y SUPERIOR DERECHA DEL CUADRADO
+%    \path (P) -- coordinate[pos=0.5] (hxtext) ++(\HX, 0) coordinate (Pinfdcha);
+%    \path (P) -- coordinate[pos=0.5] (hytext) ++(0, \HY) coordinate (Psupizda);
+%    % PROYECCIÓN DE ELEMENTO DE ÁREA EN LOS EJES
+%    \path[save path=\proyPx] (P) |- coordinate (Px) (xfin);
+%    \path[save path=\proyPy] (P) -| coordinate (Py) (yfin);
+%    \path[save path=\proyPhorx] (Pinfdcha) |- coordinate (Phorx) (xfin);
+%    \path[save path=\proyPverty] (Psupizda) -| coordinate (Pverty) (yfin);
+%    % TEXTO DE LAS PROYECCIONES EN LOS EJES
+%    \path (Px) -- coordinate[pos=0.5] (hxtexto) (Phorx);
+%    \path (Py) -- coordinate[pos=0.5] (hytexto) (Pverty);
+%    % CUADRADO
+%    \path[save path=\cuadrado]
+%    (P) rectangle coordinate (centro) ++(\HX, \HY) coordinate (Psupdcha);
+%    % PUNTOS C (IZQUIERDO) Y D (DERECHO)
+%    \path (\PX, \PY) -- coordinate[pos=0.5] (C) (Psupizda);
+%    \path (Pinfdcha) -- coordinate[pos=0.5] (D) (Psupdcha);
+%    % VECTORES
+%    \path[save path=\FC] (C) -- ++(\FCANG:\FCMOD) coordinate (FC);
+%    \path[save path=\FD] (D) -- ++(\FDANG:\FDMOD) coordinate (FD);
+%    % COMPONENTES DE LOS VECTORES
+%    % --- VECTOR FC
+%    % RECTÁNGULO
+%    \path[save path=\FCrectangulo] (FC|-C) -- (FC) -- (C|-FC);
+%    % COMPONENTE X
+%    \path [save path=\FCx] (C) -- (FC|-C) coordinate (FCx);
+%    % COMPONENTE Y
+%    \path[save path=\FCy] (C) -- (C|-FC) coordinate (FCy);
+%    % --- VECTOR FD
+%    % RECTÁNGULO
+%    \path[save path=\FDrectangulo]
+%    (FD|-D) -- (FD) -- (D|-FD);    
+%    % COMPONENTE X
+%    \path [save path=\FDx] (D) -- (FD|-D) coordinate (FDx);
+%    % COMPONENTE Y
+%    \path[save path=\FDy] (D) -- (D|-FD) coordinate (FDy);
+%
+%    % ------------------------------------------------------------------------------
+%    % DIBUJOS
+%    % ------------------------------------------------------------------------------    
+%    % PROYECCIÓN DEL PUNTO P(X0,Y0) EN EL EJE X
+%    \draw[proyeccion, use path=\proyPx];
+%    % Punto x0
+%    \fill (Px) circle[radius=0.8pt];
+%    % Texto x0
+%    \node[below] at (Px) {$x_0$};
+%    
+%    % PROYECCIÓN DEL PUNTO P(X0,Y0) EN EL EJE Y
+%    \draw[proyeccion, use path=\proyPy];
+%    % PUNTO Y0
+%    \fill (Py) circle[radius=0.8pt];
+%    % TEXTO Y0
+%    \node[left] at (Py) {$y_0$};
+%    % 
+%    \draw[proyeccion, use path=\proyPhorx];
+%    \draw[proyeccion, use path=\proyPverty];
+%    
+%    % Texto dx y dy en los ejes
+%    \node[below] at (hxtexto) {\color{green!60!black}{$h$}};
+%    \node[left] at (hytexto) {\color{green!60!black}{$h$}};
+%
+%    % Elemento de área
+%    \filldraw[area, use path=\cuadrado];
+%    
+%    % Ejes
+%    % Eje x
+%    \draw[eje, use path=\ejex];
+%    \node[right] at (xfin) {$x$};
+%    %\node[below] at (xtexto) {$x$};
+%    % Eje y
+%    \draw[eje, use path=\ejey];
+%    \node[above] at (yfin) {$y$};
+%    % \node[left] at (ytexto) {$y$};
+%    
+%    % Punto P (x0,y0)
+%    \filldraw (P) circle[radius=0.8pt];
+%
+%    % Longitud h en el eje x
+%    \draw[line width=1.5pt, green!90!black, opacity=0.6] (Px) -- (Phorx);
+%    % Longitud h en el eje y
+%    \draw[line width=1.5pt, green!90!black, opacity=0.6] (Py) -- (Pverty);
+%
+%    % Vectores
+%    % Vector C
+%    \draw[vector, use path=\FC];
+%    \node[textovector, below right=-2pt and -3pt] at (FC) {$\vvv{F}_{c}$};
+%    % Vector D
+%    \draw[vector, use path=\FD];
+%    \node[textovector, above right=-3pt and -4pt] at (FD) {$\vvv{F}_{d}$};
+%    
+%    % Componentes de vectores
+%    % Vector C
+%    \draw[proyeccion, use path=\FCrectangulo];
+%    \draw[redvectorcomponent, use path=\FCx];
+%    \node[textored, above] at (FCx) {$F_{cx}$};
+%    \draw[faintvectorcomponent, use path=\FCy];
+%    \node[textofaint, left] at (FCy) {$F_{cy}$};
+%    % Vector D
+%    \draw[proyeccion, use path=\FDrectangulo];
+%    \draw[redvectorcomponent, use path=\FDx];
+%    \node[textored, below] at (FDx) {$F_{dx}$};
+%    \draw[faintvectorcomponent, use path=\FDy];
+%    \node[textofaint, left] at (FDy) {$F_{dy}$};
+%    
+%    % Puntos C y D
+%    \fill (C) circle[radius=0.8pt];
+%    \node[above left=-3pt and -1pt] at (C) {$C$};    
+%    \fill (D) circle[radius=0.8pt];
+%    \node[below left=-3pt and -1pt] at (D) {$D$};
+%
+%    % Origen
+%    \filldraw (O) circle [radius=.2pt];
+%
+%    % Fondo amarillo
+%    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+%    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);    
+%    \begin{scope}[on background layer]
+%      \draw[background] (SW) rectangle (NE);
+%    \end{scope}
+%  \end{tikzpicture}
+%  \caption{En las figuras se representa un pequeño cuadrado de lado $h$ en el punto
+%    $P(x_0,y_0)$.
+%    A la izquierda se aprecia el flujo a través de las caras superior e inferior,
+%    representadas por las componentes verticales, en rojo, del valor del campo en cada
+%    punto arbitrario $A$ y $B$ del intervalo abierto formado por esas caras.
+%    A la derecha se realiza lo mismo a través de las caras izquierda y derecha, ahora en
+%    los puntos $C$ y $D$, representado por las componentes horizontales.}
+%  \label{fig:R2-rect-divergencia}
+%\end{figure}
+%
+%A la izquierda de la figura, nos fijaremos en dos puntos arbitrarios $A$ y $B$ del
+%cuadrado, el primero $m$, situado en el intervalo abierto $m\in (x_0, x_0+h)$ del lado
+%inferior, y el segundo en el mismo intervalo $m\in(x_0, x_0+h)$ del lado superior.
+%De manera similar, representaremos los puntos $C$ y $D$, en puntos de los lados
+%izquierdo y derecho, respectivamente, situados en el intervalo vertical
+%$n\in(y_0, y_0+h)$.
+%Así quedan las coordenadas de los cuatro puntos
+%\begin{align*}
+%  &A\equiv(m, y_0)\\
+%  &B\equiv(m, y_0+h)\\
+%  &C\equiv(x_0,n)\\
+%  &D\equiv(x_0+h,n)
+%\end{align*}
+%
+%En algún momento oportuno de la demostración obligaremos a que $h$ tienda a cero, y los
+%cocientes de las diferencias pasarán a ser derivadas parciales; por esa razón los
+%puntos $A$, $B$, $C$ y $D$ son arbitrarios, pues todos tenderán al final a $(x_0,y_0)$
+%y las derivadas parciales estarán calculadas en ese punto.
+%
+%Para facilitar la comprensión, en lo que sigue imaginaremos temporalmente que el campo
+%vectorial $\vvv{F}$ es el campo de velocidades de un fluido imaginario que se mueve en un
+%plano, con un valor de $z$ constante\footnotemark{} $\vvv{F}(x,y) = \vvv{v}(x,y)$
+%\footnotetext{En realidad, la divergencia depende del volumen. En el caso del campo
+%  de velocidades del fluido, nos aparecerá su volumen (en dos dimensiones no hay
+%  volumen). Por tanto supondremos que el espesor de la capa de fluido es infinitesimal,
+%  $dz$.}
+%De esta manera, podremos hablar del caudal del fluido imaginario que entra o sale del
+%cuadrado.
+%
+%En la figura hemos supuesto el caso general en el que  el caudal entra por los puntos
+%$A$ y $C$, y sale por $B$ y $D$.
+%Obsérvese que el flujo vertical depende de las componentes $F_y$ (en rojo) del campo en
+%los puntos $A$ y $B$; la componente horizontal no afecta a este. Por la misma razón, el
+%flujo horizontal depende de las componentes $F_x$ en los puntos $C$ y $D$
+%
+%El caudal vertical que sale es $F_{by} h^2 - F_{ay} h^2$, el signo negativo se debe a que
+%el caudal en el punto $A$ entra. de la misma forma, el caudal horizontal es
+%$F_{cx} h^2 - F_{bx} h^2$
+%\[
+%  \begin{cases}
+%    \begin{array}{lll}
+%      \text{\emph{Caudal} vertical saliente }
+%      &\longrightarrow
+%      &F_y(m, y_0+h) h^2 - F_y(m, y_0)\,h^2\\[1ex]
+%      \text{\emph{Caudal} horizontal saliente }
+%      &\longrightarrow
+%      &F_x(x_0+h, n) h^2 - F_x(x_0, n)\,h^2
+%    \end{array}
+%  \end{cases}
+%\]
+%
+%Multiplicamos y dividimos entre $h$ y sacamos factor común $h^3$ en el denominador
+%\[
+%  \begin{cases}
+%    \begin{array}{lll}
+%      \text{\emph{Caudal} vertical saliente }
+%      &\longrightarrow
+%      &Q_y = \dfrac{F_y(m, y_0+h) - F_y(m, y_0)}{h}\,h^3\\[1ex]
+%      \text{\emph{Caudal} horizontal saliente }
+%      &\longrightarrow
+%      &Q_x = \dfrac{F_x(x_0+h, n) - F_x(x_0, n)}{h}\,h^3
+%    \end{array}
+%  \end{cases}
+%\]
+%Sumamos los caudales incrementales $Q=Q_x + Q_y$ y pasamos $V=h^3$ al otro miembro
+%\[
+%  \dfrac{Q}{V}
+%  = \dfrac{F_y(m, y_0+h) - F_y(m, y_0)}{h}
+%  + \dfrac{F_x(x_0+h, n) - F_x(x_0, n)}{h}
+%\]
+%
+%Supongamos que $F_x(x,y)$ y $F_y(x,y)$ son continuas y tienen derivada.
+%Tomamos el límite $h\to 0$. En estas condiciones, $m\to x_0$ y $n\to y_0$
+%\begin{align*}
+%  \vvv{\nabla}\cdot\vvv{F}
+%  &= \lim_{h\to 0}\dfrac{Q}{V}
+%  = \lim_{h\to 0}\dfrac{Q_x + Q_y}{V}\\
+%  &= \lim_{h\to 0}\dfrac{F_x(x_0+h, m) - F_x(x_0, n)}{h}
+%  + \lim_{h\to 0}\dfrac{F_y(m, y_0+h) - F_y(m, y_0)}{h} \\
+%  &= \dfrac{\partial F_x(x,y)}{\partial x}\Big|_{(x_0,y_0)}
+%    + \dfrac{\partial F_y(x,y)}{\partial y}\Big|_{(x_0,y_0)}
+%\end{align*}
+%
+%En general, para cualquier punto del plano $(x,y)$
+%\[
+%  \vvv{\nabla}\cdot\vvv{F}
+%  = \dfrac{\partial F_x}{\partial x} + \dfrac{\partial F_y}{\partial y}
+%\]
+%
+%\section{Laplaciano}
+%La laplaciana de un campo escalar $f(x,y)$ es la divergencia del gradiente y es un
+%escalar
+%\begin{equation}\label{eq:R2-gradiente-cartesianas}
+%  \Delta \phi
+%  = \nabla^2 \phi
+%  = \vvv{\nabla}\cdot\vvv{\nabla}\phi
+%  = \dfrac{\partial^2 \phi}{\partial x^2}
+%  + \dfrac{\partial^2 \phi}{\partial y^2}
+%\end{equation}
+%Mide la concentración de un campo en un punto. Si es negativo, indica una tendencia a la
+%concentración (fuente); si es positivo, indica dispersión.
+%
+%El operador laplaciano es
+%\begin{equation}
+%  \nabla^2
+%  = \dfrac{\partial^2}{\partial x^2}
+%  + \dfrac{\partial^2}{\partial y^2}
+%\end{equation}
+%
+%\section{Elemento de área}
+%El elemento diferencial de área en cartesianas es
+%\begin{equation}
+%  d^2a = dx\,dy
+%\end{equation}
+%\begin{figure}[ht]
+%  % Escala
+%  \def\scl{1}
+%  %
+%  \pgfmathsetmacro{\EJESEXTRA}{-0.4}
+%  \pgfmathsetmacro{\EJESLONG}{2.3}
+%  % Eje x
+%  \pgfmathsetmacro{\XMLONG}{\EJESEXTRA}
+%  \pgfmathsetmacro{\XPLONG}{\EJESLONG}
+%  % Eje y
+%  \pgfmathsetmacro{\YMLONG}{\EJESEXTRA}
+%  \pgfmathsetmacro{\YPLONG}{\EJESLONG}
+%  % dx, dy
+%  \pgfmathsetmacro{\LONG}{0.9}
+%  \pgfmathsetmacro{\DX}{\LONG}
+%  \pgfmathsetmacro{\DY}{\LONG}
+%  % Posición del elemento de área
+%  \pgfmathsetmacro{\PX}{0.5}
+%  \pgfmathsetmacro{\PY}{1.0}
+%  % Fondo
+%  \pgfmathsetmacro{\HORZ}{0.25}
+%  \pgfmathsetmacro{\VERT}{0.25}
+%  % 
+%  \centering
+%  \begin{tikzpicture}[%
+%    scale=\scl,
+%    every node/.style={black,font=\small},
+%    eje/.style={->},
+%    proyeccion/.style={black!20, line width=0.4},
+%    area/.style={fill=green!25, draw=black!20},
+%    textooriginal/.style={\colorTorig},
+%    background/.style={%
+%      line width=\bgborderwidth,
+%      draw=\bgbordercolor,
+%      fill=\bgcolor,
+%    },
+%    ]
+%    % COORDENADAS
+%    % Origen
+%    \coordinate (O) at (0,0);
+%    % Extremo izdo del eje x e inferior del eje y
+%    \coordinate (xini) at (\XMLONG cm,0);
+%    \coordinate (yini) at (0,\YMLONG cm);
+%    % Eje x
+%    \path[save path=\ejex] (xini) -- (\XPLONG cm, 0) coordinate (xfin);
+%    % Eje y
+%    \path[save path=\ejey] (yini) -- (0, \YPLONG cm) coordinate (yfin);
+%    % Punto P
+%    \coordinate (P) at (\PX, \PY);
+%    %
+%    \path (P) -- coordinate[pos=0.5] (dxtext) ++(\DX, 0) coordinate (PDX);
+%    \path (P) -- coordinate[pos=0.5] (dytext) ++(0, \DY) coordinate (PDY);
+%%    % Vector
+%%    \path[save path=\vector] (O) -- coordinate[pos=0.5] (pmid) (\PANG:\PMOD cm)
+%%    coordinate (P);
+%%    % Proyección de elemento de área en los ejes
+%    \path[save path=\proyPx] (P) |- coordinate (Px) (xfin);
+%    \path[save path=\proyPy] (P) -| coordinate (Py) (yfin);
+%    \path[save path=\proyPhorx] (PDX) |- coordinate (Phorx) (xfin);
+%    \path[save path=\proyPverty] (PDY) -| coordinate (Pverty) (yfin);
+%    % Texto de las proyecciones en los ejes
+%    \path (Px) -- coordinate[pos=0.5] (dxtexto) (Phorx);
+%    \path (Py) -- coordinate[pos=0.5] (dytexto) (Pverty);
+%    
+%    % DIBUJOS
+%    % Proyección de elemento de área en los ejes
+%    \draw[proyeccion, use path=\proyPx];
+%    \draw[proyeccion, use path=\proyPy];
+%    \draw[proyeccion, use path=\proyPhorx];
+%    \draw[proyeccion, use path=\proyPverty];
+%    % Texto dx y dy en los ejes
+%    \node[below] at (dxtexto) {$dx$};
+%    \node[left] at (dytexto) {$dy$};
+%    
+%    % Ejes
+%    % x
+%    \draw[eje, use path=\ejex];
+%    \node[right] at (xfin) {$x$};
+%    %\node[below] at (xtexto) {$x$};
+%    % y
+%    \draw[eje, use path=\ejey];
+%    \node[above] at (yfin) {$y$};
+%    % \node[left] at (ytexto) {$y$};
+%    % Punto P
+%    % \fill (P) circle[radius=1.2pt];
+%    % Elemento de área
+%    \filldraw[area] (P) rectangle coordinate (centro) ++(\DX, \DY);
+%    \node at (centro) {\footnotesize $d^2a$};
+%
+%    % Origen
+%    \filldraw (O) circle [radius=.2pt];
+%
+%    % Fondo amarillo
+%    \coordinate (SW) at ($(current bounding box.south west) + (-\HORZ cm,-\VERT cm)$);
+%    \coordinate (NE) at ($(current bounding box.north east) + (\HORZ cm,\VERT cm)$);    
+%    \begin{scope}[on background layer]
+%      \draw[background] (SW) rectangle (NE);
+%    \end{scope}
+%  \end{tikzpicture}
+%  \caption{Elemento de área en coordenadas cartesianas, $d^2a = dx dy$.}
+%  \label{fig:R2-rect-elemento_area}
+%\end{figure}
+%
+%Este elemento se relaciona trivialmente con el jacobiano de la
+%\emph{transformación identidad} $f(x,y) \longrightarrow f(x,y)$
+%\[
+%  d^2a = \dfrac{\partial(x,y)}{\partial(x,y)} dx dy
+%  = \begin{vmatrix}
+%    \partial x/\partial x & \partial x/\partial y\\
+%    \partial y/\partial x & \partial y/\partial y
+%  \end{vmatrix}
+%  dx dy
+%  = \begin{vmatrix}
+%    1 & 0\\
+%    0 & 1
+%  \end{vmatrix}
+%  dx dy
+%  = 1\,dx dy
+%  = dxdy
+%\]
+%
+
+\newpage
+
+\begin{tikzpicture}
+    \draw[help lines] (0,0) grid (5,5);
+
+    % Ahora usamos el nuevo comando de forma limpia
+    \fill[red] \puntoPolar{4}{math.pi/4} circle (3pt);
+    
+    \draw[blue, thick] (0,0) -- \puntoPolar{3}{math.pi/6} node[right] {Extremo};
+\end{tikzpicture}
+
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: luatex
+%%% TeX-master: "../retazosmatematicas.tex"
+%%% End:

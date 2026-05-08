@@ -24,7 +24,7 @@ function M.proyEsfera(esf, obs, ptos)
 
    -- 1. PUNTOS INVISIBLES
    for i, p in ipairs(invisibles) do
-      proy = M.proyPuntoSph(esf.radio, p.thetaD, p.phiD, obs)
+      --proy = M.proyPuntoSph(esf.radio, p.thetaD, p.phiD, obs)
       tex.print(string.format("\\fill[red] (%4f,%4f) circle[radius=0.5pt];",
 			      p.u, p.v))
    end
@@ -39,7 +39,7 @@ function M.proyEsfera(esf, obs, ptos)
 
    -- 3. PUNTOS VISIBLES
    for i, p in ipairs(visibles) do
-      proy = M.proyPuntoSph(esf.radio, p.thetaD, p.phiD, obs)
+      --proy = M.proyPuntoSph(esf.radio, p.thetaD, p.phiD, obs)
       tex.print(string.format("\\fill[black] (%4f,%4f) circle[radius=0.5pt];",
 			      p.u, p.v))
    end
