@@ -13,7 +13,7 @@ local M = {}
 -- ptos: Tabla con los puntos sobre la esfera y objetos relacionados con ellos.
 -- Resumen:
 -- (esf, obs, ptos) -> Imagen TikZ de esfera con puntos y planos.
-function M.proyEsfera(esf, obs, ptos)
+function M.TIKZEsferaAll(esf, obs, ptos)
    local visibles
    local invisibles
 
