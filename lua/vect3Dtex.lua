@@ -447,10 +447,6 @@ end
 -- Esfera, Observador y puntos visibles e invisibles.
 
 function M.DEBUGesferaTeX(esf)
-   --local visibles, invisibles
-
-   --visibles, invisibles = M.Visibilidad(obs, ptos)
-
    -- TABLA ESFERA
    tex.print([[\noindent\,\textbf{ESFERA}\\]])
    tex.print([[\begin{tabular}{|c|c|c|c|c|}]])
@@ -464,6 +460,9 @@ function M.DEBUGesferaTeX(esf)
    tex.print([[\hline]])
    tex.print([[\end{tabular}]])
 
+end
+
+function M.DEBUGobservadorTeX(obs)
    -- TABLA OBSERVADOR
    tex.print([[\\]])
    --tex.print([[\\]])
@@ -480,6 +479,10 @@ function M.DEBUGesferaTeX(esf)
    tex.print([[\hline]])
    tex.print([[\end{tabular}]])
 
+end
+
+
+function M.DEBUGpuntosTeX(ptos)
    -- TABLA PUNTOS   
    tex.print([[\\]])
    --tex.print([[\\]])
@@ -501,7 +504,6 @@ function M.DEBUGesferaTeX(esf)
    tex.print([[\end{tabular}]])   
    
 end
-
 
 --function M.DEBUGpuntosTeX(esf, obs, ptos)
 --   local visibles
