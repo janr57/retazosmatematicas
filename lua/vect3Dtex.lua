@@ -13,15 +13,17 @@ local M = {}
 -- ptos: Tabla con los puntos sobre la esfera y objetos relacionados con ellos.
 -- Resumen:
 -- (esf, obs, ptos) -> Imagen TikZ de esfera con puntos y planos.
-function M.TIKZEsferaPlanos(escala, esf, obs, ptos)
+function M.TIKZEsferaPlanos(escala, esf, obs, ptos, planos)
    --local visibles
    --local invisibles
 
    --visibles, invisibles = M.Visibilidad(obs, ptos)
-
    
    tex.print(string.format(
 		"\\begin{tikzpicture}[scale=%.2f]", escala))
+
+--   -- PLANOS
+--   \tex.print(string.format("\\node at (0,0) {$%.3f$}};", plano[1].u))
 
    -- 1. PUNTOS INVISIBLES
    for i, p in ipairs(ptos) do
@@ -64,7 +66,7 @@ function M.TEXproy_PRect(x, y, z, obs)
 
    -- Crea tabla con las coordenadas rect. y esféricas del punto (grados y rad)
    -- y algunas funciones trigonométricas para ahorrar cálculos.
-   PAll = M.R3dToAll(x,y,z)
+   PAll = M.xyz2All(x,y,z)
 
    -- Crea tabla con las coordenadas esféricas del observador (grados y rad)
    -- y algunas funciones trigonométricas para ahorrar cálculos.
@@ -102,36 +104,121 @@ function M.completaPuntos(esf, obs, ptos)
    end
 end
 
---function M.completaPlanos(obs, ptos, planos)
---   local plano
---   local p1x, p1y, p1z
---   local p1u, p1v, p2u, p2v, p3u, p3v, p4u, p4v
---   
---      
---   end
---end
-
 function M.completaPlanos(obs, ptos, planos)
    local plano
+   local theta, phi, stheta, ctheta, sphi, cphi
+   local p1x, p1y, p1z
+   local p2x, p2y, p2z
+   local p3x, p3y, p3z
+   local p4x, p4y, p4z
    local p1u, p1v, p2u, p2v, p3u, p3v, p4u, p4v
-   
+
    for i, p in ipairs(ptos) do
       plano = {}
-      plano.p1u = 1.1
-      plano.p1v = 1.2
+
+      -- Cambio sin(theta) por cos(theta) y cos(theta) por sin(theta)
+      -- porque hay que girar el punto del plano 90-Ptheta,
+      -- siendo Ptheta el ángulo theta del punto de tangencia.
+      -- En cambio, phi se mantiene igual
+      theta = math.rad(p.thetaD)
+      phi = math.rad(p.phiD)
+      ctheta = math.sin(theta)
+      stheta = math.cos(theta)
+      sphi = math.sin(phi)
+      cphi = math.cos(phi)
+
+      -- Coordenadas x,y,z de puntos del plano en posición theta=90, phi=0
+      p1x = p.x
+      p1y = p.y - a/2
+      p1z = p.z - b/2
       
-      plano.p2u = 2.1
-      plano.p2v = 2.2
+      p2x = p.x
+      p2y = p.y + a/2
+      p2z = p.z - b/2
       
-      plano.p3u = 3.1
-      plano.p3v = 3.2
+      p3x = p.x
+      p3y = p.y - a/2
+      p3z = p.z + b/2
       
-      plano.p4u = 4.1
-      plano.p4v = 4.3
+      p4x = p.x
+      p4y = p.y + a/2
+      p4z = p.z + b/2
+
+      p1x, p1y, p1z = M.rotarXYZ(p1x, p1y, p1z, stheta, ctheta, sphi, cphi)
+      p2x, p2y, p2z = M.rotarXYZ(p2x, p2y, p2z, stheta, ctheta, sphi, cphi)
+      p3x, p3y, p3z = M.rotarXYZ(p1x, p1y, p1z, stheta, ctheta, sphi, cphi)
+      p4x, p4y, p4z = M.rotarXYZ(p1x, p1y, p1z, stheta, ctheta, sphi, cphi)
+      
+--      plano.p1x = p1x
+--      plano.p1y = p1y
+--      plano.p1z = p1z
+--      
+--      plano.p2x = p2x
+--      plano.p2y = p2y
+--      plano.p2z = p2z
+--      
+--      plano.p3x = p3x
+--      plano.p3y = p3y
+--      plano.p3z = p3z
+--      
+--      plano.p4x = p4x
+--      plano.p4y = p4y
+--      plano.p4z = p4z
+
+      p1u, p1v = M.xyz2uv(p1x, p1y, p1z, obs)
+      p2u, p2v = M.xyz2uv(p2x, p2y, p2z, obs)
+      p3u, p3v = M.xyz2uv(p3x, p3y, p3z, obs)
+      p4u, p4v = M.xyz2uv(p4x, p4y, p4z, obs)
+
+      plano.p1u = p1u
+      plano.p1v = p1v
+      
+      plano.p2u = p2u
+      plano.p2v = p2v
+      
+      plano.p3u = p3u
+      plano.p3v = p3v
+      
+      plano.p4u = p4u
+      plano.p4v = p4v
 
       table.insert(planos, plano)
    end
 end
+
+function M.rotarXYZ(x, y, z, sintheta, costheta, sinphi, cosphi)
+   local xprima, yprima, zprima
+
+   xprima = x * costheta * cosphi + y * sinphi - z * sintheta * cosphi
+   yprima = -x * costheta * sinphi + y * cosphi + z * sintheta * sinphi
+   zprima = x * costheta + z * costheta
+
+   return xprima, yprima, zprima
+end
+
+
+--function M.completaPlanos(obs, ptos, planos)
+--   local plano
+--   local p1u, p1v, p2u, p2v, p3u, p3v, p4u, p4v
+--   
+--   for i, p in ipairs(ptos) do
+--      plano = {}
+--
+--      plano.p1u = 1.1
+--      plano.p1v = 1.2
+--      
+--      plano.p2u = 2.1
+--      plano.p2v = 2.2
+--      
+--      plano.p3u = 3.1
+--      plano.p3v = 3.2
+--      
+--      plano.p4u = 4.1
+--      plano.p4v = 4.3
+--
+--      table.insert(planos, plano)
+--   end
+--end
 
 function M.esVisible(obs, pto)
    local theta = math.rad(pto.thetaD)
@@ -178,19 +265,43 @@ function M.sphD2uv(r, thetaD, phiD, obs)
    -- Crea las dos coordenadas del punto en pantalla visto por el observador
    u, v = M.proyPoint(PAll, viewAll)
 
-   --tex.sprint(string.format("%.4f, %.4f", u, v))
+   return u, v
+end
+
+-- (00c) **********************************************************************
+-- FUNCIÓN DE USUARIO
+-- xyz2uv(radio, thetaD, phiD, obs)
+-- Escribe una cadena con las coordenadas u, v del punto en la pantalla
+-- Argumentos:
+--    Radio de la esfera.
+--    Coordenadas angulares de un punto de la esfera (grados).
+--    Tabla de ángulo del observador.
+-- Retorna:
+--    Cadena con las coordenadas (u,v) de la pantalla: "(u,v)"
+function M.xyz2uv(r, thetaD, phiD, obs)
+   -- Crea tabla con las coordenadas rect y esféricas del punto (grados y rad)
+   -- y algunas funciones trigonométricas para ahorrar cálculos.
+   PAll = M.SD3dToAll(r, thetaD, phiD)
+
+   -- Crea tabla con las coordenadas esféricas del observador (grados y rad)
+   -- y algunas funciones trigonométricas para ahorrar cálculos.   
+   viewAll = M.SD3dView(obs)
+   
+   -- Crea las dos coordenadas del punto en pantalla visto por el observador
+   u, v = M.proyPoint(PAll, viewAll)
+
    return u, v
 end
 
 -- (02c) **********************************************************************
 -- FUNCIÓN AUXILIAR
--- R3dToAll(x,y,z)
+-- xyz2All(x,y,z)
 -- Transforma coord. rectangulares en esféricas y cálculos preparados.
 -- Argumentos: coordenadas rectangulares x, y, z.
 -- Retorna: Una tabla P con los valores
 -- P.x, P.y, P.z, P.r, P.theta, P.phi, P.thetaD, P.phiD,
 -- P.sintheta, P.costheta, P.tantheta, P.sinphi, P.cosphi, P.tanphi
-function M.R3dToAll(x,y,z)
+function M.xyz2All(x,y,z)
    local P = {}
    P.x = x
    P.y = y
