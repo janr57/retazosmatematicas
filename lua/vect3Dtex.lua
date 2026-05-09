@@ -22,9 +22,6 @@ function M.TIKZEsferaPlanos(escala, esf, obs, ptos, planos)
    tex.print(string.format(
 		"\\begin{tikzpicture}[scale=%.2f]", escala))
 
---   -- PLANOS
---   \tex.print(string.format("\\node at (0,0) {$%.3f$}};", plano[1].u))
-
    -- 1. PUNTOS INVISIBLES
    for i, p in ipairs(ptos) do
       if not p.visible then
@@ -41,6 +38,11 @@ function M.TIKZEsferaPlanos(escala, esf, obs, ptos, planos)
 		"\\shade[ball color = %s, opacity = %4f] (0,0) circle[radius=%.2f];",
 		esf.sombracolor, esf.sombraopacidad, esf.radio))
 
+   -- 3. PLANOS VISIBLES
+   --for i, pl in ipairs(planos) do
+      
+   --end
+   
    -- 3. PUNTOS VISIBLES
    for i, p in ipairs(ptos) do
       if p.visible then
@@ -165,22 +167,23 @@ function M.completaPlanos(obs, ptos, planos)
 --      plano.p4y = p4y
 --      plano.p4z = p4z
 
-      p1u, p1v = M.xyz2uv(p1x, p1y, p1z, obs)
-      p2u, p2v = M.xyz2uv(p2x, p2y, p2z, obs)
-      p3u, p3v = M.xyz2uv(p3x, p3y, p3z, obs)
-      p4u, p4v = M.xyz2uv(p4x, p4y, p4z, obs)
+      plano.p1u, plano.p1v = M.xyz2uv(p1x, p1y, p1z, obs)
+      plano.p2u, plano.p2v = M.xyz2uv(p2x, p2y, p2z, obs)
+      plano.p3u, plano.p3v = M.xyz2uv(p3x, p3y, p3z, obs)
+      plano.p4u, plano.p4v = M.xyz2uv(p4x, p4y, p4z, obs)
 
-      plano.p1u = p1u
-      plano.p1v = p1v
-      
-      plano.p2u = p2u
-      plano.p2v = p2v
-      
-      plano.p3u = p3u
-      plano.p3v = p3v
-      
-      plano.p4u = p4u
-      plano.p4v = p4v
+--      plano.p1u = p1u
+--      plano.p1v = p1v
+--      
+--      plano.p2u = p2u
+--      plano.p2v = p2v
+--      
+--      plano.p3u = p3u
+--      plano.p3v = p3v
+--      
+--      plano.p4u = p4u
+      --      plano.p4v = p4v
+      plano.visible = ptos[i].visible
 
       table.insert(planos, plano)
    end
@@ -626,19 +629,17 @@ end
 function M.DEBUGplanosTeX(planos)
    -- TABLA PLANOS
    tex.print([[\vspace{1em}]])   
-   --tex.print([[\\]])
-   --tex.print([[\\]])
    
    tex.print([[\noindent\,\textbf{PLANOS}\\]])
-   tex.print([[\begin{tabular}{|c|cc|cc|cc|cc|}]])
+   tex.print([[\begin{tabular}{|c|cc|cc|cc|cc|c|}]])
    tex.print([[\hline]])
-   tex.print([[Plano & p1u & p1v & p2u & p2v & p3u & p3v & p4u & p4v\\]])
+   tex.print([[Plano & p1u & p1v & p2u & p2v & p3u & p3v & p4u & p4v & Visible\\]])
    tex.print([[\hline]])
 
    for i, p in ipairs(planos) do
       tex.print(string.format(
-       [[%d & %.3f & %.3f & %.3f & %.3f & %.3f & %.3f & %.3f & %.3f\\]],
-   	  i, p.p1u, p.p1v, p.p2u, p.p2v, p.p3u, p.p3v, p.p4u, p.p4v))
+       [[%d & %.3f & %.3f & %.3f & %.3f & %.3f & %.3f & %.3f & %.3f & %s\\]],
+   	  i, p.p1u, p.p1v, p.p2u, p.p2v, p.p3u, p.p3v, p.p4u, p.p4v, p.visible))
    end
    tex.print([[\hline]])
    tex.print([[\end{tabular}]])
