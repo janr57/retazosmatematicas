@@ -39,13 +39,14 @@ function M.TIKZEsferaPlanos(esf, obs, ptos)
 		esf.sombracolor, esf.sombraopacidad, esf.radio))
 
    -- 3. PUNTOS VISIBLES
---   for i, p in ipairs(visibles) do
---      tex.print(string.format("\\fill[black] (%4f,%4f) circle[radius=0.5pt];",
---			      p.u, p.v))
---   end
+   for i, p in ipairs(ptos) do
+      if p.visible then
+	 tex.print(string.format("\\fill[black] (%4f,%4f) circle[radius=0.5pt];",
+				 p.u, p.v))
+      end
+   end
 
-tex.print("\\end{tikzpicture}")
-   
+   tex.print("\\end{tikzpicture}")
 end
 -- ----------------------------------------------------------------------------
 
