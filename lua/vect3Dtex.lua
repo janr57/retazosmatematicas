@@ -81,50 +81,28 @@ function M.completaPuntos(esf, obs, ptos)
    for i, p in ipairs(ptos) do
       u, v = M.sphD2uv(esf.radio, p.thetaD, p.phiD, obs)
 
+      -- Coordenadas (u,v) del punto, proyectadas en la pantalla del observador
       p.u = u
       p.v = v
-
+      -- Averigua si el punto es visible, debido a la esfera, desde la
+      -- perspectiva del observador.
       p.visible =  M.esVisible(obs, p)
    end
 end
 
-function M.Visibilidad(obs, ptos)
-   local visibles = {}
-   local invisibles = {}
-
-   for i, pto in ipairs(ptos) do
-      if M.esVisible(obs, pto) then
-	 table.insert(visibles, pto)
-      else
-	 table.insert(invisibles, pto)
-      end
-   end
-
-   return visibles, invisibles
-end
-
-
---function M.esVisible(obs, pto)
---   local theta = math.rad(pto.thetaD)
---   local phi = math.rad(pto.phiD)
---   local otheta = math.rad(obs.thetaD)
---   local ophi = math.rad(obs.phiD)
---   
---   local sintheta = math.sin(theta)
---   local costheta = math.cos(theta)
---   local sinphi = math.sin(phi)
---   local cosphi = math.cos(phi)
---   
---   local osintheta = math.sin(otheta)
---   local ocostheta = math.cos(otheta)
---   local osinphi = math.sin(ophi)
---   local ocosphi = math.cos(ophi)
+--function M.Visibilidad(obs, ptos)
+--   local visibles = {}
+--   local invisibles = {}
 --
---   if sintheta * osintheta * math.cos(phi-ophi) + costheta * ocostheta >= 0 then
---      return true
---   else
---      return false
+--   for i, pto in ipairs(ptos) do
+--      if M.esVisible(obs, pto) then
+--	 table.insert(visibles, pto)
+--      else
+--	 table.insert(invisibles, pto)
+--      end
 --   end
+--
+--   return visibles, invisibles
 --end
 
 function M.esVisible(obs, pto)
@@ -511,7 +489,7 @@ function M.DEBUGpuntosTeX(ptos)
 
    for i, p in ipairs(ptos) do
       tex.print(string.format(
-       [[%d&\qty{%.2f}{\degree}&\qty{%.2f}{\degree}&%.2f&%.2f&%.2f&%s&%.2f&%.2f&%s\\]],
+       [[%d&\qty{%.2f}{\degree}&\qty{%.2f}{\degree}&%.2f&%.2f&%.2f&%s&%.4f&%.4f&%s\\]],
    	  i, p.thetaD, p.phiD, p.a, p.b, p.opacidad, p.color, p.u, p.v, p.visible))
    end
    tex.print([[\hline]])
