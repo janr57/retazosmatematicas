@@ -81,7 +81,6 @@ end
 -- FUNCIONES AUXILIARES
 -- ****************************************************************************
 function M.completaPuntos(esf, obs, ptos)
-   local proy
    for i, p in ipairs(ptos) do
       u, v = M.sphD2uv(esf.radio, p.thetaD, p.phiD, obs)
 
@@ -94,7 +93,25 @@ function M.completaPuntos(esf, obs, ptos)
    end
 end
 
-function M.completaPlanos(obs, ptos)
+function M.completaPlanos(obs, ptos, planos)
+   local plano = {}
+   local p1u, p1v, p2u, p2v, p3u, p3v, p4u, p4v
+   
+   for i, p in ipairs(ptos) do
+      plano.p1u = 1.1
+      plano.p1v = 1.2
+      
+      plano.p2u = 2.1
+      plano.p2v = 2.2
+      
+      plano.p3u = 3.1
+      plano.p3v = 3.2
+      
+      plano.p4u = 3.1
+      plano.p4v = 3.3
+
+      planos.i = plano
+   end
 end
 
 function M.esVisible(obs, pto)
@@ -483,6 +500,27 @@ function M.DEBUGpuntosTeX(ptos)
       tex.print(string.format(
        [[%d&\qty{%.2f}{\degree}&\qty{%.2f}{\degree}&%.2f&%.2f&%.2f&%s&%.4f&%.4f&%s\\]],
    	  i, p.thetaD, p.phiD, p.a, p.b, p.opacidad, p.color, p.u, p.v, p.visible))
+   end
+   tex.print([[\hline]])
+   tex.print([[\end{tabular}]])
+   tex.print([[\\]])
+end
+
+function M.DEBUGplanosTeX(planos)
+   -- TABLA PUNTOS   
+   tex.print([[\\]])
+   --tex.print([[\\]])
+   
+   tex.print([[\noindent\,\textbf{PLANOS}\\]])
+   tex.print([[\begin{tabular}{|c|cc|cc|cc|cc|}]])
+   tex.print([[\hline]])
+   tex.print([[ID & p1u & p1v & p2u & p2v & p3u & p3v & p4u & p4v\\]])
+   tex.print([[\hline]])
+
+   for i, p in ipairs(planos) do
+      tex.print(string.format(
+       [[%d & %.3f & %.3f & %.3f & %.3f & %.3f & &.3f & %.3f & %.3f\\]],
+   	  i, p1.u, p1.v, p2.u, p2.v, p3.u, p3.v, p4.u, p4.v))
    end
    tex.print([[\hline]])
    tex.print([[\end{tabular}]])
