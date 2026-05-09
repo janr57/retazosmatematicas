@@ -23,12 +23,12 @@ function M.TIKZEsferaPlanos(esf, obs, ptos)
    tex.print("\\begin{tikzpicture}[scale=1.9]")
 
    -- 1. PUNTOS INVISIBLES
---   for i, p in ipairs(ptos) do
---      if not p.visible then
---	 tex.print(string.format("\\fill[red] (%4f,%4f) circle[radius=0.5pt];",
---				 p.u, p.v))
---      end
---   end
+   for i, p in ipairs(ptos) do
+      if not p.visible then
+	 tex.print(string.format("\\fill[red] (%4f,%4f) circle[radius=0.5pt];",
+				 p.u, p.v))
+      end
+   end
    
    -- 2. ESFERA
    tex.print(string.format(
