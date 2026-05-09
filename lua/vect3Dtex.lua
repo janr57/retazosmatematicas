@@ -13,14 +13,15 @@ local M = {}
 -- ptos: Tabla con los puntos sobre la esfera y objetos relacionados con ellos.
 -- Resumen:
 -- (esf, obs, ptos) -> Imagen TikZ de esfera con puntos y planos.
-function M.TIKZEsferaPlanos(esf, obs, ptos)
+function M.TIKZEsferaPlanos(escala, esf, obs, ptos)
    --local visibles
    --local invisibles
 
    --visibles, invisibles = M.Visibilidad(obs, ptos)
 
    
-   tex.print("\\begin{tikzpicture}[scale=1.9]")
+   tex.print(string.format(
+		"\\begin{tikzpicture}[scale=%.2f]", escala))
 
    -- 1. PUNTOS INVISIBLES
    for i, p in ipairs(ptos) do
