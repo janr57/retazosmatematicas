@@ -5,7 +5,7 @@ local M = {}
 -- ****************************************************************************
 -- FUNCIONES DE USUARIO
 -- ****************************************************************************
--- (00a) M.TEXpuntos
+-- (00a) M.TIKZEsferaPlanos
 -- Crea figura tikz con esfera, puntos en la superficie y planos tangentes.
 -- Argumentos:
 -- esf: Tabla con datos de la esfera.
@@ -13,20 +13,22 @@ local M = {}
 -- ptos: Tabla con los puntos sobre la esfera y objetos relacionados con ellos.
 -- Resumen:
 -- (esf, obs, ptos) -> Imagen TikZ de esfera con puntos y planos.
-function M.TIKZEsferaAll(esf, obs, ptos)
-   local visibles
-   local invisibles
+function M.TIKZEsferaPlanos(esf, obs, ptos)
+   --local visibles
+   --local invisibles
 
-   visibles, invisibles = M.Visibilidad(obs, ptos)
+   --visibles, invisibles = M.Visibilidad(obs, ptos)
 
    
    tex.print("\\begin{tikzpicture}[scale=1.9]")
 
    -- 1. PUNTOS INVISIBLES
-   for i, p in ipairs(invisibles) do
-      tex.print(string.format("\\fill[red] (%4f,%4f) circle[radius=0.5pt];",
-			      p.u, p.v))
-   end
+--   for i, p in ipairs(ptos) do
+--      if not p.visible then
+--	 tex.print(string.format("\\fill[red] (%4f,%4f) circle[radius=0.5pt];",
+--				 p.u, p.v))
+--      end
+--   end
    
    -- 2. ESFERA
    tex.print(string.format(
@@ -37,10 +39,10 @@ function M.TIKZEsferaAll(esf, obs, ptos)
 		esf.sombracolor, esf.sombraopacidad, esf.radio))
 
    -- 3. PUNTOS VISIBLES
-   for i, p in ipairs(visibles) do
-      tex.print(string.format("\\fill[black] (%4f,%4f) circle[radius=0.5pt];",
-			      p.u, p.v))
-   end
+--   for i, p in ipairs(visibles) do
+--      tex.print(string.format("\\fill[black] (%4f,%4f) circle[radius=0.5pt];",
+--			      p.u, p.v))
+--   end
 
 tex.print("\\end{tikzpicture}")
    
