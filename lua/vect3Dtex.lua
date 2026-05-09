@@ -81,17 +81,35 @@ end
 -- FUNCIONES AUXILIARES
 -- ****************************************************************************
 function M.completaPuntos(esf, obs, ptos)
+   local u, v
+   local x, y, z
+   
    for i, p in ipairs(ptos) do
+      x, y, z = M.sphD2xyz(esf.radio, p.thetaD, p.phiD)
+      -- Coordenadas (x,y,z) del punto de la esfera
+      p.x = x
+      p.y = y
+      p.z = z
+      
       u, v = M.sphD2uv(esf.radio, p.thetaD, p.phiD, obs)
-
-      -- Coordenadas (u,v) del punto, proyectadas en la pantalla del observador
+      -- Coordenadas (u,v) del punto de la esfera, en la pantalla del observador
       p.u = u
       p.v = v
+      
       -- Averigua si el punto es visible, debido a la esfera, desde la
       -- perspectiva del observador.
       p.visible =  M.esVisible(obs, p)
    end
 end
+
+--function M.completaPlanos(obs, ptos, planos)
+--   local plano
+--   local p1x, p1y, p1z
+--   local p1u, p1v, p2u, p2v, p3u, p3v, p4u, p4v
+--   
+--      
+--   end
+--end
 
 function M.completaPlanos(obs, ptos, planos)
    local plano
@@ -207,7 +225,7 @@ end
 function M.SD3dToAll(r, thetaD, phiD)
    local P = {}
    
-   x, y, z = M.SD3dToRect(r, thetaD, phiD)
+   x, y, z = M.sphD2xyz(r, thetaD, phiD)
 
    P.x = x
    P.y = y
@@ -259,14 +277,14 @@ function M.SD3dView(obs)
    return viewAll
 end
 
---(03b) SD3dToRect -> Transforma coord. esféricas (grados) a rectangulares.	    
+--(03b) sphD2xyz -> Transforma coord. esféricas (grados) a rectangulares.	    
 -- (03b) **********************************************************************
--- SD3dToRect(r, thetaD, phiD)
+-- sphD2xyz(r, thetaD, phiD)
 -- Transforma coord. esféricas (grados) en rectangulares.
 -- Argumentos: coordenadas esféricas r, thetaD y phiD.
 -- Retorna: Coordenadas rectangulares
 -- OK!
-function M.SD3dToRect(r, thetaD, phiD)
+function M.sphD2xyz(r, thetaD, phiD)
    local x, y, z
    local theta, phi
 
