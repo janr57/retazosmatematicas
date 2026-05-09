@@ -439,7 +439,6 @@ end
 -- Código de depuración el LuaLaTeX.
 -- Resumen de los datos enviados y procesados por LuaLaTeX.
 -- Esfera, Observador y puntos visibles e invisibles.
-
 function M.DEBUGesferaTeX(esf)
    -- TABLA ESFERA
    tex.print([[\noindent\,\textbf{ESFERA}\\]])
@@ -467,14 +466,12 @@ function M.DEBUGobservadorTeX(obs)
    tex.print([[$\theta$ & $\phi$\\]])
    tex.print([[\hline]])
    tex.print(string.format(
-		[[ \qty{%.2f}{\degree} & \qty{%.2f}{\degree}\\ ]],
+	[[ \qty{%.2f}{\degree} & \qty{%.2f}{\degree}\\ ]],
 		obs.thetaD, obs.phiD
    ))
    tex.print([[\hline]])
    tex.print([[\end{tabular}]])
-
 end
-
 
 function M.DEBUGpuntosTeX(ptos)
    -- TABLA PUNTOS   
@@ -482,68 +479,66 @@ function M.DEBUGpuntosTeX(ptos)
    --tex.print([[\\]])
    
    tex.print([[\noindent\,\textbf{PUNTOS}\\]])
-   tex.print([[\begin{tabular}{|c|c|c|c|c|c|c|cc|}]])
+   tex.print([[\begin{tabular}{|c|c|c|c|c|c|c|}]])
    tex.print([[\hline]])
-   tex.print([[ID & $\theta$ & $\phi$ & $a$ & $b$ & Opacidad & Color & u & v\\]])
+   tex.print([[ID&$\theta$&$\phi$&$a$&$b$&Opacidad&Color\\]])
    tex.print([[\hline]])
-   -- 2. Iteramos para crear las filas
+
    for i, p in ipairs(ptos) do
       tex.print(string.format(
-	[[%d&\qty{%.2f}{\degree}&\qty{%.2f}{\degree}&%.2f&%.2f&%.2f&%s&%.2f&%.2f\\]],
-		   i, p.thetaD, p.phiD, p.a, p.b, p.opacidad, p.color, p.u, p.v))
+       [[%d&\qty{%.2f}{\degree}&\qty{%.2f}{\degree}&%.2f&%.2f&%.2f&%s\\]],
+   	  i, p.thetaD, p.phiD, p.a, p.b, p.opacidad, p.color))
    end
-   
-   -- 3. Cerramos la tabla
    tex.print([[\hline]])
-   tex.print([[\end{tabular}]])   
-   
+   tex.print([[\end{tabular}]])
+   tex.print([[\\]])
 end
 
---function M.DEBUGpuntosTeX(esf, obs, ptos)
---   local visibles
---   local invisibles
---
---    visibles, invisibles = M.Visibilidad(obs, ptos)
---
---   -- Decodificar primer parámetro
---   tex.print("\\noindent\\textbf{Esfera:}\\\\")
---   tex.print("Radio: " .. tostring(esf.radio) .. ", ")
---   tex.print("Color: " .. tostring(esf.color) .. ", ")
---   tex.print("Color sombra: " .. tostring(esf.sombracolor) .. ", ")
---   tex.print("Opacidad sombra: " .. tostring(esf.sombraopacidad))
---
---   -- Decodificar segundo parámetro
---   tex.print("\\\\\\textbf{Observador:}\\\\")
---   tex.print("$\\theta$: " .. tostring(obs.thetaD) .. ", ")
---   tex.print("$\\phi$: " .. tostring(obs.phiD))
---   
---
---   -- Decodificar matriz de puntos
---   tex.print("\\\\\\textbf{Listado de puntos y planos:}\\\\")
---   
---   -- Iterar sobre la matriz de puntos
---   -- i es el índice, p es la tabla de cada punto
---   for i, p in ipairs(ptos) do
---      tex.print(string.format(
---	"Punto %d: $\\theta$=%s, $\\phi$=%s | Plano %sx%s | Color: %s | %s  %s\\\\",
---          i, p.thetaD, p.phiD, p.a, p.b, p.color, p.u, p.v))
---
---   end
---   tex.print("\\\\\\textbf{Listado de puntos y planos visibles:}\\\\")      
---   for i, v in ipairs(visibles) do
---      tex.print(string.format(
---	   "Punto %d: $\\theta$=%s, $\\phi$=%s | Plano %sx%s | Color: %s\\\\",
---          i, v.thetaD, v.phiD, v.a, v.b, v.color))
---   end
---
---   tex.print("\\\\\\textbf{Listado de puntos y planos invisibles:}\\\\")      
---   for i, v in ipairs(invisibles) do
---      tex.print(string.format(
---	"Puntos %d: $\\theta$=%s, $\\phi$=%s | Plano %sx%s | Color: %s\\\\",
---          i, v.thetaD, v.phiD, v.a, v.b, v.color
---      ))
---   end
---end
+function M.DEBUGpuntosAllTeX(esf, obs, ptos)
+   local visibles
+   local invisibles
+
+    visibles, invisibles = M.Visibilidad(obs, ptos)
+
+   -- Decodificar primer parámetro
+   tex.print("\\noindent\\textbf{Esfera:}\\\\")
+   tex.print("Radio: " .. tostring(esf.radio) .. ", ")
+   tex.print("Color: " .. tostring(esf.color) .. ", ")
+   tex.print("Color sombra: " .. tostring(esf.sombracolor) .. ", ")
+   tex.print("Opacidad sombra: " .. tostring(esf.sombraopacidad))
+
+   -- Decodificar segundo parámetro
+   tex.print("\\\\\\textbf{Observador:}\\\\")
+   tex.print("$\\theta$: " .. tostring(obs.thetaD) .. ", ")
+   tex.print("$\\phi$: " .. tostring(obs.phiD))
+   
+
+   -- Decodificar matriz de puntos
+   tex.print("\\\\\\textbf{Listado de puntos y planos:}\\\\")
+   
+   -- Iterar sobre la matriz de puntos
+   -- i es el índice, p es la tabla de cada punto
+   for i, p in ipairs(ptos) do
+      tex.print(string.format(
+	"Punto %d: $\\theta$=%s, $\\phi$=%s | Plano %sx%s | Color: %s | %s  %s\\\\",
+          i, p.thetaD, p.phiD, p.a, p.b, p.color, p.u, p.v))
+
+   end
+   tex.print("\\\\\\textbf{Listado de puntos y planos visibles:}\\\\")      
+   for i, v in ipairs(visibles) do
+      tex.print(string.format(
+	   "Punto %d: $\\theta$=%s, $\\phi$=%s | Plano %sx%s | Color: %s\\\\",
+          i, v.thetaD, v.phiD, v.a, v.b, v.color))
+   end
+
+   tex.print("\\\\\\textbf{Listado de puntos y planos invisibles:}\\\\")      
+   for i, v in ipairs(invisibles) do
+      tex.print(string.format(
+	"Puntos %d: $\\theta$=%s, $\\phi$=%s | Plano %sx%s | Color: %s\\\\",
+          i, v.thetaD, v.phiD, v.a, v.b, v.color
+      ))
+   end
+end
 -- ----------------------------------------------------------------------------
 
 -- (02b)

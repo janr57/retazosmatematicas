@@ -77,19 +77,23 @@
 
 % Creamos la macro de LaTeX, donde:
 % #1 es la esfera; #2 es la vista; #3 son los puntos.
-\newcommand{\DEBUGproyEsfera}[1]{%
+\newcommand{\DEBUGEsfera}[1]{%
   \directlua{mEsfera.DEBUGesferaTeX(#1)}
 }
 
-\newcommand{\DEBUGproyObservador}[1]{%
+\newcommand{\DEBUGObservador}[1]{%
   \directlua{mEsfera.DEBUGobservadorTeX(#1)}
 }
 
-\newcommand{\DEBUGproyPuntos}[1]{%
+\newcommand{\DEBUGPuntos}[1]{%
   \directlua{mEsfera.DEBUGpuntosTeX(#1)}
 }
 
-\newcommand{\TIKZEsferaAll}[3]{%
+\newcommand{\DEBUGPuntosAll}[3]{%
+  \directlua{mEsfera.DEBUGpuntosAllTeX(#1, #2, #3)}
+}
+
+\newcommand{\TIKZEsferaPlanos}[3]{%
   \directlua{mEsfera.TIKZEsferaAll(#1, #2, #3)}
 }
 
