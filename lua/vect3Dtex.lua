@@ -94,20 +94,8 @@ function M.completaPuntos(esf, obs, ptos)
    end
 end
 
---function M.Visibilidad(obs, ptos)
---   local visibles = {}
---   local invisibles = {}
---
---   for i, pto in ipairs(ptos) do
---      if M.esVisible(obs, pto) then
---	 table.insert(visibles, pto)
---      else
---	 table.insert(invisibles, pto)
---      end
---   end
---
---   return visibles, invisibles
---end
+function M.completaPlanos(obs, ptos)
+end
 
 function M.esVisible(obs, pto)
    local theta = math.rad(pto.thetaD)
