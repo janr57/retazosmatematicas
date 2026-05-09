@@ -430,8 +430,6 @@ Véase la figura \ref{fig:R2-cart_planos_tangentes}.
 \end{figure}
 
 \begin{luacode*}
-  -- Escala de la imagen
-  escala = 1.9
   -- Datos de la esfera
   esf = {
     radio = 1.0, color = "gray!10", opacidad = 1,
@@ -461,9 +459,7 @@ Véase la figura \ref{fig:R2-cart_planos_tangentes}.
 }
 
 \begin{figure}[ht]
-%  % Escala
-%  \def\scl{1}
-  \TIKZEsferaPlanos{escala}{esf}{obs}{ptos}
+  \TIKZEsferaPlanos{1.9}{esf}{obs}{ptos}
 \end{figure}
 
 
