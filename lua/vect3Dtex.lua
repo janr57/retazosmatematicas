@@ -129,25 +129,25 @@ function M.completaPlanos(obs, ptos, planos)
 
       -- Coordenadas x,y,z de puntos del plano en posición theta=90, phi=0
       p1x = p.x
-      p1y = p.y - a/2
-      p1z = p.z - b/2
+      p1y = p.y - p.a/2
+      p1z = p.z - p.b/2
       
       p2x = p.x
-      p2y = p.y + a/2
-      p2z = p.z - b/2
+      p2y = p.y + p.a/2
+      p2z = p.z - p.b/2
       
       p3x = p.x
-      p3y = p.y - a/2
-      p3z = p.z + b/2
+      p3y = p.y - p.a/2
+      p3z = p.z + p.b/2
       
       p4x = p.x
-      p4y = p.y + a/2
-      p4z = p.z + b/2
+      p4y = p.y + p.a/2
+      p4z = p.z + p.b/2
 
       p1x, p1y, p1z = M.rotarXYZ(p1x, p1y, p1z, stheta, ctheta, sphi, cphi)
       p2x, p2y, p2z = M.rotarXYZ(p2x, p2y, p2z, stheta, ctheta, sphi, cphi)
-      p3x, p3y, p3z = M.rotarXYZ(p1x, p1y, p1z, stheta, ctheta, sphi, cphi)
-      p4x, p4y, p4z = M.rotarXYZ(p1x, p1y, p1z, stheta, ctheta, sphi, cphi)
+      p3x, p3y, p3z = M.rotarXYZ(p3x, p3y, p2z, stheta, ctheta, sphi, cphi)
+      p4x, p4y, p4z = M.rotarXYZ(p4x, p4y, p4z, stheta, ctheta, sphi, cphi)
       
 --      plano.p1x = p1x
 --      plano.p1y = p1y
@@ -196,29 +196,6 @@ function M.rotarXYZ(x, y, z, sintheta, costheta, sinphi, cosphi)
    return xprima, yprima, zprima
 end
 
-
---function M.completaPlanos(obs, ptos, planos)
---   local plano
---   local p1u, p1v, p2u, p2v, p3u, p3v, p4u, p4v
---   
---   for i, p in ipairs(ptos) do
---      plano = {}
---
---      plano.p1u = 1.1
---      plano.p1v = 1.2
---      
---      plano.p2u = 2.1
---      plano.p2v = 2.2
---      
---      plano.p3u = 3.1
---      plano.p3v = 3.2
---      
---      plano.p4u = 4.1
---      plano.p4v = 4.3
---
---      table.insert(planos, plano)
---   end
---end
 
 function M.esVisible(obs, pto)
    local theta = math.rad(pto.thetaD)
@@ -323,8 +300,6 @@ function M.xyz2All(x,y,z)
 end
 
 
---(03d) SD3dToAll -> Transforma coord. esféricas (grados) en rectangulares
---      con tablas que contienen algunos cálculos trigonométricos.
 -- (03d) **********************************************************************
 -- SD3dToAll(r,thetaD,phiD)
 -- Transforma coord. esféricas (grados) en rectangulares y cálculos trigonom.
@@ -599,7 +574,8 @@ end
 
 function M.DEBUGobservadorTeX(obs)
    -- TABLA OBSERVADOR
-   tex.print([[\\]])
+   tex.print([[\vspace{1em}]])
+   --tex.print([[\\]])
    --tex.print([[\\]])
    
    tex.print([[\noindent\,\textbf{OBSERVADOR}\\]])
@@ -616,8 +592,9 @@ function M.DEBUGobservadorTeX(obs)
 end
 
 function M.DEBUGpuntosTeX(ptos)
-   -- TABLA PUNTOS   
-   tex.print([[\\]])
+   -- TABLA PUNTOS
+   tex.print([[\vspace{1em}]])
+   --tex.print([[\\]])
    --tex.print([[\\]])
    
    tex.print([[\noindent\,\textbf{PUNTOS}\\]])
@@ -647,8 +624,9 @@ end
 --end
 
 function M.DEBUGplanosTeX(planos)
-   -- TABLA PUNTOS   
-   tex.print([[\\]])
+   -- TABLA PLANOS
+   tex.print([[\vspace{1em}]])   
+   --tex.print([[\\]])
    --tex.print([[\\]])
    
    tex.print([[\noindent\,\textbf{PLANOS}\\]])
