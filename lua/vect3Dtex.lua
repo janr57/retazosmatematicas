@@ -39,10 +39,14 @@ function M.TIKZEsferaPlanos(escala, esf, obs, ptos, planos)
 		esf.sombracolor, esf.sombraopacidad, esf.radio))
 
    -- 3. PLANOS VISIBLES
-   --for i, pl in ipairs(planos) do
-      
-   --end
-   
+   for i, pl in ipairs(planos) do
+      if pl.visible then
+--	 tex.print(string.format(
+--	[[\draw (%.4f,%.4f) -- (%.4f,%.4f) -- (%.4f,%.4f) -- (%.4f,%.4f) -- cycle;]],
+--        pl.p1u, pl.p1v, pl.p2u, pl.p2v, pl.p3u, pl.p3v, pl.p4u, pl.p4v
+      end
+   end
+
    -- 3. PUNTOS VISIBLES
    for i, p in ipairs(ptos) do
       if p.visible then
