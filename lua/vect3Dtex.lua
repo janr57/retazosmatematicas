@@ -83,6 +83,8 @@ function M.completaPuntos(esf, obs, ptos)
 
       p.u = u
       p.v = v
+
+      p.visible =  M.esVisible(obs, p)
    end
 end
 
@@ -100,6 +102,30 @@ function M.Visibilidad(obs, ptos)
 
    return visibles, invisibles
 end
+
+
+--function M.esVisible(obs, pto)
+--   local theta = math.rad(pto.thetaD)
+--   local phi = math.rad(pto.phiD)
+--   local otheta = math.rad(obs.thetaD)
+--   local ophi = math.rad(obs.phiD)
+--   
+--   local sintheta = math.sin(theta)
+--   local costheta = math.cos(theta)
+--   local sinphi = math.sin(phi)
+--   local cosphi = math.cos(phi)
+--   
+--   local osintheta = math.sin(otheta)
+--   local ocostheta = math.cos(otheta)
+--   local osinphi = math.sin(ophi)
+--   local ocosphi = math.cos(ophi)
+--
+--   if sintheta * osintheta * math.cos(phi-ophi) + costheta * ocostheta >= 0 then
+--      return true
+--   else
+--      return false
+--   end
+--end
 
 function M.esVisible(obs, pto)
    local theta = math.rad(pto.thetaD)
@@ -123,7 +149,6 @@ function M.esVisible(obs, pto)
       return false
    end
 end
-
 
 -- (00c) **********************************************************************
 -- FUNCIÓN DE USUARIO
@@ -479,15 +504,15 @@ function M.DEBUGpuntosTeX(ptos)
    --tex.print([[\\]])
    
    tex.print([[\noindent\,\textbf{PUNTOS}\\]])
-   tex.print([[\begin{tabular}{|c|c|c|c|c|c|c|cc|}]])
+   tex.print([[\begin{tabular}{|c|c|c|c|c|c|c|cc|c|}]])
    tex.print([[\hline]])
-   tex.print([[ID&$\theta$&$\phi$&$a$&$b$&Opacidad&Color&$u$&$v$\\]])
+   tex.print([[ID&$\theta$&$\phi$&$a$&$b$&Opacidad&Color&$u$&$v$&Visible\\]])
    tex.print([[\hline]])
 
    for i, p in ipairs(ptos) do
       tex.print(string.format(
-       [[%d&\qty{%.2f}{\degree}&\qty{%.2f}{\degree}&%.2f&%.2f&%.2f&%s&%.2f&%.2f\\]],
-   	  i, p.thetaD, p.phiD, p.a, p.b, p.opacidad, p.color, p.u, p.v))
+       [[%d&\qty{%.2f}{\degree}&\qty{%.2f}{\degree}&%.2f&%.2f&%.2f&%s&%.2f&%.2f&%s\\]],
+   	  i, p.thetaD, p.phiD, p.a, p.b, p.opacidad, p.color, p.u, p.v, p.visible))
    end
    tex.print([[\hline]])
    tex.print([[\end{tabular}]])
