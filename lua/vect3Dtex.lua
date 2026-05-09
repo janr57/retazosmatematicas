@@ -94,10 +94,11 @@ function M.completaPuntos(esf, obs, ptos)
 end
 
 function M.completaPlanos(obs, ptos, planos)
-   local plano = {}
+   local plano
    local p1u, p1v, p2u, p2v, p3u, p3v, p4u, p4v
    
    for i, p in ipairs(ptos) do
+      plano = {}
       plano.p1u = 1.1
       plano.p1v = 1.2
       
@@ -107,10 +108,10 @@ function M.completaPlanos(obs, ptos, planos)
       plano.p3u = 3.1
       plano.p3v = 3.2
       
-      plano.p4u = 3.1
-      plano.p4v = 3.3
+      plano.p4u = 4.1
+      plano.p4v = 4.3
 
-      planos.i = plano
+      table.insert(planos, plano)
    end
 end
 
@@ -506,6 +507,16 @@ function M.DEBUGpuntosTeX(ptos)
    tex.print([[\\]])
 end
 
+--function M.DEBUGplanosTeX(planos)
+--   tex.print([[\\]])
+--   tex.print([[\noindent\,\textbf{PLANOS}\\]])   
+--   tex.print([[\\]])
+--   for i, p in ipairs(planos) do
+--      tex.print(string.format([[Plano %d]], i))
+--      tex.print(string.format([[%s, %s]], p.p1u, p.p1v))
+--   end
+--end
+
 function M.DEBUGplanosTeX(planos)
    -- TABLA PUNTOS   
    tex.print([[\\]])
@@ -514,13 +525,13 @@ function M.DEBUGplanosTeX(planos)
    tex.print([[\noindent\,\textbf{PLANOS}\\]])
    tex.print([[\begin{tabular}{|c|cc|cc|cc|cc|}]])
    tex.print([[\hline]])
-   tex.print([[ID & p1u & p1v & p2u & p2v & p3u & p3v & p4u & p4v\\]])
+   tex.print([[Plano & p1u & p1v & p2u & p2v & p3u & p3v & p4u & p4v\\]])
    tex.print([[\hline]])
 
    for i, p in ipairs(planos) do
       tex.print(string.format(
-       [[%d & %.3f & %.3f & %.3f & %.3f & %.3f & &.3f & %.3f & %.3f\\]],
-   	  i, p1.u, p1.v, p2.u, p2.v, p3.u, p3.v, p4.u, p4.v))
+       [[%d & %.3f & %.3f & %.3f & %.3f & %.3f & %.3f & %.3f & %.3f\\]],
+   	  i, p.p1u, p.p1v, p.p2u, p.p2v, p.p3u, p.p3v, p.p4u, p.p4v))
    end
    tex.print([[\hline]])
    tex.print([[\end{tabular}]])
