@@ -441,16 +441,6 @@ end
 -- PointProy.u, PointProy.v
 function M.proyPoint(P, View)
    local u, v
-   --local PointProy = {}
-
-   --PointProy.x = P.x
-   --PointProy.y = P.y
-   --PointProy.z = P.z
-   --PointProy.r = P.r
-   --PointProy.theta = P.theta
-   --PointProy.phi = P.phi
-   --PointProy.thetaD = P.thetaD
-   --PointProy.phiD = P.phiD
 
    u = -P.x * View.sinphi + P.y * View.cosphi
    v = -P.x * View.costhetacosphi - P.y * View.costhetasinphi + P.z * View.sintheta
@@ -578,9 +568,6 @@ end
 function M.DEBUGobservadorTeX(obs)
    -- TABLA OBSERVADOR
    tex.print([[\vspace{1em}]])
-   --tex.print([[\\]])
-   --tex.print([[\\]])
-   
    tex.print([[\noindent\,\textbf{OBSERVADOR}\\]])
    tex.print([[\begin{tabular}{|c|c|}]])
    tex.print([[\hline]])
@@ -597,9 +584,6 @@ end
 function M.DEBUGpuntosTeX(ptos)
    -- TABLA PUNTOS
    tex.print([[\vspace{1em}]])
-   --tex.print([[\\]])
-   --tex.print([[\\]])
-   
    tex.print([[\noindent\,\textbf{PUNTOS}\\]])
    tex.print([[\begin{tabular}{|c|c|c|c|c|c|c|cc|c|}]])
    tex.print([[\hline]])
@@ -616,20 +600,9 @@ function M.DEBUGpuntosTeX(ptos)
    tex.print([[\\]])
 end
 
---function M.DEBUGplanosTeX(planos)
---   tex.print([[\\]])
---   tex.print([[\noindent\,\textbf{PLANOS}\\]])   
---   tex.print([[\\]])
---   for i, p in ipairs(planos) do
---      tex.print(string.format([[Plano %d]], i))
---      tex.print(string.format([[%s, %s]], p.p1u, p.p1v))
---   end
---end
-
 function M.DEBUGplanosTeX(planos)
    -- TABLA PLANOS
    tex.print([[\vspace{1em}]])   
-   
    tex.print([[\noindent\,\textbf{PLANOS}\\]])
    tex.print([[\begin{tabular}{|c|cc|cc|cc|cc|c|}]])
    tex.print([[\hline]])
@@ -647,59 +620,6 @@ function M.DEBUGplanosTeX(planos)
 end
 
 -- ----------------------------------------------------------------------------
-
--- (02b)
--- M.DEBUGpuntosLua
--- Còdigo de depuración en lua.
--- Imprime en Lua un resumen de los datos enviados por Lua.
--- Esfera, Observador y puntos visibles e invisibles.
-function M.DEBUGpuntosLua(esf, obs, ptos)
-   local visibles
-   local invisibles
-
-    visibles, invisibles = M.Visibilidad(obs, ptos)
-
-   -- Decodificar primer parámetro
-   print("Esfera:}")
-   print("Radio: " .. tostring(esf.radio) .. ", ")
-   print("Color: " .. tostring(esf.color) .. ", ")
-   print("Color sombra: " .. tostring(esf.sombracolor) .. ", ")
-   print("Opacidad sombra: " .. tostring(esf.sombraopacidad))
-
-   -- Decodificar segundo parámetro
-   print("Observador:")
-   print("theta: " .. tostring(obs.thetaD) .. ", ")
-   print("phi: " .. tostring(obs.phiD))
-   
-
-   -- Decodificar matriz de puntos
-   print("Listado de puntos y planos:")
-   
-   -- Iterar sobre la matriz de puntos
-   -- i es el índice, p es la tabla de cada punto
-   for i, p in ipairs(ptos) do
-      print(string.format(
-	"Punto %d: theta=%s, phi=%s | Plano %sx%s | Color: %s",
-          i, p.thetaD, p.phiD, p.a, p.b, p.color
-      ))
-
-   end
-   print("Listado de puntos y planos visibles:")      
-   for i, vis in ipairs(visibles) do
-      print(string.format(
-	"Puntos %d: theta$=%s, phi=%s | Plano %sx%s | Color: %s",
-          i, vis.thetaD, vis.phiD, vis.a, vis.b, vis.color
-      ))      
-   end
-
-   print("Listado de puntos y planos invisibles:")      
-   for i, inv in ipairs(invisibles) do
-      print(string.format(
-	"Puntos %d: theta=%s, phi=%s | Plano %sx%s | Color: %s",
-          i, inv.thetaD, inv.phiD, inv.a, inv.b, inv.color
-      ))      
-   end
-end
 
 
 return M
