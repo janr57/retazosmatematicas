@@ -66,31 +66,35 @@
     \directlua{polar_to_cartesian(#1, #2)}%
 }
 
-% DEFINICIÓN DE COMANDOS
-
+% LUA PATH
+% lua path
 \begin{luacode*}
   -- Añado mi directorio al path
   package.path = "./?.lua;" .. package.path
   -- Cargo miproyecto
-  mEsfera = require("lua/vect3Dtex")
+  mEsfera = require("funciones")
 \end{luacode*}
 
-% Creamos la macro de LaTeX, donde:
-% #1 es la esfera; #2 es la vista; #3 son los puntos.
-\newcommand{\DEBUGEsfera}[1]{%
-  \directlua{mEsfera.DEBUGesferaTeX(#1)}
+% DEFINICIÓN DE COMANDOS
+% Macros de LaTeX
+\newcommand{\DEBUGEsf}[1]{%
+  \directlua{mEsfera.DEBUGesf(#1)}
 }
 
-\newcommand{\DEBUGObservador}[1]{%
-  \directlua{mEsfera.DEBUGobservadorTeX(#1)}
+\newcommand{\DEBUGObs}[1]{%
+  \directlua{mEsfera.DEBUGobs(#1)}
 }
 
 \newcommand{\DEBUGPuntos}[1]{%
-  \directlua{mEsfera.DEBUGpuntosTeX(#1)}
+  \directlua{mEsfera.DEBUGpuntos(#1)}
 }
 
-\newcommand{\DEBUGPlanos}[1]{%
-  \directlua{mEsfera.DEBUGplanosTeX(#1)}
+\newcommand{\DEBUGCoordPuntos}[1]{%
+  \directlua{mEsfera.DEBUGcoordpuntos(#1)}
+}
+
+\newcommand{\DEBUGPlanosObs}[1]{%
+  \directlua{mEsfera.DEBUGplanosobs(#1)}
 }
 
 \newcommand{\TIKZEsferaPlanos}[5]{%

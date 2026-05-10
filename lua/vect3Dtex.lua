@@ -14,6 +14,11 @@ local M = {}
 -- Resumen:
 -- (esf, obs, ptos) -> Imagen TikZ de esfera con puntos y planos.
 function M.TIKZEsferaPlanos(escala, esf, obs, ptos, planos)
+   --local visibles
+   --local invisibles
+
+   --visibles, invisibles = M.Visibilidad(obs, ptos)
+   
    tex.print(string.format(
 		"\\begin{tikzpicture}[scale=%.2f]", escala))
 
@@ -34,13 +39,14 @@ function M.TIKZEsferaPlanos(escala, esf, obs, ptos, planos)
 		esf.sombracolor, esf.sombraopacidad, esf.radio))
 
    -- 3. PLANOS VISIBLES
---   for i, pl in ipairs(planos) do
---      if pl.visible then
---	 tex.print(string.format(
---	[[\draw (%.4f,%.4f) -- (%.4f,%.4f) -- (%.4f,%.4f) -- (%.4f,%.4f) -- cycle;]],
---        pl.p1u, pl.p1v, pl.p2u, pl.p2v, pl.p3u, pl.p3v, pl.p4u, pl.p4v))
---      end
---   end
+   for i, pl in ipairs(planos) do
+      if pl.visible then
+	 tex.print(string.format(
+	[[\draw (%.4f,%.4f) -- (%.4f,%.4f) -- (%.4f,%.4f) -- (%.4f,%.4f) -- cycle;]],
+        --pl.p3u, pl.p3v, pl.p2u, pl.p2v, pl.p4u, pl.p4v, pl.p1u, pl.p1v))
+	 pl.p1u, pl.p1v, pl.p2u, pl.p2v, pl.p4u, pl.p4v, pl.p3u, pl.p3v))
+      end
+   end
 
    -- 3. PUNTOS VISIBLES
    for i, p in ipairs(ptos) do
@@ -49,7 +55,9 @@ function M.TIKZEsferaPlanos(escala, esf, obs, ptos, planos)
 				 p.u, p.v))
       end
    end
-
+   
+   -- TEST
+   
    -- Ahora dibujo un punto en coordenadas (1, 0, 0)
    local x, y, z, theta, phi, stheta, ctheta, sphi, cphi, u, v, px, py, pz
    x = 1
@@ -59,34 +67,30 @@ function M.TIKZEsferaPlanos(escala, esf, obs, ptos, planos)
    tex.print(string.format(
 		[[\fill[blue] (%.4f,%.4f) circle[radius=0.8pt];]], u, v))
 
---   -- Quiero que el punto x,y,z tenga ángulo theta y phi
---   --r, theta, phi = M.xyz2sph(x, y, z)
---   -- Tengo que girar el punto xyz:
---   -- a) Un ángulo -(90-theta) alrededor del eje y
---   -- b) Un ángulo phi alrededor del eje z
---   theta = 0
---   phi = 0
---   theta, phi = M.nuevoAnguloGiro(theta, phi)
---   --theta = - (math.pi/2 - theta)
---   --phi = phi
---   
---   stheta = math.sin(theta)
---   ctheta = math.cos(theta)
---   sphi = math.sin(phi)
---   cphi = math.cos(phi)
---   -- Rotar el punto anterior
---   px, py, pz = M.xyzRotarSpeed(x, y, z, stheta, ctheta, sphi, cphi)
---   u, v = M.xyz2uvAll(px, py, pz, obs)
---   tex.print(string.format(
---		[[\fill[red] (%.4f,%.4f) circle[radius=0.4pt];]], u, v))
+   -- Quiero que el punto x,y,z tenga ángulo theta y phi
+   --r, theta, phi = M.xyz2sph(x, y, z)
+   -- Tengo que girar el punto xyz:
+   -- a) Un ángulo -(90-theta) alrededor del eje y
+   -- b) Un ángulo phi alrededor del eje z
+   theta = 0
+   phi = 0
+   theta, phi = M.nuevoAnguloGiro(theta, phi)
+   --theta = - (math.pi/2 - theta)
+   --phi = phi
+   
+   stheta = math.sin(theta)
+   ctheta = math.cos(theta)
+   sphi = math.sin(phi)
+   cphi = math.cos(phi)
+   -- Rotar el punto anterior
+   px, py, pz = M.xyzRotacionSpeed(x, y, z, stheta, ctheta, sphi, cphi)
+   u, v = M.xyz2uvAll(px, py, pz, obs)
+   tex.print(string.format(
+		[[\fill[red] (%.4f,%.4f) circle[radius=0.4pt];]], u, v))
 
    tex.print("\\end{tikzpicture}")
 end
 -- ----------------------------------------------------------------------------
-
-function M.nuevoAnguloGiro(theta, phi)
-   return -(math.pi/2 - theta), phi
-end
 
 -- (00b) **********************************************************************
 -- FUNCIÓN DE USUARIO
@@ -146,6 +150,8 @@ function M.completaPuntos(esf, obs, ptos)
    local x, y, z
    
    for i, p in ipairs(ptos) do
+      p.r = esf.radio
+      
       x, y, z = M.sphD2xyz(esf.radio, p.thetaD, p.phiD)
       -- Coordenadas (x,y,z) del punto de la esfera
       p.x = x
@@ -170,9 +176,14 @@ function M.completaPlanos(obs, ptos, planos)
    local p2x, p2y, p2z
    local p3x, p3y, p3z
    local p4x, p4y, p4z
+   local pr1x, pr1y, pr1z
+   local pr2x, pr2y, pr2z
+   local pr3x, pr3y, pr3z
+   local pr4x, pr4y, pr4z
    local p1u, p1v, p2u, p2v, p3u, p3v, p4u, p4v
 
    for i, p in ipairs(ptos) do
+      
       plano = {}
 
       theta = math.rad(p.thetaD)
@@ -184,59 +195,61 @@ function M.completaPlanos(obs, ptos, planos)
       cphi = math.cos(phi)
 
       -- Coordenadas x,y,z de puntos del plano en posición theta=90, phi=0
-      p1x = p.x
-      p1y = p.y - p.a/2
-      p1z = p.z - p.b/2
-      
-      p2x = p.x
-      p2y = p.y + p.a/2
-      p2z = p.z - p.b/2
-      
-      p3x = p.x
-      p3y = p.y - p.a/2
-      p3z = p.z + p.b/2
-      
-      p4x = p.x
-      p4y = p.y + p.a/2
-      p4z = p.z + p.b/2
-
-      p1x, p1y, p1z = M.rotarXYZ(p1x, p1y, p1z, stheta, ctheta, sphi, cphi)
-      p2x, p2y, p2z = M.rotarXYZ(p2x, p2y, p2z, stheta, ctheta, sphi, cphi)
-      p3x, p3y, p3z = M.rotarXYZ(p3x, p3y, p2z, stheta, ctheta, sphi, cphi)
-      p4x, p4y, p4z = M.rotarXYZ(p4x, p4y, p4z, stheta, ctheta, sphi, cphi)
-      
+      p1x = 1
+      p1y = 0 - p.a/2.0
+      p1z = 0 - p.b/2.0
 --      plano.p1x = p1x
 --      plano.p1y = p1y
 --      plano.p1z = p1z
---      
+      
+      p2x = 1
+      p2y = 0 + p.a/2.0
+      p2z = 0 - p.b/2.0
 --      plano.p2x = p2x
 --      plano.p2y = p2y
 --      plano.p2z = p2z
---      
+      
+      p3x = 1
+      p3y = 0 - p.a/2.0
+      p3z = 0 + p.b/2.0
 --      plano.p3x = p3x
 --      plano.p3y = p3y
 --      plano.p3z = p3z
---      
+      
+      p4x = 1
+      p4y = 0 + p.a/2.0
+      p4z = 0 + p.b/2.0
 --      plano.p4x = p4x
 --      plano.p4y = p4y
 --      plano.p4z = p4z
 
-      plano.p1u, plano.p1v = M.xyz2uvAll(p1x, p1y, p1z, obs)
-      plano.p2u, plano.p2v = M.xyz2uvAll(p2x, p2y, p2z, obs)
-      plano.p3u, plano.p3v = M.xyz2uvAll(p3x, p3y, p3z, obs)
-      plano.p4u, plano.p4v = M.xyz2uvAll(p4x, p4y, p4z, obs)
+      pr1x, pr1y, pr1z = M.xyzRotacionSpeed(p1x,p1y,p1z,stheta,ctheta,sphi,cphi)
+      pr2x, pr2y, pr2z = M.xyzRotacionSpeed(p2x,p2y,p2z,stheta,ctheta,sphi,cphi)
+      pr3x, pr3y, pr3z = M.xyzRotacionSpeed(p3x,p3y,p3z,stheta,ctheta,sphi,cphi)
+      pr4x, pr4y, pr4z = M.xyzRotacionSpeed(p4x,p4y,p4z,stheta,ctheta,sphi,cphi)
+      
+      plano.pr1x = pr1x
+      plano.pr1y = pr1y
+      plano.pr1z = pr1z
+      
+      plano.pr2x = pr2x
+      plano.pr2y = pr2y
+      plano.pr2z = pr2z
+      
+      plano.pr3x = pr3x
+      plano.pr3y = pr3y
+      plano.pr3z = pr3z
+      
+      plano.pr4x = pr4x
+      plano.pr4y = pr4y
+      plano.pr4z = pr4z
 
---      plano.p1u = p1u
---      plano.p1v = p1v
---      
---      plano.p2u = p2u
---      plano.p2v = p2v
---      
---      plano.p3u = p3u
---      plano.p3v = p3v
---      
---      plano.p4u = p4u
-      --      plano.p4v = p4v
+      -- Coordenadas u, v de los puntos de un plano
+      plano.p1u, plano.p1v = M.xyz2uvAll(pr1x, pr1y, pr1z, obs)
+      plano.p2u, plano.p2v = M.xyz2uvAll(pr2x, pr2y, pr2z, obs)
+      plano.p3u, plano.p3v = M.xyz2uvAll(pr3x, pr3y, pr3z, obs)
+      plano.p4u, plano.p4v = M.xyz2uvAll(pr4x, pr4y, pr4z, obs)
+
       plano.visible = ptos[i].visible
 
       table.insert(planos, plano)
@@ -244,7 +257,7 @@ function M.completaPlanos(obs, ptos, planos)
 end
 
 
-function M.rotarXYZ(x, y, z, theta, phi)
+function M.xyzRotacion(x, y, z, theta, phi)
    local xprima, yprima, zprima
    local m
 
@@ -258,7 +271,7 @@ function M.rotarXYZ(x, y, z, theta, phi)
 end
 
 
-function M.xyzRotarSpeed(x, y, z, sintheta, costheta, sinphi, cosphi)
+function M.xyzRotacionSpeed(x, y, z, sintheta, costheta, sinphi, cosphi)
    local xprima, yprima, zprima
    local m
 
@@ -269,6 +282,11 @@ function M.xyzRotarSpeed(x, y, z, sintheta, costheta, sinphi, cosphi)
    zprima = -x * sintheta + z * costheta
 
    return xprima, yprima, zprima
+end
+
+
+function M.nuevoAnguloGiro(theta, phi)
+   return -(math.pi/2 - theta), phi
 end
 
 
@@ -610,7 +628,7 @@ end
 -- Código de depuración el LuaLaTeX.
 -- Resumen de los datos enviados y procesados por LuaLaTeX.
 -- Esfera, Observador y puntos visibles e invisibles.
-function M.DEBUGesferaTeX(esf)
+function M.DEBUGesf(esf)
    -- TABLA ESFERA
    tex.print([[\vspace{1ex}]])
    tex.print([[\noindent\,\textbf{ESFERA}\\]])
@@ -629,7 +647,7 @@ function M.DEBUGesferaTeX(esf)
    tex.print([[\vspace{1ex}]])
 end
 
-function M.DEBUGobservadorTeX(obs)
+function M.DEBUGobs(obs)
    -- TABLA OBSERVADOR
    tex.print([[\vspace{1ex}]])   
    tex.print([[\noindent\,\textbf{OBSERVADOR}\\]])
@@ -648,20 +666,20 @@ function M.DEBUGobservadorTeX(obs)
    tex.print([[\vspace{1ex}]])
 end
 
-function M.DEBUGpuntosTeX(ptos)
+function M.DEBUGpuntos(ptos)
    -- TABLA PUNTOS
    tex.print([[\vspace{1ex}]])
    tex.print([[\noindent\,\textbf{PUNTOS}\\]])
    tex.print([[\vspace{1ex}]])
-   tex.print([[\begin{tabular}{|c|c|c|c|c|c|c|cc|c|}]])
+   tex.print([[\begin{tabular}{|c|c|c|c|c|}]])
    tex.print([[\hline]])
-   tex.print([[ID&$\theta$&$\phi$&$a$&$b$&Opacidad&Color&$u$&$v$&Visible\\]])
+   tex.print([[ID&$a\times b$&Opac.&Color&Visible\\]])
    tex.print([[\hline]])
 
    for i, p in ipairs(ptos) do
       tex.print(string.format(
-   [[%d&\qty{%.2f}{\degree}&\qty{%.2f}{\degree}&%.2f&%.2f&%.2f&%s&%.4f&%.4f&%s\\]],
-   	  i, p.thetaD, p.phiD, p.a, p.b, p.opacidad, p.color, p.u, p.v, p.visible))
+		   [[%d&%.2f\times%.2f&%.2f&%s&%s\\]],
+   	  i,p.a, p.b, p.opacidad, p.color, p.visible))
    end
    tex.print([[\hline]])
    tex.print([[\end{tabular}]])
@@ -669,19 +687,39 @@ function M.DEBUGpuntosTeX(ptos)
    tex.print([[\vspace{1ex}]])
 end
 
-function M.DEBUGplanosTeX(planos)
+function M.DEBUGcoordpuntos(ptos)
+   -- TABLA COORDENADAS DE PUNTOS
+   tex.print([[\vspace{1ex}]])
+   tex.print([[\noindent\,\textbf{COORDENADAS DE PUNTOS}\\]])
+   tex.print([[\vspace{1ex}]])
+   tex.print([[\begin{tabular}{|c|c|c|c|c|}]])
+   tex.print([[\hline]])
+   tex.print([[ID&$(r,\theta,\phi)$&$(x,y,z)$&$(u,v)$&Visible\\]])
+   tex.print([[\hline]])
+
+   for i, p in ipairs(ptos) do
+      tex.print(string.format(		   [[%d&(%.2f,\qty{%.2f}{\degree},\qty{%.2f}{\degree})&(%.2f,%.2f,%.2f)&(%.2f,%.2f)&%s\\]],
+   	  i, p.r, p.thetaD, p.phiD,p.x, p.y, p.z, p.u, p.v, p.visible))
+   end
+   tex.print([[\hline]])
+   tex.print([[\end{tabular}]])
+   tex.print([[\\]])
+   tex.print([[\vspace{1ex}]])
+end
+
+function M.DEBUGplanosobs(planos)
    -- TABLA PLANOS
    tex.print([[\vspace{1ex}]])
-   tex.print([[\noindent\,\textbf{PLANOS}\\]])
+   tex.print([[\noindent\,\textbf{PLANOS SEGÚN OBSERVADOR}\\]])
    tex.print([[\vspace{1ex}]])
-   tex.print([[\begin{tabular}{|c|cc|cc|cc|cc|c|}]])
+   tex.print([[\begin{tabular}{|c|c|c|c|c|c|}]])
    tex.print([[\hline]])
-   tex.print([[Plano & p1u & p1v & p2u & p2v & p3u & p3v & p4u & p4v & Visible\\]])
+   tex.print([[Plano & p1 & p2 & p3 & p4 & Visible\\]])
    tex.print([[\hline]])
 
    for i, p in ipairs(planos) do
       tex.print(string.format(
-       [[%d & %.3f & %.3f & %.3f & %.3f & %.3f & %.3f & %.3f & %.3f & %s\\]],
+	   [[%d & (%.3f,%.3f) & (%.3f,%.3f) & (%.3f,%.3f) & (%.3f,%.3f) & %s\\]],
    	  i, p.p1u, p.p1v, p.p2u, p.p2v, p.p3u, p.p3v, p.p4u, p.p4v, p.visible))
    end
    tex.print([[\hline]])
