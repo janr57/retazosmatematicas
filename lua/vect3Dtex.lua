@@ -1,4 +1,4 @@
--- funciones.lua
+-- vect3Dtex.lua
 
 local M = {} 
 
@@ -43,7 +43,6 @@ function M.TIKZEsferaPlanos(escala, esf, obs, ptos, planos)
       if pl.visible then
 	 tex.print(string.format(
 	[[\draw (%.4f,%.4f) -- (%.4f,%.4f) -- (%.4f,%.4f) -- (%.4f,%.4f) -- cycle;]],
-        --pl.p3u, pl.p3v, pl.p2u, pl.p2v, pl.p4u, pl.p4v, pl.p1u, pl.p1v))
 	 pl.p1u, pl.p1v, pl.p2u, pl.p2v, pl.p4u, pl.p4v, pl.p3u, pl.p3v))
       end
    end
@@ -56,38 +55,6 @@ function M.TIKZEsferaPlanos(escala, esf, obs, ptos, planos)
       end
    end
    
-   -- TEST
-   
-   -- Ahora dibujo un punto en coordenadas (1, 0, 0)
-   local x, y, z, theta, phi, stheta, ctheta, sphi, cphi, u, v, px, py, pz
-   x = 1
-   y = 0
-   z = 0
-   u, v = M.xyz2uvAll(x, y, z, obs)
-   tex.print(string.format(
-		[[\fill[blue] (%.4f,%.4f) circle[radius=0.8pt];]], u, v))
-
-   -- Quiero que el punto x,y,z tenga ángulo theta y phi
-   --r, theta, phi = M.xyz2sph(x, y, z)
-   -- Tengo que girar el punto xyz:
-   -- a) Un ángulo -(90-theta) alrededor del eje y
-   -- b) Un ángulo phi alrededor del eje z
-   theta = 0
-   phi = 0
-   theta, phi = M.nuevoAnguloGiro(theta, phi)
-   --theta = - (math.pi/2 - theta)
-   --phi = phi
-   
-   stheta = math.sin(theta)
-   ctheta = math.cos(theta)
-   sphi = math.sin(phi)
-   cphi = math.cos(phi)
-   -- Rotar el punto anterior
-   px, py, pz = M.xyzRotacionSpeed(x, y, z, stheta, ctheta, sphi, cphi)
-   u, v = M.xyz2uvAll(px, py, pz, obs)
-   tex.print(string.format(
-		[[\fill[red] (%.4f,%.4f) circle[radius=0.4pt];]], u, v))
-
    tex.print("\\end{tikzpicture}")
 end
 -- ----------------------------------------------------------------------------
@@ -698,8 +665,8 @@ function M.DEBUGcoordpuntos(ptos)
    tex.print([[\hline]])
 
    for i, p in ipairs(ptos) do
-      tex.print(string.format(		   [[%d&(%.2f,\qty{%.2f}{\degree},\qty{%.2f}{\degree})&(%.2f,%.2f,%.2f)&(%.2f,%.2f)&%s\\]],
-   	  i, p.r, p.thetaD, p.phiD,p.x, p.y, p.z, p.u, p.v, p.visible))
+      tex.print(string.format(
+[[%d&(%.2f,\qty{%.2f}{\degree},\qty{%.2f}{\degree})&(%.2f,%.2f,%.2f)&(%.2f,%.2f)&%s\\]],  i, p.r, p.thetaD, p.phiD,p.x, p.y, p.z, p.u, p.v, p.visible))
    end
    tex.print([[\hline]])
    tex.print([[\end{tabular}]])
