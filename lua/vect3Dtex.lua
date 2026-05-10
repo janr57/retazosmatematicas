@@ -1,4 +1,4 @@
--- vect3Dtex.lua
+-- funciones.lua
 
 local M = {} 
 
@@ -14,11 +14,6 @@ local M = {}
 -- Resumen:
 -- (esf, obs, ptos) -> Imagen TikZ de esfera con puntos y planos.
 function M.TIKZEsferaPlanos(escala, esf, obs, ptos, planos)
-   --local visibles
-   --local invisibles
-
-   --visibles, invisibles = M.Visibilidad(obs, ptos)
-   
    tex.print(string.format(
 		"\\begin{tikzpicture}[scale=%.2f]", escala))
 
@@ -39,36 +34,70 @@ function M.TIKZEsferaPlanos(escala, esf, obs, ptos, planos)
 		esf.sombracolor, esf.sombraopacidad, esf.radio))
 
    -- 3. PLANOS VISIBLES
-   for i, pl in ipairs(planos) do
-      if pl.visible then
-	 tex.print(string.format(
-	[[\draw (%.4f,%.4f) -- (%.4f,%.4f) -- (%.4f,%.4f) -- (%.4f,%.4f) -- cycle;]],
-        pl.p1u, pl.p1v, pl.p2u, pl.p2v, pl.p3u, pl.p3v, pl.p4u, pl.p4v))
-      end
-   end
+--   for i, pl in ipairs(planos) do
+--      if pl.visible then
+--	 tex.print(string.format(
+--	[[\draw (%.4f,%.4f) -- (%.4f,%.4f) -- (%.4f,%.4f) -- (%.4f,%.4f) -- cycle;]],
+--        pl.p1u, pl.p1v, pl.p2u, pl.p2v, pl.p3u, pl.p3v, pl.p4u, pl.p4v))
+--      end
+--   end
 
    -- 3. PUNTOS VISIBLES
    for i, p in ipairs(ptos) do
       if p.visible then
-	 tex.print(string.format("\\fill[black] (%4f,%4f) circle[radius=0.5pt];",
+	 tex.print(string.format("\\fill[black] (%.4f,%.4f) circle[radius=0.8pt];",
 				 p.u, p.v))
       end
    end
+
+   -- Ahora dibujo un punto en coordenadas (1, 0, 0)
+   local x, y, z, theta, phi, stheta, ctheta, sphi, cphi, u, v, px, py, pz
+   x = 1
+   y = 0
+   z = 0
+   u, v = M.xyz2uvAll(x, y, z, obs)
+   tex.print(string.format(
+		[[\fill[blue] (%.4f,%.4f) circle[radius=0.8pt];]], u, v))
+
+--   -- Quiero que el punto x,y,z tenga ángulo theta y phi
+--   --r, theta, phi = M.xyz2sph(x, y, z)
+--   -- Tengo que girar el punto xyz:
+--   -- a) Un ángulo -(90-theta) alrededor del eje y
+--   -- b) Un ángulo phi alrededor del eje z
+--   theta = 0
+--   phi = 0
+--   theta, phi = M.nuevoAnguloGiro(theta, phi)
+--   --theta = - (math.pi/2 - theta)
+--   --phi = phi
+--   
+--   stheta = math.sin(theta)
+--   ctheta = math.cos(theta)
+--   sphi = math.sin(phi)
+--   cphi = math.cos(phi)
+--   -- Rotar el punto anterior
+--   px, py, pz = M.xyzRotarSpeed(x, y, z, stheta, ctheta, sphi, cphi)
+--   u, v = M.xyz2uvAll(px, py, pz, obs)
+--   tex.print(string.format(
+--		[[\fill[red] (%.4f,%.4f) circle[radius=0.4pt];]], u, v))
 
    tex.print("\\end{tikzpicture}")
 end
 -- ----------------------------------------------------------------------------
 
+function M.nuevoAnguloGiro(theta, phi)
+   return -(math.pi/2 - theta), phi
+end
+
 -- (00b) **********************************************************************
 -- FUNCIÓN DE USUARIO
--- TEXproy_PRect(x, y, z, obs)
+-- xyz2uvAll(x, y, z, obs)
 -- Escribe una cadena con las coordenadas u, v del punto en la pantalla.
 -- Argumentos:
 --     Coordenadas rectangulares x,y,z.
 --     Tabla con datos angulares del observador (perspectiva).n
 -- Retorna:
 --     Cadena con las coordenadas (u,v) de la pantalla: "(u,v)"
-function M.TEXproy_PRect(x, y, z, obs)
+function M.xyz2uvAll(x, y, z, obs)
 
    -- Crea tabla con las coordenadas rect. y esféricas del punto (grados y rad)
    -- y algunas funciones trigonométricas para ahorrar cálculos.
@@ -79,11 +108,35 @@ function M.TEXproy_PRect(x, y, z, obs)
    viewAll = M.SD3dView(obs)
 
    -- Crea las dos coordenadas del punto en pantalla visto por el observador
-   u, v = M.proyPoint(PAll, viewAll)
+   u, v = M.All2uv(PAll, viewAll)
 
    return u, v
 end
 
+-- (00c) **********************************************************************
+-- FUNCIÓN DE USUARIO
+-- sphD2uv(radio, thetaD, phiD, obs)
+-- Escribe una cadena con las coordenadas u, v del punto en la pantalla
+-- Argumentos:
+--    Radio de la esfera.
+--    Coordenadas angulares de un punto de la esfera (grados).
+--    Tabla de ángulo del observador.
+-- Retorna:
+--    Cadena con las coordenadas (u,v) de la pantalla: "(u,v)"
+function M.sphD2uv(r, thetaD, phiD, obs)
+   -- Crea tabla con las coordenadas rect y esféricas del punto (grados y rad)
+   -- y algunas funciones trigonométricas para ahorrar cálculos.
+   PAll = M.SD3dToAll(r, thetaD, phiD)
+
+   -- Crea tabla con las coordenadas esféricas del observador (grados y rad)
+   -- y algunas funciones trigonométricas para ahorrar cálculos.   
+   viewAll = M.SD3dView(obs)
+   
+   -- Crea las dos coordenadas del punto en pantalla visto por el observador
+   u, v = M.All2uv(PAll, viewAll)
+
+   return u, v
+end
 
 -- ****************************************************************************
 -- FUNCIONES AUXILIARES
@@ -122,14 +175,11 @@ function M.completaPlanos(obs, ptos, planos)
    for i, p in ipairs(ptos) do
       plano = {}
 
-      -- Cambio sin(theta) por cos(theta) y cos(theta) por sin(theta)
-      -- porque hay que girar el punto del plano 90-Ptheta,
-      -- siendo Ptheta el ángulo theta del punto de tangencia.
-      -- En cambio, phi se mantiene igual
       theta = math.rad(p.thetaD)
       phi = math.rad(p.phiD)
-      ctheta = math.sin(theta)
-      stheta = math.cos(theta)
+      theta, phi = M.nuevoAnguloGiro(theta, phi)
+      stheta = math.sin(theta)
+      ctheta = math.cos(theta)
       sphi = math.sin(phi)
       cphi = math.cos(phi)
 
@@ -171,10 +221,10 @@ function M.completaPlanos(obs, ptos, planos)
 --      plano.p4y = p4y
 --      plano.p4z = p4z
 
-      plano.p1u, plano.p1v = M.xyz2uv(p1x, p1y, p1z, obs)
-      plano.p2u, plano.p2v = M.xyz2uv(p2x, p2y, p2z, obs)
-      plano.p3u, plano.p3v = M.xyz2uv(p3x, p3y, p3z, obs)
-      plano.p4u, plano.p4v = M.xyz2uv(p4x, p4y, p4z, obs)
+      plano.p1u, plano.p1v = M.xyz2uvAll(p1x, p1y, p1z, obs)
+      plano.p2u, plano.p2v = M.xyz2uvAll(p2x, p2y, p2z, obs)
+      plano.p3u, plano.p3v = M.xyz2uvAll(p3x, p3y, p3z, obs)
+      plano.p4u, plano.p4v = M.xyz2uvAll(p4x, p4y, p4z, obs)
 
 --      plano.p1u = p1u
 --      plano.p1v = p1v
@@ -193,12 +243,30 @@ function M.completaPlanos(obs, ptos, planos)
    end
 end
 
-function M.rotarXYZ(x, y, z, sintheta, costheta, sinphi, cosphi)
-   local xprima, yprima, zprima
 
-   xprima = x * costheta * cosphi + y * sinphi - z * sintheta * cosphi
-   yprima = -x * costheta * sinphi + y * cosphi + z * sintheta * sinphi
-   zprima = x * costheta + z * costheta
+function M.rotarXYZ(x, y, z, theta, phi)
+   local xprima, yprima, zprima
+   local m
+
+   m = x * math.cos(theta) + z * math.sin(theta)
+
+   xprima = m * math.cos(phi) - y * math.sin(phi)
+   yprima = m * math.sin(phi) + y * math.cos(phi)
+   zprima = -x * math.sin(theta) + z * math.cos(theta)
+
+   return xprima, yprima, zprima
+end
+
+
+function M.xyzRotarSpeed(x, y, z, sintheta, costheta, sinphi, cosphi)
+   local xprima, yprima, zprima
+   local m
+
+   m = x * costheta + z * sintheta
+
+   xprima = m * cosphi - y * sinphi
+   yprima = m * sinphi + y * cosphi
+   zprima = -x * sintheta + z * costheta
 
    return xprima, yprima, zprima
 end
@@ -238,6 +306,8 @@ end
 -- Retorna:
 --    Cadena con las coordenadas (u,v) de la pantalla: "(u,v)"
 function M.sphD2uv(r, thetaD, phiD, obs)
+   local u, v
+   
    -- Crea tabla con las coordenadas rect y esféricas del punto (grados y rad)
    -- y algunas funciones trigonométricas para ahorrar cálculos.
    PAll = M.SD3dToAll(r, thetaD, phiD)
@@ -247,35 +317,11 @@ function M.sphD2uv(r, thetaD, phiD, obs)
    viewAll = M.SD3dView(obs)
    
    -- Crea las dos coordenadas del punto en pantalla visto por el observador
-   u, v = M.proyPoint(PAll, viewAll)
+   u, v = M.All2uv(PAll, viewAll)
 
    return u, v
 end
 
--- (00c) **********************************************************************
--- FUNCIÓN DE USUARIO
--- xyz2uv(radio, thetaD, phiD, obs)
--- Escribe una cadena con las coordenadas u, v del punto en la pantalla
--- Argumentos:
---    Radio de la esfera.
---    Coordenadas angulares de un punto de la esfera (grados).
---    Tabla de ángulo del observador.
--- Retorna:
---    Cadena con las coordenadas (u,v) de la pantalla: "(u,v)"
-function M.xyz2uv(r, thetaD, phiD, obs)
-   -- Crea tabla con las coordenadas rect y esféricas del punto (grados y rad)
-   -- y algunas funciones trigonométricas para ahorrar cálculos.
-   PAll = M.SD3dToAll(r, thetaD, phiD)
-
-   -- Crea tabla con las coordenadas esféricas del observador (grados y rad)
-   -- y algunas funciones trigonométricas para ahorrar cálculos.   
-   viewAll = M.SD3dView(obs)
-   
-   -- Crea las dos coordenadas del punto en pantalla visto por el observador
-   u, v = M.proyPoint(PAll, viewAll)
-
-   return u, v
-end
 
 -- (02c) **********************************************************************
 -- FUNCIÓN AUXILIAR
@@ -291,7 +337,7 @@ function M.xyz2All(x,y,z)
    P.y = y
    P.z = z
    
-   P.r, P.theta, P.phi = R3dToSph(x,y,z)
+   P.r, P.theta, P.phi = M.xyz2sph(x,y,z)
    
    P.thetaD = math.deg(P.theta)
    P.phiD = math.deg(P.phi)
@@ -324,12 +370,12 @@ function M.SD3dToAll(r, thetaD, phiD)
    P.y = y
    P.z = z
    
-   P.r = r
-   P.thetaD = thetaD
-   P.phiD = phiD
+   P.r = M.limpia(r)
+   P.thetaD = M.limpia(thetaD)
+   P.phiD = M.limpia(phiD)
 
-   P.theta = math.rad(thetaD)
-   P.phi = math.rad(phiD)
+   P.theta = M.limpia(math.rad(thetaD))
+   P.phi = M.limpia(math.rad(phiD))
 
    P.sintheta = math.sin(P.theta)
    P.costheta = math.cos(P.theta)
@@ -388,6 +434,10 @@ function M.sphD2xyz(r, thetaD, phiD)
    y = r * math.sin(theta) * math.sin(phi)
    z = r * math.cos(theta)
 
+   x = M.limpia(x)
+   y = M.limpia(y)
+   z = M.limpia(z)
+
    return x, y, z
 end
 
@@ -396,7 +446,7 @@ end
 ---- (02) *********************************************************************
 ---- FUNCIÓN AUXILIAR
 ---- (x,y,z) -> TABLA: P.x  P.y  P.z  P.r  P.theta  P.phi
---function pointRectStrToRect(strRect)
+--function M.pointRectStrToRect(strRect)
 --   local x, y, z
 --   local found, last, i
 --
@@ -443,7 +493,7 @@ end
 -- Argumentos: Tabla completa con punto P y tabla completa con vista View
 -- Retorna: Tabla con las coordenadas (u,v) del punto proyectado en la pantalla
 -- PointProy.u, PointProy.v
-function M.proyPoint(P, View)
+function M.All2uv(P, View)
    local u, v
 
    u = -P.x * View.sinphi + P.y * View.cosphi
@@ -458,9 +508,9 @@ end
 -- Transforma coord. rectangulares en esféricas.
 -- Argumentos: coordenadas rectangulares x, y, z.
 -- Retorna: Coordenadas esféricas (ángulos en radianes).
-function M.R3dToSph(x,y,z)
+function M.xyz2sph(x,y,z)
    local rxy = math.sqrt(x^2 + y^2)
-   local r = R3dNorm(x,y,z)
+   local r = M.R3dNorm(x,y,z)
    local theta, phi
 
    -- Se calculan unos ángulos por defecto
@@ -546,6 +596,13 @@ function M.R3dNorm(x,y,z)
    return math.sqrt(x^2 + y^2 + z^2)
 end
 
+
+function M.limpia(valor)
+    if math.abs(valor) < 1e-12 then
+        return 0.0
+    end
+    return valor
+end
 -- ****************************************************************************
 -- FUNCIONES DE DEPURACIÓN
 -- ****************************************************************************
@@ -555,7 +612,9 @@ end
 -- Esfera, Observador y puntos visibles e invisibles.
 function M.DEBUGesferaTeX(esf)
    -- TABLA ESFERA
+   tex.print([[\vspace{1ex}]])
    tex.print([[\noindent\,\textbf{ESFERA}\\]])
+   tex.print([[\vspace{1ex}]])
    tex.print([[\begin{tabular}{|c|c|c|c|c|}]])
    tex.print([[\hline]])
    tex.print([[Radio & Color & Opacidad & Color de sombra & Opacidad de sombra \\]])
@@ -566,13 +625,15 @@ function M.DEBUGesferaTeX(esf)
    ))
    tex.print([[\hline]])
    tex.print([[\end{tabular}]])
-
+   tex.print([[\\]])
+   tex.print([[\vspace{1ex}]])
 end
 
 function M.DEBUGobservadorTeX(obs)
    -- TABLA OBSERVADOR
-   tex.print([[\vspace{1em}]])
+   tex.print([[\vspace{1ex}]])   
    tex.print([[\noindent\,\textbf{OBSERVADOR}\\]])
+   tex.print([[\vspace{1ex}]])
    tex.print([[\begin{tabular}{|c|c|}]])
    tex.print([[\hline]])
    tex.print([[$\theta$ & $\phi$\\]])
@@ -583,12 +644,15 @@ function M.DEBUGobservadorTeX(obs)
    ))
    tex.print([[\hline]])
    tex.print([[\end{tabular}]])
+   tex.print([[\\]])
+   tex.print([[\vspace{1ex}]])
 end
 
 function M.DEBUGpuntosTeX(ptos)
    -- TABLA PUNTOS
-   tex.print([[\vspace{1em}]])
+   tex.print([[\vspace{1ex}]])
    tex.print([[\noindent\,\textbf{PUNTOS}\\]])
+   tex.print([[\vspace{1ex}]])
    tex.print([[\begin{tabular}{|c|c|c|c|c|c|c|cc|c|}]])
    tex.print([[\hline]])
    tex.print([[ID&$\theta$&$\phi$&$a$&$b$&Opacidad&Color&$u$&$v$&Visible\\]])
@@ -596,18 +660,20 @@ function M.DEBUGpuntosTeX(ptos)
 
    for i, p in ipairs(ptos) do
       tex.print(string.format(
-       [[%d&\qty{%.2f}{\degree}&\qty{%.2f}{\degree}&%.2f&%.2f&%.2f&%s&%.4f&%.4f&%s\\]],
+   [[%d&\qty{%.2f}{\degree}&\qty{%.2f}{\degree}&%.2f&%.2f&%.2f&%s&%.4f&%.4f&%s\\]],
    	  i, p.thetaD, p.phiD, p.a, p.b, p.opacidad, p.color, p.u, p.v, p.visible))
    end
    tex.print([[\hline]])
    tex.print([[\end{tabular}]])
    tex.print([[\\]])
+   tex.print([[\vspace{1ex}]])
 end
 
 function M.DEBUGplanosTeX(planos)
    -- TABLA PLANOS
-   tex.print([[\vspace{1em}]])   
+   tex.print([[\vspace{1ex}]])
    tex.print([[\noindent\,\textbf{PLANOS}\\]])
+   tex.print([[\vspace{1ex}]])
    tex.print([[\begin{tabular}{|c|cc|cc|cc|cc|c|}]])
    tex.print([[\hline]])
    tex.print([[Plano & p1u & p1v & p2u & p2v & p3u & p3v & p4u & p4v & Visible\\]])
@@ -621,6 +687,7 @@ function M.DEBUGplanosTeX(planos)
    tex.print([[\hline]])
    tex.print([[\end{tabular}]])
    tex.print([[\\]])
+   tex.print([[\vspace{1ex}]])
 end
 
 -- ----------------------------------------------------------------------------
