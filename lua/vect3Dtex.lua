@@ -25,7 +25,7 @@ function M.TIKZEsferaPlanos(escala, esf, obs, ptos, planos)
    -- 1. PUNTOS INVISIBLES
    for i, p in ipairs(ptos) do
       if not p.visible then
-	 tex.print(string.format("\\fill[red] (%4f,%4f) circle[radius=0.5pt];",
+	 tex.print(string.format("\\fill[red] (%4f,%4f) circle[radius=0.3pt];",
 				 p.u, p.v))
       end
    end
@@ -50,7 +50,7 @@ function M.TIKZEsferaPlanos(escala, esf, obs, ptos, planos)
    -- 3. PUNTOS VISIBLES
    for i, p in ipairs(ptos) do
       if p.visible then
-	 tex.print(string.format("\\fill[black] (%.4f,%.4f) circle[radius=0.8pt];",
+	 tex.print(string.format("\\fill[black] (%.4f,%.4f) circle[radius=0.4pt];",
 				 p.u, p.v))
       end
    end
