@@ -42,8 +42,8 @@ function M.TIKZEsferaPlanos(escala, esf, obs, ptos, planos)
    for i, p in ipairs(planos) do
       if p.visible then
 	 tex.print(string.format(
-	[[\draw (%.4f,%.4f) -- (%.4f,%.4f) -- (%.4f,%.4f) -- (%.4f,%.4f) -- cycle;]],
-        	p[1].u, p[1].v, p[2].u, p[2].v, p[3].u, p[3].v, p[4].u,p[4].v))
+	    "\\draw[opacity=%.2f,draw=%s,fill=%s] (%.4f,%.4f) -- (%.4f,%.4f) -- (%.4f,%.4f) -- (%.4f,%.4f) -- cycle;",
+        	p.opac,p.draw,p.fill,p[1].u, p[1].v, p[2].u, p[2].v, p[3].u, p[3].v, p[4].u,p[4].v))
       end
    end
 
