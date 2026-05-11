@@ -33,10 +33,10 @@ function M.TIKZEsferaPlanos(escala, esf, obs, ptos, planos)
    -- 2. ESFERA
    tex.print(string.format(
 		"\\draw[%s,opacity=%2.f] (0,0) circle[radius=%.2f];",
-		esf.color, esf.opacidad, esf.radio))
+		esf.color, esf.opac, esf.radio))
    tex.print(string.format(
 		"\\shade[ball color = %s, opacity = %4f] (0,0) circle[radius=%.2f];",
-		esf.sombracolor, esf.sombraopacidad, esf.radio))
+		esf.sombracolor, esf.sombraopac, esf.radio))
 
    -- 3. PLANOS VISIBLES
    for i, p in ipairs(planos) do
@@ -196,7 +196,11 @@ function M.completaPlanos(obs, ptos, planos)
 	 pjplano.v = v
 	 table.insert(ptosplano, pjplano)
       end
-      
+      ptosplano.a = ptos[i].a
+      ptosplano.b = ptos[i].b
+      ptosplano.opac = ptos[i].opac
+      ptosplano.draw = ptos[i].draw
+      ptosplano.fill = ptos[i].fill
       ptosplano.visible = ptos[i].visible
       table.insert(planos, ptosplano)
    end
@@ -669,11 +673,11 @@ function M.DEBUGesf(esf)
    tex.print([[\vspace{1ex}]])
    tex.print([[\begin{tabular}{|c|c|c|c|c|}]])
    tex.print([[\hline]])
-   tex.print([[Radio & Color & Opacidad & Color de sombra & Opacidad de sombra \\]])
+   tex.print([[Radio & Color & Opac. & Color de sombra & Opac. de sombra \\]])
    tex.print([[\hline]])
    tex.print(string.format(
 		[[ %.2f & %s & %.2f & %s & %.2f\\ ]],
-         esf.radio, esf.color, esf.opacidad, esf.sombracolor, esf.sombraopacidad
+         esf.radio, esf.color, esf.opac, esf.sombracolor, esf.sombraopac
    ))
    tex.print([[\hline]])
    tex.print([[\end{tabular}]])
@@ -705,15 +709,15 @@ function M.DEBUGpuntos(ptos)
    tex.print([[\vspace{1ex}]])
    tex.print([[\noindent\,\textbf{PUNTOS}\\]])
    tex.print([[\vspace{1ex}]])
-   tex.print([[\begin{tabular}{|c|c|c|c|c|}]])
+   tex.print([[\begin{tabular}{|c|c|c|}]])
    tex.print([[\hline]])
-   tex.print([[ID&$a\times b$&Opac.&Color&Visible\\]])
+   tex.print([[ID & Color & Visible\\]])
    tex.print([[\hline]])
 
    for i, p in ipairs(ptos) do
       tex.print(string.format(
-		   [[%d&%.2f\times%.2f&%.2f&%s&%s\\]],
-   	  i,p.a, p.b, p.opacidad, p.color, p.visible))
+		   [[%d & %s & %s\\]],
+   	  i, p.color, p.visible))
    end
    tex.print([[\hline]])
    tex.print([[\end{tabular}]])
@@ -728,7 +732,7 @@ function M.DEBUGcoordpuntos(ptos)
    tex.print([[\vspace{1ex}]])
    tex.print([[\begin{tabular}{|c|c|c|c|c|}]])
    tex.print([[\hline]])
-   tex.print([[ID&$(r,\theta,\phi)$&$(x,y,z)$&$(u,v)$&Visible\\]])
+   tex.print([[PuntoID&$(r,\theta,\phi)$&$(x,y,z)$&$(u,v)$&Visible\\]])
    tex.print([[\hline]])
 
    for i, p in ipairs(ptos) do
@@ -741,6 +745,28 @@ function M.DEBUGcoordpuntos(ptos)
    tex.print([[\vspace{1ex}]])
 end
 
+function M.DEBUGplanos(planos)
+   -- TABLA PLANOS
+   tex.print([[\vspace{1ex}]])
+   tex.print([[\noindent\,\textbf{PLANOS}\\]])
+   tex.print([[\vspace{1ex}]])
+   tex.print([[\begin{tabular}{|c|c|c|c|c|c|}]])
+   tex.print([[\hline]])
+   tex.print([[PlanoID & $a\times b$ & Línea & Relleno & Opac. & Visible\\]])
+   tex.print([[\hline]])
+
+   for i, p in ipairs(planos) do
+      tex.print(string.format(
+   [[%d & %.2f\times %.2f & %s & %s & %.2f & %s\\]],
+      i, p.a, p.b, p.draw, p.fill, p.opac, p.visible))
+   end
+   tex.print([[\hline]])
+   tex.print([[\end{tabular}]])
+   tex.print([[\\]])
+   tex.print([[\vspace{1ex}]])
+end
+
+
 function M.DEBUGplanosobs(planos)
    -- TABLA PLANOS
    tex.print([[\vspace{1ex}]])
@@ -748,7 +774,7 @@ function M.DEBUGplanosobs(planos)
    tex.print([[\vspace{1ex}]])
    tex.print([[\begin{tabular}{|c|c|c|c|c|c|}]])
    tex.print([[\hline]])
-   tex.print([[Plano & p1 & p2 & p3 & p4 & Visible\\]])
+   tex.print([[PlanoID & p1 & p2 & p3 & p4 & Visible\\]])
    tex.print([[\hline]])
 
    for i, p in ipairs(planos) do
