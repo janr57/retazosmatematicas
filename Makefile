@@ -17,6 +17,7 @@ FILES =	retazosmatematicas.pkg.sty\
 	texto/coord_R2_polares.tex\
 	texto/coord_xt.tex\
 	texto/jacobiano.tex\
+	lua/vect3Dtex.lua\
 	$(IMGSTATICDIR)/Cc-by-nc-sa_icon.pdf
 
 retazosmatematicas.pdf: retazosmatematicas.tex $(FILES)

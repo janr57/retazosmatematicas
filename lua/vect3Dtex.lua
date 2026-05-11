@@ -39,11 +39,11 @@ function M.TIKZEsferaPlanos(escala, esf, obs, ptos, planos)
 		esf.sombracolor, esf.sombraopacidad, esf.radio))
 
    -- 3. PLANOS VISIBLES
-   for i, pl in ipairs(planos) do
-      if pl.visible then
+   for i, p in ipairs(planos) do
+      if p.visible then
 	 tex.print(string.format(
 	[[\draw (%.4f,%.4f) -- (%.4f,%.4f) -- (%.4f,%.4f) -- (%.4f,%.4f) -- cycle;]],
-	 pl.p1u, pl.p1v, pl.p2u, pl.p2v, pl.p4u, pl.p4v, pl.p3u, pl.p3v))
+        	p[1].u, p[1].v, p[2].u, p[2].v, p[3].u, p[3].v, p[4].u,p[4].v))
       end
    end
 
@@ -137,6 +137,73 @@ function M.completaPuntos(esf, obs, ptos)
 end
 
 function M.completaPlanos(obs, ptos, planos)
+   local plano, ptosplano, ptojplano
+   local theta, phi, stheta, ctheta, sphi, cphi
+   -- Coordenadas del punto de referencia (antes de la rotación)
+   local px = 1
+   local py = 0
+   local pz = 0
+
+   for i, p in ipairs(ptos) do
+   -- Coordenadas de un punto del plano en el eje x (antes de la rotación)
+   local x0, y0, z0
+   -- Coordenadas de un punto rotado del plano (en su sitio)
+   local x, y, z
+   -- Coordenadas de un punto rotado del plano en la pantalla
+   local u, v
+      
+      -- Ángulos de giro phi y theta, junto con cálculos trigonométricos.
+      theta = math.rad(p.thetaD)
+      phi = math.rad(p.phiD)
+      theta, phi = M.nuevoAnguloGiro(theta, phi)
+      stheta = math.sin(theta)
+      ctheta = math.cos(theta)
+      sphi = math.sin(phi)
+      cphi = math.cos(phi)
+
+      plano = {}
+      ptosplano = {}
+      -- Bucle para los cuatro puntos del plano
+      for j = 1, 4 do
+	 pjplano = {}
+	 x0 = px
+	 if j == 1 then
+	    y0 = py - p.a/2
+	    z0 = pz - p.b/2
+	 elseif j == 2 then
+	    y0 = py + p.a/2
+	    z0 = pz - p.b/2
+	 elseif j == 3 then
+	    y0 = py + p.a/2
+	    z0 = pz + p.b/2
+	 else
+	    y0 = py - p.a/2
+	    z0 = pz + p.b/2
+	 end
+	 -- Punto del plano en el eje x (antes de la rotación)
+--	 pjplano.x0, pjplano.y0, pjplano.z0 = x0, y0, z0
+	 x, y, z = M.xyzRotacionSpeed(x0,y0,z0,stheta,ctheta,sphi,cphi)
+--	 pjplano.x, pjplano.y, pjplano.z = x, y, z
+	 u, v = M.xyz2uvAll(x, y, z, obs)
+--	 pjplano.u, pjplano.v = u, v
+	 pjplano.x0 = x0
+	 pjplano.y0 = y0
+	 pjplano.z0 = z0
+	 pjplano.x = x
+	 pjplano.y = y
+	 pjplano.z = z
+	 pjplano.u = u
+	 pjplano.v = v
+	 table.insert(ptosplano, pjplano)
+      end
+      
+      ptosplano.visible = ptos[i].visible
+      table.insert(planos, ptosplano)
+   end
+end
+
+
+function M.completaPlanosold(obs, ptos, planos)
    local plano
    local theta, phi, stheta, ctheta, sphi, cphi
    local p1x, p1y, p1z
@@ -152,14 +219,6 @@ function M.completaPlanos(obs, ptos, planos)
    for i, p in ipairs(ptos) do
       
       plano = {}
-
-      theta = math.rad(p.thetaD)
-      phi = math.rad(p.phiD)
-      theta, phi = M.nuevoAnguloGiro(theta, phi)
-      stheta = math.sin(theta)
-      ctheta = math.cos(theta)
-      sphi = math.sin(phi)
-      cphi = math.cos(phi)
 
       -- Coordenadas x,y,z de puntos del plano en posición theta=90, phi=0
       p1x = 1
@@ -189,6 +248,14 @@ function M.completaPlanos(obs, ptos, planos)
 --      plano.p4x = p4x
 --      plano.p4y = p4y
 --      plano.p4z = p4z
+
+      theta = math.rad(p.thetaD)
+      phi = math.rad(p.phiD)
+      theta, phi = M.nuevoAnguloGiro(theta, phi)
+      stheta = math.sin(theta)
+      ctheta = math.cos(theta)
+      sphi = math.sin(phi)
+      cphi = math.cos(phi)
 
       pr1x, pr1y, pr1z = M.xyzRotacionSpeed(p1x,p1y,p1z,stheta,ctheta,sphi,cphi)
       pr2x, pr2y, pr2z = M.xyzRotacionSpeed(p2x,p2y,p2z,stheta,ctheta,sphi,cphi)
@@ -686,8 +753,8 @@ function M.DEBUGplanosobs(planos)
 
    for i, p in ipairs(planos) do
       tex.print(string.format(
-	   [[%d & (%.3f,%.3f) & (%.3f,%.3f) & (%.3f,%.3f) & (%.3f,%.3f) & %s\\]],
-   	  i, p.p1u, p.p1v, p.p2u, p.p2v, p.p3u, p.p3v, p.p4u, p.p4v, p.visible))
+   [[%d & (%.3f,%.3f) & (%.3f,%.3f) & (%.3f,%.3f) & (%.3f,%.3f) & %s\\]],
+      i, p[1].u, p[1].v, p[2].u, p[2].v, p[3].u, p[3].v, p[4].u, p[4].v, p.visible))
    end
    tex.print([[\hline]])
    tex.print([[\end{tabular}]])
