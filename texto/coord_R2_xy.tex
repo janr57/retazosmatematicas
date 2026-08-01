@@ -185,7 +185,7 @@ con los vectores unitarios tradicionales $\uvec{\i}$ y $\uvec{\j}$
 
 \section{Métrica}
 La métrica en cada sistema de coordenadas define la estructura del espacio, y
-en particular, sin ella no se pueden medir ni distancias ni ángulos. Es como si
+en particular, sin ella no se pueden medir distancias ni ángulos. Es como si
 proporcionara un sistema de reglas y goniómetros con los cuales medir
 distancias y ángulos.
 
@@ -328,9 +328,9 @@ Esta sección se encuentra aquí de una manera un tanto forzada, pues los dos
 tipos de vectores del título son el mismo en coordenadas rectangulares y, como
 consecuencia, no es necesario hacer referencia a ellos.
 
-Pero, adelantaremos algo de información sobre estos conceptos, para captar su
-significado y entender por qué en otros sistemas de coordenadas estos vectores
-son diferentes, al contrario de lo que ocurre en este sistema de coordenadas.
+Pero, adelantaremos algo de información para captar su significado y entender por qué en
+otros sistemas de coordenadas estos vectores son diferentes, al contrario de lo que
+ocurre en este.
 
 \subsection{Vectores contravariantes}
 Los vectores \emph{viven} en un espacio vectorial $V$\, llamado
@@ -348,7 +348,7 @@ realizar operaciones entre vectores de diferentes espacios tangente\footnotemark
 Véase la figura \ref{fig:R2-cart_planos_tangentes}.
 \footnotetext{Para poder realizar este tipo de operaciones entre dos vectores que se
   encuentren en dos espacios tangente diferentes, la geometría diferencial define el
-  transporte paralelo, pero esto es algo que no nos debe preocupar por ahora.}
+  \emph{transporte paralelo}, pero esto es algo que no nos debe preocupar por ahora.}
 \begin{figure}[ht]
   % Escala
   \def\scl{1.9}
@@ -431,15 +431,18 @@ Véase la figura \ref{fig:R2-cart_planos_tangentes}.
 \end{figure}
 
 
+% ********************************************************************************
+% Código lua de prueba para representar planos y vectores en superficie esférica.
+
 \begin{luacode*}
--- Datos de la esfera
+-- Datos de la esfera:
   esf = {
     radio = 1.0, color = "gray!10", opac = 1,
     sombracolor = "black!20", sombraopac=0.9
   }
   -- Datos del observador
   obs = {thetaD = 65, phiD = 15}
-  -- 3. Matriz de puntos (tabla de tablas)
+  -- 3. Matriz de puntos (tabla de tablas). Algunos pueden no ser visibles:
   ptos = {
     {thetaD=90, phiD=186, color="black", a=0.4, b=0.4, opac=0.8, draw="black!80", fill="black!10"},
     {thetaD=0, phiD=0, color="black", a=1.0, b=1.0, opac=0.8, draw="red!80!black", fill="red!20"},
@@ -447,15 +450,21 @@ Véase la figura \ref{fig:R2-cart_planos_tangentes}.
     {thetaD=120, phiD=50, color="black", a=0.9, b=0.9, opac=0.8, draw="blue!80!black", fill="blue!20"}
   }
   
--- 4. Matriz de planos
+-- 4. Matriz de planos. Se crea la matriz de planos:
 planos = {}
  
--- Añade u, v a la tabla ptos
+-- Añade u, v a la tabla ptos.
+-- Cada punto se representa en una pantalla plana (papel, ordenador, etc.)
+-- (u,v) son las coordenadas en esta pantalla.
+-- Las dos funciones siguientes calculan las coordenadas u, v del punto y los cuatro
+-- puntos representativos de los planos.
 mEsfera.completaPuntos(esf, obs, ptos)
 mEsfera.completaPlanos(obs, ptos, planos)
 
 \end{luacode*}
 
+% El siguiente bloque imprime los valores calculados (para depuración).
+% Al
 {\scriptsize
   \par
   \noindent\DEBUGEsf{esf}\par
