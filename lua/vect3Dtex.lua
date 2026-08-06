@@ -207,6 +207,11 @@ function M.completaPlanos(obs, ptos, planos)
 end
 
 
+function M.completaVectores(obs, ptos, planos, vectores)
+end
+
+
+
 function M.completaPlanosold(obs, ptos, planos)
    local plano
    local theta, phi, stheta, ctheta, sphi, cphi
