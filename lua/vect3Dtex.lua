@@ -795,14 +795,13 @@ function M.DEBUGvectores(vectores)
    tex.print([[\vspace{1ex}]])
    tex.print([[\begin{tabular}{|c|c|c|c|c|c|}]])
    tex.print([[\hline]])
-   tex.print([[VectorID & PlanoID & (r,theta) & $(x,y)$ & $(u,v)$ & Visible\\]])
+   tex.print([[PlanoID & (r,thetaD)\\]])
    tex.print([[\hline]])
 
    for i, p in ipairs(vectores) do
-   tex.print([[PlanoID & $(r,\theta)$\\]])
       tex.print(string.format(
 		   [[%d & (%.2f, %.2f)\\]],
-      i, p.r, p.theta))
+      i, p.r, p.thetaD))
    end
    tex.print([[\hline]])
    tex.print([[\end{tabular}]])
