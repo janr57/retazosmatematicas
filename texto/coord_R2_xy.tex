@@ -324,13 +324,12 @@ que coincide con el valor que obteníamos en el cálculo vectorial elemental.
 
 
 \section{Vectores contravariantes y covariantes}
-Esta sección se encuentra aquí de una manera un tanto forzada, pues los dos
-tipos de vectores del título son el mismo en coordenadas rectangulares y, como
-consecuencia, no es necesario hacer referencia a ellos.
+Esta sección se presenta de una manera un tanto forzada, pues los dos tipos de vectores
+del título son el mismo en coordenadas rectangulares y no es necesario hacer referencia a
+ellos.
 
-Pero, adelantaremos algo de información para captar su significado y entender por qué en
-otros sistemas de coordenadas estos vectores son diferentes, al contrario de lo que
-ocurre en este.
+Pero, servirá para adquirir algo de intuición acerca de ellos, donde en otros sistemas de
+coordenadas estos vectores son diferentes, al contrario de lo que ocurre en este.
 
 \subsection{Vectores contravariantes}
 Los vectores \emph{viven} en un espacio vectorial $V$\, llamado
@@ -445,14 +444,21 @@ Véase la figura \ref{fig:R2-cart_planos_tangentes}.
   -- 3. Matriz de puntos (tabla de tablas). Algunos pueden no ser visibles:
   ptos = {
     {thetaD=90, phiD=186, color="black", a=0.4, b=0.4, opac=0.8, draw="black!80", fill="black!10"},
-    {thetaD=0, phiD=0, color="black", a=1.0, b=1.0, opac=0.8, draw="red!80!black", fill="red!20"},
+    {thetaD=0, phiD=0, color="black", a=1.0, b=1.0, opac=0.8, draw="blue!80!black", fill="blue!20"},
     {thetaD=90, phiD=170, color="black", a=3, b=3, opac=0.8, draw="green!80!black", fill="green!20"},
-    {thetaD=120, phiD=50, color="black", a=0.9, b=0.9, opac=0.8, draw="blue!80!black", fill="blue!20"}
+    {thetaD=120, phiD=50, color="black", a=0.9, b=0.9, opac=0.8, draw="red!80!black", fill="red!20"}
   }
   
--- 4. Matriz de planos. Se crea la matriz de planos:
+-- 4. Matriz de planos tangente. Se crea la matriz de los planos:
 planos = {}
- 
+
+-- 5. Vectores en los planos tangente:
+--vectores = {
+--  {puntoID=2, r=0.5, theta=0}
+--  {puntoID=2, x=0.5, y=0.5}
+--}
+
+-- 6. Dibujo
 -- Añade u, v a la tabla ptos.
 -- Cada punto se representa en una pantalla plana (papel, ordenador, etc.)
 -- (u,v) son las coordenadas en esta pantalla.
@@ -460,6 +466,9 @@ planos = {}
 -- puntos representativos de los planos.
 mEsfera.completaPuntos(esf, obs, ptos)
 mEsfera.completaPlanos(obs, ptos, planos)
+
+
+-- Añade
 
 \end{luacode*}
 
@@ -472,7 +481,7 @@ mEsfera.completaPlanos(obs, ptos, planos)
   \noindent\DEBUGPuntos{ptos}\par
   \noindent\DEBUGCoordPuntos{ptos}\par
   \noindent\DEBUGPlanos{planos}\par
-  \noindent\DEBUGPlanosObs{planos}\par  
+  \noindent\DEBUGPlanosObs{planos}\par
 }
 
 \begin{figure}[ht]

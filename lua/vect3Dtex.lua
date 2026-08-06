@@ -732,7 +732,7 @@ function M.DEBUGcoordpuntos(ptos)
    tex.print([[\vspace{1ex}]])
    tex.print([[\begin{tabular}{|c|c|c|c|c|}]])
    tex.print([[\hline]])
-   tex.print([[PuntoID&$(r,\theta,\phi)$&$(x,y,z)$&$(u,v)$&Visible\\]])
+   tex.print([[PuntoID & $(r,\theta,\phi)$ & $(x,y,z)$ & $(u,v)$ & Visible\\]])
    tex.print([[\hline]])
 
    for i, p in ipairs(ptos) do
@@ -770,7 +770,7 @@ end
 function M.DEBUGplanosobs(planos)
    -- TABLA PLANOS
    tex.print([[\vspace{1ex}]])
-   tex.print([[\noindent\,\textbf{PLANOS SEGÚN OBSERVADOR}\\]])
+   tex.print([[\noindent\,\textbf{PUNTOS DEL PLANO (u,v) DESDE EL PUNTO DE VISTA DEL OBSERVADOR}\\]])
    tex.print([[\vspace{1ex}]])
    tex.print([[\begin{tabular}{|c|c|c|c|c|c|}]])
    tex.print([[\hline]])
@@ -787,6 +787,29 @@ function M.DEBUGplanosobs(planos)
    tex.print([[\\]])
    tex.print([[\vspace{1ex}]])
 end
+
+function M.DEBUGvectores(vectores)
+   -- TABLA VECTORES
+   tex.print([[\vspace{1ex}]])
+   tex.print([[\noindent\,\textbf{VECTORES}\\]])
+   tex.print([[\vspace{1ex}]])
+   tex.print([[\begin{tabular}{|c|c|c|c|c|c|}]])
+   tex.print([[\hline]])
+   tex.print([[VectorID & PlanoID & (r,theta) & $(x,y)$ & $(u,v)$ & Visible\\]])
+   tex.print([[\hline]])
+
+   for i, p in ipairs(vectores) do
+   tex.print([[PlanoID & $(r,\theta)$\\]])
+      tex.print(string.format(
+		   [[%d & (%.2f, %.2f)\\]],
+      i, p.r, p.theta))
+   end
+   tex.print([[\hline]])
+   tex.print([[\end{tabular}]])
+   tex.print([[\\]])
+   tex.print([[\vspace{1ex}]])
+end
+
 
 -- ----------------------------------------------------------------------------
 
