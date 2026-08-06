@@ -441,6 +441,7 @@ Véase la figura \ref{fig:R2-cart_planos_tangentes}.
   }
   -- Datos del observador
   obs = {thetaD = 65, phiD = 15}
+  --obs = {thetaD = 90, phiD = 0}
   -- 3. Matriz de puntos (tabla de tablas). Algunos pueden no ser visibles:
   ptos = {
     {thetaD=90, phiD=186, color="black", a=0.4, b=0.4, opac=0.8, draw="black!80", fill="black!10"},
@@ -448,7 +449,7 @@ Véase la figura \ref{fig:R2-cart_planos_tangentes}.
     {thetaD=90, phiD=170, color="black", a=3, b=3, opac=0.8, draw="green!80!black", fill="green!20"},
     {thetaD=120, phiD=50, color="black", a=0.9, b=0.9, opac=0.8, draw="red!80!black", fill="red!20"}
   }
-  
+
 -- 4. Matriz de planos tangente. Se crea la matriz de los planos:
 planos = {}
 
@@ -468,7 +469,6 @@ vectores = {
 mEsfera.completaPuntos(esf, obs, ptos)
 mEsfera.completaPlanos(obs, ptos, planos)
 m.Esfera.completaVectores(obs, ptos, planos, vectores)
-
 
 \end{luacode*}
 

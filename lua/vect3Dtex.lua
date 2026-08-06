@@ -140,6 +140,8 @@ function M.completaPlanos(obs, ptos, planos)
    local plano, ptosplano, ptojplano
    local theta, phi, stheta, ctheta, sphi, cphi
    -- Coordenadas del punto de referencia (antes de la rotación)
+   -- El punto de la esfera donde colocamos los puntos que se declaran,
+   -- antes de rotarlos al lugar donde deben estar al final.
    local px = 1
    local py = 0
    local pz = 0
@@ -155,7 +157,7 @@ function M.completaPlanos(obs, ptos, planos)
       -- Ángulos de giro phi y theta, junto con cálculos trigonométricos.
       theta = math.rad(p.thetaD)
       phi = math.rad(p.phiD)
-      theta, phi = M.nuevoAnguloGiro(theta, phi)
+      theta, phi = M.anguloGiroCorregido(theta, phi)
       stheta = math.sin(theta)
       ctheta = math.cos(theta)
       sphi = math.sin(phi)
@@ -208,6 +210,31 @@ end
 
 
 function M.completaVectores(obs, ptos, planos, vectores)
+   local u, v
+   local x, y, z
+
+   for i, v in ipairs(vectores) do
+      --local visible = ptos[v.PlanoID].visible
+      vectores[i].visible = ptos[v.planoID].visible
+      -- Convierto los vectores 2D de un plano tangente (v.r, v.thetaD)
+      -- a cartesianas rectangulares (y,z) porque el punto central del plano
+      -- tangente está situado inicialemente en (1,0,0)
+      local x0 = 1
+      local y0 = v.r * math.cos(math.rad(v.thetaD))
+      local z0 = v.r * math.sin(math.rad(v.thetaD))
+      -- Rotamos el punto a su posición final (r=1, theta, phi)
+      local theta = ptos[v.PlanoID].thetaD
+      local phi = ptos[v.PlanoID].phiD
+      theta, phi = M.anguloGiroCorregido(theta, phi)
+      local sintheta = math.sin(theta)
+      local costheta = math.cos(theta)
+      local sinphi = math.sin(phi)
+      local cosphi = math.cos(phi)
+      x, y, z = M.xyzRotacionSpeed(x0,y0,z0,sintheta,costheta,sinphi,cosphi)
+      local u, v
+      u, v = M.xyz2uvAll(x,y,z,obs)
+   end
+   
 end
 
 
@@ -260,7 +287,7 @@ function M.completaPlanosold(obs, ptos, planos)
 
       theta = math.rad(p.thetaD)
       phi = math.rad(p.phiD)
-      theta, phi = M.nuevoAnguloGiro(theta, phi)
+      theta, phi = M.anguloGiroCorregido(theta, phi)
       stheta = math.sin(theta)
       ctheta = math.cos(theta)
       sphi = math.sin(phi)
@@ -328,7 +355,7 @@ function M.xyzRotacionSpeed(x, y, z, sintheta, costheta, sinphi, cosphi)
 end
 
 
-function M.nuevoAnguloGiro(theta, phi)
+function M.anguloGiroCorregido(theta, phi)
    return -(math.pi/2 - theta), phi
 end
 
@@ -798,15 +825,15 @@ function M.DEBUGvectores(vectores)
    tex.print([[\vspace{1ex}]])
    tex.print([[\noindent\,\textbf{VECTORES}\\]])
    tex.print([[\vspace{1ex}]])
-   tex.print([[\begin{tabular}{|c|c|c|}]])
+   tex.print([[\begin{tabular}{|c|c|c|c|}]])
    tex.print([[\hline]])
-   tex.print([[VectorID & PlanoID & (r,thetaD)\\]])
+   tex.print([[VectorID & PlanoID & (r,thetaD) & Visible\\]])
    tex.print([[\hline]])
 
    for i, v in ipairs(vectores) do
       tex.print(string.format(
-		   [[%d & %d & (%.2f, %.2f)\\]],
-      i, v.planoID, v.r, v.thetaD))
+		   [[%d & %d & (%.2f, %.2f) & %s\\]],
+      i, v.planoID, v.r, v.thetaD, v.visible))
    end
    tex.print([[\hline]])
    tex.print([[\end{tabular}]])
