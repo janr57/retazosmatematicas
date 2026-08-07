@@ -434,9 +434,12 @@ Véase la figura \ref{fig:R2-cart_planos_tangentes}.
 % Código lua de prueba para representar planos y vectores en superficie esférica.
 
 \begin{luacode*}
+-- 0. Unidad
+  unit="cm"
+  
 -- 1. Datos y propiedades de la esfera:
   esf = {
-    radio = 1.0, color = "gray!10", opac = 1, sombracolor = "black!20", sombraopac=0.9
+    escala=1.0,radio=2.0,color="gray!10",opac=1,sombracolor="black!20",sombraopac=0.9
   }
   
   -- 2, Posición angular del observador
@@ -444,9 +447,8 @@ Véase la figura \ref{fig:R2-cart_planos_tangentes}.
   --obs = {thetaD = 90, phiD = 0}
 
   -- 3. Propiedades de los puntos en la esfera
-  puntosprop = {
-    radiovis = "0.4pt", invis=true,
-    radinvis = "0.3pt", colorvis="black", colorinvis="red", opacvis=1, opacinvis=0.5
+  ptpr = {
+    invisib=true, rv=0.4, ri=0.3, colorv="black", colori="red", opacv=1.0, opaci=0.5
   }
   
   -- 3. Matriz de puntos (tabla de tablas). Algunos pueden no ser visibles:
@@ -473,28 +475,29 @@ vectores = {
 -- (u,v) son las coordenadas en esta pantalla.
 -- Las dos funciones siguientes calculan las coordenadas u, v del punto y los cuatro
 -- puntos representativos de los planos.
-mEsfera.completaPuntos(esf, obs, ptos)
-mEsfera.completaPlanos(obs, ptos, planos)
-m.Esfera.completaVectores(obs, ptos, planos, vectores)
+mEsfera.completaPuntos(unit, esf, obs, ptos)
+mEsfera.completaPlanos(unit, esf, obs, ptos, planos)
+mEsfera.completaVectores(unit, esf, obs, ptos, planos, vectores)
 
 \end{luacode*}
+
 
 % El siguiente bloque imprime los valores calculados (para depuración).
 {\scriptsize
   \par
-  \noindent\DEBUGEsf{esf}\par
+  \noindent\DEBUGEsf{unit}{esf}\par
   \noindent\DEBUGObs{obs}\par
-  \noindent\DEBUGPuntos{ptos}\par
+  \noindent\DEBUGPuntosProp{ptpr}\par\vspace{2ex}
   \noindent\DEBUGCoordPuntos{ptos}\par
   \noindent\DEBUGPlanos{planos}\par
   \noindent\DEBUGPlanosObs{planos}\par
   \noindent\DEBUGVectores{vectores}\par
 }
 
-\begin{figure}[ht]
-  % El primer parámetro es la escala del entorno TikZpicture
-  \TIKZEsferaPlanos{1.9}{esf}{obs}{ptos}{planos}
-\end{figure}
+%\begin{figure}[ht]
+%  % El primer parámetro es la escala del entorno TikZpicture
+%  \TIKZEsferaPlanos{unit}{esf}{obs}{ptosprop}{ptos}{planos}
+%\end{figure}
 
 \section{Gradiente}
 Presentamos un resumen del gradiente, tal y como se presenta en un curso básico de

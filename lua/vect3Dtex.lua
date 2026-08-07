@@ -13,47 +13,50 @@ local M = {}
 -- ptos: Tabla con los puntos sobre la esfera y objetos relacionados con ellos.
 -- Resumen:
 -- (esf, obs, ptos) -> Imagen TikZ de esfera con puntos y planos.
-function M.TIKZEsferaPlanos(escala, esf, obs, ptos, planos)
+function M.TIKZEsferaPlanos(unit, esf, obs, ptosprop, ptos, planos)
    --local visibles
    --local invisibles
 
    --visibles, invisibles = M.Visibilidad(obs, ptos)
    
    tex.print(string.format(
-		"\\begin{tikzpicture}[scale=%.2f]", escala))
+		"\\begin{tikzpicture}[scale=%.2f]", esf.escala))
+
    
-   -- 1. PUNTOS INVISIBLES
-   for i, p in ipairs(ptos) do
-      if not p.visible then
-	 tex.print(string.format("\\fill[red] (%4f,%4f) circle[radius=0.3pt];",
-				 p.u, p.v))
-      end
-   end
+--   -- 1. PUNTOS INVISIBLES
+--   for i, p in ipairs(ptos) do
+--      if not p.visible then
+--	 tex.print(string.format("\\fill[red] (%4f,%4f) circle[radius=0.3pt];",
+--				 p.u, p.v))
+--      end
+--   end
    
    -- 2. ESFERA
    tex.print(string.format(
-		"\\draw[%s,opacity=%2.f] (0,0) circle[radius=%.2f];",
-		esf.color, esf.opac, esf.radio))
+		"\\draw[%s,opacity=%2.f] (0,0) circle[radius=%.2f%s];",
+		esf.color, esf.opac, esf.radio, unit))
    tex.print(string.format(
-		"\\shade[ball color = %s, opacity = %4f] (0,0) circle[radius=%.2f];",
-		esf.sombracolor, esf.sombraopac, esf.radio))
+	"\\shade[ball color = %s, opacity = %4f] (0,0) circle[radius=%.2f%s];",
+	esf.sombracolor, esf.sombraopac, esf.radio, unit))
 
-   -- 3. PLANOS VISIBLES
-   for i, p in ipairs(planos) do
-      if p.visible then
-	 tex.print(string.format(
-	    "\\draw[opacity=%.2f,draw=%s,fill=%s] (%.4f,%.4f) -- (%.4f,%.4f) -- (%.4f,%.4f) -- (%.4f,%.4f) -- cycle;",
-        	p.opac,p.draw,p.fill,p[1].u, p[1].v, p[2].u, p[2].v, p[3].u, p[3].v, p[4].u,p[4].v))
-      end
-   end
-
-   -- 3. PUNTOS VISIBLES
-   for i, p in ipairs(ptos) do
-      if p.visible then
-	 tex.print(string.format("\\fill[black] (%.4f,%.4f) circle[radius=0.4pt];",
-				 p.u, p.v))
-      end
-   end
+--   -- 3. PLANOS VISIBLES
+--   for i, p in ipairs(planos) do
+--      if p.visible then
+--	 tex.print(string.format(
+--	    "\\draw[opacity=%.2f,draw=%s,fill=%s] (%.4f%s,%.4f%s) -- (%.4f%s,%.4f%s)  (%.4f%s,%.4f%s) -- (%.4f%s,%.4f%s) -- cycle;",
+--        	p.opac,p.draw,p.fill,p[1].u,unit, p[1].v,unit, p[2].u,unit,  p[2].v,unit, p[3].u,unit, p[3].v,unit, p[4].u,unit, p[4].v,unit))
+--      end
+--   end
+--
+--   -- 3. PUNTOS VISIBLES
+--   for i, p in ipairs(ptos) do
+--      if p.visible then
+--	 tex.print(string.format(
+--		      "\\fill[black] (%.4f%s,%.4f%s) circle[radius=%.2f%s];",
+--		      p.u,unit, p.v,unit, ptosprop.radiovis,unit
+--	 )
+--      end
+--   end
    
    tex.print("\\end{tikzpicture}")
 end
@@ -109,17 +112,22 @@ function M.sphD2uv(r, thetaD, phiD, obs)
    return u, v
 end
 
+--    invisib=true,
+--    radiovis=0.4, radioinvis=0.3,
+--    colorvis="black", colorinvis="red",
+--    opacvis=1, opacinvis=0.5
+
 -- ****************************************************************************
 -- FUNCIONES AUXILIARES
 -- ****************************************************************************
-function M.completaPuntos(esf, obs, ptos)
+function M.completaPuntos(unit, esf, obs, ptos)
    local u, v
    local x, y, z
    
    for i, p in ipairs(ptos) do
       p.r = esf.radio
       
-      x, y, z = M.sphD2xyz(esf.radio, p.thetaD, p.phiD)
+      x, y, z = M.sphD2xyz(p.r, p.thetaD, p.phiD)
       -- Coordenadas (x,y,z) del punto de la esfera
       p.x = x
       p.y = y
@@ -136,13 +144,13 @@ function M.completaPuntos(esf, obs, ptos)
    end
 end
 
-function M.completaPlanos(obs, ptos, planos)
+function M.completaPlanos(unit, esf, obs, ptos, planos)
    local plano, ptosplano, ptojplano
    local theta, phi, stheta, ctheta, sphi, cphi
    -- Coordenadas del punto de referencia (antes de la rotación)
    -- El punto de la esfera donde colocamos los puntos que se declaran,
    -- antes de rotarlos al lugar donde deben estar al final.
-   local px = 1
+   local px = esf.radio
    local py = 0
    local pz = 0
 
@@ -208,8 +216,7 @@ function M.completaPlanos(obs, ptos, planos)
    end
 end
 
-
-function M.completaVectores(obs, ptos, planos, vectores)
+function M.completaVectores(unit, esf, obs, ptos, planos, vectores)
    local u, v
    local x, y, z
 
@@ -219,8 +226,8 @@ function M.completaVectores(obs, ptos, planos, vectores)
       v.visible = 1
       -- Convierto los vectores 2D de un plano tangente (v.r, v.thetaD)
       -- a cartesianas rectangulares (y,z) porque el punto central del plano
-      -- tangente está situado inicialemente en (1,0,0)
-      local x0 = 1
+      -- tangente está situado inicialemente en (esf.radio,0,0)
+      local x0 = esf.radio
       local y0 = v.r * math.cos(math.rad(v.thetaD))
       local z0 = v.r * math.sin(math.rad(v.thetaD))
       -- Rotamos el punto a su posición final (r=1, theta, phi)
@@ -357,7 +364,7 @@ end
 
 
 function M.anguloGiroCorregido(theta, phi)
-   return -(math.pi/2 - theta), phi
+   return theta-math.pi/2, phi
 end
 
 
@@ -692,6 +699,7 @@ function M.limpia(valor)
     end
     return valor
 end
+
 -- ****************************************************************************
 -- FUNCIONES DE DEPURACIÓN
 -- ****************************************************************************
@@ -699,19 +707,19 @@ end
 -- Código de depuración el LuaLaTeX.
 -- Resumen de los datos enviados y procesados por LuaLaTeX.
 -- Esfera, Observador y puntos visibles e invisibles.
-function M.DEBUGesf(esf)
+function M.DEBUGesf(unit, esf)
    -- TABLA ESFERA
    tex.print([[\vspace{1ex}]])
    tex.print([[\noindent\,\textbf{ESFERA}\\]])
    tex.print([[\vspace{1ex}]])
-   tex.print([[\begin{tabular}{|c|c|c|c|c|}]])
+   tex.print([[\begin{tabular}{|c|c|c|c|c|c|c|}]])
    tex.print([[\hline]])
-   tex.print([[Radio & Color & Opac. & Color de sombra & Opac. de sombra \\]])
+   tex.print([[Unidad & Escala & Radio & Color & Opac. & Color de sombra &  Opac. de sombra \\]])
    tex.print([[\hline]])
    tex.print(string.format(
-		[[ %.2f & %s & %.2f & %s & %.2f\\ ]],
-         esf.radio, esf.color, esf.opac, esf.sombracolor, esf.sombraopac
-   ))
+		[[ %s & $%.2f$ & $%.2f$ & %s & $%.2f$ & %s & $%.2f$\\ ]],
+	unit,esf.escala,esf.radio,esf.color,esf.opac,esf.sombracolor,esf.sombraopac)
+   )
    tex.print([[\hline]])
    tex.print([[\end{tabular}]])
    tex.print([[\\]])
@@ -737,21 +745,20 @@ function M.DEBUGobs(obs)
    tex.print([[\vspace{1ex}]])
 end
 
-function M.DEBUGpuntos(ptos)
-   -- TABLA PUNTOS
-   tex.print([[\vspace{1ex}]])
-   tex.print([[\noindent\,\textbf{PUNTOS}\\]])
-   tex.print([[\vspace{1ex}]])
-   tex.print([[\begin{tabular}{|c|c|}]])
-   tex.print([[\hline]])
-   tex.print([[ID & Visible\\]])
-   tex.print([[\hline]])
 
-   for i, p in ipairs(ptos) do
-      tex.print(string.format(
-		   [[%d & %s\\]],
-   	  i, p.visible))
-   end
+function M.DEBUGpuntosprop(ptpr)
+   -- TABLA PROPIEDADES DE PUNTOS
+   tex.print([[\vspace{1ex}]])
+   tex.print([[\noindent\,\textbf{PROPIEDADES DE PUNTOS VISIBLES-INVISIBLES}\\]])
+   tex.print([[\vspace{1ex}]])
+   tex.print([[\begin{tabular}{|c|c|c|c|}]])
+   tex.print([[\hline]])
+   tex.print([[Invisibilidad & Radios & Colores & Opacidades\\]])
+   tex.print([[\hline]])
+   tex.print(string.format(
+		[[ %s & $%.2f$-$%.2f$ & %s-%s & $%.2f$-$%.2f$\\ ]],
+	ptpr.invisib, ptpr.rv, ptpr.ri, ptpr.colorv, ptpr.colori, ptpr.opacv, ptpr.opaci)
+   )
    tex.print([[\hline]])
    tex.print([[\end{tabular}]])
    tex.print([[\\]])

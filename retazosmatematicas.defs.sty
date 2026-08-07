@@ -76,16 +76,16 @@
 
 % DEFINICIÓN DE COMANDOS
 % Macros de LaTeX
-\newcommand{\DEBUGEsf}[1]{%
-  \directlua{mEsfera.DEBUGesf(#1)}
+\newcommand{\DEBUGEsf}[2]{%
+  \directlua{mEsfera.DEBUGesf(#1, #2)}
 }
 
 \newcommand{\DEBUGObs}[1]{%
   \directlua{mEsfera.DEBUGobs(#1)}
 }
 
-\newcommand{\DEBUGPuntos}[1]{%
-  \directlua{mEsfera.DEBUGpuntos(#1)}
+\newcommand{\DEBUGPuntosProp}[1]{%
+  \directlua{mEsfera.DEBUGpuntosprop(#1)}
 }
 
 \newcommand{\DEBUGCoordPuntos}[1]{%
@@ -104,8 +104,8 @@
   \directlua{mEsfera.DEBUGvectores(#1)}
 }
 
-\newcommand{\TIKZEsferaPlanos}[5]{%
-  \directlua{mEsfera.TIKZEsferaPlanos(#1, #2, #3, #4, #5)}
+\newcommand{\TIKZEsferaPlanos}[6]{%
+  \directlua{mEsfera.TIKZEsferaPlanos(#1, #2, #3, #4, #5, #6)}
 }
 
 %% ----------------------------------------------------------------------------
