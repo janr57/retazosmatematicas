@@ -434,20 +434,27 @@ Véase la figura \ref{fig:R2-cart_planos_tangentes}.
 % Código lua de prueba para representar planos y vectores en superficie esférica.
 
 \begin{luacode*}
--- Datos de la esfera:
+-- 1. Datos y propiedades de la esfera:
   esf = {
     radio = 1.0, color = "gray!10", opac = 1,
     sombracolor = "black!20", sombraopac=0.9
   }
-  -- Datos del observador
+  
+  -- 2, Posición angular del observador
   obs = {thetaD = 65, phiD = 15}
   --obs = {thetaD = 90, phiD = 0}
+
+  -- 3. Propiedades de los puntos en la esfera
+  puntosprop = {
+    radvis = "0.4pt", radinvis = "0.3pt", colorvis="black", colorinvis="red"
+  }
+  
   -- 3. Matriz de puntos (tabla de tablas). Algunos pueden no ser visibles:
   ptos = {
-    {thetaD=90, phiD=186, color="black", a=0.4, b=0.4, opac=0.8, draw="black!80", fill="black!10"},
-    {thetaD=0, phiD=0, color="black", a=1.0, b=1.0, opac=0.8, draw="blue!80!black", fill="blue!20"},
-    {thetaD=90, phiD=170, color="black", a=3, b=3, opac=0.8, draw="green!80!black", fill="green!20"},
-    {thetaD=120, phiD=50, color="black", a=0.9, b=0.9, opac=0.8, draw="red!80!black", fill="red!20"}
+    {thetaD=90, phiD=186, a=0.4, b=0.4, opac=0.8, draw="black!80", fill="black!10"},
+    {thetaD=0, phiD=0, a=1.0, b=1.0, opac=0.8, draw="blue!80!black", fill="blue!20"},
+    {thetaD=90, phiD=170, a=3, b=3, opac=0.8, draw="green!80!black", fill="green!20"},
+    {thetaD=120, phiD=50, a=0.9, b=0.9, opac=0.8, draw="red!80!black", fill="red!20"}
   }
 
 -- 4. Matriz de planos tangente. Se crea la matriz de los planos:
@@ -455,9 +462,9 @@ planos = {}
 
 -- 5. Vectores en los planos tangente:
 vectores = {
-  {planoID=1, r=0.5, thetaD=45},
-  {planoID=1, r=0.4, thetaD=0},
-  {planoID=2, r=0.9, thetaD=90},
+  {puntoID=1, r=0.5, thetaD=45},
+  {puntoID=1, r=0.4, thetaD=0},
+  {puntoID=2, r=0.9, thetaD=90},
 }
 
 -- 6. Dibujo
@@ -473,7 +480,6 @@ m.Esfera.completaVectores(obs, ptos, planos, vectores)
 \end{luacode*}
 
 % El siguiente bloque imprime los valores calculados (para depuración).
-% Al
 {\scriptsize
   \par
   \noindent\DEBUGEsf{esf}\par
@@ -490,73 +496,74 @@ m.Esfera.completaVectores(obs, ptos, planos, vectores)
   \TIKZEsferaPlanos{1.9}{esf}{obs}{ptos}{planos}
 \end{figure}
 
-%\section{Gradiente}
-%Presentamos un resumen del gradiente, tal y como se presentan en un curso básico de
-%cálculo.
-%
-%El gradiente de un campo escalar $\phi(x,y)$ es un vector
-%\begin{equation}
-%  \vvv{\nabla}\phi
-%  = \dfrac{\partial \phi}{\partial x}\,\uvec{\i}
-%  + \dfrac{\partial \phi}{\partial y}\,\uvec{\j}
-%  = \begin{pmatrix}
-%    \partial \phi/\partial x\\
-%    \partial \phi/\partial y
-%    \end{pmatrix}
-%\end{equation}
-%El vector gradiente de $\phi$ evaluado en un punto genérico $(x,y)$ del dominio de $\phi$
-%indica la dirección en la cual el campo $\phi$ varía más rápidamente y su módulo
-%representa el ritmo de variación de $\phi$ en la dirección de dicho vector gradiente.
-%
-%El operador gradiente se comporta como un vector bajo rotaciones, decimos esto porque
-%cuando opera frente a un campo escalar, se obtiene otro formado por vectores
-%\begin{equation}
-%  \vvv{\nabla}
-%  = \dfrac{\partial}{\partial x}\,\uvec{\i}
-%  + \dfrac{\partial}{\partial y}\,\uvec{\j}
-%  = \begin{pmatrix}
-%    \partial/\partial x\\
-%    \partial/\partial y
-%    \end{pmatrix}
-%\end{equation}
+\section{Gradiente}
+Presentamos un resumen del gradiente, tal y como se presenta en un curso básico de
+cálculo.
 
-%\section{Divergencia}
-%La divergencia de un campo vectorial $\vvv{F}=(F_x, F_y)$ es un escalar
-%\begin{equation}\label{eq:R2-divergencia-cartesianas}
-%  \vvv{\nabla}\cdot\vvv{F}
-%  = \begin{pmatrix}
-%    \partial/\partial x & \partial/\partial y      
-%  \end{pmatrix}
-%  \begin{pmatrix}
-%    1 & 0\\
-%    0 & 1
-%  \end{pmatrix}
-%  \begin{pmatrix}
-%    F_x\\
-%    F_y
-%  \end{pmatrix}
-%  = \dfrac{\partial F_x}{\partial x}
-%  + \dfrac{\partial F_y}{\partial y}
-%\end{equation}
-%La divergencia mide la diferencia entre el flujo saliente y el flujo entrante de un
-%campo vectorial sobre la superficie que rodea a un volumen de control, por tanto, si el
-%campo tiene \emph{fuentes} la divergencia será positiva, y si tiene \emph{sumideros}
-%será negativa. La divergencia mide la rapidez neta con la que se conduce el campo al
-%exterior de cada punto, y en el caso de ser la divergencia idénticamente igual a cero,
-%describiría el flujo incompresible del campo, llamado también campo solenoidal.
-%
-%\subsection{Demostración}
-%Supongamos un campo vectorial $\vvv{F}$
-%\[
-%  \vvv{F} = F_x(x,y)\,\uvec{\i} + F_y(x,y)\,\uvec{\j}
-%\]
-%
-%Ahora estamos interesados en investigar una propiedad del campo $\vvv{F}$ en un punto
-%concreto $P(x_0,y_0)$ del espacio $\symbb{R}^2$. En particular, estamos interesados en
-%estudiar si ese punto es una fuente del campo (punto en el que se crean líneas de
-%campo), si es un sumidero (si desaparecen líneas), o si no ocurre ninguna de las
-%dos cosas (las líneas de campo entran y salen del punto, sin más).
-%
+El gradiente de un campo escalar $\phi(x,y)$ es un vector
+\begin{equation}
+  \vvv{\nabla}\phi
+  = \dfrac{\partial \phi}{\partial x}\,\uvec{\i}
+  + \dfrac{\partial \phi}{\partial y}\,\uvec{\j}
+  = \begin{pmatrix}
+    \partial \phi/\partial x\\
+    \partial \phi/\partial y
+    \end{pmatrix}
+\end{equation}
+El vector gradiente de $\phi$ evaluado en un punto genérico $(x,y)$ del dominio de $\phi$
+indica la dirección y sentido en la que el campo $\phi$ aumenta más rápidamente. Su
+módulo representa el ritmo de variación del campo $\phi$ en la dirección de dicho vector
+gradiente.
+
+El operador gradiente se comporta como un vector bajo rotaciones:
+\begin{equation}
+  \vvv{\nabla}
+  = \dfrac{\partial}{\partial x}\,\uvec{\i}
+  + \dfrac{\partial}{\partial y}\,\uvec{\j}
+  = \begin{pmatrix}
+    \partial/\partial x\\
+    \partial/\partial y
+    \end{pmatrix}
+\end{equation}
+
+\section{Divergencia}
+La divergencia de un campo vectorial $\vvv{F}=(F_x, F_y)$ es un escalar
+\begin{equation}\label{eq:R2-divergencia-cartesianas}
+  \vvv{\nabla}\cdot\vvv{F}
+  = \begin{pmatrix}
+    \partial/\partial x & \partial/\partial y      
+  \end{pmatrix}
+  \begin{pmatrix}
+    1 & 0\\
+    0 & 1
+  \end{pmatrix}
+  \begin{pmatrix}
+    F_x\\
+    F_y
+  \end{pmatrix}
+  = \dfrac{\partial F_x}{\partial x}
+  + \dfrac{\partial F_y}{\partial y}
+\end{equation}
+Mide la diferencia entre el flujo saliente y el flujo entrante de un
+campo vectorial sobre la superficie que rodea a un volumen de control. Si el campo tiene
+\emph{fuentes} la divergencia será positiva, y si tiene \emph{sumideros} será negativa.
+
+Este operador mide la rapidez neta con la que se conduce el campo al exterior de cada
+punto, y en el caso de ser igual a cero, se trataría del flujo incompresible del campo,
+llamado también campo solenoidal.
+
+\subsection{Demostración}
+Supongamos un campo vectorial $\vvv{F}$
+\[
+  \vvv{F} = F_x(x,y)\,\uvec{\i} + F_y(x,y)\,\uvec{\j}
+\]
+
+Ahora estamos interesados en investigar una propiedad del campo $\vvv{F}$ en un punto
+concreto $P(x_0,y_0)$ del espacio $\symbb{R}^2$. En particular, estamos interesados en
+estudiar si ese punto es una fuente del campo (punto en el que se crean líneas de
+campo), si es un sumidero (si desaparecen líneas), o si no ocurre ninguna de las
+dos cosas (las líneas de campo entran y salen del punto, sin más).
+
 %Supongamos un pequeño cuadrado imaginario, de lado $h$ en $\symbb{R}^2$, situando el
 %punto $P$ que nos interesa en el vértice inferior izquierdo, como se aprecia en la
 %figura \ref{fig:R2-rect-divergencia}.
@@ -1163,8 +1170,16 @@ m.Esfera.completaVectores(obs, ptos, planos, vectores)
 
 
 
+
+
+
+
 %%% Local Variables:
+%%% coding: utf-8
 %%% mode: latex
 %%% TeX-engine: luatex
 %%% TeX-master: "../retazosmatematicas.tex"
 %%% End:
+
+
+

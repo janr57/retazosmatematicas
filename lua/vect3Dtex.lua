@@ -21,7 +21,7 @@ function M.TIKZEsferaPlanos(escala, esf, obs, ptos, planos)
    
    tex.print(string.format(
 		"\\begin{tikzpicture}[scale=%.2f]", escala))
-
+   
    -- 1. PUNTOS INVISIBLES
    for i, p in ipairs(ptos) do
       if not p.visible then
@@ -214,8 +214,9 @@ function M.completaVectores(obs, ptos, planos, vectores)
    local x, y, z
 
    for i, v in ipairs(vectores) do
-      --local visible = ptos[v.PlanoID].visible
-      vectores[i].visible = ptos[v.planoID].visible
+      --local visible = ptos[v.planoID].visible
+      local novale = v.puntoID
+      v.visible = 1
       -- Convierto los vectores 2D de un plano tangente (v.r, v.thetaD)
       -- a cartesianas rectangulares (y,z) porque el punto central del plano
       -- tangente está situado inicialemente en (1,0,0)
@@ -722,12 +723,12 @@ function M.DEBUGobs(obs)
    tex.print([[\vspace{1ex}]])   
    tex.print([[\noindent\,\textbf{OBSERVADOR}\\]])
    tex.print([[\vspace{1ex}]])
-   tex.print([[\begin{tabular}{|c|c|}]])
+   tex.print([[\begin{tabular}{|c|}]])
    tex.print([[\hline]])
-   tex.print([[$\theta$ & $\phi$\\]])
+   tex.print([[$(\theta,\phi)$\\]])
    tex.print([[\hline]])
    tex.print(string.format(
-	[[ \qty{%.2f}{\degree} & \qty{%.2f}{\degree}\\ ]],
+		[[ (\qty{%.2f}{\degree}, \qty{%.2f}{\degree})\\ ]],
 		obs.thetaD, obs.phiD
    ))
    tex.print([[\hline]])
@@ -741,15 +742,15 @@ function M.DEBUGpuntos(ptos)
    tex.print([[\vspace{1ex}]])
    tex.print([[\noindent\,\textbf{PUNTOS}\\]])
    tex.print([[\vspace{1ex}]])
-   tex.print([[\begin{tabular}{|c|c|c|}]])
+   tex.print([[\begin{tabular}{|c|c|}]])
    tex.print([[\hline]])
-   tex.print([[ID & Color & Visible\\]])
+   tex.print([[ID & Visible\\]])
    tex.print([[\hline]])
 
    for i, p in ipairs(ptos) do
       tex.print(string.format(
-		   [[%d & %s & %s\\]],
-   	  i, p.color, p.visible))
+		   [[%d & %s\\]],
+   	  i, p.visible))
    end
    tex.print([[\hline]])
    tex.print([[\end{tabular}]])
@@ -827,13 +828,13 @@ function M.DEBUGvectores(vectores)
    tex.print([[\vspace{1ex}]])
    tex.print([[\begin{tabular}{|c|c|c|c|}]])
    tex.print([[\hline]])
-   tex.print([[VectorID & PlanoID & (r,thetaD) & Visible\\]])
+   tex.print([[VectorID & PuntoID & $(r,\theta)$ & Visible\\]])
    tex.print([[\hline]])
 
    for i, v in ipairs(vectores) do
       tex.print(string.format(
 		   [[%d & %d & (%.2f, %.2f) & %s\\]],
-      i, v.planoID, v.r, v.thetaD, v.visible))
+      i, v.puntoID, v.r, v.thetaD, v.visible))
    end
    tex.print([[\hline]])
    tex.print([[\end{tabular}]])
