@@ -455,9 +455,9 @@ Véase la figura \ref{fig:R2-cart_planos_tangentes}.
   -- 3. Matriz de puntos (tabla de tablas). Algunos pueden no ser visibles:
   ptos = {
     {thetaD=90, phiD=186, a=0.8, b=0.8, opac=0.8, draw="black!80", fill="black!10"},
-    {thetaD=0, phiD=0, a=2.0, b=2.0, opac=0.8, draw="blue!80!black", fill="blue!20"},
+    {thetaD=0, phiD=0, a=2.5, b=2.5, opac=0.8, draw="blue!80!black", fill="blue!20"},
     {thetaD=90, phiD=170, a=2.0, b=2.0, opac=0.8, draw="green!80!black", fill="green!20"},
-    {thetaD=120, phiD=50, a=1.8, b=1.8, opac=0.8, draw="red!80!black", fill="red!20"}
+    {thetaD=120, phiD=50, a=2.5, b=2.5, opac=0.8, draw="red!80!black", fill="red!20"}
   }
 
 -- 4. Matriz de planos tangente. Se crea la matriz de los planos:
@@ -467,14 +467,17 @@ planos = {}
 -- lw: anchura del segmento;
 -- width, length: anchura y longitud de la punta de la flecha.
 vecpr = {
-  width="3pt", length="3.5pt", lw="0.8pt"
+  width="3.5pt", length="3.5pt", lw="0.7pt"
 }
 
 -- 5. Coordenadas 2D de los vectores en el plano tangente:
 vectores = {
   {planoID=1, r=0.9, thetaD=45},
   {planoID=1, r=0.9, thetaD=0},
-  {planoID=2, r=0.7, thetaD=90}
+  {planoID=2, r=0.7, thetaD=90},
+  {planoID=2, r=0.7, thetaD=0},
+  {planoID=4, r=0.5, thetaD=0},
+  {planoID=4, r=0.75, thetaD=240}
 }
 
 -- 6. Dibujo
