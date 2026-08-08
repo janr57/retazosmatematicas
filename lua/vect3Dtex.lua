@@ -803,14 +803,14 @@ function M.DEBUGcoordpuntos(ptos)
    tex.print([[\vspace{1ex}]])
    tex.print([[\noindent\,\textbf{COORDENADAS DE PUNTOS}\\]])
    tex.print([[\vspace{1ex}]])
-   tex.print([[\begin{tabular}{|c|c|c|c|c|}]])
+   tex.print([[\begin{tabular}{|c|c|c|c|c|c|c|}]])
    tex.print([[\hline]])
-   tex.print([[PuntoID & $(r,\theta,\phi)$ & $(x,y,z)$ & $(u,v)$ & Visible\\]])
+   tex.print([[ID & Nombre & Pos. & $(r,\theta,\phi)$ & $(x,y,z)$ & $(u,v)$ & Visible\\]])
    tex.print([[\hline]])
 
    for i, p in ipairs(ptos) do
-      tex.print(string.format(
-[[%d&(%.2f,\qty{%.2f}{\degree},\qty{%.2f}{\degree})&(%.2f,%.2f,%.2f)&(%.2f,%.2f)&%s\\]],  i, p.r, p.thetaD, p.phiD,p.x, p.y, p.z, p.u, p.v, p.visible))
+      tex.print(string.format(		   [[%d&%s&%s&(%.2f,\qty{%.2f}{\degree},\qty{%.2f}{\degree})&(%.2f,%.2f,%.2f)&(%.2f,%.2f)&%s\\]],
+   i, p.p, p.pos, p.r, p.thetaD, p.phiD,p.x, p.y, p.z, p.u, p.v, p.visible))
    end
    tex.print([[\hline]])
    tex.print([[\end{tabular}]])
@@ -825,7 +825,7 @@ function M.DEBUGplanos(planos)
    tex.print([[\vspace{1ex}]])
    tex.print([[\begin{tabular}{|c|c|c|c|c|c|}]])
    tex.print([[\hline]])
-   tex.print([[PlanoID & $a\times b$ & Línea & Relleno & Opac. & Visible\\]])
+   tex.print([[ID & $a\times b$ & Línea & Relleno & Opac. & Visible\\]])
    tex.print([[\hline]])
 
    for i, p in ipairs(planos) do
@@ -847,7 +847,7 @@ function M.DEBUGplanosobs(planos)
    tex.print([[\vspace{1ex}]])
    tex.print([[\begin{tabular}{|c|c|c|c|c|c|}]])
    tex.print([[\hline]])
-   tex.print([[PlanoID & p1 & p2 & p3 & p4 & Visible\\]])
+   tex.print([[ID & p1 & p2 & p3 & p4 & Visible\\]])
    tex.print([[\hline]])
 
    for i, p in ipairs(planos) do
@@ -868,7 +868,7 @@ function M.DEBUGvectores(vectores)
    tex.print([[\vspace{1ex}]])
    tex.print([[\begin{tabular}{|c|c|c|c|c|c|}]])
    tex.print([[\hline]])
-   tex.print([[VectorID & PlanoID & $(r,\theta)$ & $(x,y,z)$ & $(u,v)$ & Visible\\]])
+   tex.print([[ID & PlanoID & $(r,\theta)$ & $(x,y,z)$ & $(u,v)$ & Visible\\]])
    tex.print([[\hline]])
 
    for i, v in ipairs(vectores) do
