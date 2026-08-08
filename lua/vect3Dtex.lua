@@ -51,15 +51,15 @@ function M.TIKZEsferaPlanos(escala, unidad, esf, obs, ptosprop, ptos, planos)
       end
    end
 
---   -- 3. PUNTOS VISIBLES
---   for i, p in ipairs(ptos) do
---      if p.visible then
---	 tex.print(string.format(
---		      "\\fill[black] (%.4f%s,%.4f%s) circle[radius=%.2f%s];",
---		      p.u,unidad, p.v,unidad, ptosprop.radiovis,unidad
---	 )
---      end
---   end
+   -- 3. PUNTOS VISIBLES
+   for i, p in ipairs(ptos) do
+      if p.visible then
+	 tex.print(string.format(
+		      "\\fill[black] (%.4f%s,%.4f%s) circle[radius=%.2f%s];",
+		      p.u,unidad, p.v,unidad, ptosprop.rv,unidad)
+	 )
+      end
+   end
    
    tex.print("\\end{tikzpicture}")
 end
