@@ -53,23 +53,29 @@ function M.TIKZEsferaPlanos(escala,unidad,esf,obs,ptpr,ptos,planos,vecpr,vectore
 
    -- VECTORES
    for i, v in ipairs(vectores) do
-   if v.visible then
-      tex.print(string.format(
-		   "\\draw[line width=%s, -{Latex[round,width=%s,length=%s]}]\z
+      if v.visible then
+	 tex.print(string.format(
+		      "\\draw[line width=%s, -{Latex[round,width=%s,length=%s]}]\z
                     (%.4f%s,%.4f%s) -- (%.4f%s,%.4f%s);",
-		   vecpr.lw,vecpr.width,vecpr.length,
-		   ptos[v.planoID].u,unidad,ptos[v.planoID].v,unidad,
-		   v.u,unidad,v.v,unidad)
-      )
-   end
+		    vecpr.lw,vecpr.width,vecpr.length,
+		    ptos[v.planoID].u,unidad,ptos[v.planoID].v,unidad,
+		    v.u,unidad,v.v,unidad)
+	 )
+      end
    end
    
    -- 3. PUNTOS VISIBLES
    for i, p in ipairs(ptos) do
       if p.visible then
-	 tex.print(string.format(
+	 tex.print(
+	    string.format(
 		      "\\fill[%s] (%.4f%s,%.4f%s) circle[radius=%.2f%s];",
 		      ptpr.colorv, p.u,unidad, p.v,unidad, ptpr.rv,unidad)
+	 )
+	 tex.print(
+	    string.format(
+	       [[\node[%s] at (%.4f%s,%.4f%s) {\scriptsize %s};]],
+	       p.pos,p.u,unidad,p.v,unidad,p.p)
 	 )
       end
    end
