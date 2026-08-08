@@ -13,7 +13,7 @@ local M = {}
 -- ptos: Tabla con los puntos sobre la esfera y objetos relacionados con ellos.
 -- Resumen:
 -- (esf, obs, ptos) -> Imagen TikZ de esfera con puntos y planos.
-function M.TIKZEsferaPlanos(escala, unidad, esf, obs, ptosprop, ptos, planos)
+function M.TIKZEsferaPlanos(escala, unidad, esf, obs, ptpr, ptos, planos)
    --local visibles
    --local invisibles
 
@@ -22,20 +22,20 @@ function M.TIKZEsferaPlanos(escala, unidad, esf, obs, ptosprop, ptos, planos)
    tex.print(string.format(
 		"\\begin{tikzpicture}[scale=%.2f]", escala))
    
---   -- 1. PUNTOS INVISIBLES
---   for i, p in ipairs(ptos) do
---      if not p.visible then
---	 tex.print(string.format("\\fill[red] (%4f,%4f) circle[radius=0.3pt];",
---				 p.u, p.v))
---      end
---   end
+   -- 1. PUNTOS INVISIBLES
+   for i, p in ipairs(ptos) do
+      if not p.visible then
+	 tex.print(string.format("\\fill[%s] (%.4f%s,%.4f%s) circle[radius=%.4f%s];",
+				 ptpr.colori,p.u,unidad, p.v,unidad, ptpr.ri,unidad))
+      end
+   end
    
    -- 2. ESFERA
    tex.print(string.format(
 		"\\draw[%s,opacity=%2.f] (0,0) circle[radius=%.2f%s];",
 		esf.color, esf.opac, esf.radio, unidad))
    tex.print(string.format(
-	"\\shade[ball color = %s, opacity = %4f] (0,0) circle[radius=%.2f%s];",
+	"\\shade[ball color = %s, opacity = %.4f] (0,0) circle[radius=%.2f%s];",
 	esf.sombracolor, esf.sombraopac, esf.radio, unidad))
 
    -- 3. PLANOS VISIBLES
@@ -55,8 +55,8 @@ function M.TIKZEsferaPlanos(escala, unidad, esf, obs, ptosprop, ptos, planos)
    for i, p in ipairs(ptos) do
       if p.visible then
 	 tex.print(string.format(
-		      "\\fill[black] (%.4f%s,%.4f%s) circle[radius=%.2f%s];",
-		      p.u,unidad, p.v,unidad, ptosprop.rv,unidad)
+		      "\\fill[%s] (%.4f%s,%.4f%s) circle[radius=%.2f%s];",
+		      ptpr.colorv, p.u,unidad, p.v,unidad, ptpr.rv,unidad)
 	 )
       end
    end
@@ -831,26 +831,26 @@ function M.DEBUGplanosobs(planos)
    tex.print([[\vspace{1ex}]])
 end
 
---function M.DEBUGvectores(vectores)
---   -- TABLA VECTORES
---   tex.print([[\vspace{1ex}]])
---   tex.print([[\noindent\,\textbf{VECTORES}\\]])
---   tex.print([[\vspace{1ex}]])
---   tex.print([[\begin{tabular}{|c|c|c|c|}]])
---   tex.print([[\hline]])
---   tex.print([[VectorID & PuntoID & $(r,\theta)$ & Visible\\]])
---   tex.print([[\hline]])
---
---   for i, v in ipairs(vectores) do
---      tex.print(string.format(
---		   [[%d & %d & (%.2f, %.2f) & %s\\]],
---      i, v.puntoID, v.r, v.thetaD, v.visible))
---   end
---   tex.print([[\hline]])
---   tex.print([[\end{tabular}]])
---   tex.print([[\\]])
---   tex.print([[\vspace{1ex}]])
---end
+function M.DEBUGvectores(vectores)
+   -- TABLA VECTORES
+   tex.print([[\vspace{1ex}]])
+   tex.print([[\noindent\,\textbf{VECTORES}\\]])
+   tex.print([[\vspace{1ex}]])
+   tex.print([[\begin{tabular}{|c|c|c|c|}]])
+   tex.print([[\hline]])
+   tex.print([[VectorID & PlanoID & $(r,\theta)$ & Visible\\]])
+   tex.print([[\hline]])
+
+   for i, v in ipairs(vectores) do
+      tex.print(string.format(
+		   [[%d & %d & (%.2f, %.2f) & %s\\]],
+      i, v.planoID, v.r, v.thetaD, v.visible))
+   end
+   tex.print([[\hline]])
+   tex.print([[\end{tabular}]])
+   tex.print([[\\]])
+   tex.print([[\vspace{1ex}]])
+end
 
 
 -- ----------------------------------------------------------------------------
