@@ -51,6 +51,16 @@ function M.TIKZEsferaPlanos(escala, unidad, esf, obs, ptpr, ptos, planos)
       end
    end
 
+   -- VECTORES
+   for i, v in ipairs(vectores) do
+   if v.visible then
+      tex.print(string.format(
+		   "\\draw (%.4f%s,%.4f%s) -- (%.4f%s,%.4f%s);",
+		   ptos[i].u,unidad,ptos[i].v,unidad,v.u,unidad,v.v,unidad)
+      )
+   end
+   end
+   
    -- 3. PUNTOS VISIBLES
    for i, p in ipairs(ptos) do
       if p.visible then
@@ -222,32 +232,45 @@ end
 function M.completaVectores(unidad, esf, obs, ptos, planos, vectores)
    local u, v
    local x, y, z
+
+   -- Coordenadas del punto de referencia (antes de la rotación)
+   -- El punto central del plano que toca la esfera, donde colocamos los puntos que
+   -- se declaran antes de rotarlos al lugar donde deben estar al final.
+   local px = esf.radio
+   local py = 0
+   local pz = 0
    
-   for i, v in ipairs(vectores) do
-      -- Añade campo 'visible' a vectores, copiándolo de planos
-      vectores[i].visible = planos[i].visible
-      -- Convierto los vectores 2D de un plano tangente (v.r, v.thetaD)
-      -- a cartesianas rectangulares (y,z) porque el punto central del plano
-      -- tangente está situado inicialemente en (esf.radio,0,0)
-      local x0 = esf.radio
-      local y0 = v.r * math.cos(math.rad(v.thetaD))
-      local z0 = v.r * math.sin(math.rad(v.thetaD))
-      -- Rotamos el punto a su posición final (r=1, theta, phi)
-      local theta = ptos[v.planoID].thetaD
-      local phi = ptos[v.planoID].phiD
-      theta, phi = M.anguloGiroCorregido(theta, phi)
-      local sintheta = math.sin(theta)
-      local costheta = math.cos(theta)
-      local sinphi = math.sin(phi)
-      local cosphi = math.cos(phi)
-      x, y, z = M.xyzRotacionSpeed(x0,y0,z0,sintheta,costheta,sinphi,cosphi)
+   for i, vect in ipairs(vectores) do
+      -- Coordenadas de un punto que nos interesa del plano en el eje x (antes de la
+      -- rotación)
+      local x0, y0, z0
+      -- Coordenadas de un punto rotado del plano (en su sitio)
+      local x, y, z
+      -- Coordenadas de un punto rotado del plano en la pantalla
       local u, v
-      u, v = M.xyz2uvAll(x,y,z,obs)
-      -- Añade campos 'u' y 'v' a vectores
+      
+      -- Ángulos de giro phi y theta, junto con cálculos trigonométricos asociados
+      theta = math.rad(ptos[vect.planoID].thetaD)
+      phi = math.rad(ptos[vect.planoID].phiD)
+      theta, phi = M.anguloGiroCorregido(theta, phi)
+      stheta = math.sin(theta)
+      ctheta = math.cos(theta)
+      sphi = math.sin(phi)
+      cphi = math.cos(phi)
+      
+      x0 = px
+      y0 = vect.r * math.cos(math.rad(vect.thetaD))
+      z0 = vect.r * math.sin(math.rad(vect.thetaD))
+      
+      x, y, z = M.xyzRotacionSpeed(x0,y0,z0,stheta,ctheta,sphi,cphi)
+      vectores[i].x = x
+      vectores[i].y = y
+      vectores[i].z = z
+      u, v = M.xyz2uvAll(x, y, z, obs)
       vectores[i].u = u
       vectores[i].v = v
    end
-   
+
 end
 
 
@@ -814,7 +837,7 @@ end
 function M.DEBUGplanosobs(planos)
    -- TABLA PLANOS
    tex.print([[\vspace{1ex}]])
-   tex.print([[\noindent\,\textbf{PUNTOS DEL PLANO (u,v) DESDE EL PUNTO DE VISTA DEL OBSERVADOR}\\]])
+   tex.print([[\noindent\,\textbf{COORDENADAS DEL PLANO (u,v) DESDE EL PUNTO DE VISTA DEL OBSERVADOR}\\]])
    tex.print([[\vspace{1ex}]])
    tex.print([[\begin{tabular}{|c|c|c|c|c|c|}]])
    tex.print([[\hline]])
@@ -837,15 +860,16 @@ function M.DEBUGvectores(vectores)
    tex.print([[\vspace{1ex}]])
    tex.print([[\noindent\,\textbf{VECTORES}\\]])
    tex.print([[\vspace{1ex}]])
-   tex.print([[\begin{tabular}{|c|c|c|c|c|}]])
+   tex.print([[\begin{tabular}{|c|c|c|c|c|c|}]])
    tex.print([[\hline]])
-   tex.print([[VectorID & PlanoID & $(r,\theta)$ & $(u,v)$ & Visible\\]])
+   tex.print([[VectorID & PlanoID & $(r,\theta)$ & $(x,y,z)$ & $(u,v)$ & Visible\\]])
    tex.print([[\hline]])
 
    for i, v in ipairs(vectores) do
       tex.print(string.format(
-		   [[%d & %d & $(%.2f, %.2f)$ & $(%.2f, %.2f)$ & %s\\]],
-      i, v.planoID, v.r, v.thetaD, v.u, v.v, v.visible))
+		   [[$%d$ & $%d$ & $(%.2f, %.2f)$ & (%.2f,%.2f,%.2f) & $(%.2f,%.2f)$ & %s\\]],
+		   i,v.planoID,v.r,v.thetaD,v.x,v.y,v.z,v.u,v.v, v.visible
+      ))
    end
    tex.print([[\hline]])
    tex.print([[\end{tabular}]])
