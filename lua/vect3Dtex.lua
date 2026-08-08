@@ -243,10 +243,12 @@ function M.completaVectores(unidad, esf, obs, ptos, planos, vectores)
       x, y, z = M.xyzRotacionSpeed(x0,y0,z0,sintheta,costheta,sinphi,cosphi)
       local u, v
       u, v = M.xyz2uvAll(x,y,z,obs)
+      -- Añade campos 'u' y 'v' a vectores
+      vectores[i].u = u
+      vectores[i].v = v
    end
    
 end
-
 
 
 function M.completaPlanosold(obs, ptos, planos)
@@ -835,22 +837,21 @@ function M.DEBUGvectores(vectores)
    tex.print([[\vspace{1ex}]])
    tex.print([[\noindent\,\textbf{VECTORES}\\]])
    tex.print([[\vspace{1ex}]])
-   tex.print([[\begin{tabular}{|c|c|c|c|}]])
+   tex.print([[\begin{tabular}{|c|c|c|c|c|}]])
    tex.print([[\hline]])
-   tex.print([[VectorID & PlanoID & $(r,\theta)$ & Visible\\]])
+   tex.print([[VectorID & PlanoID & $(r,\theta)$ & $(u,v)$ & Visible\\]])
    tex.print([[\hline]])
 
    for i, v in ipairs(vectores) do
       tex.print(string.format(
-		   [[%d & %d & (%.2f, %.2f) & %s\\]],
-      i, v.planoID, v.r, v.thetaD, v.visible))
+		   [[%d & %d & $(%.2f, %.2f)$ & $(%.2f, %.2f)$ & %s\\]],
+      i, v.planoID, v.r, v.thetaD, v.u, v.v, v.visible))
    end
    tex.print([[\hline]])
    tex.print([[\end{tabular}]])
    tex.print([[\\]])
    tex.print([[\vspace{1ex}]])
 end
-
 
 -- ----------------------------------------------------------------------------
 
