@@ -55,8 +55,8 @@ function M.TIKZEsferaPlanos(escala, unidad, esf, obs, ptpr, ptos, planos)
    for i, v in ipairs(vectores) do
    if v.visible then
       tex.print(string.format(
-		   "\\draw (%.4f%s,%.4f%s) -- (%.4f%s,%.4f%s);",
-		   ptos[i].u,unidad,ptos[i].v,unidad,v.u,unidad,v.v,unidad)
+		   "\\draw[-{Latex[round]}](%.4f%s,%.4f%s) -- (%.4f%s,%.4f%s);",
+	   ptos[v.planoID].u,unidad,ptos[v.planoID].v,unidad,v.u,unidad,v.v,unidad)
       )
    end
    end
@@ -269,6 +269,9 @@ function M.completaVectores(unidad, esf, obs, ptos, planos, vectores)
       u, v = M.xyz2uvAll(x, y, z, obs)
       vectores[i].u = u
       vectores[i].v = v
+
+      -- Visibilidad
+      vectores[i].visible = ptos[vect.planoID].visible
    end
 
 end
