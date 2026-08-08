@@ -13,7 +13,7 @@ local M = {}
 -- ptos: Tabla con los puntos sobre la esfera y objetos relacionados con ellos.
 -- Resumen:
 -- (esf, obs, ptos) -> Imagen TikZ de esfera con puntos y planos.
-function M.TIKZEsferaPlanos(escala, unidad, esf, obs, ptpr, ptos, planos)
+function M.TIKZEsferaPlanos(escala,unidad,esf,obs,ptpr,ptos,planos,vecpr,vectores)
    --local visibles
    --local invisibles
 
@@ -55,8 +55,11 @@ function M.TIKZEsferaPlanos(escala, unidad, esf, obs, ptpr, ptos, planos)
    for i, v in ipairs(vectores) do
    if v.visible then
       tex.print(string.format(
-		   "\\draw[-{Latex[round]}](%.4f%s,%.4f%s) -- (%.4f%s,%.4f%s);",
-	   ptos[v.planoID].u,unidad,ptos[v.planoID].v,unidad,v.u,unidad,v.v,unidad)
+		   "\\draw[line width=%s, -{Latex[round,width=%s,length=%s]}]\z
+                    (%.4f%s,%.4f%s) -- (%.4f%s,%.4f%s);",
+		   vecpr.lw,vecpr.width,vecpr.length,
+		   ptos[v.planoID].u,unidad,ptos[v.planoID].v,unidad,
+		   v.u,unidad,v.v,unidad)
       )
    end
    end

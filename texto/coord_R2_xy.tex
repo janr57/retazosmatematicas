@@ -463,7 +463,14 @@ Véase la figura \ref{fig:R2-cart_planos_tangentes}.
 -- 4. Matriz de planos tangente. Se crea la matriz de los planos:
 planos = {}
 
--- 5. Vectores en los planos tangente:
+-- 5. Propiedades de los vectores en el plano tangente:
+-- lw: anchura del segmento;
+-- width, length: anchura y longitud de la punta de la flecha.
+vecpr = {
+  width="3pt", length="3.5pt", lw="0.8pt"
+}
+
+-- 5. Coordenadas 2D de los vectores en el plano tangente:
 vectores = {
   {planoID=1, r=0.9, thetaD=45},
   {planoID=1, r=0.9, thetaD=0},
@@ -496,7 +503,7 @@ mEsfera.completaVectores(unidad, esf, obs, ptos, planos, vectores)
 
 \begin{figure}[ht]
   % El primer parámetro es la escala del entorno TikZpicture
-  \TIKZEsferaPlanos{escala}{unidad}{esf}{obs}{ptpr}{ptos}{planos}
+  \TIKZEsferaPlanos{escala}{unidad}{esf}{obs}{ptpr}{ptos}{planos}{vecpr}{vectores}
 \end{figure}
 
 \section{Gradiente}
