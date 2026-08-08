@@ -222,11 +222,10 @@ end
 function M.completaVectores(unidad, esf, obs, ptos, planos, vectores)
    local u, v
    local x, y, z
-
+   
    for i, v in ipairs(vectores) do
-      --local visible = ptos[v.planoID].visible
-      local novale = v.puntoID
-      v.visible = 1
+      -- Añade campo 'visible' a vectores, copiándolo de planos
+      vectores[i].visible = planos[i].visible
       -- Convierto los vectores 2D de un plano tangente (v.r, v.thetaD)
       -- a cartesianas rectangulares (y,z) porque el punto central del plano
       -- tangente está situado inicialemente en (esf.radio,0,0)

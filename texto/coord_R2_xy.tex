@@ -465,9 +465,9 @@ planos = {}
 
 -- 5. Vectores en los planos tangente:
 vectores = {
-  {planoID=1, r=0.5, thetaD=45},
-  {planoID=1, r=0.4, thetaD=0},
-  {planoID=2, r=0.9, thetaD=90},
+  {planoID=1, r=0.5, thetaD=45, visible=nil},
+  {planoID=1, r=0.4, thetaD=0, visible=nil},
+  {planoID=2, r=0.9, thetaD=90, visible=nil}
 }
 
 -- 6. Dibujo
@@ -478,10 +478,9 @@ vectores = {
 -- puntos representativos de los planos.
 mEsfera.completaPuntos(unidad, esf, obs, ptos)
 mEsfera.completaPlanos(unidad, esf, obs, ptos, planos)
---mEsfera.completaVectores(unidad, esf, obs, ptos, planos, vectores)
+mEsfera.completaVectores(unidad, esf, obs, ptos, planos, vectores)
 
 \end{luacode*}
-
 
 % El siguiente bloque imprime los valores calculados (para depuración).
 {\scriptsize
