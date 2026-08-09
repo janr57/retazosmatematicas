@@ -72,14 +72,34 @@ function M.TIKZEsferaPlanos(escala,unidad,esf,obs,ptpr,ptos,planos,vecpr,vectore
 		      "\\fill[%s] (%.4f%s,%.4f%s) circle[radius=%.2f%s];",
 		      ptpr.colorv, p.u,unidad, p.v,unidad, ptpr.rv,unidad)
 	 )
+--	 tex.print(
+--	    string.format(
+--	       [[\node[%s] at (%.4f%s,%.4f%s) {%s %s};\\]],
+--	       p.pos,p.u,unidad,p.v,unidad,p.size, p.p)
+--	 )
+      end
+   end
+
+   -- 4. ETIQUETAS
+   local fuente
+   local labelsize = ptpr.fsize
+   for i, p in ipairs(ptos) do
+      if p.visible then
+	 if labelsize == "scriptsize" then
+	    labelsize = "\\scriptsize"
+	 elseif labelsize == "footnotesize" then
+	    labelsize = "\\footnotesize"
+	 elseif labelsize == "small" then
+	    labelsize = "\\small"
+	 end
 	 tex.print(
 	    string.format(
-	       [[\node[%s] at (%.4f%s,%.4f%s) {\scriptsize %s};]],
-	       p.pos,p.u,unidad,p.v,unidad,p.p)
+	       "\\node[%s] at (%.4f%s,%.4f%s) {%s %s};",
+	       p.pos,p.u,unidad,p.v,unidad,labelsize,p.p)
 	 )
       end
    end
-   
+
    tex.print("\\end{tikzpicture}")
 end
 -- ----------------------------------------------------------------------------
@@ -790,13 +810,14 @@ function M.DEBUGpuntosprop(ptpr)
    tex.print([[\vspace{1ex}]])
    tex.print([[\noindent\,\textbf{PROPIEDADES DE PUNTOS VISIBLES-INVISIBLES}\\]])
    tex.print([[\vspace{1ex}]])
-   tex.print([[\begin{tabular}{|c|c|c|c|}]])
+   tex.print([[\begin{tabular}{|c|c|c|c|c|}]])
    tex.print([[\hline]])
-   tex.print([[Invisibilidad & Radios & Colores & Opacidades\\]])
+   tex.print([[Tamaño letra & Invisibilidad & Radios & Colores & Opacidades\\]])
    tex.print([[\hline]])
    tex.print(string.format(
-		[[ %s & $%.2f$-$%.2f$ & %s-%s & $%.2f$-$%.2f$\\ ]],
-	ptpr.invisib, ptpr.rv, ptpr.ri, ptpr.colorv, ptpr.colori, ptpr.opacv, ptpr.opaci)
+		[[ %s & %s & $%.2f$-$%.2f$ & %s-%s & $%.2f$-$%.2f$\\ ]],
+		ptpr.fsize, ptpr.invisib, ptpr.rv, ptpr.ri, ptpr.colorv, ptpr.colori,
+		ptpr.opacv, ptpr.opaci)
    )
    tex.print([[\hline]])
    tex.print([[\end{tabular}]])
