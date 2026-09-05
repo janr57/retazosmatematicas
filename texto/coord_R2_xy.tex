@@ -136,7 +136,7 @@ Como sabemos, en estas coordenadas se utiliza la base
 $B = \set{\uvec{\i},\,\uvec{\j}}$.
 
 Por otro lado, en geometría diferencial es importante la \emph{base natural},
-que representaremos en este texto como
+que representaremos en este texto como:
 \begin{equation}
   B = \set{\vvv{e}_x, \vvv{e}_y}
 \end{equation}
@@ -152,7 +152,7 @@ Estos vectores llevan información concreta acerca de cómo varia la posición e
 el espacio cuando variamos cada una de las coordenadas ---tal y como sugieren
 las derivadas---, lo que será importante para obtener la \emph{métrica}.
 
-Los vectores de la base natural y sus módulos son
+Los vectores de la base natural y sus módulos son:
 \begin{subequations}
   \begin{align}\label{eq:R2-cart-ex}
     \vvv{e}_x
@@ -177,7 +177,7 @@ Vemos que son vectores unitarios, aunque como se señaló antes, no tiene por qu
 ser así en otros sistemas de coordenadas.
 
 Así, la \emph{base natural} en cartesianas rectangulares, y que coincide
-con los vectores unitarios tradicionales $\uvec{\i}$ y $\uvec{\j}$
+con los vectores unitarios tradicionales $\uvec{\i}$ y $\uvec{\j}$:
 \begin{equation}\label{eq:R2-cart-base}
   B  =\set{\vvv{e}_x, \vvv{e}_y}
   = \set{\xhat{u}_x, \xhat{u}_y}
@@ -186,22 +186,22 @@ con los vectores unitarios tradicionales $\uvec{\i}$ y $\uvec{\j}$
 
 
 \section{Métrica}
-La métrica en cada sistema de coordenadas define la estructura del espacio, y
+La métrica en un sistema de coordenadas dado define la estructura del espacio, y
 en particular, sin ella no se pueden medir distancias ni ángulos. Es como si
-proporcionara un sistema de reglas y goniómetros con los cuales medir
-distancias y ángulos.
+proporciona un sistema de reglas y goniómetros con los cuales medir distancias
+y ángulos.
 
 De la equivalencia de la base natural con la unitaria, y del hecho de que los
 vectores de la base son ortogonales entre sí, se podrá inferir que la métrica
 en coordenadas cartesianas rectangulares se representará como una matriz unidad.
 
 \subsection{Producto escalar de los vectores de la base natural}
-La base natural en coordenadas cartesianas en este espacio está formada por los vectores
-$\uvec{\i}$ y $\uvec{\j}$, en los ejes $x$ e $y$, respectivamente, ver figura
-\ref{fig:R2-rect_ij}.
+La base natural, en coordenadas cartesianas en este espacio, está formada por
+los vectores $\uvec{\i}$ y $\uvec{\j}$, en los ejes $x$ e $y$, respectivamente,
+ver figura \ref{fig:R2-rect_ij}.
 A continuación resumimos el valor de los productos escalares entre ellos, tal y como
 aprendimos en cálculo vectorial fundamental en coordenadas cartesianas o en física
-elemental
+elemental:
 \begin{subequations}
   \begin{align}
     \label{eq:R2-cart-ii_prod_escalar}
@@ -220,9 +220,9 @@ elemental
 \end{subequations}
 
 \subsection{Métrica y factores de escala}
-La métrica en cualquier sistema de coordenadas se calcula utilizando los vectores de la
-base natural y el producto escalar entre estos vectores. El resultado es la matriz
-unidad $\mmm{I}$
+La métrica en cualquier sistema de coordenadas se calcula a través del producto escalar
+entre los vectores de la base natura. En nuestro caso, el resultado es la matriz
+unidad:
 \begin{equation}\label{eq:R2-cart-metrica}
   \mmm{g}_{ij}
   = \begin{pmatrix}
@@ -240,28 +240,26 @@ unidad $\mmm{I}$
   = \mmm{I}
 \end{equation}
 
-La raíz cuadrada de los elementos diagonales de la métrica se llaman
+La raíz cuadrada positiva de los elementos diagonales de la métrica se llaman
 \emph{factores de escala} o \emph{coeficientes métricos}.
-En coordenadas cartesianas rectangulares serían
+En coordenadas cartesianas rectangulares serían:
 \begin{align*}
   h_x &= \sqrt{g_{11}} = \sqrt{1} = 1\\
-  h_y &= \sqrt{g_{22}} = \sqrt{1} = 1  
+  h_y &= \sqrt{g_{22}} = \sqrt{1} = 1
 \end{align*}
 
 Fijémonos en la métrica \eqref{eq:R2-cart-metrica}:
 \begin{itemize}
-\item Los elementos no diagonales son nulos. Esto se interpreta como que los
-  vectores $\vvv{e}_x$ y $\vvv{e}_y$ son independientes, esto es, ortogonales,
-  lo que implica que un cambio en una coordenada no afectará a la otra.
+\item Los elementos no diagonales son nulos. Esto se debe a que los vectores
+  $\vvv{e}_x$ y $\vvv{e}_y$ son independientes, esto es, ortogonales, lo que
+  implica que el cambio en una coordenada no afectará a la otra.
   Así, si nos desplazamos una distancia cualquiera en el eje $x$, no habremos
-  recorrido ninguna distancia en el eje $y$, y viceversa, por lo que
-  $h_{xy}= h_{yx}= 0$.
-\item Los elementos diagonales valen la unidad. ESto implica que un cambio en
-  la coordenada respectiva implica una distancia recorrida de una unidad en el
-  espacio.
+  recorrido ninguna en el eje $y$, y viceversa. Así, $h_{xy}= h_{yx}= 0$.
+\item Los elementos diagonales valen la unidad. Esto implica que un cambio en
+  una coordenada, implica una distancia recorrida de una unidad en el espacio.
   En realidad, el espacio recorrido es el factor de escala correspondiente
   (la raíz cuadrada del elemento diagonal correspondiente), pero en este caso
-  da lo mismo
+  da lo mismo:
   \begin{subequations}
     \begin{align}
       \Delta s &= h_x\, \Delta x = \sqrt{1}\, \Delta x = \Delta x\\
