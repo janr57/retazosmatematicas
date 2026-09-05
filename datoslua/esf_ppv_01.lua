@@ -9,11 +9,12 @@ return {
 
    -- 1. Datos y propiedades de la esfera:
    esfera = {
-      radio = 2.0, loops = 240,
+      radio = 2.0, loops = 360,
       draw = "black!25", lw = "0.6pt", fill = "black!8", opac = 1.0,
    },
 
-   smbresfera = {ballcolor = "white", opac = 0.4},   
+   smbresfera = {ballcolor="green", opac=0.4},
+   --smbresfera = {ballcolor = "white", opac = 0.4},   
 
    -- 2, Posición angular del observador
    observador = {thetaD = 65, phiD = 15},
@@ -69,11 +70,12 @@ return {
    },
    -- Planos
    ppvplnsprops = {
-      giro_planoD = 0, draw = "blue", fill = "blue!40", opac = 0.75, dibuja = true,
+      giro_planoD = 0, draw = "blue", fill = "blue!30", opac = 0.85,
+      dibuja = true,
    },
    -- Vectores (la dirección y sentido o ángulo se determina para cada vector)
    ppvvectsprops = {
-      color = "black", lw = "0.66pt", arrow_length="4pt", arrow_width="3pt",
+      color = "black", lw = "0.4pt", arrow_length="4pt", arrow_width="2.5pt",
       dibuja = true
    },
    
@@ -91,7 +93,7 @@ return {
       -- 2
       {
 	 punto = {thetaD = 0, phiD = 0,},
-	 plano = {ancho = 2.0, alto = 2.0, draw="red", fill="red!50"},
+	 plano = {ancho = 2.0, alto = 2.0, draw="red", fill="red!30"},
 	 vects = {
 	    {mod = 0.65, angD = 0, },
 	    {mod = 0.65, angD = 90,},

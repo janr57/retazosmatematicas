@@ -334,8 +334,8 @@ Los vectores \emph{viven} en un espacio vectorial $V$\, llamado
 Pensemos, por ejemplo, en un espacio curvo como puede ser el de una superficie
 esférica.
 No se pueden representar vectores en una superficie curva, sino en un plano.
-Ese plano es en este caso el espacio tangente o espacio vectorial asociado al
-punto donde \emph{viven} los vectores.
+Ese plano es el espacio tangente o espacio vectorial asociado al punto donde
+\emph{viven} los vectores.
 
 Cada punto  del espacio curvo tiene asociado un plano tangente diferente al del resto
 de puntos. Nosotros sabemos realizar operaciones con vectores que
@@ -345,178 +345,18 @@ Véase la figura \ref{fig:R2-cart_planos_tangentes}.
 \footnotetext{Para poder realizar este tipo de operaciones entre dos vectores que se
   encuentren en dos espacios tangente diferentes, la geometría diferencial define el
   \emph{transporte paralelo}, pero esto es algo que no nos debe preocupar por ahora.}
+
 \begin{figure}[ht]
-  % Escala
-  \def\scl{1.9}
-  % Origen de coordenadas
-  \pgfmathsetmacro{\Ox}{0.0}
-  \pgfmathsetmacro{\Oy}{0.0}
-  \pgfmathsetmacro{\Oz}{0.0}
-  % Centro de la esfera
-  \pgfmathsetmacro{\Cx}{\Ox}
-  \pgfmathsetmacro{\Cy}{\Oy}
-  \pgfmathsetmacro{\Cz}{\Oz}
-  % Radio de la esfera en cm
-  \pgfmathsetmacro{\R}{1.0}
-  % Opacidad de la esfera y los planos
-  \pgfmathsetmacro{\OPACIDADESFERA}{0.9}
-  \pgfmathsetmacro{\OPACIDADPLANO}{0.8}
-  %
   \centering
-  \begin{tikzpicture}[%
-    scale=\scl,
-    z= {(0cm,1cm)},
-    y={(1cm,0cm)},
-    x={(-0.38cm,-0.38cm)},
-    line join=round,
-    line cap=round,
-    every node/.style={black,font=\scriptsize},
-    planoP1/.style={blue!60!black, fill=blue!20, opacity=\OPACIDADPLANO},
-    planoP2/.style={red!60!black, fill=red!20, opacity=\OPACIDADPLANO},
-    vector/.style={-{Latex[round,width=3pt,length=4pt]}},
-    ]
-    % COORDENADAS
-    % Origen
-    \coordinate (O) at (\Ox,\Oy,\Oz);
-    % Centro de la esfera
-    \coordinate (C) at (\Cx,\Cy,\Cz);
-    
-    % 1. ESFERA
-    \shade[ball color=black!20, opacity=\OPACIDADESFERA] (C) circle[radius=\R cm];
-    \draw[gray!10] (C) circle[radius=\R cm];
-
-    % 2. PLANO SUPERIOR
-    \coordinate (P1) at (xyz spherical cs:radius=1,latitude=90);
-    \begin{scope}[canvas is xy plane at z=1]
-      % Plano en P1
-      \filldraw[planoP1] (-0.5,-0.5) rectangle (0.5,0.5);
-      \draw[vector] (0,0) -- (-0.3,0.3);
-    \end{scope}
-    % Punto P1 y texto
-    \fill[black] (P1) circle (0.5pt);
-    \node[below left=-2pt and -2pt] at (P1) {$P_1$};
-
-    % 3. PLANO FRONTAL DERECHA
-    \coordinate (P2) at (xyz spherical cs:radius=1,longitude=30,latitude=25);
-    \begin{scope}[%
-      plane origin=(P2), plane x={(0.8,1.0)}, plane y={(0.2,0)}, canvas is plane
-      ]
-      % Plano en P2
-      \filldraw[planoP2] (-0.5,-0.5) rectangle (0.5,0.5);
-      \draw[vector] (0,0) -- (0.4,-0.4);
-      \draw[vector] (0,0) -- (0.25,0.4);
-    \end{scope}
-    
-    \fill[black] (P2) circle (0.5pt);
-    \node[above left=-1pt and -2pt] at (P2) {$P_2$};
-  
-    % Vectores en P1
-    %\draw[-{Latex[round,width=3pt,length=4pt]}] (P1) -- ++(0.3, 0, 0);
-    %\draw[-{Latex[round,width=3pt,length=4pt]}] (P1) -- ++(0, 0, -0.3);
-
-%    % Vectores en P2 (ajustados para nacer exactamente de P2)
-%    \draw[-{Latex[round,width=3pt,length=4pt]}] (P2) -- ++(0.05, 0.35, -0.1);
-%    % \draw[-{Latex[round,width=3pt,length=4pt]}] (P2) -- ++(0.1, -0.1, -0.4);
-%    \draw[-{Latex[round,width=3pt,length=4pt]}] (P2) -- ++(0.22, -0.05, -0.45);
-  \end{tikzpicture}
+    \cargaDatos{datoslua/esf_ppv_01.lua}
+    \begin{tikzpicture}[scale=0.90,]
+      \dibujaTikzEsfera[false]
+    \end{tikzpicture}
   \caption{Espacio esférico donde se representan dos planos tangentes en dos puntos
     arbitrarios de la esfera. En el plano situado en el polo norte (azul), se representa
     un vector que \emph{vive} en ese plano. Por otro lado en el otro punto se aprecia
     un plano tangente (rosa) con dos vectores.}
   \label{fig:R2-cart_planos_tangentes}
-\end{figure}
-
-
-% ********************************************************************************
-% Código lua de prueba para representar planos y vectores en superficie esférica.
-
-\begin{luacode*}
-  -- 0. Escala y unidad de longitud
-  escala=1.0
-  unidad="cm"
-  
--- 1. Datos y propiedades de la esfera:
-  esf = {
-    radio=2.0,color="gray!10",opac=1,sombracolor="black!20",sombraopac=0.9
-  }
-  
-  -- 2, Posición angular del observador
-  obs = {thetaD = 65, phiD = 15}
-  --obs = {thetaD = 90, phiD = 0}
-
-  -- 3. Propiedades de los puntos en la esfera
-  ptpr = {
-    fsize="scriptsize", invisib=true, rv=0.025, ri=0.015, colorv="black", colori="red",
-    opacv=1.0, opaci=0.5
-  }
-  
-  -- 3. Matriz de puntos (tabla de tablas). Algunos pueden no ser visibles:
-  ptos = {
-    {
-      thetaD=90, phiD=186, a=0.8, b=0.8, opac=0.8, draw="black!80", fill="black!10",
-      p="$P_1$", pos="below left"
-    },
-    {
-      thetaD=0, phiD=0, a=2.0, b=2.0, opac=0.8, draw="blue!80!black", fill="blue!20",
-      p="$P_2$", pos="below left=-2pt and -2pt"
-    },
-    {
-      thetaD=90, phiD=170, a=2, b=2, opac=0.8, draw="green!80!black", fill="green!20",
-      p="$P_3$", pos="above left"
-    },
-    {
-      thetaD=70, phiD=50, a=2.0, b=2.0, opac=0.8, draw="red!80!black", fill="red!20",
-      p="$P_4$", pos="above left=-2pt and -2pt"
-    }
-  }
-
-  -- 4. Matriz de planos tangente. Se crea la matriz de los planos:
-  planos = {}
-  
-  -- 5. Propiedades de los vectores en el plano tangente:
-  -- lw: grosor del segmento;
-  -- width, length: anchura y longitud de la punta de la flecha.
-  vecpr = {
-    width="3.5pt", length="3.5pt", lw="0.7pt"
-  }
-
-  -- 6. Coordenadas 2D de los vectores en el plano tangente:
-  vectores = {
-    {planoID=1, r=0.9, thetaD=45},
-    {planoID=1, r=0.9, thetaD=0},
-    {planoID=2, r=0.7, thetaD=90},
-    {planoID=2, r=0.7, thetaD=0},
-    {planoID=4, r=0.5, thetaD=0},
-    {planoID=4, r=0.75, thetaD=240}
-  }
-  
-  -- 7. Dibujo
-  -- Añade u, v a la tabla ptos.
-  -- Cada punto se representa en una pantalla plana (papel, ordenador, etc.)
-  -- (u,v) son las coordenadas en esta pantalla.
-  -- Las dos funciones siguientes calculan las coordenadas u, v del punto y los cuatro
-  -- puntos representativos de los planos.
-  mEsfera.completaPuntos(unidad, esf, obs, ptos)
-  mEsfera.completaPlanos(unidad, esf, obs, ptos, planos)
-  mEsfera.completaVectores(unidad, esf, obs, ptos, planos, vectores)
-  
-\end{luacode*}
-
-% El siguiente bloque imprime los valores calculados (para depuración).
-{\scriptsize
-  \par
-  \noindent\DEBUGEsf{escala}{unidad}{esf}\par
-  \noindent\DEBUGObs{obs}\par
-  \noindent\DEBUGPuntosProp{ptpr}\par\vspace{2ex}
-  \noindent\DEBUGCoordPuntos{ptos}\par
-  \noindent\DEBUGPlanos{planos}\par
-  \noindent\DEBUGPlanosObs{planos}\par
-  \noindent\DEBUGVectores{vectores}\par
-}
-
-\begin{figure}[ht]
-  % El primer parámetro es la escala del entorno TikZpicture
-  \TIKZEsferaPlanos{escala}{unidad}{esf}{obs}{ptpr}{ptos}{planos}{vecpr}{vectores}
 \end{figure}
 
 \section{Gradiente}
