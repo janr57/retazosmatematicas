@@ -16,18 +16,19 @@ Este capítulo tiene los siguientes objetivos:
 \item Introducir algunas ideas de geometría diferencial, tales como
   \emph{base natural}, \emph{métrica}, etc., que serán más importantes en otros
   sistemas de coordenadas.
-\item Recordar la expresión del resultado de distintas operaciones del cálculo en
+\item Recordar la expresión del resultado de unas pocas operaciones de cálculo en
   este sistema.
 \end{enumerate}
 
 \section{Ideas básicas}
-El vector de posición de cualquier punto del espacio $\symbb{R}^2$ en coordenadas
-cartesianas es
+El vector de posición de un punto del espacio $\symbb{R}^2$ en coordenadas cartesianas
+es:
 \begin{equation}\label{eq:R2-r_rect}
   \vvv{r}
   = x\,\uvec{\i} + y\,\uvec{\j}
 \end{equation}
-En la figura \ref{fig:R2-rect_ij} lo representamos:
+En la figura \ref{fig:R2-rect_ij} lo representamos, junto con los vectores unitarios
+del sistema:
 \begin{figure}[ht]
   \pgfmathsetmacro{\EJESNEGLONG}{0.2}
   \pgfmathsetmacro{\EJESPOSLONG}{2.3}
@@ -142,7 +143,7 @@ que representaremos en este texto como
 Estos vectores no tienen por qué ser unitarios, y por ello no aparecen con el
 acento circunflejo, aunque como veremos, en este caso sí que lo son.
 
-Los vectores de esta base se obtienen derivando parcialmente el vector de
+Los vectores de la base natural se obtienen derivando parcialmente el vector de
 posición de un punto genérico del espacio, expresado en función de las
 componentes del sistema, en este caso las coordenadas $x$ e $y$, respecto de
 cada una de ellas; véase la ecuación \eqref{eq:R2-r_rect} y la figura
@@ -157,27 +158,27 @@ Los vectores de la base natural y sus módulos son
     \vvv{e}_x
     &=
       \dfrac{\partial\vvv{r}}{\partial x}
+      \dfrac{\partial}{\partialx} (x \uvec{i} + y \uvec{\j})
       = \uvec{\i}
       = \xhat{u}_x
-      \longrightarrow
+      \hspace{1em}\longrightarrow\hspace{1em}
     |\vvv{e}_x| = |\uvec{\i}| = 1\\
     \label{eq:R2-cart-ey}
     \vvv{e}_y
     &= \dfrac{\partial\vvv{r}}{\partial y}
       = \uvec{\j}
       = \xhat{u}_y
-      \longrightarrow
+      \hspace{1em}\longrightarrow\hspace{1em}
     |\vvv{e}_y| = |\uvec{\j}| = 1
   \end{align}
 \end{subequations}
 Vemos que son vectores unitarios, aunque como se señaló antes, no tiene por qué
 ser así en otros sistemas de coordenadas.
 
-Escribimos la \emph{base natural} en cartesianas rectangulares, que coincide
+Así, la \emph{base natural} en cartesianas rectangulares, y que coincide
 con los vectores unitarios tradicionales $\uvec{\i}$ y $\uvec{\j}$
 \begin{equation}\label{eq:R2-cart-base}
-  B
-  =\set{\vvv{e}_x, \vvv{e}_y}
+  B  =\set{\vvv{e}_x, \vvv{e}_y}
   = \set{\xhat{u}_x, \xhat{u}_y}
   = \set{\uvec{\i},\, \uvec{\j}}
 \end{equation}
