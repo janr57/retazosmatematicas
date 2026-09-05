@@ -56,6 +56,43 @@
 
 % ---------------------------------------------------------------------------------
 % MACROS LUA
+
+% LUA PATH
+\begin{luacode*}
+  -- Añado mi directorio al path
+  package.path = "./?.lua;" .. package.path
+
+  -- Cargo mi proyecto
+  M = require("lua/funciones_esfera")
+  
+\end{luacode*}
+
+\directlua{
+  % Variable global para los datos actuales
+  escenarioActivo = {}
+
+  % Función global de interfaz para cambiar de datos
+  function carga_escenario(fichero)
+      escenarioActivo = dofile(fichero)
+  end
+}
+
+
+% DEFINICIÓN DE COMANDOS
+
+% --- COMANDOS LATEX LIMPIOS ---
+\newcommand{\cargaDatos}[1]{%
+  \directlua{carga_escenario("#1")}
+}
+
+
+% \dibujaEsferaCompleta
+\newcommand{\dibujaTikzEsfera}[1][false]{%
+  \directlua{M.dibuja_tikzesfera(#1, escenarioActivo)}
+}
+
+
+%%-----
 % Cargamos el archivo lua externo
 %\directlua{dofile("lua/rot3Dtex.lua")}
 \directlua{dofile("lua/pruebatex.lua")}

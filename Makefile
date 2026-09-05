@@ -17,6 +17,8 @@ FILES =	retazosmatematicas.pkg.sty\
 	texto/coord_R2_polares.tex\
 	texto/coord_xt.tex\
 	texto/jacobiano.tex\
+	texto/ppv.tex\
+	lua/funciones_esfera.lua\
 	lua/vect3Dtex.lua\
 	$(IMGSTATICDIR)/Cc-by-nc-sa_icon.pdf
 
