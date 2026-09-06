@@ -26,10 +26,11 @@ function M.dibuja_tikzesfera(transp, esc)
    local arcosmax = esc.arcosmax
    local ptosprops = esc.ptosprops
    local puntos = esc.puntos
-   local ppvptosprops = esc.ppvptosprops
-   local ppvplnsprops = esc.ppvplnsprops
-   local ppvvectsprops = esc.ppvvectsprops
-   local ppvs = esc.ppvs
+   local zptosprops = esc.zptosprops
+   local zplnsprops = esc.zplnsprops
+   local zvctsprops = esc.zvctsprops
+   local ztxtsprops = esc.ztxtsprops
+   local zppvs = esc.zppvs
    
    -- DIBUJO DE ESFERA
    if esf and not smbresf then
@@ -122,7 +123,6 @@ function M.dibuja_tikzesfera(transp, esc)
       arcmax_vis, arcmax_novis = M.arcsmaximos(transp,esf,obs,arcmaxprops,arcosmax)
       
       if transp then
-	 tex.sprint("Pasa por transp")
 	 M.dibuja_curvas(arcmax_novis)
       end
       
@@ -130,10 +130,10 @@ function M.dibuja_tikzesfera(transp, esc)
    end
 
    -- Puntos
-   if obs and ptosprops and puntos then	 
+   if obs and puntosprops and puntos then	 
       local R = esf.radio
 
-      ptos_vis, ptos_novis = M.puntos(transp, R, obs, ptosprops, puntos)
+      ptos_vis, ptos_novis = M.puntos(transp, R, obs, puntosprops, puntos)
       if transp then
 	 M.dibuja_puntos(ptos_novis)
       end
@@ -142,11 +142,11 @@ function M.dibuja_tikzesfera(transp, esc)
    end
 
    -- Puntos, planos y vectores
-   if obs and ppvptosprops and ppvplnsprops and ppvvectsprops and ppvs then
+   if obs and zptosprops and zplnsprops and zvctsprops and ztxtsprops and zppvs then
       local R = esf.radio
-      local tblprops = {ppvptosprops, ppvplnsprops, ppvvectsprops}
+      local tblprops = {zptosprops, zplnsprops, zvctsprops, ztxtsprops}
       
-      ptos_vis, plns_vis, vects_vis = M.ppvs(transp, R, obs, tblprops, ppvs)
+      ptos_vis, plns_vis, vcts_vis, txts_vis = M.zppvs(transp,R,obs,tblprops,zppvs)
    end
    
    -- -------------------------------------------------------------------------
@@ -181,16 +181,17 @@ function M.dibuja_tikzesfera(transp, esc)
       arcmax_vis = nil
    end
 
-   if ptosprops and puntos then
+   if puntosprops and puntos then
       M.dibuja_puntos(ptos_vis)
 
       ptos_vis = nil
    end
 
-   if ppvptosprops and ppvplnsprops and ppvvectsprops and ppvs then
+   if zptosprops and zplnsprops and zvctsprops and ztxtsprops and zppvs then
       M.dibuja_planos(plns_vis)
-      M.dibuja_vectores(vects_vis)
+      M.dibuja_vectores(vcts_vis)
       M.dibuja_puntos(ptos_vis)
+      M.dibuja_textos(txts_vis)
    end
 
 end
@@ -258,6 +259,22 @@ function M.dibuja_puntos(puntos)
    end
 end
 
+function M.dibuja_textos(textos)
+   local cadena, pos, pos1, pos2, size, color, u, v
+   for i, texto in ipairs(textos) do
+      cadena = texto[1]
+      pos, size, color = texto[2], texto[3], texto[4]
+      u, v = texto[5], texto[6]
+
+      tex.sprint(
+	 string.format(
+	    [[ \node[%s] at (%f, %f) {%s %s}; ]],
+	    pos, u, v, size, cadena
+      ))
+   end
+end
+
+
 function M.dibuja_planos(planos)
    local draw, fill, opac
    local u1, v1, u2, v2, u3, v3, u4, v4
@@ -281,7 +298,6 @@ function M.dibuja_planos(planos)
       ))
    end
 end
-
 
 function M.dibuja_vectores(vects)
    local color, lw, arrow
@@ -647,7 +663,7 @@ function M.polos(transp, R, obs, polprops)
 end
 
 -- ----------------------------------------------------------------------------
-function M.puntos(transp, R, obs, ptosprops, puntos)
+function M.puntos(transp, R, obs, puntosprops, puntos)
    local ptos_vis = {}
    local ptos_novis = {}
 
@@ -655,10 +671,10 @@ function M.puntos(transp, R, obs, ptosprops, puntos)
       local x, y, z
       local u, v, vis
       
-      local color_vis = punto.color_vis or ptosprops.color_vis
-      local radio_vis = punto.radio_vis or ptosprops.radio_vis
-      local color_novis = punto.color_novis or ptosprops.color_novis
-      local radio_novis = punto.radio_novis or ptosprops.radio_novis
+      local color_vis = punto.color_vis or puntosprops.color_vis
+      local radio_vis = punto.radio_vis or puntosprops.radio_vis
+      local color_novis = punto.color_novis or puntosprops.color_novis
+      local radio_novis = punto.radio_novis or puntosprops.radio_novis
 
       local th = math.rad(punto.thetaD)
       local ph = math.rad(punto.phiD)
@@ -998,22 +1014,25 @@ end
 
 -- ----------------------------------------------------------------------------
 -- Puntos, planos y vectores
-function M.ppvs(transp, R, obs, tblprops, ppvs)
+function M.zppvs(transp, R, obs, tblprops, zppvs)
    local ptos_vis = {}
    local plns_vis = {}
-   local vects_vis = {}
+   local vcts_vis = {}
+   local txts_vis = {}
 
    -- Recuperamos las tablas de propiedades
    local ptosprops = tblprops[1]
    local plnsprops = tblprops[2]
-   local vectsprops = tblprops[3]
+   local vctsprops = tblprops[3]
+   local txtsprops = tblprops[4]
    
-   for index, ppv in ipairs(ppvs) do
+   for index, zppv in ipairs(zppvs) do
       local x, y, z
       local u, v, vis
-      local punto = ppv.punto
-      local plano = ppv.plano
-      local vects = ppv.vects
+      local punto = zppv.punto
+      local plano = zppv.plano
+      local texto = zppv.texto
+      local vectores = zppv.vectores
       
       -- PUNTO
       -- Propiedades tomadas de los datos
@@ -1133,14 +1152,14 @@ function M.ppvs(transp, R, obs, tblprops, ppvs)
       -- VECTORES
       -- En cada entrada de punto hay un plano, pero puede haber muchos vectores
       
-      for indvect, vect in ipairs(vects) do
-	 local vect_color = vect.color or vectsprops.color
-	 local vect_lw = vect.lw or vectsprops.lw
-	 local vect_arrow_length = vect.arrow_length or vectsprops.arrow_length
-	 local vect_arrow_width = vect.arrow_width or vectsprops.arrow_width
-	 local vect_dibuja = vect.dibuja or vectsprops.dibuja
-	 local vect_mod = vect.mod
-	 local vect_ang = math.rad(vect.angD)
+      for indvect, vector in ipairs(vectores) do
+	 local vect_color = vector.color or vctsprops.color
+	 local vect_lw = vector.lw or vctsprops.lw
+	 local vect_arrow_length = vector.arrow_length or vctsprops.arrow_length
+	 local vect_arrow_width = vector.arrow_width or vctsprops.arrow_width
+	 local vect_dibuja = vector.dibuja or vctsprops.dibuja
+	 local vect_mod = vector.mod
+	 local vect_ang = math.rad(vector.angD)
 	 
 	 -- Coordenadas del extremo del vector
 	 local vx, vy, vz
@@ -1158,7 +1177,7 @@ function M.ppvs(transp, R, obs, tblprops, ppvs)
 	 u, v, vis = M.calcular_punto_y_visibilidad(vx, vy, vz, obs)
 	 
 	 if vect_dibuja and pto_dibuja then
-	    table.insert(vects_vis,
+	    table.insert(vcts_vis,
 			 {
 			    color= vect_color, lw= vect_lw,
 			    arrow_length= vect_arrow_length,
@@ -1169,14 +1188,41 @@ function M.ppvs(transp, R, obs, tblprops, ppvs)
 	    )
 	 end	 
       end
-      
+
+      -- TEXTO
+      -- Propiedades tomadas de los datos txtsprops
+      local txt_dibuja = iff(texto.dibuja ~= nil,
+			     texto.dibuja, txtsprops.dibuja)
+
+      if txt_dibuja then
+	 local txt_pos = texto.pos or txtsprops.pos
+	 local txt_size = texto.size or txtsprops.size
+	 local txt_color = texto.color or txtsprops.color
+	 local txt_cadena = texto.cadena
+	 
+	 table.insert(txts_vis,
+		      {
+			 txt_cadena,
+			 txt_pos, txt_size, txt_color,
+			 pto_u, pto_v
+		      }
+	 )
+      end
    end
    
-   return ptos_vis, plns_vis, vects_vis
+   return ptos_vis, plns_vis, vcts_vis, txts_vis
 end
 
 -- ----------------------------------------------------------------------------
 
+function iff(cond, a, b)
+      if cond then
+	 return a
+      else
+	 return b
+      end
+   end
+   
 -- ----------------------------------------------------------------------------
 function M.completa_tabla_curvas(index, parm, last_u, last_v, u, v)
    table.insert(
@@ -1267,6 +1313,7 @@ function M.calcular_punto_y_visibilidad(x, y, z, obs)
     return u, v, visible
 end
 -- ----------------------------------------------------------------------------
+
 -- Función para registrar mensajes
 function M.log(tipo, mensaje)
     -- Abrir archivo en modo "append" (anexar)
